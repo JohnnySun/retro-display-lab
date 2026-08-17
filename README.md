@@ -45,8 +45,32 @@ shows the five-state reflective palette, pixel aperture, reflector shadow, and
 the accumulated optical state behind the moving tetromino; a still image cannot
 fully convey the temporal decay seen in motion.
 
-Game imagery is shown only to document shader behavior. Tetris and Nintendo
-trademarks and game content remain the property of their respective owners.
+## AGS-101 prototype visual comparison
+
+<table>
+  <tr>
+    <th>Shader off — raw emulator output</th>
+    <th>Shader on — AGS-101 physics prototype</th>
+  </tr>
+  <tr>
+    <td><img src="docs/images/comparisons/ags101-mario-shader-off.png" alt="GBA Mario gameplay on KPA with the AGS-101 shader disabled"></td>
+    <td><img src="docs/images/comparisons/ags101-mario-shader-on.png" alt="GBA Mario gameplay on KPA with the AGS-101 physics prototype enabled"></td>
+  </tr>
+</table>
+
+These are direct 960×640 framebuffer captures from the same KPA and game area
+while Mario was repeatedly jumping. They are representative frames, not the
+exact same emulation frame. The enabled capture shows the prototype's BGR
+aperture, measured-response color transform, and accumulated gray-to-gray
+optical state; the disabled capture preserves the emulator's unmodified output.
+
+The AGS-101 implementation shown here is not included in this release because
+its current color stage depends on HCS-derived data with no confirmed public
+redistribution license. The screenshots document ongoing research, not an
+available preset.
+
+Game imagery is shown only to document shader behavior. Tetris, Mario, Nintendo
+trademarks, and game content remain the property of their respective owners.
 
 ## Install in RetroArch
 
