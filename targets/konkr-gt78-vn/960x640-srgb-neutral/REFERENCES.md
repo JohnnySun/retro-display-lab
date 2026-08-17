@@ -41,6 +41,16 @@ original DMG behavior belongs to the
   Values may change after future target-panel measurement and should not be
   copied to unrelated displays.
 
+## TARGET-KPA-AGS-01 — Exact GBA viewport
+
+- Source: GBA source geometry `240×160` and the system-reported 960×640 target
+  framebuffer [TARGET-KPA-HW-01].
+- Transformation: `240×4=960`, `160×4=640`; the AGS-101 physics seed fills the
+  target at exact 4× integer scale without model-specific target color
+  compensation.
+- Limits: geometric/device-tested target evidence. The public AGS color adapter
+  is neutral and the KPA display state remains unmeasured.
+
 ## Target claim
 
 This profile means “tested geometry and visually tuned compensation on the

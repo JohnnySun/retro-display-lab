@@ -1,7 +1,8 @@
 # Nintendo GBA SP AGS-101 evidence map
 
-Accessed 2026-08-18. This is a research map for the current prototype; no
-downloadable AGS-101 preset is published yet.
+Accessed 2026-08-18. The downloadable public preset is a physics seed with a
+neutral color adapter. It excludes the HCS-derived measurement constants used
+by the private KPA research integration.
 
 ## Source records
 
@@ -72,15 +73,46 @@ downloadable AGS-101 preset is published yet.
 - Limits: community hardware record; not optical metrology or manufacturer
   confirmation of all AGS-101 units.
 
+### AGS-APERTURE-01 — Analytic LCD aperture prior art
+
+- Source: cgwg/Libretro,
+  [`lcd-grid-v2.slang`](https://github.com/libretro/slang-shaders/blob/1d5a9f038a4757fc85c7720ef440b957531c85e8/handheld/shaders/lcd-cgwg/lcd-grid-v2.slang),
+  fixed Libretro commit `1d5a9f038a4757fc85c7720ef440b957531c85e8`.
+- Used for: the published polynomial/analytic approach to integrating an RGB or
+  BGR aperture over an output-pixel footprint.
+- Transformation: Retro Display Lab re-derives the polynomial integration in
+  independently structured code, removes upstream color/gamma behavior, and
+  feeds it linear optical state from the AGS response pass.
+- Limits: prior-art-informed structural candidate. It is not a microscope
+  measurement of an identified AGS-101 aperture, fill factor, or subpixel order.
+- Attribution: special thanks to cgwg and Libretro shader maintainers. The
+  mathematical method is cited even though source code is not copied verbatim.
+
+### AGS-NEUTRAL-01 — Public neutral color adapter
+
+- Sources: IEC, [IEC 61966-2-1:1999 — Default RGB colour space,
+  sRGB](https://webstore.iec.ch/en/publication/6169); W3C,
+  [Specification of sRGB](https://www.w3.org/Graphics/Color/srgb); mGBA GBATEK
+  fork, [GBA LCD color definitions](https://mgba-emu.github.io/gbatek/#lcd-color-palettes).
+- Used for: RGB555 quantization, standard sRGB decode before temporal
+  integration, and standard sRGB encode for the modern host.
+- Transformation: a source value round-trips through the standard transfer
+  function when temporal/aperture effects are neutral. No HCS per-code EOTF,
+  RGB-to-XYZ matrix, Bradford matrix, measured black, or measured white is
+  embedded.
+- Limits: engineering interoperability adapter, not an AGS-101 color
+  measurement. It deliberately prioritizes legal redistribution and immediate
+  usability until an independently measured color profile is available.
+
 ## Prototype status and evidence gap
 
-The current prototype separates BGR aperture structure, measured-reference
-color, transition-dependent optical response, and slow residual-DC retention.
-However, no published source above supplies an identified AGS-101 panel's full
+The public model separates BGR aperture structure, a replaceable neutral color
+adapter, transition-dependent optical response, and slow residual-DC retention.
+No published source above supplies an identified AGS-101 panel's full
 gray-to-gray response matrix and long-duration recovery curve. Temporal values
 remain bounded candidates until we measure an identified specimen under a
-documented protocol. The repository therefore shows prototype screenshots but
-does not distribute or advertise an AGS-101 model as complete.
+documented protocol. The downloadable preset is therefore named
+`physics-seed-v1`, not `reference` or `measured`.
 
 ## Special thanks
 

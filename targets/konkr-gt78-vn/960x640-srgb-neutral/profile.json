@@ -10,6 +10,12 @@
   "content": "Nintendo DMG-01",
   "contentViewport": [640, 576],
   "integerScale": 4,
+  "additionalContent": {
+    "Nintendo GBA SP AGS-101 physics seed": {
+      "contentViewport": [960, 640],
+      "integerScale": 4
+    }
+  },
   "frontend": "RetroArch",
   "testedRetroArchVersion": "1.22.2",
   "videoDriver": "Vulkan",
@@ -18,7 +24,8 @@
     "TARGET-KPA-HW-01",
     "TARGET-KPA-SCALE-01",
     "TARGET-KPA-COLOR-01",
-    "TARGET-KPA-TUNE-01"
+    "TARGET-KPA-TUNE-01",
+    "TARGET-KPA-AGS-01"
   ],
   "compensation": {
     "ScreenBrightness": 0.68,

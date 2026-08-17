@@ -2,43 +2,35 @@
 
 [English](README.md) | [繁體中文](README.zh-tw.md) | **简体中文**
 
-面向 RetroArch、以研究可追溯性为核心的物理启发式掌机屏幕 Shader。
+给 RetroArch 用的掌机屏幕 Shader，物理模型和数据出处都写清楚。
 
-Retro Display Lab 将老式 LCD 视为一个随时间变化的光学系统，而不是给画面
-套上一层色调。模型可以分别模拟光学色阶、像素开口、矩阵／TFT 结构、方向相关
-响应、灰阶转换、串扰与长时间残影。每一项重要机制与参数都必须链接到实际测量、
-一手技术文献，或明确标注的实验假设。
+大多数怀旧屏幕 Shader 本质上只是一组调色板：把 Game Boy 的绿色调得差不多，就没有然后了。可是 DMG 的屏幕并不是一种颜色，它是一块反应很慢的反射式光学器件，而它之所以一眼就能认出来，很多东西是发生在时间轴上的——方块下落时后面拖出来的那条尾巴、暗下去的像素褪回亮色时比变暗还慢、离开标题画面之后还隐约留在那儿的残影。
 
-## 方法上的差异
+这个项目想重建的就是这些行为。每个机型模型可以分开处理光学色阶、像素开口、矩阵与 TFT 结构、方向相关响应、灰阶转换、串扰，以及长时间残影。而每一项重要机制和参数，都得能连回实际测量、一手技术文献，或者一个被明确标注成假设的假设。
 
-Color Tint 只能改变颜色，无法重建与动态内容有关的屏幕缺陷。固定混合前几帧
-虽然可以近似拖影，却会任意截断历史，并让所有灰阶转换呈现相同行为。本项目
-改用因果、逐像素的状态模型：
+## 这个模型到底在做什么
 
-- 快速与慢速光学响应会累积完整的画面历史；
-- 加深与褪去，或不同 gray-to-gray 转换，可以有不同速度；
-- 随曝光时间累积的离子／残留直流状态，使用独立的长时间尺度；
-- 点阵开口、反射层阴影、行列串扰与 TFT 结构和色彩分开建模；
-- 原始屏幕模型与现代目标面板的补偿设置彼此分离。
+Color Tint 只能改颜色，重建不了那些画面动起来才看得见的缺陷。把前面几帧按固定比例混合会接近一些，但那等于任意截断历史，而且所有灰阶转换都变成同一种行为。这里换成因果的、逐像素的状态模型：
 
-我们将成果描述为“**物理启发、测量约束的重建**”。如果找不到原面板的驱动
-波形或响应矩阵，就公开文献约束、候选值与不确定性，不把推导值冒充实测值。
-详见[方法论](docs/methodology.md)、[引用规范](docs/reference-policy.md)与
-[完整 Reference 索引](REFERENCES.md)。
+- 快速与慢速光学响应是在完整的画面历史上累积，而不是固定几帧的窗口；
+- 加深和褪去可以有不同速度，不同的 gray-to-gray 转换也可以；
+- 离子／残留直流状态随曝光时间累积，并在另一个长得多的时间尺度上释放；
+- 点阵开口、反射层阴影、行列串扰和 TFT 结构，都跟色彩分开建模；
+- 原始面板的物理，和针对现代目标屏幕做的补偿，是两件分开处理的事。
+
+把成果称作“**物理启发、测量约束的重建**”是有意保守的说法。如果找不到原面板的驱动波形或响应矩阵，就把文献约束、候选值和不确定性一起公开，而不是把推导出来的数字包装成实测值。细节见[方法论](docs/methodology.md)、[引用规范](docs/reference-policy.md)和[完整 Reference 索引](REFERENCES.md)。
 
 ## 可下载模型：Nintendo DMG-01
 
-[`models/nintendo-dmg-01`](models/nintendo-dmg-01) 重建初代 Game Boy 的
-反射式被动矩阵 STN LCD：
+[`models/nintendo-dmg-01`](models/nintendo-dmg-01) 重建的是初代 Game Boy 那块反射式被动矩阵 STN LCD：
 
-- 四个游戏可指定灰阶，以及独立的 LCD 未驱动光学底色；
-- 非对称短期响应、结构慢尾，以及受 1994 年 STN 实验约束的逐像素离子残影；
-- 低强度行／列串扰；
+- 游戏可以指定的四个灰阶，加上 LCD 未驱动时那层独立的光学底色；
+- 非对称短期响应、结构性的慢尾，以及受 1994 年 STN 实验约束的逐像素离子残影；
+- 低强度的行／列串扰；
 - 依据公开 DMG 近拍资料建立的矩形像素开口与反射层阴影；
-- Reference、重拖影、老化个体与加速实验 preset。
+- Reference、重拖影、老化个体，以及加速实验用的 preset。
 
-每一笔资料如何对应到代码、参数与限制，请见
-[DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md)。
+哪一份资料对应到哪一段代码、有哪些限制，都写在 [DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md) 里。
 
 ### 效果对比
 
@@ -50,10 +42,9 @@ Color Tint 只能改变颜色，无法重建与动态内容有关的屏幕缺陷
   </tr>
 </table>
 
-两张图均为同一台 KPA、Gambatte core、俄罗斯方块 ROM、viewport 与显示状态下
-的 960×640 framebuffer 截图，但不是同一个模拟帧。静态图无法完整呈现拖影衰减。
+两张图都是在同一台 KPA、同一个 Gambatte core、同一份俄罗斯方块 ROM、同样的 viewport 和显示状态下拍的 960×640 framebuffer 截图，但不是同一个模拟帧。何况静态图本来也没法完整呈现拖影的衰减过程。
 
-## AGS-101 研究原型
+## 可下载物理种子：Nintendo GBA SP AGS-101
 
 <table>
   <tr><th>关闭 Shader — 模拟器原始输出</th><th>开启 Shader — AGS-101 物理原型</th></tr>
@@ -63,52 +54,58 @@ Color Tint 只能改变颜色，无法重建与动态内容有关的屏幕缺陷
   </tr>
 </table>
 
-原型将 BGR 像素开口、测量参考色彩、TFT gray-to-gray 响应与慢速残留直流
-分开处理。目前色彩阶段仍依赖固定 HCS snapshot 的衍生数据，但上游没有确认的
-再分发许可；我们也尚未测到具名 AGS-101 面板的完整 gray-to-gray matrix。
-因此图片只记录研究进度，目前不提供 AGS-101 preset。详见
+现在可以直接下载并使用
+[`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp)。
+它把 BGR 像素开口、TFT 的 gray-to-gray 响应和慢速残留直流分开处理，色彩端
+使用中性 sRGB adapter，因此不包含私有研究原型中那些未确认再分发许可的 HCS
+EOTF 表、色彩矩阵与黑白位测量值。
+
+目前仍没有测到具名 AGS-101 面板的完整 gray-to-gray matrix，所以时间参数是
+可复现、受文献约束的候选值，不是面板实测值。完整数据边界见
 [AGS-101 Evidence Map](models/nintendo-ags-101/REFERENCES.md)。
 
-游戏图片只用于说明 Shader 行为；俄罗斯方块、马力欧、Nintendo 商标与游戏内容
-均属于其权利人。
+游戏画面只是用来说明 Shader 的行为。俄罗斯方块、马力欧、Nintendo 商标和游戏内容都归各自的权利人所有。
 
 ## 下载
 
-- 稳定 v0.2.0：[下载固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.2.0.zip)
+- 稳定版 v0.3.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.3.0.zip)
 - 发布说明：[GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
-- 最新开发版：[下载 `main` ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
+- 最新开发版：[`main` 的 ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git：`git clone https://github.com/JohnnySun/retro-display-lab.git`
 
 ## 安装到 RetroArch
 
-1. 将项目解压或 clone 到 `RetroArch/shaders/retro-display-lab`。
-2. 使用 Vulkan video driver，并根据 target profile 开启整数缩放。
-3. 关闭模拟器 core 自带的 frame mixing，避免重复模拟时间响应。
-4. 加载与目标设备相符的 `.slangp`。
+1. 把项目解压或 clone 到 `RetroArch/shaders/retro-display-lab`。
+2. 切到 Vulkan video driver，target profile 有要求的话就打开整数缩放。
+3. 关掉模拟器 core 自带的 frame mixing，否则时间响应会被模拟两遍。
+4. 加载跟你设备相符的那个 target profile 下面的 `.slangp`。
 
-已测试的 KONKR GT78-VN 请加载：
+我手上测过的 KONKR GT78-VN，对应的是这个：
 
 ```text
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp
 ```
 
-此 profile 在 960×640 面板使用 640×576 的 DMG viewport，正好是 4 倍整数
-缩放。显示状态是“**sRGB-neutral、未测量**”，不等于仪器校准 sRGB。其他
-面板应从 model preset 建立自己的 target profile。详见[安装说明](docs/installation.md)。
+同一台设备的 GBA 内容请加载：
 
-## 重现与验证
+```text
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
+```
+
+这个 profile 在 960×640 的面板上放一个 640×576 的 DMG viewport，正好是 4 倍整数缩放。它的显示状态是“**sRGB-neutral、未测量**”，跟仪器校准过的 sRGB 不是一回事。换成别的面板，请从 model preset 出发，自己建一份 target profile。完整步骤见[安装说明](docs/installation.md)。
+
+## 复现与验证
 
 ```sh
 npm test
 ```
 
-检查涵盖 Shader／preset 结构、Reference ID、色阶顺序、STN 响应锚点、1994
-年回归、长尾、target scale，以及未测量显示状态的披露。贡献内容必须符合
-[引用规范](docs/reference-policy.md)与[贡献指南](CONTRIBUTING.md)。
-学术或技术使用请同时引用 [`CITATION.cff`](CITATION.cff)，以及实际使用机制所
-对应的机型 Reference。
+检查范围包括 Shader 与 preset 结构、Reference ID、色阶顺序、STN／TFT 响应
+锚点、1994 年回归、residual-DC 积分、target scale、HCS 禁止常数，以及未测量
+显示状态有没有被如实披露。要提 PR 的话，请照[引用规范](docs/reference-policy.md)
+和[贡献指南](CONTRIBUTING.md)来。学术或技术用途请引用
+[`CITATION.cff`](CITATION.cff)，并附上实际使用机制所对应的机型 Reference。
 
 ## 许可
 
-本项目原创代码与文档采用 Apache-2.0。第三方来源维持各自条款；本项目不再分发
-BGB 图片、商业 ROM 或未获许可的 HCS Shader／数据文件。
+项目的原创代码和文档采用 Apache-2.0。第三方来源各自保持原本的条款：BGB 图片、商业 ROM，以及未获许可的 HCS Shader／数据文件，这里都不会再分发。

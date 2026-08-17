@@ -2,52 +2,63 @@
 
 **English** | [繁體中文](README.zh-tw.md) | [简体中文](README.zh-cn.md)
 
-Research-grade, physics-informed handheld display shaders for RetroArch.
+Handheld LCD shaders for RetroArch, with the physics and the sources written
+down.
 
-Retro Display Lab reconstructs how an original LCD behaves as a dynamic optical
-system. It is not a color-tint collection: each model can combine documented
-optical states, pixel aperture, matrix/TFT structure, direction-dependent
-response, gray-to-gray transitions, crosstalk, and slow image retention. Every
-important mechanism and parameter is linked to measurements, primary
-literature, or an explicitly labeled experimental assumption.
+Most retro screen shaders are palettes. They get the tint of a Game Boy screen
+roughly right and stop there. But a DMG screen isn't a color — it's a slow
+reflective optical device, and a lot of what makes it recognizable only happens
+over time: the smear trailing a falling tetromino, dark pixels clearing back up
+more slowly than they darkened, the faint ghost of a title screen that lingers
+after you've left it.
 
-## What makes the method different
+That behavior is what this repository tries to reconstruct. A model can combine
+documented optical states, pixel aperture, matrix and TFT structure,
+direction-dependent response, gray-to-gray transitions, crosstalk, and slow
+image retention. Every mechanism and parameter that matters is tied back to a
+measurement, to primary literature, or to an assumption that is labeled as one.
 
-A tint changes color but cannot reproduce motion-dependent display defects. A
-fixed blend of several previous frames can suggest persistence, but it truncates
-history arbitrarily and gives every transition the same behavior. Retro Display
-Lab instead uses causal per-pixel state:
+## What the model actually does
 
-- fast and slow optical response evolve over the complete frame history;
-- darkening and clearing, or individual gray-to-gray transitions, can differ;
-- exposure-dependent ionic/residual-DC state accumulates and releases on a
-  separate time scale;
-- aperture, reflector shadow, row/column crosstalk, or TFT substructure are
-  modeled independently from color;
-- source-panel physics is separated from compensation for the modern target
-  display.
+A tint changes color but can't reproduce a defect that only shows up in motion.
+Blending a fixed number of previous frames gets closer, but it truncates the
+history arbitrarily and gives every transition the same behavior. This project
+keeps causal per-pixel state instead:
 
-This is a **physics-informed, measurement-constrained reconstruction**. Where a
-panel's original waveform or response matrix is unavailable, the repository
-publishes the literature constraint, candidate value, and uncertainty instead
-of calling it an exact measurement. See [Methodology](docs/methodology.md),
-[Reference policy](docs/reference-policy.md), and the complete
+- fast and slow optical response evolve over the whole frame history, not a
+  fixed window;
+- darkening and clearing can run at different speeds, and so can individual
+  gray-to-gray transitions;
+- ionic and residual-DC state accumulates with exposure and releases again on
+  its own, much longer, time scale;
+- aperture, reflector shadow, row and column crosstalk, and TFT substructure
+  are modeled separately from color;
+- the physics of the original panel is kept apart from the compensation for
+  whatever modern display you're looking at it on.
+
+Calling this a **physics-informed, measurement-constrained reconstruction** is a
+deliberate hedge. Where a panel's original drive waveform or response matrix
+isn't available, the repository publishes the literature constraint, the
+candidate value, and the uncertainty rather than dressing a derived number up as
+an exact measurement. See [Methodology](docs/methodology.md), the
+[reference policy](docs/reference-policy.md), and the full
 [reference index](REFERENCES.md).
 
 ## Available model: Nintendo DMG-01
 
 [`models/nintendo-dmg-01`](models/nintendo-dmg-01) reconstructs the original
-Game Boy's reflective passive-matrix STN display with:
+Game Boy's reflective passive-matrix STN display:
 
-- four game-addressable shades plus a distinct LCD-disabled optical background;
+- the four shades a game can address, plus a distinct optical background for
+  when the LCD is disabled;
 - asymmetric short response, a structural slow tail, and per-pixel ionic
-  image-sticking state constrained by a 1994 STN experiment;
-- sparse row/column crosstalk;
-- rectangular aperture and reflector shadow based on documented DMG close-ups;
-- reference, heavy-ghosting, aged, and accelerated experiment presets.
+  image-sticking constrained by a 1994 STN experiment;
+- sparse row and column crosstalk;
+- rectangular aperture and reflector shadow, based on documented DMG close-ups;
+- reference, heavy-ghosting, aged, and accelerated-experiment presets.
 
-The exact mapping from each source to code and limitations is in the
-[DMG-01 evidence map](models/nintendo-dmg-01/REFERENCES.md).
+Which source backs which line of code — and where the limits are — is spelled
+out in the [DMG-01 evidence map](models/nintendo-dmg-01/REFERENCES.md).
 
 ### Visual comparison
 
@@ -62,11 +73,11 @@ The exact mapping from each source to code and limitations is in the
   </tr>
 </table>
 
-These are representative 960×640 framebuffer captures from the same KPA,
-Gambatte core, Tetris ROM, viewport, and display state—not the same emulation
-frame. A still image cannot fully show temporal decay.
+Both are 960×640 framebuffer captures from the same KPA, Gambatte core, Tetris
+ROM, viewport, and display state — but not from the same emulation frame. A
+still image can't really show temporal decay anyway.
 
-## AGS-101 research prototype
+## Available physics seed: Nintendo GBA SP AGS-101
 
 <table>
   <tr>
@@ -79,43 +90,55 @@ frame. A still image cannot fully show temporal decay.
   </tr>
 </table>
 
-The prototype separates BGR aperture, measured-reference color,
-transition-dependent TFT response, and slow residual-DC retention. Its current
-color stage depends on HCS-derived data whose fixed upstream snapshot has no
-confirmed redistribution license, and no identified AGS-101 gray-to-gray matrix
-has yet been measured. The screenshots document ongoing research; an AGS-101
-preset is not included. See the [AGS-101 evidence map](models/nintendo-ags-101/REFERENCES.md).
+The downloadable
+[`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp)
+separates BGR aperture, transition-dependent TFT response, and slow residual-DC
+retention. It uses a neutral sRGB color adapter, so it contains none of the
+unlicensed HCS-derived EOTF tables, matrices, or black/white measurements used
+by the private research prototype shown above.
 
-Game imagery is used only to document shader behavior. Tetris, Mario, Nintendo
-trademarks, and game content remain the property of their respective owners.
+No gray-to-gray matrix has yet been measured for a named AGS-101 panel. The
+temporal constants are reproducible literature-constrained candidates, not
+panel measurements. The exact public/private data boundary is in the
+[AGS-101 evidence map](models/nintendo-ags-101/REFERENCES.md).
+
+Game imagery here exists only to show what the shaders do. Tetris, Mario,
+Nintendo trademarks, and game content belong to their respective owners.
 
 ## Download
 
-- Stable v0.2.0 package: [download the fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.2.0.zip)
+- Stable v0.3.0: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.3.0.zip)
 - Release notes: [GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
-- Current development snapshot: [download `main` as ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
+- Latest development snapshot: [`main` as ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git: `git clone https://github.com/JohnnySun/retro-display-lab.git`
 
 ## Install in RetroArch
 
-1. Extract or clone the repository to
+1. Extract or clone the repository into
    `RetroArch/shaders/retro-display-lab`.
-2. Select the Vulkan video driver and enable integer scaling when required by
-   the target profile.
-3. Disable the emulator core's own frame mixing; otherwise temporal response is
+2. Switch to the Vulkan video driver, and turn on integer scaling if the target
+   profile asks for it.
+3. Turn off the core's own frame mixing — otherwise the temporal response gets
    simulated twice.
-4. Load a `.slangp` from a matching target profile.
+4. Load a `.slangp` from a target profile that matches your device.
 
-For the tested KONKR GT78-VN target, load:
+For the KONKR GT78-VN I've tested on, that means:
 
 ```text
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp
 ```
 
-This target uses a 640×576 DMG viewport at exact 4× scale on a 960×640 panel.
-Its display state is **sRGB-neutral, unmeasured**, not instrument-calibrated
-sRGB. Other displays should start with the model preset and create a separate
-target profile. See the full [installation guide](docs/installation.md).
+For GBA content on the same target, load:
+
+```text
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
+```
+
+That profile puts a 640×576 DMG viewport on a 960×640 panel at exactly 4×. Its
+display state is **sRGB-neutral and unmeasured** — which is not the same thing
+as instrument-calibrated sRGB. On any other display, start from the model preset
+and build your own target profile. The
+[installation guide](docs/installation.md) has the long version.
 
 ## Reproducibility and validation
 
@@ -123,15 +146,17 @@ target profile. See the full [installation guide](docs/installation.md).
 npm test
 ```
 
-Checks cover shader/preset structure, reference IDs, palette ordering, STN
-response anchors, the published 1994 regression, long-tail behavior, target
-scale, and disclosure of unmeasured target state. Contributions must follow the
-[evidence policy](docs/reference-policy.md) and [contribution guide](CONTRIBUTING.md).
-For academic or technical use, cite both [`CITATION.cff`](CITATION.cff) and the
-model-local sources that support the mechanisms used.
+The checks cover shader and preset structure, reference IDs, palette ordering,
+STN and TFT response anchors, the published 1994 regression, residual-DC
+integration, target scale, forbidden HCS constants, and whether unmeasured
+target state is actually disclosed as such.
+Contributions need to follow the [evidence policy](docs/reference-policy.md) and
+the [contribution guide](CONTRIBUTING.md). For academic or technical use, cite
+[`CITATION.cff`](CITATION.cff) along with the model-local sources behind the
+mechanisms you relied on.
 
 ## License
 
-Original code and documentation are licensed under Apache-2.0. Third-party
-references remain under their own terms; no BGB photographs, commercial ROMs,
-or unlicensed HCS shader/data files are redistributed here.
+The original code and documentation are Apache-2.0. Third-party references stay
+under their own terms: no BGB photographs, commercial ROMs, or unlicensed HCS
+shader and data files are redistributed here.

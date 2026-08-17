@@ -1,0 +1,32 @@
+{
+  "id": "nintendo-ags-101-physics-seed",
+  "displayTechnology": "backlit active-matrix TFT LCD",
+  "sourceResolution": [240, 160],
+  "logicalColorDepth": "RGB555",
+  "nominalRefreshHz": 59.7275,
+  "references": "REFERENCES.md",
+  "evidenceIds": [
+    "AGS-HW-01",
+    "AGS-COLOR-01",
+    "AGS-COLOR-02",
+    "AGS-GTG-01",
+    "AGS-STICK-01",
+    "AGS-PANEL-01",
+    "AGS-APERTURE-01",
+    "AGS-NEUTRAL-01"
+  ],
+  "evidence": {
+    "temporalTopology": "literature-constrained",
+    "temporalParameters": "experimental candidate",
+    "residualDcTopology": "literature-constrained",
+    "residualDcParameters": "experimental candidate",
+    "aperture": "prior-art-informed analytic candidate",
+    "publicColorAdapter": "neutral standard sRGB surrogate"
+  },
+  "limitations": [
+    "No identified AGS-101 gray-to-gray measurement matrix",
+    "No identified AGS-101 residual-DC waveform or optical gain measurement",
+    "Public preset excludes unlicensed HCS-derived EOTF, matrix, and black data",
+    "Neutral sRGB adapter is replaceable and is not a measured AGS-101 color model"
+  ]
+}

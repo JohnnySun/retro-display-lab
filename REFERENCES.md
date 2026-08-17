@@ -8,7 +8,7 @@ redistributed.
 ## Model evidence maps
 
 - [Nintendo DMG-01](models/nintendo-dmg-01/REFERENCES.md)
-- [Nintendo GBA SP AGS-101](models/nintendo-ags-101/REFERENCES.md)
+- [Nintendo GBA SP AGS-101 physics seed](models/nintendo-ags-101/REFERENCES.md)
 
 ## Target evidence maps
 

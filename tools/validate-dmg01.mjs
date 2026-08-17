@@ -89,7 +89,7 @@ for (const [file, currentLanguage] of readmeFiles) {
   check(source.includes("繁體中文"), `${file}: missing zh-TW language label`);
   check(source.includes("简体中文"), `${file}: missing zh-CN language label`);
   check(source.includes(`**${currentLanguage}**`), `${file}: current language is not marked`);
-  check(source.includes("archive/refs/tags/v0.2.0.zip"), `${file}: missing fixed-version download link`);
+  check(source.includes("archive/refs/tags/v0.3.0.zip"), `${file}: missing fixed-version download link`);
   check(source.includes("960x640-srgb-neutral/presets/dmg01-reference-v1.slangp"), `${file}: missing tested install path`);
   check(source.includes("models/nintendo-dmg-01/REFERENCES.md"), `${file}: missing DMG evidence-map link`);
   check(source.includes("models/nintendo-ags-101/REFERENCES.md"), `${file}: missing AGS evidence-map link`);
@@ -246,7 +246,7 @@ const targetReferences = fs.readFileSync(
 const targetEvidenceIds = new Set(
   [...targetReferences.matchAll(/^## (TARGET-KPA-[A-Z]+-\d+)\b/gm)].map((match) => match[1]),
 );
-check(targetEvidenceIds.size === 4, `KPA target evidence map is incomplete: ${targetEvidenceIds.size} IDs`);
+check(targetEvidenceIds.size === 5, `KPA target evidence map is incomplete: ${targetEvidenceIds.size} IDs`);
 check(Array.isArray(targetProfile.evidenceIds), "target profile has no evidence IDs");
 for (const id of targetProfile.evidenceIds ?? []) {
   check(targetEvidenceIds.has(id), `target profile contains undefined evidence ID ${id}`);
