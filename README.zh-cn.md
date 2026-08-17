@@ -74,7 +74,8 @@ Color Tint 只能改变颜色，无法重建与动态内容有关的屏幕缺陷
 
 ## 下载
 
-- 稳定版本：[最新 GitHub Release](https://github.com/JohnnySun/retro-display-lab/releases/latest)
+- 稳定 v0.2.0：[下载固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.2.0.zip)
+- 发布说明：[GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - 最新开发版：[下载 `main` ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git：`git clone https://github.com/JohnnySun/retro-display-lab.git`
 

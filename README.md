@@ -91,7 +91,8 @@ trademarks, and game content remain the property of their respective owners.
 
 ## Download
 
-- Stable package: [latest GitHub release](https://github.com/JohnnySun/retro-display-lab/releases/latest)
+- Stable v0.2.0 package: [download the fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.2.0.zip)
+- Release notes: [GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - Current development snapshot: [download `main` as ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git: `git clone https://github.com/JohnnySun/retro-display-lab.git`
 
