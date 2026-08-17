@@ -16,8 +16,43 @@ function check(condition, message) {
   if (!condition) failures.push(message);
 }
 
+const requiredProjectFiles = [
+  "README.md",
+  "README.zh-tw.md",
+  "README.zh-cn.md",
+  "REFERENCES.md",
+  "CITATION.cff",
+  "docs/reference-policy.md",
+  "models/nintendo-dmg-01/REFERENCES.md",
+  "models/nintendo-ags-101/REFERENCES.md",
+  "targets/konkr-gt78-vn/960x640-srgb-neutral/REFERENCES.md",
+];
+for (const file of requiredProjectFiles) {
+  check(fs.existsSync(path.join(root, file)), `missing research/provenance file: ${file}`);
+}
+
+const modelReferences = fs.readFileSync(path.join(modelDir, "REFERENCES.md"), "utf8");
+const definedEvidenceIds = new Set(
+  [...modelReferences.matchAll(/^### (DMG-[A-Z]+-\d+)\b/gm)].map((match) => match[1]),
+);
+check(definedEvidenceIds.size >= 10, `DMG evidence map is incomplete: ${definedEvidenceIds.size} IDs`);
+
+function referencedEvidenceIds(source) {
+  return [...source.matchAll(/\[(DMG-[A-Z]+-\d+)\]/g)].map((match) => match[1]);
+}
+
+function checkEvidenceLinks(source, label) {
+  check(source.includes("REFERENCES.md"), `${label}: missing REFERENCES.md pointer`);
+  const ids = referencedEvidenceIds(source);
+  check(ids.length > 0, `${label}: missing evidence ID`);
+  for (const id of ids) {
+    check(definedEvidenceIds.has(id), `${label}: undefined evidence ID ${id}`);
+  }
+}
+
 for (const file of shaderFiles.filter((name) => name.endsWith(".slang"))) {
   const source = fs.readFileSync(path.join(shaderDir, file), "utf8");
+  checkEvidenceLinks(source, file);
   check(source.includes("#version 450"), `${file}: missing GLSL 450 declaration`);
   check(source.includes("#pragma stage vertex"), `${file}: missing vertex stage`);
   check(source.includes("#pragma stage fragment"), `${file}: missing fragment stage`);
@@ -32,6 +67,7 @@ for (const file of shaderFiles.filter((name) => name.endsWith(".slang"))) {
 
 for (const file of presetFiles.filter((name) => name.endsWith(".slangp"))) {
   const source = fs.readFileSync(path.join(presetDir, file), "utf8");
+  checkEvidenceLinks(source, file);
   const references = [
     ...[...source.matchAll(/shader\d+\s*=\s*"([^"]+)"/g)].map((match) => match[1]),
     ...[...source.matchAll(/#reference\s+"([^"]+)"/g)].map((match) => match[1]),
@@ -40,6 +76,30 @@ for (const file of presetFiles.filter((name) => name.endsWith(".slangp"))) {
     const localTarget = path.resolve(presetDir, target);
     check(fs.existsSync(localTarget), `${file}: missing reference ${target}`);
   }
+}
+
+const readmeFiles = [
+  ["README.md", "English"],
+  ["README.zh-tw.md", "繁體中文"],
+  ["README.zh-cn.md", "简体中文"],
+];
+for (const [file, currentLanguage] of readmeFiles) {
+  const source = fs.readFileSync(path.join(root, file), "utf8");
+  check(source.includes("English"), `${file}: missing English language label`);
+  check(source.includes("繁體中文"), `${file}: missing zh-TW language label`);
+  check(source.includes("简体中文"), `${file}: missing zh-CN language label`);
+  check(source.includes(`**${currentLanguage}**`), `${file}: current language is not marked`);
+  check(source.includes("releases/latest"), `${file}: missing stable download link`);
+  check(source.includes("960x640-srgb-neutral/presets/dmg01-reference-v1.slangp"), `${file}: missing tested install path`);
+  check(source.includes("models/nintendo-dmg-01/REFERENCES.md"), `${file}: missing DMG evidence-map link`);
+  check(source.includes("models/nintendo-ags-101/REFERENCES.md"), `${file}: missing AGS evidence-map link`);
+}
+
+const modelMetadata = JSON.parse(fs.readFileSync(path.join(modelDir, "model.json"), "utf8"));
+check(modelMetadata.references === "REFERENCES.md", "model metadata lost reference map");
+check(Array.isArray(modelMetadata.evidenceIds), "model metadata has no evidence IDs");
+for (const id of modelMetadata.evidenceIds ?? []) {
+  check(definedEvidenceIds.has(id), `model metadata contains undefined evidence ID ${id}`);
 }
 
 const palette = [
@@ -178,6 +238,19 @@ check(targetProfile.panelResolution.join("x") === "960x640", "KPA target resolut
 check(targetProfile.contentViewport.join("x") === "640x576", "KPA DMG viewport drifted");
 check(targetProfile.integerScale === 4, "KPA target lost exact 4x DMG scale");
 check(targetProfile.colorState.measured === false, "unmeasured target must not claim calibration");
+check(targetProfile.references === "REFERENCES.md", "target profile lost reference map");
+const targetReferences = fs.readFileSync(
+  path.join(root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "REFERENCES.md"),
+  "utf8",
+);
+const targetEvidenceIds = new Set(
+  [...targetReferences.matchAll(/^## (TARGET-KPA-[A-Z]+-\d+)\b/gm)].map((match) => match[1]),
+);
+check(targetEvidenceIds.size === 4, `KPA target evidence map is incomplete: ${targetEvidenceIds.size} IDs`);
+check(Array.isArray(targetProfile.evidenceIds), "target profile has no evidence IDs");
+for (const id of targetProfile.evidenceIds ?? []) {
+  check(targetEvidenceIds.has(id), `target profile contains undefined evidence ID ${id}`);
+}
 const targetPresetPath = path.join(
   root,
   "targets",
@@ -187,6 +260,10 @@ const targetPresetPath = path.join(
   "dmg01-reference-v1.slangp",
 );
 const targetPreset = fs.readFileSync(targetPresetPath, "utf8");
+check(targetPreset.includes("../REFERENCES.md"), "KPA target preset lost target provenance pointer");
+for (const id of [...targetPreset.matchAll(/\[(TARGET-KPA-[A-Z]+-\d+)\]/g)].map((match) => match[1])) {
+  check(targetEvidenceIds.has(id), `KPA target preset contains undefined evidence ID ${id}`);
+}
 const targetReference = targetPreset.match(/#reference\s+"([^"]+)"/);
 check(Boolean(targetReference), "KPA target preset has no model reference");
 if (targetReference) {

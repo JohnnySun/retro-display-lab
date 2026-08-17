@@ -1,3 +1,7 @@
+## Provenance: ../REFERENCES.md
+## Evidence: [DMG-COLOR-01] [DMG-MOTION-01] [DMG-APERTURE-01] [DMG-STN-01]
+##           [DMG-STN-02] [DMG-STN-03] [DMG-STN-04] [DMG-MATRIX-01]
+
 shaders = "3"
 
 shader0 = "../shaders/dmg01-response-v1.slang"

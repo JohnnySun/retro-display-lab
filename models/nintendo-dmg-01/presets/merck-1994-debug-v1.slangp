@@ -1,5 +1,7 @@
 #reference "reference-v1.slangp"
 
+## Provenance: ../REFERENCES.md
+## Evidence: [DMG-STN-01]
 # Accelerated replay of the 1994 Merck Japan 30-minute STN image-sticking
 # protocol. At 60x, 30 seconds corresponds to 30 minutes of ionic integration.
 # DebugView 3 shows only residual charge above the current simulated voltage.

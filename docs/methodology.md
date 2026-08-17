@@ -35,9 +35,13 @@ Claims inherit the weakest evidence required by the result. Device settings
 alone never establish calibrated sRGB; white point, transfer function, gamut,
 and error require measurement.
 
+Every model must implement these labels as stable IDs in a model-local
+`REFERENCES.md`, including exact versions/DOIs, the transformation into code,
+limitations, and redistribution status. Shader and preset comments point back
+to those IDs. See the [reference policy](reference-policy.md).
+
 ## Validation
 
 Validation should check model invariants and published anchors, not only shader
 syntax. Examples include 10–90% transition time, long-tail decay, regression
 coefficients, palette ordering, reference integrity, and target scale.
-

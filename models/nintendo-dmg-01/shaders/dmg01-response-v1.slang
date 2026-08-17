@@ -3,6 +3,9 @@
 // Retro Display Lab DMG-01 model, pass 0.
 // Four Game Boy shades drive a direction-dependent structural response plus
 // a low-amplitude ionic image-retention state.
+// Provenance: ../REFERENCES.md
+// Evidence: [DMG-MOTION-01] [DMG-STN-01] [DMG-STN-02] [DMG-STN-03]
+//           [DMG-STN-04] [DMG-ENGINE-01]
 
 layout(push_constant) uniform Push
 {

@@ -1,5 +1,7 @@
 #reference "reference-v1.slangp"
 
+## Provenance: ../REFERENCES.md
+## Evidence: [DMG-STN-02] [DMG-STN-03] [DMG-STN-04]
 # Slow/cold panel candidate for games that deliberately exploit DMG persistence.
 
 DarkenResponse = "0.23"

@@ -5,6 +5,19 @@
   "logicalShades": 4,
   "opticalStates": 5,
   "nominalRefreshHz": 59.7275,
+  "references": "REFERENCES.md",
+  "evidenceIds": [
+    "DMG-COLOR-01",
+    "DMG-MOTION-01",
+    "DMG-APERTURE-01",
+    "DMG-STN-01",
+    "DMG-STN-02",
+    "DMG-STN-03",
+    "DMG-STN-04",
+    "DMG-MATRIX-01",
+    "DMG-HW-01",
+    "DMG-ENGINE-01"
+  ],
   "evidence": {
     "palette": "reference-image-matched",
     "aperture": "reference-image-matched",
@@ -18,4 +31,3 @@
     "Sparse taps approximate full row and column loading"
   ]
 }
-

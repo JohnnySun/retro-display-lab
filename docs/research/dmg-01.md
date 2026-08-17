@@ -110,6 +110,10 @@ Pass 2 額外提供診斷顯示：`DebugView=1` 顯示目前四階正規化驅�
 
 ## 來源
 
+以下是方便閱讀的來源摘要；可稽核的來源 ID、完整書目、資料轉換、限制與再散布
+狀態，以 [`models/nintendo-dmg-01/REFERENCES.md`](../../models/nintendo-dmg-01/REFERENCES.md)
+為準。
+
 - BGB DMG reality：https://bgb.bircd.org/reality/index.html
 - BGB 五色參考圖：https://bgb.bircd.org/reality/dmg-reality-colorscheme.png
 - BGB frame-blend blur 圖：https://bgb.bircd.org/reality/dmgblend-blur.png
@@ -118,7 +122,7 @@ Pass 2 額外提供診斷顯示：`DebugView=1` 顯示目前四階正規化驅�
 - Sharp passive/active matrix application note：https://eclass.hmu.gr/modules/document/file.php/EE315/AN-002_Passive_and_Active_Matrix.pdf
 - 1992 SID passive-matrix response/crosstalk paper：https://sid.onlinelibrary.wiley.com/doi/full/10.1002/j.2637-496X.1992.tb06185.x
 - LCD response and temperature：https://saemobilus.sae.org/papers/highly-multiplexed-dot-matrix-lcd-suitable-wide-temperature-range-930546
-- M. Schadt, Liquid crystal materials and liquid crystal displays, Annual Review of Materials Science 27 (1997)：https://web.mit.edu/daigohji/Public/342/LiqCrys_Mats_Displays_1997.pdf
+- M. Schadt, Liquid crystal materials and liquid crystal displays, Annual Review of Materials Science 27 (1997)：https://doi.org/10.1146/annurev.matsci.27.1.305
 - H. Takatsu, Development and Industrialization of Liquid Crystalline Tolans (1999)：https://www.jstage.jst.go.jp/article/yukigoseikyokaishi1943/57/7/57_7_629/_pdf
 - K. Okada et al., High Response Speed Supertwisted LCD (1988)：https://www.jstage.jst.go.jp/article/itej1978/42/10/42_10_1022/_pdf
 - Y. Nakazono et al., Relationship between Image Sticking of STN LCD and Physical Properties of Liquid Crystal (1994)：https://doi.org/10.11538/ekitouyokou.20.0_374

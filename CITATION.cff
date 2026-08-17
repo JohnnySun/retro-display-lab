@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Retro Display Lab, cite this software and the model-local sources in REFERENCES.md."
+title: "Retro Display Lab"
+type: software
+authors:
+  - family-names: "JohnnySun"
+    alias: "JohnnySun"
+repository-code: "https://github.com/JohnnySun/retro-display-lab"
+url: "https://github.com/JohnnySun/retro-display-lab"
+license: Apache-2.0
+version: 0.2.0
+date-released: 2026-08-18
+keywords:
+  - RetroArch
+  - shader
+  - liquid-crystal display
+  - Game Boy
+  - display simulation

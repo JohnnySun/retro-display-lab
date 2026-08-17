@@ -13,10 +13,16 @@
   "frontend": "RetroArch",
   "testedRetroArchVersion": "1.22.2",
   "videoDriver": "Vulkan",
+  "references": "REFERENCES.md",
+  "evidenceIds": [
+    "TARGET-KPA-HW-01",
+    "TARGET-KPA-SCALE-01",
+    "TARGET-KPA-COLOR-01",
+    "TARGET-KPA-TUNE-01"
+  ],
   "compensation": {
     "ScreenBrightness": 0.68,
     "ScreenChroma": 0.90
   },
   "status": "device-tested"
 }
-

@@ -2,6 +2,8 @@
 
 // Retro Display Lab DMG-01 model, pass 1.
 // Approximate passive-matrix row/column loading and fixed panel variation.
+// Provenance: ../REFERENCES.md
+// Evidence: [DMG-MATRIX-01]
 
 layout(push_constant) uniform Push
 {

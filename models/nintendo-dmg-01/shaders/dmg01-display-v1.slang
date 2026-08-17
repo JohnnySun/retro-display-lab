@@ -2,6 +2,8 @@
 
 // Retro Display Lab DMG-01 model, pass 2.
 // Five-state measured palette, rectangular apertures, and reflector shadow.
+// Provenance: ../REFERENCES.md
+// Evidence: [DMG-COLOR-01] [DMG-APERTURE-01]
 
 layout(push_constant) uniform Push
 {
