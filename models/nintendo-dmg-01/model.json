@@ -1,0 +1,21 @@
+{
+  "id": "nintendo-dmg-01",
+  "displayTechnology": "reflective passive-matrix STN LCD",
+  "sourceResolution": [160, 144],
+  "logicalShades": 4,
+  "opticalStates": 5,
+  "nominalRefreshHz": 59.7275,
+  "evidence": {
+    "palette": "reference-image-matched",
+    "aperture": "reference-image-matched",
+    "temporalResponse": "literature-constrained experimental candidate",
+    "ionicRetention": "literature-constrained experimental candidate",
+    "crosstalk": "literature-constrained approximation"
+  },
+  "limitations": [
+    "No identified original panel transition waveform or full voltage-transmission curve",
+    "Response varies with specimen, temperature, contrast wheel, and aging",
+    "Sparse taps approximate full row and column loading"
+  ]
+}
+

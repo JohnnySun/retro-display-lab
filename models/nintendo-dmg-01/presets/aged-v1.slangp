@@ -1,0 +1,22 @@
+#reference "heavy-ghosting-v1.slangp"
+
+# A visibly worn specimen. Fixed defects are intentionally separated from the
+# reference profile because they vary strongly from one surviving panel to another.
+
+DarkenResponse = "0.19"
+ClearResponse = "0.078"
+SlowTail = "0.38"
+GrayDrag = "0.42"
+IonicMobility = "0.067"
+StickingOpticalGain = "0.110"
+IonicChargeResponse = "0.000085"
+IonicReleaseResponse = "0.000100"
+RowCrosstalk = "0.042"
+ColumnCrosstalk = "0.060"
+LineVariation = "0.018"
+PanelMottle = "0.022"
+Contrast = "0.93"
+ContrastBias = "0.015"
+ScreenBrightness = "0.60"
+ScreenChroma = "0.82"
+PolarizerAge = "0.22"

@@ -1,0 +1,15 @@
+#reference "reference-v1.slangp"
+
+# Slow/cold panel candidate for games that deliberately exploit DMG persistence.
+
+DarkenResponse = "0.23"
+ClearResponse = "0.105"
+SlowTail = "0.28"
+GrayDrag = "0.34"
+IonicMobility = "0.060"
+StickingOpticalGain = "0.095"
+IonicChargeResponse = "0.000070"
+IonicReleaseResponse = "0.000180"
+RowCrosstalk = "0.032"
+ColumnCrosstalk = "0.046"
+ShadowStrength = "0.21"

@@ -1,0 +1,7 @@
+#reference "../../../../models/nintendo-dmg-01/presets/reference-v1.slangp"
+
+# Target compensation for the KONKR GT78-VN 960x640 LCD.
+# This is a device-tested neutral state, not an instrument-calibrated sRGB claim.
+ScreenBrightness = "0.68"
+ScreenChroma = "0.90"
+

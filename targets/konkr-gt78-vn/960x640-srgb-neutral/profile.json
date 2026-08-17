@@ -1,0 +1,22 @@
+{
+  "id": "konkr-gt78-vn-960x640-srgb-neutral",
+  "target": "KONKR GT78-VN",
+  "panelResolution": [960, 640],
+  "colorState": {
+    "label": "sRGB-neutral",
+    "measured": false,
+    "note": "Neutral vendor/SurfaceFlinger state; no white-point, gamma, gamut, or Delta E measurement."
+  },
+  "content": "Nintendo DMG-01",
+  "contentViewport": [640, 576],
+  "integerScale": 4,
+  "frontend": "RetroArch",
+  "testedRetroArchVersion": "1.22.2",
+  "videoDriver": "Vulkan",
+  "compensation": {
+    "ScreenBrightness": 0.68,
+    "ScreenChroma": 0.90
+  },
+  "status": "device-tested"
+}
+
