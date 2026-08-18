@@ -35,7 +35,10 @@ const jsonBuffer = (value) => Buffer.from(`${JSON.stringify(value, null, 2)}\n`)
 const cellId = (channel, fromCode, toCode) => `${channel}:${fromCode}>${toCode}`;
 
 function cleanDeep(value) {
-  if (typeof value === "number") return Number(value.toPrecision(12));
+  // The runtime rate field is quantized to 16 bits. Nine significant digits
+  // retain substantially more precision while absorbing optimizer ULP drift
+  // across V8/libm versions.
+  if (typeof value === "number") return Number(value.toPrecision(9));
   if (Array.isArray(value)) return value.map(cleanDeep);
   if (value && typeof value === "object") {
     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cleanDeep(item)]));
