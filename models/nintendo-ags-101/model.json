@@ -8,25 +8,73 @@
   "evidenceIds": [
     "AGS-HW-01",
     "AGS-COLOR-01",
+    "AGS-METER-01",
     "AGS-COLOR-02",
     "AGS-GTG-01",
+    "AGS-GTGDATA-01",
     "AGS-STICK-01",
+    "AGS-ION-01",
+    "AGS-DRIVE-01",
+    "AGS-FEED-01",
+    "AGS-FRONTEND-01",
     "AGS-PANEL-01",
     "AGS-APERTURE-01",
-    "AGS-NEUTRAL-01"
+    "AGS-NEUTRAL-01",
+    "AGS-TIMING-01"
   ],
   "evidence": {
     "temporalTopology": "literature-constrained",
-    "temporalParameters": "experimental candidate",
-    "residualDcTopology": "literature-constrained",
-    "residualDcParameters": "experimental candidate",
+    "temporalParameters": "period-literature theoretical reconstruction",
+    "residualDcTopology": "Mizusaki adsorption/desorption reduction with explicit drive polarity",
+    "residualDcParameters": "Mizusaki laboratory-cell midpoint rates with normalized project bridge priors",
+    "scanTiming": "exact GBA row timing plus theoretical line-center latch and zero independent optical dead time",
+    "gtgRuntime": "continuous first-order rate field with explicit analytic or table backend",
+    "gtgRawSchema": "data/gtg-measurement.schema.json",
+    "gtgSyntheticFixture": "data/gtg-synthetic-v1.json",
+    "gtgRuntimeFixture": "generated/gtg-synthetic-v1.png",
     "aperture": "prior-art-informed analytic candidate",
-    "publicColorAdapter": "neutral standard sRGB surrogate"
+    "publicColorAdapter": "HCS measured 32-code EOTF and native-to-sRGB color stage",
+    "neutralColorAdapter": "selectable standard-sRGB regression baseline",
+    "staticColorEvidence": "HCS instrument measurement record embedded through deterministic local derivation",
+    "staticColorData": "data/hcs-e688fc5-color.json",
+    "staticColorGenerated": "generated/hcs-e688fc5-color.json"
+  },
+  "evidenceClassification": {
+    "measured": [
+      "HCS neutral ramp, black/white anchors, and full-level RGB/CMY patches"
+    ],
+    "literatureDerived": [
+      "TFT drive polarity and residual-DC topology",
+      "Mizusaki adsorption/desorption kinetic rates",
+      "GBA row timing and top-to-bottom scan direction",
+      "continuous first-order GtG model structure and measurement protocol"
+    ],
+    "projectPriors": [
+      "normalized DriveDcOffset and DriveCodeCoupling bridge values",
+      "line-center latch offset and zero independent optical delay",
+      "analytic GtG rate-field parameters",
+      "analytic BGR aperture geometry"
+    ],
+    "syntheticValidationOnly": [
+      "full 3x32x32 GtG fixture and packed runtime texture",
+      "60x retention stress preset"
+    ]
+  },
+  "diagnostics": {
+    "preset": "presets/diagnostics-v1.slangp",
+    "readOnlyDisplayPass": true,
+    "frontendValidationSchema": "data/frontend-validation.schema.json",
+    "frontendValidationTemplate": "data/frontend-validation-template.json",
+    "deviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-20260818.json",
+    "safeBypass": "Set TemporalResponse=0, DriveRetention=0, and BakedScanout=0 when causal frontend semantics are unavailable"
   },
   "limitations": [
-    "No identified AGS-101 gray-to-gray measurement matrix",
-    "No identified AGS-101 residual-DC waveform or optical gain measurement",
-    "Public preset excludes unlicensed HCS-derived EOTF, matrix, and black data",
-    "Neutral sRGB adapter is replaceable and is not a measured AGS-101 color model"
+    "The cited records contain no AGS-101 per-transition gray-to-gray response matrix",
+    "The checked-in GtG table is a synthetic pipeline fixture and remains disabled in the normal preset; it is not AGS-101 measurement evidence",
+    "The default retention rates come from a contemporary laboratory TFT-LCD cell rather than an unused AGS-101; normalized drive offset and drive-to-code coupling are auditable project bridge priors",
+    "HCS protocol metadata does not record brightness level, ambient lighting, warm-up, charger state, or panel label",
+    "The neutral sRGB adapter is a regression baseline, not the measured AGS-101 color stage documented by AGS-COLOR-01",
+    "GBA row timing and top-to-bottom direction are cited; line-center latch and zero independent optical dead time are period-theory conventions, not captured AGS-101 signal phases",
+    "Retention feedback is valid only for normal forward TotalSubFrames=1 rendering; rewind, run-ahead, and dropped fast-forward time are not reconstructed"
   ]
 }

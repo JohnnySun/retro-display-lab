@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "classification": "template",
+  "runId": "replace-with-run-id",
+  "date": "replace-with-ISO-date",
+  "modelId": "nintendo-ags-101-physics-seed",
+  "targetProfile": "replace-with-target-profile-id",
+  "frontend": {
+    "name": "replace-with-frontend",
+    "version": "replace-with-version",
+    "videoDriver": "replace-with-driver",
+    "shaderSubframes": 1,
+    "historySemantics": "record OriginalHistory1/2 and PassFeedback0 behavior",
+    "feedbackFormat": "R32G32B32A32_SFLOAT",
+    "integerScaling": false,
+    "sourceRefreshHz": 59.727500569606,
+    "targetRefreshHz": 60,
+    "rewindEnabled": false,
+    "runAheadEnabled": false,
+    "fastForwardRatio": 0,
+    "frameDuplication": "record frontend behavior",
+    "variableRefresh": "record target/frontend behavior"
+  },
+  "artifacts": {
+    "ags101-response-v1.slang": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "checks": [
+    { "event": "reset", "outcome": "not-applicable", "observation": "record result" },
+    { "event": "content-reload", "outcome": "not-applicable", "observation": "record result" },
+    { "event": "save-state-load", "outcome": "not-applicable", "observation": "record result" },
+    { "event": "pause-resume", "outcome": "not-applicable", "observation": "record result" },
+    { "event": "rewind", "outcome": "unsupported-disabled", "observation": "record configuration and safe bypass" },
+    { "event": "run-ahead", "outcome": "unsupported-disabled", "observation": "record configuration and safe bypass" },
+    { "event": "fast-forward", "outcome": "unsupported-disabled", "observation": "record configuration and safe bypass" },
+    { "event": "frame-duplication", "outcome": "not-applicable", "observation": "record result" },
+    { "event": "variable-refresh", "outcome": "not-applicable", "observation": "record result" }
+  ],
+  "captures": {
+    "presentationOnly": true,
+    "files": []
+  },
+  "notes": "Screenshots are presentation evidence only; logs, hashes, and causal checks determine acceptance."
+}

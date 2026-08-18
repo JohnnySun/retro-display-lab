@@ -1,0 +1,7 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-NEUTRAL-01]
+## Regression baseline for the pre-HCS neutral source/output adapter.
+
+HcsMeasuredColor = "0.0"

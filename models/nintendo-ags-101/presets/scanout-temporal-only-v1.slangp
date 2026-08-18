@@ -1,0 +1,8 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-TIMING-01] [AGS-FRONTEND-01]
+## Diagnostic control: disable row/latch/optical phase splitting while keeping
+## the same response, drive-retention, HCS color, and aperture implementation.
+
+BakedScanout = "0.0"

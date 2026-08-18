@@ -1,0 +1,10 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-COLOR-01] [AGS-NEUTRAL-01]
+## Static HCS color only: no GtG lag, retained drive state, scan split, or aperture.
+
+TemporalResponse = "0.0"
+DriveRetention = "0.0"
+BakedScanout = "0.0"
+ApertureEnabled = "0.0"

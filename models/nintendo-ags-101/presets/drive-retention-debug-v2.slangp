@@ -1,0 +1,8 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-ION-01] [AGS-DRIVE-01] [AGS-FEED-01] [AGS-FRONTEND-01]
+## Real-clock drive diagnostic. Left to right: polarity, external mismatch,
+## retained DC, and net mismatch. This preset does not accelerate kinetics.
+
+DebugView = "2.0"

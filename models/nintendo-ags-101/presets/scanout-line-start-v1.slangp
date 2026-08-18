@@ -1,0 +1,8 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-TIMING-01] [AGS-FRONTEND-01]
+## Diagnostic lower bound: electrical latch at the start of each source row.
+
+LatchOffsetLines = "0.0"
+OpticalDelaySeconds = "0.000000"

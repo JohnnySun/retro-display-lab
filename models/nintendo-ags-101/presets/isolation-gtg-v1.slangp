@@ -1,0 +1,10 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-GTG-01] [AGS-GTGDATA-01] [AGS-NEUTRAL-01]
+## GtG state only: drive retention, scan splitting, and aperture are disabled.
+
+TemporalResponse = "1.0"
+DriveRetention = "0.0"
+BakedScanout = "0.0"
+ApertureEnabled = "0.0"

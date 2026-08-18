@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/ags101-frontend-validation-v1.json",
+  "title": "AGS-101 temporal frontend validation run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "classification",
+    "runId",
+    "date",
+    "modelId",
+    "targetProfile",
+    "frontend",
+    "artifacts",
+    "checks",
+    "captures"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "classification": { "enum": ["template", "device-run"] },
+    "runId": { "type": "string", "minLength": 1 },
+    "date": { "type": "string", "minLength": 1 },
+    "modelId": { "const": "nintendo-ags-101-physics-seed" },
+    "targetProfile": { "type": "string", "minLength": 1 },
+    "frontend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "videoDriver",
+        "shaderSubframes",
+        "historySemantics",
+        "feedbackFormat",
+        "integerScaling",
+        "sourceRefreshHz",
+        "targetRefreshHz",
+        "rewindEnabled",
+        "runAheadEnabled",
+        "fastForwardRatio",
+        "frameDuplication",
+        "variableRefresh"
+      ],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "videoDriver": { "type": "string", "minLength": 1 },
+        "shaderSubframes": { "type": "integer", "minimum": 1 },
+        "historySemantics": { "type": "string", "minLength": 1 },
+        "feedbackFormat": { "type": "string", "minLength": 1 },
+        "integerScaling": { "type": "boolean" },
+        "sourceRefreshHz": { "type": "number", "exclusiveMinimum": 0 },
+        "targetRefreshHz": { "type": "number", "exclusiveMinimum": 0 },
+        "rewindEnabled": { "type": "boolean" },
+        "runAheadEnabled": { "type": "boolean" },
+        "fastForwardRatio": { "type": "number", "minimum": 0 },
+        "frameDuplication": { "type": "string", "minLength": 1 },
+        "variableRefresh": { "type": "string", "minLength": 1 }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+      "minProperties": 1
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 9,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event", "outcome", "observation"],
+        "properties": {
+          "event": {
+            "enum": [
+              "reset",
+              "content-reload",
+              "save-state-load",
+              "pause-resume",
+              "rewind",
+              "run-ahead",
+              "fast-forward",
+              "frame-duplication",
+              "variable-refresh"
+            ]
+          },
+          "outcome": {
+            "enum": [
+              "supported-passed",
+              "safe-bypass-passed",
+              "tested-limited",
+              "unsupported-disabled",
+              "not-applicable",
+              "failed"
+            ]
+          },
+          "observation": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "captures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["presentationOnly", "files"],
+      "properties": {
+        "presentationOnly": { "const": true },
+        "files": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

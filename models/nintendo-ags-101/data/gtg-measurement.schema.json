@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/ags101-gtg-measurement-v1.json",
+  "title": "AGS-101 gray-to-gray raw measurement record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recordId",
+    "classification",
+    "specimen",
+    "eventTimeZero",
+    "responseUnits",
+    "coverage",
+    "samples",
+    "missingCells",
+    "sourceFiles",
+    "integrity"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "recordId": { "type": "string", "minLength": 1 },
+    "classification": {
+      "enum": ["measured-aged-specimen", "measured-reference-specimen", "synthetic"]
+    },
+    "specimen": { "$ref": "#/$defs/specimen" },
+    "eventTimeZero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "description", "triggerUncertaintySeconds"],
+      "properties": {
+        "reference": {
+          "enum": ["source-frame-edge", "row-start", "electrical-latch", "optical-onset"]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "triggerUncertaintySeconds": { "type": "number", "minimum": 0 }
+      }
+    },
+    "responseUnits": {
+      "enum": ["normalized-transition", "relative-luminance", "cd/m2", "detector-volts"]
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channels", "codeRange", "expectedCellCount", "recordedCellCount"],
+      "properties": {
+        "channels": {
+          "type": "array",
+          "prefixItems": [{ "const": "r" }, { "const": "g" }, { "const": "b" }],
+          "items": false
+        },
+        "codeRange": {
+          "type": "array",
+          "prefixItems": [{ "const": 0 }, { "const": 31 }],
+          "items": false
+        },
+        "expectedCellCount": { "const": 3072 },
+        "recordedCellCount": { "type": "integer", "minimum": 0, "maximum": 3072 }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sample" }
+    },
+    "missingCells": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[rgb]:(?:[0-9]|[12][0-9]|3[01])>(?:[0-9]|[12][0-9]|3[01])$"
+      }
+    },
+    "sourceFiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["samplesSha256"],
+      "properties": {
+        "samplesSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    }
+  },
+  "$defs": {
+    "nullableNumber": { "type": ["number", "null"] },
+    "specimen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consoleId", "boardId", "lcdLabel", "brightnessMode", "warmupSeconds",
+        "ambient", "power", "panelHistory", "overlay", "measurementGeometry",
+        "detector", "acquisition", "stimulus"
+      ],
+      "properties": {
+        "consoleId": { "type": "string", "minLength": 1 },
+        "boardId": { "type": "string", "minLength": 1 },
+        "lcdLabel": { "type": "string", "minLength": 1 },
+        "brightnessMode": { "type": "string", "minLength": 1 },
+        "warmupSeconds": { "type": "number", "minimum": 0 },
+        "ambient": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["temperatureC", "illuminanceLux"],
+          "properties": {
+            "temperatureC": { "$ref": "#/$defs/nullableNumber" },
+            "illuminanceLux": { "$ref": "#/$defs/nullableNumber" }
+          }
+        },
+        "power": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "chargerConnected", "batteryVoltage"],
+          "properties": {
+            "source": { "type": "string", "minLength": 1 },
+            "chargerConnected": { "type": ["boolean", "null"] },
+            "batteryVoltage": { "$ref": "#/$defs/nullableNumber" }
+          }
+        },
+        "panelHistory": { "type": "string", "minLength": 1 },
+        "overlay": { "type": "string", "minLength": 1 },
+        "measurementGeometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["patchPixels", "samplePointPixels", "detectorDistanceMm", "viewAngleDegrees"],
+          "properties": {
+            "patchPixels": {
+              "type": "array", "prefixItems": [{ "type": "integer", "minimum": 1 }, { "type": "integer", "minimum": 1 }], "items": false
+            },
+            "samplePointPixels": {
+              "type": "array", "prefixItems": [{ "type": "number" }, { "type": "number" }], "items": false
+            },
+            "detectorDistanceMm": { "$ref": "#/$defs/nullableNumber" },
+            "viewAngleDegrees": {
+              "type": "array", "prefixItems": [{ "type": "number" }, { "type": "number" }], "items": false
+            }
+          }
+        },
+        "detector": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["manufacturer", "model", "serial", "bandwidthHz", "linearityCalibration"],
+          "properties": {
+            "manufacturer": { "type": "string", "minLength": 1 },
+            "model": { "type": "string", "minLength": 1 },
+            "serial": { "type": "string", "minLength": 1 },
+            "bandwidthHz": { "$ref": "#/$defs/nullableNumber" },
+            "linearityCalibration": { "type": "string", "minLength": 1 }
+          }
+        },
+        "acquisition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sampleRateHz", "repetitions", "pretriggerSeconds"],
+          "properties": {
+            "sampleRateHz": { "type": "number", "exclusiveMinimum": 0 },
+            "repetitions": { "type": "integer", "minimum": 1 },
+            "pretriggerSeconds": { "type": "number", "minimum": 0 }
+          }
+        },
+        "stimulus": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["generator", "testRom", "patternSha256", "preconditionFrames", "fromDwellSeconds", "toDwellSeconds"],
+          "properties": {
+            "generator": { "type": "string", "minLength": 1 },
+            "testRom": { "type": ["string", "null"] },
+            "patternSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            "preconditionFrames": { "type": "integer", "minimum": 0 },
+            "fromDwellSeconds": { "type": "number", "exclusiveMinimum": 0 },
+            "toDwellSeconds": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "channel", "fromCode", "toCode", "repetition", "status",
+        "eventTimeZeroSeconds", "fromPlateau", "toPlateau", "timesSeconds",
+        "opticalResponse"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "channel": { "enum": ["r", "g", "b"] },
+        "fromCode": { "type": "integer", "minimum": 0, "maximum": 31 },
+        "toCode": { "type": "integer", "minimum": 0, "maximum": 31 },
+        "repetition": { "type": "integer", "minimum": 0 },
+        "status": { "enum": ["transition", "identity"] },
+        "eventTimeZeroSeconds": { "type": "number" },
+        "fromPlateau": { "type": "number" },
+        "toPlateau": { "type": "number" },
+        "timesSeconds": {
+          "type": "array", "minItems": 2, "items": { "type": "number", "minimum": 0 }
+        },
+        "opticalResponse": {
+          "type": "array", "minItems": 2, "items": { "type": "number" }
+        }
+      }
+    }
+  }
+}

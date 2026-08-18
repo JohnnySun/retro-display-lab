@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schema/ags101-scan-capture-v1.json",
+  "title": "AGS-101 motherboard scan capture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "captureId",
+    "capturedAt",
+    "specimen",
+    "instrument",
+    "testPattern",
+    "trigger",
+    "signals"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "captureId": { "type": "string", "minLength": 1 },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "operator": { "type": "string" },
+    "specimen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consoleModel", "boardRevision", "lcdAttached", "powerState"],
+      "properties": {
+        "consoleModel": { "enum": ["AGB", "AGS-001", "AGS-101", "other"] },
+        "boardRevision": { "type": "string", "minLength": 1 },
+        "serialOrBoardId": { "type": "string" },
+        "lcdAttached": { "type": "boolean" },
+        "lcdLabel": { "type": ["string", "null"] },
+        "brightnessMode": { "type": ["string", "null"] },
+        "powerState": { "type": "string", "minLength": 1 },
+        "temperatureC": { "type": ["number", "null"] },
+        "modificationHistory": { "type": "string" }
+      }
+    },
+    "instrument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manufacturer", "model", "digitalSampleRateHz"],
+      "properties": {
+        "manufacturer": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "digitalSampleRateHz": { "type": "number", "exclusiveMinimum": 0 },
+        "analogSampleRateHz": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "bandwidthHz": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "probeDescription": { "type": "string" },
+        "timebaseAccuracyPpm": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "testPattern": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "sha256", "description"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signal", "edge", "framesCaptured"],
+      "properties": {
+        "signal": { "type": "string", "minLength": 1 },
+        "edge": { "enum": ["rising", "falling", "level", "software"] },
+        "framesCaptured": { "type": "integer", "minimum": 3 },
+        "pretriggerSeconds": { "type": "number", "minimum": 0 }
+      }
+    },
+    "signals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "classification", "units", "sampleFile", "sha256", "probeReference"],
+        "properties": {
+          "name": {
+            "enum": ["DCK", "LP", "PS", "SPL", "CLS", "SPS", "MOD", "REVC", "COM", "R", "G", "B", "FRAME_REF"]
+          },
+          "classification": { "enum": ["logic", "analog"] },
+          "units": { "enum": ["V", "logic", "s"] },
+          "sampleFile": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "probeReference": { "type": "string", "minLength": 1 },
+          "logicThresholdV": { "type": ["number", "null"] },
+          "timingUncertaintySeconds": { "type": ["number", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "derivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "script": { "type": "string" },
+        "version": { "type": "string" },
+        "latchOffsetLines": { "type": ["number", "null"] },
+        "latchOffsetUncertaintyLines": { "type": ["number", "null"], "minimum": 0 },
+        "polarityMapping": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

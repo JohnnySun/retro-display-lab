@@ -4,7 +4,7 @@
   "private": true,
   "description": "Validation for physics-informed handheld display shaders.",
   "scripts": {
-    "test": "node tools/validate-dmg01.mjs && node tools/validate-ags101.mjs"
+    "test": "node tools/build-ags101-hcs-color.mjs --check && node tools/build-ags101-gtg.mjs --check && node tools/validate-dmg01.mjs && node tools/validate-ags101.mjs"
   },
   "engines": {
     "node": ">=18"

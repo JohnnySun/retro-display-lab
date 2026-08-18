@@ -25,7 +25,15 @@
     "TARGET-KPA-SCALE-01",
     "TARGET-KPA-COLOR-01",
     "TARGET-KPA-TUNE-01",
-    "TARGET-KPA-AGS-01"
+    "TARGET-KPA-AGS-01",
+    "TARGET-KPA-SCAN-01",
+    "TARGET-KPA-HCS-01",
+    "TARGET-KPA-DRIVE-01",
+    "TARGET-KPA-GTG-01",
+    "TARGET-KPA-VALIDATION-01"
+  ],
+  "validationRecords": [
+    "validation/ags101-ws5-20260818.json"
   ],
   "compensation": {
     "ScreenBrightness": 0.68,

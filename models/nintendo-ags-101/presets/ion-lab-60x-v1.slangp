@@ -1,9 +1,0 @@
-#reference "physics-seed-v1.slangp"
-
-## Provenance: ../REFERENCES.md
-## Evidence: [AGS-STICK-01]
-## Accelerated integrator diagnostic; not a gameplay preset.
-
-IonChargeTau = "15.0"
-IonReleaseTau = "2.0"
-DebugIonState = "1.0"

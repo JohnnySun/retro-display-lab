@@ -1,7 +1,0 @@
-#reference "physics-seed-v1.slangp"
-
-## Provenance: ../REFERENCES.md
-## Evidence: [AGS-STICK-01]
-## Cyan = negative residual DC, gray = neutral, red = positive.
-
-DebugIonState = "1.0"

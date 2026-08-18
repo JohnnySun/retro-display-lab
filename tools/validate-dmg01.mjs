@@ -246,10 +246,26 @@ const targetReferences = fs.readFileSync(
 const targetEvidenceIds = new Set(
   [...targetReferences.matchAll(/^## (TARGET-KPA-[A-Z]+-\d+)\b/gm)].map((match) => match[1]),
 );
-check(targetEvidenceIds.size === 5, `KPA target evidence map is incomplete: ${targetEvidenceIds.size} IDs`);
+const requiredTargetEvidenceIds = [
+  "TARGET-KPA-HW-01",
+  "TARGET-KPA-SCALE-01",
+  "TARGET-KPA-COLOR-01",
+  "TARGET-KPA-TUNE-01",
+  "TARGET-KPA-AGS-01",
+  "TARGET-KPA-SCAN-01",
+  "TARGET-KPA-HCS-01",
+  "TARGET-KPA-DRIVE-01",
+];
+for (const id of requiredTargetEvidenceIds) {
+  check(targetEvidenceIds.has(id), `KPA target evidence map is missing required ID ${id}`);
+}
 check(Array.isArray(targetProfile.evidenceIds), "target profile has no evidence IDs");
+const targetProfileEvidenceIds = new Set(targetProfile.evidenceIds ?? []);
 for (const id of targetProfile.evidenceIds ?? []) {
   check(targetEvidenceIds.has(id), `target profile contains undefined evidence ID ${id}`);
+}
+for (const id of targetEvidenceIds) {
+  check(targetProfileEvidenceIds.has(id), `target profile omits documented evidence ID ${id}`);
 }
 const targetPresetPath = path.join(
   root,

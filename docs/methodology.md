@@ -35,6 +35,24 @@ Claims inherit the weakest evidence required by the result. Device settings
 alone never establish calibrated sRGB; white point, transfer function, gamut,
 and error require measurement.
 
+## Irreplaceable discontinued displays
+
+For a display technology whose production ended long ago and for which no
+unused reference specimen can reasonably be obtained, a surviving aged panel
+is not automatically the ground truth for its original behavior. Aging,
+unknown operating hours, storage history, temperature exposure, polarizer and
+backlight drift, and prior electrical adjustment can all dominate a new
+measurement.
+
+In that case the project default is a **period-literature theoretical
+reconstruction**: the best traceable equations and measured parameter ranges
+from contemporary work at the same technology level and in the same display
+family. A modern measurement of an aged specimen may corroborate or bound that
+model, but it represents that aged specimen and does not displace the period
+reconstruction by default. Direct literature measurements, normalized
+transformations, and project bridge assumptions must still be labelled
+separately so that the reconstruction remains auditable.
+
 Every model must implement these labels as stable IDs in a model-local
 `REFERENCES.md`, including exact versions/DOIs, the transformation into code,
 limitations, and redistribution status. Shader and preset comments point back

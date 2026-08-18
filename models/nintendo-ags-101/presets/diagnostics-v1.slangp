@@ -1,0 +1,8 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-COLOR-01] [AGS-GTGDATA-01] [AGS-ION-01] [AGS-TIMING-01] [AGS-APERTURE-01]
+## One read-only diagnostic interface; change DebugView from 1 through 5.
+## The display pass reads state but never writes altered values to feedback.
+
+DebugView = "1.0"

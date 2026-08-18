@@ -1,0 +1,10 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-GTG-01] [AGS-TIMING-01] [AGS-NEUTRAL-01]
+## GtG plus three-event scan timing: drive retention and aperture are disabled.
+
+TemporalResponse = "1.0"
+DriveRetention = "0.0"
+BakedScanout = "1.0"
+ApertureEnabled = "0.0"

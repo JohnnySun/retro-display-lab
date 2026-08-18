@@ -22,9 +22,27 @@ For GBA content on the same 960×640 target, load:
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
 ```
 
-The public AGS-101 preset is a literature-constrained physics seed with a
-neutral color adapter. Disable core color correction and frame mixing. It does
-not include the separately researched HCS-derived measured-color stage.
+The AGS-101 preset is a literature-constrained physics seed whose default
+static-color path is derived from the pinned HCS AGS-101 measurement record.
+Its main response shader also enables the period-theory row/latch/optical scan
+model; no separate scanout shader or A/B preset is required.
+Disable core color correction and frame mixing. Use
+`models/nintendo-ags-101/presets/neutral-baseline-v1.slangp` only for the
+pre-HCS neutral regression baseline. The temporal coefficients remain
+a period-literature theoretical reconstruction; direct paper rates and project
+normalization priors are distinguished in the AGS-101 evidence map.
+
+For the physical temporal preset, also apply the GBA core/content settings in:
+
+```text
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg
+```
+
+They require Vulkan, one shader subframe, integer scaling, normal-forward
+execution, and 1× speed. Rewind and run-ahead are disabled because they cannot
+preserve causal panel history. If those conditions cannot be guaranteed, use
+the static safe bypass by setting `TemporalResponse=0`, `DriveRetention=0`, and
+`BakedScanout=0`.
 
 To create a core override, copy
 `integrations/retroarch/overrides/gambatte-gb.slangp` into the appropriate

@@ -1,0 +1,11 @@
+#reference "drive-retention-debug-v2.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-ION-01] [AGS-DRIVE-01] [AGS-FEED-01]
+## Laboratory-only 60x clock: one real minute is integrated as one model hour.
+## The real-clock companion is drive-retention-debug-v2.slangp.
+## Stress with the inherited nonzero DriveDcOffset; set DriveDcOffset to 0
+## afterward to observe recovery at the same accelerated clock.
+
+IonAdsorptionRate = "0.0635000000"
+IonDesorptionRate = "0.0255000000"

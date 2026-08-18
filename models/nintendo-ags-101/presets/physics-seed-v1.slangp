@@ -1,12 +1,18 @@
 ## Provenance: ../REFERENCES.md
-## Evidence: [AGS-GTG-01] [AGS-STICK-01] [AGS-APERTURE-01] [AGS-NEUTRAL-01]
-## Candidate physics topology; temporal constants are not AGS-101 measurements.
+## Evidence: [AGS-COLOR-01] [AGS-GTG-01] [AGS-GTGDATA-01] [AGS-ION-01] [AGS-DRIVE-01] [AGS-FEED-01] [AGS-FRONTEND-01] [AGS-APERTURE-01]
+## HCS-measured color, best-available literature retention prior, and the
+## period-theory three-event GBA scan reconstruction.
 
 shaders = "2"
 
+textures = "GtgRateLut"
+GtgRateLut = "../generated/gtg-synthetic-v1.png"
+GtgRateLut_linear = "false"
+GtgRateLut_wrap_mode = "clamp_to_edge"
+GtgRateLut_mipmap = "false"
+
 shader0 = "../shaders/ags101-response-v1.slang"
 filter_linear0 = "false"
-float_framebuffer0 = "true"
 scale_type0 = "source"
 scale0 = "1.0"
 
@@ -19,11 +25,21 @@ RiseBase = "0.620"
 FallBase = "0.450"
 NearTransitionDrag = "0.250"
 MidGrayDrag = "0.200"
-IonChargeTau = "900.0"
-IonReleaseTau = "120.0"
-IonOpticalGain = "0.020"
-IonStrength = "1.000"
+GtgTableBackend = "0.0"
+TemporalResponse = "1.0"
+HcsMeasuredColor = "1.0"
+HcsChromaticAdaptation = "0.0"
+HcsImproveContrast = "1.0"
+DriveRetention = "1.0"
+DriveDcOffset = "0.100"
+IonAdsorptionRate = "0.0010583333"
+IonDesorptionRate = "0.0004250000"
+DriveCodeCoupling = "0.150"
+BakedScanout = "1.0"
+LatchOffsetLines = "0.5"
+OpticalDelaySeconds = "0.000000"
 ApertureGain = "1.0"
+ApertureEnabled = "1.0"
 BlackLevel = "0.012"
 BGR = "1.0"
-DebugIonState = "0.0"
+DebugView = "0.0"

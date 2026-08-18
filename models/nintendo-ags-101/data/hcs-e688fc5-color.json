@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "AGS-COLOR-01",
+  "source": {
+    "project": "Handheld Color Space Project",
+    "commit": "e688fc51141c0974728aa1bdcb89b94d74123f6b",
+    "measurementDirectory": "handhelds/Nintendo GBA SP AGS-101/[2023-07-24][Pokefan531]",
+    "files": {
+      "measurements/hcfr_report.xls": "sha256:25ccfeb766f574989fd94cfd415e99e0e56cd12773fbcb7679e52987c87ed3f1",
+      "measurements/hcfr_report.chc": "sha256:3f61a819581c1a863ea8427c646bdab9b3efd7fa5f0d213d975d6cb882c3a259",
+      "measurements/README.md": "sha256:63f41fba3df38fedcd99f340a626f4dbe6791288592bbaf7a1f996b1c07c903c",
+      "shaders/GBA_SP_AGS101_sRGB.slang": "sha256:7d8e301fa31930926e5ddd2029fdfa63284106b81c70ca5ef671af13538015cc"
+    }
+  },
+  "measurement": {
+    "author": "Pokéfan531",
+    "date": "2023-07-24",
+    "handheld": "Nintendo GBA SP AGS-101",
+    "displayType": "emissive",
+    "bitDepth": 5,
+    "meter": "ColorMunki Display",
+    "meterType": "colorimeter",
+    "software": "HCFR",
+    "screenOverlayPresent": true,
+    "workbookExportDate": "2025-09-23T21:45:34",
+    "workbookSensorField": "Simulated sensor",
+    "notDocumented": [
+      "panel manufacturer",
+      "HCFR version/configuration",
+      "ambient lighting",
+      "screen warm-up",
+      "brightness level",
+      "charger state",
+      "purchase year",
+      "second-hand status",
+      "panel artifacts",
+      "estimated use hours"
+    ]
+  },
+  "derivation": {
+    "revision": "hcs-black-subtracted-b80b89f",
+    "revisionCommit": "b80b89fc6951f0f64c2cbdfd2971c67bc8aafd2f",
+    "runtimeGammaDecimals": 3,
+    "inputLevelRule": "code / 31",
+    "targetWhiteXy": [0.3127, 0.329]
+  },
+  "grayscale": [
+    { "code": 0, "percentWhite": 0, "xyz": [0.50662, 0.476724, 0.78571] },
+    { "code": 1, "percentWhite": 3.196347, "xyz": [0.603834, 0.57227, 0.946711] },
+    { "code": 2, "percentWhite": 6.392694, "xyz": [0.765422, 0.730655, 1.212011] },
+    { "code": 3, "percentWhite": 9.589041, "xyz": [0.968871, 0.928297, 1.548625] },
+    { "code": 4, "percentWhite": 12.785388, "xyz": [1.347993, 1.300691, 2.183534] },
+    { "code": 5, "percentWhite": 15.981735, "xyz": [2.035084, 1.972238, 3.320279] },
+    { "code": 6, "percentWhite": 19.178082, "xyz": [3.189535, 3.104219, 5.239693] },
+    { "code": 7, "percentWhite": 22.37443, "xyz": [4.794714, 4.684548, 7.901521] },
+    { "code": 8, "percentWhite": 26.027397, "xyz": [6.895514, 6.752009, 11.371784] },
+    { "code": 9, "percentWhite": 29.223743, "xyz": [8.700458, 8.528899, 14.330819] },
+    { "code": 10, "percentWhite": 32.42009, "xyz": [10.850442, 10.644724, 17.848312] },
+    { "code": 11, "percentWhite": 35.61644, "xyz": [13.73291, 13.507071, 22.455132] },
+    { "code": 12, "percentWhite": 38.812786, "xyz": [16.360907, 16.091734, 26.681992] },
+    { "code": 13, "percentWhite": 42.009132, "xyz": [18.405005, 18.133703, 29.924583] },
+    { "code": 14, "percentWhite": 45.205479, "xyz": [21.288757, 20.990744, 34.491226] },
+    { "code": 15, "percentWhite": 48.401825, "xyz": [23.99444, 23.672119, 38.763699] },
+    { "code": 16, "percentWhite": 51.598175, "xyz": [26.870707, 26.548615, 43.201992] },
+    { "code": 17, "percentWhite": 54.794521, "xyz": [30.489029, 30.127653, 48.789871] },
+    { "code": 18, "percentWhite": 57.990868, "xyz": [33.431496, 33.071106, 53.219707] },
+    { "code": 19, "percentWhite": 61.187214, "xyz": [36.698025, 36.36824, 57.953014] },
+    { "code": 20, "percentWhite": 64.38356, "xyz": [40.71965, 40.365112, 63.809452] },
+    { "code": 21, "percentWhite": 67.57991, "xyz": [46.069939, 45.727238, 71.677757] },
+    { "code": 22, "percentWhite": 70.776253, "xyz": [50.888332, 50.626457, 78.320923] },
+    { "code": 23, "percentWhite": 73.972603, "xyz": [57.936398, 57.723812, 88.419151] },
+    { "code": 24, "percentWhite": 77.625572, "xyz": [63.90918, 63.798332, 96.216911] },
+    { "code": 25, "percentWhite": 80.821915, "xyz": [71.682274, 71.693527, 106.189636] },
+    { "code": 26, "percentWhite": 84.018265, "xyz": [77.20031, 77.374222, 112.075615] },
+    { "code": 27, "percentWhite": 87.214615, "xyz": [85.132423, 85.518791, 121.309593] },
+    { "code": 28, "percentWhite": 90.410957, "xyz": [94.797485, 95.451256, 131.058563] },
+    { "code": 29, "percentWhite": 93.607307, "xyz": [105.555481, 106.659615, 140.436188] },
+    { "code": 30, "percentWhite": 96.80365, "xyz": [114.944168, 116.605713, 147.404785] },
+    { "code": 31, "percentWhite": 100, "xyz": [121.178963, 122.963692, 151.95961] }
+  ],
+  "fullLevelPatches": {
+    "red": [53.035133, 29.786356, 3.376642],
+    "green": [43.2085, 79.048882, 8.263728],
+    "blue": [25.650356, 15.12584, 136.981308],
+    "yellow": [94.628105, 106.453163, 10.733056],
+    "cyan": [67.950371, 93.119392, 143.363129],
+    "magenta": [76.769653, 43.65538, 139.353989]
+  }
+}

@@ -1,8 +1,10 @@
 # Nintendo GBA SP AGS-101 evidence map
 
-Accessed 2026-08-18. The downloadable public preset is a physics seed with a
-neutral color adapter. It excludes the HCS-derived measurement constants used
-by the private KPA research integration.
+Accessed 2026-08-18. The default physics-seed presets use the HCS-measured
+static color model and the closest traceable period-literature retention
+parameters. Direct literature values and normalized project bridge priors are
+identified separately below. A neutral sRGB adapter remains available only as
+a regression baseline.
 
 ## Source records
 
@@ -18,16 +20,91 @@ by the private KPA research integration.
 
 - Source: Brankale, Handheld Color Space Project, fixed commit
   [`e688fc51141c0974728aa1bdcb89b94d74123f6b`](https://github.com/Brankale/Handheld-Color-Space-Project/tree/e688fc51141c0974728aa1bdcb89b94d74123f6b),
-  [AGS-101 measurement directory](https://github.com/Brankale/Handheld-Color-Space-Project/tree/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D), and
-  [AGS-101 sRGB shader](https://github.com/Brankale/Handheld-Color-Space-Project/blob/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/shaders/GBA_SP_AGS101_sRGB.slang).
-- Used for: prototype EOTF/color-stage research and comparison against an
-  instrument-derived transform for one identified measurement set.
-- Limits: one panel/specimen/protocol cannot define every AGS-101. The fixed
-  commit's root was checked through the GitHub API on 2026-08-18 and no explicit
-  `LICENSE`/`COPYING` file was present.
-- Redistribution: cited but not redistributed. HCS-derived color data/code are
-  excluded until permission is confirmed or independently measured data replace
-  them.
+  and [AGS-101 measurement directory](https://github.com/Brankale/Handheld-Color-Space-Project/tree/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D).
+- Measurement identity recorded by HCS: author Pokéfan531; measurement date
+  2023-07-24; Nintendo GBA SP AGS-101; emissive display; 5-bit source depth;
+  ColorMunki Display colorimeter; HCFR; screen overlay present. These fields
+  come from the snapshot's
+  [`measurements/README.md`](https://github.com/Brankale/Handheld-Color-Space-Project/blob/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/measurements/README.md).
+- Raw source artifacts: HCFR session
+  [`hcfr_report.chc`](https://github.com/Brankale/Handheld-Color-Space-Project/blob/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/measurements/hcfr_report.chc)
+  and workbook export
+  [`hcfr_report.xls`](https://github.com/Brankale/Handheld-Color-Space-Project/blob/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/measurements/hcfr_report.xls).
+- Workbook coverage: black and white plus a 32-code neutral gray ramp with XYZ,
+  RGB, color temperature, and Delta E fields; full-level red, green, blue,
+  yellow, cyan, and magenta measurements; and HCFR-report spectral rows from
+  380–730 nm. The ColorChecker sheet contains no recorded patches (`-1`), so it
+  is not counted as measured coverage. The historical
+  [`lut_report.png`](https://github.com/Brankale/Handheld-Color-Space-Project/blob/26a296b8ce359a55a7d68f6fba762f2bca91dae4/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/shaders/LUT%20version/lut_report.png)
+  at commit `26a296b8ce359a55a7d68f6fba762f2bca91dae4` evaluates a
+  32,768-entry LUT generated from the measured model; it is not 32,768 separate
+  physical patch measurements.
+- Recorded values used as audit anchors: workbook black
+  `XYZ=(0.506620, 0.476724, 0.785710)` and white
+  `XYZ=(121.178963, 122.963692, 151.959610)`, with white
+  `xy=(0.305928, 0.310434)`. These anchors reproduce the black subtraction,
+  white normalization, and matrix in the fixed snapshot's
+  [`GBA_SP_AGS101_sRGB.slang`](https://github.com/Brankale/Handheld-Color-Space-Project/blob/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/shaders/GBA_SP_AGS101_sRGB.slang).
+- Artifact chronology: the HCS README records the measurement date. The XLS
+  GeneralSheet separately records its export date as 2025-09-23; that is an
+  export event, not a replacement measurement date. The same sheet records
+  `Simulated sensor`, while the measurement README records the physical meter
+  as ColorMunki Display. Both fields are retained with their artifact context
+  instead of treating either as missing provenance.
+- Derivation/version note: the snapshot's
+  [`screen_config.json`](https://github.com/Brankale/Handheld-Color-Space-Project/blob/e688fc51141c0974728aa1bdcb89b94d74123f6b/handhelds/Nintendo%20GBA%20SP%20AGS-101/%5B2023-07-24%5D%5BPokefan531%5D/lut/screen_config.json)
+  contains the earlier gamma-table derivation, whereas the shader includes the
+  black-subtracted derivation introduced by HCS commit
+  [`b80b89fc6951f0f64c2cbdfd2971c67bc8aafd2f`](https://github.com/Brankale/Handheld-Color-Space-Project/commit/b80b89fc6951f0f64c2cbdfd2971c67bc8aafd2f).
+  They are two revisions over the same HCFR record and must not be treated as
+  interchangeable tables.
+- Local normalized record:
+  [`data/hcs-e688fc5-color.json`](data/hcs-e688fc5-color.json), containing the
+  utilized grayscale/patch values, HCS commit and file hashes, measurement
+  metadata, and named derivation revision.
+- Local deterministic derivation:
+  [`tools/build-ags101-hcs-color.mjs`](../../tools/build-ags101-hcs-color.mjs)
+  produces [`generated/hcs-e688fc5-color.json`](generated/hcs-e688fc5-color.json)
+  and the generated Shader blocks. It performs black subtraction, normalized
+  primary-matrix construction, local gamma recovery, HCS three-decimal runtime
+  gamma quantization, RGB555 EOTF evaluation, Bradford adaptation, measured
+  black normalization, and golden-vector generation.
+- Used for: the default runtime source EOTF and native RGB→XYZ→host RGB color
+  stage, plus numerical comparison against the pinned HCS Shader.
+- Protocol fields explicitly marked `n.d.` by HCS: panel manufacturer, HCFR
+  version/configuration, ambient lighting, warm-up, brightness level, charger
+  state, purchase year, second-hand status, panel artifacts, and estimated use
+  hours. `n.d.` means the named field is not recorded in this source; it does
+  not make the measurement files, author, date, meter, or software unidentified.
+- Coverage limits: this record contains a neutral ramp and full-level
+  primaries/secondaries, not direct 32-step red-only, green-only, and blue-only
+  ramps, repeated trials, uncertainty intervals, intermediate mixed-color
+  patches, gray-to-gray timing, or image-sticking recovery curves. One record
+  also cannot establish unit-to-unit variation across every AGS-101.
+- Dataset semantics: because the recorded meter is a colorimeter, the
+  SpectralSheet is cited as HCFR-report spectral data rather than described as
+  direct spectroradiometer acquisition; see AGS-METER-01.
+- License check: the fixed commit's root was checked through the GitHub API on
+  2026-08-18 and no explicit `LICENSE`/`COPYING` file was present.
+- Redistribution: the local implementation is independently written from the
+  documented HCFR measurements and includes measurement-derived numerical data;
+  upstream Shader source is not copied. The pinned HCS snapshot has no explicit
+  license file, so external release of the measurement-derived artifact still
+  requires a distribution decision or permission confirmation.
+
+### AGS-METER-01 — ColorMunki Display instrument classification
+
+- Source: X-Rite, *ColorMunki Solutions Product Comparison*, document L7-511,
+  [official PDF](https://www.xrite.com/-/media/xrite/files/literature/l7/l7-500_l7-599/l7-511_colormunki_solutions_product_comparison/l7-511_colormunki_family_en.pdf).
+- Exact fact used: ColorMunki Display is listed as a spectrally calibrated
+  three-channel colorimeter; ColorMunki Photo is the spectrophotometer in the
+  same comparison.
+- Used for: interpreting the instrument field in AGS-COLOR-01 and avoiding the
+  stronger claim that its SpectralSheet rows are direct spectroradiometer
+  samples.
+- Limits: instrument classification only; it does not invalidate the recorded
+  HCFR XYZ/colorimetric measurements or identify the HCFR spectral reconstruction
+  method used for this report.
 
 ### AGS-COLOR-02 — Libretro SP101 color prior art
 
@@ -52,11 +129,50 @@ by the private KPA research integration.
 - Limits: architecture-level literature, not a measured response matrix for the
   AGS-101 panel.
 
+### AGS-GTGDATA-01 — GtG waveform measurement and runtime-table method
+
+- Primary measurement source: VESA,
+  [*Adaptive-Sync Display Compliance Test Specification*, revision 1.1a](https://vesa.org/wp-content/uploads/2023/05/Adaptive-Sync-Display-CTS-r1.1.pdf),
+  section 7. The public CTS specifies a 9×9 G2G matrix, 10–90% timing,
+  overshoot/undershoot evaluation, at least 250 ms between transitions, and at
+  least 20 repetitions per transition.
+- Supporting measurement source: Michael E. Becker, “LCD Response Time
+  Evaluation in the Presence of Backlight Modulations,” *SID 2008 Digest*,
+  [author-hosted PDF](https://www.display-messtechnik.de/fileadmin/template/main/docs/SID08-4_3.pdf).
+  It separates LCD response, backlight modulation, frame modulation and noise,
+  and shows that overdrive can shorten 10–90% while extending final settling.
+- Supporting temporal-matrix source: H. Liang, A. Saha, and A. Badano,
+  “Temporal response of medical liquid crystal displays,” *Medical Physics*
+  34(2) (2007), [DOI 10.1118/1.2428403](https://doi.org/10.1118/1.2428403).
+- Supporting LUT source: Heebum Park, Guiwon Seo, and Chulhee Lee,
+  “Quasi-bi-quadratic interpolation for LUT implementation for LCD TV,”
+  *VISAPP 2009*, [paper PDF](https://www.scitepress.org/papers/2009/18076/18076.pdf).
+- Used for: preserving raw per-transition waveforms and repetitions; deriving
+  timing, settling, overshoot, undershoot and residual metrics separately;
+  maintaining independent R/G/B from-to tables; and treating incomplete-table
+  interpolation as an explicit, testable operation.
+- Local project transformation: WS4 selects a monotone first-order
+  continuous-time rate field only for cells that pass documented residual and
+  overshoot gates. Runtime rates are packed deterministically into a 32×96
+  RGB8 texture. Four-corner bilinear interpolation is used only when all
+  corners are eligible; otherwise that channel explicitly uses the analytic
+  prior. This state-space reduction and its numerical thresholds are project
+  decisions, not claims made by VESA or the papers.
+- Local schema, fitter, synthetic fixture, runtime manifest, and protocol:
+  [`data/gtg-measurement.schema.json`](data/gtg-measurement.schema.json),
+  [`tools/build-ags101-gtg.mjs`](../../tools/build-ags101-gtg.mjs),
+  [`generated/gtg-synthetic-v1.json`](generated/gtg-synthetic-v1.json), and
+  [`docs/research/ags-101-gtg.md`](../../docs/research/ags-101-gtg.md).
+- Limits: none of these sources contains a measured AGS-101 3×32×32 matrix.
+  The checked-in full table is synthetic pipeline validation and is never
+  labelled as panel measurement.
+
 ### AGS-STICK-01 — TFT residual DC and image sticking
 
-- Source: [US6590411B2 — Liquid crystal display device with reduced image
-  sticking](https://patents.google.com/patent/US6590411B2), including residual
-  DC, ionic effects, alignment layers, and storage/parasitic capacitance.
+- Source: [US6590411B2 — Image sticking measurement method for liquid crystal
+  display device](https://patents.google.com/patent/US6590411B2/en), including
+  residual DC, ionic effects, alignment layers, and storage/parasitic
+  capacitance.
 - Supporting source: Masanobu Mizusaki, Tetsuya Miyashita, Tatsuo Uchida,
   Yuichiro Yamada, and Yutaka Ishii, “The Mechanism of Internal DC Offset
   Voltage and its Application to LCD,” Japanese Liquid Crystal Conference
@@ -66,12 +182,105 @@ by the private KPA research integration.
 - Limits: these sources constrain mechanisms and stress behavior, not AGS-101
   amplitudes or time constants.
 
+### AGS-ION-01 — Measured adsorption/desorption kinetic model
+
+- Source: Masanobu Mizusaki, Tetsuya Miyashita, and Tatsuo Uchida,
+  “Interaction between Impurity Ions and Alignment Polymer Layers Affecting
+  the Image Sticking Effect on Liquid Crystal Displays,” *Kobunshi Ronbunshu*
+  68(1), 39–44 (2011),
+  [DOI 10.1295/koron.68.39](https://doi.org/10.1295/koron.68.39).
+- Retained equations: paper eq. 1,
+  `dn_a/dt = k_a N_s(n_s-n_a)-k_d n_a`; eq. 3,
+  `C_LC V_rDC = q n_a`; exponential generation/relaxation in eqs. 4–5; and
+  the two-component relaxation fit in eq. 6.
+- Quantitative prior: Table 1 reports `k_a N_s=0.060–0.067 min^-1` and slow
+  `k_d=0.023–0.028 min^-1` for the paper's 25 °C laboratory cell over 1–5 V
+  DC-offset stress. Figure 9 reports approximately voltage-independent rate
+  constants in that range; Figure 10 attributes voltage-dependent residual DC
+  primarily to increasing available near-surface ion density.
+- Used for: the normalized signed adsorption/desorption state, exact exponential
+  CPU/shader update, and explicit distinction between formation and zero-bias
+  relaxation.
+- Local derivation: [`docs/research/ags-101-drive-retention.md`](../../docs/research/ags-101-drive-retention.md)
+  and [`reference/drive-retention.mjs`](reference/drive-retention.mjs).
+- Limits: the paper's materials, cell construction, temperature, capacitance,
+  and fitted rates are not measurements of the HCS or tested AGS-101 specimen.
+  Under the discontinued-display policy in `docs/methodology.md`, their range
+  midpoints are the default period-literature theoretical reconstruction, not
+  a claim of direct AGS-101 measurement.
+
+### AGS-DRIVE-01 — Common-electrode drive, inversion, and REVC
+
+- Source: Renesas, *AN1208: LCD Screens — Don't Flicker — Or Do They?*,
+  [application note](https://www.renesas.com/in/en/document/apn/an1208-lcd-screens-dont-flicker-or-do-they).
+- Supporting source: Sharp, *LZ9JG17B Timing Controller for TFT-LCD Panels*,
+  [datasheet](https://www1.futureelectronics.com/doc/SHARP/LZ9JG17B.pdf).
+- Corroborating field report: Reddit r/Gameboy, [“AGS-101 GBA mod image
+  retention fix (40-pin white tab)”](https://www.reddit.com/r/Gameboy/comments/5r8i0e/ags101_gba_mod_image_retention_fix_40pin_white/).
+- Exact facts used: LCD drive alternates pixel voltage about a common-electrode
+  reference so ideal time-average DC is zero; common-electrode mismatch can
+  create visible flicker/retention; the Sharp controller defines REVC as a
+  preparatory signal for common-electrode driving. The field report documents
+  retention changing with an AGS-101 mod's drive-voltage adjustment.
+- Used for: constraining the slow-retention model to an electrical-polarity and
+  common-electrode mechanism, rather than treating displayed luma alone as a
+  complete physical drive signal.
+- Limits: the Renesas and Sharp documents are general TFT drive references, not
+  an AGS-101 controller specification. The field report is a device observation,
+  not a calibrated waveform. None supplies AGS-101 REVC/VCOM amplitude, phase,
+  or retention time constants.
+
+### AGS-FEED-01 — TFT feed-through and polarity imbalance equations
+
+- Primary sources: [CN100407281C](https://patents.google.com/patent/CN100407281C/en),
+  eq. 1, and [CN102254538A](https://patents.google.com/patent/CN102254538A/en),
+  eqs. 1–6.
+- Retained equation:
+  `V_feed = C_GD/(C_GD+C_LC+C_ST) * DeltaV_G`. Charge conservation at TFT
+  turn-off shifts the held pixel voltage; gray/polarity-dependent capacitance
+  can make positive and negative drive unequal relative to VCOM.
+- Used for: defining the shader input as the resultant signed DC drive error,
+  separate from image luma, and for the future motherboard/panel measurement
+  handoff.
+- Limits: no AGS-101 `C_GD`, `C_LC`, `C_ST`, gate swing, VCOM error, or
+  polarity-resolved pixel voltage has been measured. The runtime therefore
+  accepts the normalized resultant error and does not synthesize capacitance
+  values.
+
+### AGS-FRONTEND-01 — Slang feedback, precision, and frame parity
+
+- Source: Libretro,
+  [Slang shader format](https://github.com/libretro/slang-shaders), including
+  previous-frame framebuffer feedback, reflected `FrameCount`, and supported
+  `R32G32B32A32_SFLOAT` render-target format.
+- Used for: explicit alternating frame polarity, one persistent electrical
+  scalar beside optical RGB, float32 precision required by minute-scale
+  kinetic rates, causal scan events crossing a frame boundary, and the WS4
+  static PNG lookup texture. The official format describes PNG lookup input as
+  plain RGBA8/RGBA8_UNORM rather than an automatically sRGB-decoded color
+  texture, which preserves the packed WS4 data bytes.
+- History semantics used by WS3: the official format defines
+  `OriginalHistory1` as input N-1 and `OriginalHistory2` as N-2; unavailable
+  negative-frame inputs are transparent black. A delayed event therefore uses
+  N-2 -> N-1 in the current output frame and never samples input N early.
+- Precision result: the former biased half-float alpha encoding has about
+  `1.95e-3` decoded-state spacing near zero, larger than the approximately
+  `1.7e-5` unit-error update of a `0.001 s^-1` process at 59.7275 Hz. The new
+  pass requests RGBA32F and is subject to target runtime validation.
+- Frontend limits: valid for normal forward N=1 rendering. Rewind and run-ahead
+  do not reconstruct shader feedback; dropped fast-forward frames undercount
+  physical time; shader subframes other than one bypass retention.
+
 ### AGS-PANEL-01 — Community panel-label record
 
 - Source: iceboy, [AGS panel database record](https://iceboy.a-singer.de/db/ags_iceboy_2.html).
+- Recorded specimen: 2005 `C/AGT-CPU-01` board; LCD sticker
+  `LQ029B1DC01F 58E06466754`; LCD stamp `0026 050820`; Sharp CPU.
 - Used for: specimen/panel-label context when correlating future measurements.
 - Limits: community hardware record; not optical metrology or manufacturer
-  confirmation of all AGS-101 units.
+  confirmation of all AGS-101 units. AGS-COLOR-01 does not record its panel
+  sticker or board revision, so the two records are not asserted to describe
+  the same specimen.
 
 ### AGS-APERTURE-01 — Analytic LCD aperture prior art
 
@@ -88,31 +297,63 @@ by the private KPA research integration.
 - Attribution: special thanks to cgwg and Libretro shader maintainers. The
   mathematical method is cited even though source code is not copied verbatim.
 
-### AGS-NEUTRAL-01 — Public neutral color adapter
+### AGS-NEUTRAL-01 — Neutral regression color adapter
 
 - Sources: IEC, [IEC 61966-2-1:1999 — Default RGB colour space,
   sRGB](https://webstore.iec.ch/en/publication/6169); W3C,
   [Specification of sRGB](https://www.w3.org/Graphics/Color/srgb); mGBA GBATEK
   fork, [GBA LCD color definitions](https://mgba-emu.github.io/gbatek/#lcd-color-palettes).
-- Used for: RGB555 quantization, standard sRGB decode before temporal
-  integration, and standard sRGB encode for the modern host.
+- Used for: the selectable `neutral-baseline-v1` regression path: RGB555
+  quantization, standard sRGB decode before temporal integration, and standard
+  sRGB encode for the modern host.
 - Transformation: a source value round-trips through the standard transfer
   function when temporal/aperture effects are neutral. No HCS per-code EOTF,
   RGB-to-XYZ matrix, Bradford matrix, measured black, or measured white is
   embedded.
 - Limits: engineering interoperability adapter, not an AGS-101 color
-  measurement. It deliberately prioritizes legal redistribution and immediate
-  usability until an independently measured color profile is available.
+  measurement and no longer the default preset. AGS-COLOR-01 supplies the
+  measured runtime color stage.
+
+### AGS-TIMING-01 — GBA video timing
+
+- Primary period source: Nintendo, *Game Boy Advance Programming Manual*,
+  `AGB-06-0001-002-B13`, released 2005-05-27, LCD Table 5, as preserved in the
+  [manual text/PDF mirror](https://pdfcoffee.com/gameboy-advance-programming-manual-pdf-free.html).
+- Technical source: mGBA GBATEK fork, [LCD dimensions and timing](https://mgba-emu.github.io/gbatek/#lcd-dimensions-and-timing), with the
+  [GBA-only GBATEK mirror](https://rust-console.github.io/gbatek-gbaonly/) used
+  for the AGS-101 connector signal list.
+- Supporting observation: Veikkos, [gba-frame-test](https://github.com/veikkos/gba-frame-test), reporting top-to-bottom line drawing on original AGB,
+  AGS-001, and AGS-101 hardware.
+- Used for: 16,777,216 Hz master clock, 1,232 cycles per scanline, 228 total
+  scanlines, 160 visible rows, exact `T_line=73.43292236328125 us`, and exact
+  `T_frame=16.742706298828125 ms`. The three-event scan model derives row start
+  from these values, then adds separately classified `LatchOffsetLines` and
+  `OpticalDelaySeconds`. GBATEK also records
+  the SP connector signals DCK, LP, PS, RGB, SPL, CLS, SPS, MOD, REVC, and COM;
+  these make digital latch and polarity timing testable at the motherboard even
+  without an attached optical panel.
+- Established by the cited records: frame/line timing and top-to-bottom scan
+  direction.
+- Not established by the cited records: the exact LP/SPS/DCK latch point within
+  a line, MOD/REVC phase and polarity mapping, and a separate panel optical dead
+  time. `LatchOffsetLines=0.5` is the period-theory line-center convention;
+  `OpticalDelaySeconds=0` means the existing causal GtG response begins at the
+  latch rather than inventing an additional pure delay.
+- Local derivation and capture handoff:
+  [`docs/research/ags-101-scan-timing.md`](../../docs/research/ags-101-scan-timing.md),
+  [`reference/scan-timing.mjs`](reference/scan-timing.mjs), and
+  [`data/scan-capture.schema.json`](data/scan-capture.schema.json).
 
 ## Prototype status and evidence gap
 
-The public model separates BGR aperture structure, a replaceable neutral color
-adapter, transition-dependent optical response, and slow residual-DC retention.
-No published source above supplies an identified AGS-101 panel's full
-gray-to-gray response matrix and long-duration recovery curve. Temporal values
-remain bounded candidates until we measure an identified specimen under a
-documented protocol. The downloadable preset is therefore named
-`physics-seed-v1`, not `reference` or `measured`.
+The public model separates BGR aperture structure, selectable measured/neutral
+color stages, transition-dependent optical response, slow residual-DC
+retention, and row/latch/optical scan events. AGS-COLOR-01 supplies the default measured static colorimetry.
+AGS-ION-01 supplies the default period-literature kinetic rates. No pristine
+AGS-101 temporal reference specimen is reasonably obtainable, so an aged unit
+would be secondary specimen evidence rather than automatic original-production
+ground truth. The normalized DC and code-coupling bridge remains a named
+project prior; accordingly the preset is `physics-seed-v1`, not `measured`.
 
 ## Special thanks
 

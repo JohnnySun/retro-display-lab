@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "classification": "device-run",
+  "runId": "konkr-gt78-vn-ags101-ws5-20260818",
+  "date": "2026-08-18",
+  "modelId": "nintendo-ags-101-physics-seed",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "frontend": {
+    "name": "RetroArch",
+    "version": "1.22.2 (Git a609b709eb)",
+    "videoDriver": "Vulkan on Mali-G76 MC4",
+    "shaderSubframes": 1,
+    "historySemantics": "Normal-forward N=1: Original is the current core image, OriginalHistory1/2 are the preceding source images, and PassFeedback0 is the preceding response-pass output; causal wrap and frame-parity probes passed on this target.",
+    "feedbackFormat": "R32G32B32A32_SFLOAT",
+    "integerScaling": true,
+    "sourceRefreshHz": 59.727500569606,
+    "targetRefreshHz": 60,
+    "rewindEnabled": false,
+    "runAheadEnabled": false,
+    "fastForwardRatio": 1,
+    "frameDuplication": "No explicit duplication mode was exposed; normal fixed-vsync execution presented one shader update per core video callback.",
+    "variableRefresh": "Unavailable on the tested target; only fixed 60 Hz was exposed."
+  },
+  "artifacts": {
+    "models/nintendo-ags-101/shaders/ags101-response-v1.slang": "dac4427f6fc34f4a96be8b8e407162d81ac97a7ad0cffda9eee37d63bacfe8c3",
+    "models/nintendo-ags-101/shaders/ags101-display-v1.slang": "edaf42962e8f354fdd4cff1dce747537f8804c57f620052e4535da1b7c251ce2",
+    "models/nintendo-ags-101/presets/physics-seed-v1.slangp": "b4ec9c03ffdfed964115d64e4770549380e0997109be7f6fdb6b4e6a3de95d5a",
+    "models/nintendo-ags-101/generated/gtg-synthetic-v1.png": "9d2d8b0e53c6871b3d04086c821a08ce87e86e7214eae4664ebde96e0fd6cdb8"
+  },
+  "checks": [
+    {
+      "event": "reset",
+      "outcome": "supported-passed",
+      "observation": "Quick Menu Restart returned to the title boot sequence; the feedback pass reinitialized and continued without a shader, Vulkan, or process failure."
+    },
+    {
+      "event": "content-reload",
+      "outcome": "supported-passed",
+      "observation": "Restarting RetroArch reloaded the same content and formal target override; the temporal shader compiled and resumed near 60 fps."
+    },
+    {
+      "event": "save-state-load",
+      "outcome": "supported-passed",
+      "observation": "A state saved in a castle scene was loaded after returning to the title; emulated content rewound while panel feedback remained causal, producing a transient optical transition and then settling without failure."
+    },
+    {
+      "event": "pause-resume",
+      "outcome": "tested-limited",
+      "observation": "Quick Menu pause/resume preserved the shader and resumed normally. Long wall-clock decay during pause is not modeled because the shader clock stops with presentation."
+    },
+    {
+      "event": "rewind",
+      "outcome": "unsupported-disabled",
+      "observation": "Disabled in the effective GBA core/content override because shader feedback cannot reconstruct physical history while emulator time moves backward."
+    },
+    {
+      "event": "run-ahead",
+      "outcome": "unsupported-disabled",
+      "observation": "Disabled in the effective GBA core/content override because speculative/discarded frontend frames are outside the normal-forward feedback contract."
+    },
+    {
+      "event": "fast-forward",
+      "outcome": "tested-limited",
+      "observation": "A temporary 4x probe presented only about 47-49 fps, so emulated frames were not represented as real-time panel updates. The final GBA override fixes the ratio at 1.0."
+    },
+    {
+      "event": "frame-duplication",
+      "outcome": "tested-limited",
+      "observation": "No explicit frontend duplication mode was available to classify duplicate callbacks. Normal fixed-vsync execution remained near 60 fps; unknown duplicate timing requires the documented static bypass."
+    },
+    {
+      "event": "variable-refresh",
+      "outcome": "not-applicable",
+      "observation": "The KONKR target exposed only fixed 60 Hz, so variable-refresh integration was not exercised and remains unsupported by the fixed-period model."
+    }
+  ],
+  "captures": {
+    "presentationOnly": true,
+    "files": []
+  },
+  "notes": "Verbose allocation logs confirmed pass 0 as R32G32B32A32_SFLOAT and pass 1 as R8G8B8A8_UNORM after removing the preset-level float_framebuffer0 override that had forced pass 0 to R16G16B16A16_SFLOAT. Unified diagnostic views 1-5, analytic/table GtG, 60x retention stress, and static/GtG/scan isolation presets compiled on-device. The temporary save state was preserved at RetroArch/states/.codex-validation/20260818/ws5-save-load.state. Global RetroArch configuration was restored; only GBA core/content safety overrides remain."
+}

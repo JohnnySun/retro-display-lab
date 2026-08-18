@@ -1,0 +1,8 @@
+#reference "physics-seed-v1.slangp"
+
+## Provenance: ../REFERENCES.md
+## Evidence: [AGS-GTG-01] [AGS-GTGDATA-01]
+## Pipeline diagnostic only: the bound table is generated from the analytic
+## prior and is explicitly synthetic, not an AGS-101 measurement.
+
+GtgTableBackend = "1.0"
