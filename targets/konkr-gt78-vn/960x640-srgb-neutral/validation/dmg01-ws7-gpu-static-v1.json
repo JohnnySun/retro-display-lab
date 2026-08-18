@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws7-gpu-static-v1",
+  "capture": "ws7-n2-numeric-bypass.png",
+  "captureSha256": "a516753c6ccc181949bc3af636f70fb3e0f4ac51f18ee5e009f4b721d337342b",
+  "captureDimensions": [
+    960,
+    640
+  ],
+  "viewport": {
+    "x": 160,
+    "y": 32,
+    "width": 640,
+    "height": 576,
+    "scale": 4
+  },
+  "comparison": "Generated CPU director-to-optical LUT sampled at the four nominal equilibrium coordinates versus DebugView=4 GPU output after the final RGBA8 pass and RGB565 swapchain.",
+  "tolerance8Bit": 6,
+  "samples": [
+    {
+      "shade": 0,
+      "expectedOpticalState": 0.268504868,
+      "expectedRgb565": [
+        66,
+        69,
+        66
+      ],
+      "observedRgb": [
+        68,
+        68,
+        68
+      ],
+      "maximumChannelError": 2
+    },
+    {
+      "shade": 1,
+      "expectedOpticalState": 0.485839308,
+      "expectedRgb565": [
+        123,
+        125,
+        123
+      ],
+      "observedRgb": [
+        124,
+        124,
+        124
+      ],
+      "maximumChannelError": 1
+    },
+    {
+      "shade": 2,
+      "expectedOpticalState": 0.758946582,
+      "expectedRgb565": [
+        197,
+        194,
+        197
+      ],
+      "observedRgb": [
+        193,
+        193,
+        193
+      ],
+      "maximumChannelError": 4
+    },
+    {
+      "shade": 3,
+      "expectedOpticalState": 0.942133967,
+      "expectedRgb565": [
+        239,
+        239,
+        239
+      ],
+      "observedRgb": [
+        240,
+        240,
+        240
+      ],
+      "maximumChannelError": 1
+    }
+  ],
+  "maximumChannelError": 4,
+  "pass": true
+}

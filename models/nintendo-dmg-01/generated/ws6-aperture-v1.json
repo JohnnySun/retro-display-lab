@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws6-aperture-v1",
+  "generatedFrom": "data/reconstruction-v1.json",
+  "evidenceId": "DMG-APERTURE-01",
+  "implementation": {
+    "aperture": "periodic rectangular aperture analytically integrated over every host-pixel footprint",
+    "shadow": "periodic shifted reflector aperture integrated only over the non-active gap; active/shadow joint coverage is subtracted before optical mixing",
+    "viewportPhase": "vTexCoord spans the viewport, so integer viewport translation does not alter source-cell phase"
+  },
+  "parameters": {
+    "pixelFill": 0.875,
+    "pixelEdge": 1,
+    "shadowStrength": 0.18,
+    "shadowOffsetX": 0.11,
+    "shadowOffsetY": 0.13
+  },
+  "expectedApertureArea": 0.765625,
+  "scaleCases": [
+    {
+      "requestedScale": 4,
+      "output": [
+        640,
+        576
+      ],
+      "effectiveScale": [
+        4,
+        4
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0,
+      "shadowGapAverage": 0.191875,
+      "shadowGapError": 0
+    },
+    {
+      "requestedScale": 5,
+      "output": [
+        800,
+        720
+      ],
+      "effectiveScale": [
+        5,
+        5
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0,
+      "shadowGapAverage": 0.191875,
+      "shadowGapError": 0
+    },
+    {
+      "requestedScale": 6,
+      "output": [
+        960,
+        864
+      ],
+      "effectiveScale": [
+        6,
+        6
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0,
+      "shadowGapAverage": 0.191875,
+      "shadowGapError": 0
+    },
+    {
+      "requestedScale": 3.5,
+      "output": [
+        560,
+        504
+      ],
+      "effectiveScale": [
+        3.5,
+        3.5
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0,
+      "shadowGapAverage": 0.191875,
+      "shadowGapError": 0
+    },
+    {
+      "requestedScale": 3.75,
+      "output": [
+        600,
+        540
+      ],
+      "effectiveScale": [
+        3.75,
+        3.75
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0,
+      "shadowGapAverage": 0.191875,
+      "shadowGapError": 0
+    },
+    {
+      "requestedScale": 4.25,
+      "output": [
+        680,
+        612
+      ],
+      "effectiveScale": [
+        4.25,
+        4.25
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0,
+      "shadowGapAverage": 0.191875,
+      "shadowGapError": 0
+    }
+  ],
+  "viewportOffsetCases": [
+    {
+      "offset": [
+        0,
+        0
+      ],
+      "expectedContentIdentity": true
+    },
+    {
+      "offset": [
+        1,
+        0
+      ],
+      "expectedContentIdentity": true
+    },
+    {
+      "offset": [
+        7,
+        11
+      ],
+      "expectedContentIdentity": true
+    },
+    {
+      "offset": [
+        159,
+        32
+      ],
+      "expectedContentIdentity": true
+    }
+  ],
+  "cropCases": [
+    {
+      "source": [
+        159,
+        143
+      ],
+      "output": [
+        557,
+        501
+      ],
+      "apertureAverage": 0.765625000001,
+      "apertureError": 1e-12
+    },
+    {
+      "source": [
+        157,
+        137
+      ],
+      "output": [
+        667,
+        582
+      ],
+      "apertureAverage": 0.765625000001,
+      "apertureError": 1e-12
+    },
+    {
+      "source": [
+        31,
+        29
+      ],
+      "output": [
+        155,
+        145
+      ],
+      "apertureAverage": 0.765625,
+      "apertureError": 0
+    }
+  ],
+  "edgeAndCornerPolicy": {
+    "textureFetch": "clamped to the nearest source texel",
+    "aperturePhase": "periodic in source-cell coordinates through previous/current/next aperture integration",
+    "cornerDarkeningAdded": false
+  },
+  "shadowDirection": {
+    "offset": [
+      0.11,
+      0.13
+    ],
+    "expectedDirection": "positive X and positive Y from the source aperture",
+    "scaleInvariantGapArea": 0.191875
+  },
+  "fixtures": [
+    {
+      "id": "exact-4x",
+      "scale": 4,
+      "file": "generated/ws6-aperture-exact-4x.png",
+      "dimensions": [
+        64,
+        48
+      ],
+      "sha256": "38ab62dcee61e7579b0a0d0047cfff2b87b6477017a8d9d0d87fb5471d84d0ac"
+    },
+    {
+      "id": "exact-5x",
+      "scale": 5,
+      "file": "generated/ws6-aperture-exact-5x.png",
+      "dimensions": [
+        80,
+        60
+      ],
+      "sha256": "30eac17a1a9d32b627e4ca3bf14be94435bd419a6369a30000b40c26aed2cf96"
+    },
+    {
+      "id": "exact-6x",
+      "scale": 6,
+      "file": "generated/ws6-aperture-exact-6x.png",
+      "dimensions": [
+        96,
+        72
+      ],
+      "sha256": "a8d19abbae1be95e2ff7c1ea2485de3245c59aa9c184c5f14960e64faa1b52b1"
+    },
+    {
+      "id": "fractional-3_5x",
+      "scale": 3.5,
+      "file": "generated/ws6-aperture-fractional-3_5x.png",
+      "dimensions": [
+        56,
+        42
+      ],
+      "sha256": "66e5ed8e62ef327bcb557464f7f73ac4f85abf750a7b0415ed5df92200f7d92a"
+    },
+    {
+      "id": "fractional-4_25x",
+      "scale": 4.25,
+      "file": "generated/ws6-aperture-fractional-4_25x.png",
+      "dimensions": [
+        68,
+        51
+      ],
+      "sha256": "ae9cce056a351021748ac1b1b6f44b7e8045326169e044316bbd228c08cc7a2e"
+    }
+  ],
+  "validation": {
+    "apertureTolerance": 1e-10,
+    "shadowGapTolerance": 1e-10,
+    "maximumApertureError": 1e-12,
+    "maximumShadowGapError": 0,
+    "exact4x5x6Present": true,
+    "fractionalScalesPresent": true,
+    "viewportOffsetsPresent": true,
+    "edgeCornerCropPresent": true,
+    "pass": true
+  },
+  "claimBoundary": "PixelFill and shadow geometry remain BGB idealized-reference candidates, not measured DMG dimensions. This report proves scale-invariant integration of the selected geometry, not its factory dimensional accuracy."
+}

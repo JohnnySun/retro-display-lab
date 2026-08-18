@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-dmg-01-period-production-stn-ensemble-v1",
+  "classification": "bounded 1988-1990 material reconstruction; no surviving aged DMG is treated as an original-spec measurement",
+  "temperatureCelsius": 20,
+  "sharedGeometry": {
+    "twistDegrees": 260,
+    "thicknessToPitch": 0.7,
+    "pretiltDegrees": 20,
+    "surfaceAnchoringJPerSquareMeter": 0.0002,
+    "polarizerFrontDegreesFromEntranceDirector": 75,
+    "polarizerRearDegreesFromExitDirector": 90,
+    "reflectorAmplitude": 0.92,
+    "opticalGeometryStatus": "The 260 degree twist is inside the sub-270-degree commercial-production region described in 1986. Polarizer offsets are a BGB-constrained normal-incidence fit within the reflective two-polarizer topology, not DMG polarizer measurements."
+  },
+  "solverDeclaration": {
+    "freeEnergy": "one-dimensional full K11/K22/K33 Frank-Oseen with chiral twist, dielectric coupling, and Rapini-Papoular surface anchoring",
+    "dynamics": "overdamped Ericksen-Leslie rotational reduction using gamma1; inertia and backflow omitted",
+    "electricalDrive": "cycle-averaged RMS field from the 1/144 Alt-Pleshko and three-dwell CPG reconstruction",
+    "optics": "normal-incidence sliced Jones round trip through front and rear polarizers and a reflector",
+    "declaredOmissions": [
+      "hydrodynamic backflow",
+      "lateral fringing fields",
+      "oblique viewing angle",
+      "wavelength-dependent polarizer and reflector absorption",
+      "ion transport in the short-term director solve"
+    ]
+  },
+  "members": [
+    {
+      "id": "plausible-fast",
+      "role": "1988 optimized thin-cell lower envelope",
+      "nominalContrastScale": 1,
+      "cellGapMicrometers": 4,
+      "birefringence589nm": 0.238,
+      "ordinaryIndex589nm": 1.5,
+      "rotationalViscosityPascalSeconds": 0.095,
+      "K11Piconewtons": 12.5,
+      "K22Piconewtons": 7.2,
+      "K33Piconewtons": 17.9,
+      "dielectricAnisotropy": 10,
+      "evidenceClass": "geometry and delta-n from the deliberately fast Okada group-B cell; absolute rotational viscosity is a bounded conversion from period flow-viscosity and ZLI-2293 data"
+    },
+    {
+      "id": "nominal",
+      "role": "period-production central estimate, selected before solving any transition time",
+      "nominalContrastScale": 1,
+      "cellGapMicrometers": 6,
+      "birefringence589nm": 0.158,
+      "ordinaryIndex589nm": 1.5,
+      "rotationalViscosityPascalSeconds": 0.162,
+      "K11Piconewtons": 12.5,
+      "K22Piconewtons": 7.2,
+      "K33Piconewtons": 17.9,
+      "dielectricAnisotropy": 10,
+      "evidenceClass": "6 um and delta-n*d 0.95 um from 1988 STN measurements; published ZLI-2293 K11/K22/K33, dielectric, optical, and rotational-viscosity constants"
+    },
+    {
+      "id": "plausible-slow",
+      "role": "thicker and more viscous period-production upper envelope",
+      "nominalContrastScale": 1.12,
+      "cellGapMicrometers": 7,
+      "birefringence589nm": 0.136,
+      "ordinaryIndex589nm": 1.5,
+      "rotationalViscosityPascalSeconds": 0.23,
+      "K11Piconewtons": 11.5,
+      "K22Piconewtons": 6,
+      "K33Piconewtons": 17,
+      "dielectricAnisotropy": 8,
+      "evidenceClass": "7 um and delta-n*d 0.95 um measured-cell geometry with bounded conventional-mixture viscosity and elasticity"
+    }
+  ],
+  "parameterProvenance": {
+    "geometryAndOpticalPath": ["DMG-STN-04", "DMG-OPTICS-01"],
+    "materialConstants": ["DMG-STN-04", "DMG-MATERIAL-01", "DMG-MATERIAL-02"],
+    "drive": ["DMG-DRIVE-01", "DMG-DRIVE-02", "DMG-MATRIX-01"]
+  },
+  "remainingUnknowns": [
+    "actual DMG mixture identity and batch distribution",
+    "actual DMG cell gap and pretilt distribution",
+    "actual DMG polarizer spectra and reflector spectrum",
+    "temperature coefficients of the unidentified DMG mixture"
+  ]
+}

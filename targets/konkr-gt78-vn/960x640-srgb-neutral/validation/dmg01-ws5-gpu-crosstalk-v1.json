@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws5-konkr-gpu-crosstalk-v1",
+  "comparison": "CPU implementation of the generated WS5 surrogate versus DebugView=6 effective-drive output after RGBA8, RGB565, and 12 Mbit/s H.264 capture.",
+  "viewport": {
+    "x": 160,
+    "y": 32,
+    "width": 640,
+    "height": 576,
+    "scale": 4
+  },
+  "tolerance": {
+    "maximumPatternRms8Bit": 8,
+    "maximumPatternP99Absolute8Bit": 20
+  },
+  "patterns": [
+    {
+      "id": "single-dot",
+      "capture": "RDL-DMG-WS5-Single-Dot-stable-frame.png",
+      "captureSha256": "8e9b61a3375d3231acd657d08b418fc6ae63d6cbeb3d050423a2b65f7ac03e2b",
+      "expectedDarkMean8Bit": 255,
+      "observedDarkMean8Bit": 254,
+      "rmsError8Bit": 0.007,
+      "p99AbsoluteError8Bit": 0,
+      "maximumAbsoluteError8Bit": 1
+    },
+    {
+      "id": "full-row",
+      "capture": "RDL-DMG-WS5-Full-Row-stable-frame.png",
+      "captureSha256": "55eb4f048003eb34d3d4c0eb50ee34dd4b9bfe1ec3d30368a8852368b7d519ed",
+      "expectedDarkMean8Bit": 246.818,
+      "observedDarkMean8Bit": 246.025,
+      "rmsError8Bit": 0.067,
+      "p99AbsoluteError8Bit": 0,
+      "maximumAbsoluteError8Bit": 0.818
+    },
+    {
+      "id": "full-column",
+      "capture": "RDL-DMG-WS5-Full-Column-stable-frame.png",
+      "captureSha256": "782bbce84cf7463fbd15086ccc6dac301773053c207d3bc8d18a56f2b9130d4e",
+      "expectedDarkMean8Bit": 255,
+      "observedDarkMean8Bit": 255,
+      "rmsError8Bit": 0,
+      "p99AbsoluteError8Bit": 0,
+      "maximumAbsoluteError8Bit": 0
+    },
+    {
+      "id": "checkerboard",
+      "capture": "RDL-DMG-WS5-Checkerboard-stable-frame.png",
+      "captureSha256": "d5e5596e6d3218f3a560dab2bc31501981b339ddbad6249ec7ccf7b99115fa1c",
+      "expectedDarkMean8Bit": 198.835,
+      "observedDarkMean8Bit": 200.646,
+      "rmsError8Bit": 1.359,
+      "p99AbsoluteError8Bit": 2.291,
+      "maximumAbsoluteError8Bit": 3.927
+    },
+    {
+      "id": "alternating-lines",
+      "capture": "RDL-DMG-WS5-Alternating-Lines-stable-frame.png",
+      "captureSha256": "97efae8ef9ac5414ee10ada4e9662aab5461b26d17b0fe878f341b3ee139c50c",
+      "expectedDarkMean8Bit": 181.359,
+      "observedDarkMean8Bit": 180,
+      "rmsError8Bit": 0.961,
+      "p99AbsoluteError8Bit": 1.359,
+      "maximumAbsoluteError8Bit": 1.359
+    },
+    {
+      "id": "window",
+      "capture": "RDL-DMG-WS5-Window-stable-frame.png",
+      "captureSha256": "534a6339d6fe6fabb8b03c662f3ed121dc55e149c157bc92fcf60607e2813e83",
+      "expectedDarkMean8Bit": 254.887,
+      "observedDarkMean8Bit": 254.876,
+      "rmsError8Bit": 0.051,
+      "p99AbsoluteError8Bit": 0,
+      "maximumAbsoluteError8Bit": 1.833
+    },
+    {
+      "id": "inverse-window",
+      "capture": "RDL-DMG-WS5-Inverse-Window-stable-frame.png",
+      "captureSha256": "e95e39f7160a1aad041d1b78cb73e636d8d1649c909350a041c605620d15879c",
+      "expectedDarkMean8Bit": 254.962,
+      "observedDarkMean8Bit": 254.958,
+      "rmsError8Bit": 0.048,
+      "p99AbsoluteError8Bit": 0,
+      "maximumAbsoluteError8Bit": 0.818
+    }
+  ],
+  "maximumPatternRms8Bit": 1.359,
+  "maximumPatternP99Absolute8Bit": 2.291,
+  "pass": true
+}

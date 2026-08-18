@@ -58,7 +58,11 @@ Game Boy's reflective passive-matrix STN display:
 - reference, heavy-ghosting, aged, and accelerated-experiment presets.
 
 Which source backs which line of code — and where the limits are — is spelled
-out in the [DMG-01 evidence map](models/nintendo-dmg-01/REFERENCES.md).
+out in the [DMG-01 evidence map](models/nintendo-dmg-01/REFERENCES.md). The
+current machine-readable reconstruction decisions and remaining implementation
+work are tracked in
+[`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json)
+and the [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md).
 
 ### Visual comparison
 

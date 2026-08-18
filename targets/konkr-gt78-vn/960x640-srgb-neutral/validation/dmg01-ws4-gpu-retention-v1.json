@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "reportId": "konkr-gt78-vn-dmg01-ws4-gpu-retention-v1",
+  "source": {
+    "directory": "ws4-retention-final-frames",
+    "frames": 100,
+    "sampleFps": 2,
+    "aggregateSha256": "10e4025bf2feb03d0279ab0c555e79f3a5125c52aa89bb9bdc60cca352b045ea"
+  },
+  "viewport": {
+    "x": 160,
+    "y": 32,
+    "width": 640,
+    "height": 576
+  },
+  "diagnosticChannels": {
+    "red": "ionic charge",
+    "green": "current drive",
+    "blue": "positive residual"
+  },
+  "phases": [
+    {
+      "phase": "release",
+      "firstSecond": 0,
+      "lastSecond": 1.5,
+      "frames": 4
+    },
+    {
+      "phase": "charge",
+      "firstSecond": 2,
+      "lastSecond": 31.5,
+      "frames": 60
+    },
+    {
+      "phase": "release",
+      "firstSecond": 32,
+      "lastSecond": 46,
+      "frames": 29
+    },
+    {
+      "phase": "charge",
+      "firstSecond": 46.5,
+      "lastSecond": 49.5,
+      "frames": 7
+    }
+  ],
+  "measurements": {
+    "maximumCharge": 0.996078431,
+    "releaseStartCharge": 0.992156863,
+    "releaseEndCharge": 0.68627451,
+    "releaseElapsedRealSeconds": 14,
+    "releaseElapsedEquivalentSeconds": 840,
+    "observedReleaseRatio": 0.691699605,
+    "expectedReleaseRatio": 0.699772498,
+    "absoluteReleaseRatioError": 0.008072893,
+    "maximumControl": 0,
+    "chargeMonotoneViolations": 0,
+    "releaseMonotoneViolations": 0
+  },
+  "validation": {
+    "observedChargeAndReleasePhases": true,
+    "chargedStateConverged": true,
+    "chargedDriveReachedFullScale": true,
+    "releasedDriveReachedZero": true,
+    "positiveResidualAfterDriveRemoval": true,
+    "chargeMonotoneWithinCaptureTolerance": true,
+    "releaseMonotoneWithinCaptureTolerance": true,
+    "releaseRatioMatchesReconstruction": true,
+    "inactiveControlStayedLow": true,
+    "pass": true
+  },
+  "limits": [
+    "H.264 screen recording and the RGB565 swapchain quantize the diagnostic channels; the acceptance tolerance includes both effects.",
+    "The accelerated run validates the exact rate transformation and GPU feedback trajectory; it does not turn the reconstructed kinetics into a direct DMG measurement."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "contractId": "nintendo-dmg-01-normal-forward-n1-v1",
+  "classification": "physical-time-frontend-contract",
+  "source": {
+    "core": "Gambatte",
+    "geometry": [160, 144],
+    "refreshHz": 59.7275,
+    "frameSeconds": 0.016742706458,
+    "requiredCoreOptions": {
+      "gambatte_mix_frames": "disabled"
+    }
+  },
+  "frontend": {
+    "videoDriver": "vulkan",
+    "shaderSubframes": 1,
+    "integerScaling": true,
+    "vsync": true,
+    "rewindEnabled": false,
+    "runAheadEnabled": false,
+    "fastForwardRatio": 1,
+    "variableRefresh": false
+  },
+  "historySemantics": {
+    "Source": "current Gambatte video frame",
+    "OriginalHistory1": "previous submitted Gambatte video frame",
+    "PassFeedback0": "previous response-pass state at the same source coordinate",
+    "integrationClock": "one complete physical update per presented normal-forward N=1 frame"
+  },
+  "safety": {
+    "shaderSubframes": "TotalSubFrames other than 1 bypasses temporal integration and outputs the static current physical target with neutral ionic state.",
+    "rewind": "disabled because backwards emulator time cannot reconstruct the prior physical feedback texture",
+    "runAhead": "disabled because speculative or discarded frames are outside the submitted-frame history contract",
+    "fastForward": "fixed to 1x because dropped or unpaced frames do not represent the reference frame period",
+    "frameMixing": "disabled because Gambatte blending would apply a second temporal model before the physical reconstruction",
+    "saveStateLoad": "supported as a causal abrupt source-image transition; the physical panel state remains continuous and settles toward the loaded content",
+    "pauseResume": "supported with a frozen physical clock; wall-clock relaxation during pause is not modeled",
+    "resetAndReload": "a newly cleared feedback surface initializes directly to the current static physical target with neutral ionic state"
+  },
+  "targetAcceptance": {
+    "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+    "requiredRefreshRangeHz": [59, 61],
+    "requiredResponseFormat": "R32G32B32A32_SFLOAT",
+    "requiredViewport": [640, 576],
+    "requiredIntegerScale": 4
+  },
+  "claimBoundary": "This contract reproduces panel evolution under the frames actually submitted by a normal-forward frontend. It does not reconstruct hidden emulator frames or real-time relaxation while presentation is stopped."
+}

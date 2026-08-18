@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws7-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "frontend-lifecycle-precision-and-motion-target-acceptance",
+  "ws7CompletionEvidence": true,
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "androidVersion": "12",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4",
+    "surfaceRefreshHz": 59.999999
+  },
+  "frontend": {
+    "applicationId": "com.retroarch",
+    "retroArchVersion": "1.22.2",
+    "activity": ".browser.retroactivity.RetroActivityFuture",
+    "videoDriver": "vulkan",
+    "core": "gambatte_libretro_android.so",
+    "coreGeometry": [160, 144],
+    "reportedCoreFps": 59.73,
+    "gambatteMixFrames": "disabled",
+    "shaderSubframes": 1,
+    "runAhead": false,
+    "rewind": false,
+    "fastForwardRatio": 1.0,
+    "vsync": true,
+    "integerScale": true,
+    "viewport": [640, 576]
+  },
+  "contract": {
+    "path": "models/nintendo-dmg-01/data/frontend-contract-v1.json",
+    "sha256": "56eca63cd82446c0045cfcf03da1c5c464825ca45969204d930346fafe3ed8f0",
+    "normalForward": "N=1; every presented core frame is one physical panel interval",
+    "staticSubframeBypass": "N>1 returns current input rather than integrating synthetic subframes",
+    "nonMonotonicTime": "rewind and run-ahead are disabled; otherwise temporal effects must be bypassed or history explicitly reset",
+    "pausedTime": "panel state is frozen while the frontend is paused; stopped presentation is not invented physical elapsed time"
+  },
+  "inputs": {
+    "targetPreset": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp",
+      "sha256": "96e511faedc4b83f124a3760a98e3883311d45d40a74c0e0cb9d34fb976acaab"
+    },
+    "temporalConfig": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/dmg01-temporal.cfg",
+      "sha256": "f3ce1479a6506f3f7c4b41545095dcdf340c3167b9fd98d2b9132c53312c7c67"
+    },
+    "numericGpuReport": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws7-gpu-static-v1.json",
+      "sha256": "0118191c282978404eb26ce111acbc59f93ddacd2c760ce983ed454158afb798",
+      "result": "pass"
+    },
+    "testRomGenerator": {
+      "path": "tools/build-dmg01-device-test-rom.mjs",
+      "sha256": "31532be7f741b415b315ecef55d3f28b630a7bf968bfb0317b3cd29bd33bda6b"
+    }
+  },
+  "testRoms": [
+    { "scene": "cycle", "sha256": "8a56fdf0eb8a521cc4363c1564812442b6d9d2bb23a5f6519cbb677c01c912fd" },
+    { "scene": "static-four", "sha256": "5a879577d9c66451e0c3cad07cfe6e94a1bbb62d5115c4083095c2f6dc5b43ab" },
+    { "scene": "moving-bars", "sha256": "25eea2483f6a1a584da48ee8dabe3d06d8fb05e7164807b662c65605a17f0515" },
+    { "scene": "full-toggle", "sha256": "82d90f3279cf98901b6016df40e5c2e41ce44778e9a010eb0c81726a131546d9" },
+    { "scene": "alternating-rows", "sha256": "bb84b5c998b3e5c77ae00ec81e152114f7da79975a7cd91d9d51b0e0a2f31c18" }
+  ],
+  "precision": {
+    "responseFormat": "R32G32B32A32_SFLOAT",
+    "matrixFormat": "R16G16B16A16_SFLOAT",
+    "displayFormat": "R8G8B8A8_UNORM",
+    "feedbackPass": 0,
+    "capture": "ws7-n2-numeric-bypass.png",
+    "captureSha256": "a516753c6ccc181949bc3af636f70fb3e0f4ac51f18ee5e009f4b721d337342b",
+    "logFile": "retroarch__2026_08_19__03_07_08.log",
+    "logSha256": "50a1adf466cbfec0ec88ce9980ba00ffb551930d20ba1b368007fe8b2b0b428f",
+    "expectedOpticalStates": [0.268504868, 0.485839308, 0.758946582, 0.942133967],
+    "observedRgba8": [68, 124, 193, 240],
+    "maxRgb565ChannelError": 4,
+    "tolerance": 6,
+    "staticN2BypassPassed": true,
+    "result": "pass"
+  },
+  "framePacing": {
+    "surfaceFlingerRefreshPeriodNanoseconds": 16666667,
+    "samples": [
+      { "intervals": 126, "fps": 60.248, "meanMs": 16.598, "medianMs": 16.132, "p95Ms": 20.973, "maxMs": 22.558, "doubleIntervals": 0 },
+      { "intervals": 126, "fps": 60.267, "meanMs": 16.593, "medianMs": 16.215, "p95Ms": 20.786, "maxMs": 21.503, "doubleIntervals": 0 },
+      { "intervals": 126, "fps": 60.291, "meanMs": 16.586, "medianMs": 16.079, "p95Ms": 21.058, "maxMs": 22.133, "doubleIntervals": 0 }
+    ],
+    "motionCapture": {
+      "file": "ws7-moving-5s.mp4",
+      "sha256": "09c74038cfd176a23d523a6dc402bdb797130fa087b5e5d0fc7f397ef4a878f0",
+      "resolution": [960, 640],
+      "durationSeconds": 5.000156,
+      "frames": 302,
+      "averageFps": 60.398
+    },
+    "result": "pass"
+  },
+  "lifecycle": {
+    "firstFrameInitialization": "clean process launches the deterministic moving-bars ROM with the generated target preset and initialized feedback",
+    "reset": "Quick Menu Restart returned the deterministic fixture to its initial state",
+    "saveState": {
+      "file": "/sdcard/RetroArch/states/RDL-DMG-WS7-Moving.state",
+      "bytes": 26912,
+      "toastCapture": "ws7-save-selected.png",
+      "toastCaptureSha256": "a54007d89514bc105f634a14e93b966304f02a40622f1e3fdb863c5376ad8831"
+    },
+    "loadState": {
+      "toastCapture": "ws7-load-toast.png",
+      "toastCaptureSha256": "27069d86d55f02ec8567dd2b2c7a10353daea3d374404a68c888940c79b4203b",
+      "interpretation": "content state is restored; Shader feedback remains causal frontend state and relaxes toward the restored frame rather than pretending to be serialized panel physics"
+    },
+    "pauseResume": {
+      "method": "Quick Menu with menu_pause_libretro=true and menu_savestate_resume=false",
+      "stateSha256BeforeWait": "16476511230239a7d1e8ba36dae80ef5bc4641cee1c5e1373638588d5fe3d1a1",
+      "stateSha256AfterThreeSeconds": "16476511230239a7d1e8ba36dae80ef5bc4641cee1c5e1373638588d5fe3d1a1",
+      "passed": true
+    },
+    "focusLossResume": {
+      "pidBefore": 17475,
+      "pidInBackground": 17475,
+      "pidAfterResume": 17475,
+      "backgroundSeconds": 3,
+      "capture": "ws7-focus-resume-valid.png",
+      "captureSha256": "0d0652bfb193b488f640aba3400108d0bdcddc2b99cedc06164ea08c81a7879b",
+      "passed": true
+    },
+    "cleanContentClose": {
+      "method": "Quick Menu Close Content",
+      "capture": "ws7-clean-close-valid2.png",
+      "captureSha256": "2be9ae98f4f643bb932f2bb1988885fadbf0ace7020b58fa8d44b33cad17f214",
+      "frontendStayedAliveWithoutCore": true,
+      "passed": true
+    },
+    "result": "pass"
+  },
+  "restoration": {
+    "globalRetroArchConfigModified": false,
+    "userGambatteGbPresetModified": false,
+    "validationConfigIsolated": true,
+    "validationFilesRetainedOnDevice": true
+  },
+  "limits": [
+    "The Android build retained network_cmd settings but opened no UDP listener, so no lifecycle result relies on those commands; valid lifecycle evidence came from the visible Quick Menu and state files.",
+    "SurfaceFlinger timing is presented-frame evidence, not a photodiode measurement of panel scanout.",
+    "RGBA8/RGB565 capture comparison validates the settled GPU optical state within display quantization; it is not direct floating-point texture readback.",
+    "Rewind and run-ahead are excluded from the normal physical-time contract. Enabling non-monotonic frontend time requires a reset or temporal bypass rather than treating speculative frames as elapsed panel time."
+  ],
+  "result": "pass"
+}

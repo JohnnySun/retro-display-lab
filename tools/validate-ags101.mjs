@@ -1000,7 +1000,8 @@ check(agsTarget?.contentViewport?.join("x") === "960x640", "KPA AGS viewport is 
 check(agsTarget?.integerScale === 4, "KPA AGS target lost exact 4x scale");
 
 const targetDir = path.join(root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral");
-const validationRecords = targetProfile.validationRecords ?? [];
+const validationRecords = (targetProfile.validationRecords ?? [])
+  .filter((relativeRecord) => path.basename(relativeRecord).startsWith("ags101-"));
 check(validationRecords.length > 0, "KPA profile has no AGS frontend validation record");
 for (const relativeRecord of validationRecords) {
   const recordPath = path.resolve(targetDir, relativeRecord);

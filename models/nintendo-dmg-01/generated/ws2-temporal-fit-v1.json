@@ -1,0 +1,1010 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws2-temporal-fit-v1",
+  "classification": "superseded literature-constrained regression envelope; retained only for output comparison",
+  "generatedFrom": {
+    "reconstruction": "data/reconstruction-v1.json",
+    "reconstructionSha256": "f10f09249ff99826ce84c7c2d7b2ea10da977e4d34a309ba928f29d84e4283a8",
+    "normalizedEvidence": "data/stn-response-evidence-v1.json",
+    "normalizedEvidenceSha256": "b6d8334d5d466818838c3d71f204488981da84f6f2b0cd6274314532545f1734",
+    "cpuReference": "reference/temporal-response.mjs"
+  },
+  "model": {
+    "id": "dmg-four-shade-continuous-rate-family-v1",
+    "role": "interim empirical timing envelope; not the WS2 physical model",
+    "referenceFrameSeconds": 0.016742706,
+    "axes": [
+      "combined endpoint T90",
+      "clearing-to-darkening T90 ratio",
+      "logical transition distance",
+      "intermediate-shade drag",
+      "slow-tail weight",
+      "slow-rate scale"
+    ],
+    "runtimeEncoding": "per-frame alpha values are exact encodings of continuous exponential rates at 59.7275 Hz"
+  },
+  "evidenceRows": [
+    {
+      "id": "takatsu-1999-conventional-stn",
+      "evidenceId": "DMG-STN-03",
+      "fitRole": "nominal aggregate scale",
+      "directlyApplicableToDmg": false
+    },
+    {
+      "id": "takatsu-1999-improved-tolan-stn",
+      "evidenceId": "DMG-STN-03",
+      "fitRole": "contextual fast scale only",
+      "directlyApplicableToDmg": false
+    },
+    {
+      "id": "okada-1988-fast-270-stn",
+      "evidenceId": "DMG-STN-04",
+      "fitRole": "fast lower-envelope anchor",
+      "directlyApplicableToDmg": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "nominal",
+      "classification": "bounded project bridge using the conventional-period aggregate anchor",
+      "input": {
+        "combinedEndpointT90Seconds": 0.3,
+        "clearingToDarkeningT90Ratio": 2,
+        "slowTailWeight": 0.08,
+        "slowRateScale": 0.22,
+        "intermediateDrag": 0.1,
+        "distanceDrag": 0.1
+      },
+      "fit": {
+        "darkeningT90Seconds": 0.1,
+        "clearingT90Seconds": 0.2,
+        "darkeningRatePerSecond": 27.8713726,
+        "clearingRatePerSecond": 13.9356863,
+        "referenceFrameSeconds": 0.0167427065,
+        "referenceParameters": {
+          "DarkenResponse": 0.372895578,
+          "ClearResponse": 0.20810075,
+          "SlowTail": 0.08,
+          "SlowRateScale": 0.22,
+          "GrayDrag": 0.1,
+          "DistanceDrag": 0.1
+        }
+      },
+      "transitions": [
+        {
+          "fromIndex": 0,
+          "toIndex": 1,
+          "t90Seconds": 0.112126246,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 0,
+          "toIndex": 2,
+          "t90Seconds": 0.108346709,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 0,
+          "toIndex": 3,
+          "t90Seconds": 0.1,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 0,
+          "t90Seconds": 0.224252492,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 2,
+          "t90Seconds": 0.112126246,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 3,
+          "t90Seconds": 0.108346709,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 0,
+          "t90Seconds": 0.216693419,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 1,
+          "t90Seconds": 0.224252492,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 3,
+          "t90Seconds": 0.112126246,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 0,
+          "t90Seconds": 0.2,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 1,
+          "t90Seconds": 0.216693419,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 2,
+          "t90Seconds": 0.224252492,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        }
+      ],
+      "validation": {
+        "endpointT90FitMaximumErrorSeconds": 0,
+        "maximumFramePartitionError": 0,
+        "partitionsTested": [
+          2,
+          3,
+          7,
+          16
+        ],
+        "pass": true
+      },
+      "rationale": "Preserves the conventional 300 ms aggregate scale while keeping driven darkening faster than field-free clearing."
+    },
+    {
+      "id": "plausible-fast",
+      "classification": "historical fast-envelope diagnostic, not a DMG revision claim",
+      "input": {
+        "combinedEndpointT90Seconds": 0.16,
+        "clearingToDarkeningT90Ratio": 1,
+        "slowTailWeight": 0.04,
+        "slowRateScale": 0.3,
+        "intermediateDrag": 0.06,
+        "distanceDrag": 0.06
+      },
+      "fit": {
+        "darkeningT90Seconds": 0.08,
+        "clearingT90Seconds": 0.08,
+        "darkeningRatePerSecond": 30.9134455,
+        "clearingRatePerSecond": 30.9134455,
+        "referenceFrameSeconds": 0.0167427065,
+        "referenceParameters": {
+          "DarkenResponse": 0.404035837,
+          "ClearResponse": 0.404035837,
+          "SlowTail": 0.04,
+          "SlowRateScale": 0.3,
+          "GrayDrag": 0.06,
+          "DistanceDrag": 0.06
+        }
+      },
+      "transitions": [
+        {
+          "fromIndex": 0,
+          "toIndex": 1,
+          "t90Seconds": 0.0856164384,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 0,
+          "toIndex": 2,
+          "t90Seconds": 0.0838926174,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 0,
+          "toIndex": 3,
+          "t90Seconds": 0.08,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 0,
+          "t90Seconds": 0.0856164384,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 2,
+          "t90Seconds": 0.0856164384,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 3,
+          "t90Seconds": 0.0838926174,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 0,
+          "t90Seconds": 0.0838926174,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 1,
+          "t90Seconds": 0.0856164384,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 3,
+          "t90Seconds": 0.0856164384,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 0,
+          "t90Seconds": 0.08,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 1,
+          "t90Seconds": 0.0838926174,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 2,
+          "t90Seconds": 0.0856164384,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        }
+      ],
+      "validation": {
+        "endpointT90FitMaximumErrorSeconds": 0,
+        "maximumFramePartitionError": 0,
+        "partitionsTested": [
+          2,
+          3,
+          7,
+          16
+        ],
+        "pass": true
+      },
+      "rationale": "Uses twice Okada's explicitly defined 80 ms mean ton/toff result as a 160 ms combined lower-envelope diagnostic; it does not assign the optimized prototype to the DMG."
+    },
+    {
+      "id": "plausible-slow",
+      "classification": "bounded slow-envelope project bridge, not a DMG revision claim",
+      "input": {
+        "combinedEndpointT90Seconds": 0.45,
+        "clearingToDarkeningT90Ratio": 2.2,
+        "slowTailWeight": 0.15,
+        "slowRateScale": 0.18,
+        "intermediateDrag": 0.18,
+        "distanceDrag": 0.16
+      },
+      "fit": {
+        "darkeningT90Seconds": 0.140625,
+        "clearingT90Seconds": 0.309375,
+        "darkeningRatePerSecond": 25.9266487,
+        "clearingRatePerSecond": 11.7848403,
+        "referenceFrameSeconds": 0.0167427065,
+        "referenceParameters": {
+          "DarkenResponse": 0.352141045,
+          "ClearResponse": 0.179063996,
+          "SlowTail": 0.15,
+          "SlowRateScale": 0.18,
+          "GrayDrag": 0.18,
+          "DistanceDrag": 0.16
+        }
+      },
+      "transitions": [
+        {
+          "fromIndex": 0,
+          "toIndex": 1,
+          "t90Seconds": 0.172034716,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 0,
+          "toIndex": 2,
+          "t90Seconds": 0.162693465,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 0,
+          "toIndex": 3,
+          "t90Seconds": 0.140625,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 0,
+          "t90Seconds": 0.378476376,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 2,
+          "t90Seconds": 0.172034716,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 1,
+          "toIndex": 3,
+          "t90Seconds": 0.162693465,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 0,
+          "t90Seconds": 0.357925622,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 1,
+          "t90Seconds": 0.378476376,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 2,
+          "toIndex": 3,
+          "t90Seconds": 0.172034716,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 0,
+          "t90Seconds": 0.309375,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 1,
+          "t90Seconds": 0.357925622,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        },
+        {
+          "fromIndex": 3,
+          "toIndex": 2,
+          "t90Seconds": 0.378476376,
+          "partitionErrors": [
+            {
+              "partitions": 2,
+              "error": 0
+            },
+            {
+              "partitions": 3,
+              "error": 0
+            },
+            {
+              "partitions": 7,
+              "error": 0
+            },
+            {
+              "partitions": 16,
+              "error": 0
+            }
+          ]
+        }
+      ],
+      "validation": {
+        "endpointT90FitMaximumErrorSeconds": 0,
+        "maximumFramePartitionError": 0,
+        "partitionsTested": [
+          2,
+          3,
+          7,
+          16
+        ],
+        "pass": true
+      },
+      "rationale": "Applies a declared 1.5x slow-side scale around the conventional 300 ms anchor to expose uncertainty from material, temperature, and multiplex conditions."
+    }
+  ],
+  "selection": {
+    "referencePresetCandidate": "nominal",
+    "candidatePresetPaths": {
+      "nominal": "presets/reference-v1.slangp",
+      "plausible-fast": "presets/plausible-fast-v1.slangp",
+      "plausible-slow": "presets/plausible-slow-v1.slangp"
+    },
+    "fastAndSlowCandidatesAreDmgRevisionClaims": false,
+    "ws2CompletionArtifact": false,
+    "claimBoundary": "The fit is an interim engineering baseline and output-validation envelope. It is not a measured DMG transition matrix and does not replace the required voltage, STN director, and reflective-optical reconstruction."
+  }
+}

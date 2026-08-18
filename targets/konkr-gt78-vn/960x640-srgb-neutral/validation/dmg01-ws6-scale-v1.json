@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws6-konkr-scale-comparison-v1",
+  "comparison": "Settled deterministic four-shade/aperture pattern at exact 4x and centered fractional 3.5x on the same KONKR Vulkan path.",
+  "exact": {
+    "file": "ws6-exact-4x-final.png",
+    "sha256": "3e2fc25579d6cd41426456d4966a1b3d3c03467e75bde1e6a150ba37c55666b0",
+    "viewport": {
+      "x": 160,
+      "y": 32,
+      "width": 640,
+      "height": 576
+    },
+    "scale": 4,
+    "linearRgbAverage": [
+      0.09378646,
+      0.155117122,
+      0.053434372
+    ],
+    "linearLuminanceAverage": 0.134736728
+  },
+  "fractional": {
+    "file": "ws6-fractional-3_5x-centered.png",
+    "sha256": "9c591904e5ad4ae9a76c481f51d59c09bc105a20626d8c687082d41aa1769b37",
+    "viewport": {
+      "x": 200,
+      "y": 68,
+      "width": 560,
+      "height": 504
+    },
+    "scale": 3.5,
+    "linearRgbAverage": [
+      0.092721823,
+      0.153672512,
+      0.053919524
+    ],
+    "linearLuminanceAverage": 0.13351223
+  },
+  "maximumLinearChannelDifference": 0.00144461,
+  "linearLuminanceDifference": 0.001224498,
+  "tolerance": 0.002,
+  "pass": true
+}

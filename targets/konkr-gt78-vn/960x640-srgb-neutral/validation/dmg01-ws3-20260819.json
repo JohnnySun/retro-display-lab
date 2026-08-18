@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws3-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "causal-row-scanout-target-runtime-validation",
+  "ws3CompletionEvidence": true,
+  "scope": "CPU row-latch integration, generated-report identity, Mali Vulkan compilation, temporal-only diagnostic, and exact-4x causal row-phase evidence.",
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "androidVersion": "12",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4"
+  },
+  "frontend": {
+    "applicationId": "com.retroarch",
+    "retroArchVersion": "1.22.2",
+    "videoDriver": "vulkan",
+    "core": "gambatte_libretro_android.so",
+    "coreGeometry": [160, 144],
+    "reportedCoreFps": 59.73,
+    "gambatteMixFrames": "disabled",
+    "shaderSubframes": 1,
+    "runAhead": false,
+    "rewind": false,
+    "fastForwardFrameskip": false,
+    "vsync": true,
+    "variableRefresh": false,
+    "threadedVideo": true,
+    "integerScale": true,
+    "viewport": [640, 576]
+  },
+  "inputs": {
+    "timingRecord": {
+      "path": "models/nintendo-dmg-01/data/dmg-scan-timing-v1.json",
+      "sha256": "aadec8bfcdec92bc2d1e5a8b0c1ead9d3c45c6edacbb5b6ceebd4bec80692309"
+    },
+    "cpuReference": {
+      "path": "models/nintendo-dmg-01/reference/scanout-timing.mjs",
+      "sha256": "2375b06d26f013e1a7b3fae98a58c332b5b080072103c7379399fd267b93e1d4"
+    },
+    "generatedReport": {
+      "path": "models/nintendo-dmg-01/generated/ws3-scanout-v1.json",
+      "sha256": "b05f48ff53b751380c614d6cac40f61115be72cd561e43ab6997de0650c24aee",
+      "validationPass": true
+    },
+    "responseShader": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
+      "sha256": "88479838f06b2e2d666980cf1df8f36b2407c1812c1ee1dbf8bc993687a00c7d"
+    },
+    "targetPreset": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp",
+      "sha256": "96e511faedc4b83f124a3760a98e3883311d45d40a74c0e0cb9d34fb976acaab",
+      "format": "full preset generated from the model preset"
+    },
+    "testRom": {
+      "generator": "tools/build-dmg01-device-test-rom.mjs",
+      "storedInRepository": false,
+      "sha256": "2897257f6796a12f87cb61f605558c2e157df941e679a9a34ffdafa4c3899186",
+      "behavior": "Deterministically clears VRAM, enables the LCD, and toggles the full screen between DMG shade 0 and shade 3 every 30 frames."
+    }
+  },
+  "cpuAcceptance": {
+    "visibleRows": 144,
+    "blankRows": 10,
+    "totalRows": 154,
+    "lineMicroseconds": 108.718873,
+    "latchOffsetLines": 1,
+    "firstVisibleLatchMilliseconds": 0.108719,
+    "lastVisibleLatchMilliseconds": 15.655518,
+    "firstMiddleLastOrdering": true,
+    "sameRowTransitionOrdering": true,
+    "crossFrameContinuation": true,
+    "unchangedEqualsTemporalOnly": true,
+    "constantFrameIndependentOfLatch": true,
+    "noScanoutIgnoresPreviousTarget": true,
+    "result": "pass"
+  },
+  "presetCompatibility": {
+    "observation": "On this Android 1.22.2 automatic game-preset route, parameter assignments in a simple #reference preset were not applied: BakedScanout, ScreenBrightness, and ScreenChroma remained at the referenced full preset values.",
+    "controlLogFile": "retroarch__2026_08_19__02_26_51.log",
+    "resolution": "Generate full DMG diagnostic and KONKR target presets, and validate their exact text in npm test. The final route loaded BakedScanout=1, ScreenBrightness=0.68, and ScreenChroma=0.90.",
+    "claimBoundary": "This is a device/build/automatic-route compatibility observation, not a claim that all RetroArch simple presets are broken."
+  },
+  "temporalOnlyRun": {
+    "preset": "full diagnostic with BakedScanout=0",
+    "logFile": "retroarch__2026_08_19__02_29_49.log",
+    "logSha256": "5f099d7610dc2b739c390aa3cd8c0c91c0b6c69689e88ed934f7cf4db552dff1",
+    "loadedParameters": {
+      "BakedScanout": 0,
+      "ScreenBrightness": 0.68,
+      "ScreenChroma": 0.9
+    },
+    "compiled": true,
+    "shaderCompileErrors": 0
+  },
+  "causalRun": {
+    "preset": "KONKR full target preset",
+    "logFile": "retroarch__2026_08_19__02_38_35.log",
+    "logSha256": "60387c1d6025eae56249ec2b25debb808f444c901772fda1981636f863d5ef9e",
+    "loadedParameters": {
+      "BakedScanout": 1,
+      "LatchOffsetLines": 1,
+      "ScreenBrightness": 0.68,
+      "ScreenChroma": 0.9
+    },
+    "compiled": true,
+    "runtimeProcessStayedAlive": true,
+    "shaderCompileErrors": 0,
+    "passFormats": [
+      "R32G32B32A32_SFLOAT",
+      "R16G16B16A16_SFLOAT",
+      "R8G8B8A8_UNORM"
+    ],
+    "responseFeedbackPass": 0,
+    "responseFeedbackConfirmed": true
+  },
+  "visualCausalEvidence": {
+    "captureFile": "ws3-final-01.png",
+    "captureSha256": "ac1f1a3f22e06f555f4a6f925bf8c8791f6a11d9f250fb3a4829ed69db9af04f",
+    "transitionPhase": "shade 0 toward darker shade 3",
+    "cropGeometry": {
+      "viewport": { "x": 160, "y": 32, "width": 640, "height": 576 },
+      "sampleWidth": 640,
+      "sampleHeight": 64,
+      "topY": 48,
+      "middleY": 288,
+      "bottomY": 528
+    },
+    "yAverage": {
+      "top": 104.699,
+      "middle": 109.824,
+      "bottom": 110.562
+    },
+    "observation": "During the darkening edge, the top crop is darker than the middle and bottom because its CPL latch occurred earlier in the frame. Uniform settled captures measured equal top/middle/bottom averages, so static endpoints did not acquire a row gradient."
+  },
+  "deploymentIntegrity": {
+    "responseShaderMatched": true,
+    "matrixShaderSha256": "8ac3fdb4e4223e740b87cff0df58588f17b8b96b7824405a6dc43a4587b55cb7",
+    "displayShaderSha256": "03b02d1278e9b726b6aced16fa1378e97d5cfe88c98563c8b8089342c5bbed00",
+    "targetPresetMatched": true,
+    "testRomMatched": true
+  },
+  "isolation": {
+    "configurationPath": "/sdcard/RetroArch/config/.codex-validation/20260819-ws3/retroarch-ws3.cfg",
+    "contentPresetPath": "/sdcard/RetroArch/config/Gambatte/RDL-DMG-Test.slangp",
+    "globalRetroArchConfigModified": false,
+    "userGambatteGbPresetModified": false,
+    "validationFilesRetained": true
+  },
+  "limits": [
+    "CPL line-end behavior is captured DMG electrical-interface evidence; exact analogue settling and optical dead time remain unknown, so no additional delay was invented.",
+    "The screen capture establishes presented row-phase direction and static uniformity, not an analogue voltage measurement or floating-point GPU readback.",
+    "Lifecycle, measured frame pacing, time-manipulation boundaries, and numeric GPU state comparison belong to WS7 rather than this WS3 receipt."
+  ],
+  "result": "pass"
+}

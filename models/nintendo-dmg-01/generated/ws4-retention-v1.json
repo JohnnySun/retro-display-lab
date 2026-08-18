@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws4-retention-v1",
+  "generatedFrom": {
+    "evidence": "data/stn-retention-evidence-v1.json",
+    "reconstruction": "data/reconstruction-v1.json",
+    "cpuReference": "reference/ionic-retention.mjs"
+  },
+  "classification": "period-protocol and later-kinetic constrained first-order ionic retention reconstruction",
+  "kinetics": {
+    "formationPerSecond": 0.007572576549692,
+    "formationTimeConstantSeconds": 132.055449481144,
+    "formationPerFrame": 0.000126777389374,
+    "releasePerSecond": 0.000425,
+    "releaseTimeConstantSeconds": 2352.941176470588,
+    "releasePerFrame": 0.000007115624929,
+    "periodReleaseUpperBoundPerSecond": 0.000606405722362
+  },
+  "periodProtocolReconstruction": {
+    "stressSeconds": 300,
+    "recoverySeconds": 600,
+    "reportedFinalAdsorbedFraction": 0.695,
+    "reconstructedFinalFraction": 0.695
+  },
+  "regression1994": {
+    "rows": 11,
+    "slope": 7.390426157,
+    "intercept": -0.186986889,
+    "rSquared": 0.746448307,
+    "visibilityVoltsAtReferenceMobility": 0.1825343
+  },
+  "opticalBridge": {
+    "mobilityOverViscosity": 0.05,
+    "gainPerVolt": 0.082,
+    "maximumOpticalStateBias": 0.0149678126,
+    "classification": "explicit bounded project bridge"
+  },
+  "trajectories": {
+    "chargeSamples": [
+      {
+        "seconds": 0,
+        "state": 0
+      },
+      {
+        "seconds": 60,
+        "state": 0.365142422712
+      },
+      {
+        "seconds": 120,
+        "state": 0.59695585656
+      },
+      {
+        "seconds": 300,
+        "state": 0.896870826507
+      },
+      {
+        "seconds": 600,
+        "state": 0.989364373575
+      },
+      {
+        "seconds": 1800,
+        "state": 0.999998796935
+      }
+    ],
+    "releaseSamples": [
+      {
+        "seconds": 0,
+        "state": 0.999998796935
+      },
+      {
+        "seconds": 60,
+        "state": 0.974821206191
+      },
+      {
+        "seconds": 300,
+        "state": 0.880292356784
+      },
+      {
+        "seconds": 600,
+        "state": 0.774915565686
+      },
+      {
+        "seconds": 1800,
+        "state": 0.465333371147
+      },
+      {
+        "seconds": 3600,
+        "state": 0.216535406809
+      }
+    ],
+    "sceneChangeStates": [
+      {
+        "target": 1,
+        "seconds": 600,
+        "state": 0.989364373575
+      },
+      {
+        "target": 0.3333333333333333,
+        "seconds": 120,
+        "state": 0.956745638082
+      },
+      {
+        "target": 0,
+        "seconds": 600,
+        "state": 0.741397979302
+      },
+      {
+        "target": 0.6666666666666666,
+        "seconds": 300,
+        "state": 0.732452149136
+      }
+    ]
+  },
+  "accelerationEquivalence": {
+    "normalFrames": 107520,
+    "acceleratedFrames": 1792,
+    "normalExposure": 0.999998798535,
+    "acceleratedExposure": 0.999998798535,
+    "normalReleaseFrames": 36000,
+    "acceleratedReleaseFrames": 600,
+    "normalRelease": 0.774014547552,
+    "acceleratedRelease": 0.774014547552
+  },
+  "precision": {
+    "feedbackFormat": "R32G32B32A32_SFLOAT",
+    "float64Exposure": 0.999998798535,
+    "float32Exposure": 0.999764978886,
+    "float64Release": 0.774014547552,
+    "float32Release": 0.773833334446
+  },
+  "validation": {
+    "periodProtocolFractionRecovered": true,
+    "releaseRateSatisfiesPeriodBound": true,
+    "paperRegressionSlope": true,
+    "paperRegressionIntercept": true,
+    "paperRegressionRSquared": true,
+    "generatedFrameResponsesMatchRates": true,
+    "reconstructionParametersMatch": true,
+    "noChangeEquilibrium": true,
+    "framePartitionInvariant": true,
+    "monotoneCharge": true,
+    "monotoneRelease": true,
+    "normalAcceleratedExposureEquivalent": true,
+    "normalAcceleratedReleaseEquivalent": true,
+    "boundedOpticalBias": true,
+    "float32ExposureClose": true,
+    "float32ReleaseClose": true,
+    "sceneChangesBounded": true,
+    "pass": true
+  },
+  "claimBoundary": "Kinetics are a reconstruction from period protocols and a later direct adsorption/desorption measurement satisfying the period bound. The optical gain is still an explicit low-amplitude bridge because no long-exposure DMG optical trace survives."
+}

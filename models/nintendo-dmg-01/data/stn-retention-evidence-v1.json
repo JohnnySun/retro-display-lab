@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-dmg-01-stn-retention-evidence-v1",
+  "classification": "period-constrained ionic-retention reconstruction",
+  "sources": [
+    {
+      "evidenceId": "DMG-STN-01",
+      "year": 1994,
+      "panelClass": "1/128-duty passive-matrix STN laboratory cells",
+      "temperatureCelsius": null,
+      "waveform": "35 Hz sinusoidal common drive after patterned exposure",
+      "exposureSeconds": 1800,
+      "retainedFacts": [
+        "eleven-mixture residual-image visibility voltage table",
+        "image sticking depends on conductivity anisotropy divided by viscosity",
+        "pattern remains visible after the patterned drive is replaced by a common waveform"
+      ],
+      "limits": "No time-resolved adsorption or release curve and no identified DMG material."
+    },
+    {
+      "evidenceId": "DMG-STN-05",
+      "year": 1997,
+      "panelClass": "AM-LCD 6.0 um laboratory cells with general LC mixtures",
+      "temperatureCelsius": 60,
+      "stress": {
+        "dcVolts": 10,
+        "seconds": 300,
+        "shortCircuitSeconds": 5,
+        "openCircuitObservationSeconds": 600
+      },
+      "alignmentLayer": {
+        "material": "general polyimide",
+        "resistivityOhmCentimeters": 1000000000000000,
+        "relativePermittivity": 3,
+        "reportedRcTimeConstantSeconds": 266
+      },
+      "reportedAdsorbedIonFraction": 0.695,
+      "retainedFacts": [
+        "alignment-layer electrical charging persists for minutes",
+        "residual DC after the RC interval is attributed to adsorbed ions",
+        "69.5 percent of the total cell ion charge was inferred adsorbed under the experiment"
+      ],
+      "limits": "Active-matrix high-temperature test, not a DMG cell; the final fraction does not separately identify formation and release rates."
+    },
+    {
+      "evidenceId": "DMG-ION-01",
+      "year": 2011,
+      "panelClass": "25 C laboratory LC cells under 1-5 V DC-offset stress",
+      "temperatureCelsius": 25,
+      "adsorptionRateRangePerMinute": [0.06, 0.067],
+      "slowDesorptionRateRangePerMinute": [0.023, 0.028],
+      "retainedEquation": "dn_a/dt = k_a N_s (n_s - n_a) - k_d n_a",
+      "limits": "Post-period direct kinetic measurement used only to resolve a rate left unidentified by the 1994/1997 period evidence; not a DMG measurement."
+    }
+  ],
+  "derivation": {
+    "referenceRefreshHz": 59.7275,
+    "desorption": {
+      "periodUpperBoundPerSecond": 0.0006064057223622416,
+      "boundEquation": "k_d <= -ln(0.695) / 600 s, because the adsorbed charge at ten minutes cannot exceed its value at stress removal",
+      "selectedPerSecond": 0.000425,
+      "selection": "midpoint of the later directly measured slow 0.023-0.028 min^-1 range; it satisfies the independent period upper bound",
+      "timeConstantSeconds": 2352.9411764705883,
+      "perFrameResponse": 0.000007115624928721864
+    },
+    "formation": {
+      "equation": "(1 - exp(-k_c * 300 s)) * exp(-k_d * 600 s) = 0.695",
+      "selectedPerSecond": 0.007572576549692423,
+      "timeConstantSeconds": 132.05544948114354,
+      "perFrameResponse": 0.00012677738937350025,
+      "stressRemovalCharge": 0.8968708265066585,
+      "classification": "period-protocol reconstruction conditioned on the bounded desorption rate"
+    },
+    "opticalBridge": {
+      "mobilityOverViscosity": 0.05,
+      "stickingVisibilityVolts": 0.1825343,
+      "stickingOpticalGainPerVolt": 0.082,
+      "maximumOpticalStateBias": 0.0149678126,
+      "classification": "explicit bounded project bridge",
+      "reason": "The 1994 dependent variable is a visibility-voltage window rather than optical transmission, and no long-exposure DMG optical trace survives. The gain remains low-amplitude and separately testable rather than being presented as measured."
+    }
+  },
+  "runtime": {
+    "state": "normalized adsorbed-ion / residual-pattern coordinate",
+    "integration": "exact first-order exponential per frame and per scanout partition",
+    "acceleratedDiagnostic": "IonicTimeScale=60 applies the exact continuous-time exponent, so 30 seconds equals the normal 30-minute integration for identical drive history",
+    "precision": "R32G32B32A32_SFLOAT feedback"
+  },
+  "claimBoundary": "The direct DMG rate and optical gain are irrecoverable. The selected kinetics are a traceable reconstruction from period protocols plus a later direct kinetic measurement that satisfies the period bound; they are not factory specifications."
+}

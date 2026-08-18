@@ -1,6 +1,6 @@
 # KONKR GT78-VN 960×640 sRGB-neutral target evidence
 
-Accessed/tested 2026-08-18. This file documents modern-target compensation;
+Accessed/tested 2026-08-19. This file documents modern-target compensation;
 original DMG behavior belongs to the
 [DMG-01 evidence map](../../../models/nintendo-dmg-01/REFERENCES.md).
 
@@ -40,6 +40,53 @@ original DMG behavior belongs to the
 - Limits: device-tuned visual/reference-image match, not instrument calibration.
   Values may change after future target-panel measurement and should not be
   copied to unrelated displays.
+
+## TARGET-KPA-DMG-01 — DMG WS2 physical-reconstruction Vulkan runtime probe
+
+- Source: direct device run on 2026-08-19, recorded in
+  [`validation/dmg01-ws2-20260819.json`](validation/dmg01-ws2-20260819.json),
+  using RetroArch 1.22.2, Gambatte at 160×144/59.73 fps, Vulkan on Mali-G76
+  MC4, and a repository-generated DMG toggle ROM.
+- Used for: confirming that the generated 65-bin director-drift and reflective
+  optical LUT compile and keep pass-0 feedback active on the named target.
+  The physical run loaded `DriveContrast=1`, `20 °C`, and zero unsupported
+  spatial loading. Verbose allocation showed response pass 0 as
+  `R32G32B32A32_SFLOAT`, matrix pass 1 as `R16G16B16A16_SFLOAT`, and display
+  pass 2 as `R8G8B8A8_UNORM`.
+- Runtime isolation: the test ROM was generated locally and is not stored in
+  the repository. The user's existing `Gambatte/gb.slangp` SHA-256 matched
+  before and after the probe; the global RetroArch configuration was not
+  replaced, RetroArch was stopped afterward, and validation-only files remain
+  under explicit isolated names.
+- Limits: this receipt is WS2 completion evidence for the bounded reconstruction,
+  not proof that the unknown DMG analogue levels or material identity were
+  recovered. Reported core FPS is a frontend geometry contract rather than an
+  instrumented frame-pacing trace. The generated include is byte-identical to
+  the CPU build and its causal screen output was sampled, but there is no
+  floating-point framebuffer readback from the Mali GPU.
+
+## TARGET-KPA-DMGSCAN-01 — DMG causal row-scanout runtime probe
+
+- Source: direct device run on 2026-08-19, recorded in
+  [`validation/dmg01-ws3-20260819.json`](validation/dmg01-ws3-20260819.json),
+  using the deterministic full-screen DMG transition ROM, the isolated
+  Gambatte configuration, RetroArch 1.22.2, and Mali Vulkan.
+- Used for: confirming `144+10=154` row integration, captured CPL line-end
+  latching, `OriginalHistory1` previous-drive use, a working temporal-only
+  diagnostic, exact 4x output, and target compensation that actually loads as
+  `ScreenBrightness=0.68` and `ScreenChroma=0.90`.
+- Presented evidence: during a shade-0 to shade-3 transition, equal-size top,
+  middle, and bottom crops measured Y averages `104.699`, `109.824`, and
+  `110.562`. The earlier-latched top was darker; settled fields measured equal
+  row averages. Pass 0 remained RGBA32F feedback and all three passes compiled.
+- Preset compatibility: Libretro documents simple presets as applying parameter
+  overrides after `#reference`, but this Android automatic game-preset route
+  retained the referenced defaults in repeated controls. The repository now
+  generates complete DMG diagnostic and KONKR target presets and checks their
+  exact content. This is a bounded target/build observation, not a general
+  claim about all RetroArch simple presets.
+- Limits: captures validate presented causal phase and uniform endpoints, not
+  analogue row voltage, emitted optics, or floating-point state readback.
 
 ## TARGET-KPA-AGS-01 — Exact GBA viewport
 
@@ -100,6 +147,105 @@ original DMG behavior belongs to the
 - Limits: framebuffer output validates runtime routing and parameter branches,
   not the emitted colorimetry of the unmeasured KONKR target panel. It is not
   an independent instrument validation of the HCS source measurements.
+
+## TARGET-KPA-DMGAPERTURE-01 — DMG WS6 aperture and shadow scale validation
+
+- Source: direct KONKR run on 2026-08-19 plus the deterministic CPU report,
+  recorded in [`validation/dmg01-ws6-20260819.json`](validation/dmg01-ws6-20260819.json).
+- Implementation correction: periodic previous/current/next aperture coverage
+  prevents fractional footprints from losing wrapped area. An analytic joint
+  active/shadow integral replaces multiplication of separately averaged masks,
+  keeping reflector-shadow gap energy independent of output scale.
+- CPU coverage: exact 4x/5x/6x, fractional 3.5x/3.75x/4.25x, four viewport
+  offsets, and three edge/corner/crop cases preserved aperture area `0.765625`
+  and shadow-gap area `0.191875`; maximum area error was `1e-12`.
+- Target coverage: the corrected shader compiled with RGBA32F feedback at exact
+  640x576 4x and centered 560x504 3.5x. Presented linear-light averages differed
+  by at most `0.00144461` per RGB channel and `0.001224498` in luminance, inside
+  the declared `0.002` target tolerance.
+- Limits: full DMG 5x/6x exceeds the target's 640-pixel height and is therefore
+  a deterministic CPU/fixture gate, not a physical full-screen run. BGB's
+  70/80 aperture and shadow offsets remain idealized candidates rather than
+  microscope measurements.
+
+## TARGET-KPA-DMGRETENTION-01 — DMG WS4 ionic-retention acceptance
+
+- Source: direct run on the named GT78-VN unit on 2026-08-19, recorded in
+  [`validation/dmg01-ws4-20260819.json`](validation/dmg01-ws4-20260819.json)
+  and [`validation/dmg01-ws4-gpu-retention-v1.json`](validation/dmg01-ws4-gpu-retention-v1.json).
+- Runtime: RetroArch 1.22.2, Gambatte, Vulkan on Mali-G76 MC4, exact 4x output,
+  RGBA32F pass-0 feedback, and a deterministic visible 10/10 tile window.
+  `DebugView=5` exposed ionic charge, current drive, and positive residual as
+  independent R/G/B channels. The 60x diagnostic preserved the exact
+  continuous-time exponent; it did not substitute a different rate.
+- Result: charge converged to `0.996078`. Across 14 real seconds of zero drive
+  (840 equivalent seconds), the observed release ratio was `0.691700` versus
+  `0.699772` predicted, an absolute difference of `0.008073`. The inactive
+  control half remained zero and charge/release were monotone within the
+  declared capture tolerance.
+- Limits: H.264, RGBA8, and RGB565 quantization are part of the acceptance
+  tolerance. This validates implementation and target integration of the
+  reconstructed rates; it does not convert the period/later literature model
+  or its bounded optical bridge into a direct pristine-DMG measurement.
+
+## TARGET-KPA-DMGCROSSTALK-01 — DMG WS5 passive-matrix crosstalk acceptance
+
+- Source: direct run on the named GT78-VN unit on 2026-08-19, recorded in
+  [`validation/dmg01-ws5-20260819.json`](validation/dmg01-ws5-20260819.json)
+  and the numeric
+  [`validation/dmg01-ws5-gpu-crosstalk-v1.json`](validation/dmg01-ws5-gpu-crosstalk-v1.json).
+- Electrical reconstruction: three sourced/derived ensembles propagate
+  `5–40 Ω/□` ITO, `11–30 kΩ` comparable period driver resistance,
+  `0.340–2.081 pF` geometry/dielectric-derived pixel capacitance, LC leakage,
+  and the DMG `160×144` three-dwell waveform through distributed row and column
+  resistor ladders. The normal Shader uses the calculated nominal scale `1.0`;
+  zero remains an isolation diagnostic.
+- Approximation: the nominal real-time surrogate differs from the full network
+  by `0.008997` shade RMS and `0.024016` at the 99th percentile. The declared
+  worst sparse edge error is `0.338495` shade at the far/top checkerboard edge;
+  it is retained in the report rather than hidden by the aggregate result.
+- Target result: single-dot, full-row, full-column, checkerboard,
+  alternating-line, window, and inverse-window stable captures all had distinct
+  hashes. CPU versus GPU effective-drive comparison passed with worst pattern
+  RMS `1.359/255` and 99th-percentile `2.291/255`, including RGBA8, RGB565, and
+  12 Mbit/s H.264 quantization. The response pass remained RGBA32F with
+  feedback, and the normal colored path compiled with row/column scale `1.0`.
+- Capture discipline: one-second cold-start recordings were identical black
+  Activity-transition frames and were rejected. Formal evidence waits three
+  seconds before the two-second recording.
+- Limits: the result validates the implementation of a period-evidence-bounded
+  reconstruction, not an actual pristine DMG crosstalk measurement. No
+  LH5076/LH5077 analogue datasheet or original DMG electrode mask has been
+  recovered; aged specimens did not select the electrical parameters.
+
+## TARGET-KPA-DMGFRONTEND-01 — DMG WS7 frontend and target acceptance
+
+- Source: direct run on the named GT78-VN unit on 2026-08-19, recorded in
+  [`validation/dmg01-ws7-20260819.json`](validation/dmg01-ws7-20260819.json),
+  with RetroArch 1.22.2, Gambatte, Vulkan on Mali-G76 MC4, exact 4x output,
+  one shader subframe, frame mixing disabled, and non-monotonic time features
+  disabled.
+- Numeric comparison: the deterministic four-shade ROM and `DebugView=4`
+  compared settled GPU optical states against the generated CPU LUT after
+  RGBA8/RGB565 presentation. Maximum channel error was four 8-bit codes against
+  a six-code tolerance. The response pass allocated RGBA32F and retained pass-0
+  feedback.
+- Motion and pacing: three 126-interval SurfaceFlinger samples measured
+  `60.248`, `60.267`, and `60.291 fps`; none contained a doubled 25-40 ms
+  interval. A synchronized five-second moving-bar recording contained 302
+  frames at 960x640.
+- Lifecycle: a deterministic ROM covered initialization, restart, content
+  reload, save and load, Quick Menu pause/resume, focus loss/resume, and clean
+  Close Content. Saving the paused core before and after a three-second wait
+  produced the identical state-file SHA-256. Focus loss preserved the same PID,
+  and Close Content returned to the unloaded RetroArch main menu.
+- Frontend boundary: `N=1` is the physical-time path. `N>1` shader subframes
+  take the static bypass; rewind and run-ahead require temporal bypass or an
+  explicit history reset. The Android build preserved `network_cmd` settings
+  but opened no listener, so no accepted result relies on those commands.
+- Limits: SurfaceFlinger measures presented timing rather than optical scanout;
+  the numeric comparison includes final display quantization rather than a
+  direct float-texture dump; screenshots do not measure an original DMG LCD.
 
 ## TARGET-KPA-DRIVE-01 — WS2 drive-retention Vulkan runtime probe
 

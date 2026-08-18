@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws3-scanout-v1",
+  "classification": "DMG-specific frame and latch timing applied to the WS2 physical surrogate",
+  "generatedFrom": {
+    "timing": "data/dmg-scan-timing-v1.json",
+    "physicalSurrogate": "generated/ws2-stn-physics-v1.json",
+    "cpuReference": "reference/scanout-timing.mjs"
+  },
+  "timing": {
+    "frameSeconds": 0.016742706458,
+    "lineSeconds": 0.000108718873,
+    "totalRows": 154,
+    "visibleRows": 144,
+    "latchOffsetLines": 1,
+    "latchBasis": "Captured CPL rising edge latches the line at line end.",
+    "firstVisibleLatchMilliseconds": 0.108719,
+    "lastVisibleLatchMilliseconds": 15.655518
+  },
+  "causalProbe": {
+    "transition": "shade 0 to shade 3",
+    "initialDirectorCoordinate": 0.051602468,
+    "targetDirectorCoordinate": 0.944774355,
+    "topRowAfterOneFrame": 0.077780726712,
+    "middleRowAfterOneFrame": 0.064828798453,
+    "bottomRowAfterOneFrame": 0.052047581559,
+    "middleRowShade2AfterOneFrame": 0.059572571325,
+    "topRowAfterSecondFrame": 0.103724927928
+  },
+  "validation": {
+    "manualVisibleRows": true,
+    "manualBlankRows": true,
+    "totalRows": true,
+    "modelLineMatchesManualRounded": true,
+    "modelLineMatchesCapture": true,
+    "eventFractionsPartitionFrame": true,
+    "topReceivesMoreCurrentDriveThanMiddle": true,
+    "middleReceivesMoreCurrentDriveThanBottom": true,
+    "sameRowDeeperDriveAdvancesFurther": true,
+    "crossFrameContinuesTowardCurrentTarget": true,
+    "unchangedEqualsTemporalOnly": true,
+    "constantFrameIndependentOfRowLatch": true,
+    "noScanoutIgnoresPreviousTarget": true,
+    "boundedDirectorCoordinates": true,
+    "monotoneIonicCharge": true,
+    "pass": true
+  },
+  "claimBoundary": "CPL line-end latch behavior is captured DMG evidence. The sub-line analogue settling and exact panel optical onset remain unknown; no separate dead time is invented."
+}

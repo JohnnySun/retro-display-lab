@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws6-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "scale-invariant-aperture-and-reflector-shadow-target-validation",
+  "ws6CompletionEvidence": true,
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4"
+  },
+  "implementation": {
+    "problemFound": "The prior single-cell overlap dropped the wrapped part of a host-pixel footprint at fractional scale, and multiplying separately averaged active/shadow masks made reflector-shadow energy scale-dependent.",
+    "correction": "Integrate previous/current/next periodic apertures and subtract analytically integrated active-shadow joint coverage before optical mixing.",
+    "apertureAverage": 0.765625,
+    "shadowGapAverage": 0.191875,
+    "classification": "BGB idealized-reference geometry; integration is physically conservative but dimensions remain experimental"
+  },
+  "inputs": {
+    "cpuReference": {
+      "path": "models/nintendo-dmg-01/reference/aperture-geometry.mjs",
+      "sha256": "b0b2c579561a0b5c8f92414585a9673498aded1333b9b7e8bbbda83d5e0f668e"
+    },
+    "generatedReport": {
+      "path": "models/nintendo-dmg-01/generated/ws6-aperture-v1.json",
+      "sha256": "f9404364ff4b180f02d0796d37598b7fc822585cfe55eee72d484e1686bd1ba7",
+      "validationPass": true
+    },
+    "displayShader": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-display-v1.slang",
+      "sha256": "db1b3b9a025b9851f2c5a7782698bbf0622baa1938fa559a297237e5ace9aac3"
+    },
+    "deviceComparison": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws6-scale-v1.json",
+      "sha256": "da3bf522461a3262ece9bbf40151f5187fe4a97c56b70beea4fe3800d840a26b",
+      "validationPass": true
+    }
+  },
+  "cpuAcceptance": {
+    "exactScales": [4, 5, 6],
+    "fractionalScales": [3.5, 3.75, 4.25],
+    "viewportOffsets": [[0, 0], [1, 0], [7, 11], [159, 32]],
+    "cropCases": 3,
+    "maximumApertureAreaError": 0.000000000001,
+    "maximumShadowGapAreaError": 0,
+    "tolerance": 0.0000000001,
+    "result": "pass"
+  },
+  "vulkanRuns": {
+    "exact4": {
+      "viewport": [160, 32, 640, 576],
+      "capture": "ws6-exact-4x-final.png",
+      "captureSha256": "3e2fc25579d6cd41426456d4966a1b3d3c03467e75bde1e6a150ba37c55666b0",
+      "logFile": "retroarch__2026_08_19__04_14_05.log",
+      "logSha256": "b1572aa9967f9bb36d97f42d8a093ef3b2eec75bf2a68c35fc1b5d934acd1f31"
+    },
+    "fractional3_5": {
+      "viewport": [200, 68, 560, 504],
+      "capture": "ws6-fractional-3_5x-centered.png",
+      "captureSha256": "9c591904e5ad4ae9a76c481f51d59c09bc105a20626d8c687082d41aa1769b37",
+      "logFile": "retroarch__2026_08_19__04_12_43.log",
+      "logSha256": "83232dd619651223f1575bc2e1ae851e5ab32f22522f5607ebeb5b9a4e8485a2"
+    },
+    "passFormats": [
+      "R32G32B32A32_SFLOAT",
+      "R16G16B16A16_SFLOAT",
+      "R8G8B8A8_UNORM"
+    ],
+    "responseFeedbackConfirmed": true,
+    "shaderCompileErrors": 0,
+    "processStayedAlive": true
+  },
+  "presentedScaleComparison": {
+    "maximumLinearRgbChannelDifference": 0.00144461,
+    "linearLuminanceDifference": 0.001224498,
+    "tolerance": 0.002,
+    "result": "pass"
+  },
+  "isolation": {
+    "globalRetroArchConfigModified": false,
+    "userGambatteGbPresetModified": false,
+    "validationFilesRetained": true
+  },
+  "limits": [
+    "The 960x640 target can show full-screen DMG only through exact 4x; exact 5x and 6x are deterministic CPU fixtures and analytic integration gates, while 3.5x is the physical fractional-scale target run.",
+    "The BGB 70/80 fill and reflector-shadow offsets are idealized-reference candidates, not microscope measurements of a DMG aperture.",
+    "Presented linear-light averages include RGB565 and screenshot quantization; they validate stable target rendering, not emitted-light calibration."
+  ],
+  "result": "pass"
+}

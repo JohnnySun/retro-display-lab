@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-dmg-01-row-scan-timing-v1",
+  "classification": "DMG-specific documented frame timing plus captured LCD-interface latch behavior",
+  "frame": {
+    "visibleRows": 144,
+    "blankRows": 10,
+    "totalRows": 154,
+    "visibleColumns": 160,
+    "nominalRefreshHz": 59.7275,
+    "referenceFrameSeconds": 0.016742706,
+    "modelLineSeconds": 0.00010871887,
+    "manualRoundedLineMicroseconds": 108.7,
+    "capturedMeanLineMicroseconds": 108.723728814,
+    "visiblePeriodMilliseconds": 15.655517,
+    "blankPeriodMilliseconds": 1.087189
+  },
+  "sources": [
+    {
+      "evidenceId": "DMG-SCAN-01",
+      "title": "Nintendo Game Boy Programming Manual",
+      "url": "https://files.nekoblog.org/uploads/pdf/39999184-GameBoy-Programming-Manual.pdf",
+      "pages": [53, 56],
+      "facts": [
+        "160 segments by 144 visible lines",
+        "10 vertical-blanking lines",
+        "108.7 microseconds per line",
+        "59.7 Hz rounded frame frequency",
+        "LY spans 0-153 and LY 144-153 is vertical blanking"
+      ]
+    },
+    {
+      "evidenceId": "DMG-DRIVE-02",
+      "title": "Capturing the Gameboy LCD with an FPGA",
+      "url": "https://thomas.spurden.name/blog/capturing-gb-lcd/",
+      "facts": [
+        "S/VSYNC rising starts a frame and stays high for the first line",
+        "ST/HSYNC rising starts each line",
+        "LD0 and LD1 shift on CP/CLK rising edges",
+        "CPL rising latches the complete 160-pixel line and marks line end",
+        "blanking contains CPL pulses without CP/CLK pixel shifts"
+      ]
+    }
+  ],
+  "runtimeModel": {
+    "timebase": "The 59.7275 Hz physical-surrogate frame period divided by 154 lines; the manual and capture values are retained as independent rounded/measured cross-checks.",
+    "rowStartEquation": "row * frameSeconds / 154",
+    "latchEquation": "rowStart + latchOffsetLines * frameSeconds / 154",
+    "normalLatchOffsetLines": 1,
+    "normalLatchBasis": "Captured CPL rising edge latches the line at line end.",
+    "opticalDeadTimeSeconds": 0,
+    "opticalDeadTimeBasis": "No separate pure optical dead time is established; director motion begins causally with the changed electrical drive.",
+    "sourceHistory": "OriginalHistory1 supplies the previous rendered core frame; Source supplies the current rendered core frame.",
+    "unsupportedSubframes": "When TotalSubFrames is not one, initialize a static current-target state instead of advancing physical history multiple times."
+  },
+  "uncertainties": [
+    "Sub-line analogue row/column voltage settling after CPL",
+    "Exact DMG-LCD-01 equivalence to the captured console and DMG-LCD-06 topology",
+    "Frontend behavior under rewind, run-ahead, dropped emulated frames, and non-monotonic time"
+  ]
+}

@@ -1,20 +1,18 @@
 #version 450
 
 // Retro Display Lab DMG-01 model, pass 1.
-// Approximate passive-matrix row/column loading and fixed panel variation.
+// Passive-matrix selection loss and reconstructed distributed-RC loading are
+// applied to voltage/director dynamics in pass 0. This pass adds only fixed
+// panel nonuniformity and preserves diagnostic channels.
 // Provenance: ../REFERENCES.md
 // Evidence: [DMG-MATRIX-01]
 
 layout(push_constant) uniform Push
 {
-   float RowCrosstalk;
-   float ColumnCrosstalk;
    float LineVariation;
    float PanelMottle;
 } params;
 
-#pragma parameter RowCrosstalk "DMG row crosstalk" 0.022 0.000 0.120 0.002
-#pragma parameter ColumnCrosstalk "DMG column crosstalk" 0.032 0.000 0.120 0.002
 #pragma parameter LineVariation "DMG fixed line variation" 0.000 0.000 0.080 0.002
 #pragma parameter PanelMottle "DMG panel mottle" 0.000 0.000 0.080 0.002
 
@@ -49,12 +47,12 @@ ivec2 bounded(ivec2 p)
 
 float state_at(ivec2 p)
 {
-   return mod(texelFetch(Source, bounded(p), 0).a, 2.0);
+   return texelFetch(Source, bounded(p), 0).g;
 }
 
-float drive_at(ivec2 p)
+float effective_drive_at(ivec2 p)
 {
-   return floor(texelFetch(Source, bounded(p), 0).a * 0.5) / 3.0;
+   return clamp(fract(texelFetch(Source, bounded(p), 0).a) * (4.0 / 3.0), 0.0, 1.0);
 }
 
 float hash12(vec2 p)
@@ -78,29 +76,14 @@ void main()
    ivec2 p = ivec2(floor(vTexCoord * global.SourceSize.xy));
    float center = state_at(p);
 
-   // Sparse taps approximate electrode loading over a substantial part of a
-   // row/column without paying for a full 160- or 144-sample reduction.
-   const int taps[4] = int[](1, 5, 17, 47);
-   float rowField = 0.0;
-   float columnField = 0.0;
-   for (int i = 0; i < 4; i++) {
-      rowField += state_at(p + ivec2(taps[i], 0));
-      rowField += state_at(p - ivec2(taps[i], 0));
-      columnField += state_at(p + ivec2(0, taps[i]));
-      columnField += state_at(p - ivec2(0, taps[i]));
-   }
-   rowField *= 0.125;
-   columnField *= 0.125;
-
-   float state = mix(center, rowField, params.RowCrosstalk);
-   state = mix(state, columnField, params.ColumnCrosstalk);
+   float state = center;
 
    float line = (hash12(vec2(0.0, float(p.y))) - 0.5)
               + 0.55 * (hash12(vec2(float(p.x), 19.0)) - 0.5);
    float mottle = smooth_noise(vec2(p) / vec2(18.0, 14.0)) - 0.5;
    state += line * params.LineVariation + mottle * params.PanelMottle;
 
-   float drive = drive_at(p);
+   float drive = effective_drive_at(p);
    float ionicCharge = texelFetch(Source, bounded(p), 0).b;
-   FragColor = vec4(clamp(state, 0.0, 1.0), rowField, drive, ionicCharge);
+   FragColor = vec4(clamp(state, 0.0, 1.0), center, drive, ionicCharge);
 }

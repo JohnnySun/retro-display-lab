@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws4-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "period-constrained-ionic-retention-reconstruction-and-target-validation",
+  "ws4CompletionEvidence": true,
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4"
+  },
+  "inputs": {
+    "periodEvidence": {
+      "path": "models/nintendo-dmg-01/data/stn-retention-evidence-v1.json",
+      "sha256": "2636e7a579c6697bc814500c230ec33e6d6dd76739d1e1085a1253091f2a43f6"
+    },
+    "cpuReference": {
+      "path": "models/nintendo-dmg-01/reference/ionic-retention.mjs",
+      "sha256": "cef8b4185b69a08c74873d859f166e8241d9b11fa922e33d8a088936fa5b93f2"
+    },
+    "generatedReport": {
+      "path": "models/nintendo-dmg-01/generated/ws4-retention-v1.json",
+      "sha256": "460ed9d4e4759367b719c755946f5d64f3ab6f619ae2b592a4df0695679e81d1",
+      "validationPass": true
+    },
+    "gpuReport": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws4-gpu-retention-v1.json",
+      "sha256": "cff13085be9aa78148e016abd2c4af499b53ba3e604fe47ab4d6dbf3139f1688",
+      "validationPass": true
+    }
+  },
+  "reconstruction": {
+    "formationTimeConstantSeconds": 132.055449481144,
+    "releaseTimeConstantSeconds": 2352.941176470588,
+    "formationPerFrame": 0.000126777389374,
+    "releasePerFrame": 0.000007115624929,
+    "periodProtocolFraction": 0.695,
+    "maximumOpticalStateBias": 0.0149678126,
+    "classification": "period protocol plus later direct kinetic measurement satisfying the independent period release bound; low-amplitude optical bridge remains explicit"
+  },
+  "acceleratedGpuRun": {
+    "rom": "RDL-DMG-WS4-Retention.gb",
+    "romSha256": "06a5dd2a089ddd970ae71189eaf55928cda296747a66e6c90c6881d0563b83fe",
+    "timeScale": 60,
+    "video": "ws4-retention-final-50s.mp4",
+    "videoSha256": "956bfd3b94d83ebdbe920b0db3e0067cee55d29ec62e79ee0a4bbfb9e23b6221",
+    "videoDurationSeconds": 50.000789,
+    "videoFrames": 2906,
+    "logFile": "retroarch__2026_08_19__04_40_21.log",
+    "logSha256": "b91ab4566730d0a77ac79707d38374a3e258b9450bb9bfcf7222faa2f5aaad5b",
+    "passFormats": [
+      "R32G32B32A32_SFLOAT",
+      "R16G16B16A16_SFLOAT",
+      "R8G8B8A8_UNORM"
+    ],
+    "responseFeedbackConfirmed": true,
+    "shaderCompileErrors": 0,
+    "diagnosticChannels": {
+      "red": "ionic charge",
+      "green": "current drive",
+      "blue": "positive residual"
+    }
+  },
+  "gpuAcceptance": {
+    "maximumCharge": 0.996078431,
+    "releaseStartCharge": 0.992156863,
+    "releaseEndCharge": 0.68627451,
+    "releaseElapsedRealSeconds": 14,
+    "releaseElapsedEquivalentSeconds": 840,
+    "observedReleaseRatio": 0.691699605,
+    "expectedReleaseRatio": 0.699772498,
+    "absoluteReleaseRatioError": 0.008072893,
+    "maximumInactiveControl": 0,
+    "monotoneCharge": true,
+    "monotoneRelease": true,
+    "result": "pass"
+  },
+  "isolation": {
+    "globalRetroArchConfigModified": false,
+    "userGambatteGbPresetModified": false,
+    "validationConfigAndContentPresetRetained": true
+  },
+  "limits": [
+    "The kinetic rates reconstruct a healthy period cell from published protocols and a later compatible direct kinetic measurement; they are not a factory DMG specification.",
+    "The voltage-to-optical gain remains an explicit bounded bridge because no pristine long-exposure DMG optical trace survives.",
+    "The accelerated GPU run validates the exact time transform and feedback trajectory, not the historical premise by itself.",
+    "H.264, RGBA8, and RGB565 quantization are included in the declared target tolerance."
+  ],
+  "result": "pass"
+}

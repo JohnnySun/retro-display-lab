@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws5-crosstalk-v1",
+  "generatedFrom": {
+    "evidence": "data/passive-matrix-crosstalk-evidence-v1.json",
+    "drive": "data/dmg-drive-v1.json",
+    "cpuReference": "reference/passive-matrix-crosstalk.mjs"
+  },
+  "solver": {
+    "topology": "one resistor ladder per row and column, one LC capacitance/leakage branch per crossing, driven from one end",
+    "integration": "backward Euler with 8 substeps per 36.241 us grayscale dwell after one AC-inverted warmup frame",
+    "coupling": "row and column networks solved against ideal opposite electrodes and combined by first-order linear superposition",
+    "normalization": "pattern result minus same-shade uniform-field result at the same pixel position",
+    "opticalCoupling": "RMS voltage is mapped to a continuous four-shade drive coordinate, which the Shader feeds into the existing WS2 director and reflected-optical LUTs"
+  },
+  "nominalDrive": {
+    "rowAmplitudeVolts": 16.129908977932,
+    "columnAmplitudeVolts": 1.344159081494
+  },
+  "ensembles": [
+    {
+      "id": "plausible-low",
+      "parameters": {
+        "sheetResistanceOhmsPerSquare": 5,
+        "electrodeSegmentResistanceOhms": 5.714285714286,
+        "rowDriverResistanceOhms": 11000,
+        "columnDriverResistanceOhms": 11000,
+        "pixelCapacitancePicofarads": 0.339674050318,
+        "pixelLeakageResistanceOhms": 104266873545.384,
+        "leakageTimeConstantSeconds": 0.035416751251
+      },
+      "patterns": [
+        {
+          "id": "single-dot",
+          "rmsDriveCoordinateError": 0.000202973755,
+          "maximumAbsoluteDriveCoordinateError": 0.0308092498,
+          "maximumLocation": [
+            80,
+            72
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.875974987218,
+          "omittedSecondOrderInstantaneousUpperBound": 0.319256742229
+        },
+        {
+          "id": "full-row",
+          "rmsDriveCoordinateError": 0.003823291502,
+          "maximumAbsoluteDriveCoordinateError": 0.046214941563,
+          "maximumLocation": [
+            159,
+            72
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.860817963517,
+          "omittedSecondOrderInstantaneousUpperBound": 0.372078052647
+        },
+        {
+          "id": "full-column",
+          "rmsDriveCoordinateError": 0.000311773905,
+          "maximumAbsoluteDriveCoordinateError": 0.032752433289,
+          "maximumLocation": [
+            80,
+            0
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.909648492354,
+          "omittedSecondOrderInstantaneousUpperBound": 0.345511094279
+        },
+        {
+          "id": "checkerboard",
+          "rmsDriveCoordinateError": 0.132846490488,
+          "maximumAbsoluteDriveCoordinateError": 0.190518324799,
+          "maximumLocation": [
+            159,
+            142
+          ],
+          "signedQuantiles": {
+            "p05": -0.190137467953,
+            "median": -0.071656725524,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 0.318935343018
+        },
+        {
+          "id": "alternating-lines",
+          "rmsDriveCoordinateError": 0.242017859255,
+          "maximumAbsoluteDriveCoordinateError": 0.345948051675,
+          "maximumLocation": [
+            159,
+            141
+          ],
+          "signedQuantiles": {
+            "p05": -0.345298942561,
+            "median": -0.15702158387,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 0.372078596307
+        },
+        {
+          "id": "window",
+          "rmsDriveCoordinateError": 0.002279528401,
+          "maximumAbsoluteDriveCoordinateError": 0.023876720672,
+          "maximumLocation": [
+            112,
+            36
+          ],
+          "signedQuantiles": {
+            "p05": -0.003009273547,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.903782017868,
+          "omittedSecondOrderInstantaneousUpperBound": 0.345491957965
+        },
+        {
+          "id": "inverse-window",
+          "rmsDriveCoordinateError": 0.002432499519,
+          "maximumAbsoluteDriveCoordinateError": 0.024296210826,
+          "maximumLocation": [
+            112,
+            108
+          ],
+          "signedQuantiles": {
+            "p05": -0.003164032563,
+            "median": 0,
+            "p95": 0.000259119971
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 0.403095640602
+        }
+      ],
+      "surrogate": {
+        "rowBaseCoefficient": -0.05790116562,
+        "rowRepeatedCoefficient": -0.09498756741,
+        "columnBaseCoefficient": 0.035312181632,
+        "columnRepeatedCoefficient": 0.305091425028,
+        "rmsResidualDriveCoordinate": 0.004898408571,
+        "p99AbsoluteResidualDriveCoordinate": 0.00734707606,
+        "maximumAbsoluteResidualDriveCoordinate": 0.167990958705,
+        "maximumResidualContext": {
+          "patternId": "checkerboard",
+          "location": [
+            159,
+            0
+          ],
+          "localDrive": 3,
+          "networkDelta": -0.143462065146,
+          "surrogateDelta": -0.31145302385
+        },
+        "samples": 161280
+      }
+    },
+    {
+      "id": "nominal",
+      "parameters": {
+        "sheetResistanceOhmsPerSquare": 10,
+        "electrodeSegmentResistanceOhms": 11.428571428571,
+        "rowDriverResistanceOhms": 20000,
+        "columnDriverResistanceOhms": 20000,
+        "pixelCapacitancePicofarads": 0.741383953024,
+        "pixelLeakageResistanceOhms": 89371605896.043,
+        "leakageTimeConstantSeconds": 0.066258674467
+      },
+      "patterns": [
+        {
+          "id": "single-dot",
+          "rmsDriveCoordinateError": 0.000679720042,
+          "maximumAbsoluteDriveCoordinateError": 0.103174248263,
+          "maximumLocation": [
+            80,
+            72
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.591854137879,
+          "omittedSecondOrderInstantaneousUpperBound": 2.823455602385
+        },
+        {
+          "id": "full-row",
+          "rmsDriveCoordinateError": 0.01151672294,
+          "maximumAbsoluteDriveCoordinateError": 0.138701405224,
+          "maximumLocation": [
+            159,
+            72
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.556693060086,
+          "omittedSecondOrderInstantaneousUpperBound": 3.290605373942
+        },
+        {
+          "id": "full-column",
+          "rmsDriveCoordinateError": 0.000896885614,
+          "maximumAbsoluteDriveCoordinateError": 0.106012127219,
+          "maximumLocation": [
+            80,
+            0
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.701775517461,
+          "omittedSecondOrderInstantaneousUpperBound": 3.056209529172
+        },
+        {
+          "id": "checkerboard",
+          "rmsDriveCoordinateError": 0.448309969011,
+          "maximumAbsoluteDriveCoordinateError": 0.641808267078,
+          "maximumLocation": [
+            159,
+            142
+          ],
+          "signedQuantiles": {
+            "p05": -0.640582540975,
+            "median": -0.243841192861,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 2.820675904187
+        },
+        {
+          "id": "alternating-lines",
+          "rmsDriveCoordinateError": 0.619724819494,
+          "maximumAbsoluteDriveCoordinateError": 0.877917266659,
+          "maximumLocation": [
+            159,
+            127
+          ],
+          "signedQuantiles": {
+            "p05": -0.877867326926,
+            "median": -0.405346902003,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 3.290624008113
+        },
+        {
+          "id": "window",
+          "rmsDriveCoordinateError": 0.007189372646,
+          "maximumAbsoluteDriveCoordinateError": 0.078127285938,
+          "maximumLocation": [
+            87,
+            36
+          ],
+          "signedQuantiles": {
+            "p05": -0.009370792822,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 2.685672396133,
+          "omittedSecondOrderInstantaneousUpperBound": 3.055203878529
+        },
+        {
+          "id": "inverse-window",
+          "rmsDriveCoordinateError": 0.007602658249,
+          "maximumAbsoluteDriveCoordinateError": 0.079080678385,
+          "maximumLocation": [
+            84,
+            108
+          ],
+          "signedQuantiles": {
+            "p05": -0.009404106506,
+            "median": 0,
+            "p95": 0.001137079243
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 3.565573706518
+        }
+      ],
+      "surrogate": {
+        "rowBaseCoefficient": -0.091248513301,
+        "rowRepeatedCoefficient": -0.148879590265,
+        "columnBaseCoefficient": 0.108942218386,
+        "columnRepeatedCoefficient": 0.76455375107,
+        "rmsResidualDriveCoordinate": 0.008997258359,
+        "p99AbsoluteResidualDriveCoordinate": 0.0240157002,
+        "maximumAbsoluteResidualDriveCoordinate": 0.338495047628,
+        "maximumResidualContext": {
+          "patternId": "checkerboard",
+          "location": [
+            159,
+            0
+          ],
+          "localDrive": 3,
+          "networkDelta": -0.489376665178,
+          "surrogateDelta": -0.827871712806
+        },
+        "samples": 161280
+      }
+    },
+    {
+      "id": "plausible-high",
+      "parameters": {
+        "sheetResistanceOhmsPerSquare": 40,
+        "electrodeSegmentResistanceOhms": 45.714285714286,
+        "rowDriverResistanceOhms": 30000,
+        "columnDriverResistanceOhms": 30000,
+        "pixelCapacitancePicofarads": 2.0805035582,
+        "pixelLeakageResistanceOhms": 59581070597.362,
+        "leakageTimeConstantSeconds": 0.123958629379
+      },
+      "patterns": [
+        {
+          "id": "single-dot",
+          "rmsDriveCoordinateError": 0.002376898197,
+          "maximumAbsoluteDriveCoordinateError": 0.360787779369,
+          "maximumLocation": [
+            80,
+            72
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 1.576413052008,
+          "omittedSecondOrderInstantaneousUpperBound": 12.286196195767
+        },
+        {
+          "id": "full-row",
+          "rmsDriveCoordinateError": 0.033498161095,
+          "maximumAbsoluteDriveCoordinateError": 0.411435628307,
+          "maximumLocation": [
+            0,
+            72
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 1.536412861183,
+          "omittedSecondOrderInstantaneousUpperBound": 14.319267160324
+        },
+        {
+          "id": "full-column",
+          "rmsDriveCoordinateError": 0.002971884598,
+          "maximumAbsoluteDriveCoordinateError": 0.359372368446,
+          "maximumLocation": [
+            80,
+            0
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 1.948095619604,
+          "omittedSecondOrderInstantaneousUpperBound": 13.33150460408
+        },
+        {
+          "id": "checkerboard",
+          "rmsDriveCoordinateError": 1.370676403008,
+          "maximumAbsoluteDriveCoordinateError": 1.96743521117,
+          "maximumLocation": [
+            0,
+            141
+          ],
+          "signedQuantiles": {
+            "p05": -1.958804811317,
+            "median": -0.802806028904,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 12.276051834595
+        },
+        {
+          "id": "alternating-lines",
+          "rmsDriveCoordinateError": 1.133037415807,
+          "maximumAbsoluteDriveCoordinateError": 1.873309351923,
+          "maximumLocation": [
+            0,
+            1
+          ],
+          "signedQuantiles": {
+            "p05": -1.728187332018,
+            "median": -0.671323990129,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 14.318823366371
+        },
+        {
+          "id": "window",
+          "rmsDriveCoordinateError": 0.022246431112,
+          "maximumAbsoluteDriveCoordinateError": 0.263562721382,
+          "maximumLocation": [
+            40,
+            36
+          ],
+          "signedQuantiles": {
+            "p05": -0.0277749472,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 1.909612343023,
+          "omittedSecondOrderInstantaneousUpperBound": 13.279357429515
+        },
+        {
+          "id": "inverse-window",
+          "rmsDriveCoordinateError": 0.023967451059,
+          "maximumAbsoluteDriveCoordinateError": 0.268728613814,
+          "maximumLocation": [
+            40,
+            108
+          ],
+          "signedQuantiles": {
+            "p05": -0.026061325698,
+            "median": 0,
+            "p95": 0.006346373754
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 15.553325350514
+        }
+      ],
+      "surrogate": {
+        "rowBaseCoefficient": 0.128010225258,
+        "rowRepeatedCoefficient": 0.207042538855,
+        "columnBaseCoefficient": 0.331994507406,
+        "columnRepeatedCoefficient": 1.271682466053,
+        "rmsResidualDriveCoordinate": 0.030144862142,
+        "p99AbsoluteResidualDriveCoordinate": 0.144516660316,
+        "maximumAbsoluteResidualDriveCoordinate": 0.487382593703,
+        "maximumResidualContext": {
+          "patternId": "full-column",
+          "location": [
+            80,
+            0
+          ],
+          "localDrive": 3,
+          "networkDelta": 0.359372368446,
+          "surrogateDelta": -0.128010225258
+        },
+        "samples": 161280
+      }
+    }
+  ],
+  "selectedShaderSurrogate": {
+    "ensemble": "nominal",
+    "rowBaseCoefficient": -0.091248513301,
+    "rowRepeatedCoefficient": -0.148879590265,
+    "columnBaseCoefficient": 0.108942218386,
+    "columnRepeatedCoefficient": 0.76455375107,
+    "rmsResidualDriveCoordinate": 0.008997258359,
+    "p99AbsoluteResidualDriveCoordinate": 0.0240157002,
+    "maximumAbsoluteResidualDriveCoordinate": 0.338495047628,
+    "maximumResidualContext": {
+      "patternId": "checkerboard",
+      "location": [
+        159,
+        0
+      ],
+      "localDrive": 3,
+      "networkDelta": -0.489376665178,
+      "surrogateDelta": -0.827871712806
+    },
+    "samples": 161280,
+    "parameterSemantics": "RowCrosstalk and ColumnCrosstalk are dimensionless sensitivity multipliers around the calculated nominal coefficients; 1.0 is reconstructed nominal and 0.0 disables the mechanism"
+  },
+  "uncertaintyEnvelope": {
+    "rowBaseCoefficient": [
+      -0.091248513301,
+      0.128010225258
+    ],
+    "rowRepeatedCoefficient": [
+      -0.148879590265,
+      0.207042538855
+    ],
+    "columnBaseCoefficient": [
+      0.035312181632,
+      0.331994507406
+    ],
+    "columnRepeatedCoefficient": [
+      0.305091425028,
+      1.271682466053
+    ],
+    "dominantInputs": "driver output resistance and total line capacitance set settling; ITO sheet resistance and one-ended topology set the position gradient; LC leakage is negligible on the dwell scale"
+  },
+  "convergence": {
+    "pattern": "checkerboard",
+    "ensemble": "plausible-high",
+    "coarseSubstepsPerDwell": 8,
+    "refinedSubstepsPerDwell": 16,
+    "rmsDriveCoordinateDifference": 0.009789679198,
+    "maximumAbsoluteDriveCoordinateDifference": 0.136941930847
+  },
+  "checks": {
+    "allInputsSourcedOrDerived": true,
+    "capacitanceRecomputed": true,
+    "leakageNegligibleAtDwell": true,
+    "constantFieldsUnchangedByDefinition": true,
+    "canonicalPatternsComplete": true,
+    "boundedEnsemblesComplete": true,
+    "surrogateFinite": true,
+    "nominalSurrogateRmsErrorBelow0_05Shade": true,
+    "convergenceRmsBelow0_02Shade": true
+  },
+  "pass": true
+}

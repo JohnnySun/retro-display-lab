@@ -21,7 +21,7 @@ layout(push_constant) uniform Push
    float DebugGain;
 } params;
 
-#pragma parameter PixelFill "DMG measured aperture fill" 0.875 0.55 0.95 0.005
+#pragma parameter PixelFill "DMG BGB idealized aperture fill" 0.875 0.55 0.95 0.005
 #pragma parameter PixelEdge "DMG host-pixel box filtering" 1.00 0.00 1.00 0.05
 #pragma parameter ShadowStrength "DMG reflector shadow" 0.18 0.00 0.50 0.01
 #pragma parameter ShadowOffsetX "DMG shadow offset X" 0.11 -0.30 0.30 0.01
@@ -31,7 +31,7 @@ layout(push_constant) uniform Push
 #pragma parameter ScreenBrightness "Target display brightness compensation" 1.00 0.40 1.00 0.01
 #pragma parameter ScreenChroma "Target display chroma compensation" 1.00 0.50 1.10 0.01
 #pragma parameter PolarizerAge "DMG polarizer aging" 0.00 0.00 1.00 0.02
-#pragma parameter DebugView "STN debug: 0 normal, 1 voltage, 2 ionic, 3 residual" 0.0 0.0 3.0 1.0
+#pragma parameter DebugView "STN debug view (4 optical, 5 ionic RGB, 6 RC drive)" 0.0 0.0 6.0 1.0
 #pragma parameter DebugGain "STN residual debug gain" 12.0 1.0 40.0 1.0
 
 layout(std140, set = 0, binding = 0) uniform UBO
@@ -130,9 +130,47 @@ float aperture(vec2 cell)
    vec2 apertureHigh = vec2(0.5 + params.PixelFill * 0.5);
    vec2 sampleLow = cell - footprint * 0.5;
    vec2 sampleHigh = cell + footprint * 0.5;
-   vec2 overlap = max(min(sampleHigh, apertureHigh) - max(sampleLow, apertureLow), vec2(0.0));
+   // The footprint may straddle a cell boundary at fractional scales. Sum the
+   // same aperture in the previous/current/next pitch so coverage remains
+   // periodic and conserves its linear-light average instead of losing the
+   // wrapped portion at cell edges.
+   vec2 overlap = vec2(0.0);
+   for (int period = -1; period <= 1; period++)
+   {
+      vec2 shift = vec2(float(period));
+      overlap += max(
+         min(sampleHigh, apertureHigh + shift)
+            - max(sampleLow, apertureLow + shift),
+         vec2(0.0));
+   }
    vec2 coverage = clamp(overlap / footprint, 0.0, 1.0);
    return coverage.x * coverage.y;
+}
+
+float joint_aperture_axis(float position, float shadowOffset, float footprint)
+{
+   float apertureLow = 0.5 - params.PixelFill * 0.5;
+   float apertureHigh = 0.5 + params.PixelFill * 0.5;
+   float sampleLow = position - footprint * 0.5;
+   float sampleHigh = position + footprint * 0.5;
+   float activeBase = floor(position);
+   float shadowBase = floor(position - shadowOffset);
+   float overlap = 0.0;
+   for (int activePeriod = -1; activePeriod <= 1; activePeriod++)
+   {
+      float activeLow = activeBase + float(activePeriod) + apertureLow;
+      float activeHigh = activeBase + float(activePeriod) + apertureHigh;
+      for (int shadowPeriod = -1; shadowPeriod <= 1; shadowPeriod++)
+      {
+         float shadowLow = shadowBase + float(shadowPeriod) + shadowOffset + apertureLow;
+         float shadowHigh = shadowBase + float(shadowPeriod) + shadowOffset + apertureHigh;
+         overlap += max(
+            min(sampleHigh, min(activeHigh, shadowHigh))
+               - max(sampleLow, max(activeLow, shadowLow)),
+            0.0);
+      }
+   }
+   return clamp(overlap / footprint, 0.0, 1.0);
 }
 
 void main()
@@ -150,11 +188,42 @@ void main()
    float shadowMask = aperture(fract(shadowPosition));
 
    vec3 background = optical_color(0.0);
-   vec3 behind = background * (1.0 - params.ShadowStrength * shadowState * shadowMask);
    float pixelMask = aperture(cell);
+   vec2 hostPixel = max(global.SourceSize.xy * global.OutputSize.zw, vec2(0.0001));
+   vec2 footprint = max(hostPixel * max(params.PixelEdge, 0.001), vec2(0.0001));
+   float jointMask = joint_aperture_axis(
+      pixelPosition.x, params.ShadowOffsetX, footprint.x)
+      * joint_aperture_axis(pixelPosition.y, params.ShadowOffsetY, footprint.y);
+   float shadowGapMask = max(shadowMask - jointMask, 0.0);
 
    if (params.DebugView >= 0.5) {
       vec4 diagnostic = texelFetch(Source, bounded(pixel), 0);
+      // WS7 numeric GPU comparison: bypass palette, aperture, shadow, and
+      // target compensation, and expose the matrix input state as an 8-bit
+      // grayscale code in the final RGBA8 pass. Framebuffer captures can then
+      // compare the GPU state with CPU vectors to a declared 1/255 limit.
+      if (params.DebugView >= 5.5) {
+         // WS5 electrical diagnostic: continuous effective drive after the
+         // generated distributed-RC surrogate, normalized to shade 3.
+         FragColor = vec4(vec3(clamp(diagnostic.b, 0.0, 1.0)), 1.0);
+         return;
+      }
+      if (params.DebugView >= 4.5) {
+         // WS4 numeric retention view. R is adsorbed-ion state, G is the
+         // instantaneous four-level drive, and B is the positive residual.
+         // Keeping all three unmodified makes the scene transition and decay
+         // observable in one framebuffer capture stream.
+         FragColor = vec4(
+            clamp(diagnostic.a, 0.0, 1.0),
+            clamp(diagnostic.b, 0.0, 1.0),
+            clamp(diagnostic.a - diagnostic.b, 0.0, 1.0),
+            1.0);
+         return;
+      }
+      if (params.DebugView >= 3.5) {
+         FragColor = vec4(vec3(clamp(diagnostic.r, 0.0, 1.0)), 1.0);
+         return;
+      }
       float debugValue;
       if (params.DebugView < 1.5)
          debugValue = diagnostic.b;
@@ -167,7 +236,8 @@ void main()
       return;
    }
 
-   vec3 linearColor = mix(behind, optical_color(state), pixelMask);
+   vec3 linearColor = mix(background, optical_color(state), pixelMask);
+   linearColor -= background * params.ShadowStrength * shadowState * shadowGapMask;
    float luminance = dot(linearColor, vec3(0.2126, 0.7152, 0.0722));
    linearColor = mix(vec3(luminance), linearColor, params.ScreenChroma) * params.ScreenBrightness;
 

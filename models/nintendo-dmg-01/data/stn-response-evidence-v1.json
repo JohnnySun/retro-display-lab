@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-dmg-01-period-stn-response-evidence-v1",
+  "classification": "historical-literature-normalization",
+  "targetBoundary": "These rows are output-validation bounds and material-era context for the completed bounded physical reconstruction; none is a measurement of a DMG panel, and their response times are not inputs to voltage/director dynamics.",
+  "rows": [
+    {
+      "id": "takatsu-1999-conventional-stn",
+      "evidenceId": "DMG-STN-03",
+      "year": 1999,
+      "reportedValueSeconds": 0.3,
+      "reportedRangeSeconds": null,
+      "responseDefinition": "unspecified response time tau in a historical comparison",
+      "tonSeconds": null,
+      "toffSeconds": null,
+      "aggregateMetric": "unspecified",
+      "temperatureC": null,
+      "duty": null,
+      "cellGapMicrometers": null,
+      "viscosityCentipoise": null,
+      "twistDegrees": null,
+      "opticalConfiguration": "STN, configuration not stated for the quoted comparison",
+      "productionStatus": "conventional historical STN material",
+      "fitRole": "nominal aggregate scale",
+      "directlyApplicableToDmg": false,
+      "limits": "The review does not state whether the quoted 300 ms is ton, toff, their mean, or their sum. The project maps it to a combined endpoint scale only as an explicit bridge."
+    },
+    {
+      "id": "takatsu-1999-improved-tolan-stn",
+      "evidenceId": "DMG-STN-03",
+      "year": 1999,
+      "reportedValueSeconds": null,
+      "reportedRangeSeconds": [0.12, 0.13],
+      "responseDefinition": "unspecified response time tau in a historical comparison",
+      "tonSeconds": null,
+      "toffSeconds": null,
+      "aggregateMetric": "unspecified",
+      "temperatureC": null,
+      "duty": null,
+      "cellGapMicrometers": null,
+      "viscosityCentipoise": null,
+      "twistDegrees": null,
+      "opticalConfiguration": "STN using later low-viscosity, high-birefringence mixtures",
+      "productionStatus": "post-DMG improved material for laptop and word-processor expansion",
+      "fitRole": "contextual fast scale only",
+      "directlyApplicableToDmg": false,
+      "limits": "Later material and an unspecified response metric; it cannot set the normal 1989 DMG value."
+    },
+    {
+      "id": "okada-1988-fast-270-stn",
+      "evidenceId": "DMG-STN-04",
+      "year": 1988,
+      "reportedValueSeconds": 0.08,
+      "reportedRangeSeconds": null,
+      "responseDefinition": "(ton + toff) / 2, with drive voltage selected so ton and toff were approximately equal",
+      "tonSeconds": null,
+      "toffSeconds": null,
+      "aggregateMetric": "mean-ton-toff",
+      "temperatureC": 20,
+      "duty": "1/200",
+      "cellGapMicrometers": 4,
+      "viscosityCentipoise": null,
+      "viscosityRangeCentipoiseStudied": [20, 70],
+      "twistDegrees": 270,
+      "opticalConfiguration": "SBE yellow-mode transmissive test cell",
+      "productionStatus": "deliberately optimized high-speed prototype",
+      "fitRole": "fast lower-envelope anchor",
+      "directlyApplicableToDmg": false,
+      "limits": "The paper reports a representative 80 ms mean at contrast above 10, not the DMG material or panel. The exact mixture viscosity for that representative result is not stated in the text."
+    }
+  ],
+  "qualitativeConstraints": [
+    {
+      "id": "bgb-dmg-motion",
+      "evidenceId": "DMG-MOTION-01",
+      "constraint": "A DMG-specific optical response must preserve prior states during motion and expose intermediate shades.",
+      "numericFitEligible": false
+    },
+    {
+      "id": "schadt-nematic-directionality",
+      "evidenceId": "DMG-STN-02",
+      "constraint": "Driven turn-on and field-free turn-off may use different rates; both scale with viscosity and cell-gap squared in the small-angle model.",
+      "numericFitEligible": false
+    }
+  ]
+}

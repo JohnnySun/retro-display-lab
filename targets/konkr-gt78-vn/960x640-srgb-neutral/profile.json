@@ -25,6 +25,12 @@
     "TARGET-KPA-SCALE-01",
     "TARGET-KPA-COLOR-01",
     "TARGET-KPA-TUNE-01",
+    "TARGET-KPA-DMG-01",
+    "TARGET-KPA-DMGSCAN-01",
+    "TARGET-KPA-DMGFRONTEND-01",
+    "TARGET-KPA-DMGAPERTURE-01",
+    "TARGET-KPA-DMGRETENTION-01",
+    "TARGET-KPA-DMGCROSSTALK-01",
     "TARGET-KPA-AGS-01",
     "TARGET-KPA-SCAN-01",
     "TARGET-KPA-HCS-01",
@@ -33,7 +39,13 @@
     "TARGET-KPA-VALIDATION-01"
   ],
   "validationRecords": [
-    "validation/ags101-ws5-20260818.json"
+    "validation/ags101-ws5-20260818.json",
+    "validation/dmg01-ws2-20260819.json",
+    "validation/dmg01-ws3-20260819.json",
+    "validation/dmg01-ws7-20260819.json",
+    "validation/dmg01-ws6-20260819.json",
+    "validation/dmg01-ws4-20260819.json",
+    "validation/dmg01-ws5-20260819.json"
   ],
   "compensation": {
     "ScreenBrightness": 0.68,

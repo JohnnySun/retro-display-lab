@@ -30,7 +30,7 @@ Color Tint 只能改顏色，重建不了那些只有在畫面動起來時才看
 - 依據公開 DMG 近拍資料建立的矩形像素開口與反射層陰影；
 - Reference、重拖影、老化個體，以及加速實驗用的 preset。
 
-哪一筆資料對應到哪一段程式碼、有哪些限制，都寫在 [DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md) 裡。
+哪一筆資料對應到哪一段程式碼、有哪些限制，都寫在 [DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md) 裡。目前的機器可讀重建決策與後續實作工作，分別記錄在 [`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json) 和 [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md)。
 
 ### 效果對比
 

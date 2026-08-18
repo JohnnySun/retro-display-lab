@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws2-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "physical-reconstruction-target-runtime-validation",
+  "ws2CompletionEvidence": true,
+  "scope": "Mali Vulkan compilation, generated-LUT identity, feedback-format, and causal runtime evidence for the WS2 STN physical reconstruction.",
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "androidVersion": "12",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4"
+  },
+  "frontend": {
+    "applicationId": "com.retroarch",
+    "retroArchVersion": "1.22.2",
+    "videoDriver": "vulkan",
+    "core": "gambatte_libretro_android.so",
+    "coreGeometry": [160, 144],
+    "reportedCoreFps": 59.73,
+    "gambatteMixFrames": "disabled"
+  },
+  "inputs": {
+    "driveModel": {
+      "path": "models/nintendo-dmg-01/data/dmg-drive-v1.json",
+      "sha256": "db1c039ce014420beb53197e0a7263ade50379749059fe242284e67f4203db89"
+    },
+    "materialEnsemble": {
+      "path": "models/nintendo-dmg-01/data/stn-material-ensemble-v1.json",
+      "sha256": "1a805858541af3da6c5db3e652115017a195d420f9475f1c32c48eb616818c0e"
+    },
+    "physicalReport": {
+      "path": "models/nintendo-dmg-01/generated/ws2-stn-physics-v1.json",
+      "sha256": "819695410884f2493d85009bdc848485b40f288866b1eebf57bf4681494b2daf",
+      "validationPass": true,
+      "maximumRuntimeSurrogateRmsError": 0.057672222
+    },
+    "generatedShaderSurrogate": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-stn-surrogate.inc",
+      "sha256": "0e7393f4108b9014659f9327e41ab045f60d7501133101a3b608e44627ebeaa8"
+    },
+    "normalizedEvidence": {
+      "path": "models/nintendo-dmg-01/data/stn-response-evidence-v1.json",
+      "sha256": "b6d8334d5d466818838c3d71f204488981da84f6f2b0cd6274314532545f1734"
+    },
+    "generatedFit": {
+      "path": "models/nintendo-dmg-01/generated/ws2-temporal-fit-v1.json",
+      "sha256": "2afe86bcc98b932f23c0bf7d1c1abfe1a762d6ac1cff32dfa2ae01c0cfff994a"
+    },
+    "responseShader": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
+      "sha256": "e56d95ad8471b9efb41f3a4a377aa4e3e89d47880559287a186974fef34ddea1"
+    },
+    "matrixShader": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-matrix-v1.slang",
+      "sha256": "8ac3fdb4e4223e740b87cff0df58588f17b8b96b7824405a6dc43a4587b55cb7"
+    },
+    "displayShader": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-display-v1.slang",
+      "sha256": "03b02d1278e9b726b6aced16fa1378e97d5cfe88c98563c8b8089342c5bbed00"
+    },
+    "testRom": {
+      "generator": "tools/build-dmg01-device-test-rom.mjs",
+      "storedInRepository": false,
+      "sha256": "1516aec558cccfe34ff68020dea4614a7d73457e3d367aaa6fde6929ad781726",
+      "behavior": "DMG-generated full-screen shade 0/shade 3 toggle every 30 frames"
+    }
+  },
+  "historicalInterimRuns": [
+    {
+      "candidate": "nominal",
+      "logFile": "retroarch__2026_08_19__00_08_00.log",
+      "logSha256": "67cbfb2840497fb43bc8e36fe920a7fcb6aea45e1be1cf89820f25908be3bb16",
+      "compiled": true,
+      "runtimeProcessStayedAlive": true
+    },
+    {
+      "candidate": "plausible-fast",
+      "logFile": "retroarch__2026_08_19__00_12_21.log",
+      "logSha256": "f1c36ce6c1cb3325d6705951b611c01c24ccd63e041b60321f433f7ccc4f7d09",
+      "compiled": true,
+      "runtimeProcessStayedAlive": true
+    },
+    {
+      "candidate": "plausible-slow",
+      "logFile": "retroarch__2026_08_19__00_12_44.log",
+      "logSha256": "7c3d736ae23704bb970ed9a539cdb54f5578f94252592326be843bc339f300f3",
+      "compiled": true,
+      "runtimeProcessStayedAlive": true
+    }
+  ],
+  "physicalRun": {
+    "preset": "reference-v1",
+    "parameters": {
+      "DriveContrast": 1,
+      "PanelTemperatureCelsius": 20,
+      "RowCrosstalk": 0,
+      "ColumnCrosstalk": 0
+    },
+    "logFile": "retroarch__2026_08_19__01_23_34.log",
+    "logSha256": "314281c523c4b65cc3b27ed7e2bf1bb03d81b2bad3c86ed0ec54918874b26f69",
+    "compiled": true,
+    "runtimeProcessStayedAlive": true,
+    "generatedIncludeCompiled": true,
+    "shaderCompileErrors": 0
+  },
+  "vulkan": {
+    "passFormats": [
+      "R32G32B32A32_SFLOAT",
+      "R16G16B16A16_SFLOAT",
+      "R8G8B8A8_UNORM"
+    ],
+    "responseFeedbackPass": 0,
+    "responseFeedbackConfirmed": true,
+    "shaderCompileErrors": 0
+  },
+  "visualSmoke": {
+    "firstCaptureSha256": "ed0575c7a78f653e695ac3f6c3381970b85bdbea90e4fe71f11cbc19c9e112b8",
+    "secondCaptureSha256": "d70cdea6f6f3828a3246fbd1804dc6755da41c0b7ff52fc4fc2b771614b4b21c",
+    "backgroundSignalYuvA": [107.405, 103.745, 122.901],
+    "backgroundSignalYuvB": [87.0658, 120.762, 118.977],
+    "observation": "The deterministic ROM produced two distinct GPU-output phases while the generated director LUT and pass-0 feedback remained active; the difference is not an N-frame blend."
+  },
+  "restoration": {
+    "userGambatteShaderBeforeSha256": "9c0a3a171131574a5d6bcf6edb480548c0b04580f5a542a99b089d8360aed940",
+    "userGambatteShaderAfterSha256": "9c0a3a171131574a5d6bcf6edb480548c0b04580f5a542a99b089d8360aed940",
+    "globalRetroArchConfigModified": false,
+    "retroArchStoppedAfterValidation": true,
+    "isolatedValidationFilesRetained": true
+  },
+  "limits": [
+    "WS2 is complete as a bounded reconstruction, not as a claim that unknown DMG analogue or material constants were recovered.",
+    "The 59.73 fps value is the core geometry contract, not an instrumented frame-pacing measurement.",
+    "The generated include is byte-identical to the CPU report build and compiled on the GPU; screenshot signal statistics are output evidence, not a floating-point framebuffer readback.",
+    "The generated toggle ROM validates runtime causality and stability, not original DMG transition accuracy.",
+    "DMG analogue bias ratios, actual fill material, and polarizer spectra remain bounded literature reconstructions rather than measurements."
+  ],
+  "result": "pass"
+}

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "reconstructionId": "nintendo-dmg-01-reference-v1",
+  "target": {
+    "description": "Best-effort reconstruction of the visual behavior of a healthy period DMG reflective STN panel on a modern display",
+    "period": "1989-1991",
+    "referenceTemperatureC": [20, 25],
+    "excludes": [
+      "specimen-specific aging",
+      "polarizer or adhesive deterioration",
+      "fixed line defects",
+      "modern target-display compensation"
+    ]
+  },
+  "evidencePriority": [
+    "DMG-specific documented observation",
+    "contemporary measured STN data under comparable conditions",
+    "general nematic mechanism",
+    "bounded project bridge"
+  ],
+  "optical": {
+    "classification": "reference-image-matched",
+    "evidenceIds": ["DMG-COLOR-01", "DMG-APERTURE-01"],
+    "sourceImages": {
+      "palette": {
+        "fileName": "dmg-reality-colorscheme.png",
+        "url": "https://bgb.bircd.org/reality/dmg-reality-colorscheme.png",
+        "sha256": "9a4c985c205ad8ea2c4c4cb4ee3f9d13c480f193b31fbd75ea6d7a75d9d6faff",
+        "dimensions": [310, 94],
+        "coordinateSystem": "zero-based pixels from top-left",
+        "samples": [
+          { "stateId": "lcd-disabled", "crop": { "x": 50, "y": 46, "width": 1, "height": 1 }, "srgb8": [148, 138, 4] },
+          { "stateId": "shade-0", "crop": { "x": 102, "y": 46, "width": 1, "height": 1 }, "srgb8": [117, 152, 51] },
+          { "stateId": "shade-1", "crop": { "x": 154, "y": 46, "width": 1, "height": 1 }, "srgb8": [88, 143, 81] },
+          { "stateId": "shade-2", "crop": { "x": 206, "y": 46, "width": 1, "height": 1 }, "srgb8": [59, 117, 96] },
+          { "stateId": "shade-3", "crop": { "x": 258, "y": 46, "width": 1, "height": 1 }, "srgb8": [46, 97, 90] }
+        ]
+      },
+      "gradient": {
+        "fileName": "dmgblend-shades.png",
+        "url": "https://bgb.bircd.org/reality/dmgblend-shades.png",
+        "sha256": "28d8b424464860e8a8d86670abaeee8eaea7e44d87d3c094eb0511af48bd646f",
+        "dimensions": [529, 173],
+        "coordinateSystem": "zero-based pixels from top-left",
+        "samples": [
+          { "segment": 0, "crop": { "x": 56, "y": 125, "width": 1, "height": 1 }, "srgb8": [134, 144, 36] },
+          { "segment": 1, "crop": { "x": 121, "y": 125, "width": 1, "height": 1 }, "srgb8": [104, 148, 67] },
+          { "segment": 2, "crop": { "x": 186, "y": 125, "width": 1, "height": 1 }, "srgb8": [74, 130, 89] },
+          { "segment": 3, "crop": { "x": 251, "y": 125, "width": 1, "height": 1 }, "srgb8": [52, 107, 93] }
+        ]
+      },
+      "aperture": {
+        "fileName": "dmglcd-closeup.png",
+        "url": "https://bgb.bircd.org/reality/dmglcd-closeup.png",
+        "sha256": "a34e4ff0cf607e7e53cbf27c7e550181ba90e2e4ed6b0fe4eedc15e024bb8319",
+        "dimensions": [590, 280],
+        "coordinateSystem": "zero-based pixels from top-left",
+        "scanline": {
+          "y": 100,
+          "firstAperture": { "startX": 60, "endExclusiveX": 130 },
+          "followingGap": { "startX": 130, "endExclusiveX": 140 },
+          "nextApertureStartX": 140,
+          "boundarySamples": [
+            { "x": 59, "srgb8": [148, 138, 4] },
+            { "x": 60, "srgb8": [0, 109, 109] },
+            { "x": 129, "srgb8": [0, 109, 109] },
+            { "x": 130, "srgb8": [148, 138, 4] },
+            { "x": 139, "srgb8": [148, 138, 4] },
+            { "x": 140, "srgb8": [53, 145, 92] }
+          ]
+        }
+      }
+    },
+    "states": [
+      { "id": "lcd-disabled", "srgb8": [148, 138, 4] },
+      { "id": "shade-0", "srgb8": [117, 152, 51] },
+      { "id": "shade-1", "srgb8": [88, 143, 81] },
+      { "id": "shade-2", "srgb8": [59, 117, 96] },
+      { "id": "shade-3", "srgb8": [46, 97, 90] }
+    ],
+    "gradient": {
+      "sourceImage": "https://bgb.bircd.org/reality/dmgblend-shades.png",
+      "interpolation": "piecewise linear light between adjacent sRGB states",
+      "sampledMidpointsSrgb8": [
+        [134, 144, 36],
+        [104, 148, 67],
+        [74, 130, 89],
+        [52, 107, 93]
+      ],
+      "maximumAcceptedChannelError8bit": 1
+    },
+    "aperture": {
+      "pixelFill": 0.875,
+      "basis": "70/80 proportion sampled from BGB's explicitly idealized close-up",
+      "physicalMeasurement": false
+    },
+    "ws1Acceptance": {
+      "status": "complete",
+      "completedOn": "2026-08-18",
+      "perceptualMetric": "CIEDE2000 under sRGB D65",
+      "maximumPaletteDeltaE00": 0.01,
+      "maximumGradientMidpointDeltaE00": 0.6,
+      "generatedScene": "generated/ws1-static-v1.png",
+      "generatedReport": "generated/ws1-perceptual-v1.json"
+    }
+  },
+  "temporal": {
+    "classification": "bounded DMG-drive and period-material STN physical reconstruction",
+    "evidenceIds": ["DMG-MOTION-01", "DMG-STN-02", "DMG-STN-03", "DMG-STN-04", "DMG-DRIVE-01", "DMG-DRIVE-02", "DMG-OPTICS-01", "DMG-MATERIAL-01", "DMG-MATERIAL-02"],
+    "normalizedEvidence": "data/stn-response-evidence-v1.json",
+    "generatedFitReport": "generated/ws2-temporal-fit-v1.json",
+    "physicalModel": {
+      "driveRecord": "data/dmg-drive-v1.json",
+      "materialEnsemble": "data/stn-material-ensemble-v1.json",
+      "cpuSolver": "reference/stn-physics.mjs",
+      "generatedReport": "generated/ws2-stn-physics-v1.json",
+      "shaderSurrogate": "shaders/dmg01-stn-surrogate.inc",
+      "runtimeState": "normalized depth-average sin(theta)^2 director coordinate plus separate reflected-optical and ionic states",
+      "runtimeIntegrator": "65-bin generated director-drift LUT at the DMG 59.7275 Hz reference frame period",
+      "contrastEnvelope": [0.88, 1, 1.12],
+      "temperatureCelsius": 20,
+      "backflowIncluded": false,
+      "finiteAnchoringIncluded": true
+    },
+    "ws2Acceptance": {
+      "status": "complete",
+      "reopenedOn": "2026-08-19",
+      "completedOn": "2026-08-19",
+      "reason": "The normal Shader now integrates a generated director-drift field derived from the documented DMG drive, bounded period-STN material ensemble, Frank-Oseen/Ericksen-Leslie solver, and reflective Jones solver. Empirical endpoint times were removed from the normal path.",
+      "completionStandard": "The normal Shader must be a validated runtime reduction of the causal chain DMG row/column waveform -> pixel voltage -> STN director dynamics -> reflected spectral response.",
+      "requiredArtifacts": [
+        "versioned DMG row/column waveform and four-shade voltage model",
+        "bounded 1988-1990 production-STN material parameter ensemble",
+        "tested Frank-Oseen and declared Ericksen-Leslie director solver",
+        "tested Jones or Berreman reflective optical solver",
+        "generated LUT or modal Shader surrogate with approximation-error report",
+        "shared CPU, surrogate, GPU, and target-runtime validation"
+      ],
+      "targetReceipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws2-20260819.json"
+    },
+    "fitModel": {
+      "id": "dmg-four-shade-continuous-rate-family-v1",
+      "role": "interim empirical timing envelope; not the WS2 physical model",
+      "referenceFrameSeconds": 0.016742706,
+      "axes": [
+        "combined endpoint T90",
+        "clearing-to-darkening T90 ratio",
+        "logical transition distance",
+        "intermediate-shade drag",
+        "slow-tail weight",
+        "slow-rate scale"
+      ],
+      "runtimeEncoding": "per-frame alpha values are exact encodings of continuous exponential rates at 59.7275 Hz"
+    },
+    "anchors": [
+      {
+        "evidenceId": "DMG-STN-03",
+        "valueSeconds": 0.3,
+        "meaning": "reported conventional STN response scale",
+        "directlyApplicableToDmg": false
+      },
+      {
+        "evidenceId": "DMG-STN-03",
+        "rangeSeconds": [0.12, 0.13],
+        "meaning": "later improved low-viscosity and high-birefringence STN mixture",
+        "directlyApplicableToDmg": false
+      },
+      {
+        "evidenceId": "DMG-STN-04",
+        "valueSeconds": 0.08,
+        "meaning": "mean of turn-on and turn-off for a deliberately fast 4 um, 1/200-duty prototype at 20 C",
+        "directlyApplicableToDmg": false
+      }
+    ],
+    "legacyInterimBridge": {
+      "classification": "superseded empirical regression envelope retained only for output comparison",
+      "nominalCandidateId": "nominal",
+      "rationale": "BGB constrains DMG-like persistence qualitatively; period STN literature supplies the aggregate scale and supports faster driven darkening than field-free clearing.",
+      "referenceParameters": {
+        "DarkenResponse": 0.372895578,
+        "ClearResponse": 0.20810075,
+        "SlowTail": 0.08,
+        "SlowRateScale": 0.22,
+        "GrayDrag": 0.1,
+        "DistanceDrag": 0.1
+      }
+    },
+    "ionicModel": {
+      "classification": "separate literature-constrained slow mechanism; not used to create ordinary motion response",
+      "referenceParameters": {
+        "IonicMobility": 0.05,
+        "StickingOpticalGain": 0.082,
+        "IonicChargeResponse": 0.000126777389,
+        "IonicReleaseResponse": 0.000007115625
+      },
+      "evidenceRecord": "data/stn-retention-evidence-v1.json",
+      "cpuReference": "reference/ionic-retention.mjs",
+      "generatedReport": "generated/ws4-retention-v1.json"
+    },
+    "candidates": [
+      {
+        "id": "nominal",
+        "classification": "bounded project bridge using the conventional-period aggregate anchor",
+        "combinedEndpointT90Seconds": 0.3,
+        "clearingToDarkeningT90Ratio": 2,
+        "slowTailWeight": 0.08,
+        "slowRateScale": 0.22,
+        "intermediateDrag": 0.1,
+        "distanceDrag": 0.1,
+        "rationale": "Preserves the conventional 300 ms aggregate scale while keeping driven darkening faster than field-free clearing."
+      },
+      {
+        "id": "plausible-fast",
+        "classification": "historical fast-envelope diagnostic, not a DMG revision claim",
+        "combinedEndpointT90Seconds": 0.16,
+        "clearingToDarkeningT90Ratio": 1,
+        "slowTailWeight": 0.04,
+        "slowRateScale": 0.3,
+        "intermediateDrag": 0.06,
+        "distanceDrag": 0.06,
+        "rationale": "Uses twice Okada's explicitly defined 80 ms mean ton/toff result as a 160 ms combined lower-envelope diagnostic; it does not assign the optimized prototype to the DMG."
+      },
+      {
+        "id": "plausible-slow",
+        "classification": "bounded slow-envelope project bridge, not a DMG revision claim",
+        "combinedEndpointT90Seconds": 0.45,
+        "clearingToDarkeningT90Ratio": 2.2,
+        "slowTailWeight": 0.15,
+        "slowRateScale": 0.18,
+        "intermediateDrag": 0.18,
+        "distanceDrag": 0.16,
+        "rationale": "Applies a declared 1.5x slow-side scale around the conventional 300 ms anchor to expose uncertainty from material, temperature, and multiplex conditions."
+      }
+    ]
+  },
+  "scanout": {
+    "classification": "DMG-specific documented frame timing and captured CPL row latch",
+    "evidenceIds": ["DMG-SCAN-01", "DMG-DRIVE-02", "DMG-ENGINE-01"],
+    "timingRecord": "data/dmg-scan-timing-v1.json",
+    "cpuReference": "reference/scanout-timing.mjs",
+    "generatedReport": "generated/ws3-scanout-v1.json",
+    "referenceParameters": {
+      "BakedScanout": 1,
+      "LatchOffsetLines": 1
+    },
+    "ws3Acceptance": {
+      "status": "complete",
+      "completedOn": "2026-08-19",
+      "completionStandard": "The Shader must split previous and current physical drive at the captured CPL line-end event, preserve the WS2 one-step path for unchanged pixels, pass CPU causal tests, and compile and run on the KONKR target.",
+      "result": "The CPU report passes first/middle/last-row, same-row drive, cross-frame, unchanged, equilibrium, and no-scanout checks. The generated full target preset compiled on Mali Vulkan at exact 4x; a deterministic shade transition presented the expected top-before-middle-before-bottom row phase without changing settled row uniformity.",
+      "targetReceipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws3-20260819.json"
+    }
+  },
+  "retention": {
+    "classification": "period-protocol and kinetic-literature constrained reconstruction with explicit optical bridge",
+    "evidenceIds": ["DMG-STN-01", "DMG-STN-05", "DMG-ION-01"],
+    "paperProtocol": {
+      "frameFrequencyHz": 35,
+      "duty": "1/128",
+      "exposureSeconds": 1800,
+      "dependentVariable": "visually detectable residual-image voltage range"
+    },
+    "limits": "No source identifies DMG adsorption/desorption rates or a residual-voltage-to-optical curve. Kinetics are reconstructed from the period 1994/1997 protocols plus a later direct kinetic measurement that satisfies the period release bound; optical gain remains an explicit low-amplitude project bridge."
+  },
+  "spatial": {
+    "classification": "reference-image-matched aperture plus passive-matrix RMS selection loss and period-bounded distributed-RC spatial loading",
+    "crosstalkModel": {
+      "classification": "period-evidence-bounded electrical reconstruction; not a surviving-panel measurement",
+      "evidenceIds": ["DMG-MATRIX-02", "DMG-ITO-01", "DMG-ITO-02", "DMG-DRIVER-03", "DMG-DRIVER-04", "DMG-LCELECTRICAL-01", "DMG-DIMENSIONS-01"],
+      "evidenceRecord": "data/passive-matrix-crosstalk-evidence-v1.json",
+      "cpuReference": "reference/passive-matrix-crosstalk.mjs",
+      "generatedReport": "generated/ws5-crosstalk-v1.json",
+      "shaderSurrogate": "shaders/dmg01-crosstalk-surrogate.inc",
+      "normalParameterScale": 1,
+      "disabledParameterScale": 0,
+      "mechanism": "one-ended row/column resistor ladders, pixel capacitance and leakage, comparable period driver output resistance, DMG three-dwell waveform, continuous WS2 voltage/director/optical coupling"
+    },
+    "apertureGeometryReport": "generated/ws6-aperture-v1.json",
+    "apertureReference": "reference/aperture-geometry.mjs",
+    "referenceParameters": {
+      "RowCrosstalk": 1,
+      "ColumnCrosstalk": 1,
+      "PixelFill": 0.875,
+      "ShadowStrength": 0.18,
+      "ShadowOffsetX": 0.11,
+      "ShadowOffsetY": 0.13
+    },
+    "ws6Acceptance": {
+      "status": "complete",
+      "completedOn": "2026-08-19",
+      "completionStandard": "Periodic host-footprint integration must preserve aperture area and reflector-shadow gap energy at exact 4x/5x/6x, representative fractional scales, viewport offsets, edges, corners, and crops, then compile and agree in linear-light average at exact 4x and fractional 3.5x on KONKR.",
+      "result": "The corrected periodic aperture and active-shadow joint integrals preserve 0.765625 aperture area and 0.191875 shadow-gap area. CPU maximum error is 1e-12; KONKR 4x versus 3.5x presented linear RGB differs by at most 0.00144461 under a 0.002 tolerance.",
+      "targetReceipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws6-20260819.json"
+    },
+    "ws5Acceptance": {
+      "status": "complete",
+      "completedOn": "2026-08-19",
+      "completionStandard": "A versioned period-parameter record, distributed electrical solver, bounded ensemble, WS2 optical coupling, declared Shader approximation error, canonical pattern suite, constant-field invariant, and KONKR CPU/GPU/runtime receipt must all pass.",
+      "result": "The full electrical model, bounded ensemble, generated nominal Shader surrogate, seven-pattern CPU/GPU comparison, Vulkan precision/feedback path, and normal colored target preset pass. Nominal network-to-surrogate error is 0.008997 shade RMS; the declared worst sparse checkerboard edge error is 0.338495 shade.",
+      "targetReceipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws5-20260819.json"
+    }
+  },
+  "frontend": {
+    "contract": "data/frontend-contract-v1.json",
+    "requiredResponseFormat": "R32G32B32A32_SFLOAT",
+    "reason": "The per-frame ionic increments are smaller than a reliable RGBA16F update over much of the state range.",
+    "targetRuntimeVerification": {
+      "status": "complete",
+      "verifiedOn": "2026-08-19",
+      "target": "KONKR GT78-VN",
+      "receipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws7-20260819.json",
+      "ws2Receipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws2-20260819.json",
+      "result": "Normal-forward N=1 timing, precision, numeric settled-state output, motion pacing, save/load, pause, focus loss, and clean content close passed on the named target."
+    }
+  }
+}

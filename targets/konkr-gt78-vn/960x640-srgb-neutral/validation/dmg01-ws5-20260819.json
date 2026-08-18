@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws5-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "period-bounded-passive-matrix-crosstalk-reconstruction-and-target-validation",
+  "ws5CompletionEvidence": true,
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4",
+    "retroArchVersion": "1.22.2"
+  },
+  "inputs": {
+    "periodEvidence": {
+      "path": "models/nintendo-dmg-01/data/passive-matrix-crosstalk-evidence-v1.json",
+      "sha256": "eb14fdc23c0d2ff3558e67db2c93aaf9cf456d98fa9a31507bc13f9a6d3a5ecb"
+    },
+    "cpuReference": {
+      "path": "models/nintendo-dmg-01/reference/passive-matrix-crosstalk.mjs",
+      "sha256": "3249e16b4ba73e09eeece39709ffc0c45cde7fb315cc332990131b586a4a503a"
+    },
+    "generatedReport": {
+      "path": "models/nintendo-dmg-01/generated/ws5-crosstalk-v1.json",
+      "sha256": "571ec689530421fa107e786e6efa6807f3c89608bde02f5b64e4a2f43903948d",
+      "validationPass": true
+    },
+    "generatedShaderSurrogate": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-crosstalk-surrogate.inc",
+      "sha256": "58d8c7455abdce22dd2bf77ad26d229622ea0fb40fe1d76e8035c0870d1fdac5"
+    },
+    "gpuReport": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws5-gpu-crosstalk-v1.json",
+      "sha256": "d27f05252ac2df46abbf8916872f74b64da73dbd7119e93cf4f421aa797ab76d",
+      "validationPass": true
+    }
+  },
+  "reconstruction": {
+    "parameterEnsembles": ["plausible-low", "nominal", "plausible-high"],
+    "sheetResistanceOhmsPerSquare": [5, 10, 40],
+    "driverResistanceOhms": [11000, 20000, 30000],
+    "pixelCapacitancePicofarads": [0.339674050318, 0.741383953024, 2.0805035582],
+    "pixelLeakageMinimumTimeConstantSeconds": 0.0354167512512,
+    "normalSurrogateScale": {
+      "RowCrosstalk": 1,
+      "ColumnCrosstalk": 1
+    },
+    "constantFieldInvariant": true,
+    "nominalNetworkToSurrogateRmsErrorShade": 0.008997258359,
+    "nominalNetworkToSurrogateP99ErrorShade": 0.0240157002,
+    "nominalNetworkToSurrogateMaximumErrorShade": 0.338495047628,
+    "maximumErrorContext": "checkerboard, source pixel 159,0; explicitly retained as the sparse-surrogate edge bound",
+    "highEnsembleEightToSixteenSubstepRmsDifferenceShade": 0.009789679198
+  },
+  "gpuRun": {
+    "patterns": [
+      "single-dot",
+      "full-row",
+      "full-column",
+      "checkerboard",
+      "alternating-lines",
+      "window",
+      "inverse-window"
+    ],
+    "coldStartStableWaitSeconds": 3,
+    "invalidEarlyCaptureRejected": true,
+    "invalidEarlyCaptureReason": "one-second captures were identical all-black Activity transition frames and were excluded",
+    "capture": "12 Mbit/s H.264 screenrecord; stable frame at one second into each two-second recording",
+    "maximumPatternRmsError8Bit": 1.359,
+    "maximumPatternP99AbsoluteError8Bit": 2.291,
+    "toleranceRms8Bit": 8,
+    "toleranceP99Absolute8Bit": 20,
+    "passFormats": [
+      "R32G32B32A32_SFLOAT",
+      "R16G16B16A16_SFLOAT",
+      "R8G8B8A8_UNORM"
+    ],
+    "responseFeedbackConfirmed": true,
+    "shaderCompileErrors": 0,
+    "result": "pass"
+  },
+  "normalPath": {
+    "content": "RDL-DMG-WS5-Final.gb",
+    "contentSha256": "eb92048011d1e2e819b187f7e8db7718c89879f2af1567bb5a61ece57fa4843e",
+    "contentPreset": "RDL-DMG-WS5-Final.slangp",
+    "logFile": "retroarch__2026_08_19__05_50_42.log",
+    "logSha256": "33a1923560eca7ea16ff062d933aa28e9e368a019283c338ed2c1906876af6ad",
+    "video": "RDL-DMG-WS5-Final-normal.mp4",
+    "videoSha256": "b2f1fc8fbcedd685ebfcdc5ce3bf5ecd85469e7ecd02a0c1955ee58c92b2f0ef",
+    "RowCrosstalk": 1,
+    "ColumnCrosstalk": 1,
+    "DebugView": 0,
+    "compiled": true,
+    "runtimeProcessStayedAlive": true,
+    "visualOutputPresent": true
+  },
+  "retainedOnDevice": {
+    "shaderRoot": "/sdcard/RetroArch/shaders/retro-display-lab",
+    "finalContent": "/sdcard/RetroArch/downloads/RDL-DMG-WS5-Final.gb",
+    "finalContentPreset": "/sdcard/RetroArch/config/Gambatte/RDL-DMG-WS5-Final.slangp",
+    "isolatedConfig": "/sdcard/RetroArch/config/.codex-validation/20260819-ws5/retroarch-ws5-valid.cfg"
+  },
+  "limits": [
+    "This is a best-effort healthy-period reconstruction from contemporary material, driver, ITO, geometry, and passive-matrix evidence; it is not a factory DMG measurement.",
+    "No LH5076/LH5077 analogue output-resistance data or original DMG electrode mask has been recovered.",
+    "The normal surrogate preserves the full network to 0.0090 shade RMS but retains a declared 0.3385-shade worst sparse edge case.",
+    "Aged surviving DMG photographs may validate direction and plausible visibility only; they did not identify the electrical inputs."
+  ],
+  "result": "pass"
+}

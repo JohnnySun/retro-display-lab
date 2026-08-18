@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-dmg-01-passive-matrix-drive-v1",
+  "classification": "DMG-specific digital timing and board topology plus explicitly bounded analogue reconstruction",
+  "panel": {
+    "visibleRows": 144,
+    "visibleColumns": 160,
+    "refreshHz": 59.7275,
+    "linePeriodMicroseconds": 108.724,
+    "rowDuty": 0.006944444444444444,
+    "rowDutyNotation": "1/144"
+  },
+  "digitalCapture": {
+    "sourceEvidenceId": "DMG-DRIVE-02",
+    "sourceUrl": "https://thomas.spurden.name/blog/capturing-gb-lcd/6coins-title.vcd",
+    "sha256": "80fa5b021ff7c941febd248615a9fe6b6c87d71eb5d1e9eb1bd9c64349c022a7",
+    "capturedLines": 59,
+    "meanLinePeriodNanoseconds": 108723.72881355933,
+    "linePeriodRangeNanoseconds": [108700, 108800],
+    "cRisingEdgesPerLine": 4,
+    "meanCPhaseWithinLine": [
+      0.07012005038243138,
+      0.40349509773347825,
+      0.7368077030408318,
+      0.9999688434695913
+    ],
+    "interpretation": "The capture command labels this signal only as c. Its four stable pulses per line and the DMG-LCD-06 schematic connection to the LH5077 CPG input support, but do not directly prove, a three-dwell grayscale pulse generator."
+  },
+  "boardTopology": {
+    "sourceEvidenceId": "DMG-DRIVE-01",
+    "boardRevision": "DMG-LCD-06",
+    "biasGenerator": "Nintendo IR3E02",
+    "rowDriver": "Sharp LH5076",
+    "columnDriver": "Sharp LH5077",
+    "logicSignals": ["LD0", "LD1", "CP", "CPL", "ST", "S", "FR", "CPG"],
+    "biasOutputs": ["V1", "V2", "V3", "V4", "V5"],
+    "contrastControl": "30 kohm potentiometer between ground and the approximately -19 V LCD rail, with its wiper feeding IR3E02 VR",
+    "limits": "The public reverse-engineered schematic establishes connectivity, not the IR3E02 voltage ratios or the analogue LH5076/LH5077 output waveforms."
+  },
+  "multiplexModel": {
+    "scheme": "Alt-Pleshko RMS passive-matrix reduction",
+    "selectionRatioFormula": "sqrt((sqrt(N)+1)/(sqrt(N)-1))",
+    "selectionRatioAt144Rows": 1.087114613009218,
+    "polarityInversion": "frame-alternating AC; zero-mean DC assumed",
+    "fourShadeSelectedEnergyFractions": [0, 0.3333333333333333, 0.6666666666666666, 1],
+    "fourShadeEncodingStatus": "inferred from LD0/LD1 plus four CPG pulses per line; exact LH5077 switching truth table unavailable",
+    "waveformReduction": {
+      "rowSelectAmplitudeEquation": "Vr = sqrt(N) * Vc",
+      "columnAmplitudeEquation": "Vc = Vns / sqrt(2 - 2/sqrt(N))",
+      "selectedRowPixelVoltage": "Vpixel = polarity * Vr - dataPolarity * Vc; gray dwell selects between magnitudes Vr-Vc and Vr+Vc",
+      "nonselectedRowPixelVoltage": "Vpixel = -dataPolarity * Vc",
+      "framePolarity": "polarity reverses while RMS energy and mean DC remain unchanged",
+      "pixelRmsEquation": "sqrt((g*(Vr+Vc)^2 + (1-g)*(Vr-Vc)^2 + (N-1)*Vc^2)/N)",
+      "nominalColumnAmplitudeVolts": 1.344159081,
+      "nominalRowSelectAmplitudeVolts": 16.129908978
+    },
+    "nominalNonselectRmsVolts": 1.82,
+    "nonselectRmsRangeVolts": [1.65, 2.03],
+    "contrastScaleRange": [0.88, 1.12],
+    "voltageBasis": "The absolute range is bounded by 1988 270-degree STN threshold and 1/200 multiplex measurements; it is not a DMG analogue measurement. The selected/nonselected ratio is fixed by 1/144 multiplex physics."
+  },
+  "uncertainties": [
+    "IR3E02 V1-V5 ratios",
+    "LH5076 and LH5077 analogue output amplitudes",
+    "exact LD0/LD1 to CPG phase truth table",
+    "DMG production-cell threshold-voltage distribution"
+  ]
+}

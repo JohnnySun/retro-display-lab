@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-dmg-01-ws1-perceptual-v1",
+  "generatedFrom": "data/reconstruction-v1.json",
+  "evidenceId": "DMG-COLOR-01",
+  "metric": "CIEDE2000 under sRGB D65",
+  "sourceVerification": {
+    "method": "SHA-256, PNG dimensions, and zero-based 1x1 sample coordinates",
+    "command": "node tools/build-dmg01-ws1.mjs --check --verify-sources <download-directory>",
+    "redistribution": "BGB source images are not stored in this repository"
+  },
+  "paletteComparisons": [
+    {
+      "id": "lcd-disabled",
+      "sourceCrop": {
+        "x": 50,
+        "y": 46,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        148,
+        138,
+        4
+      ],
+      "modelSrgb8": [
+        148,
+        138,
+        4
+      ],
+      "maximumChannelError8bit": 0,
+      "deltaE00": 0
+    },
+    {
+      "id": "shade-0",
+      "sourceCrop": {
+        "x": 102,
+        "y": 46,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        117,
+        152,
+        51
+      ],
+      "modelSrgb8": [
+        117,
+        152,
+        51
+      ],
+      "maximumChannelError8bit": 0,
+      "deltaE00": 0
+    },
+    {
+      "id": "shade-1",
+      "sourceCrop": {
+        "x": 154,
+        "y": 46,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        88,
+        143,
+        81
+      ],
+      "modelSrgb8": [
+        88,
+        143,
+        81
+      ],
+      "maximumChannelError8bit": 0,
+      "deltaE00": 0
+    },
+    {
+      "id": "shade-2",
+      "sourceCrop": {
+        "x": 206,
+        "y": 46,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        59,
+        117,
+        96
+      ],
+      "modelSrgb8": [
+        59,
+        117,
+        96
+      ],
+      "maximumChannelError8bit": 0,
+      "deltaE00": 0
+    },
+    {
+      "id": "shade-3",
+      "sourceCrop": {
+        "x": 258,
+        "y": 46,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        46,
+        97,
+        90
+      ],
+      "modelSrgb8": [
+        46,
+        97,
+        90
+      ],
+      "maximumChannelError8bit": 0,
+      "deltaE00": 0
+    }
+  ],
+  "gradientComparisons": [
+    {
+      "id": "segment-0-midpoint",
+      "sourceCrop": {
+        "x": 56,
+        "y": 125,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        134,
+        144,
+        36
+      ],
+      "modelSrgb8": [
+        134,
+        145,
+        35
+      ],
+      "maximumChannelError8bit": 1,
+      "deltaE00": 0.395878
+    },
+    {
+      "id": "segment-1-midpoint",
+      "sourceCrop": {
+        "x": 121,
+        "y": 125,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        104,
+        148,
+        67
+      ],
+      "modelSrgb8": [
+        104,
+        148,
+        68
+      ],
+      "maximumChannelError8bit": 1,
+      "deltaE00": 0.182492
+    },
+    {
+      "id": "segment-2-midpoint",
+      "sourceCrop": {
+        "x": 186,
+        "y": 125,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        74,
+        130,
+        89
+      ],
+      "modelSrgb8": [
+        75,
+        131,
+        89
+      ],
+      "maximumChannelError8bit": 1,
+      "deltaE00": 0.45365
+    },
+    {
+      "id": "segment-3-midpoint",
+      "sourceCrop": {
+        "x": 251,
+        "y": 125,
+        "width": 1,
+        "height": 1
+      },
+      "sourceSrgb8": [
+        52,
+        107,
+        93
+      ],
+      "modelSrgb8": [
+        53,
+        108,
+        93
+      ],
+      "maximumChannelError8bit": 1,
+      "deltaE00": 0.518042
+    }
+  ],
+  "summary": {
+    "maximumPaletteDeltaE00": 0,
+    "maximumGradientMidpointDeltaE00": 0.518042,
+    "paletteThreshold": 0.01,
+    "gradientMidpointThreshold": 0.6,
+    "pass": true
+  },
+  "scene": {
+    "file": "generated/ws1-static-v1.png",
+    "sha256": "30f97540c9d23ec9a5a0bc947d6967e76defe5f7d9626e555b91b834a427764f",
+    "dimensions": [
+      640,
+      392
+    ],
+    "regions": [
+      {
+        "id": "five-optical-states",
+        "rect": [
+          24,
+          24,
+          572,
+          56
+        ]
+      },
+      {
+        "id": "continuous-five-state-gradient",
+        "rect": [
+          24,
+          104,
+          580,
+          48
+        ]
+      },
+      {
+        "id": "four-logical-shades",
+        "rect": [
+          24,
+          176,
+          572,
+          48
+        ]
+      },
+      {
+        "id": "contrast-wheel-minimum-nominal-maximum",
+        "rect": [
+          24,
+          248,
+          576,
+          48
+        ],
+        "contrasts": [
+          0.6,
+          1,
+          1.55
+        ]
+      },
+      {
+        "id": "four-times-aperture-and-gap",
+        "rect": [
+          24,
+          320,
+          580,
+          48
+        ],
+        "shadowEnabled": false
+      }
+    ],
+    "claimBoundary": "The scene validates model-space sRGB and aperture construction; it does not measure emitted target-panel color."
+  }
+}

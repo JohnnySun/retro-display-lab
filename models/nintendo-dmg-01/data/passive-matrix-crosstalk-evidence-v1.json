@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-dmg-01-passive-matrix-crosstalk-evidence-v1",
+  "classification": "period-evidence-bounded distributed RC reconstruction; not a surviving-panel measurement",
+  "targetPeriod": "1989-1991",
+  "reconstructionRule": "DMG geometry and timing take priority. Missing pristine-panel electrical quantities are bounded by contemporary production data and comparable LCD-driver specifications, then propagated through a distributed electrical model. No aged DMG specimen is used to identify pristine parameters.",
+  "sources": [
+    {
+      "evidenceId": "DMG-MATRIX-02",
+      "year": 1990,
+      "kind": "peer-reviewed theory",
+      "citation": "J. Nehring and T. J. Scheffer, Crosstalk In Multiplexed Liquid-Crystal Matrix Displays Due to Electrode Resistance, Molecular Crystals and Liquid Crystals 191, 87-95",
+      "url": "https://doi.org/10.1080/00268949008038582",
+      "usedFor": "distributed series-electrode resistance and pixel-capacitance topology; dimensionless resistance-frequency-capacitance scaling; pattern and multiplex dependence",
+      "measurementContext": "direct-multiplexed TN/STN matrix theory; finite LC ohmic conductivity omitted; driver impedance identified by the authors as a refinement outside their solved network",
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-ITO-01",
+      "year": 1988,
+      "kind": "period production-process patent",
+      "citation": "Fujitsu, JPS63221591A, Method of forming transparent conductive film",
+      "url": "https://patents.google.com/patent/JPS63221591A/en",
+      "usedFor": "high-side period ITO sheet-resistance anchor",
+      "measurementContext": "ITO on transparent glass; heat treatment reduced as-deposited 150-200 ohm/square material to a measured 30-40 ohm/square minimum",
+      "valueOhmsPerSquare": [30, 40],
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-ITO-02",
+      "year": 1996,
+      "kind": "production transparent-electrode patent",
+      "citation": "EP0733931A2, Multilayered conductive film, and transparent electrode substrate and liquid crystal device using the same",
+      "url": "https://patents.google.com/patent/EP0733931A2/en",
+      "usedFor": "lower sheet-resistance production anchor and resistivity/thickness cross-check",
+      "measurementContext": "standard ITO resistivity 2.4e-4 ohm cm at 240 nm gives 10 ohm/square; the document describes 5 ohm/square as required for larger fine-pattern displays",
+      "valueOhmsPerSquare": [5, 10],
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-DRIVER-03",
+      "year": 1990,
+      "kind": "period LCD-driver datasheet",
+      "citation": "Hitachi HD44100R LCD Driver with 40-Channel Outputs",
+      "url": "https://www.jaapsch.net/psion/pdffiles/hd44100_datasheet.pdf",
+      "usedFor": "comparable period LCD-output resistance",
+      "measurementContext": "maximum on-resistance 20 kohm at plus/minus 0.05 mA, VCC-VEE=4 V, all Y pins driven; device explicitly supports common or segment use",
+      "valueKiloohms": 20,
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-DRIVER-04",
+      "year": 1990,
+      "kind": "comparable multiplex LCD-driver datasheet",
+      "citation": "Hitachi HD66100F 80-channel LCD Driver",
+      "url": "https://www.alldatasheet.com/html-pdf/82775/HITACHI/HD44100H/3019/12/HD44100H.html",
+      "usedFor": "bounded output-resistance sensitivity",
+      "measurementContext": "maximum 11 kohm to one output at 0.1 mA and maximum 30 kohm with all outputs at 0.05 mA, VCC-VEE=3-6 V",
+      "valueKiloohms": [11, 30],
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-LCELECTRICAL-01",
+      "year": 1989,
+      "kind": "period liquid-crystal-device patent",
+      "citation": "US4818072, Method for remotely detecting an electric field using a liquid crystal device",
+      "url": "https://patents.justia.com/patent/4818072",
+      "usedFor": "conservative period nematic volume-resistivity floor",
+      "measurementContext": "the patent defines high volume resistivity as greater than 1e11 ohm cm for nematic/smectic LC materials; used only to test whether pixel leakage matters on the DMG dwell scale",
+      "minimumOhmCentimeters": 100000000000,
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-MATERIAL-01",
+      "year": 2007,
+      "kind": "characterized reference-mixture properties",
+      "citation": "Published Merck ZLI-2293 dielectric constants retained by the WS2 material proxy",
+      "url": "https://patents.google.com/patent/US8804092B2/en",
+      "usedFor": "orientation-bounded pixel capacitance",
+      "measurementContext": "20 C, 1 kHz: epsilon_parallel=14 and dielectric anisotropy=10, hence epsilon_perpendicular=4; proxy mixture, not DMG fill identification",
+      "relativePermittivityBounds": [4, 14],
+      "directlyApplicableToDmg": false
+    },
+    {
+      "evidenceId": "DMG-DIMENSIONS-01",
+      "year": 1989,
+      "kind": "manufacturer product specification",
+      "citation": "Nintendo Game Boy technical data",
+      "url": "https://www.nintendo.com/fr-fr/Assistance/Consoles-plus-anciennes/Donnees-techniques-619585.html",
+      "usedFor": "pixel pitch and capacitor area",
+      "measurementContext": "Game Boy screen 4.7 by 4.3 cm, 160 by 144 pixels",
+      "activeAreaMillimeters": [47, 43],
+      "resolution": [160, 144],
+      "directlyApplicableToDmg": true
+    }
+  ],
+  "knownDmgInputs": {
+    "rows": 144,
+    "columns": 160,
+    "refreshHz": 59.7275,
+    "linePeriodMicroseconds": 108.724,
+    "grayDwellsPerLine": 3,
+    "dwellMicroseconds": 36.24133333333333,
+    "activeWidthMillimeters": 47,
+    "activeHeightMillimeters": 43,
+    "pixelPitchMicrometers": [293.75, 298.6111111111111],
+    "electrodeWidthFractionOfPitch": 0.875,
+    "electrodeWidthBasis": "BGB idealized 70/80 aperture fraction; geometry uncertainty is propagated separately from electrical evidence",
+    "driveRecord": "dmg-drive-v1.json"
+  },
+  "derivedPixelElectricalBounds": {
+    "activePixelAreaSquareMeters": 6.713541666666667e-8,
+    "capacitanceEquation": "C = epsilon0 * epsilon_effective * active_pixel_area / cell_gap",
+    "leakageResistanceEquation": "Rleak = volume_resistivity * cell_gap / active_pixel_area",
+    "minimumLeakageTimeConstantSeconds": 0.0354167512512,
+    "minimumLeakageTimeConstantToDwellRatio": 977.2474683933632,
+    "decision": "LC ohmic leakage is retained in the solver, but the period conservative floor proves it negligible for one 36.241 us grayscale dwell. Ionic retention remains WS4, not WS5 crosstalk."
+  },
+  "ensembles": [
+    {
+      "id": "plausible-low",
+      "sheetResistanceOhmsPerSquare": 5,
+      "rowDriverResistanceOhms": 11000,
+      "columnDriverResistanceOhms": 11000,
+      "cellGapMicrometers": 7,
+      "effectiveRelativePermittivity": 4,
+      "pixelCapacitancePicofarads": 0.3396740503184286,
+      "volumeResistivityOhmCentimeters": 100000000000,
+      "basis": "lowest sourced ITO anchor, lower comparable driver bound, largest WS2 cell gap, and epsilon_perpendicular"
+    },
+    {
+      "id": "nominal",
+      "sheetResistanceOhmsPerSquare": 10,
+      "rowDriverResistanceOhms": 20000,
+      "columnDriverResistanceOhms": 20000,
+      "cellGapMicrometers": 6,
+      "effectiveRelativePermittivity": 7.483314773547883,
+      "pixelCapacitancePicofarads": 0.7413839530238,
+      "volumeResistivityOhmCentimeters": 100000000000,
+      "basis": "standard 10 ohm/square ITO construction, directly specified period-driver maximum, WS2 nominal 6 um gap, and geometric mean of orientation extrema"
+    },
+    {
+      "id": "plausible-high",
+      "sheetResistanceOhmsPerSquare": 40,
+      "rowDriverResistanceOhms": 30000,
+      "columnDriverResistanceOhms": 30000,
+      "cellGapMicrometers": 4,
+      "effectiveRelativePermittivity": 14,
+      "pixelCapacitancePicofarads": 2.0805035582003755,
+      "volumeResistivityOhmCentimeters": 100000000000,
+      "basis": "1988 high-side ITO production result, all-output comparable driver bound, smallest WS2 cell gap, and epsilon_parallel"
+    }
+  ],
+  "declaredLimits": [
+    "No LH5076 or LH5077 analogue datasheet has been recovered; comparable period LCD-driver resistance is an ensemble constraint, not a Nintendo part identification.",
+    "No DMG electrode mask dimensions have been measured; the BGB idealized fill fraction bounds line width and is reported as geometry-dominated uncertainty.",
+    "The solver uses a first-order superposition of two distributed electrode networks. It reports the product of row and column fractional errors as an omitted second-order coupling bound.",
+    "Aged surviving-panel photographs may validate sign and visible plausibility only; they cannot select pristine electrical inputs."
+  ]
+}
