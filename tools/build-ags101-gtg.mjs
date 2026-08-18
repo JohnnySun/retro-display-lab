@@ -38,7 +38,10 @@ function cleanDeep(value) {
   // The runtime rate field is quantized to 16 bits. Nine significant digits
   // retain substantially more precision while absorbing optimizer ULP drift
   // across V8/libm versions.
-  if (typeof value === "number") return Number(value.toPrecision(9));
+  if (typeof value === "number") {
+    if (Math.abs(value) < 1e-10) return 0;
+    return Number(value.toPrecision(9));
+  }
   if (Array.isArray(value)) return value.map(cleanDeep);
   if (value && typeof value === "object") {
     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cleanDeep(item)]));

@@ -5,7 +5,7 @@
   "sourceRecordId": "ags101-gtg-synthetic-analytic-v1",
   "sourceClassification": "synthetic",
   "sourceRecordSha256": "a1151a2b4ab1327ecd85db7a413498d141ae8392c2f09b204a20c67e6f7c5f5a",
-  "fitReportSha256": "60e7375bd22883f4d6683a6379bb77c7027e56a0ae6903a3c5af17fe45d393eb",
+  "fitReportSha256": "2f98b564864591323a3c10cfcdabaec865028de8a23f2b029b6fbab892faac15",
   "texture": {
     "file": "gtg-synthetic-v1.png",
     "sha256": "08ea36bfcc018217f92085d7fe41492275278e4d7a5850916fbfe76b47fc8255",
@@ -26,8 +26,8 @@
     "packedCount": 3072,
     "fallbackCount": 0,
     "derivedIdentityCount": 96,
-    "rmseMaximum": 3.49490396e-13,
-    "maxAbsoluteError": 6.57474075e-13,
+    "rmseMaximum": 0,
+    "maxAbsoluteError": 0,
     "overshootMaximum": 0,
     "undershootMaximum": 0,
     "maxRateRoundTripRelativeError": 0.0000528795137
