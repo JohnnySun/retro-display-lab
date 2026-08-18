@@ -111,7 +111,10 @@ function round(value, decimals) {
 }
 
 function cleanNumber(value) {
-  return Number(value.toPrecision(15));
+  // Transcendental results may differ by a few ULPs between V8 releases.
+  // Twelve significant digits exceed the runtime shader precision while
+  // keeping generated JSON byte-identical across supported Node versions.
+  return Number(value.toPrecision(12));
 }
 
 function cleanDeep(value) {
@@ -273,7 +276,7 @@ function derive(source) {
       [name, { rgbIndex, outputRgb: defaultHcsOutput(rgbIndex) }]
     ))),
   };
-  return cleanDeep({
+  return {
     schemaVersion: 1,
     generator: "tools/build-ags101-hcs-color.mjs",
     source: {
@@ -296,7 +299,7 @@ function derive(source) {
     gammaRuntime: runtimeGamma,
     eotfRgb555Runtime: runtimeEotf,
     goldenVectors,
-  });
+  };
 }
 
 function formatFloat(value) {
@@ -368,7 +371,7 @@ function compareOrWrite(file, expected) {
 
 const source = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
 const derived = derive(source);
-const generatedJson = `${JSON.stringify(derived, null, 2)}\n`;
+const generatedJson = `${JSON.stringify(cleanDeep(derived), null, 2)}\n`;
 compareOrWrite(generatedPath, generatedJson);
 
 for (const shaderPath of shaderPaths) {

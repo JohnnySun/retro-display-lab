@@ -539,13 +539,13 @@ for (const sample of hcsGolden.grayscaleRgb555) {
     [sample.code, sample.code, sample.code], hcsColor,
   );
   check(actual.every((value, channel) => (
-    Math.abs(value - sample.outputRgb[channel]) < 1e-12
+    Math.abs(value - sample.outputRgb[channel]) < 1e-11
   )), `AGS shared color reference disagrees with gray code ${sample.code}`);
 }
 for (const [name, sample] of Object.entries(hcsGolden.fullLevelPatches)) {
   const actual = renderStaticRgb555(sample.rgbIndex, hcsColor);
   check(actual.every((value, channel) => (
-    Math.abs(value - sample.outputRgb[channel]) < 1e-12
+    Math.abs(value - sample.outputRgb[channel]) < 1e-11
   )), `AGS shared color reference disagrees with ${name} golden vector`);
 }
 for (let code = 0; code < 256; code += 1) {
