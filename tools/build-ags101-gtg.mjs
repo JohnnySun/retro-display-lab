@@ -34,6 +34,15 @@ const sha256 = (data) => crypto.createHash("sha256").update(data).digest("hex");
 const jsonBuffer = (value) => Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
 const cellId = (channel, fromCode, toCode) => `${channel}:${fromCode}>${toCode}`;
 
+function cleanDeep(value) {
+  if (typeof value === "number") return Number(value.toPrecision(12));
+  if (Array.isArray(value)) return value.map(cleanDeep);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, cleanDeep(item)]));
+  }
+  return value;
+}
+
 function syntheticRecord() {
   const timesSeconds = [
     0, 0.004, 0.008, 0.012, 0.016, 0.024, 0.032, 0.048,
@@ -359,7 +368,9 @@ function encodeRgbPng(width, height, rgb) {
   return Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     pngChunk("IHDR", ihdr),
-    pngChunk("IDAT", zlib.deflateSync(Buffer.concat(rows), { level: 9 })),
+    // Stored DEFLATE is intentionally larger but byte-identical across zlib
+    // releases. The 32x96 fixture remains under 10 KiB.
+    pngChunk("IDAT", zlib.deflateSync(Buffer.concat(rows), { level: 0 })),
     pngChunk("IEND", Buffer.alloc(0)),
   ]);
 }
@@ -424,7 +435,8 @@ function buildAsset(record, fit, assetFileName) {
     },
     cells: fit.cells,
   };
-  const fitBuffer = jsonBuffer(fitReport);
+  const cleanedFitReport = cleanDeep(fitReport);
+  const fitBuffer = jsonBuffer(cleanedFitReport);
   const manifest = {
     assetVersion: "ags101-gtg-rate-texture-v1",
     schemaVersion: record.schemaVersion,
@@ -448,9 +460,9 @@ function buildAsset(record, fit, assetFileName) {
       },
       statusEncoding: "B=255 fitted, B=192 derived identity anchor, B=0 explicit fallback",
     },
-    errorMetrics: fitReport.summary,
+    errorMetrics: cleanedFitReport.summary,
   };
-  return { png, fitBuffer, manifestBuffer: jsonBuffer(manifest) };
+  return { png, fitBuffer, manifestBuffer: jsonBuffer(cleanDeep(manifest)) };
 }
 
 function compareOrWrite(file, expected) {

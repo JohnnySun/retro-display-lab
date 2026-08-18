@@ -98,7 +98,10 @@ stateless response-pass initialization path.
 
 The reusable record is `data/frontend-validation-template.json`. Captures are
 explicitly marked `presentationOnly`; artifact hashes, logs, state probes, and
-causal invariants determine pass/fail.
+causal invariants determine pass/fail. Each completed record is anchored to a
+40-character `repositoryCommit`: its hashes describe the bytes deployed for
+that historical run, while the current generators independently validate the
+current checkout. Later asset regeneration must not rewrite old device evidence.
 
 ## KONKR WS5 result
 

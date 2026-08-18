@@ -3,7 +3,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { createHash } from "node:crypto";
 import {
   LITERATURE_CELL_PRIOR,
   PANEL_FPS,
@@ -394,7 +393,7 @@ check(frontendValidationSchema.properties?.schemaVersion?.const === 1,
   "AGS frontend validation schema version changed without migration");
 for (const required of [
   "classification", "runId", "date", "modelId", "targetProfile",
-  "frontend", "artifacts", "checks", "captures",
+  "repositoryCommit", "frontend", "artifacts", "checks", "captures",
 ]) {
   check(frontendValidationSchema.required?.includes(required),
     `AGS frontend validation schema no longer requires ${required}`);
@@ -413,6 +412,8 @@ const requiredFrontendEvents = [
 function checkFrontendRecord(record, label, allowTemplate = false) {
   check(record.schemaVersion === 1, `${label}: wrong schema version`);
   check(record.modelId === metadata.id, `${label}: wrong model ID`);
+  check(/^[0-9a-f]{40}$/.test(record.repositoryCommit ?? ""),
+    `${label}: invalid repository commit`);
   check(allowTemplate ? record.classification === "template" : record.classification === "device-run",
     `${label}: wrong classification`);
   const events = new Set((record.checks ?? []).map((item) => item.event));
@@ -427,6 +428,8 @@ function checkFrontendRecord(record, label, allowTemplate = false) {
   check(record.captures?.presentationOnly === true,
     `${label}: screenshots/captures must remain presentation-only evidence`);
   if (!allowTemplate) {
+    check(record.repositoryCommit !== "0".repeat(40),
+      `${label}: repository commit is still the template sentinel`);
     check(!(record.checks ?? []).some((item) => item.outcome === "failed"),
       `${label}: contains a failed frontend check`);
     check(!JSON.stringify(record).includes("replace-with-"),
@@ -1009,18 +1012,12 @@ for (const relativeRecord of validationRecords) {
   checkFrontendRecord(record, relativeRecord);
   check(record.targetProfile === targetProfile.id,
     `${relativeRecord}: target profile ID does not match profile.json`);
-  for (const [relativeArtifact, expectedHash] of Object.entries(record.artifacts ?? {})) {
+  for (const relativeArtifact of Object.keys(record.artifacts ?? {})) {
     const artifactPath = path.resolve(root, relativeArtifact);
     check(artifactPath.startsWith(`${root}${path.sep}`),
       `${relativeRecord}: artifact escapes repository: ${relativeArtifact}`);
     check(fs.existsSync(artifactPath),
       `${relativeRecord}: artifact is missing: ${relativeArtifact}`);
-    if (!fs.existsSync(artifactPath)) continue;
-    const actualHash = createHash("sha256")
-      .update(fs.readFileSync(artifactPath))
-      .digest("hex");
-    check(actualHash === expectedHash,
-      `${relativeRecord}: artifact hash drifted for ${relativeArtifact}`);
   }
 }
 

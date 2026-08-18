@@ -3,6 +3,7 @@
   "classification": "device-run",
   "runId": "konkr-gt78-vn-ags101-ws5-20260818",
   "date": "2026-08-18",
+  "repositoryCommit": "c26177be20d33447264d6abc3c4979ab755feae9",
   "modelId": "nintendo-ags-101-physics-seed",
   "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
   "frontend": {

@@ -5,10 +5,10 @@
   "sourceRecordId": "ags101-gtg-synthetic-analytic-v1",
   "sourceClassification": "synthetic",
   "sourceRecordSha256": "a1151a2b4ab1327ecd85db7a413498d141ae8392c2f09b204a20c67e6f7c5f5a",
-  "fitReportSha256": "3bfd188b11455287549e6362f0c30a0de9c4db7448b7f5a3927c6917130630aa",
+  "fitReportSha256": "0e186d339d00728de3c3c0226c62ca9ca4dbddbbeb83862813f9ca7d90d2de6a",
   "texture": {
     "file": "gtg-synthetic-v1.png",
-    "sha256": "9d2d8b0e53c6871b3d04086c821a08ce87e86e7214eae4664ebde96e0fd6cdb8",
+    "sha256": "08ea36bfcc018217f92085d7fe41492275278e4d7a5850916fbfe76b47fc8255",
     "width": 32,
     "height": 96,
     "format": "RGB8 PNG",
@@ -26,10 +26,10 @@
     "packedCount": 3072,
     "fallbackCount": 0,
     "derivedIdentityCount": 96,
-    "rmseMaximum": 3.4949039554077755e-13,
-    "maxAbsoluteError": 6.574740751830177e-13,
+    "rmseMaximum": 3.49490395541e-13,
+    "maxAbsoluteError": 6.57474075183e-13,
     "overshootMaximum": 0,
     "undershootMaximum": 0,
-    "maxRateRoundTripRelativeError": 0.00005287951371539823
+    "maxRateRoundTripRelativeError": 0.0000528795137154
   }
 }

@@ -9,6 +9,7 @@
     "classification",
     "runId",
     "date",
+    "repositoryCommit",
     "modelId",
     "targetProfile",
     "frontend",
@@ -21,6 +22,7 @@
     "classification": { "enum": ["template", "device-run"] },
     "runId": { "type": "string", "minLength": 1 },
     "date": { "type": "string", "minLength": 1 },
+    "repositoryCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
     "modelId": { "const": "nintendo-ags-101-physics-seed" },
     "targetProfile": { "type": "string", "minLength": 1 },
     "frontend": {

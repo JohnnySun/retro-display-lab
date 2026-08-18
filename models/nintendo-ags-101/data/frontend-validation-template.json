@@ -3,6 +3,7 @@
   "classification": "template",
   "runId": "replace-with-run-id",
   "date": "replace-with-ISO-date",
+  "repositoryCommit": "0000000000000000000000000000000000000000",
   "modelId": "nintendo-ags-101-physics-seed",
   "targetProfile": "replace-with-target-profile-id",
   "frontend": {
