@@ -93,13 +93,17 @@ still image can't really show temporal decay anyway.
 The downloadable
 [`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp)
 separates BGR aperture, transition-dependent TFT response, and slow residual-DC
-retention. It uses a neutral sRGB color adapter, so it contains none of the
-unlicensed HCS-derived EOTF tables, matrices, or black/white measurements used
-by the private research prototype shown above.
+retention. Its default color path now reproducibly derives the 32-code EOTF,
+native-primary matrix, and black/white anchors from the pinned HCS AGS-101
+measurement record; a neutral sRGB adapter remains available as a regression
+baseline.
 
-No gray-to-gray matrix has yet been measured for a named AGS-101 panel. The
-temporal constants are reproducible literature-constrained candidates, not
-panel measurements. The exact public/private data boundary is in the
+No complete gray-to-gray matrix has been recovered for the referenced AGS-101
+record. The runtime therefore uses an analytic literature-constrained fallback
+and ships a measurement-ready table format. Drive retention uses published
+period-cell kinetics with explicitly labelled project bridge priors, while scan
+timing separates row start, electrical latch, and optical onset. The exact
+evidence and parameter classifications are in the
 [AGS-101 evidence map](models/nintendo-ags-101/REFERENCES.md).
 
 Game imagery here exists only to show what the shaders do. Tetris, Mario,
@@ -107,7 +111,7 @@ Nintendo trademarks, and game content belong to their respective owners.
 
 ## Download
 
-- Stable v0.3.0: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.3.0.zip)
+- Stable v0.4.0: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.4.0.zip)
 - Release notes: [GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - Latest development snapshot: [`main` as ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git: `git clone https://github.com/JohnnySun/retro-display-lab.git`

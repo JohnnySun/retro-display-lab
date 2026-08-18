@@ -57,18 +57,20 @@ Color Tint 只能改颜色，重建不了那些画面动起来才看得见的缺
 现在可以直接下载并使用
 [`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp)。
 它把 BGR 像素开口、TFT 的 gray-to-gray 响应和慢速残留直流分开处理，色彩端
-使用中性 sRGB adapter，因此不包含私有研究原型中那些未确认再分发许可的 HCS
-EOTF 表、色彩矩阵与黑白位测量值。
+现在会从固定版本的 HCS AGS-101 测量记录，可复现地生成 32 阶 EOTF、原生色彩
+矩阵与黑白锚点；中性 sRGB adapter 则保留作为回归基准。
 
-目前仍没有测到具名 AGS-101 面板的完整 gray-to-gray matrix，所以时间参数是
-可复现、受文献约束的候选值，不是面板实测值。完整数据边界见
+参考资料中仍没有完整的 gray-to-gray matrix，因此 runtime 使用受文献约束的
+解析 fallback，并提供可接收实测表格的格式。驱动残留使用同时代论文的 cell
+动力学和明确标记的项目桥接先验；扫描则拆成 row start、电气 latch 与 optical
+onset。完整证据与参数分类见
 [AGS-101 Evidence Map](models/nintendo-ags-101/REFERENCES.md)。
 
 游戏画面只是用来说明 Shader 的行为。俄罗斯方块、马力欧、Nintendo 商标和游戏内容都归各自的权利人所有。
 
 ## 下载
 
-- 稳定版 v0.3.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.3.0.zip)
+- 稳定版 v0.4.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.4.0.zip)
 - 发布说明：[GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - 最新开发版：[`main` 的 ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git：`git clone https://github.com/JohnnySun/retro-display-lab.git`
