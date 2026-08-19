@@ -73,22 +73,25 @@ work are tracked in
 [`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json)
 and the [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md).
 
-### Visual comparison
+### Representative captures
 
 <table>
   <tr>
-    <th>Shader off — raw Gambatte output</th>
-    <th>Shader on — DMG-01 Reference v1</th>
+    <th>Title screen — crosstalk</th>
+    <th>Falling piece — ghosting</th>
   </tr>
   <tr>
-    <td><img src="docs/images/comparisons/dmg01-tetris-shader-off.png" alt="Tetris on KPA with the DMG-01 shader disabled"></td>
-    <td><img src="docs/images/comparisons/dmg01-tetris-shader-on.png" alt="Tetris on KPA with the DMG-01 Reference v1 shader enabled"></td>
+    <td><img src="docs/images/comparisons/dmg01-tetris-crosstalk.png" alt="Tetris title screen on KPA showing DMG-01 row and column crosstalk"></td>
+    <td><img src="docs/images/comparisons/dmg01-tetris-ghosting.png" alt="A falling I tetromino above a built-up Tetris field on KPA showing DMG-01 ghosting"></td>
   </tr>
 </table>
 
 Both are 960×640 framebuffer captures from the same KPA, Gambatte core, Tetris
-ROM, viewport, and display state — but not from the same emulation frame. A
-still image can't really show temporal decay anyway.
+ROM, current DMG shader, viewport, display state, and Game Boy bezel. The broad
+high-contrast title graphics expose row and column crosstalk; the gameplay shot
+catches an I tetromino falling over a built-up field, where its vertical trail
+makes the temporal response visible. A still image can only show one instant of
+that decay.
 
 ## Available model: Nintendo GBA SP AGS-101
 

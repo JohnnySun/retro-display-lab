@@ -35,17 +35,17 @@ Color Tint 只能改颜色，固定混合前几帧也只是加上一种通用模
 
 哪一份资料对应到哪一段代码、有哪些限制，都写在 [DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md) 里。目前的机器可读重建决策与后续实现工作，分别记录在 [`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json) 和 [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md)。
 
-### 效果对比
+### 代表画面
 
 <table>
-  <tr><th>关闭 Shader — Gambatte 原始输出</th><th>开启 Shader — DMG-01 Reference v1</th></tr>
+  <tr><th>标题首页 — 串扰</th><th>方块下落 — 拖影</th></tr>
   <tr>
-    <td><img src="docs/images/comparisons/dmg01-tetris-shader-off.png" alt="KPA 关闭 DMG-01 Shader 的俄罗斯方块画面"></td>
-    <td><img src="docs/images/comparisons/dmg01-tetris-shader-on.png" alt="KPA 开启 DMG-01 Reference v1 的俄罗斯方块画面"></td>
+    <td><img src="docs/images/comparisons/dmg01-tetris-crosstalk.png" alt="KPA 的俄罗斯方块标题首页，呈现 DMG-01 行列串扰"></td>
+    <td><img src="docs/images/comparisons/dmg01-tetris-ghosting.png" alt="KPA 的俄罗斯方块高堆叠画面，直条方块下落时呈现 DMG-01 拖影"></td>
   </tr>
 </table>
 
-两张图都是在同一台 KPA、同一个 Gambatte core、同一份俄罗斯方块 ROM、同样的 viewport 和显示状态下拍的 960×640 framebuffer 截图，但不是同一个模拟帧。何况静态图本来也没法完整呈现拖影的衰减过程。
+两张都是在同一台 KPA、同一个 Gambatte core、同一份俄罗斯方块 ROM、当前的 DMG shader、同样的 viewport、显示状态与 Game Boy 遮罩下拍的 960×640 framebuffer 截图。标题首页的大面积高对比图形能看出行列串扰；游戏画面则抓到直条方块从较高处落向已经堆起的盘面，垂直尾巴会把时间响应直接显示出来。静态图仍然只能留下整段衰减中的一个瞬间。
 
 ## 可下载模型：Nintendo GBA SP AGS-101
 
