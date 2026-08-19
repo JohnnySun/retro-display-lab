@@ -104,6 +104,65 @@ function encodePng(width, height, rgb) {
   ]);
 }
 
+function decodeRgb8Png(buffer) {
+  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  if (!buffer.subarray(0, 8).equals(signature)) throw new Error("invalid PNG signature");
+  let offset = 8;
+  let header;
+  const idat = [];
+  while (offset < buffer.length) {
+    const length = buffer.readUInt32BE(offset);
+    const type = buffer.toString("ascii", offset + 4, offset + 8);
+    const data = buffer.subarray(offset + 8, offset + 8 + length);
+    if (type === "IHDR") {
+      header = {
+        width: data.readUInt32BE(0),
+        height: data.readUInt32BE(4),
+        bitDepth: data[8],
+        colorType: data[9],
+        compression: data[10],
+        filter: data[11],
+        interlace: data[12],
+      };
+    } else if (type === "IDAT") idat.push(data);
+    else if (type === "IEND") break;
+    offset += 12 + length;
+  }
+  if (!header || header.bitDepth !== 8 || header.colorType !== 2
+      || header.compression !== 0 || header.filter !== 0 || header.interlace !== 0) {
+    throw new Error("expected a non-interlaced 8-bit RGB PNG");
+  }
+  const bytesPerPixel = 3;
+  const rowBytes = header.width * bytesPerPixel;
+  const inflated = zlib.inflateSync(Buffer.concat(idat));
+  if (inflated.length !== header.height * (rowBytes + 1)) {
+    throw new Error("unexpected PNG scanline length");
+  }
+  const rgb = Buffer.alloc(header.height * rowBytes);
+  let inputOffset = 0;
+  let prior = Buffer.alloc(rowBytes);
+  for (let y = 0; y < header.height; y += 1) {
+    const filter = inflated[inputOffset];
+    inputOffset += 1;
+    const encoded = inflated.subarray(inputOffset, inputOffset + rowBytes);
+    inputOffset += rowBytes;
+    const row = rgb.subarray(y * rowBytes, (y + 1) * rowBytes);
+    for (let x = 0; x < rowBytes; x += 1) {
+      const left = x >= bytesPerPixel ? row[x - bytesPerPixel] : 0;
+      const up = prior[x] ?? 0;
+      const upperLeft = x >= bytesPerPixel ? prior[x - bytesPerPixel] : 0;
+      if (filter === 0) row[x] = encoded[x];
+      else if (filter === 1) row[x] = (encoded[x] + left) & 0xff;
+      else if (filter === 2) row[x] = (encoded[x] + up) & 0xff;
+      else if (filter === 3) row[x] = (encoded[x] + Math.floor((left + up) / 2)) & 0xff;
+      else if (filter === 4) row[x] = (encoded[x] + paeth(left, up, upperLeft)) & 0xff;
+      else throw new Error(`unsupported PNG filter ${filter}`);
+    }
+    prior = row;
+  }
+  return { ...header, rgb };
+}
+
 function setPixel(rgb, width, x, y, color) {
   const offset = (y * width + x) * 3;
   rgb[offset] = color[0];
@@ -163,6 +222,7 @@ function buildScene(palette) {
   return {
     width,
     height,
+    rgb,
     png: encodePng(width, height, rgb),
     regions: [
       { id: "five-optical-states", rect: [24, 24, 572, 56] },
@@ -337,14 +397,33 @@ const reconstruction = JSON.parse(fs.readFileSync(reconstructionPath, "utf8"));
 verifySources(reconstruction, sourceDir);
 const palette = reconstruction.optical.states.map((state) => state.srgb8);
 const scene = buildScene(palette);
-const report = buildReport(reconstruction, scene);
+let checkedSceneBuffer;
+if (checkOnly) {
+  if (!fs.existsSync(scenePath)) {
+    fail("DMG WS1 static scene is missing; run node tools/build-dmg01-ws1.mjs");
+  }
+  checkedSceneBuffer = fs.readFileSync(scenePath);
+  let checkedScene;
+  try {
+    checkedScene = decodeRgb8Png(checkedSceneBuffer);
+  } catch (error) {
+    fail(`DMG WS1 static scene is invalid: ${error.message}`);
+  }
+  if (checkedScene.width !== scene.width || checkedScene.height !== scene.height
+      || !checkedScene.rgb.equals(scene.rgb)) {
+    fail("DMG WS1 static scene pixels are stale; run node tools/build-dmg01-ws1.mjs");
+  }
+}
+// zlib is free to emit different compressed byte streams for identical pixels.
+// In check mode, hash the checked-in PNG after verifying its decoded RGB content.
+const report = buildReport(reconstruction, {
+  ...scene,
+  png: checkedSceneBuffer ?? scene.png,
+});
 if (!report.summary.pass) fail("WS1 perceptual acceptance thresholds failed");
 const reportBuffer = Buffer.from(`${JSON.stringify(report, null, 2)}\n`);
 
 if (checkOnly) {
-  if (!fs.existsSync(scenePath) || !fs.readFileSync(scenePath).equals(scene.png)) {
-    fail("DMG WS1 static scene is missing or stale; run node tools/build-dmg01-ws1.mjs");
-  }
   if (!fs.existsSync(reportPath) || !fs.readFileSync(reportPath).equals(reportBuffer)) {
     fail("DMG WS1 perceptual report is missing or stale; run node tools/build-dmg01-ws1.mjs");
   }
