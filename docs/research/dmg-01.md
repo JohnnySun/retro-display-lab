@@ -147,8 +147,9 @@ crossing 放入 pixel capacitance 與 leakage，並重播 DMG 三段灰階 dwell
 每個位置都扣除同灰階 uniform-field baseline，所以常數場嚴格不變。求解器測試
 single-dot、full-row、full-column、checkerboard、alternating-lines、window、
 inverse-window，加上 source-uniform 的 8×8 tetromino fixture；另一組 T／O／S
-實心方塊只作 held-out 驗證。high ensemble 的 8→16 substep checkerboard RMS
-差為 `0.009790` shade。
+實心方塊只作 held-out 驗證。另有一組依照 Tetris 實際 tile 編碼建立的
+mixed-tone mino：shade 3 外框、shade 2 內圈。high ensemble 的 8→16 substep
+checkerboard RMS 差為 `0.009790` shade。
 
 先前的 8-pixel directional kernel 會把有限圖形集合的近似誤差變成局部 L 形缺色，
 因此已退出 normal runtime。新降階不是重新擬合更多 case，而是把每條分布式電極
@@ -170,12 +171,23 @@ tap、tetromino 分支、ridge regression 或 alternating-pattern 擬合。nomin
 `RowCrosstalk=1`、`ColumnCrosstalk=1` 選用這個 nominal 重建，兩者設成 `0`
 則完全隔離 WS5。
 
+實機複查發現原本的 uniform-baseline 加法校正會在 mixed field 中過度補償：
+shade 2 mino 內圈由約 `1.65` 加上接近 `1.8` shade 的校正後直接 clamp 到
+shade 3，落地靜止後仍與外框同色。舊 fixture 的 mino 全部填 shade 3，因此
+無法偵測這個相鄰色階反轉。Runtime 現在把 common-mode 校正限制在原始色階的
+`±0.125` shade；這是 period-bounded、非實機量測模型的 tone-order safety
+boundary，不是假裝成新的 DMG 電氣常數。mixed-tone gate 在 nominal 下保留
+`0.75` shade 的最小 shade 2／3 間距；KONKR `DebugView=6` 實測由修正前的
+shade 2 `255` 飽和，恢復為約 `181`，shade 3 約 `244`。
+
 先前 directional-kernel 的 KONKR 記錄只保留為歷史回歸資料。新的 five-pass
 common-mode Vulkan 路徑已在 Mali-G76 重新編譯：前兩個統計 pass 與 response
 均為 RGBA32F，feedback 位於 pass 2，沒有 Shader error。逐 pixel 掃描全幀的
 直接版本只有 `17.127 fps`，因此被拒絕；代數重排後的 phase-local 版本在同一台
-機器錄得 722 frame／12.004 秒，即 `60.145 fps`。十二張 Tetris 下落採樣畫面
-未再出現孤立錯 shade／L 形缺色。
+機器錄得 722 frame／12.004 秒，即 `60.145 fps`。先前十二張 Tetris 下落採樣
+畫面未發現孤立錯 shade／L 形缺色，但該抽樣未含 mixed-tone 數值 gate，且其
+response/preset 雜湊早於最終 commit 內容，不能作為目前 runtime 的完成證據。
+修正後的收據改以 mixed-tone drive 間距與落地靜止畫面作為必要 gate。
 
 ## WS3：逐列 CPL latch 與因果掃描
 

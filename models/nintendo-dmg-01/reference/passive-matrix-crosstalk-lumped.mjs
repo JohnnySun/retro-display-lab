@@ -7,6 +7,20 @@ import {
   voltageToDriveCoordinate,
 } from "./passive-matrix-crosstalk.mjs";
 
+// The electrical reconstruction is period-parameter-bounded rather than a
+// surviving-panel measurement. Do not let an uncertain common-mode correction
+// erase the ordering of the DMG's discrete adjacent tones. One eighth of a
+// shade is twice the former held-out solid-mino network excursion while still
+// leaving at least three quarters of a shade between neighboring source codes.
+export const CROSSTALK_MAX_TONE_EXCURSION = 0.125;
+
+export function applyCrosstalkToneGuard(center, rawDrive, uniformBaseline,
+  maximumExcursion = CROSSTALK_MAX_TONE_EXCURSION) {
+  const correction = Math.max(-maximumExcursion,
+    Math.min(maximumExcursion, rawDrive - uniformBaseline));
+  return Math.max(0, Math.min(3, center + correction));
+}
+
 export function lumpedLineFactors(pixelCount, driverResistanceOhms,
   pixelCapacitanceFarads, pixelLeakageResistanceOhms, dtSeconds) {
   const capacitanceConductance = pixelCount * pixelCapacitanceFarads / dtSeconds;

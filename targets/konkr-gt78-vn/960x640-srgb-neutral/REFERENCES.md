@@ -207,9 +207,13 @@ original DMG behavior belongs to the
   is `0.000335` shade.
 - Target result: Mali compiled the `1×144`, `160×1`, `160×144`, `160×144`, and
   `640×576` five-pass chain with no errors; the first three targets remained
-  RGBA32F and response feedback attached to pass 2. A 722-frame / 12.004-second
-  Tetris falling-animation run sustained `60.145 fps`; twelve sampled frames
-  showed no recurrence of the isolated wrong-shade/L-shaped fill artifact.
+  RGBA32F and response feedback attached to pass 2. The original qualitative
+  12-frame review missed a mixed-tone regression: a shade 2 mino interior was
+  saturated to shade 3 by uniform-baseline over-correction and stayed wrong
+  after landing. The corrected runtime bounds that correction to `±0.125`
+  shade. On the same unit, `DebugView=6` presents the two dark tones near codes
+  `181` and `244` instead of collapsing shade 2 to `255`; the normal Tetris
+  sequence retains visibly lighter interiors on settled pieces.
 - Capture discipline: one-second cold-start recordings were identical black
   Activity-transition frames and were rejected. Formal evidence waits three
   seconds before the two-second recording.

@@ -45,16 +45,19 @@ export function makePattern(id, columns = 160, rows = 144) {
         set(x, y, inverse ? 0 : 3);
       }
     }
-  } else if (id === "solid-mino-fixture" || id === "solid-mino-validation") {
+  } else if (id === "solid-mino-fixture" || id === "solid-mino-validation"
+      || id === "mixed-tone-mino") {
     // Three separated, source-uniform tetrominoes exercise 8x8 DMG tile
     // interiors and every horizontal/vertical edge orientation. This is a
     // training and held-out validation scenes without relying on emulator art.
     const mino = 8;
-    const drawPiece = (originX, originY, cells) => {
+    const drawPiece = (originX, originY, cells, bordered = false) => {
       for (const [cellX, cellY] of cells) {
         for (let py = 0; py < mino; py += 1) {
           for (let px = 0; px < mino; px += 1) {
-            set(originX + cellX * mino + px, originY + cellY * mino + py, 3);
+            const border = px === 0 || px === mino - 1 || py === 0 || py === mino - 1;
+            set(originX + cellX * mino + px, originY + cellY * mino + py,
+              bordered && !border ? 2 : 3);
           }
         }
       }
@@ -64,10 +67,17 @@ export function makePattern(id, columns = 160, rows = 144) {
       drawPiece(16, 8, j);
       drawPiece(68, 64, j);
       drawPiece(120, 120, j);
-    } else {
+    } else if (id === "solid-mino-validation") {
       drawPiece(8, 36, [[0, 0], [1, 0], [2, 0], [1, 1]]);
       drawPiece(72, 96, [[0, 0], [1, 0], [0, 1], [1, 1]]);
       drawPiece(128, 40, [[1, 0], [2, 0], [0, 1], [1, 1]]);
+    } else {
+      // Match the actual Tetris tile encoding: shade 3 outlines each 8x8
+      // mino while shade 2 fills its 6x6 interior. The former all-shade-3
+      // fixtures could not detect adjacent-tone inversion in the GPU runtime.
+      drawPiece(16, 16, [[0, 0], [1, 0], [2, 0], [0, 1]], true);
+      drawPiece(64, 80, [[0, 0], [1, 0], [1, 1], [2, 1]], true);
+      drawPiece(120, 112, [[0, 0], [1, 0], [0, 1], [1, 1]], true);
     }
   } else {
     throw new Error(`unknown crosstalk pattern: ${id}`);

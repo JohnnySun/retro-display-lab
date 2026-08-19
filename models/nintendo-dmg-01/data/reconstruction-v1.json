@@ -277,6 +277,12 @@
       "frameSummaryPass": "shaders/dmg01-crosstalk-summary-v3.slang",
       "normalParameterScale": 1,
       "disabledParameterScale": 0,
+      "toneOrderGuard": {
+        "maximumExcursionShade": 0.125,
+        "minimumAdjacentToneSeparationShade": 0.75,
+        "classification": "runtime safety boundary for a period-bounded model; not a Nintendo electrical parameter",
+        "regressionPattern": "shade 3 Tetris mino border with shade 2 interior"
+      },
       "mechanism": "one-ended row/column resistor ladders, pixel capacitance and leakage, comparable period driver output resistance, DMG three-dwell waveform, structure-preserving KCL common-electrode reduction without image-pattern coefficients, continuous WS2 voltage/director/optical coupling"
     },
     "apertureGeometryReport": "generated/ws6-aperture-v1.json",
@@ -300,7 +306,7 @@
       "status": "complete",
       "completedOn": "2026-08-19",
       "completionStandard": "A versioned period-parameter record, distributed electrical solver, bounded ensemble, WS2 optical coupling, declared Shader approximation error, canonical pattern suite, constant-field invariant, and KONKR CPU/GPU/runtime receipt must all pass.",
-      "result": "The image-fitted directional kernel was rejected after a solid-pixel L-shaped artifact. Its replacement sums the distributed KCL equations and retains the common-electrode RC mode, with no image-pattern coefficients. Nominal full-network error is 0.004733 shade RMS, 0.019108 p99, and 0.020453 maximum; float32 runtime rounding is 0.000059 shade and the nominal phase-boundary residual is 0.000335 shade. The five-pass Mali Vulkan path compiles without errors, sustains 60.145 fps over 722 Tetris frames, and does not reproduce the isolated wrong-shade artifact.",
+      "result": "The image-fitted directional kernel was rejected after a solid-pixel L-shaped artifact. Its replacement sums the distributed KCL equations and retains the common-electrode RC mode, with no image-pattern coefficients. A later mixed-tone Tetris regression exposed shade-specific uniform-baseline over-correction that saturated shade 2 interiors to shade 3. Runtime now bounds the uncertain correction to +/-0.125 shade, and the generated mixed-tone gate preserves at least 0.75 shade between shade 2 and shade 3. The five-pass Mali Vulkan path presents post-fix drive codes near 181 and 244 for the two dark tones and retains the distinction after pieces settle.",
       "targetReceipt": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws5-common-mode-20260819.json"
     }
   },

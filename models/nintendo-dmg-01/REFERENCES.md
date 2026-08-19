@@ -275,6 +275,11 @@ the versioned drive and material records.
 - Limits: the paper analyzes comparable direct-multiplex TN/STN matrices, not a
   Nintendo panel. Its authors omit LC ohmic conductivity and identify driver
   output impedance as a future refinement; WS5 adds both from separate bounds.
+  A KONKR Tetris mixed-tone regression showed that the reconstructed
+  shade-specific uniform baseline can over-correct shade 2 in a nonuniform
+  field. Runtime therefore limits that uncertain correction to `±0.125` shade
+  and tests shade 3 borders around shade 2 interiors. This is an explicit
+  tone-order safety boundary, not a sourced Nintendo electrical parameter.
 
 ### DMG-ITO-01 — 1988 transparent-electrode production bound
 

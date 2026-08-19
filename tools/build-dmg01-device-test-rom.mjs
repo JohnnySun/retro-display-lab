@@ -11,7 +11,7 @@ const scene = sceneFlag >= 0 ? process.argv[sceneFlag + 1] : "cycle";
 const crosstalkScenes = [
   "crosstalk-single-dot", "crosstalk-full-row", "crosstalk-full-column",
   "crosstalk-checkerboard", "crosstalk-alternating-lines",
-  "crosstalk-window", "crosstalk-inverse-window",
+  "crosstalk-window", "crosstalk-inverse-window", "crosstalk-mixed-mino",
 ];
 if (!outputPath) {
   console.error("usage: node tools/build-dmg01-device-test-rom.mjs --output <path> [--scene cycle|static-four|moving-bars|full-toggle|alternating-rows|retention-window|crosstalk-*]");
@@ -110,6 +110,14 @@ const diagnosticTiles = [
 for (const tile of diagnosticTiles) {
   emit(0x21, (tile.index * 16) & 0xff, 0x80 + ((tile.index * 16) >> 8));
   for (const row of tile.rows) emit(0x3e, row, 0x22, 0x22);
+}
+
+// Tetris mino tile: shade 3 border with a shade 2 interior. In DMG bitplanes,
+// shade 3 is 11 and shade 2 is 10, so only the low plane clears inside.
+emit(0x21, 0x90, 0x80); // HL=$8090, tile 9.
+for (let row = 0; row < 8; row += 1) {
+  emit(0x3e, row === 0 || row === 7 ? 0xff : 0x81, 0x22);
+  emit(0x3e, 0xff, 0x22);
 }
 
 // Scene 0 starts immediately after cold boot so numeric state capture sees
@@ -316,6 +324,18 @@ emit(0x22, 0x0d);
 relativeJump(0x20, "crosstalk-window-pixel");
 emit(0x11, 0x16, 0x00, 0x19, 0x05);
 relativeJump(0x20, "crosstalk-window-row");
+emit(0xc9);
+
+label("crosstalk-mixed-mino");
+emit(0x16, 0x00);
+call("fill-uniform");
+// Three separated pieces exercise settled L/S/O shapes using the exact mixed
+// shade tile that regressed in Tetris. Tile-map rows are 32 entries wide.
+for (const address of [
+  0x9862, 0x9863, 0x9864, 0x9882,
+  0x9928, 0x9929, 0x9949, 0x994a,
+  0x99ce, 0x99cf, 0x99ee, 0x99ef,
+]) emit(0x21, address & 0xff, address >> 8, 0x3e, 0x09, 0x77);
 emit(0xc9);
 
 label("crosstalk-inverse-window");

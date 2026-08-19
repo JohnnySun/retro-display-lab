@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "reportId": "nintendo-dmg-01-ws5-crosstalk-lumped-v2",
-  "classification": "structure-preserving common-electrode-mode reduction; no image-pattern fit",
+  "classification": "structure-preserving common-electrode-mode reduction with a discrete-tone safety boundary; no image-pattern fit",
   "sourceModel": "reference/passive-matrix-crosstalk.mjs",
   "reducedModel": "reference/passive-matrix-crosstalk-lumped.mjs",
   "ensembles": [
@@ -73,20 +73,25 @@
           "id": "solid-mino-validation",
           "rmsNormalizedDriveError": 0.000031230483,
           "maximumAbsoluteNormalizedDriveError": 0.000635031044
+        },
+        {
+          "id": "mixed-tone-mino",
+          "rmsNormalizedDriveError": 0.001784009033,
+          "maximumAbsoluteNormalizedDriveError": 0.017382047814
         }
       ],
-      "rmsNormalizedDriveError": 0.002053404535,
-      "p99AbsoluteNormalizedDriveError": 0.009325826002,
-      "maximumAbsoluteNormalizedDriveError": 0.010464433736,
+      "rmsNormalizedDriveError": 0.002028075933,
+      "p99AbsoluteNormalizedDriveError": 0.009357219351,
+      "maximumAbsoluteNormalizedDriveError": 0.017382047814,
       "maximumContext": {
-        "patternId": "alternating-lines",
+        "patternId": "mixed-tone-mino",
         "location": [
-          159,
-          141
+          134,
+          121
         ],
-        "shade": 3,
-        "distributedDelta": -0.345948051675,
-        "lumpedDelta": -0.335483617938
+        "shade": 2,
+        "distributedDelta": 0.596420015337,
+        "lumpedDelta": 0.579037967523
       },
       "runtimeClosedForm": {
         "maximumAbsoluteDriveError": 2e-12,
@@ -113,6 +118,12 @@
             119
           ]
         }
+      },
+      "mixedToneOrder": {
+        "maximumExcursionShade": 0.125,
+        "shade2Maximum": 2.125,
+        "shade3Minimum": 2.94048708439,
+        "minimumSeparationShade": 0.81548708439
       }
     },
     {
@@ -183,20 +194,25 @@
           "id": "solid-mino-validation",
           "rmsNormalizedDriveError": 0.000104367892,
           "maximumAbsoluteNormalizedDriveError": 0.002320597542
+        },
+        {
+          "id": "mixed-tone-mino",
+          "rmsNormalizedDriveError": 0.002689320864,
+          "maximumAbsoluteNormalizedDriveError": 0.02158450771
         }
       ],
-      "rmsNormalizedDriveError": 0.004733159676,
-      "p99AbsoluteNormalizedDriveError": 0.019108150763,
-      "maximumAbsoluteNormalizedDriveError": 0.020453456127,
+      "rmsNormalizedDriveError": 0.004570094653,
+      "p99AbsoluteNormalizedDriveError": 0.019121870537,
+      "maximumAbsoluteNormalizedDriveError": 0.02158450771,
       "maximumContext": {
-        "patternId": "checkerboard",
+        "patternId": "mixed-tone-mino",
         "location": [
-          159,
-          142
+          38,
+          17
         ],
-        "shade": 3,
-        "distributedDelta": -0.641808267078,
-        "lumpedDelta": -0.621354810951
+        "shade": 2,
+        "distributedDelta": 1.502283375705,
+        "lumpedDelta": 1.480698867996
       },
       "runtimeClosedForm": {
         "maximumAbsoluteDriveError": 1e-12,
@@ -207,11 +223,11 @@
             0
           ]
         },
-        "maximumFloat32DriveError": 0.000058955031,
+        "maximumFloat32DriveError": 0.00006076944,
         "maximumFloat32Context": {
-          "patternId": "checkerboard",
+          "patternId": "mixed-tone-mino",
           "location": [
-            0,
+            38,
             17
           ]
         },
@@ -223,6 +239,12 @@
             17
           ]
         }
+      },
+      "mixedToneOrder": {
+        "maximumExcursionShade": 0.125,
+        "shade2Maximum": 2.125,
+        "shade3Minimum": 2.875,
+        "minimumSeparationShade": 0.75
       }
     },
     {
@@ -293,10 +315,15 @@
           "id": "solid-mino-validation",
           "rmsNormalizedDriveError": 0.000939740149,
           "maximumAbsoluteNormalizedDriveError": 0.022534450891
+        },
+        {
+          "id": "mixed-tone-mino",
+          "rmsNormalizedDriveError": 0.01145025401,
+          "maximumAbsoluteNormalizedDriveError": 0.098258089746
         }
       ],
-      "rmsNormalizedDriveError": 0.029069235391,
-      "p99AbsoluteNormalizedDriveError": 0.131351520453,
+      "rmsNormalizedDriveError": 0.027814191221,
+      "p99AbsoluteNormalizedDriveError": 0.124145307036,
       "maximumAbsoluteNormalizedDriveError": 0.314119640711,
       "maximumContext": {
         "patternId": "alternating-lines",
@@ -333,6 +360,12 @@
             17
           ]
         }
+      },
+      "mixedToneOrder": {
+        "maximumExcursionShade": 0.125,
+        "shade2Maximum": 2.125,
+        "shade3Minimum": 2.875,
+        "minimumSeparationShade": 0.75
       }
     }
   ],
@@ -405,20 +438,25 @@
         "id": "solid-mino-validation",
         "rmsNormalizedDriveError": 0.000104367892,
         "maximumAbsoluteNormalizedDriveError": 0.002320597542
+      },
+      {
+        "id": "mixed-tone-mino",
+        "rmsNormalizedDriveError": 0.002689320864,
+        "maximumAbsoluteNormalizedDriveError": 0.02158450771
       }
     ],
-    "rmsNormalizedDriveError": 0.004733159676,
-    "p99AbsoluteNormalizedDriveError": 0.019108150763,
-    "maximumAbsoluteNormalizedDriveError": 0.020453456127,
+    "rmsNormalizedDriveError": 0.004570094653,
+    "p99AbsoluteNormalizedDriveError": 0.019121870537,
+    "maximumAbsoluteNormalizedDriveError": 0.02158450771,
     "maximumContext": {
-      "patternId": "checkerboard",
+      "patternId": "mixed-tone-mino",
       "location": [
-        159,
-        142
+        38,
+        17
       ],
-      "shade": 3,
-      "distributedDelta": -0.641808267078,
-      "lumpedDelta": -0.621354810951
+      "shade": 2,
+      "distributedDelta": 1.502283375705,
+      "lumpedDelta": 1.480698867996
     },
     "runtimeClosedForm": {
       "maximumAbsoluteDriveError": 1e-12,
@@ -429,11 +467,11 @@
           0
         ]
       },
-      "maximumFloat32DriveError": 0.000058955031,
+      "maximumFloat32DriveError": 0.00006076944,
       "maximumFloat32Context": {
-        "patternId": "checkerboard",
+        "patternId": "mixed-tone-mino",
         "location": [
-          0,
+          38,
           17
         ]
       },
@@ -445,16 +483,23 @@
           17
         ]
       }
+    },
+    "mixedToneOrder": {
+      "maximumExcursionShade": 0.125,
+      "shade2Maximum": 2.125,
+      "shade3Minimum": 2.875,
+      "minimumSeparationShade": 0.75
     }
   },
   "checks": {
     "noImagePatternCoefficients": true,
-    "allNinePatternsCompared": true,
+    "allTenPatternsCompared": true,
     "nominalRmsBelow0_05Shade": true,
     "nominalP99Below0_10Shade": true,
     "closedFormMatchesLumpedSolver": true,
     "float32RuntimePrecisionBelow0_001Shade": true,
-    "nominalPhaseBoundaryResidualBelow0_001Shade": true
+    "nominalPhaseBoundaryResidualBelow0_001Shade": true,
+    "mixedToneOrderPreserved": true
   },
   "pass": true
 }

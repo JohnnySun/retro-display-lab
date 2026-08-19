@@ -20,20 +20,20 @@
     },
     "distributedReference": {
       "path": "models/nintendo-dmg-01/reference/passive-matrix-crosstalk.mjs",
-      "sha256": "6a3e76a433a065efe1ad0c3b15321531701111fe7676524764d3dd749a210873"
+      "sha256": "f38ba3cbc3d64ec0cdc4ccd7a587cdb7782ea85d74276727bf8f86938d33601c"
     },
     "commonModeReference": {
       "path": "models/nintendo-dmg-01/reference/passive-matrix-crosstalk-lumped.mjs",
-      "sha256": "0f5ebcfa2ebb0c56b9f19c29ea25cb8a83e333fa872b73a0b59fb93691a0f36e"
+      "sha256": "b6998b9e96da7aa78fd35230588c99a106e041c87198a5a9af7b90d9ea089211"
     },
     "generatedReport": {
       "path": "models/nintendo-dmg-01/generated/ws5-crosstalk-lumped-v2.json",
-      "sha256": "0f0ec7c02ad5dadda2dd45824dc5024878f97404ae6f3828786c2755885ca3e2",
+      "sha256": "2d860f64655fa82ab1fd7b2bdba6a1a82b4df9e37067af101ec69445571e99d9",
       "validationPass": true
     },
     "generatedConstants": {
       "path": "models/nintendo-dmg-01/shaders/dmg01-crosstalk-lumped.inc",
-      "sha256": "eb273c948596826ce4663412fa93082abc7173c359b348e838d293b754109561"
+      "sha256": "7d43326ab125e99df5988bef039b7f2b6ba52baf43a4270b5a7cfdaf96a83293"
     },
     "phaseLocalReduction": {
       "path": "models/nintendo-dmg-01/shaders/dmg01-crosstalk-phase-local.inc",
@@ -49,18 +49,18 @@
     },
     "responsePass": {
       "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
-      "sha256": "4763d8e2669dc76b0610efa53eba3bf6afd24a8e8565220ab93790508941b842"
+      "sha256": "b18e3871100f999ff9cf88e77c4a75af71a14ed9fd19877c799e5560e975a1a4"
     },
     "oneYearPreset": {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/gb-one-year-used.slangp",
-      "sha256": "1d3f83c3a43ac074cd8f8326d3fc47d7c247704826bf93144ffa72c45e42fd56"
+      "sha256": "65c6418aeda31f9f1c561e5e1c989e92736e4972c6c598e487efc215a91f1896"
     }
   },
   "reconstruction": {
     "derivation": "sum every node KCL equation on each distributed electrode and retain its equipotential common mode",
     "imagePatternCoefficients": 0,
     "trainingPatterns": [],
-    "validationPatterns": 9,
+    "validationPatterns": 10,
     "maximumNominalRowSeriesToDriverResistanceRatio": 0.09,
     "maximumNominalColumnSeriesToDriverResistanceRatio": 0.082,
     "nominalDistributedToCommonModeRmsErrorShade": 0.004733159676,
@@ -69,6 +69,12 @@
     "closedFormToCommonModeMaximumErrorShade": 0.000000000001,
     "float32MaximumErrorShade": 0.000058955031,
     "phaseBoundaryResidualMaximumErrorShade": 0.000334950814,
+    "mixedToneOrderGuard": {
+      "maximumExcursionShade": 0.125,
+      "shade2Maximum": 2.125,
+      "shade3Minimum": 2.875,
+      "minimumSeparationShade": 0.75
+    },
     "normalScale": {
       "RowCrosstalk": 1,
       "ColumnCrosstalk": 1
@@ -89,7 +95,7 @@
     "responseFeedbackPass": 2,
     "result": "pass"
   },
-  "tetrisMotion": {
+  "historicalPreGuardTetrisMotion": {
     "content": "/storage/3162-6335/Roms/gb/俄罗斯方块.gb",
     "capture": "/private/tmp/codex-ws5-phase-local-tetris.mp4",
     "captureSha256": "12196f6996b69ef14329c1784f71ab60bbe856b1b280585af7b1e123c716d19d",
@@ -100,6 +106,18 @@
     "sampledFramesReviewed": 12,
     "solidPieceEdgesReviewed": true,
     "isolatedWrongShadeArtifactPresent": false,
+    "result": "superseded-by-mixed-tone-regression"
+  },
+  "postFixMixedTone": {
+    "content": "/storage/3162-6335/Roms/gb/俄罗斯方块.gb",
+    "sourceEncoding": "shade 3 border with shade 2 interior",
+    "driveCapture": "/private/tmp/dmg-tone-guard-game2.png",
+    "driveCaptureSha256": "c659f695f5fbd57a7b5a68303c3f37b9db738855ede6fef60d2e27cf0796e260",
+    "observedDriveCodes8Bit": [96, 181, 244],
+    "darkAdjacentToneSeparation8Bit": 63,
+    "normalSettledCapture": "/private/tmp/dmg-tone-guard-normal-seq-8.png",
+    "normalSettledCaptureSha256": "e96cc0a3c6f60f3fae9c7e6c8df66ef0aa59808b2ddaed75af0cc85bb0e6c8fb",
+    "settledShade2InteriorDistinctFromShade3Border": true,
     "result": "pass"
   },
   "performanceCorrection": {
@@ -113,14 +131,16 @@
   },
   "deployment": {
     "preset": "/sdcard/RetroArch/config/Gambatte/gb.slangp",
-    "presetSha256": "1d3f83c3a43ac074cd8f8326d3fc47d7c247704826bf93144ffa72c45e42fd56",
+    "presetSha256": "65c6418aeda31f9f1c561e5e1c989e92736e4972c6c598e487efc215a91f1896",
+    "responseShaderSha256": "b18e3871100f999ff9cf88e77c4a75af71a14ed9fd19877c799e5560e975a1a4",
+    "generatedConstantsSha256": "7d43326ab125e99df5988bef039b7f2b6ba52baf43a4270b5a7cfdaf96a83293",
     "backup": "/sdcard/RetroArch/shaders/.codex-validation/20260819-ws5-lumped-predeploy",
     "gameLeftRunning": true
   },
   "limits": [
     "The runtime is a structure-preserving common-electrode reduction of the full distributed ladder, not a direct surviving-DMG electrode measurement.",
     "The nominal ensemble is the normal runtime. The plausible-high uncertainty corner has a long phase-boundary memory and is not represented by the phase-local performance reduction.",
-    "Tetris frame review validates the reported isolated wrong-shade regression and runtime motion; it does not identify pristine Nintendo component values."
+    "The post-fix Tetris mixed-tone gate validates adjacent-tone ordering and settled visibility; it does not identify pristine Nintendo component values."
   ],
   "result": "pass"
 }

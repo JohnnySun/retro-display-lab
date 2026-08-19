@@ -174,7 +174,17 @@ vec2 phase_local_drive_coordinates(ivec2 p)
       crosstalk_uniform_baseline(p.y, int(center.x), rowScale, columnScale),
       crosstalk_uniform_baseline(p.y, int(center.y), rowScale, columnScale)
    );
-   return clamp(center + rawDrive - baseline, vec2(0.0), vec2(3.0));
+   // The period-bounded common-mode reconstruction is not a direct surviving
+   // DMG measurement. Its shade-specific uniform baseline can otherwise turn
+   // a shade-2 tile interior into shade 3 in a mixed field. Preserve the
+   // reconstructed small loading variation, but never allow it to erase the
+   // ordering of adjacent discrete DMG tones.
+   vec2 correction = clamp(
+      rawDrive - baseline,
+      vec2(-DMG_CROSSTALK_MAX_TONE_EXCURSION),
+      vec2(DMG_CROSSTALK_MAX_TONE_EXCURSION)
+   );
+   return clamp(center + correction, vec2(0.0), vec2(3.0));
 }
 
 float condition_target(int condition, int driveIndex)

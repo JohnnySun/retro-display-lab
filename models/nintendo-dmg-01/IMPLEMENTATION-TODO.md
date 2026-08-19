@@ -415,8 +415,11 @@ derived by summing electrode KCL equations and has no training patterns or
 image coefficients. Nominal full-network error is `0.004733` shade RMS,
 `0.019108` p99 and `0.020453` maximum; float32 error is `0.000059` and the
 phase-boundary residual is `0.000335` shade. The five-pass Mali path compiles
-without error and a 722-frame Tetris run sustains `60.145 fps` without the
-isolated wrong-shade artifact.
+without error. A later mixed-tone mino regression found that the per-shade
+uniform baseline could over-correct shade 2 into shade 3 even after a piece
+settled; the former all-shade-3 fixture could not detect it. The runtime now
+limits the uncertain common-mode correction to `±0.125` shade and the generated
+gate requires at least `0.75` shade between the dark adjacent tones.
 
 ## Project definition of done
 

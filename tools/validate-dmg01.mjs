@@ -246,6 +246,8 @@ check(!responseShader.includes('#include "dmg01-crosstalk-surrogate.inc"'),
   "DMG response pass still uses the image-fitted crosstalk kernel");
 check(responseShader.includes("phase_local_drive_coordinates"),
   "DMG response pass lost the phase-local row/column RC reduction");
+check(responseShader.includes("DMG_CROSSTALK_MAX_TONE_EXCURSION"),
+  "DMG response pass lost the adjacent-tone crosstalk guard");
 check(referencePreset.includes('shader0 = "../shaders/dmg01-row-load-v2.slang"'),
   "DMG preset lost the whole-row dwell-load prepass");
 check(referencePreset.includes('shader1 = "../shaders/dmg01-crosstalk-summary-v3.slang"'),
@@ -393,7 +395,7 @@ const crosstalkReport = JSON.parse(fs.readFileSync(
 check(crosstalkReport.pass === true, "DMG WS5 structure-preserving report is not passing");
 check(crosstalkReport.ensembles?.length === 3,
   "DMG WS5 lost its low/nominal/high electrical ensemble");
-check(crosstalkReport.ensembles?.every((item) => item.patterns?.length === 9),
+check(crosstalkReport.ensembles?.every((item) => item.patterns?.length === 10),
   "DMG WS5 canonical pattern suite is incomplete");
 check(crosstalkReport.classification?.includes("no image-pattern fit")
   && crosstalkReport.checks?.noImagePatternCoefficients === true,
@@ -404,7 +406,9 @@ check(crosstalkReport.selectedRuntimeModel?.rmsNormalizedDriveError < 0.05
 "DMG WS5 common-electrode reduction escaped its nominal error bounds");
 check(crosstalkReport.checks?.closedFormMatchesLumpedSolver === true
   && crosstalkReport.checks?.float32RuntimePrecisionBelow0_001Shade === true
-  && crosstalkReport.checks?.nominalPhaseBoundaryResidualBelow0_001Shade === true,
+  && crosstalkReport.checks?.nominalPhaseBoundaryResidualBelow0_001Shade === true
+  && crosstalkReport.checks?.mixedToneOrderPreserved === true
+  && crosstalkReport.selectedRuntimeModel?.mixedToneOrder?.minimumSeparationShade >= 0.5,
 "DMG WS5 runtime recurrence, float32, or phase-boundary gate failed");
 
 const ionicParameters = reconstruction.temporal.ionicModel.referenceParameters;
@@ -782,11 +786,12 @@ check(dmgWs5Receipt.reconstruction?.imagePatternCoefficients === 0
 "KPA DMG WS5 receipt lost its no-fit derivation or nominal error bounds");
 check(dmgWs5Receipt.gpuRun?.responseFeedbackPass === 2
   && dmgWs5Receipt.gpuRun?.shaderCompileErrors === 0
-  && dmgWs5Receipt.tetrisMotion?.solidPieceEdgesReviewed === true
-  && dmgWs5Receipt.tetrisMotion?.isolatedWrongShadeArtifactPresent === false
-  && dmgWs5Receipt.tetrisMotion?.frames >= 720
-  && dmgWs5Receipt.tetrisMotion?.averageFps >= 59
-  && dmgWs5Receipt.tetrisMotion?.averageFps <= 61,
+  && dmgWs5Receipt.historicalPreGuardTetrisMotion?.frames >= 720
+  && dmgWs5Receipt.historicalPreGuardTetrisMotion?.averageFps >= 59
+  && dmgWs5Receipt.historicalPreGuardTetrisMotion?.averageFps <= 61
+  && dmgWs5Receipt.postFixMixedTone?.result === "pass"
+  && dmgWs5Receipt.postFixMixedTone?.darkAdjacentToneSeparation8Bit >= 48
+  && dmgWs5Receipt.postFixMixedTone?.settledShade2InteriorDistinctFromShade3Border === true,
 "KPA DMG WS5 Vulkan or normal-path acceptance failed");
 for (const input of Object.values(dmgWs5Receipt.inputs ?? {})) {
   if (!input?.path || !input?.sha256) continue;
