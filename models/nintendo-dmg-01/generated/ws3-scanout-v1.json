@@ -19,13 +19,13 @@
   },
   "causalProbe": {
     "transition": "shade 0 to shade 3",
-    "initialDirectorCoordinate": 0.051602468,
+    "initialDirectorCoordinate": 0.051601297,
     "targetDirectorCoordinate": 0.944774355,
-    "topRowAfterOneFrame": 0.077780726712,
-    "middleRowAfterOneFrame": 0.064828798453,
-    "bottomRowAfterOneFrame": 0.052047581559,
-    "middleRowShade2AfterOneFrame": 0.059572571325,
-    "topRowAfterSecondFrame": 0.103724927928
+    "topRowAfterOneFrame": 0.077788169053,
+    "middleRowAfterOneFrame": 0.065464935146,
+    "bottomRowAfterOneFrame": 0.053312857265,
+    "middleRowShade2AfterOneFrame": 0.060172681058,
+    "topRowAfterSecondFrame": 0.10373213188
   },
   "validation": {
     "manualVisibleRows": true,

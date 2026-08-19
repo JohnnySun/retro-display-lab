@@ -191,25 +191,25 @@ original DMG behavior belongs to the
 ## TARGET-KPA-DMGCROSSTALK-01 — DMG WS5 passive-matrix crosstalk acceptance
 
 - Source: direct run on the named GT78-VN unit on 2026-08-19, recorded in
-  [`validation/dmg01-ws5-20260819.json`](validation/dmg01-ws5-20260819.json)
-  and the numeric
-  [`validation/dmg01-ws5-gpu-crosstalk-v1.json`](validation/dmg01-ws5-gpu-crosstalk-v1.json).
+  [`validation/dmg01-ws5-common-mode-20260819.json`](validation/dmg01-ws5-common-mode-20260819.json).
 - Electrical reconstruction: three sourced/derived ensembles propagate
   `5–40 Ω/□` ITO, `11–30 kΩ` comparable period driver resistance,
   `0.340–2.081 pF` geometry/dielectric-derived pixel capacitance, LC leakage,
   and the DMG `160×144` three-dwell waveform through distributed row and column
   resistor ladders. The normal Shader uses the calculated nominal scale `1.0`;
   zero remains an isolation diagnostic.
-- Approximation: the nominal real-time surrogate differs from the full network
-  by `0.008997` shade RMS and `0.024016` at the 99th percentile. The declared
-  worst sparse edge error is `0.338495` shade at the far/top checkerboard edge;
-  it is retained in the report rather than hidden by the aggregate result.
-- Target result: single-dot, full-row, full-column, checkerboard,
-  alternating-line, window, and inverse-window stable captures all had distinct
-  hashes. CPU versus GPU effective-drive comparison passed with worst pattern
-  RMS `1.359/255` and 99th-percentile `2.291/255`, including RGBA8, RGB565, and
-  12 Mbit/s H.264 quantization. The response pass remained RGBA32F with
-  feedback, and the normal colored path compiled with row/column scale `1.0`.
+- Approximation: the rejected directional kernel has been replaced by summing
+  each distributed electrode's KCL equations and retaining its equipotential
+  common mode. There are no training patterns or image coefficients. Nominal
+  full-network error is `0.004733` shade RMS, `0.019108` at p99, and `0.020453`
+  maximum. Runtime float32 error is `0.000059`; the phase-local performance
+  reduction omits a `memory^8` boundary residual whose nominal maximum effect
+  is `0.000335` shade.
+- Target result: Mali compiled the `1×144`, `160×1`, `160×144`, `160×144`, and
+  `640×576` five-pass chain with no errors; the first three targets remained
+  RGBA32F and response feedback attached to pass 2. A 722-frame / 12.004-second
+  Tetris falling-animation run sustained `60.145 fps`; twelve sampled frames
+  showed no recurrence of the isolated wrong-shade/L-shaped fill artifact.
 - Capture discipline: one-second cold-start recordings were identical black
   Activity-transition frames and were rejected. Formal evidence waits three
   seconds before the two-second recording.
@@ -246,6 +246,16 @@ original DMG behavior belongs to the
 - Limits: SurfaceFlinger measures presented timing rather than optical scanout;
   the numeric comparison includes final display quantization rather than a
   direct float-texture dump; screenshots do not measure an original DMG LCD.
+  The archived `dmg01-ws7-20260819.json` static numeric capture predates the
+  follow-up WS2 fixed-point correction and remains historical evidence for
+  that generated artifact. The post-correction run is recorded separately in
+  [`validation/dmg01-ws7-fixedpoint-20260819.json`](validation/dmg01-ws7-fixedpoint-20260819.json)
+  and
+  [`validation/dmg01-ws7-gpu-static-v2.json`](validation/dmg01-ws7-gpu-static-v2.json):
+  the four calibrated optical states passed with a maximum five-code error,
+  early and ten-second hold captures were byte-identical, and a 10.006-second
+  Tetris capture presented 602 frames at `60.165 fps` with directional
+  intermediate-shade persistence and stable stationary graphics.
 
 ## TARGET-KPA-DRIVE-01 — WS2 drive-retention Vulkan runtime probe
 

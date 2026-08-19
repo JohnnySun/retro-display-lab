@@ -6,13 +6,16 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { altPleshkoAmplitudes } from "../models/nintendo-dmg-01/reference/stn-physics.mjs";
 import {
-  applySparseSurrogate,
-  fitSparseSurrogate,
+  CROSSTALK_KERNEL_RADIUS,
+  applySpatialKernelSurrogate,
+  fitAlternatingCrosstalkResidual,
+  fitSpatialKernelSurrogate,
   makePattern,
   pixelCapacitance,
   pixelLeakageResistance,
   simulateDistributedPattern,
-  sparseSurrogateFeatures,
+  spatialKernelFeatureKeys,
+  spatialKernelSurrogateFeatures,
 } from "../models/nintendo-dmg-01/reference/passive-matrix-crosstalk.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -49,8 +52,10 @@ const area = evidence.derivedPixelElectricalBounds.activePixelAreaSquareMeters;
 const amplitudes = altPleshkoAmplitudes(drive, 1);
 const patternIds = [
   "single-dot", "full-row", "full-column", "checkerboard",
-  "alternating-lines", "window", "inverse-window",
+  "alternating-lines", "window", "inverse-window", "solid-mino-fixture",
 ];
+const heldOutPatternIds = ["solid-mino-validation"];
+const allPatternIds = [...patternIds, ...heldOutPatternIds];
 const uniformIds = [0, 1, 2, 3].map((shade) => `uniform-${shade}`);
 const reports = [];
 const fitByEnsemble = {};
@@ -84,8 +89,9 @@ for (const ensemble of evidence.ensembles) {
     uniform.set(Number(id.slice(-1)), simulateDistributedPattern(makePattern(id), options));
   }
   const fitSamples = [];
+  const heldOutSamples = [];
   const patternReports = [];
-  for (const id of patternIds) {
+  for (const id of allPatternIds) {
     const pattern = makePattern(id);
     const result = simulateDistributedPattern(pattern, options);
     const deltas = new Array(pattern.shades.length);
@@ -104,10 +110,11 @@ for (const ensemble of evidence.ensembles) {
       }
       const x = i % pattern.columns;
       const y = Math.floor(i / pattern.columns);
-      const features = sparseSurrogateFeatures(
+      const features = spatialKernelSurrogateFeatures(
         pattern.shades, pattern.columns, pattern.rows, x, y,
       );
-      fitSamples.push({ ...features, delta, patternId: id, x, y, localDrive: shade });
+      const sample = { ...features, delta, patternId: id, x, y, localDrive: shade };
+      (heldOutPatternIds.includes(id) ? heldOutSamples : fitSamples).push(sample);
     }
     const [p05, median, p95] = quantiles(deltas, [0.05, 0.5, 0.95]);
     patternReports.push({
@@ -120,23 +127,57 @@ for (const ensemble of evidence.ensembles) {
       omittedSecondOrderInstantaneousUpperBound: clean(result.omittedSecondOrderFractionBound),
     });
   }
-  const coefficients = fitSparseSurrogate(fitSamples);
-  fitByEnsemble[ensemble.id] = coefficients;
+  const baseFitSamples = fitSamples.filter((sample) => ![
+    "checkerboard", "alternating-lines",
+  ].includes(sample.patternId));
+  const fit = fitSpatialKernelSurrogate(baseFitSamples);
+  fit.alternatingCoefficients = fitAlternatingCrosstalkResidual(
+    fitSamples.filter((sample) => ["checkerboard", "alternating-lines"].includes(sample.patternId)),
+    fit,
+  );
+  fitByEnsemble[ensemble.id] = fit;
   let squaredResidual = 0;
   let maximumResidual = 0;
   let maximumResidualContext = null;
   const absoluteResiduals = [];
   for (const sample of fitSamples) {
-    const predicted = coefficients.rowBaseCoefficient * sample.rowBase
-      + coefficients.rowRepeatedCoefficient * sample.rowRepeated
-      + coefficients.columnBaseCoefficient * sample.columnBase
-      + coefficients.columnRepeatedCoefficient * sample.columnRepeated;
+    const predicted = applySpatialKernelSurrogate(
+      sample.localDrive, sample, fit,
+    ) - sample.localDrive;
     const residual = predicted - sample.delta;
     absoluteResiduals.push(Math.abs(residual));
     squaredResidual += residual * residual;
     if (Math.abs(residual) > maximumResidual) {
       maximumResidual = Math.abs(residual);
       maximumResidualContext = {
+        patternId: sample.patternId,
+        location: [sample.x, sample.y],
+        localDrive: sample.localDrive,
+        networkDelta: clean(sample.delta),
+        surrogateDelta: clean(predicted),
+      };
+    }
+  }
+  let heldOutSquaredResidual = 0;
+  let heldOutMaximumResidual = 0;
+  let heldOutMaximumContext = null;
+  let heldOutSolidMaximumNetworkDelta = 0;
+  const heldOutAbsoluteResiduals = [];
+  for (const sample of heldOutSamples) {
+    const predicted = applySpatialKernelSurrogate(
+      sample.localDrive, sample, fit,
+    ) - sample.localDrive;
+    const residual = predicted - sample.delta;
+    heldOutSquaredResidual += residual * residual;
+    heldOutAbsoluteResiduals.push(Math.abs(residual));
+    if (sample.localDrive > 0) {
+      heldOutSolidMaximumNetworkDelta = Math.max(
+        heldOutSolidMaximumNetworkDelta, Math.abs(sample.delta),
+      );
+    }
+    if (Math.abs(residual) > heldOutMaximumResidual) {
+      heldOutMaximumResidual = Math.abs(residual);
+      heldOutMaximumContext = {
         patternId: sample.patternId,
         location: [sample.x, sample.y],
         localDrive: sample.localDrive,
@@ -160,15 +201,32 @@ for (const ensemble of evidence.ensembles) {
     },
     patterns: patternReports,
     surrogate: {
-      rowBaseCoefficient: clean(coefficients.rowBaseCoefficient),
-      rowRepeatedCoefficient: clean(coefficients.rowRepeatedCoefficient),
-      columnBaseCoefficient: clean(coefficients.columnBaseCoefficient),
-      columnRepeatedCoefficient: clean(coefficients.columnRepeatedCoefficient),
+      kind: "distributed signed spatial kernel",
+      radiusPixels: fit.radius,
+      ridge: clean(fit.ridge),
+      coefficients: Object.fromEntries(Object.entries(fit.coefficients).map(
+        ([key, value]) => [key, clean(value)],
+      )),
+      alternatingCoefficients: Object.fromEntries(Object.entries(fit.alternatingCoefficients).map(
+        ([key, value]) => [key, clean(value)],
+      )),
       rmsResidualDriveCoordinate: clean(Math.sqrt(squaredResidual / fitSamples.length)),
       p99AbsoluteResidualDriveCoordinate: clean(quantiles(absoluteResiduals, [0.99])[0]),
       maximumAbsoluteResidualDriveCoordinate: clean(maximumResidual),
       maximumResidualContext,
       samples: fitSamples.length,
+      heldOutSolidMino: {
+        rmsResidualDriveCoordinate: clean(Math.sqrt(
+          heldOutSquaredResidual / heldOutSamples.length,
+        )),
+        p99AbsoluteResidualDriveCoordinate: clean(
+          quantiles(heldOutAbsoluteResiduals, [0.99])[0],
+        ),
+        maximumAbsoluteResidualDriveCoordinate: clean(heldOutMaximumResidual),
+        maximumNetworkDeltaOnSolidPixels: clean(heldOutSolidMaximumNetworkDelta),
+        maximumResidualContext: heldOutMaximumContext,
+        samples: heldOutSamples.length,
+      },
     },
   });
 }
@@ -210,10 +268,16 @@ const checks = {
   capacitanceRecomputed: true,
   leakageNegligibleAtDwell: evidence.derivedPixelElectricalBounds.minimumLeakageTimeConstantToDwellRatio > 500,
   constantFieldsUnchangedByDefinition: true,
-  canonicalPatternsComplete: reports.every((report) => report.patterns.length === 7),
+  canonicalPatternsComplete: reports.every((report) => report.patterns.length === 9),
   boundedEnsemblesComplete: reports.length === 3,
-  surrogateFinite: Object.values(fitByEnsemble).every((fit) => Object.values(fit).every(Number.isFinite)),
+  surrogateFinite: Object.values(fitByEnsemble).every((fit) => [
+    ...Object.values(fit.coefficients), ...Object.values(fit.alternatingCoefficients), fit.ridge,
+  ].every(Number.isFinite)),
   nominalSurrogateRmsErrorBelow0_05Shade: nominal.surrogate.rmsResidualDriveCoordinate < 0.05,
+  nominalHeldOutSolidMinoRmsErrorBelow0_01Shade:
+    nominal.surrogate.heldOutSolidMino.rmsResidualDriveCoordinate < 0.01,
+  nominalHeldOutSolidMinoMaximumErrorBelow0_08Shade:
+    nominal.surrogate.heldOutSolidMino.maximumAbsoluteResidualDriveCoordinate < 0.08,
   convergenceRmsBelow0_02Shade: Math.sqrt(
     squaredConvergenceDifference / coarse.driveCoordinates.length,
   ) < 0.02,
@@ -245,22 +309,10 @@ const report = {
     parameterSemantics: "RowCrosstalk and ColumnCrosstalk are dimensionless sensitivity multipliers around the calculated nominal coefficients; 1.0 is reconstructed nominal and 0.0 disables the mechanism",
   },
   uncertaintyEnvelope: {
-    rowBaseCoefficient: [
-      clean(Math.min(...Object.values(fitByEnsemble).map((item) => item.rowBaseCoefficient))),
-      clean(Math.max(...Object.values(fitByEnsemble).map((item) => item.rowBaseCoefficient))),
-    ],
-    rowRepeatedCoefficient: [
-      clean(Math.min(...Object.values(fitByEnsemble).map((item) => item.rowRepeatedCoefficient))),
-      clean(Math.max(...Object.values(fitByEnsemble).map((item) => item.rowRepeatedCoefficient))),
-    ],
-    columnBaseCoefficient: [
-      clean(Math.min(...Object.values(fitByEnsemble).map((item) => item.columnBaseCoefficient))),
-      clean(Math.max(...Object.values(fitByEnsemble).map((item) => item.columnBaseCoefficient))),
-    ],
-    columnRepeatedCoefficient: [
-      clean(Math.min(...Object.values(fitByEnsemble).map((item) => item.columnRepeatedCoefficient))),
-      clean(Math.max(...Object.values(fitByEnsemble).map((item) => item.columnRepeatedCoefficient))),
-    ],
+    perTapCoefficientBounds: Object.fromEntries(spatialKernelFeatureKeys().map((key) => [key, [
+      clean(Math.min(...Object.values(fitByEnsemble).map((item) => item.coefficients[key]))),
+      clean(Math.max(...Object.values(fitByEnsemble).map((item) => item.coefficients[key]))),
+    ]])),
     dominantInputs: "driver output resistance and total line capacitance set settling; ITO sheet resistance and one-ended topology set the position gradient; LC leakage is negligible on the dwell scale",
   },
   convergence: {
@@ -277,12 +329,19 @@ const report = {
   pass: Object.values(checks).every(Boolean),
 };
 
+const coefficientArray = (prefix) => spatialKernelFeatureKeys()
+  .filter((key) => key.startsWith(prefix))
+  .map((key) => nominal.surrogate.coefficients[key].toFixed(12))
+  .join(", ");
 const include = `// Generated by tools/build-dmg01-ws5.mjs from period-bounded distributed RC.\n`
-  + `// 1.0 parameter scale is the nominal physical reconstruction; zero disables it.\n`
-  + `const float DMG_CROSSTALK_ROW_BASE = ${nominal.surrogate.rowBaseCoefficient.toFixed(12)};\n`
-  + `const float DMG_CROSSTALK_ROW_REPEATED = ${nominal.surrogate.rowRepeatedCoefficient.toFixed(12)};\n`
-  + `const float DMG_CROSSTALK_COLUMN_BASE = ${nominal.surrogate.columnBaseCoefficient.toFixed(12)};\n`
-  + `const float DMG_CROSSTALK_COLUMN_REPEATED = ${nominal.surrogate.columnRepeatedCoefficient.toFixed(12)};\n`;
+  + `// Signed 8-pixel Green-function kernel; 1.0 is nominal and zero disables it.\n`
+  + `const int DMG_CROSSTALK_KERNEL_RADIUS = ${CROSSTALK_KERNEL_RADIUS};\n`
+  + `const float DMG_CROSSTALK_ROW_BEFORE[${CROSSTALK_KERNEL_RADIUS}] = float[](${coefficientArray("rowBefore")});\n`
+  + `const float DMG_CROSSTALK_ROW_AFTER[${CROSSTALK_KERNEL_RADIUS}] = float[](${coefficientArray("rowAfter")});\n`
+  + `const float DMG_CROSSTALK_COLUMN_BEFORE[${CROSSTALK_KERNEL_RADIUS}] = float[](${coefficientArray("columnBefore")});\n`
+  + `const float DMG_CROSSTALK_COLUMN_AFTER[${CROSSTALK_KERNEL_RADIUS}] = float[](${coefficientArray("columnAfter")});\n`
+  + `const float DMG_CROSSTALK_ROW_ALTERNATING = ${nominal.surrogate.alternatingCoefficients.rowAlternating.toFixed(12)};\n`
+  + `const float DMG_CROSSTALK_COLUMN_ALTERNATING = ${nominal.surrogate.alternatingCoefficients.columnAlternating.toFixed(12)};\n`;
 const serialized = `${JSON.stringify(report, null, 2)}\n`;
 
 if (checkOnly) {

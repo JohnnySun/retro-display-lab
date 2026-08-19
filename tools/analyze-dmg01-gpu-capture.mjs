@@ -97,6 +97,20 @@ function lookup(values, coordinate) {
   return values[low] + (values[low + 1] - values[low]) * (position - low);
 }
 
+function opticalCorrection(coordinate, anchors, corrections) {
+  const q = Math.max(0, Math.min(1, coordinate));
+  if (q <= anchors[0]) return corrections[0] * q / Math.max(anchors[0], 1e-12);
+  for (let index = 0; index < anchors.length - 1; index += 1) {
+    if (q <= anchors[index + 1]) {
+      const fraction = (q - anchors[index])
+        / Math.max(anchors[index + 1] - anchors[index], 1e-12);
+      return corrections[index]
+        + (corrections[index + 1] - corrections[index]) * fraction;
+    }
+  }
+  return corrections.at(-1) * (1 - q) / Math.max(1 - anchors.at(-1), 1e-12);
+}
+
 function rgb565(value) {
   const r = Math.round(value * 31) * 255 / 31;
   const g = Math.round(value * 63) * 255 / 63;
@@ -117,7 +131,12 @@ const include = fs.readFileSync(path.join(
 ), "utf8");
 const targets = includeArray(include, "DMG_PHYSICAL_TARGET_Q").slice(4, 8);
 const optical = includeArray(include, "DMG_PHYSICAL_OPTICAL");
-const expectedStates = targets.map((coordinate) => lookup(optical, coordinate));
+const opticalAnchors = includeArray(include, "DMG_PHYSICAL_OPTICAL_ANCHOR_Q");
+const opticalCorrections = includeArray(include, "DMG_PHYSICAL_OPTICAL_CORRECTION");
+const expectedStates = targets.map((coordinate) => Math.max(0.25, Math.min(1,
+  lookup(optical, coordinate)
+    + opticalCorrection(coordinate, opticalAnchors, opticalCorrections),
+)));
 const viewport = { x: 160, y: 32, width: 640, height: 576, scale: 4 };
 
 const samples = [];
@@ -148,12 +167,12 @@ for (let shade = 0; shade < 4; shade += 1) {
 
 const report = {
   schemaVersion: 1,
-  reportId: "nintendo-dmg-01-ws7-gpu-static-v1",
+  reportId: "nintendo-dmg-01-ws7-gpu-static-v2",
   capture: path.basename(inputPath),
   captureSha256: crypto.createHash("sha256").update(captureBuffer).digest("hex"),
   captureDimensions: [image.width, image.height],
   viewport,
-  comparison: "Generated CPU director-to-optical LUT sampled at the four nominal equilibrium coordinates versus DebugView=4 GPU output after the final RGBA8 pass and RGB565 swapchain.",
+  comparison: "Generated calibrated director-to-optical LUT sampled at the four nominal equilibrium coordinates versus DebugView=4 GPU output after the final RGBA8 pass and RGB565 swapchain.",
   tolerance8Bit: 6,
   samples,
   maximumChannelError: Math.max(...samples.map((sample) => sample.maximumChannelError)),

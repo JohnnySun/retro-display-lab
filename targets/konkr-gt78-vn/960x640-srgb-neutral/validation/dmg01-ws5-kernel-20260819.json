@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws5-kernel-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "distributed-rc-derived-spatial-kernel-and-solid-mino-device-validation",
+  "ws5CompletionEvidence": true,
+  "validatedOn": "2026-08-19",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4",
+    "retroArchVersion": "1.22.2"
+  },
+  "inputs": {
+    "periodEvidence": {
+      "path": "models/nintendo-dmg-01/data/passive-matrix-crosstalk-evidence-v1.json",
+      "sha256": "eb14fdc23c0d2ff3558e67db2c93aaf9cf456d98fa9a31507bc13f9a6d3a5ecb"
+    },
+    "cpuReference": {
+      "path": "models/nintendo-dmg-01/reference/passive-matrix-crosstalk.mjs",
+      "sha256": "df88c6ebe6e17c8ea5bed303efa0429079c5602f6ccca197dbd4bc367ee3c6e8"
+    },
+    "generatedReport": {
+      "path": "models/nintendo-dmg-01/generated/ws5-crosstalk-v1.json",
+      "sha256": "82bdb977b548c167aedd7cc9c99ef6088439cf959f4e05dfcd46a9a6e2797a15",
+      "validationPass": true
+    },
+    "generatedShaderKernel": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-crosstalk-surrogate.inc",
+      "sha256": "2e3b0e319f92bbc88d6b07fbb558717b0fd5a14a41691f8f4f3c3a0580819f47"
+    },
+    "responseShader": {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
+      "sha256": "56ae06ba35c198fd9e72188ac26031e839652cbae6f89750031e711b2a2efb2b"
+    },
+    "gpuReport": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws5-gpu-crosstalk-v2.json",
+      "sha256": "623d3849e1395a857a05553ebad1f6e56a8eaca1094071990446c2f5f7766ba4",
+      "validationPass": true
+    }
+  },
+  "reconstruction": {
+    "runtimeReduction": "signed directional eight-pixel Green-function kernel plus separately fitted sustained-alternation loading modes",
+    "trainingPatterns": [
+      "single-dot",
+      "full-row",
+      "full-column",
+      "checkerboard",
+      "alternating-lines",
+      "window",
+      "inverse-window",
+      "solid-mino-fixture"
+    ],
+    "heldOutPattern": "solid-mino-validation",
+    "constantFieldInvariant": true,
+    "nominalNetworkToKernelRmsErrorShade": 0.008808246047,
+    "nominalNetworkToKernelP99ErrorShade": 0.009403098169,
+    "heldOutSolidMinoRmsErrorShade": 0.001418328777,
+    "heldOutSolidMinoP99ErrorShade": 0.006076477622,
+    "heldOutSolidMinoMaximumErrorShade": 0.031057921226,
+    "heldOutSolidMinoMaximumPhysicalNetworkDeltaShade": 0.060723088793,
+    "normalSurrogateScale": {
+      "RowCrosstalk": 1,
+      "ColumnCrosstalk": 1
+    }
+  },
+  "gpuRun": {
+    "patterns": [
+      "single-dot",
+      "full-row",
+      "full-column",
+      "checkerboard",
+      "alternating-lines",
+      "window",
+      "inverse-window"
+    ],
+    "maximumPatternRmsError8Bit": 1.351,
+    "maximumPatternP99AbsoluteError8Bit": 1.927,
+    "toleranceRms8Bit": 8,
+    "toleranceP99Absolute8Bit": 20,
+    "passFormats": [
+      "R32G32B32A32_SFLOAT",
+      "R16G16B16A16_SFLOAT",
+      "R8G8B8A8_UNORM"
+    ],
+    "responseFeedbackConfirmed": true,
+    "shaderCompileErrors": 0,
+    "compileLog": "retroarch__2026_08_19__14_22_46.log",
+    "result": "pass"
+  },
+  "tetrisMotion": {
+    "content": "/storage/3162-6335/Roms/gb/俄罗斯方块.gb",
+    "capture": "/private/tmp/ws5-kernel-tetris-motion.mp4",
+    "captureSha256": "ee1908e27c62711c98e5f3ee40334e04a356968ff93251f9619f695e141cceb0",
+    "durationSeconds": 11.984978,
+    "frames": 721,
+    "averageFps": 60.165,
+    "fallingAnimationPresent": true,
+    "solidPieceEdgesReviewed": true,
+    "sparseSurrogateLShapeOvershootPresent": false,
+    "result": "pass"
+  },
+  "deployment": {
+    "preset": "/sdcard/RetroArch/config/Gambatte/gb.slangp",
+    "presetSha256": "bcb2d63c1961cac845b7cb6710e4e095e1d232c2d476e0d53db014e0fd832dfd",
+    "responseShaderSha256": "56ae06ba35c198fd9e72188ac26031e839652cbae6f89750031e711b2a2efb2b",
+    "generatedKernelSha256": "2e3b0e319f92bbc88d6b07fbb558717b0fd5a14a41691f8f4f3c3a0580819f47",
+    "backup": "/sdcard/RetroArch/shaders/.codex-validation/20260819-ws5-kernel-predeploy"
+  },
+  "limits": [
+    "The per-frame full 160x144 distributed ladder solve remains the offline reference; the runtime Shader is its generated directional reduction.",
+    "This is a period-evidence-bounded healthy-panel reconstruction, not a factory DMG electrode measurement.",
+    "The held-out solid-mino gate distinguishes physical network variation from reduction error and prevents the former sparse-neighbor overshoot from being accepted as a display defect."
+  ],
+  "result": "pass"
+}

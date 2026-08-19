@@ -45,6 +45,30 @@ export function makePattern(id, columns = 160, rows = 144) {
         set(x, y, inverse ? 0 : 3);
       }
     }
+  } else if (id === "solid-mino-fixture" || id === "solid-mino-validation") {
+    // Three separated, source-uniform tetrominoes exercise 8x8 DMG tile
+    // interiors and every horizontal/vertical edge orientation. This is a
+    // training and held-out validation scenes without relying on emulator art.
+    const mino = 8;
+    const drawPiece = (originX, originY, cells) => {
+      for (const [cellX, cellY] of cells) {
+        for (let py = 0; py < mino; py += 1) {
+          for (let px = 0; px < mino; px += 1) {
+            set(originX + cellX * mino + px, originY + cellY * mino + py, 3);
+          }
+        }
+      }
+    };
+    if (id === "solid-mino-fixture") {
+      const j = [[0, 0], [1, 0], [2, 0], [0, 1]];
+      drawPiece(16, 8, j);
+      drawPiece(68, 64, j);
+      drawPiece(120, 120, j);
+    } else {
+      drawPiece(8, 36, [[0, 0], [1, 0], [2, 0], [1, 1]]);
+      drawPiece(72, 96, [[0, 0], [1, 0], [0, 1], [1, 1]]);
+      drawPiece(128, 40, [[1, 0], [2, 0], [0, 1], [1, 1]]);
+    }
   } else {
     throw new Error(`unknown crosstalk pattern: ${id}`);
   }
@@ -216,37 +240,50 @@ export function simulateDistributedPattern(pattern, options) {
   };
 }
 
-export function sparseSurrogateFeatures(shades, columns, rows, x, y) {
+export const CROSSTALK_KERNEL_RADIUS = 8;
+
+export function spatialKernelFeatureKeys(radius = CROSSTALK_KERNEL_RADIUS) {
+  const keys = [];
+  for (const axis of ["rowBefore", "rowAfter", "columnBefore", "columnAfter"]) {
+    for (let distance = 1; distance <= radius; distance += 1) {
+      keys.push(`${axis}${distance}`);
+    }
+  }
+  return keys;
+}
+
+export function spatialKernelSurrogateFeatures(shades, columns, rows, x, y,
+  radius = CROSSTALK_KERNEL_RADIUS) {
   const bounded = (value, maximum) => Math.max(0, Math.min(maximum - 1, value));
   const at = (px, py) => shades[bounded(py, rows) * columns + bounded(px, columns)];
   const atColumn = (px, py) => shades[((py % rows + rows) % rows) * columns + bounded(px, columns)];
   const center = at(x, y);
+  const darkWeight = center / 3;
   const difference = (a, b) => Math.abs(a - b) / 3;
   const similarity = (a, b) => 1 - difference(a, b);
-  const leftTransition = difference(center, at(x - 1, y));
-  const rightTransition = difference(center, at(x + 1, y));
-  const previousTransition = difference(center, atColumn(x, y - 1));
-  const nextTransition = difference(center, atColumn(x, y + 1));
-  const darkWeight = center / 3;
-  const rowBase = -darkWeight * 0.5 * (leftTransition + rightTransition);
-  const rowRepeated = -darkWeight * leftTransition * rightTransition
-    * 0.5 * (similarity(center, at(x - 2, y)) + similarity(center, at(x + 2, y)));
-  // Column drivers see rows in scan order. Separate the one-off predecessor
-  // transition from a sustained two-row alternation, which repeatedly reloads
-  // the same output and cannot be represented by a symmetric neighborhood blur.
-  const columnBase = -darkWeight * previousTransition;
-  const columnRepeated = -darkWeight * previousTransition * nextTransition
-    * 0.5 * (similarity(center, atColumn(x, y - 2)) + similarity(center, atColumn(x, y + 2)));
-  return {
-    rowBase,
-    rowRepeated,
-    columnBase,
-    columnRepeated,
-  };
+  const normalizedDifference = (neighbor) => darkWeight * (neighbor - center) / 3;
+  const features = {};
+  for (let distance = 1; distance <= radius; distance += 1) {
+    features[`rowBefore${distance}`] = normalizedDifference(at(x - distance, y));
+    features[`rowAfter${distance}`] = normalizedDifference(at(x + distance, y));
+    // Rows are cyclic in the frame scan, matching the column-driver state
+    // carried across the frame boundary by the electrical reference.
+    features[`columnBefore${distance}`] = normalizedDifference(atColumn(x, y - distance));
+    features[`columnAfter${distance}`] = normalizedDifference(atColumn(x, y + distance));
+  }
+  const left = difference(center, at(x - 1, y));
+  const right = difference(center, at(x + 1, y));
+  const before = difference(center, atColumn(x, y - 1));
+  const after = difference(center, atColumn(x, y + 1));
+  features.rowAlternating = -darkWeight * left * right * 0.5
+    * (similarity(center, at(x - 2, y)) + similarity(center, at(x + 2, y)));
+  features.columnAlternating = -darkWeight * before * after * 0.5
+    * (similarity(center, atColumn(x, y - 2)) + similarity(center, atColumn(x, y + 2)));
+  return features;
 }
 
-export function fitSparseSurrogate(samples) {
-  const keys = ["rowBase", "rowRepeated", "columnBase", "columnRepeated"];
+export function fitSpatialKernelSurrogate(samples, radius = CROSSTALK_KERNEL_RADIUS) {
+  const keys = spatialKernelFeatureKeys(radius);
   const normal = Array.from({ length: keys.length }, () => new Float64Array(keys.length + 1));
   for (const sample of samples) {
     for (let row = 0; row < keys.length; row += 1) {
@@ -256,6 +293,13 @@ export function fitSparseSurrogate(samples) {
       normal[row][keys.length] += sample[keys[row]] * sample.delta;
     }
   }
+  // A small, scale-relative Tikhonov term makes the distributed kernel unique
+  // where canonical periodic patterns leave neighboring taps correlated. It
+  // is regularization of a physical impulse response, not a visual-strength
+  // control: the Shader's 1.0 scale remains the reconstructed nominal model.
+  const diagonalMean = normal.reduce((sum, row, index) => sum + row[index], 0) / keys.length;
+  const ridge = diagonalMean * 1e-4;
+  for (let index = 0; index < keys.length; index += 1) normal[index][index] += ridge;
   for (let pivot = 0; pivot < keys.length; pivot += 1) {
     let best = pivot;
     for (let row = pivot + 1; row < keys.length; row += 1) {
@@ -273,13 +317,48 @@ export function fitSparseSurrogate(samples) {
       }
     }
   }
-  return Object.fromEntries(keys.map((key, index) => [`${key}Coefficient`, normal[index][keys.length]]));
+  return {
+    coefficients: Object.fromEntries(keys.map((key, index) => [key, normal[index][keys.length]])),
+    radius,
+    ridge,
+  };
 }
 
-export function applySparseSurrogate(localDrive, features, coefficients, rowScale = 1, columnScale = 1) {
-  return Math.max(0, Math.min(3, localDrive
-    + rowScale * (coefficients.rowBaseCoefficient * features.rowBase
-      + coefficients.rowRepeatedCoefficient * features.rowRepeated)
-    + columnScale * (coefficients.columnBaseCoefficient * features.columnBase
-      + coefficients.columnRepeatedCoefficient * features.columnRepeated)));
+export function fitAlternatingCrosstalkResidual(samples, baseFit) {
+  const keys = ["rowAlternating", "columnAlternating"];
+  const normal = Array.from({ length: 2 }, () => new Float64Array(3));
+  for (const sample of samples) {
+    const baseDelta = applySpatialKernelSurrogate(sample.localDrive, sample, baseFit)
+      - sample.localDrive;
+    const target = sample.delta - baseDelta;
+    for (let row = 0; row < 2; row += 1) {
+      for (let column = 0; column < 2; column += 1) {
+        normal[row][column] += sample[keys[row]] * sample[keys[column]];
+      }
+      normal[row][2] += sample[keys[row]] * target;
+    }
+  }
+  const determinant = normal[0][0] * normal[1][1] - normal[0][1] * normal[1][0];
+  if (Math.abs(determinant) < 1e-15) throw new Error("singular alternating crosstalk fit");
+  return {
+    rowAlternating: (normal[0][2] * normal[1][1] - normal[1][2] * normal[0][1])
+      / determinant,
+    columnAlternating: (normal[1][2] * normal[0][0] - normal[0][2] * normal[1][0])
+      / determinant,
+  };
+}
+
+export function applySpatialKernelSurrogate(localDrive, features, fit,
+  rowScale = 1, columnScale = 1) {
+  let correction = 0;
+  for (const [key, coefficient] of Object.entries(fit.coefficients)) {
+    correction += (key.startsWith("row") ? rowScale : columnScale) * coefficient * features[key];
+  }
+  if (fit.alternatingCoefficients) {
+    correction += rowScale * fit.alternatingCoefficients.rowAlternating
+      * features.rowAlternating;
+    correction += columnScale * fit.alternatingCoefficients.columnAlternating
+      * features.columnAlternating;
+  }
+  return Math.max(0, Math.min(3, localDrive + correction));
 }

@@ -138,8 +138,12 @@ waveform has been measured.
   plausible-fast, and plausible-slow physical ensembles.
 - [x] Generate the 65-bin director-drift and director-to-optical LUTs consumed
   by the Shader; do not hand-author response coefficients.
-- [x] Record equilibrium, zero-field relaxation, energy, timestep, grid, static
-  shade, and runtime-surrogate validation.
+- [x] Integrate each equilibrium adaptively to an angular convergence gate;
+  record zero-field relaxation, energy, timestep, grid, static shade, and
+  runtime-surrogate validation.
+- [x] Anchor all four nominal director equilibria as zero-drift runtime fixed
+  points and exact optical shades; verify a 600-frame constant-input hold on
+  the normal `N=1` path.
 - [x] Keep ionic image sticking as a separate slow mechanism rather than using
   it to manufacture ordinary frame motion.
 - [x] Remove `DarkenResponse`, `ClearResponse`, `SlowTail`, `SlowRateScale`,
@@ -401,14 +405,18 @@ impossible or because the temporary coefficients remain zero.
 Completion artifacts are
 `data/passive-matrix-crosstalk-evidence-v1.json`,
 `reference/passive-matrix-crosstalk.mjs`,
-`generated/ws5-crosstalk-v1.json`, the generated
-`shaders/dmg01-crosstalk-surrogate.inc`, the two WS5 isolation/numeric presets,
-and target receipts `dmg01-ws5-gpu-crosstalk-v1.json` /
-`dmg01-ws5-20260819.json`. The nominal full-network to runtime-surrogate error
-is `0.008997` shade RMS and `0.024016` p99; the declared worst sparse
-checkerboard edge case is `0.338495` shade. Seven deterministic scenes pass on
-the KONKR Vulkan path with maximum pattern RMS `1.359/255`, below the declared
-`8/255` gate.
+`reference/passive-matrix-crosstalk-lumped.mjs`,
+`generated/ws5-crosstalk-lumped-v2.json`, the generated constants plus
+phase-local reduction, row-load and per-column summary passes, the two WS5
+isolation/numeric presets, and target receipt
+`dmg01-ws5-common-mode-20260819.json`. The earlier image-fitted directional
+kernel is retained only as rejected historical evidence. The replacement is
+derived by summing electrode KCL equations and has no training patterns or
+image coefficients. Nominal full-network error is `0.004733` shade RMS,
+`0.019108` p99 and `0.020453` maximum; float32 error is `0.000059` and the
+phase-boundary residual is `0.000335` shade. The five-pass Mali path compiles
+without error and a 722-frame Tetris run sustains `60.145 fps` without the
+isolated wrong-shade artifact.
 
 ## Project definition of done
 
@@ -424,8 +432,13 @@ the KONKR Vulkan path with maximum pattern RMS `1.359/255`, below the declared
   workstreams.
 - [x] Demonstrate CPU reference, generated surrogate, and GPU output agreement
   within declared numerical tolerances. The WS7 settled-state comparison
-  includes the final RGBA8/RGB565 presentation quantization and passes with a
-  maximum four-code error against a six-code tolerance.
+  includes the final RGBA8/RGB565 presentation quantization. The original
+  artifact passed at four codes; the post-fixed-point v2 artifact passes at
+  five codes against the same six-code tolerance and remains byte-identical
+  over a ten-second constant-input hold.
+- [x] Re-run the reviewed fixed-point Shader on KONKR with normal `N=1`
+  feedback and a 602-frame Tetris motion capture; retain directional
+  intermediate-shade persistence without stationary-graphic drift.
 - [x] Pass the complete WS7 frontend, lifecycle, frame-pacing, precision, and
   synchronized target-runtime contract with the normal preset.
 - [x] Keep the final claim bounded to a best-effort reconstruction of a healthy

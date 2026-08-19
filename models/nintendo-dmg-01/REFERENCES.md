@@ -150,9 +150,10 @@ the versioned drive and material records.
 
 ### DMG-ION-01 — Direct adsorption/desorption kinetic equation
 
-- Source: Masahiro Mizusaki et al., “Generation Mechanism of Residual Direct
-  Current Voltage and Image Sticking on Liquid Crystal Displays,” *Kobunshi
-  Ronbunshu* 68 (2011), 39–44,
+- Source: Masanobu Mizusaki, Tetsuya Miyashita, and Tatsuo Uchida,
+  “Interaction between Impurity Ions and Alignment Polymer Layers Affecting
+  the Image Sticking Effect on Liquid Crystal Displays,” *Kobunshi Ronbunshu*
+  68 (2011), 39–44,
   [DOI 10.1295/koron.68.39](https://doi.org/10.1295/koron.68.39).
 - Used for: the directly measured first-order kinetic form
   `dn_a/dt = k_a N_s(n_s-n_a)-k_d n_a` and a slow-desorption range of
@@ -166,7 +167,7 @@ the versioned drive and material records.
 
 ### DMG-DRIVE-01 — DMG-LCD-06 bias and driver topology
 
-- Source: gekkio, [Game Boy DMG-LCD-06 reverse-engineered schematic](https://github.com/Gekkio/gb-schematics/blob/main/DMG-LCD-06/DMG-LCD-06.pdf).
+- Source: gekkio, [Game Boy DMG-LCD-06 reverse-engineered schematic](https://github.com/Gekkio/gb-schematics/blob/main/DMG-LCD-06/schematic/DMG-LCD-06.pdf).
 - Used for: IR3E02 bias generator, 30 kΩ contrast potentiometer, V1–V5 rails,
   Sharp LH5076 row driver, Sharp LH5077 column driver, and the FR/CPG/LD0/LD1
   signal routing recorded in `data/dmg-drive-v1.json`.

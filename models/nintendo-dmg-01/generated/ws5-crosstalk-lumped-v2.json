@@ -1,0 +1,460 @@
+{
+  "schemaVersion": 2,
+  "reportId": "nintendo-dmg-01-ws5-crosstalk-lumped-v2",
+  "classification": "structure-preserving common-electrode-mode reduction; no image-pattern fit",
+  "sourceModel": "reference/passive-matrix-crosstalk.mjs",
+  "reducedModel": "reference/passive-matrix-crosstalk-lumped.mjs",
+  "ensembles": [
+    {
+      "id": "plausible-low",
+      "reductionBasis": {
+        "assumption": "sum each electrode's distributed KCL equations and retain the equipotential common mode",
+        "maximumRowElectrodeSeriesToDriverResistanceRatio": 0.082597402597,
+        "maximumColumnElectrodeSeriesToDriverResistanceRatio": 0.074285714286,
+        "factors": {
+          "row": {
+            "memory": 0.116579218131,
+            "leakage": 0.000014911681,
+            "driver": 0.883405870188,
+            "totalCapacitanceFarads": 5.4e-11,
+            "timeConstantSeconds": 5.97826e-7
+          },
+          "column": {
+            "memory": 0.106159048506,
+            "leakage": 0.000013578834,
+            "driver": 0.89382737266,
+            "totalCapacitanceFarads": 4.9e-11,
+            "timeConstantSeconds": 5.38044e-7
+          }
+        }
+      },
+      "patterns": [
+        {
+          "id": "single-dot",
+          "rmsNormalizedDriveError": 0.00000529415,
+          "maximumAbsoluteNormalizedDriveError": 0.000803595511
+        },
+        {
+          "id": "full-row",
+          "rmsNormalizedDriveError": 0.000092522972,
+          "maximumAbsoluteNormalizedDriveError": 0.001405024849
+        },
+        {
+          "id": "full-column",
+          "rmsNormalizedDriveError": 0.000008461746,
+          "maximumAbsoluteNormalizedDriveError": 0.00090356492
+        },
+        {
+          "id": "checkerboard",
+          "rmsNormalizedDriveError": 0.003202495036,
+          "maximumAbsoluteNormalizedDriveError": 0.006317025676
+        },
+        {
+          "id": "alternating-lines",
+          "rmsNormalizedDriveError": 0.005260637772,
+          "maximumAbsoluteNormalizedDriveError": 0.010464433736
+        },
+        {
+          "id": "window",
+          "rmsNormalizedDriveError": 0.000053115072,
+          "maximumAbsoluteNormalizedDriveError": 0.00055302719
+        },
+        {
+          "id": "inverse-window",
+          "rmsNormalizedDriveError": 0.000064459142,
+          "maximumAbsoluteNormalizedDriveError": 0.000773089522
+        },
+        {
+          "id": "solid-mino-fixture",
+          "rmsNormalizedDriveError": 0.000036548467,
+          "maximumAbsoluteNormalizedDriveError": 0.000640371719
+        },
+        {
+          "id": "solid-mino-validation",
+          "rmsNormalizedDriveError": 0.000031230483,
+          "maximumAbsoluteNormalizedDriveError": 0.000635031044
+        }
+      ],
+      "rmsNormalizedDriveError": 0.002053404535,
+      "p99AbsoluteNormalizedDriveError": 0.009325826002,
+      "maximumAbsoluteNormalizedDriveError": 0.010464433736,
+      "maximumContext": {
+        "patternId": "alternating-lines",
+        "location": [
+          159,
+          141
+        ],
+        "shade": 3,
+        "distributedDelta": -0.345948051675,
+        "lumpedDelta": -0.335483617938
+      },
+      "runtimeClosedForm": {
+        "maximumAbsoluteDriveError": 2e-12,
+        "maximumContext": {
+          "patternId": "inverse-window",
+          "location": [
+            0,
+            0
+          ]
+        },
+        "maximumFloat32DriveError": 0.000147770197,
+        "maximumFloat32Context": {
+          "patternId": "checkerboard",
+          "location": [
+            0,
+            17
+          ]
+        },
+        "maximumPhaseLocalDriveError": 1.4272e-8,
+        "maximumPhaseLocalContext": {
+          "patternId": "alternating-lines",
+          "location": [
+            0,
+            119
+          ]
+        }
+      }
+    },
+    {
+      "id": "nominal",
+      "reductionBasis": {
+        "assumption": "sum each electrode's distributed KCL equations and retain the equipotential common mode",
+        "maximumRowElectrodeSeriesToDriverResistanceRatio": 0.090857142857,
+        "maximumColumnElectrodeSeriesToDriverResistanceRatio": 0.081714285714,
+        "factors": {
+          "row": {
+            "memory": 0.343692885386,
+            "leakage": 0.000023498599,
+            "driver": 0.656283616015,
+            "totalCapacitanceFarads": 1.19e-10,
+            "timeConstantSeconds": 0.000002372429
+          },
+          "column": {
+            "memory": 0.320334001307,
+            "leakage": 0.000021901531,
+            "driver": 0.679644097162,
+            "totalCapacitanceFarads": 1.07e-10,
+            "timeConstantSeconds": 0.000002135186
+          }
+        }
+      },
+      "patterns": [
+        {
+          "id": "single-dot",
+          "rmsNormalizedDriveError": 0.000017605554,
+          "maximumAbsoluteNormalizedDriveError": 0.002672335137
+        },
+        {
+          "id": "full-row",
+          "rmsNormalizedDriveError": 0.000249900855,
+          "maximumAbsoluteNormalizedDriveError": 0.003465831482
+        },
+        {
+          "id": "full-column",
+          "rmsNormalizedDriveError": 0.000026244017,
+          "maximumAbsoluteNormalizedDriveError": 0.002983332064
+        },
+        {
+          "id": "checkerboard",
+          "rmsNormalizedDriveError": 0.010750667752,
+          "maximumAbsoluteNormalizedDriveError": 0.020453456127
+        },
+        {
+          "id": "alternating-lines",
+          "rmsNormalizedDriveError": 0.00926829363,
+          "maximumAbsoluteNormalizedDriveError": 0.013708536133
+        },
+        {
+          "id": "window",
+          "rmsNormalizedDriveError": 0.000144140206,
+          "maximumAbsoluteNormalizedDriveError": 0.001457487708
+        },
+        {
+          "id": "inverse-window",
+          "rmsNormalizedDriveError": 0.000195671471,
+          "maximumAbsoluteNormalizedDriveError": 0.002365776535
+        },
+        {
+          "id": "solid-mino-fixture",
+          "rmsNormalizedDriveError": 0.000116941043,
+          "maximumAbsoluteNormalizedDriveError": 0.00197290929
+        },
+        {
+          "id": "solid-mino-validation",
+          "rmsNormalizedDriveError": 0.000104367892,
+          "maximumAbsoluteNormalizedDriveError": 0.002320597542
+        }
+      ],
+      "rmsNormalizedDriveError": 0.004733159676,
+      "p99AbsoluteNormalizedDriveError": 0.019108150763,
+      "maximumAbsoluteNormalizedDriveError": 0.020453456127,
+      "maximumContext": {
+        "patternId": "checkerboard",
+        "location": [
+          159,
+          142
+        ],
+        "shade": 3,
+        "distributedDelta": -0.641808267078,
+        "lumpedDelta": -0.621354810951
+      },
+      "runtimeClosedForm": {
+        "maximumAbsoluteDriveError": 1e-12,
+        "maximumContext": {
+          "patternId": "inverse-window",
+          "location": [
+            57,
+            0
+          ]
+        },
+        "maximumFloat32DriveError": 0.000058955031,
+        "maximumFloat32Context": {
+          "patternId": "checkerboard",
+          "location": [
+            0,
+            17
+          ]
+        },
+        "maximumPhaseLocalDriveError": 0.000334950814,
+        "maximumPhaseLocalContext": {
+          "patternId": "alternating-lines",
+          "location": [
+            0,
+            17
+          ]
+        }
+      }
+    },
+    {
+      "id": "plausible-high",
+      "reductionBasis": {
+        "assumption": "sum each electrode's distributed KCL equations and retain the equipotential common mode",
+        "maximumRowElectrodeSeriesToDriverResistanceRatio": 0.242285714286,
+        "maximumColumnElectrodeSeriesToDriverResistanceRatio": 0.217904761905,
+        "factors": {
+          "row": {
+            "memory": 0.687914332448,
+            "leakage": 0.000025140376,
+            "driver": 0.312060527175,
+            "totalCapacitanceFarads": 3.33e-10,
+            "timeConstantSeconds": 0.000009986417
+          },
+          "column": {
+            "memory": 0.664861334821,
+            "leakage": 0.000024297886,
+            "driver": 0.335114367293,
+            "totalCapacitanceFarads": 3e-10,
+            "timeConstantSeconds": 0.000008987775
+          }
+        }
+      },
+      "patterns": [
+        {
+          "id": "single-dot",
+          "rmsNormalizedDriveError": 0.00015845348,
+          "maximumAbsoluteNormalizedDriveError": 0.024051547166
+        },
+        {
+          "id": "full-row",
+          "rmsNormalizedDriveError": 0.001914849849,
+          "maximumAbsoluteNormalizedDriveError": 0.032015030226
+        },
+        {
+          "id": "full-column",
+          "rmsNormalizedDriveError": 0.00026970924,
+          "maximumAbsoluteNormalizedDriveError": 0.026928000138
+        },
+        {
+          "id": "checkerboard",
+          "rmsNormalizedDriveError": 0.048659103522,
+          "maximumAbsoluteNormalizedDriveError": 0.081028870128
+        },
+        {
+          "id": "alternating-lines",
+          "rmsNormalizedDriveError": 0.072307807206,
+          "maximumAbsoluteNormalizedDriveError": 0.314119640711
+        },
+        {
+          "id": "window",
+          "rmsNormalizedDriveError": 0.000928109466,
+          "maximumAbsoluteNormalizedDriveError": 0.014968595495
+        },
+        {
+          "id": "inverse-window",
+          "rmsNormalizedDriveError": 0.001611304572,
+          "maximumAbsoluteNormalizedDriveError": 0.022232201652
+        },
+        {
+          "id": "solid-mino-fixture",
+          "rmsNormalizedDriveError": 0.000975384941,
+          "maximumAbsoluteNormalizedDriveError": 0.014706793551
+        },
+        {
+          "id": "solid-mino-validation",
+          "rmsNormalizedDriveError": 0.000939740149,
+          "maximumAbsoluteNormalizedDriveError": 0.022534450891
+        }
+      ],
+      "rmsNormalizedDriveError": 0.029069235391,
+      "p99AbsoluteNormalizedDriveError": 0.131351520453,
+      "maximumAbsoluteNormalizedDriveError": 0.314119640711,
+      "maximumContext": {
+        "patternId": "alternating-lines",
+        "location": [
+          0,
+          1
+        ],
+        "shade": 3,
+        "distributedDelta": -1.873309351923,
+        "lumpedDelta": -1.559189711213
+      },
+      "runtimeClosedForm": {
+        "maximumAbsoluteDriveError": 2e-12,
+        "maximumContext": {
+          "patternId": "solid-mino-validation",
+          "location": [
+            19,
+            51
+          ]
+        },
+        "maximumFloat32DriveError": 0.000115214756,
+        "maximumFloat32Context": {
+          "patternId": "window",
+          "location": [
+            57,
+            51
+          ]
+        },
+        "maximumPhaseLocalDriveError": 0.382785331246,
+        "maximumPhaseLocalContext": {
+          "patternId": "alternating-lines",
+          "location": [
+            0,
+            17
+          ]
+        }
+      }
+    }
+  ],
+  "selectedRuntimeModel": {
+    "ensemble": "nominal",
+    "id": "nominal",
+    "reductionBasis": {
+      "assumption": "sum each electrode's distributed KCL equations and retain the equipotential common mode",
+      "maximumRowElectrodeSeriesToDriverResistanceRatio": 0.090857142857,
+      "maximumColumnElectrodeSeriesToDriverResistanceRatio": 0.081714285714,
+      "factors": {
+        "row": {
+          "memory": 0.343692885386,
+          "leakage": 0.000023498599,
+          "driver": 0.656283616015,
+          "totalCapacitanceFarads": 1.19e-10,
+          "timeConstantSeconds": 0.000002372429
+        },
+        "column": {
+          "memory": 0.320334001307,
+          "leakage": 0.000021901531,
+          "driver": 0.679644097162,
+          "totalCapacitanceFarads": 1.07e-10,
+          "timeConstantSeconds": 0.000002135186
+        }
+      }
+    },
+    "patterns": [
+      {
+        "id": "single-dot",
+        "rmsNormalizedDriveError": 0.000017605554,
+        "maximumAbsoluteNormalizedDriveError": 0.002672335137
+      },
+      {
+        "id": "full-row",
+        "rmsNormalizedDriveError": 0.000249900855,
+        "maximumAbsoluteNormalizedDriveError": 0.003465831482
+      },
+      {
+        "id": "full-column",
+        "rmsNormalizedDriveError": 0.000026244017,
+        "maximumAbsoluteNormalizedDriveError": 0.002983332064
+      },
+      {
+        "id": "checkerboard",
+        "rmsNormalizedDriveError": 0.010750667752,
+        "maximumAbsoluteNormalizedDriveError": 0.020453456127
+      },
+      {
+        "id": "alternating-lines",
+        "rmsNormalizedDriveError": 0.00926829363,
+        "maximumAbsoluteNormalizedDriveError": 0.013708536133
+      },
+      {
+        "id": "window",
+        "rmsNormalizedDriveError": 0.000144140206,
+        "maximumAbsoluteNormalizedDriveError": 0.001457487708
+      },
+      {
+        "id": "inverse-window",
+        "rmsNormalizedDriveError": 0.000195671471,
+        "maximumAbsoluteNormalizedDriveError": 0.002365776535
+      },
+      {
+        "id": "solid-mino-fixture",
+        "rmsNormalizedDriveError": 0.000116941043,
+        "maximumAbsoluteNormalizedDriveError": 0.00197290929
+      },
+      {
+        "id": "solid-mino-validation",
+        "rmsNormalizedDriveError": 0.000104367892,
+        "maximumAbsoluteNormalizedDriveError": 0.002320597542
+      }
+    ],
+    "rmsNormalizedDriveError": 0.004733159676,
+    "p99AbsoluteNormalizedDriveError": 0.019108150763,
+    "maximumAbsoluteNormalizedDriveError": 0.020453456127,
+    "maximumContext": {
+      "patternId": "checkerboard",
+      "location": [
+        159,
+        142
+      ],
+      "shade": 3,
+      "distributedDelta": -0.641808267078,
+      "lumpedDelta": -0.621354810951
+    },
+    "runtimeClosedForm": {
+      "maximumAbsoluteDriveError": 1e-12,
+      "maximumContext": {
+        "patternId": "inverse-window",
+        "location": [
+          57,
+          0
+        ]
+      },
+      "maximumFloat32DriveError": 0.000058955031,
+      "maximumFloat32Context": {
+        "patternId": "checkerboard",
+        "location": [
+          0,
+          17
+        ]
+      },
+      "maximumPhaseLocalDriveError": 0.000334950814,
+      "maximumPhaseLocalContext": {
+        "patternId": "alternating-lines",
+        "location": [
+          0,
+          17
+        ]
+      }
+    }
+  },
+  "checks": {
+    "noImagePatternCoefficients": true,
+    "allNinePatternsCompared": true,
+    "nominalRmsBelow0_05Shade": true,
+    "nominalP99Below0_10Shade": true,
+    "closedFormMatchesLumpedSolver": true,
+    "float32RuntimePrecisionBelow0_001Shade": true,
+    "nominalPhaseBoundaryResidualBelow0_001Shade": true
+  },
+  "pass": true
+}

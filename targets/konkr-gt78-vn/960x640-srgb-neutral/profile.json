@@ -43,9 +43,11 @@
     "validation/dmg01-ws2-20260819.json",
     "validation/dmg01-ws3-20260819.json",
     "validation/dmg01-ws7-20260819.json",
+    "validation/dmg01-ws7-fixedpoint-20260819.json",
     "validation/dmg01-ws6-20260819.json",
     "validation/dmg01-ws4-20260819.json",
-    "validation/dmg01-ws5-20260819.json"
+    "validation/dmg01-ws5-20260819.json",
+    "validation/dmg01-ws5-common-mode-20260819.json"
   ],
   "compensation": {
     "ScreenBrightness": 0.68,

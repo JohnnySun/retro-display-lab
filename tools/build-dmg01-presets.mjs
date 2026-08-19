@@ -14,6 +14,13 @@ const targetPresetDir = path.join(
   "960x640-srgb-neutral",
   "presets",
 );
+const targetRetroArchDir = path.join(
+  root,
+  "targets",
+  "konkr-gt78-vn",
+  "960x640-srgb-neutral",
+  "retroarch",
+);
 const basePath = path.join(modelPresetDir, "reference-v1.slangp");
 const checkOnly = process.argv.includes("--check");
 
@@ -45,6 +52,18 @@ function targetShaderPaths(source) {
     .replace(
       /^(shader\d+\s*=\s*)"\.\.\/shaders\/([^"]+)"$/gm,
       '$1"../../../../models/nintendo-dmg-01/shaders/$2"',
+    );
+}
+
+function installedGambatteShaderPaths(source) {
+  return source
+    .replace(
+      "## Provenance: ../REFERENCES.md",
+      "## Installed from retro-display-lab; model provenance is retained in the source tree.",
+    )
+    .replace(
+      /^(shader\d+\s*=\s*)"\.\.\/shaders\/([^"]+)"$/gm,
+      '$1"../../shaders/retro-display-lab/models/nintendo-dmg-01/shaders/$2"',
     );
 }
 
@@ -149,12 +168,77 @@ const specs = [
     },
     targetPaths: true,
   },
+  {
+    output: path.join(targetPresetDir, "dmg01-lightly-used-v1.slangp"),
+    description: [
+      "## Target provenance: ../REFERENCES.md",
+      "## Evidence: [TARGET-KPA-TUNE-01]",
+      "## KONKR minimum-step lightly-used aesthetic; not calibrated elapsed-time aging.",
+    ].join("\n"),
+    overrides: {
+      LineVariation: "0.002",
+      PanelMottle: "0.002",
+      ScreenBrightness: "0.68",
+      ScreenChroma: "0.90",
+    },
+    targetPaths: true,
+  },
+  {
+    output: path.join(targetRetroArchDir, "gb-lightly-used.slangp"),
+    description: [
+      "## KONKR Gambatte install payload for the minimum-step lightly-used aesthetic.",
+      "## This is not calibrated elapsed-time aging.",
+    ].join("\n"),
+    overrides: {
+      LineVariation: "0.002",
+      PanelMottle: "0.002",
+      ScreenBrightness: "0.68",
+      ScreenChroma: "0.90",
+    },
+    installedGambattePaths: true,
+  },
+  {
+    output: path.join(targetPresetDir, "dmg01-one-year-used-v1.slangp"),
+    description: [
+      "## Target provenance: ../REFERENCES.md",
+      "## Evidence: [TARGET-KPA-TUNE-01]",
+      "## KONKR one-year-used visual approximation; not calibrated elapsed-time aging.",
+      "## Hybrid current-drive coherence avoids incomplete moving solids; pure physical reference remains off.",
+    ].join("\n"),
+    overrides: {
+      LineVariation: "0.003",
+      PanelMottle: "0.003",
+      PolarizerAge: "0.01",
+      CurrentDriveCoherence: "1.0",
+      ScreenBrightness: "0.68",
+      ScreenChroma: "0.90",
+    },
+    targetPaths: true,
+  },
+  {
+    output: path.join(targetRetroArchDir, "gb-one-year-used.slangp"),
+    description: [
+      "## KONKR Gambatte install payload for the one-year-used visual approximation.",
+      "## This is not calibrated elapsed-time aging.",
+      "## Hybrid current-drive coherence avoids incomplete moving solids; pure physical reference remains off.",
+    ].join("\n"),
+    overrides: {
+      LineVariation: "0.003",
+      PanelMottle: "0.003",
+      PolarizerAge: "0.01",
+      CurrentDriveCoherence: "1.0",
+      ScreenBrightness: "0.68",
+      ScreenChroma: "0.90",
+    },
+    installedGambattePaths: true,
+  },
 ];
 
 let changed = false;
 for (const spec of specs) {
   let body = overrideParameters(base, spec.overrides);
   if (spec.targetPaths) body = targetShaderPaths(body);
+  if (spec.installedGambattePaths) body = installedGambatteShaderPaths(body);
   const output = `${generatedNotice}\n${spec.description}\n\n${body}\n`;
   const relative = path.relative(root, spec.output);
   if (checkOnly) {

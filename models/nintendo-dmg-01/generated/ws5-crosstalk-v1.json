@@ -141,16 +141,85 @@
           },
           "centerDriveCoordinate": 0,
           "omittedSecondOrderInstantaneousUpperBound": 0.403095640602
+        },
+        {
+          "id": "solid-mino-fixture",
+          "rmsDriveCoordinateError": 0.001434265087,
+          "maximumAbsoluteDriveCoordinateError": 0.01826534486,
+          "maximumLocation": [
+            142,
+            120
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 0.324399296251
+        },
+        {
+          "id": "solid-mino-validation",
+          "rmsDriveCoordinateError": 0.001334099711,
+          "maximumAbsoluteDriveCoordinateError": 0.018163834835,
+          "maximumLocation": [
+            15,
+            36
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 0.32439952581
         }
       ],
       "surrogate": {
-        "rowBaseCoefficient": -0.05790116562,
-        "rowRepeatedCoefficient": -0.09498756741,
-        "columnBaseCoefficient": 0.035312181632,
-        "columnRepeatedCoefficient": 0.305091425028,
-        "rmsResidualDriveCoordinate": 0.004898408571,
-        "p99AbsoluteResidualDriveCoordinate": 0.00734707606,
-        "maximumAbsoluteResidualDriveCoordinate": 0.167990958705,
+        "kind": "distributed signed spatial kernel",
+        "radiusPixels": 8,
+        "ridge": 0.1107,
+        "coefficients": {
+          "rowBefore1": -0.00121322507,
+          "rowBefore2": -9.90458e-7,
+          "rowBefore3": -2.65173e-7,
+          "rowBefore4": -2.59661e-7,
+          "rowBefore5": -2.54739e-7,
+          "rowBefore6": -4.26451e-7,
+          "rowBefore7": -0.000151262603,
+          "rowBefore8": 0.000735400178,
+          "rowAfter1": -0.001212947377,
+          "rowAfter2": -7.31361e-7,
+          "rowAfter3": -5.382e-9,
+          "rowAfter4": 8.49e-10,
+          "rowAfter5": 6.489e-9,
+          "rowAfter6": -1.64596e-7,
+          "rowAfter7": -0.000151155983,
+          "rowAfter8": 0.000468890098,
+          "columnBefore1": 0.021665424628,
+          "columnBefore2": 0.00001056783,
+          "columnBefore3": -3.53842e-7,
+          "columnBefore4": -3.54216e-7,
+          "columnBefore5": -3.47057e-7,
+          "columnBefore6": 0.000001547032,
+          "columnBefore7": 0.000358410313,
+          "columnBefore8": 0.001904253901,
+          "columnAfter1": 0.016631579217,
+          "columnAfter2": 0.000008689961,
+          "columnAfter3": 3.80797e-7,
+          "columnAfter4": 3.8184e-7,
+          "columnAfter5": 3.89794e-7,
+          "columnAfter6": 0.000003318059,
+          "columnAfter7": 0.001396808609,
+          "columnAfter8": 0.000836735319
+        },
+        "alternatingCoefficients": {
+          "rowAlternating": -0.149854632408,
+          "columnAlternating": 0.299838974089
+        },
+        "rmsResidualDriveCoordinate": 0.005028118562,
+        "p99AbsoluteResidualDriveCoordinate": 0.005488647667,
+        "maximumAbsoluteResidualDriveCoordinate": 0.195064193817,
         "maximumResidualContext": {
           "patternId": "checkerboard",
           "location": [
@@ -159,9 +228,26 @@
           ],
           "localDrive": 3,
           "networkDelta": -0.143462065146,
-          "surrogateDelta": -0.31145302385
+          "surrogateDelta": -0.338526258963
         },
-        "samples": 161280
+        "samples": 184320,
+        "heldOutSolidMino": {
+          "rmsResidualDriveCoordinate": 0.000508374518,
+          "p99AbsoluteResidualDriveCoordinate": 0.002307908698,
+          "maximumAbsoluteResidualDriveCoordinate": 0.010334262381,
+          "maximumNetworkDeltaOnSolidPixels": 0.018163834835,
+          "maximumResidualContext": {
+            "patternId": "solid-mino-validation",
+            "location": [
+              135,
+              48
+            ],
+            "localDrive": 3,
+            "networkDelta": -0.015177021705,
+            "surrogateDelta": -0.025511284086
+          },
+          "samples": 23040
+        }
       }
     },
     {
@@ -287,16 +373,85 @@
           },
           "centerDriveCoordinate": 0,
           "omittedSecondOrderInstantaneousUpperBound": 3.565573706518
+        },
+        {
+          "id": "solid-mino-fixture",
+          "rmsDriveCoordinateError": 0.004777006645,
+          "maximumAbsoluteDriveCoordinateError": 0.060472746552,
+          "maximumLocation": [
+            134,
+            120
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 2.869396993936
+        },
+        {
+          "id": "solid-mino-validation",
+          "rmsDriveCoordinateError": 0.004459125585,
+          "maximumAbsoluteDriveCoordinateError": 0.060723088793,
+          "maximumLocation": [
+            8,
+            36
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 2.869393871867
         }
       ],
       "surrogate": {
-        "rowBaseCoefficient": -0.091248513301,
-        "rowRepeatedCoefficient": -0.148879590265,
-        "columnBaseCoefficient": 0.108942218386,
-        "columnRepeatedCoefficient": 0.76455375107,
-        "rmsResidualDriveCoordinate": 0.008997258359,
-        "p99AbsoluteResidualDriveCoordinate": 0.0240157002,
-        "maximumAbsoluteResidualDriveCoordinate": 0.338495047628,
+        "kind": "distributed signed spatial kernel",
+        "radiusPixels": 8,
+        "ridge": 0.1107,
+        "coefficients": {
+          "rowBefore1": -0.003196964135,
+          "rowBefore2": -0.000002401594,
+          "rowBefore3": -4.94292e-7,
+          "rowBefore4": -4.83778e-7,
+          "rowBefore5": -4.74831e-7,
+          "rowBefore6": -9.3123e-7,
+          "rowBefore7": -0.000398190567,
+          "rowBefore8": 0.002353146817,
+          "rowAfter1": -0.00319647047,
+          "rowAfter2": -0.00000195714,
+          "rowAfter3": -4.8496e-8,
+          "rowAfter4": -3.657e-8,
+          "rowAfter5": -2.6199e-8,
+          "rowAfter6": -4.81406e-7,
+          "rowAfter7": -0.000398146843,
+          "rowAfter8": 0.001656495052,
+          "columnBefore1": 0.0688125389,
+          "columnBefore2": 0.000033904429,
+          "columnBefore3": -7.5454e-7,
+          "columnBefore4": -7.62371e-7,
+          "columnBefore5": -7.46994e-7,
+          "columnBefore6": 0.000004332805,
+          "columnBefore7": 0.000082098703,
+          "columnBefore8": 0.006999982131,
+          "columnAfter1": 0.048899735107,
+          "columnAfter2": 0.000025124205,
+          "columnAfter3": 7.88238e-7,
+          "columnAfter4": 7.86045e-7,
+          "columnAfter5": 8.046e-7,
+          "columnAfter6": 0.000009922699,
+          "columnAfter7": 0.004082713465,
+          "columnAfter8": 0.002879030262
+        },
+        "alternatingCoefficients": {
+          "rowAlternating": -0.232521140313,
+          "columnAlternating": 0.750831698143
+        },
+        "rmsResidualDriveCoordinate": 0.008808246047,
+        "p99AbsoluteResidualDriveCoordinate": 0.009403098169,
+        "maximumAbsoluteResidualDriveCoordinate": 0.379736086619,
         "maximumResidualContext": {
           "patternId": "checkerboard",
           "location": [
@@ -305,9 +460,26 @@
           ],
           "localDrive": 3,
           "networkDelta": -0.489376665178,
-          "surrogateDelta": -0.827871712806
+          "surrogateDelta": -0.869112751797
         },
-        "samples": 161280
+        "samples": 184320,
+        "heldOutSolidMino": {
+          "rmsResidualDriveCoordinate": 0.001418328777,
+          "p99AbsoluteResidualDriveCoordinate": 0.006076477622,
+          "maximumAbsoluteResidualDriveCoordinate": 0.031057921226,
+          "maximumNetworkDeltaOnSolidPixels": 0.060723088793,
+          "maximumResidualContext": {
+            "patternId": "solid-mino-validation",
+            "location": [
+              135,
+              48
+            ],
+            "localDrive": 3,
+            "networkDelta": -0.050104848917,
+            "surrogateDelta": -0.081162770143
+          },
+          "samples": 23040
+        }
       }
     },
     {
@@ -433,39 +605,162 @@
           },
           "centerDriveCoordinate": 0,
           "omittedSecondOrderInstantaneousUpperBound": 15.553325350514
+        },
+        {
+          "id": "solid-mino-fixture",
+          "rmsDriveCoordinateError": 0.016419634317,
+          "maximumAbsoluteDriveCoordinateError": 0.207758585933,
+          "maximumLocation": [
+            128,
+            120
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 12.512774960359
+        },
+        {
+          "id": "solid-mino-validation",
+          "rmsDriveCoordinateError": 0.015399644064,
+          "maximumAbsoluteDriveCoordinateError": 0.214692059073,
+          "maximumLocation": [
+            151,
+            47
+          ],
+          "signedQuantiles": {
+            "p05": 0,
+            "median": 0,
+            "p95": 0
+          },
+          "centerDriveCoordinate": 0,
+          "omittedSecondOrderInstantaneousUpperBound": 12.512499630881
         }
       ],
       "surrogate": {
-        "rowBaseCoefficient": 0.128010225258,
-        "rowRepeatedCoefficient": 0.207042538855,
-        "columnBaseCoefficient": 0.331994507406,
-        "columnRepeatedCoefficient": 1.271682466053,
-        "rmsResidualDriveCoordinate": 0.030144862142,
-        "p99AbsoluteResidualDriveCoordinate": 0.144516660316,
-        "maximumAbsoluteResidualDriveCoordinate": 0.487382593703,
+        "kind": "distributed signed spatial kernel",
+        "radiusPixels": 8,
+        "ridge": 0.1107,
+        "coefficients": {
+          "rowBefore1": -0.006939508738,
+          "rowBefore2": -7.11227e-7,
+          "rowBefore3": 0.000003327034,
+          "rowBefore4": 0.000003244572,
+          "rowBefore5": 0.000003157927,
+          "rowBefore6": 0.000002060328,
+          "rowBefore7": -0.000859929431,
+          "rowBefore8": 0.006864454485,
+          "rowAfter1": -0.006942684281,
+          "rowAfter2": -0.000003989599,
+          "rowAfter3": 3.1842e-8,
+          "rowAfter4": -6.6818e-8,
+          "rowAfter5": -1.69134e-7,
+          "rowAfter6": -0.000001282277,
+          "rowAfter7": -0.000863957528,
+          "rowAfter8": 0.005714056312,
+          "columnBefore1": 0.221425046411,
+          "columnBefore2": 0.000142631984,
+          "columnBefore3": 0.000001059943,
+          "columnBefore4": 9.4025e-7,
+          "columnBefore5": 9.13217e-7,
+          "columnBefore6": 0.000010705835,
+          "columnBefore7": -0.005586551571,
+          "columnBefore8": 0.026796130671,
+          "columnAfter1": 0.135579793142,
+          "columnAfter2": 0.000095622215,
+          "columnAfter3": -0.000001211162,
+          "columnAfter4": -0.000001306296,
+          "columnAfter5": -0.000001314586,
+          "columnAfter6": 0.000029623245,
+          "columnAfter7": 0.011538357364,
+          "columnAfter8": 0.009363226463
+        },
+        "alternatingCoefficients": {
+          "rowAlternating": 0.349506383843,
+          "columnAlternating": 1.242007378308
+        },
+        "rmsResidualDriveCoordinate": 0.028138334642,
+        "p99AbsoluteResidualDriveCoordinate": 0.14140093649,
+        "maximumAbsoluteResidualDriveCoordinate": 0.370278519207,
         "maximumResidualContext": {
-          "patternId": "full-column",
+          "patternId": "checkerboard",
           "location": [
-            80,
-            0
+            0,
+            141
           ],
           "localDrive": 3,
-          "networkDelta": 0.359372368446,
-          "surrogateDelta": -0.128010225258
+          "networkDelta": -1.96743521117,
+          "surrogateDelta": -1.597156691963
         },
-        "samples": 161280
+        "samples": 184320,
+        "heldOutSolidMino": {
+          "rmsResidualDriveCoordinate": 0.004058764062,
+          "p99AbsoluteResidualDriveCoordinate": 0.015432222891,
+          "maximumAbsoluteResidualDriveCoordinate": 0.092615340177,
+          "maximumNetworkDeltaOnSolidPixels": 0.214692059073,
+          "maximumResidualContext": {
+            "patternId": "solid-mino-validation",
+            "location": [
+              135,
+              48
+            ],
+            "localDrive": 3,
+            "networkDelta": -0.16640321751,
+            "surrogateDelta": -0.259018557687
+          },
+          "samples": 23040
+        }
       }
     }
   ],
   "selectedShaderSurrogate": {
     "ensemble": "nominal",
-    "rowBaseCoefficient": -0.091248513301,
-    "rowRepeatedCoefficient": -0.148879590265,
-    "columnBaseCoefficient": 0.108942218386,
-    "columnRepeatedCoefficient": 0.76455375107,
-    "rmsResidualDriveCoordinate": 0.008997258359,
-    "p99AbsoluteResidualDriveCoordinate": 0.0240157002,
-    "maximumAbsoluteResidualDriveCoordinate": 0.338495047628,
+    "kind": "distributed signed spatial kernel",
+    "radiusPixels": 8,
+    "ridge": 0.1107,
+    "coefficients": {
+      "rowBefore1": -0.003196964135,
+      "rowBefore2": -0.000002401594,
+      "rowBefore3": -4.94292e-7,
+      "rowBefore4": -4.83778e-7,
+      "rowBefore5": -4.74831e-7,
+      "rowBefore6": -9.3123e-7,
+      "rowBefore7": -0.000398190567,
+      "rowBefore8": 0.002353146817,
+      "rowAfter1": -0.00319647047,
+      "rowAfter2": -0.00000195714,
+      "rowAfter3": -4.8496e-8,
+      "rowAfter4": -3.657e-8,
+      "rowAfter5": -2.6199e-8,
+      "rowAfter6": -4.81406e-7,
+      "rowAfter7": -0.000398146843,
+      "rowAfter8": 0.001656495052,
+      "columnBefore1": 0.0688125389,
+      "columnBefore2": 0.000033904429,
+      "columnBefore3": -7.5454e-7,
+      "columnBefore4": -7.62371e-7,
+      "columnBefore5": -7.46994e-7,
+      "columnBefore6": 0.000004332805,
+      "columnBefore7": 0.000082098703,
+      "columnBefore8": 0.006999982131,
+      "columnAfter1": 0.048899735107,
+      "columnAfter2": 0.000025124205,
+      "columnAfter3": 7.88238e-7,
+      "columnAfter4": 7.86045e-7,
+      "columnAfter5": 8.046e-7,
+      "columnAfter6": 0.000009922699,
+      "columnAfter7": 0.004082713465,
+      "columnAfter8": 0.002879030262
+    },
+    "alternatingCoefficients": {
+      "rowAlternating": -0.232521140313,
+      "columnAlternating": 0.750831698143
+    },
+    "rmsResidualDriveCoordinate": 0.008808246047,
+    "p99AbsoluteResidualDriveCoordinate": 0.009403098169,
+    "maximumAbsoluteResidualDriveCoordinate": 0.379736086619,
     "maximumResidualContext": {
       "patternId": "checkerboard",
       "location": [
@@ -474,28 +769,159 @@
       ],
       "localDrive": 3,
       "networkDelta": -0.489376665178,
-      "surrogateDelta": -0.827871712806
+      "surrogateDelta": -0.869112751797
     },
-    "samples": 161280,
+    "samples": 184320,
+    "heldOutSolidMino": {
+      "rmsResidualDriveCoordinate": 0.001418328777,
+      "p99AbsoluteResidualDriveCoordinate": 0.006076477622,
+      "maximumAbsoluteResidualDriveCoordinate": 0.031057921226,
+      "maximumNetworkDeltaOnSolidPixels": 0.060723088793,
+      "maximumResidualContext": {
+        "patternId": "solid-mino-validation",
+        "location": [
+          135,
+          48
+        ],
+        "localDrive": 3,
+        "networkDelta": -0.050104848917,
+        "surrogateDelta": -0.081162770143
+      },
+      "samples": 23040
+    },
     "parameterSemantics": "RowCrosstalk and ColumnCrosstalk are dimensionless sensitivity multipliers around the calculated nominal coefficients; 1.0 is reconstructed nominal and 0.0 disables the mechanism"
   },
   "uncertaintyEnvelope": {
-    "rowBaseCoefficient": [
-      -0.091248513301,
-      0.128010225258
-    ],
-    "rowRepeatedCoefficient": [
-      -0.148879590265,
-      0.207042538855
-    ],
-    "columnBaseCoefficient": [
-      0.035312181632,
-      0.331994507406
-    ],
-    "columnRepeatedCoefficient": [
-      0.305091425028,
-      1.271682466053
-    ],
+    "perTapCoefficientBounds": {
+      "rowBefore1": [
+        -0.006939508738,
+        -0.00121322507
+      ],
+      "rowBefore2": [
+        -0.000002401594,
+        -7.11227e-7
+      ],
+      "rowBefore3": [
+        -4.94292e-7,
+        0.000003327034
+      ],
+      "rowBefore4": [
+        -4.83778e-7,
+        0.000003244572
+      ],
+      "rowBefore5": [
+        -4.74831e-7,
+        0.000003157927
+      ],
+      "rowBefore6": [
+        -9.3123e-7,
+        0.000002060328
+      ],
+      "rowBefore7": [
+        -0.000859929431,
+        -0.000151262603
+      ],
+      "rowBefore8": [
+        0.000735400178,
+        0.006864454485
+      ],
+      "rowAfter1": [
+        -0.006942684281,
+        -0.001212947377
+      ],
+      "rowAfter2": [
+        -0.000003989599,
+        -7.31361e-7
+      ],
+      "rowAfter3": [
+        -4.8496e-8,
+        3.1842e-8
+      ],
+      "rowAfter4": [
+        -6.6818e-8,
+        8.49e-10
+      ],
+      "rowAfter5": [
+        -1.69134e-7,
+        6.489e-9
+      ],
+      "rowAfter6": [
+        -0.000001282277,
+        -1.64596e-7
+      ],
+      "rowAfter7": [
+        -0.000863957528,
+        -0.000151155983
+      ],
+      "rowAfter8": [
+        0.000468890098,
+        0.005714056312
+      ],
+      "columnBefore1": [
+        0.021665424628,
+        0.221425046411
+      ],
+      "columnBefore2": [
+        0.00001056783,
+        0.000142631984
+      ],
+      "columnBefore3": [
+        -7.5454e-7,
+        0.000001059943
+      ],
+      "columnBefore4": [
+        -7.62371e-7,
+        9.4025e-7
+      ],
+      "columnBefore5": [
+        -7.46994e-7,
+        9.13217e-7
+      ],
+      "columnBefore6": [
+        0.000001547032,
+        0.000010705835
+      ],
+      "columnBefore7": [
+        -0.005586551571,
+        0.000358410313
+      ],
+      "columnBefore8": [
+        0.001904253901,
+        0.026796130671
+      ],
+      "columnAfter1": [
+        0.016631579217,
+        0.135579793142
+      ],
+      "columnAfter2": [
+        0.000008689961,
+        0.000095622215
+      ],
+      "columnAfter3": [
+        -0.000001211162,
+        7.88238e-7
+      ],
+      "columnAfter4": [
+        -0.000001306296,
+        7.86045e-7
+      ],
+      "columnAfter5": [
+        -0.000001314586,
+        8.046e-7
+      ],
+      "columnAfter6": [
+        0.000003318059,
+        0.000029623245
+      ],
+      "columnAfter7": [
+        0.001396808609,
+        0.011538357364
+      ],
+      "columnAfter8": [
+        0.000836735319,
+        0.009363226463
+      ]
+    },
     "dominantInputs": "driver output resistance and total line capacitance set settling; ITO sheet resistance and one-ended topology set the position gradient; LC leakage is negligible on the dwell scale"
   },
   "convergence": {
@@ -515,6 +941,8 @@
     "boundedEnsemblesComplete": true,
     "surrogateFinite": true,
     "nominalSurrogateRmsErrorBelow0_05Shade": true,
+    "nominalHeldOutSolidMinoRmsErrorBelow0_01Shade": true,
+    "nominalHeldOutSolidMinoMaximumErrorBelow0_08Shade": true,
     "convergenceRmsBelow0_02Shade": true
   },
   "pass": true

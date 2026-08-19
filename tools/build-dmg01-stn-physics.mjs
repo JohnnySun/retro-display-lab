@@ -26,7 +26,10 @@ const drive = JSON.parse(fs.readFileSync(drivePath, "utf8"));
 const ensemble = JSON.parse(fs.readFileSync(materialPath, "utf8"));
 const frameSeconds = 1 / drive.panel.refreshHz;
 const timestepSeconds = 0.0001;
-const equilibriumSeconds = 0.8;
+const minimumEquilibriumSeconds = 0.8;
+const maximumEquilibriumSeconds = 5.0;
+const equilibriumChunkSeconds = 0.2;
+const equilibriumAngularToleranceRadians = 1e-7;
 const transitionSeconds = 1.2;
 
 function fail(message) {
@@ -42,14 +45,44 @@ function max(values) {
   return Math.max(...values);
 }
 
-function solveEquilibria(material, contrastScale, gridPoints = 17, timestep = timestepSeconds) {
-  const voltages = shadeRmsVoltages(drive, contrastScale);
-  return voltages.map((rmsVolts, shadeIndex) => {
-    const initial = initialDirector(material, gridPoints);
-    const result = integrateDirector(initial, material, rmsVolts, equilibriumSeconds, {
+function maximumDirectorDelta(a, b) {
+  return Math.max(
+    ...a.theta.map((value, index) => Math.abs(b.theta[index] - value)),
+    ...a.phi.map((value, index) => Math.abs(b.phi[index] - value)),
+  );
+}
+
+function solveEquilibrium(material, rmsVolts, gridPoints, timestep) {
+  let state = initialDirector(material, gridPoints);
+  let elapsedSeconds = 0;
+  let residualAngularDeltaRadians = Infinity;
+  const samples = [];
+  while (elapsedSeconds < maximumEquilibriumSeconds - 1e-12) {
+    const durationSeconds = Math.min(
+      equilibriumChunkSeconds,
+      maximumEquilibriumSeconds - elapsedSeconds,
+    );
+    const result = integrateDirector(state, material, rmsVolts, durationSeconds, {
       timestepSeconds: timestep,
       sampleSeconds: 0.05,
     });
+    residualAngularDeltaRadians = maximumDirectorDelta(state, result.state);
+    state = result.state;
+    elapsedSeconds += durationSeconds;
+    samples.push(...result.samples);
+    if (elapsedSeconds + 1e-12 >= minimumEquilibriumSeconds
+        && residualAngularDeltaRadians <= equilibriumAngularToleranceRadians) break;
+  }
+  if (residualAngularDeltaRadians > equilibriumAngularToleranceRadians) {
+    fail(`equilibrium did not converge at ${rmsVolts} V after ${elapsedSeconds} s: ${residualAngularDeltaRadians}`);
+  }
+  return { state, samples, elapsedSeconds, residualAngularDeltaRadians };
+}
+
+function solveEquilibria(material, contrastScale, gridPoints = 17, timestep = timestepSeconds) {
+  const voltages = shadeRmsVoltages(drive, contrastScale);
+  return voltages.map((rmsVolts, shadeIndex) => {
+    const result = solveEquilibrium(material, rmsVolts, gridPoints, timestep);
     const optical = opticalObservation(result.state, material);
     const energyIncreases = result.samples.slice(1).map((sample, index) => (
       sample.energyJPerSquareMeter - result.samples[index].energyJPerSquareMeter
@@ -59,6 +92,8 @@ function solveEquilibria(material, contrastScale, gridPoints = 17, timestep = ti
       rmsVolts,
       state: result.state,
       optical,
+      equilibriumDurationSeconds: result.elapsedSeconds,
+      residualAngularDeltaRadians: result.residualAngularDeltaRadians,
       equilibriumEnergyJPerSquareMeter: freeEnergy(result.state, material, rmsVolts),
       maximumSampledEnergyIncreaseJPerSquareMeter: Math.max(0, ...energyIncreases),
     };
@@ -173,6 +208,8 @@ function summarizeCondition(member, contrastScale, calibration, directorCalibrat
       luminance: round(entry.optical.luminance, 9),
       reflectance: entry.optical.spectrum.map((sample) => round(sample.reflectance, 8)),
       equilibriumEnergyJPerSquareMeter: round(entry.equilibriumEnergyJPerSquareMeter, 14),
+      equilibriumDurationSeconds: round(entry.equilibriumDurationSeconds, 6),
+      residualAngularDeltaRadians: round(entry.residualAngularDeltaRadians, 12),
       maximumSampledEnergyIncreaseJPerSquareMeter: round(
         entry.maximumSampledEnergyIncreaseJPerSquareMeter,
         14,
@@ -183,6 +220,19 @@ function summarizeCondition(member, contrastScale, calibration, directorCalibrat
 }
 
 const driftBins = 65;
+
+function anchorDriftFixedPoint(deltas, targetIndex, targetCoordinate) {
+  const offset = driftLookup(deltas, targetIndex, targetCoordinate);
+  const radius = 4 / (driftBins - 1);
+  const weights = Array.from({ length: driftBins }, (_, bin) => (
+    Math.max(0, 1 - Math.abs(bin / (driftBins - 1) - targetCoordinate) / radius)
+  ));
+  const weightAtTarget = driftLookup(weights, 0, targetCoordinate);
+  for (let bin = 0; bin < driftBins; bin += 1) {
+    const index = targetIndex * driftBins + bin;
+    deltas[index] = round(deltas[index] - offset * weights[bin] / weightAtTarget, 12);
+  }
+}
 
 function interpolateDirectorManifold(equilibria, directorCalibration, coordinate) {
   const q = clampUnit(coordinate);
@@ -262,6 +312,11 @@ function buildDriftCondition(condition, material, directorCalibration, manifoldE
         12,
       );
     }
+    anchorDriftFixedPoint(
+      deltas,
+      targetIndex,
+      condition.equilibriumDirectorCoordinates[targetIndex],
+    );
   }
   return deltas;
 }
@@ -281,7 +336,29 @@ function opticalLookup(opticalLut, coordinate) {
   return opticalLut[low] + (opticalLut[low + 1] - opticalLut[low]) * mix;
 }
 
-function validateDrift(condition, deltas, opticalLut) {
+function opticalCorrectionAt(coordinate, anchorCoordinates, corrections) {
+  const q = clampUnit(coordinate);
+  if (q <= anchorCoordinates[0]) {
+    return corrections[0] * q / Math.max(anchorCoordinates[0], 1e-12);
+  }
+  for (let index = 0; index < anchorCoordinates.length - 1; index += 1) {
+    if (q <= anchorCoordinates[index + 1]) {
+      const mix = (q - anchorCoordinates[index])
+        / Math.max(anchorCoordinates[index + 1] - anchorCoordinates[index], 1e-12);
+      return corrections[index] + (corrections[index + 1] - corrections[index]) * mix;
+    }
+  }
+  return corrections.at(-1) * (1 - q) / Math.max(1 - anchorCoordinates.at(-1), 1e-12);
+}
+
+function calibratedOpticalLookup(opticalLut, coordinate, anchorCoordinates, corrections) {
+  return Math.max(0.25, Math.min(1,
+    opticalLookup(opticalLut, coordinate)
+      + opticalCorrectionAt(coordinate, anchorCoordinates, corrections),
+  ));
+}
+
+function validateDrift(condition, deltas, opticalLut, anchorCoordinates, corrections) {
   let squaredError = 0;
   let maximumError = 0;
   let count = 0;
@@ -296,7 +373,12 @@ function validateDrift(condition, deltas, opticalLut) {
       coordinate = clampUnit(
         coordinate + driftLookup(deltas, transition.toIndex, coordinate),
       );
-      const predictedState = opticalLookup(opticalLut, coordinate);
+      const predictedState = calibratedOpticalLookup(
+        opticalLut,
+        coordinate,
+        anchorCoordinates,
+        corrections,
+      );
       const error = predictedState - transition.allSamples[index].opticalState;
       squaredError += error ** 2;
       localSquared += error ** 2;
@@ -352,6 +434,17 @@ const directorToOpticalLut = Array.from({ length: opticalLutBins }, (_, index) =
     opticalObservation(director, nominalMaterial).luminance,
   ), 12);
 });
+const nominalOpticalAnchorCoordinates = nominalEquilibria.map((entry) => round(
+  directorCalibration.normalize(entry.state),
+  9,
+));
+const nominalOpticalAnchorTargets = [0.25, 0.5, 0.75, 1];
+const nominalOpticalAnchorCorrections = nominalOpticalAnchorCoordinates.map(
+  (coordinate, index) => round(
+    nominalOpticalAnchorTargets[index] - opticalLookup(directorToOpticalLut, coordinate),
+    12,
+  ),
+);
 const contrastScales = [0.88, 1, 1.12];
 const runtimeConditions = contrastScales.map((contrastScale) => (
   summarizeCondition(nominalMember, contrastScale, calibration, directorCalibration)
@@ -367,6 +460,8 @@ for (const condition of runtimeConditions) {
     condition,
     condition.driftDeltaPerReferenceFrame,
     directorToOpticalLut,
+    nominalOpticalAnchorCoordinates,
+    nominalOpticalAnchorCorrections,
   );
   for (const transition of condition.transitions) delete transition.allSamples;
 }
@@ -415,6 +510,61 @@ const zeroField = integrateDirector(darkEquilibrium, nominalMaterial, 0, 0.5, {
   sampleSeconds: 0.05,
 });
 const zeroFieldFinalEnergy = freeEnergy(zeroField.state, nominalMaterial, 0);
+const nominalRuntime = runtimeConditions[1];
+const nominalFixedPointDrifts = nominalRuntime.equilibriumDirectorCoordinates.map(
+  (coordinate, targetIndex) => driftLookup(
+    nominalRuntime.driftDeltaPerReferenceFrame,
+    targetIndex,
+    coordinate,
+  ),
+);
+const nominalAnchoredOpticalStates = nominalRuntime.equilibriumDirectorCoordinates.map(
+  (coordinate) => calibratedOpticalLookup(
+    directorToOpticalLut,
+    coordinate,
+    nominalOpticalAnchorCoordinates,
+    nominalOpticalAnchorCorrections,
+  ),
+);
+const nominalSettledOpticalStates = nominalRuntime.equilibriumDirectorCoordinates.map(
+  (initialCoordinate, targetIndex) => {
+    let coordinate = initialCoordinate;
+    for (let frame = 0; frame < 600; frame += 1) {
+      coordinate = clampUnit(coordinate + driftLookup(
+        nominalRuntime.driftDeltaPerReferenceFrame,
+        targetIndex,
+        coordinate,
+      ));
+    }
+    return calibratedOpticalLookup(
+      directorToOpticalLut,
+      coordinate,
+      nominalOpticalAnchorCoordinates,
+      nominalOpticalAnchorCorrections,
+    );
+  },
+);
+const nominalAttractionErrors = nominalRuntime.equilibriumDirectorCoordinates.flatMap(
+  (equilibriumCoordinate, targetIndex) => [-0.01, 0.01].map((offset) => {
+    let coordinate = clampUnit(equilibriumCoordinate + offset);
+    for (let frame = 0; frame < 600; frame += 1) {
+      coordinate = clampUnit(coordinate + driftLookup(
+        nominalRuntime.driftDeltaPerReferenceFrame,
+        targetIndex,
+        coordinate,
+      ));
+    }
+    return Math.abs(coordinate - equilibriumCoordinate);
+  }),
+);
+const maximumNominalFixedPointDrift = max(nominalFixedPointDrifts.map(Math.abs));
+const maximumNominalAnchoredOpticalError = max(nominalAnchoredOpticalStates.map(
+  (value, index) => Math.abs(value - nominalOpticalAnchorTargets[index]),
+));
+const maximumNominalSettledOpticalError = max(nominalSettledOpticalStates.map(
+  (value, index) => Math.abs(value - nominalOpticalAnchorTargets[index]),
+));
+const maximumNominalAttractionError = max(nominalAttractionErrors);
 
 const report = {
   schemaVersion: 1,
@@ -428,7 +578,12 @@ const report = {
   solver: {
     gridPoints: 17,
     timestepSeconds,
-    equilibriumSeconds,
+    equilibriumPolicy: {
+      minimumSeconds: minimumEquilibriumSeconds,
+      maximumSeconds: maximumEquilibriumSeconds,
+      chunkSeconds: equilibriumChunkSeconds,
+      angularToleranceRadians: equilibriumAngularToleranceRadians,
+    },
     transitionSeconds,
     frameSeconds: round(frameSeconds, 12),
     electricalReduction: "cycle-averaged RMS of 1/144 Alt-Pleshko selection and inferred three-dwell grayscale",
@@ -452,6 +607,9 @@ const report = {
     definition: "depth-average of sin(theta)^2, normalized across the supported 0.88-to-1.12 contrast envelope",
     rawNominalEquilibriumValues: directorCalibration.raw.map((value) => round(value, 12)),
     opticalLut: directorToOpticalLut,
+    nominalOpticalAnchorCoordinates,
+    nominalOpticalAnchorTargets,
+    nominalOpticalAnchorCorrections,
   },
   runtimeContrastConditions: runtimeConditions,
   materialEnvelope,
@@ -472,10 +630,22 @@ const report = {
     maximumRuntimeSurrogateError: round(max(runtimeConditions.map(
       (condition) => condition.surrogateValidation.maximumError,
     )), 9),
+    nominalFixedPointDrifts: nominalFixedPointDrifts.map((value) => round(value, 12)),
+    nominalAnchoredOpticalStates: nominalAnchoredOpticalStates.map((value) => round(value, 12)),
+    nominalSettledOpticalStates: nominalSettledOpticalStates.map((value) => round(value, 12)),
+    maximumNominalFixedPointDrift: round(maximumNominalFixedPointDrift, 12),
+    maximumNominalAnchoredOpticalError: round(maximumNominalAnchoredOpticalError, 12),
+    maximumNominalSettledOpticalError: round(maximumNominalSettledOpticalError, 12),
+    maximumNominalAttractionError: round(maximumNominalAttractionError, 12),
     pass: timestepOpticalError < 0.002
       && gridOpticalError < 0.03
       && zeroFieldFinalEnergy < zeroFieldInitialEnergy
-      && max(runtimeConditions.map((condition) => condition.surrogateValidation.rmsError)) < 0.08,
+      && max(runtimeConditions.map((condition) => condition.surrogateValidation.rmsError)) < 0.08
+      && max(runtimeConditions.map((condition) => condition.surrogateValidation.maximumError)) < 0.25
+      && maximumNominalFixedPointDrift < 1e-9
+      && maximumNominalAnchoredOpticalError < 1e-9
+      && maximumNominalSettledOpticalError < 1e-9
+      && maximumNominalAttractionError < 1e-9,
   },
   claimBoundary: "No parameter is presented as a measurement of an unaged DMG-LCD-01 or DMG-LCD-06 cell. Unknown analogue levels, material identity, and polarizer spectra remain bounded reconstructions.",
 };
@@ -494,6 +664,8 @@ const include = `// Generated by tools/build-dmg01-stn-physics.mjs. Do not hand-
   + `const int DMG_PHYSICAL_OPTICAL_BINS = ${opticalLutBins};\n`
   + `${glslArray("DMG_PHYSICAL_TARGET_Q", targetValues)}\n`
   + `${glslArray("DMG_PHYSICAL_OPTICAL", directorToOpticalLut)}\n`
+  + `${glslArray("DMG_PHYSICAL_OPTICAL_ANCHOR_Q", nominalOpticalAnchorCoordinates)}\n`
+  + `${glslArray("DMG_PHYSICAL_OPTICAL_CORRECTION", nominalOpticalAnchorCorrections)}\n`
   + `${glslArray("DMG_PHYSICAL_DRIFT", driftValues)}\n`;
 
 const reportText = `${JSON.stringify(report, null, 2)}\n`;

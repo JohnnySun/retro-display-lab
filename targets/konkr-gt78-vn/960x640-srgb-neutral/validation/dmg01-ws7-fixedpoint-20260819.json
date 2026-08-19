@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "recordId": "konkr-gt78-vn-dmg01-ws7-fixedpoint-20260819",
+  "modelId": "nintendo-dmg-01",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "classification": "post-correction-fixed-point-and-motion-device-run",
+  "ws7FollowupEvidence": true,
+  "validatedOn": "2026-08-19",
+  "repositoryBaseCommit": "8b03402f240b1861b0ed578d14dce7a5c5e9d66a",
+  "device": {
+    "serial": "BW0306N250002377",
+    "model": "GT78-VN",
+    "androidVersion": "12",
+    "physicalResolution": [960, 640],
+    "gpu": "Mali-G76 MC4"
+  },
+  "review": {
+    "evidenceIds": [
+      "DMG-COLOR-01",
+      "DMG-MOTION-01",
+      "DMG-STN-01",
+      "DMG-STN-02",
+      "DMG-STN-03",
+      "DMG-STN-04",
+      "DMG-DRIVE-01",
+      "DMG-DRIVE-02",
+      "DMG-MATRIX-01",
+      "DMG-ENGINE-01"
+    ],
+    "conclusion": "The correction preserves the existing bounded voltage, material, timing, and reflective-optics reconstruction. BGB shades remain reference-image calibration anchors rather than material measurements; the change repairs the runtime surrogate's nominal fixed-point invariant.",
+    "float32AnchorMaximumError": 2.384185791015625e-7
+  },
+  "deployment": {
+    "shaderRoot": "/sdcard/RetroArch/shaders/retro-display-lab",
+    "runtimeFiles": {
+      "responseShader": {
+        "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
+        "sha256": "1fe76afbd9a3da9c853d40ade4f6941df622a38717dc352a09af292c798c09d8"
+      },
+      "generatedInclude": {
+        "path": "models/nintendo-dmg-01/shaders/dmg01-stn-surrogate.inc",
+        "sha256": "294e74570561e8039c1460a2419723f57dfd815fb895b21b5bbd1b4fc3107863"
+      }
+    },
+    "backupDirectory": "/sdcard/RetroArch/shaders/.codex-validation/20260819-ws2-fixedpoint-predeploy",
+    "previousHashes": {
+      "responseShader": "94c568f070c3889f3bdc4dec7aa2c9863fd000311a5f705648a85ff11a090887",
+      "generatedInclude": "0e7393f4108b9014659f9327e41ab045f60d7501133101a3b608e44627ebeaa8"
+    }
+  },
+  "frontend": {
+    "retroArchVersion": "1.22.2",
+    "videoDriver": "vulkan",
+    "core": "Gambatte",
+    "coreGeometry": [160, 144],
+    "reportedCoreFps": 59.73,
+    "shaderSubframes": 1,
+    "gambatteMixFrames": "disabled",
+    "viewport": [640, 576],
+    "integerScale": 4,
+    "responseFormat": "R32G32B32A32_SFLOAT",
+    "matrixFormat": "R16G16B16A16_SFLOAT",
+    "displayFormat": "R8G8B8A8_UNORM",
+    "responseFeedbackConfirmed": true,
+    "isolatedConfig": {
+      "path": "/sdcard/RetroArch/config/.codex-validation/20260819-ws3/retroarch-ws3.cfg",
+      "sha256": "2f16d92335b4230d09e686fd0ce93647f0c489bdd6e862c56ee0fc32e2b693cc"
+    }
+  },
+  "tetrisMotion": {
+    "content": "locally owned Game Boy Tetris ROM; not redistributed",
+    "contentSha256": "0d6535aef23969c7e5af2b077acaddb4a445b3d0df7bf34c8acef07b51b015c3",
+    "capture": "dmg01-ws2-fixedpoint-tetris-motion.mp4",
+    "captureSha256": "0acdad08b590a24eb58ec1a776d545e99ac9f7b772282be7407094448d3923a5",
+    "durationSeconds": 10.005778,
+    "frames": 602,
+    "averageFps": 60.165238,
+    "resolution": [960, 640],
+    "observation": "Falling pieces retained intermediate prior positions along the direction of travel while stationary bricks and HUD remained stable. No reversed trail, unbounded accumulation, shader fallback, or frame-pacing collapse was observed.",
+    "result": "pass"
+  },
+  "numericSteadyState": {
+    "report": {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws7-gpu-static-v2.json",
+      "sha256": "0075156b47a7f1789b2dd9d0ce4aa02fb795dc976e4c76c9107c0be4bd35022b"
+    },
+    "analyzer": {
+      "path": "tools/analyze-dmg01-gpu-capture.mjs",
+      "sha256": "b3177aa67224635f31789062c76711ecf2f4e3598093c3af9aec2f19026656f8"
+    },
+    "expectedOpticalStates": [0.25, 0.5, 0.75, 1],
+    "maximumChannelError": 5,
+    "tolerance8Bit": 6,
+    "earlyCaptureSha256": "9985ebb4e16f4a8137b45623f93264a8dbdde647a178facb4198857c8967b7ef",
+    "lateCaptureSha256": "9985ebb4e16f4a8137b45623f93264a8dbdde647a178facb4198857c8967b7ef",
+    "holdSeconds": 10,
+    "result": "pass"
+  },
+  "logs": {
+    "tetris": {
+      "file": "retroarch__2026_08_19__13_05_05.log",
+      "sha256": "745e78a61b15a4c0ae307543b73ec5cd32e3bf8bbb61a3df29f7e68e8094fcbd"
+    },
+    "numeric": {
+      "file": "retroarch__2026_08_19__13_08_22.log",
+      "sha256": "a05cca7f45749d8db2ddf7638e2c7fc1f06c3232c95dd22317adf8e3ccc6515c"
+    }
+  },
+  "restoration": {
+    "globalRetroArchConfigModified": false,
+    "userGambatteGbPresetModified": false,
+    "currentReviewedShaderRetainedOnDevice": true,
+    "predeployRuntimeFilesRecoverable": true
+  },
+  "limits": [
+    "The Tetris capture is qualitative motion evidence, not a pristine-DMG photodiode measurement.",
+    "The numeric comparison includes RGBA8/RGB565 presentation quantization rather than direct float-texture readback.",
+    "The KONKR target panel remains sRGB-neutral and unmeasured; this run validates runtime behavior, not emitted colorimetry."
+  ],
+  "result": "pass"
+}

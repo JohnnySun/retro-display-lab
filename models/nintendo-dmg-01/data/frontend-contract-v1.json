@@ -22,9 +22,11 @@
     "variableRefresh": false
   },
   "historySemantics": {
-    "Source": "current Gambatte video frame",
+    "Original": "current Gambatte video frame",
+    "Source": "per-column current/previous frame square-sum statistics emitted by pass 1",
+    "PassOutput0": "current and previous whole-row dwell-load counts emitted by pass 0",
     "OriginalHistory1": "previous submitted Gambatte video frame",
-    "PassFeedback0": "previous response-pass state at the same source coordinate",
+    "PassFeedback2": "previous response-pass state at the same source coordinate",
     "integrationClock": "one complete physical update per presented normal-forward N=1 frame"
   },
   "safety": {

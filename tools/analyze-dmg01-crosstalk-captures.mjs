@@ -7,8 +7,8 @@ import process from "node:process";
 import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import {
-  applySparseSurrogate,
-  sparseSurrogateFeatures,
+  applySpatialKernelSurrogate,
+  spatialKernelSurrogateFeatures,
 } from "../models/nintendo-dmg-01/reference/passive-matrix-crosstalk.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -100,6 +100,10 @@ const report = JSON.parse(fs.readFileSync(path.join(
   root, "models/nintendo-dmg-01/generated/ws5-crosstalk-v1.json",
 ), "utf8"));
 const coefficients = report.selectedShaderSurrogate;
+const fit = {
+  coefficients: coefficients.coefficients,
+  alternatingCoefficients: coefficients.alternatingCoefficients,
+};
 const viewport = { x: 160, y: 32, width: 640, height: 576, scale: 4 };
 const specs = [
   { id: "single-dot", file: "RDL-DMG-WS5-Single-Dot-stable-frame.png" },
@@ -153,10 +157,10 @@ for (const spec of specs) {
   for (let y = 0; y < pattern.rows; y += 1) {
     for (let x = 0; x < pattern.columns; x += 1) {
       const local = pattern.shades[y * pattern.columns + x];
-      const features = sparseSurrogateFeatures(
+      const features = spatialKernelSurrogateFeatures(
         pattern.shades, pattern.columns, pattern.rows, x, y,
       );
-      const effective = applySparseSurrogate(local, features, coefficients) / 3;
+      const effective = applySpatialKernelSurrogate(local, features, fit) / 3;
       const expected = rgb565Gray(effective);
       const rgb = image.getRgb(
         viewport.x + x * viewport.scale + 2,
@@ -189,8 +193,8 @@ for (const spec of specs) {
 
 const output = {
   schemaVersion: 1,
-  reportId: "nintendo-dmg-01-ws5-konkr-gpu-crosstalk-v1",
-  comparison: "CPU implementation of the generated WS5 surrogate versus DebugView=6 effective-drive output after RGBA8, RGB565, and 12 Mbit/s H.264 capture.",
+  reportId: "nintendo-dmg-01-ws5-konkr-gpu-crosstalk-v2",
+  comparison: "CPU implementation of the generated WS5 directional kernel versus DebugView=6 effective-drive output after RGBA8, RGB565, and Android PNG framebuffer capture.",
   viewport,
   tolerance: {
     maximumPatternRms8Bit: 8,

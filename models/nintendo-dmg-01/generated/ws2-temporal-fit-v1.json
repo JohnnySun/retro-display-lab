@@ -4,7 +4,7 @@
   "classification": "superseded literature-constrained regression envelope; retained only for output comparison",
   "generatedFrom": {
     "reconstruction": "data/reconstruction-v1.json",
-    "reconstructionSha256": "f10f09249ff99826ce84c7c2d7b2ea10da977e4d34a309ba928f29d84e4283a8",
+    "reconstructionSha256": "bd746abe5991853c1d37b479736f25380a4c28590f8fd00c6cfcd510f1bb11a4",
     "normalizedEvidence": "data/stn-response-evidence-v1.json",
     "normalizedEvidenceSha256": "b6d8334d5d466818838c3d71f204488981da84f6f2b0cd6274314532545f1734",
     "cpuReference": "reference/temporal-response.mjs"

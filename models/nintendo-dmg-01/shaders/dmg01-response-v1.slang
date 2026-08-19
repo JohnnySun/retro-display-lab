@@ -2,7 +2,8 @@
 
 #pragma format R32G32B32A32_SFLOAT
 
-// Retro Display Lab DMG-01 model, pass 0.
+// Retro Display Lab DMG-01 model, pass 2. Pass 0 supplies whole-row dwell
+// loads and pass 1 reduces them to per-column frame statistics.
 // Four Game Boy shades select passive-matrix RMS voltages. The generated LUT
 // integrates a reduced director coordinate produced by the offline
 // Frank-Oseen/Ericksen-Leslie and reflective Jones reconstruction. Ionic image
@@ -25,6 +26,7 @@ layout(push_constant) uniform Push
    float IonicReleaseResponse;
    float IonicTimeScale;
    float BakedScanout;
+   float CurrentDriveCoherence;
    float LatchOffsetLines;
    float RowCrosstalk;
    float ColumnCrosstalk;
@@ -38,6 +40,7 @@ layout(push_constant) uniform Push
 #pragma parameter IonicReleaseResponse "STN ionic release / frame" 0.000007115625 0.000001 0.002000 0.000001
 #pragma parameter IonicTimeScale "STN experiment time scale" 1.0 1.0 120.0 1.0
 #pragma parameter BakedScanout "DMG CPL row-latch timing" 1.0 0.0 1.0 1.0
+#pragma parameter CurrentDriveCoherence "Hybrid: preserve current driven shade" 0.0 0.0 1.0 1.0
 #pragma parameter LatchOffsetLines "DMG latch offset (captured line end)" 1.0 0.0 1.0 0.05
 #pragma parameter RowCrosstalk "DMG reconstructed row RC loading scale" 1.0 0.0 1.5 0.05
 #pragma parameter ColumnCrosstalk "DMG reconstructed column RC loading scale" 1.0 0.0 1.5 0.05
@@ -67,11 +70,13 @@ void main()
 layout(location = 0) in vec2 vTexCoord;
 layout(location = 0) out vec4 FragColor;
 layout(set = 0, binding = 2) uniform sampler2D Source;
-layout(set = 0, binding = 3) uniform sampler2D PassFeedback0;
+layout(set = 0, binding = 3) uniform sampler2D Original;
 layout(set = 0, binding = 4) uniform sampler2D OriginalHistory1;
+layout(set = 0, binding = 5) uniform sampler2D PassOutput0;
+layout(set = 0, binding = 6) uniform sampler2D PassFeedback2;
 
 #include "dmg01-stn-surrogate.inc"
-#include "dmg01-crosstalk-surrogate.inc"
+#include "dmg01-crosstalk-phase-local.inc"
 
 float gameboy_drive_index(vec3 encoded)
 {
@@ -81,12 +86,12 @@ float gameboy_drive_index(vec3 encoded)
 
 ivec2 bounded_source(ivec2 p)
 {
-   return clamp(p, ivec2(0), textureSize(Source, 0) - ivec2(1));
+   return clamp(p, ivec2(0), textureSize(Original, 0) - ivec2(1));
 }
 
 float source_drive_at(ivec2 p)
 {
-   return gameboy_drive_index(texelFetch(Source, bounded_source(p), 0).rgb);
+   return gameboy_drive_index(texelFetch(Original, bounded_source(p), 0).rgb);
 }
 
 float previous_drive_at(ivec2 p)
@@ -94,90 +99,82 @@ float previous_drive_at(ivec2 p)
    return gameboy_drive_index(texelFetch(OriginalHistory1, bounded_source(p), 0).rgb);
 }
 
-ivec2 wrap_source_row(ivec2 p)
+vec2 row_phase_mean(int row, int phase, float polarity)
 {
-   int height = textureSize(Source, 0).y;
-   return ivec2(clamp(p.x, 0, textureSize(Source, 0).x - 1),
-                (p.y % height + height) % height);
+   vec3 packed = texelFetch(PassOutput0, ivec2(0, row), 0).rgb;
+   vec2 counts = crosstalk_packed_phase_counts(packed[phase]);
+   return polarity * DMG_CROSSTALK_COLUMN_AMPLITUDE
+      * (float(DMG_CROSSTALK_COLUMNS) - 2.0 * counts)
+      / float(DMG_CROSSTALK_COLUMNS);
 }
 
-float source_column_drive_at(ivec2 p)
+vec2 column_phase_external(ivec2 p, int phase, float polarity)
 {
-   return gameboy_drive_index(texelFetch(Source, wrap_source_row(p), 0).rgb);
+   vec2 shade = vec2(source_drive_at(p), previous_drive_at(p));
+   return polarity * DMG_CROSSTALK_COLUMN_AMPLITUDE
+      * mix(vec2(1.0), vec2(-1.0),
+            lessThan(vec2(float(phase)), shade));
 }
 
-float previous_column_drive_at(ivec2 p)
+// Pass 1 already accumulated the full frame with rowSource=0. Only the three
+// phases that select this pixel's row differ, so replace those local terms.
+vec2 phase_local_drive_coordinates(ivec2 p)
 {
-   return gameboy_drive_index(texelFetch(OriginalHistory1, wrap_source_row(p), 0).rgb);
-}
+   vec2 center = vec2(source_drive_at(p), previous_drive_at(p));
+   float rowScale = clamp(params.RowCrosstalk, 0.0, 1.5);
+   float columnScale = clamp(params.ColumnCrosstalk, 0.0, 1.5);
+   if (rowScale <= 0.000001 && columnScale <= 0.000001) return center;
 
-float reconstructed_crosstalk_drive(
-   float center,
-   float rowBase,
-   float rowRepeated,
-   float columnBase,
-   float columnRepeated
-)
-{
-   float correction = params.RowCrosstalk * rowBase
-      * DMG_CROSSTALK_ROW_BASE
-      + params.RowCrosstalk * rowRepeated * DMG_CROSSTALK_ROW_REPEATED
-      + params.ColumnCrosstalk * columnBase
-      * DMG_CROSSTALK_COLUMN_BASE
-      + params.ColumnCrosstalk * columnRepeated * DMG_CROSSTALK_COLUMN_REPEATED;
-   return clamp(center + correction, 0.0, 3.0);
-}
+   vec2 sumSquares = texelFetch(Source, ivec2(p.x, 0), 0).rg;
+   vec2 zeroSource = vec2(0.0);
+   vec2 selectedSource = vec2(-DMG_CROSSTALK_ROW_AMPLITUDE);
+   vec2 previousSource = zeroSource;
+   vec2 previousRowMean;
+   vec2 previousColumnMean;
+   vec2 previousColumnExternal;
+   if (p.y == 0) {
+      previousRowMean = vec2(
+         DMG_CROSSTALK_ROW_AMPLITUDE / float(DMG_CROSSTALK_ROWS));
+      previousColumnMean = row_phase_mean(DMG_CROSSTALK_ROWS - 1, 2, 1.0);
+      previousColumnExternal = column_phase_external(
+         ivec2(p.x, DMG_CROSSTALK_ROWS - 1), 2, 1.0);
+   } else {
+      previousRowMean = vec2(
+         -DMG_CROSSTALK_ROW_AMPLITUDE / float(DMG_CROSSTALK_ROWS));
+      previousColumnMean = row_phase_mean(p.y - 1, 2, -1.0);
+      previousColumnExternal = column_phase_external(
+         ivec2(p.x, p.y - 1), 2, -1.0);
+   }
+   vec2 rowMean = vec2(
+      -DMG_CROSSTALK_ROW_AMPLITUDE / float(DMG_CROSSTALK_ROWS));
+   for (int phase = 0; phase < 3; ++phase) {
+      vec2 columnMean = row_phase_mean(p.y, phase, -1.0);
+      vec2 columnExternal = column_phase_external(p, phase, -1.0);
+      vec2 actual = crosstalk_phase_sum_squares(
+         previousRowMean, previousColumnMean, previousSource,
+         previousColumnExternal, rowMean, columnMean, selectedSource,
+         columnExternal, rowScale, columnScale);
+      vec2 base = crosstalk_phase_sum_squares(
+         previousRowMean, previousColumnMean, zeroSource,
+         previousColumnExternal, rowMean, columnMean, zeroSource,
+         columnExternal, rowScale, columnScale);
+      sumSquares += actual - base;
+      previousRowMean = rowMean;
+      previousColumnMean = columnMean;
+      previousColumnExternal = columnExternal;
+      previousSource = selectedSource;
+   }
 
-float transition_difference(float a, float b)
-{
-   return abs(a - b) / 3.0;
-}
-
-float transition_similarity(float a, float b)
-{
-   return 1.0 - transition_difference(a, b);
-}
-
-float current_drive_coordinate(ivec2 p)
-{
-   float center = source_drive_at(p);
-   float darkWeight = center / 3.0;
-   float left = transition_difference(center, source_drive_at(p - ivec2(1, 0)));
-   float right = transition_difference(center, source_drive_at(p + ivec2(1, 0)));
-   float previous = transition_difference(center, source_column_drive_at(p - ivec2(0, 1)));
-   float next = transition_difference(center, source_column_drive_at(p + ivec2(0, 1)));
-   float rowBase = -darkWeight * 0.5 * (left + right);
-   float rowRepeated = -darkWeight * left * right * 0.5
-      * (transition_similarity(center, source_drive_at(p - ivec2(2, 0)))
-         + transition_similarity(center, source_drive_at(p + ivec2(2, 0))));
-   float columnBase = -darkWeight * previous;
-   float columnRepeated = -darkWeight * previous * next * 0.5
-      * (transition_similarity(center, source_column_drive_at(p - ivec2(0, 2)))
-         + transition_similarity(center, source_column_drive_at(p + ivec2(0, 2))));
-   return reconstructed_crosstalk_drive(
-      center, rowBase, rowRepeated, columnBase, columnRepeated
+   float samples = float(DMG_CROSSTALK_ROWS * 3 * DMG_CROSSTALK_SUBSTEPS);
+   vec2 rawDrive = vec2(
+      crosstalk_voltage_to_drive(sqrt(max(sumSquares.x / samples, 0.0))),
+      crosstalk_voltage_to_drive(sqrt(max(sumSquares.y / samples, 0.0)))
    );
-}
-
-float previous_drive_coordinate(ivec2 p)
-{
-   float center = previous_drive_at(p);
-   float darkWeight = center / 3.0;
-   float left = transition_difference(center, previous_drive_at(p - ivec2(1, 0)));
-   float right = transition_difference(center, previous_drive_at(p + ivec2(1, 0)));
-   float previous = transition_difference(center, previous_column_drive_at(p - ivec2(0, 1)));
-   float next = transition_difference(center, previous_column_drive_at(p + ivec2(0, 1)));
-   float rowBase = -darkWeight * 0.5 * (left + right);
-   float rowRepeated = -darkWeight * left * right * 0.5
-      * (transition_similarity(center, previous_drive_at(p - ivec2(2, 0)))
-         + transition_similarity(center, previous_drive_at(p + ivec2(2, 0))));
-   float columnBase = -darkWeight * previous;
-   float columnRepeated = -darkWeight * previous * next * 0.5
-      * (transition_similarity(center, previous_column_drive_at(p - ivec2(0, 2)))
-         + transition_similarity(center, previous_column_drive_at(p + ivec2(0, 2))));
-   return reconstructed_crosstalk_drive(
-      center, rowBase, rowRepeated, columnBase, columnRepeated
+   vec2 baseline = vec2(
+      crosstalk_uniform_baseline(p.y, int(center.x), rowScale, columnScale),
+      crosstalk_uniform_baseline(p.y, int(center.y), rowScale, columnScale)
    );
+   return clamp(center + rawDrive - baseline, vec2(0.0), vec2(3.0));
 }
 
 float condition_target(int condition, int driveIndex)
@@ -238,13 +235,65 @@ float physical_drift(float driveCoordinate, float directorCoordinate)
    return mix(lowDrift, highDrift, fraction);
 }
 
+float physical_optical_correction(float directorCoordinate)
+{
+   float coordinate = clamp(directorCoordinate, 0.0, 1.0);
+   if (coordinate <= DMG_PHYSICAL_OPTICAL_ANCHOR_Q[0])
+   {
+      return DMG_PHYSICAL_OPTICAL_CORRECTION[0]
+           * coordinate / max(DMG_PHYSICAL_OPTICAL_ANCHOR_Q[0], 1e-6);
+   }
+   for (int anchor = 0; anchor < 3; anchor++)
+   {
+      if (coordinate <= DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor + 1])
+      {
+         float fraction = (coordinate - DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor])
+                        / max(DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor + 1]
+                            - DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor], 1e-6);
+         return mix(DMG_PHYSICAL_OPTICAL_CORRECTION[anchor],
+                    DMG_PHYSICAL_OPTICAL_CORRECTION[anchor + 1], fraction);
+      }
+   }
+   return DMG_PHYSICAL_OPTICAL_CORRECTION[3]
+        * (1.0 - coordinate)
+        / max(1.0 - DMG_PHYSICAL_OPTICAL_ANCHOR_Q[3], 1e-6);
+}
+
 float physical_optical_state(float directorCoordinate)
 {
    float position = clamp(directorCoordinate, 0.0, 1.0)
                   * float(DMG_PHYSICAL_OPTICAL_BINS - 1);
    int low = min(int(floor(position)), DMG_PHYSICAL_OPTICAL_BINS - 2);
    float fraction = position - float(low);
-   return mix(DMG_PHYSICAL_OPTICAL[low], DMG_PHYSICAL_OPTICAL[low + 1], fraction);
+   float rawOpticalState = mix(DMG_PHYSICAL_OPTICAL[low],
+                               DMG_PHYSICAL_OPTICAL[low + 1], fraction);
+   return clamp(rawOpticalState + physical_optical_correction(directorCoordinate),
+                0.25, 1.0);
+}
+
+// The scalar runtime coordinate cannot retain the full depth-dependent
+// director profile. Around the STN threshold, a broad interval of distinct
+// scalar coordinates is optically indistinguishable at state 0.25; carrying
+// that unobservable ambiguity across a later drive change makes otherwise
+// identical pixels cross the threshold on different frames. Project only at
+// a discrete drive transition onto the unique nominal optical branch. This
+// preserves the visible state and ionic memory while preventing a reduced-
+// order hidden coordinate from masquerading as physical pixel defects.
+float canonical_director_for_optical(float opticalState)
+{
+   float state = clamp(opticalState, 0.25, 1.0);
+   int interval = min(int(floor((state - 0.25) * 4.0)), 2);
+   float low = DMG_PHYSICAL_OPTICAL_ANCHOR_Q[interval];
+   float high = DMG_PHYSICAL_OPTICAL_ANCHOR_Q[interval + 1];
+   for (int iteration = 0; iteration < 10; ++iteration)
+   {
+      float middle = 0.5 * (low + high);
+      if (physical_optical_state(middle) < state)
+         low = middle;
+      else
+         high = middle;
+   }
+   return 0.5 * (low + high);
 }
 
 float structural_temperature_scale()
@@ -285,6 +334,71 @@ float integrate_ionic_segment(
    return ionicCharge + (drive - ionicCharge) * response;
 }
 
+float displayed_optical_state(
+   float directorCoordinate,
+   float ionicCharge,
+   float driveCoordinate
+)
+{
+   float drive = driveCoordinate / 3.0;
+   // Linear regression of the 11 mixtures in Nakazono et al. (Merck Japan,
+   // 1994): sticking voltage ~= 7.3904 * ((delta sigma / sigma) / eta) - 0.187.
+   // The paper measures a visibility voltage range, not optical transmission;
+   // StickingOpticalGain is therefore an explicit, separately tunable bridge.
+   float stickingVolts = max(7.390426 * params.IonicMobility - 0.186987, 0.0);
+   float ionicBias = max(ionicCharge - drive, 0.0)
+                   * stickingVolts * params.StickingOpticalGain;
+   return clamp(physical_optical_state(directorCoordinate) + ionicBias,
+                0.25, 1.0);
+}
+
+// A host frame represents the light reflected throughout one complete DMG
+// frame, not an instantaneous sample of the director at the frame boundary.
+// The STN optical curve is especially steep around threshold; displaying only
+// the endpoint aliases a continuous crossing into an isolated one-frame pixel
+// discontinuity. Integrate each constant-drive segment with Simpson's rule
+// while preserving the physical endpoint in feedback for the next frame.
+float integrate_exposure_segment(
+   inout float directorCoordinate,
+   inout float ionicCharge,
+   float driveCoordinate,
+   float frameFraction,
+   float temperatureScale
+)
+{
+   float fraction = clamp(frameFraction, 0.0, 1.0);
+   if (fraction <= 0.0) return 0.0;
+
+   float startDirector = directorCoordinate;
+   float startIonic = ionicCharge;
+   float middleDirector = integrate_director_segment(
+      startDirector, driveCoordinate, 0.5 * fraction, temperatureScale
+   );
+   float middleIonic = integrate_ionic_segment(
+      startIonic, driveCoordinate, 0.5 * fraction
+   );
+   float endDirector = integrate_director_segment(
+      startDirector, driveCoordinate, fraction, temperatureScale
+   );
+   float endIonic = integrate_ionic_segment(
+      startIonic, driveCoordinate, fraction
+   );
+
+   float startLight = displayed_optical_state(
+      startDirector, startIonic, driveCoordinate
+   );
+   float middleLight = displayed_optical_state(
+      middleDirector, middleIonic, driveCoordinate
+   );
+   float endLight = displayed_optical_state(
+      endDirector, endIonic, driveCoordinate
+   );
+
+   directorCoordinate = endDirector;
+   ionicCharge = endIonic;
+   return fraction * (startLight + 4.0 * middleLight + endLight) / 6.0;
+}
+
 void main()
 {
    ivec2 sourceLimit = max(ivec2(global.OriginalSize.xy) - ivec2(1), ivec2(0));
@@ -294,10 +408,11 @@ void main()
       sourceLimit
    );
    int driveIndex = int(gameboy_drive_index(
-      texelFetch(Source, sourceCoord, 0).rgb
+      texelFetch(Original, sourceCoord, 0).rgb
    ));
-   float driveCoordinate = current_drive_coordinate(sourceCoord);
-   vec4 history = texelFetch(PassFeedback0, sourceCoord, 0);
+   vec2 effectiveDriveCoordinates = phase_local_drive_coordinates(sourceCoord);
+   float driveCoordinate = effectiveDriveCoordinates.x;
+   vec4 history = texelFetch(PassFeedback2, sourceCoord, 0);
 
    // Physical feedback advances once per emulated DMG frame. Shader subframes
    // would otherwise multiply both director and ionic integration, so fail
@@ -328,14 +443,19 @@ void main()
    int previousDriveIndex = int(gameboy_drive_index(
       texelFetch(OriginalHistory1, sourceCoord, 0).rgb
    ));
-   float previousDriveCoordinate = previous_drive_coordinate(sourceCoord);
+   float previousDriveCoordinate = effectiveDriveCoordinates.y;
    int originDriveIndex = int(floor(history.a * 0.125));
-   if (driveIndex != feedbackDriveIndex)
+   if (driveIndex != feedbackDriveIndex) {
+      directorCoordinate = canonical_director_for_optical(
+         physical_optical_state(directorCoordinate)
+      );
       originDriveIndex = feedbackDriveIndex;
+   }
    if (driveIndex != previousDriveIndex)
       originDriveIndex = previousDriveIndex;
 
    float temperatureScale = structural_temperature_scale();
+   float exposureIntegral = 0.0;
    if (params.BakedScanout >= 0.5
        && abs(driveCoordinate - previousDriveCoordinate) > 0.00001) {
       // Nintendo documents 154 total lines. Captured CPL rising edges latch a
@@ -343,39 +463,38 @@ void main()
       // still receives the ten-line VBlank interval under the new drive.
       float latchFraction = (float(sourceCoord.y)
          + clamp(params.LatchOffsetLines, 0.0, 1.0)) / 154.0;
-      directorCoordinate = integrate_director_segment(
-         directorCoordinate, previousDriveCoordinate, latchFraction, temperatureScale
+      exposureIntegral += integrate_exposure_segment(
+         directorCoordinate, ionicCharge, previousDriveCoordinate,
+         latchFraction, temperatureScale
       );
-      directorCoordinate = integrate_director_segment(
-         directorCoordinate, driveCoordinate, 1.0 - latchFraction, temperatureScale
-      );
-      ionicCharge = integrate_ionic_segment(
-         ionicCharge, previousDriveCoordinate, latchFraction
-      );
-      ionicCharge = integrate_ionic_segment(
-         ionicCharge, driveCoordinate, 1.0 - latchFraction
+      exposureIntegral += integrate_exposure_segment(
+         directorCoordinate, ionicCharge, driveCoordinate,
+         1.0 - latchFraction, temperatureScale
       );
    } else {
       // Unchanged pixels deliberately retain the original one-step WS2 flow;
       // row timing must not introduce an artificial numerical partition.
-      directorCoordinate = integrate_director_segment(
-         directorCoordinate, driveCoordinate, 1.0, temperatureScale
+      exposureIntegral = integrate_exposure_segment(
+         directorCoordinate, ionicCharge, driveCoordinate, 1.0, temperatureScale
       );
-      ionicCharge = integrate_ionic_segment(ionicCharge, driveCoordinate, 1.0);
    }
 
-   float drive = driveCoordinate / 3.0;
-
-   // Linear regression of the 11 mixtures in Nakazono et al. (Merck Japan,
-   // 1994): sticking voltage ~= 7.3904 * ((delta sigma / sigma) / eta) - 0.187.
-   // The paper measures a visibility voltage range, not optical transmission;
-   // StickingOpticalGain is therefore an explicit, separately tunable bridge.
-   float stickingVolts = max(7.390426 * params.IonicMobility - 0.186987, 0.0);
-   float ionicBias = max(ionicCharge - drive, 0.0)
-                   * stickingVolts * params.StickingOpticalGain;
-   float structural = physical_optical_state(directorCoordinate);
-   float displayed;
-   displayed = clamp(structural + ionicBias, 0.25, 1.0);
+   float displayed = clamp(exposureIntegral, 0.25, 1.0);
+   // Optional presentation hybrid. A purely causal LC response can leave a
+   // newly driven solid object optically incomplete until its director crosses
+   // threshold. Preserve the reconstructed equilibrium shade of the current
+   // electrical drive as a lower bound while retaining physically integrated
+   // brighter/darker residuals, ionic memory, scan timing, and crosstalk. The
+   // reference preset leaves this disabled; target presets may opt in when
+   // coherent current sprites are preferred over bidirectional LC latency.
+   float coherentTarget = physical_optical_state(
+      physical_target(driveCoordinate)
+   );
+   displayed = mix(
+      displayed,
+      max(displayed, coherentTarget),
+      clamp(params.CurrentDriveCoherence, 0.0, 1.0)
+   );
 
    // Alpha packs current target index and transition origin.
    // RGBA32F preserves the exact integer fields without another history pass.
