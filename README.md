@@ -2,39 +2,45 @@
 
 **English** | [繁體中文](README.zh-tw.md) | [简体中文](README.zh-cn.md)
 
-Handheld LCD shaders for RetroArch, with the physics and the sources written
-down.
+Physics-based handheld LCD shaders for RetroArch, with the model and its sources
+written down.
 
-Most retro screen shaders are palettes. They get the tint of a Game Boy screen
-roughly right and stop there. But a DMG screen isn't a color — it's a slow
-reflective optical device, and a lot of what makes it recognizable only happens
-over time: the smear trailing a falling tetromino, dark pixels clearing back up
-more slowly than they darkened, the faint ghost of a title screen that lingers
-after you've left it.
+Most retro screen shaders begin and end with color. That can make a screenshot
+look familiar, but it cannot reproduce the panel itself: a falling tetromino
+smearing into the rows behind it, one gray transition taking longer than
+another, a passive-matrix line changing the drive seen by its neighbors, or a
+static image leaving a faint electrical memory after it is gone.
 
-That behavior is what this repository tries to reconstruct. A model can combine
-documented optical states, pixel aperture, matrix and TFT structure,
-direction-dependent response, gray-to-gray transitions, crosstalk, and slow
-image retention. Every mechanism and parameter that matters is tied back to a
-measurement, to primary literature, or to an assumption that is labeled as one.
+Retro Display Lab reconstructs those behaviors as causal panel simulations.
+The DMG-01 model follows passive-matrix drive through STN director dynamics,
+row and column crosstalk, slow ionic state, and the reflective pixel structure.
+The AGS-101 model follows measured panel color through TFT gray-to-gray
+response, alternating drive and residual DC, scan/latch/optical timing, and BGR
+subpixel aperture. These are not decorative ghosting passes laid over a palette;
+the visible result comes from state that evolves as the original display is
+driven.
 
 ## What the model actually does
 
-A tint changes color but can't reproduce a defect that only shows up in motion.
-Blending a fixed number of previous frames gets closer, but it truncates the
-history arbitrarily and gives every transition the same behavior. This project
-keeps causal per-pixel state instead:
+A tint changes color. A fixed blend of previous frames adds generic blur. This
+project instead keeps the electrical and optical state that each pixel needs:
 
-- fast and slow optical response evolve over the whole frame history, not a
-  fixed window;
-- darkening and clearing can run at different speeds, and so can individual
-  gray-to-gray transitions;
-- ionic and residual-DC state accumulates with exposure and releases again on
-  its own, much longer, time scale;
-- aperture, reflector shadow, row and column crosstalk, and TFT substructure
-  are modeled separately from color;
-- the physics of the original panel is kept apart from the compensation for
-  whatever modern display you're looking at it on.
+- input codes become panel drive and optical targets before they become host
+  display colors;
+- response continues over the full frame history, with different darkening,
+  clearing, and gray-to-gray paths;
+- passive-matrix loading and crosstalk are solved separately from STN response,
+  while TFT drive polarity and residual DC have their own persistent state;
+- scan position, latch time, optical onset, pixel aperture, reflector shadow,
+  and BGR subpixels are explicit parts of the model rather than texture added at
+  the end;
+- original-panel behavior remains separate from compensation for the modern
+  display on which the shader is viewed.
+
+Both normal presets are therefore physics-based end to end. That does not mean
+every constant is a direct measurement of a pristine original panel. Where an
+original drive waveform or response matrix is no longer available, the model
+uses a literature-constrained reconstruction and says so.
 
 Calling this a **physics-informed, measurement-constrained reconstruction** is a
 deliberate hedge. Where a panel's original drive waveform or response matrix
@@ -51,9 +57,12 @@ Game Boy's reflective passive-matrix STN display:
 
 - the four shades a game can address, plus a distinct optical background for
   when the LCD is disabled;
-- asymmetric short response, a structural slow tail, and per-pixel ionic
-  image-sticking constrained by a 1994 STN experiment;
-- sparse row and column crosstalk;
+- exact Game Boy scan timing feeding a mobile surrogate of RMS drive, STN
+  director dynamics, and reflected optical response;
+- row/column electrode loading, local passive-matrix crosstalk, and a bounded
+  common-mode correction that preserves neighboring logical shades;
+- asymmetric transitions and per-pixel ionic image sticking constrained by
+  period STN measurements;
 - rectangular aperture and reflector shadow, based on documented DMG close-ups;
 - reference, heavy-ghosting, aged, and accelerated-experiment presets.
 
@@ -81,33 +90,39 @@ Both are 960×640 framebuffer captures from the same KPA, Gambatte core, Tetris
 ROM, viewport, and display state — but not from the same emulation frame. A
 still image can't really show temporal decay anyway.
 
-## Available physics seed: Nintendo GBA SP AGS-101
+## Available model: Nintendo GBA SP AGS-101
 
 <table>
   <tr>
     <th>Shader off — raw emulator output</th>
-    <th>Shader on — AGS-101 physics prototype</th>
+    <th>Shader on — AGS-101 physics model</th>
   </tr>
   <tr>
     <td><img src="docs/images/comparisons/ags101-mario-shader-off.png" alt="GBA Mario gameplay with the AGS-101 shader disabled"></td>
-    <td><img src="docs/images/comparisons/ags101-mario-shader-on.png" alt="GBA Mario gameplay with the AGS-101 physics prototype enabled"></td>
+    <td><img src="docs/images/comparisons/ags101-mario-shader-on.png" alt="GBA Mario gameplay with the AGS-101 physics model enabled"></td>
   </tr>
 </table>
 
-The downloadable
-[`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp)
-separates BGR aperture, transition-dependent TFT response, and slow residual-DC
-retention. Its default color path now reproducibly derives the 32-code EOTF,
-native-primary matrix, and black/white anchors from the pinned HCS AGS-101
-measurement record; a neutral sRGB adapter remains available as a regression
-baseline.
+The preset is still named
+[`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp), but
+the five planned physics workstreams are now implemented. Its two-pass runtime
+combines:
 
-No complete gray-to-gray matrix has been recovered for the referenced AGS-101
-record. The runtime therefore uses an analytic literature-constrained fallback
-and ships a measurement-ready table format. Drive retention uses published
-period-cell kinetics with explicitly labelled project bridge priors, while scan
-timing separates row start, electrical latch, and optical onset. The exact
-evidence and parameter classifications are in the
+- a reproducibly derived 32-code EOTF, native-primary matrix, and black/white
+  anchors from the pinned HCS AGS-101 measurement record;
+- continuous per-subpixel TFT gray-to-gray state, with a deterministic table
+  path ready for measured transition data;
+- alternating drive polarity and slow residual-DC image retention using
+  published adsorption/desorption kinetics;
+- exact GBA row timing split into row start, electrical latch, and optical
+  onset, including causal events that cross a frame boundary;
+- analytic BGR aperture followed by the measured native-to-host color stage.
+
+No complete gray-to-gray matrix or motherboard timing trace has been recovered
+for the referenced AGS-101. The default therefore uses the documented analytic
+and period-literature candidates, while the measured-table and diagnostic paths
+remain available for better evidence. A neutral sRGB adapter is kept as a
+regression baseline. The exact classifications and limits are in the
 [AGS-101 evidence map](models/nintendo-ags-101/REFERENCES.md).
 
 Game imagery here exists only to show what the shaders do. Tetris, Mario,
@@ -142,10 +157,11 @@ For GBA content on the same target, load:
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
 ```
 
-That profile puts a 640×576 DMG viewport on a 960×640 panel at exactly 4×. Its
-display state is **sRGB-neutral and unmeasured** — which is not the same thing
-as instrument-calibrated sRGB. On any other display, start from the model preset
-and build your own target profile. The
+The DMG profile puts a 640×576 viewport on the panel at exactly 4×; the AGS-101
+profile fills the same 960×640 panel at exactly 4× from its 240×160 source. The
+target display state is **sRGB-neutral and unmeasured** — which is not the same
+thing as instrument-calibrated sRGB. On any other display, start from the model
+preset and build your own target profile. The
 [installation guide](docs/installation.md) has the long version.
 
 ## Reproducibility and validation
@@ -154,10 +170,11 @@ and build your own target profile. The
 npm test
 ```
 
-The checks cover shader and preset structure, reference IDs, palette ordering,
-STN and TFT response anchors, the published 1994 regression, residual-DC
-integration, target scale, forbidden HCS constants, and whether unmeasured
-target state is actually disclosed as such.
+The checks cover shader and preset structure, deterministic generated assets,
+reference IDs, palette ordering, the STN surrogate and crosstalk gates, TFT
+gray-to-gray lookup and fallback, residual-DC integration, scan-event causality,
+target scale, HCS color vectors, and whether unmeasured target state is actually
+disclosed as such.
 Contributions need to follow the [evidence policy](docs/reference-policy.md) and
 the [contribution guide](CONTRIBUTING.md). For academic or technical use, cite
 [`CITATION.cff`](CITATION.cff) along with the model-local sources behind the
