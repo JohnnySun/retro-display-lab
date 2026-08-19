@@ -91,6 +91,74 @@ function encodePng(width, height, rgb) {
   ]);
 }
 
+function paeth(a, b, c) {
+  const p = a + b - c;
+  const pa = Math.abs(p - a);
+  const pb = Math.abs(p - b);
+  const pc = Math.abs(p - c);
+  if (pa <= pb && pa <= pc) return a;
+  return pb <= pc ? b : c;
+}
+
+function decodeRgb8Png(buffer) {
+  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  if (!buffer.subarray(0, 8).equals(signature)) throw new Error("invalid PNG signature");
+  let offset = 8;
+  let header;
+  const idat = [];
+  while (offset < buffer.length) {
+    const length = buffer.readUInt32BE(offset);
+    const type = buffer.toString("ascii", offset + 4, offset + 8);
+    const data = buffer.subarray(offset + 8, offset + 8 + length);
+    if (type === "IHDR") {
+      header = {
+        width: data.readUInt32BE(0),
+        height: data.readUInt32BE(4),
+        bitDepth: data[8],
+        colorType: data[9],
+        compression: data[10],
+        filter: data[11],
+        interlace: data[12],
+      };
+    } else if (type === "IDAT") idat.push(data);
+    else if (type === "IEND") break;
+    offset += 12 + length;
+  }
+  if (!header || header.bitDepth !== 8 || header.colorType !== 2
+      || header.compression !== 0 || header.filter !== 0 || header.interlace !== 0) {
+    throw new Error("expected a non-interlaced 8-bit RGB PNG");
+  }
+  const bytesPerPixel = 3;
+  const rowBytes = header.width * bytesPerPixel;
+  const inflated = zlib.inflateSync(Buffer.concat(idat));
+  if (inflated.length !== header.height * (rowBytes + 1)) {
+    throw new Error("unexpected PNG scanline length");
+  }
+  const rgb = Buffer.alloc(header.height * rowBytes);
+  let inputOffset = 0;
+  let prior = Buffer.alloc(rowBytes);
+  for (let y = 0; y < header.height; y += 1) {
+    const filter = inflated[inputOffset];
+    inputOffset += 1;
+    const encoded = inflated.subarray(inputOffset, inputOffset + rowBytes);
+    inputOffset += rowBytes;
+    const row = rgb.subarray(y * rowBytes, (y + 1) * rowBytes);
+    for (let x = 0; x < rowBytes; x += 1) {
+      const left = x >= bytesPerPixel ? row[x - bytesPerPixel] : 0;
+      const up = prior[x] ?? 0;
+      const upperLeft = x >= bytesPerPixel ? prior[x - bytesPerPixel] : 0;
+      if (filter === 0) row[x] = encoded[x];
+      else if (filter === 1) row[x] = (encoded[x] + left) & 0xff;
+      else if (filter === 2) row[x] = (encoded[x] + up) & 0xff;
+      else if (filter === 3) row[x] = (encoded[x] + Math.floor((left + up) / 2)) & 0xff;
+      else if (filter === 4) row[x] = (encoded[x] + paeth(left, up, upperLeft)) & 0xff;
+      else throw new Error(`unsupported PNG filter ${filter}`);
+    }
+    prior = row;
+  }
+  return { ...header, rgb };
+}
+
 function sourceState(x, y, width, height) {
   const edge = x === 0 || y === 0 || x === width - 1 || y === height - 1;
   if (edge) return 1;
@@ -141,7 +209,12 @@ function renderFixture(scale, palette, geometry) {
       }
     }
   }
-  return { width: outputWidth, height: outputHeight, png: encodePng(outputWidth, outputHeight, rgb) };
+  return {
+    width: outputWidth,
+    height: outputHeight,
+    rgb,
+    png: encodePng(outputWidth, outputHeight, rgb),
+  };
 }
 
 function averageShadowGap(outputWidth, outputHeight, sourceWidth, sourceHeight, geometry) {
@@ -216,10 +289,34 @@ const fixtures = fixtureCases.map((fixture) => {
     file: `generated/${file}`,
     path: path.join(generatedDir, file),
     dimensions: [rendered.width, rendered.height],
+    rgb: rendered.rgb,
     png: rendered.png,
     sha256: sha256(rendered.png),
   };
 });
+
+if (checkOnly) {
+  for (const fixture of fixtures) {
+    if (!fs.existsSync(fixture.path)) {
+      fail(`DMG WS6 fixture is missing: ${path.relative(root, fixture.path)}`);
+    }
+    const checkedBuffer = fs.readFileSync(fixture.path);
+    let checked;
+    try {
+      checked = decodeRgb8Png(checkedBuffer);
+    } catch (error) {
+      fail(`DMG WS6 fixture is invalid: ${path.relative(root, fixture.path)}: ${error.message}`);
+    }
+    if (checked.width !== fixture.dimensions[0] || checked.height !== fixture.dimensions[1]
+        || !checked.rgb.equals(fixture.rgb)) {
+      fail(`DMG WS6 fixture pixels are stale: ${path.relative(root, fixture.path)}`);
+    }
+    // Keep the checked-in compressed representation and its report hash after
+    // verifying pixels; zlib output can differ across Node and platform builds.
+    fixture.png = checkedBuffer;
+    fixture.sha256 = sha256(checkedBuffer);
+  }
+}
 
 const tolerance = 1e-10;
 const report = {
@@ -252,7 +349,9 @@ const report = {
     expectedDirection: "positive X and positive Y from the source aperture",
     scaleInvariantGapArea: shadowReference,
   },
-  fixtures: fixtures.map(({ path: ignoredPath, png: ignoredPng, ...fixture }) => fixture),
+  fixtures: fixtures.map(({
+    path: ignoredPath, png: ignoredPng, rgb: ignoredRgb, ...fixture
+  }) => fixture),
   validation: {
     apertureTolerance: tolerance,
     shadowGapTolerance: tolerance,
@@ -281,11 +380,6 @@ const reportBuffer = Buffer.from(`${JSON.stringify(report, null, 2)}\n`);
 if (checkOnly) {
   if (!fs.existsSync(reportPath) || !fs.readFileSync(reportPath).equals(reportBuffer)) {
     fail("DMG WS6 aperture report is missing or stale; run node tools/build-dmg01-ws6.mjs");
-  }
-  for (const fixture of fixtures) {
-    if (!fs.existsSync(fixture.path) || !fs.readFileSync(fixture.path).equals(fixture.png)) {
-      fail(`DMG WS6 fixture is missing or stale: ${path.relative(root, fixture.path)}`);
-    }
   }
   if (!report.validation.pass) fail("DMG WS6 aperture validation failed");
   console.log("DMG-01 WS6 scale-invariant aperture and reflector-shadow artifacts are current.");
