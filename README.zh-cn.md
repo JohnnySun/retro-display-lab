@@ -2,74 +2,141 @@
 
 [English](README.md) | [繁體中文](README.zh-tw.md) | **简体中文**
 
-给 RetroArch 用的掌机 LCD Shader，从物理模型到数据出处都写清楚。
+我写了两套给 RetroArch 使用的掌机 LCD Shader，分别用来还原初代
+Game Boy，以及 GBA SP 后期背光版 AGS-101 的屏幕观感。
 
-大多数怀旧屏幕 Shader 从颜色开始，也在颜色结束。这样能让截图看起来有些相似，却重建不了屏幕本身：方块下落时拖过后方行线的残影、不同灰阶转换各自的速度、被动矩阵某一条线对相邻像素驱动的影响，或静态画面消失后留下的微弱电气记忆。
+我想做的并不是另一个“看起来有点复古”的滤镜，而是从真实测量数据、
+当年的研究文献和屏幕工作原理出发，重新建立这两块液晶屏幕的显示过程。
 
-Retro Display Lab 把这些行为做成有因果关系的面板模拟。DMG-01 从被动矩阵驱动一路计算到 STN 指向矢动力学、行列串扰、慢速离子状态与反射式像素结构；AGS-101 则从测量色彩出发，接上 TFT gray-to-gray 响应、交替驱动与 residual DC、scan／latch／optical timing，以及 BGR 子像素开口。这些并不是叠在调色板上的装饰性拖影；画面来自随原始面板驱动持续演化的状态。
+简单来说，就是四个字：**先量，再算。**
 
-## 这个模型到底在做什么
+## 为什么只靠调色和混帧还不够？
 
-Color Tint 只能改颜色，固定混合前几帧也只是加上一种通用模糊。这里保存的是每个像素真正需要的电气与光学状态：
+现在常见的怀旧掌机 Shader，很多都是先凭印象调出一种“老屏幕的颜色”，
+再把前后几帧混合起来，制造拖影效果。
 
-- 输入色码会先变成面板驱动与光学目标，最后才转换成现代屏幕的颜色；
-- 响应沿着完整的画面历史持续演化，加深、褪去与各种 gray-to-gray 转换都可以走不同路径；
-- 被动矩阵的 loading／crosstalk 和 STN 响应分开求解；TFT 的驱动极性与 residual DC 也有各自的持久状态；
-- 扫描位置、latch 时间、光学 onset、像素开口、反射层阴影与 BGR 子像素，都是模型本身的一部分，而不是最后贴上去的材质；
-- 原始面板的物理，和针对现代目标屏幕做的补偿，是两件分开处理的事。
+这种方法可以做出怀旧气氛，却很容易走向不同的极端：有些把初代
+Game Boy 调成非常鲜艳的绿色；另一些虽然灰暗复古，最后却更像文曲星或
+计算器上的液晶屏幕，而不是初代 Game Boy。
 
-因此目前两套 normal preset 从头到尾都使用物理模型。不过这并不代表每个常数都是从全新原机直接测得的；找不到原始驱动波形或响应矩阵时，模型会采用受文献约束的重建值，并明确说明这一点。
+它们可能都有“老屏幕的感觉”，但那不一定是真正的 Game Boy。很多时候，
+它们还原的是作者印象中的老屏幕，而不是某一块原始面板实际如何显示。
 
-把成果称作“**物理启发、测量约束的重建**”是有意保守的说法。如果找不到原面板的驱动波形或响应矩阵，就把文献约束、候选值和不确定性一起公开，而不是把推导出来的数字包装成实测值。细节见[方法论](docs/methodology.md)、[引用规范](docs/reference-policy.md)和[完整 Reference 索引](REFERENCES.md)。
+## 先看看初代 Game Boy 的效果
 
-## 可下载模型：Nintendo DMG-01
-
-[`models/nintendo-dmg-01`](models/nintendo-dmg-01) 重建的是初代 Game Boy 那块反射式被动矩阵 STN LCD：
-
-- 游戏可以指定的四个灰阶，加上 LCD 未驱动时那层独立的光学底色；
-- 由 Game Boy 精确扫描时序驱动的 mobile surrogate，依次重建 RMS drive、STN 指向矢动力学与反射光学响应；
-- 行列电极 loading、局部被动矩阵 crosstalk，以及能保住相邻逻辑色阶的有界 common-mode 修正；
-- 非对称灰阶转换，以及受同时代 STN 测量约束的逐像素离子残影；
-- 依据公开 DMG 近拍资料建立的矩形像素开口与反射层阴影；
-- Reference、重拖影、老化个体，以及加速实验用的 preset。
-
-哪一份资料对应到哪一段代码、有哪些限制，都写在 [DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md) 里。目前的机器可读重建决策与后续实现工作，分别记录在 [`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json) 和 [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md)。
-
-### 代表画面
+下面两张图都开启了当前的 GB Shader。这里没有特意放 Shader 关闭时的
+对比；你可以先直接看看它的颜色、屏幕质感和动态残影，是不是接近你记忆里
+初代 Game Boy 的样子。后面再解释，这些效果为什么不是靠记忆调出来的。
 
 <table>
   <tr><th>标题首页 — 串扰</th><th>方块下落 — 拖影</th></tr>
   <tr>
-    <td><img src="docs/images/comparisons/dmg01-tetris-crosstalk.png" alt="KPA 的俄罗斯方块标题首页，呈现 DMG-01 行列串扰"></td>
-    <td><img src="docs/images/comparisons/dmg01-tetris-ghosting.png" alt="KPA 的俄罗斯方块高堆叠画面，直条方块下落时呈现 DMG-01 拖影"></td>
+    <td><img src="docs/images/comparisons/dmg01-tetris-crosstalk.png" alt="KONKR Pocket Advance 上的俄罗斯方块标题首页，呈现初代 Game Boy 行列串扰"></td>
+    <td><img src="docs/images/comparisons/dmg01-tetris-ghosting.png" alt="KONKR Pocket Advance 上的俄罗斯方块游戏画面，呈现初代 Game Boy 拖影"></td>
   </tr>
 </table>
 
-两张都是在同一台 KPA、同一个 Gambatte core、同一份俄罗斯方块 ROM、当前的 DMG shader、同样的 viewport、显示状态与 Game Boy 遮罩下拍的 960×640 framebuffer 截图。标题首页的大面积高对比图形能看出行列串扰；游戏画面则抓到直条方块从较高处落向已经堆起的盘面，垂直尾巴会把时间响应直接显示出来。静态图仍然只能留下整段衰减中的一个瞬间。
+左边的大面积高对比图形能看出行列像素之间的相互影响；右边抓到直条方块
+下落的一刻，后方的垂直尾巴把液晶的时间响应直接显示出来。这些不是在画面
+最后加上的模糊，而是由持续变化的屏幕状态计算出来的。
 
-## 可下载模型：Nintendo GBA SP AGS-101
+## 第一步：先把颜色量清楚
+
+如果想还原一块特定的屏幕，第一件事不是打开调色工具，而是先弄清楚它原本
+到底是什么颜色。
+
+Retro Display Lab 使用实际测量和经过色彩管理的参考数据，重建原始屏幕的
+色彩、灰阶与黑白锚点，再把结果正确映射到标准 sRGB。初代 Game Boy 不只是
+“四种绿色”：除了游戏能控制的四个灰阶，LCD 未驱动时的屏幕底色也是独立的
+光学状态。AGS-101 也有自己的黑位、灰阶关系和原生色彩，不能只靠降低饱和度
+来代替。
+
+这里所说的校色，是指 Shader 的输出依据测量数据对准 sRGB。只要观看设备
+本身经过妥善校准，结果就能接近模型所重建的原始屏幕色彩；如果显示器本身
+严重偏色，Shader 当然无法替那块硬件自动完成校准。
+
+## 第二步：计算屏幕如何响应
+
+真正的液晶屏幕不会把前后几张完整画面混在一起。你可以把每个液晶像素想象
+成一扇很小的百叶窗：电信号改变后，它需要时间才能移动到新的位置，而且从亮
+变暗和从暗变亮，速度也不一定相同。
+
+因此，游戏输出的色码会先转换成模拟的面板驱动，再由
+**基于物理模型的算法**计算每个虚拟液晶像素接下来如何变化。每个像素都会保留之前的状态；
+新的画面出现后，算法会根据驱动、液晶材料、扫描位置和历史状态，算出下一刻
+实际能显示到哪里。
+
+这不是用实体方式重建一块屏幕，而是把屏幕的物理原理做成可以在 GPU 上实时
+运行的算法。拖影、串扰和残像因此是模型算出的结果，不是最后贴上去的特效。
+
+## 初代 Game Boy：反射式被动矩阵 LCD
+
+[`models/nintendo-dmg-01`](models/nintendo-dmg-01) 重建初代 Game Boy 的
+反射式被动矩阵 STN LCD：
+
+- 四个游戏灰阶，以及 LCD 未驱动时独立的光学底色；
+- 精确的 Game Boy 扫描时序、等效电气驱动、STN 液晶响应与反射光学；
+- 行列电极 loading 和局部串扰，而不是一般的空间模糊；
+- 明暗方向不同的灰阶转换，以及逐像素、慢速的离子残像；
+- 矩形像素开口、未驱动间隙与反射层阴影；
+- Reference、重拖影、老化个体与加速实验用 preset。
+
+每一份数据如何进入代码、哪些是直接测量、哪些是文献约束的重建，都写在
+[DMG-01 Evidence Map](models/nintendo-dmg-01/REFERENCES.md)。机器可读的决策与
+实现记录则放在 [`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json)
+和 [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md)。
+
+## GBA SP AGS-101：另一套完全不同的模型
+
+GBA SP 后期的 AGS-101 使用背光 TFT LCD，和初代 Game Boy 不是同一种技术。
+它响应更快，但不同颜色、不同明暗之间的切换速度仍然不完全相同，画面扫描、
+驱动状态和 BGR 子像素排列也会影响最后的观感。
+
+所以我没有把 GB 的拖影直接套到 GBA SP 上，而是为 AGS-101 单独建立了色彩、
+电气、时间响应和像素结构模型。
 
 <table>
-  <tr><th>关闭 Shader — 模拟器原始输出</th><th>开启 Shader — AGS-101 物理模型</th></tr>
+  <tr><th>关闭 Shader — 模拟器原始输出</th><th>开启 Shader — AGS-101 模型</th></tr>
   <tr>
     <td><img src="docs/images/comparisons/ags101-mario-shader-off.png" alt="关闭 AGS-101 Shader 的 GBA 马力欧画面"></td>
-    <td><img src="docs/images/comparisons/ags101-mario-shader-on.png" alt="开启 AGS-101 物理模型的 GBA 马力欧画面"></td>
+    <td><img src="docs/images/comparisons/ags101-mario-shader-on.png" alt="开启 AGS-101 模型的 GBA 马力欧画面"></td>
   </tr>
 </table>
 
-Preset 名称仍然是
-[`physics-seed-v1`](models/nintendo-ags-101/presets/physics-seed-v1.slangp)，
-不过原先规划的五个物理 workstream 现在都已经实现。两个 pass 会一起处理：
+两边的差别不只是饱和度或亮度。模型会一起处理从测量数据推导的 32 阶色彩
+响应与黑白锚点、逐子像素 TFT gray-to-gray 状态、交替驱动与慢速 residual-DC
+残像、GBA 扫描／latch／光学 onset 时间，以及最后的 BGR 像素开口。
 
-- 从固定版本的 HCS AGS-101 测量记录，可复现地推导 32 阶 EOTF、原生色彩矩阵与黑白锚点；
-- 连续的逐子像素 TFT gray-to-gray 状态，以及能直接接收未来实测转换数据的 deterministic table 路径；
-- 交替驱动极性，以及使用已发表 adsorption／desorption kinetics 的慢速 residual-DC 残影；
-- 精确的 GBA row timing，拆成 row start、电气 latch 与 optical onset，跨 frame 的事件仍保持因果关系；
-- 解析式 BGR 像素开口，最后接上测量得到的 native-to-host 色彩转换。
+目前仍没有该 AGS-101 的完整 gray-to-gray matrix 或主板时序 trace，默认值
+因此采用文档中列明的解析模型和同时代文献候选范围；未来如果有更好的测量数据，
+也已经保留 deterministic measured-table 路径。详细分类与限制见
+[AGS-101 Evidence Map](models/nintendo-ags-101/REFERENCES.md)。
 
-目前仍没有该 AGS-101 的完整 gray-to-gray matrix 或主板时序 trace，因此 default 使用文档中列明的解析模型与同时代文献候选值；measured-table 与诊断路径则留给更好的证据。中性 sRGB adapter 也仍作为回归基准。完整分类与限制见 [AGS-101 Evidence Map](models/nintendo-ags-101/REFERENCES.md)。
+## 模型里的数据从哪里来？
 
-游戏画面只是用来说明 Shader 的行为。俄罗斯方块、马力欧、Nintendo 商标和游戏内容都归各自的权利人所有。
+项目采用可取得的面板测量、经过色彩管理的原始屏幕参考，以及初代 GB 与
+AGS-101 的驱动与时序数据，也查阅同时代相似面板和液晶材料的研究结果。
+找不到完整原始数据时，就用年代与
+技术相符的文献限制合理范围，并公开候选值和不确定性，而不是把推导值包装成
+原机实测。
+
+因此，最准确的定位是“**以物理模型为基础、受测量与文献约束的重建**”。
+完整原则见[方法论](docs/methodology.md)、[引用规范](docs/reference-policy.md)和
+[Reference 索引](REFERENCES.md)。
+
+## 图片在哪里运行？
+
+本文图片都在 **KONKR Pocket Advance（GT78-VN）** 上使用 RetroArch 实时渲染，
+再从它的 **960×640 framebuffer** 直接截取：
+
+- GBA 的 240×160 画面以精确 4 倍映射填满 960×640；
+- GB 的 160×144 画面以精确 4 倍映射到 640×576 viewport，周围再放置外框。
+
+这些是掌机 GPU 的实际输出，不是用相机拍摄实体面板。KONKR target 目前标示为
+**sRGB-neutral、未测量**，不等同于经过仪器校准的 sRGB 显示器。
+
+游戏画面只用来说明 Shader 行为。俄罗斯方块、马力欧、Nintendo 商标和游戏
+内容都归各自的权利人所有。
 
 ## 下载
 
@@ -81,37 +148,40 @@ Preset 名称仍然是
 ## 安装到 RetroArch
 
 1. 把项目解压或 clone 到 `RetroArch/shaders/retro-display-lab`。
-2. 切到 Vulkan video driver，target profile 有要求的话就打开整数缩放。
-3. 关掉模拟器 core 自带的 frame mixing，否则时间响应会被模拟两遍。
-4. 加载跟你设备相符的那个 target profile 下面的 `.slangp`。
+2. 切换到 Vulkan video driver；target profile 有要求时开启整数缩放。
+3. 关闭模拟器 core 自带的 frame mixing，否则时间响应会被重复计算。
+4. 加载与设备相符的 target profile `.slangp`。
 
-我手上测过的 KONKR GT78-VN，对应的是这个：
+我实际测试过的 KONKR GT78-VN 请使用：
 
 ```text
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp
 ```
 
-同一台设备的 GBA 内容请加载：
+同一台设备的 GBA 内容请使用：
 
 ```text
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
 ```
 
-DMG profile 会在面板上放一个 640×576 的 viewport，正好是 4 倍整数缩放；AGS-101 profile 则把 240×160 原始画面以 4 倍填满同一块 960×640 面板。这个 target 的显示状态是“**sRGB-neutral、未测量**”，跟仪器校准过的 sRGB 不是一回事。换成别的面板，请从 model preset 出发，自己建一份 target profile。完整步骤见[安装说明](docs/installation.md)。
+其他面板请从 model preset 出发建立自己的 target profile，不要把 KONKR 的补偿
+当成原始 GB 或 AGS-101 的特性。完整步骤见[安装说明](docs/installation.md)。
 
-## 复现与验证
+## 复现、验证与贡献
 
 ```sh
 npm test
 ```
 
-检查范围包括 Shader／preset 结构、生成文件的可复现性、Reference ID、色阶顺序、
-STN surrogate 与 crosstalk gate、TFT gray-to-gray lookup／fallback、residual-DC
-积分、scan event 因果性、target scale、HCS 色彩向量，以及未测量显示状态有没有
-被如实披露。要提 PR 的话，请照[引用规范](docs/reference-policy.md)和
-[贡献指南](CONTRIBUTING.md)来。学术或技术用途请引用
-[`CITATION.cff`](CITATION.cff)，并附上实际使用机制所对应的机型 Reference。
+测试会检查 Shader／preset 结构、生成文件可复现性、Reference ID、色阶顺序、
+STN surrogate、串扰、TFT gray-to-gray、residual-DC、扫描因果性、target scale、
+HCS 色彩向量，以及未测量 target 是否被如实标示。
+
+要提交 PR 请先阅读[引用规范](docs/reference-policy.md)和
+[贡献指南](CONTRIBUTING.md)。学术或技术用途请引用 [`CITATION.cff`](CITATION.cff)，
+并附上实际使用机制所对应的机型 Reference。
 
 ## 许可
 
-项目的原创代码和文档采用 Apache-2.0。第三方来源各自保持原本的条款：BGB 图片、商业 ROM，以及未获许可的 HCS Shader／数据文件，这里都不会再分发。
+原创代码和文档采用 Apache-2.0。第三方来源保持各自条款；项目不会再分发
+BGB 图片、商业 ROM，或未经授权的 HCS Shader／数据文件。
