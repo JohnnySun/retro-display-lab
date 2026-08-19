@@ -44,7 +44,24 @@ preserve causal panel history. If those conditions cannot be guaranteed, use
 the static safe bypass by setting `TemporalResponse=0`, `DriveRetention=0`, and
 `BakedScanout=0`.
 
-To create a core override, copy
-`integrations/retroarch/overrides/gambatte-gb.slangp` into the appropriate
-RetroArch core configuration directory. Its relative reference assumes this
-repository is installed at `RetroArch/shaders/retro-display-lab`.
+To install the tested content-directory overrides, copy:
+
+```text
+integrations/retroarch/overrides/gambatte-gb.slangp
+  -> RetroArch/config/Gambatte/gb.slangp
+integrations/retroarch/overrides/mgba-gba.slangp
+  -> RetroArch/config/mGBA/gba.slangp
+```
+
+Their relative references assume this repository is installed at
+`RetroArch/shaders/retro-display-lab`. The Gambatte override selects the
+one-year-used visual approximation used by the project screenshots; this is a
+mild visual profile, not calibrated elapsed-time aging. The mGBA override
+selects the AGS-101 physics preset.
+
+These filenames are content-directory overrides: `gb.slangp` applies only to
+content loaded from a directory named `gb`, and `gba.slangp` only to a directory
+named `gba`. They do not replace a core-wide preset. Content stored under `gbc`
+or another directory therefore keeps its own shader configuration. Directory
+names are case-sensitive on platforms that use a case-sensitive filesystem; if
+the ROM directory is named `GBA`, use `GBA.slangp` instead.

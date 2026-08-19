@@ -1,4 +1,5 @@
 # Deploy as RetroArch/config/Gambatte/gb.slangp when this repository is installed
 # at RetroArch/shaders/retro-display-lab.
-#reference "../../shaders/retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp"
-
+# This content-directory override uses the project's default one-year-used visual
+# approximation. It is not calibrated elapsed-time aging.
+#reference "../../shaders/retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-v1.slangp"
