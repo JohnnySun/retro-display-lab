@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "nintendo-ags-101-ws2-capture-loopback-v1",
+  "sampleRateHz": 2000,
+  "pretriggerSeconds": 0.02,
+  "durationSeconds": 0.16,
+  "cases": [
+    {
+      "caseId": "accepted-clean",
+      "channel": "r",
+      "fromCode": 0,
+      "toCode": 31,
+      "ratePerSecond": 34,
+      "noiseAmplitude": 0,
+      "overshootAmplitude": 0,
+      "missingIntervalSeconds": null,
+      "expectedStatus": "accepted"
+    },
+    {
+      "caseId": "rejected-noisy",
+      "channel": "g",
+      "fromCode": 0,
+      "toCode": 31,
+      "ratePerSecond": 34,
+      "noiseAmplitude": 0.035,
+      "overshootAmplitude": 0,
+      "missingIntervalSeconds": null,
+      "expectedStatus": "rejected"
+    },
+    {
+      "caseId": "rejected-overshoot",
+      "channel": "b",
+      "fromCode": 0,
+      "toCode": 31,
+      "ratePerSecond": 34,
+      "noiseAmplitude": 0,
+      "overshootAmplitude": 0.08,
+      "missingIntervalSeconds": null,
+      "expectedStatus": "rejected"
+    },
+    {
+      "caseId": "rejected-missing",
+      "channel": "r",
+      "fromCode": 8,
+      "toCode": 24,
+      "ratePerSecond": 28,
+      "noiseAmplitude": 0,
+      "overshootAmplitude": 0,
+      "missingIntervalSeconds": [0.03, 0.04],
+      "expectedStatus": "rejected"
+    },
+    {
+      "caseId": "rejected-censored",
+      "channel": "g",
+      "fromCode": 4,
+      "toCode": 27,
+      "ratePerSecond": 8,
+      "noiseAmplitude": 0,
+      "overshootAmplitude": 0,
+      "missingIntervalSeconds": null,
+      "expectedStatus": "rejected"
+    }
+  ]
+}

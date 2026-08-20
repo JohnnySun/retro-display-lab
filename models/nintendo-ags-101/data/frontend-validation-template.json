@@ -4,7 +4,7 @@
   "runId": "replace-with-run-id",
   "date": "replace-with-ISO-date",
   "repositoryCommit": "0000000000000000000000000000000000000000",
-  "modelId": "nintendo-ags-101-physics-seed",
+  "modelId": "nintendo-ags-101-period-reconstruction",
   "targetProfile": "replace-with-target-profile-id",
   "frontend": {
     "name": "replace-with-frontend",

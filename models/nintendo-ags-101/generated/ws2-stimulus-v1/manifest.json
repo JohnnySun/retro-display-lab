@@ -1,0 +1,2792 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "nintendo-ags-101-ws2-stimulus-v1",
+  "generator": "tools/build-ags101-test-rom.mjs",
+  "source": {
+    "path": "models/nintendo-ags-101/data/ws2-stimulus-scenes-v1.json",
+    "sha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2"
+  },
+  "timing": {
+    "masterClockHz": 16777216,
+    "cyclesPerLine": 1232,
+    "totalLines": 228,
+    "frameSeconds": 0.016742706298828125,
+    "pageFlipEvent": "first VBlank edge after the selected page dwell"
+  },
+  "colorEncoding": "GBA RGB555",
+  "sourceResolution": [
+    240,
+    160
+  ],
+  "scenes": [
+    {
+      "sceneId": "color-ramps",
+      "type": "color-ramps",
+      "description": "Neutral, red, green, blue, and mixed RGB555 ramps.",
+      "filename": "color-ramps.gba",
+      "sha256": "4467ce9c81160e6d1bc8b2c10d5df79206d2baf338734d6f148f538035f61c13",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 184,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647,
+      "pageSha256": [
+        "116eb8dd937f36fb67617e5b95792bfed2c7df706212924d8ced312e52d99d85",
+        "116eb8dd937f36fb67617e5b95792bfed2c7df706212924d8ced312e52d99d85"
+      ],
+      "programSha256": "79c77f849144a4cf249315e238942fee3f8a20b78b31830750a2c13289fb513e",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            1,
+            1,
+            1
+          ],
+          "packed": 1057
+        },
+        {
+          "index": 2,
+          "rgb555": [
+            2,
+            2,
+            2
+          ],
+          "packed": 2114
+        },
+        {
+          "index": 3,
+          "rgb555": [
+            3,
+            3,
+            3
+          ],
+          "packed": 3171
+        },
+        {
+          "index": 4,
+          "rgb555": [
+            4,
+            4,
+            4
+          ],
+          "packed": 4228
+        },
+        {
+          "index": 5,
+          "rgb555": [
+            5,
+            5,
+            5
+          ],
+          "packed": 5285
+        },
+        {
+          "index": 6,
+          "rgb555": [
+            6,
+            6,
+            6
+          ],
+          "packed": 6342
+        },
+        {
+          "index": 7,
+          "rgb555": [
+            7,
+            7,
+            7
+          ],
+          "packed": 7399
+        },
+        {
+          "index": 8,
+          "rgb555": [
+            8,
+            8,
+            8
+          ],
+          "packed": 8456
+        },
+        {
+          "index": 9,
+          "rgb555": [
+            9,
+            9,
+            9
+          ],
+          "packed": 9513
+        },
+        {
+          "index": 10,
+          "rgb555": [
+            10,
+            10,
+            10
+          ],
+          "packed": 10570
+        },
+        {
+          "index": 11,
+          "rgb555": [
+            11,
+            11,
+            11
+          ],
+          "packed": 11627
+        },
+        {
+          "index": 12,
+          "rgb555": [
+            12,
+            12,
+            12
+          ],
+          "packed": 12684
+        },
+        {
+          "index": 13,
+          "rgb555": [
+            13,
+            13,
+            13
+          ],
+          "packed": 13741
+        },
+        {
+          "index": 14,
+          "rgb555": [
+            14,
+            14,
+            14
+          ],
+          "packed": 14798
+        },
+        {
+          "index": 15,
+          "rgb555": [
+            15,
+            15,
+            15
+          ],
+          "packed": 15855
+        },
+        {
+          "index": 16,
+          "rgb555": [
+            16,
+            16,
+            16
+          ],
+          "packed": 16912
+        },
+        {
+          "index": 17,
+          "rgb555": [
+            17,
+            17,
+            17
+          ],
+          "packed": 17969
+        },
+        {
+          "index": 18,
+          "rgb555": [
+            18,
+            18,
+            18
+          ],
+          "packed": 19026
+        },
+        {
+          "index": 19,
+          "rgb555": [
+            19,
+            19,
+            19
+          ],
+          "packed": 20083
+        },
+        {
+          "index": 20,
+          "rgb555": [
+            20,
+            20,
+            20
+          ],
+          "packed": 21140
+        },
+        {
+          "index": 21,
+          "rgb555": [
+            21,
+            21,
+            21
+          ],
+          "packed": 22197
+        },
+        {
+          "index": 22,
+          "rgb555": [
+            22,
+            22,
+            22
+          ],
+          "packed": 23254
+        },
+        {
+          "index": 23,
+          "rgb555": [
+            23,
+            23,
+            23
+          ],
+          "packed": 24311
+        },
+        {
+          "index": 24,
+          "rgb555": [
+            24,
+            24,
+            24
+          ],
+          "packed": 25368
+        },
+        {
+          "index": 25,
+          "rgb555": [
+            25,
+            25,
+            25
+          ],
+          "packed": 26425
+        },
+        {
+          "index": 26,
+          "rgb555": [
+            26,
+            26,
+            26
+          ],
+          "packed": 27482
+        },
+        {
+          "index": 27,
+          "rgb555": [
+            27,
+            27,
+            27
+          ],
+          "packed": 28539
+        },
+        {
+          "index": 28,
+          "rgb555": [
+            28,
+            28,
+            28
+          ],
+          "packed": 29596
+        },
+        {
+          "index": 29,
+          "rgb555": [
+            29,
+            29,
+            29
+          ],
+          "packed": 30653
+        },
+        {
+          "index": 30,
+          "rgb555": [
+            30,
+            30,
+            30
+          ],
+          "packed": 31710
+        },
+        {
+          "index": 31,
+          "rgb555": [
+            31,
+            31,
+            31
+          ],
+          "packed": 32767
+        },
+        {
+          "index": 32,
+          "rgb555": [
+            1,
+            0,
+            0
+          ],
+          "packed": 1
+        },
+        {
+          "index": 33,
+          "rgb555": [
+            2,
+            0,
+            0
+          ],
+          "packed": 2
+        },
+        {
+          "index": 34,
+          "rgb555": [
+            3,
+            0,
+            0
+          ],
+          "packed": 3
+        },
+        {
+          "index": 35,
+          "rgb555": [
+            4,
+            0,
+            0
+          ],
+          "packed": 4
+        },
+        {
+          "index": 36,
+          "rgb555": [
+            5,
+            0,
+            0
+          ],
+          "packed": 5
+        },
+        {
+          "index": 37,
+          "rgb555": [
+            6,
+            0,
+            0
+          ],
+          "packed": 6
+        },
+        {
+          "index": 38,
+          "rgb555": [
+            7,
+            0,
+            0
+          ],
+          "packed": 7
+        },
+        {
+          "index": 39,
+          "rgb555": [
+            8,
+            0,
+            0
+          ],
+          "packed": 8
+        },
+        {
+          "index": 40,
+          "rgb555": [
+            9,
+            0,
+            0
+          ],
+          "packed": 9
+        },
+        {
+          "index": 41,
+          "rgb555": [
+            10,
+            0,
+            0
+          ],
+          "packed": 10
+        },
+        {
+          "index": 42,
+          "rgb555": [
+            11,
+            0,
+            0
+          ],
+          "packed": 11
+        },
+        {
+          "index": 43,
+          "rgb555": [
+            12,
+            0,
+            0
+          ],
+          "packed": 12
+        },
+        {
+          "index": 44,
+          "rgb555": [
+            13,
+            0,
+            0
+          ],
+          "packed": 13
+        },
+        {
+          "index": 45,
+          "rgb555": [
+            14,
+            0,
+            0
+          ],
+          "packed": 14
+        },
+        {
+          "index": 46,
+          "rgb555": [
+            15,
+            0,
+            0
+          ],
+          "packed": 15
+        },
+        {
+          "index": 47,
+          "rgb555": [
+            16,
+            0,
+            0
+          ],
+          "packed": 16
+        },
+        {
+          "index": 48,
+          "rgb555": [
+            17,
+            0,
+            0
+          ],
+          "packed": 17
+        },
+        {
+          "index": 49,
+          "rgb555": [
+            18,
+            0,
+            0
+          ],
+          "packed": 18
+        },
+        {
+          "index": 50,
+          "rgb555": [
+            19,
+            0,
+            0
+          ],
+          "packed": 19
+        },
+        {
+          "index": 51,
+          "rgb555": [
+            20,
+            0,
+            0
+          ],
+          "packed": 20
+        },
+        {
+          "index": 52,
+          "rgb555": [
+            21,
+            0,
+            0
+          ],
+          "packed": 21
+        },
+        {
+          "index": 53,
+          "rgb555": [
+            22,
+            0,
+            0
+          ],
+          "packed": 22
+        },
+        {
+          "index": 54,
+          "rgb555": [
+            23,
+            0,
+            0
+          ],
+          "packed": 23
+        },
+        {
+          "index": 55,
+          "rgb555": [
+            24,
+            0,
+            0
+          ],
+          "packed": 24
+        },
+        {
+          "index": 56,
+          "rgb555": [
+            25,
+            0,
+            0
+          ],
+          "packed": 25
+        },
+        {
+          "index": 57,
+          "rgb555": [
+            26,
+            0,
+            0
+          ],
+          "packed": 26
+        },
+        {
+          "index": 58,
+          "rgb555": [
+            27,
+            0,
+            0
+          ],
+          "packed": 27
+        },
+        {
+          "index": 59,
+          "rgb555": [
+            28,
+            0,
+            0
+          ],
+          "packed": 28
+        },
+        {
+          "index": 60,
+          "rgb555": [
+            29,
+            0,
+            0
+          ],
+          "packed": 29
+        },
+        {
+          "index": 61,
+          "rgb555": [
+            30,
+            0,
+            0
+          ],
+          "packed": 30
+        },
+        {
+          "index": 62,
+          "rgb555": [
+            31,
+            0,
+            0
+          ],
+          "packed": 31
+        },
+        {
+          "index": 63,
+          "rgb555": [
+            0,
+            1,
+            0
+          ],
+          "packed": 32
+        },
+        {
+          "index": 64,
+          "rgb555": [
+            0,
+            2,
+            0
+          ],
+          "packed": 64
+        },
+        {
+          "index": 65,
+          "rgb555": [
+            0,
+            3,
+            0
+          ],
+          "packed": 96
+        },
+        {
+          "index": 66,
+          "rgb555": [
+            0,
+            4,
+            0
+          ],
+          "packed": 128
+        },
+        {
+          "index": 67,
+          "rgb555": [
+            0,
+            5,
+            0
+          ],
+          "packed": 160
+        },
+        {
+          "index": 68,
+          "rgb555": [
+            0,
+            6,
+            0
+          ],
+          "packed": 192
+        },
+        {
+          "index": 69,
+          "rgb555": [
+            0,
+            7,
+            0
+          ],
+          "packed": 224
+        },
+        {
+          "index": 70,
+          "rgb555": [
+            0,
+            8,
+            0
+          ],
+          "packed": 256
+        },
+        {
+          "index": 71,
+          "rgb555": [
+            0,
+            9,
+            0
+          ],
+          "packed": 288
+        },
+        {
+          "index": 72,
+          "rgb555": [
+            0,
+            10,
+            0
+          ],
+          "packed": 320
+        },
+        {
+          "index": 73,
+          "rgb555": [
+            0,
+            11,
+            0
+          ],
+          "packed": 352
+        },
+        {
+          "index": 74,
+          "rgb555": [
+            0,
+            12,
+            0
+          ],
+          "packed": 384
+        },
+        {
+          "index": 75,
+          "rgb555": [
+            0,
+            13,
+            0
+          ],
+          "packed": 416
+        },
+        {
+          "index": 76,
+          "rgb555": [
+            0,
+            14,
+            0
+          ],
+          "packed": 448
+        },
+        {
+          "index": 77,
+          "rgb555": [
+            0,
+            15,
+            0
+          ],
+          "packed": 480
+        },
+        {
+          "index": 78,
+          "rgb555": [
+            0,
+            16,
+            0
+          ],
+          "packed": 512
+        },
+        {
+          "index": 79,
+          "rgb555": [
+            0,
+            17,
+            0
+          ],
+          "packed": 544
+        },
+        {
+          "index": 80,
+          "rgb555": [
+            0,
+            18,
+            0
+          ],
+          "packed": 576
+        },
+        {
+          "index": 81,
+          "rgb555": [
+            0,
+            19,
+            0
+          ],
+          "packed": 608
+        },
+        {
+          "index": 82,
+          "rgb555": [
+            0,
+            20,
+            0
+          ],
+          "packed": 640
+        },
+        {
+          "index": 83,
+          "rgb555": [
+            0,
+            21,
+            0
+          ],
+          "packed": 672
+        },
+        {
+          "index": 84,
+          "rgb555": [
+            0,
+            22,
+            0
+          ],
+          "packed": 704
+        },
+        {
+          "index": 85,
+          "rgb555": [
+            0,
+            23,
+            0
+          ],
+          "packed": 736
+        },
+        {
+          "index": 86,
+          "rgb555": [
+            0,
+            24,
+            0
+          ],
+          "packed": 768
+        },
+        {
+          "index": 87,
+          "rgb555": [
+            0,
+            25,
+            0
+          ],
+          "packed": 800
+        },
+        {
+          "index": 88,
+          "rgb555": [
+            0,
+            26,
+            0
+          ],
+          "packed": 832
+        },
+        {
+          "index": 89,
+          "rgb555": [
+            0,
+            27,
+            0
+          ],
+          "packed": 864
+        },
+        {
+          "index": 90,
+          "rgb555": [
+            0,
+            28,
+            0
+          ],
+          "packed": 896
+        },
+        {
+          "index": 91,
+          "rgb555": [
+            0,
+            29,
+            0
+          ],
+          "packed": 928
+        },
+        {
+          "index": 92,
+          "rgb555": [
+            0,
+            30,
+            0
+          ],
+          "packed": 960
+        },
+        {
+          "index": 93,
+          "rgb555": [
+            0,
+            31,
+            0
+          ],
+          "packed": 992
+        },
+        {
+          "index": 94,
+          "rgb555": [
+            0,
+            0,
+            1
+          ],
+          "packed": 1024
+        },
+        {
+          "index": 95,
+          "rgb555": [
+            0,
+            0,
+            2
+          ],
+          "packed": 2048
+        },
+        {
+          "index": 96,
+          "rgb555": [
+            0,
+            0,
+            3
+          ],
+          "packed": 3072
+        },
+        {
+          "index": 97,
+          "rgb555": [
+            0,
+            0,
+            4
+          ],
+          "packed": 4096
+        },
+        {
+          "index": 98,
+          "rgb555": [
+            0,
+            0,
+            5
+          ],
+          "packed": 5120
+        },
+        {
+          "index": 99,
+          "rgb555": [
+            0,
+            0,
+            6
+          ],
+          "packed": 6144
+        },
+        {
+          "index": 100,
+          "rgb555": [
+            0,
+            0,
+            7
+          ],
+          "packed": 7168
+        },
+        {
+          "index": 101,
+          "rgb555": [
+            0,
+            0,
+            8
+          ],
+          "packed": 8192
+        },
+        {
+          "index": 102,
+          "rgb555": [
+            0,
+            0,
+            9
+          ],
+          "packed": 9216
+        },
+        {
+          "index": 103,
+          "rgb555": [
+            0,
+            0,
+            10
+          ],
+          "packed": 10240
+        },
+        {
+          "index": 104,
+          "rgb555": [
+            0,
+            0,
+            11
+          ],
+          "packed": 11264
+        },
+        {
+          "index": 105,
+          "rgb555": [
+            0,
+            0,
+            12
+          ],
+          "packed": 12288
+        },
+        {
+          "index": 106,
+          "rgb555": [
+            0,
+            0,
+            13
+          ],
+          "packed": 13312
+        },
+        {
+          "index": 107,
+          "rgb555": [
+            0,
+            0,
+            14
+          ],
+          "packed": 14336
+        },
+        {
+          "index": 108,
+          "rgb555": [
+            0,
+            0,
+            15
+          ],
+          "packed": 15360
+        },
+        {
+          "index": 109,
+          "rgb555": [
+            0,
+            0,
+            16
+          ],
+          "packed": 16384
+        },
+        {
+          "index": 110,
+          "rgb555": [
+            0,
+            0,
+            17
+          ],
+          "packed": 17408
+        },
+        {
+          "index": 111,
+          "rgb555": [
+            0,
+            0,
+            18
+          ],
+          "packed": 18432
+        },
+        {
+          "index": 112,
+          "rgb555": [
+            0,
+            0,
+            19
+          ],
+          "packed": 19456
+        },
+        {
+          "index": 113,
+          "rgb555": [
+            0,
+            0,
+            20
+          ],
+          "packed": 20480
+        },
+        {
+          "index": 114,
+          "rgb555": [
+            0,
+            0,
+            21
+          ],
+          "packed": 21504
+        },
+        {
+          "index": 115,
+          "rgb555": [
+            0,
+            0,
+            22
+          ],
+          "packed": 22528
+        },
+        {
+          "index": 116,
+          "rgb555": [
+            0,
+            0,
+            23
+          ],
+          "packed": 23552
+        },
+        {
+          "index": 117,
+          "rgb555": [
+            0,
+            0,
+            24
+          ],
+          "packed": 24576
+        },
+        {
+          "index": 118,
+          "rgb555": [
+            0,
+            0,
+            25
+          ],
+          "packed": 25600
+        },
+        {
+          "index": 119,
+          "rgb555": [
+            0,
+            0,
+            26
+          ],
+          "packed": 26624
+        },
+        {
+          "index": 120,
+          "rgb555": [
+            0,
+            0,
+            27
+          ],
+          "packed": 27648
+        },
+        {
+          "index": 121,
+          "rgb555": [
+            0,
+            0,
+            28
+          ],
+          "packed": 28672
+        },
+        {
+          "index": 122,
+          "rgb555": [
+            0,
+            0,
+            29
+          ],
+          "packed": 29696
+        },
+        {
+          "index": 123,
+          "rgb555": [
+            0,
+            0,
+            30
+          ],
+          "packed": 30720
+        },
+        {
+          "index": 124,
+          "rgb555": [
+            0,
+            0,
+            31
+          ],
+          "packed": 31744
+        },
+        {
+          "index": 125,
+          "rgb555": [
+            1,
+            30,
+            0
+          ],
+          "packed": 961
+        },
+        {
+          "index": 126,
+          "rgb555": [
+            2,
+            29,
+            1
+          ],
+          "packed": 1954
+        },
+        {
+          "index": 127,
+          "rgb555": [
+            3,
+            28,
+            1
+          ],
+          "packed": 1923
+        },
+        {
+          "index": 128,
+          "rgb555": [
+            4,
+            27,
+            2
+          ],
+          "packed": 2916
+        },
+        {
+          "index": 129,
+          "rgb555": [
+            5,
+            26,
+            2
+          ],
+          "packed": 2885
+        },
+        {
+          "index": 130,
+          "rgb555": [
+            6,
+            25,
+            3
+          ],
+          "packed": 3878
+        },
+        {
+          "index": 131,
+          "rgb555": [
+            7,
+            24,
+            3
+          ],
+          "packed": 3847
+        },
+        {
+          "index": 132,
+          "rgb555": [
+            8,
+            23,
+            4
+          ],
+          "packed": 4840
+        },
+        {
+          "index": 133,
+          "rgb555": [
+            9,
+            22,
+            4
+          ],
+          "packed": 4809
+        },
+        {
+          "index": 134,
+          "rgb555": [
+            10,
+            21,
+            5
+          ],
+          "packed": 5802
+        },
+        {
+          "index": 135,
+          "rgb555": [
+            11,
+            20,
+            5
+          ],
+          "packed": 5771
+        },
+        {
+          "index": 136,
+          "rgb555": [
+            12,
+            19,
+            6
+          ],
+          "packed": 6764
+        },
+        {
+          "index": 137,
+          "rgb555": [
+            13,
+            18,
+            6
+          ],
+          "packed": 6733
+        },
+        {
+          "index": 138,
+          "rgb555": [
+            14,
+            17,
+            7
+          ],
+          "packed": 7726
+        },
+        {
+          "index": 139,
+          "rgb555": [
+            15,
+            16,
+            7
+          ],
+          "packed": 7695
+        },
+        {
+          "index": 140,
+          "rgb555": [
+            16,
+            15,
+            8
+          ],
+          "packed": 8688
+        },
+        {
+          "index": 141,
+          "rgb555": [
+            17,
+            14,
+            8
+          ],
+          "packed": 8657
+        },
+        {
+          "index": 142,
+          "rgb555": [
+            18,
+            13,
+            9
+          ],
+          "packed": 9650
+        },
+        {
+          "index": 143,
+          "rgb555": [
+            19,
+            12,
+            9
+          ],
+          "packed": 9619
+        },
+        {
+          "index": 144,
+          "rgb555": [
+            20,
+            11,
+            10
+          ],
+          "packed": 10612
+        },
+        {
+          "index": 145,
+          "rgb555": [
+            21,
+            10,
+            10
+          ],
+          "packed": 10581
+        },
+        {
+          "index": 146,
+          "rgb555": [
+            22,
+            9,
+            11
+          ],
+          "packed": 11574
+        },
+        {
+          "index": 147,
+          "rgb555": [
+            23,
+            8,
+            11
+          ],
+          "packed": 11543
+        },
+        {
+          "index": 148,
+          "rgb555": [
+            24,
+            7,
+            12
+          ],
+          "packed": 12536
+        },
+        {
+          "index": 149,
+          "rgb555": [
+            25,
+            6,
+            12
+          ],
+          "packed": 12505
+        },
+        {
+          "index": 150,
+          "rgb555": [
+            26,
+            5,
+            13
+          ],
+          "packed": 13498
+        },
+        {
+          "index": 151,
+          "rgb555": [
+            27,
+            4,
+            13
+          ],
+          "packed": 13467
+        },
+        {
+          "index": 152,
+          "rgb555": [
+            28,
+            3,
+            14
+          ],
+          "packed": 14460
+        },
+        {
+          "index": 153,
+          "rgb555": [
+            29,
+            2,
+            14
+          ],
+          "packed": 14429
+        },
+        {
+          "index": 154,
+          "rgb555": [
+            30,
+            1,
+            15
+          ],
+          "packed": 15422
+        },
+        {
+          "index": 155,
+          "rgb555": [
+            31,
+            0,
+            15
+          ],
+          "packed": 15391
+        }
+      ]
+    },
+    {
+      "sceneId": "mixed-patches",
+      "type": "mixed-patches",
+      "description": "Intermediate mixed RGB555 color patches.",
+      "filename": "mixed-patches.gba",
+      "sha256": "e0384ca86d0948141393cc119a8631b16740e467fdfb69eea97406c3b3edcf48",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 204,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647,
+      "pageSha256": [
+        "837f3126e6a292b5be7e9742d4a06b0a04b623d8e0d8da28f1b79845b1d00497",
+        "837f3126e6a292b5be7e9742d4a06b0a04b623d8e0d8da28f1b79845b1d00497"
+      ],
+      "programSha256": "79c77f849144a4cf249315e238942fee3f8a20b78b31830750a2c13289fb513e",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            0,
+            0,
+            10
+          ],
+          "packed": 10240
+        },
+        {
+          "index": 2,
+          "rgb555": [
+            0,
+            0,
+            21
+          ],
+          "packed": 21504
+        },
+        {
+          "index": 3,
+          "rgb555": [
+            0,
+            0,
+            31
+          ],
+          "packed": 31744
+        },
+        {
+          "index": 4,
+          "rgb555": [
+            0,
+            10,
+            0
+          ],
+          "packed": 320
+        },
+        {
+          "index": 5,
+          "rgb555": [
+            0,
+            10,
+            10
+          ],
+          "packed": 10560
+        },
+        {
+          "index": 6,
+          "rgb555": [
+            0,
+            10,
+            21
+          ],
+          "packed": 21824
+        },
+        {
+          "index": 7,
+          "rgb555": [
+            0,
+            10,
+            31
+          ],
+          "packed": 32064
+        },
+        {
+          "index": 8,
+          "rgb555": [
+            0,
+            21,
+            0
+          ],
+          "packed": 672
+        },
+        {
+          "index": 9,
+          "rgb555": [
+            0,
+            21,
+            10
+          ],
+          "packed": 10912
+        },
+        {
+          "index": 10,
+          "rgb555": [
+            0,
+            21,
+            21
+          ],
+          "packed": 22176
+        },
+        {
+          "index": 11,
+          "rgb555": [
+            0,
+            21,
+            31
+          ],
+          "packed": 32416
+        },
+        {
+          "index": 12,
+          "rgb555": [
+            0,
+            31,
+            0
+          ],
+          "packed": 992
+        },
+        {
+          "index": 13,
+          "rgb555": [
+            0,
+            31,
+            10
+          ],
+          "packed": 11232
+        },
+        {
+          "index": 14,
+          "rgb555": [
+            0,
+            31,
+            21
+          ],
+          "packed": 22496
+        },
+        {
+          "index": 15,
+          "rgb555": [
+            0,
+            31,
+            31
+          ],
+          "packed": 32736
+        },
+        {
+          "index": 16,
+          "rgb555": [
+            10,
+            0,
+            0
+          ],
+          "packed": 10
+        },
+        {
+          "index": 17,
+          "rgb555": [
+            10,
+            0,
+            10
+          ],
+          "packed": 10250
+        },
+        {
+          "index": 18,
+          "rgb555": [
+            10,
+            0,
+            21
+          ],
+          "packed": 21514
+        },
+        {
+          "index": 19,
+          "rgb555": [
+            10,
+            0,
+            31
+          ],
+          "packed": 31754
+        },
+        {
+          "index": 20,
+          "rgb555": [
+            10,
+            10,
+            0
+          ],
+          "packed": 330
+        },
+        {
+          "index": 21,
+          "rgb555": [
+            10,
+            10,
+            10
+          ],
+          "packed": 10570
+        },
+        {
+          "index": 22,
+          "rgb555": [
+            10,
+            10,
+            21
+          ],
+          "packed": 21834
+        },
+        {
+          "index": 23,
+          "rgb555": [
+            10,
+            10,
+            31
+          ],
+          "packed": 32074
+        },
+        {
+          "index": 24,
+          "rgb555": [
+            10,
+            21,
+            0
+          ],
+          "packed": 682
+        },
+        {
+          "index": 25,
+          "rgb555": [
+            10,
+            21,
+            10
+          ],
+          "packed": 10922
+        },
+        {
+          "index": 26,
+          "rgb555": [
+            10,
+            21,
+            21
+          ],
+          "packed": 22186
+        },
+        {
+          "index": 27,
+          "rgb555": [
+            10,
+            21,
+            31
+          ],
+          "packed": 32426
+        },
+        {
+          "index": 28,
+          "rgb555": [
+            10,
+            31,
+            0
+          ],
+          "packed": 1002
+        },
+        {
+          "index": 29,
+          "rgb555": [
+            10,
+            31,
+            10
+          ],
+          "packed": 11242
+        },
+        {
+          "index": 30,
+          "rgb555": [
+            10,
+            31,
+            21
+          ],
+          "packed": 22506
+        },
+        {
+          "index": 31,
+          "rgb555": [
+            10,
+            31,
+            31
+          ],
+          "packed": 32746
+        },
+        {
+          "index": 32,
+          "rgb555": [
+            21,
+            0,
+            0
+          ],
+          "packed": 21
+        },
+        {
+          "index": 33,
+          "rgb555": [
+            21,
+            0,
+            10
+          ],
+          "packed": 10261
+        },
+        {
+          "index": 34,
+          "rgb555": [
+            21,
+            0,
+            21
+          ],
+          "packed": 21525
+        },
+        {
+          "index": 35,
+          "rgb555": [
+            21,
+            0,
+            31
+          ],
+          "packed": 31765
+        },
+        {
+          "index": 36,
+          "rgb555": [
+            21,
+            10,
+            0
+          ],
+          "packed": 341
+        },
+        {
+          "index": 37,
+          "rgb555": [
+            21,
+            10,
+            10
+          ],
+          "packed": 10581
+        },
+        {
+          "index": 38,
+          "rgb555": [
+            21,
+            10,
+            21
+          ],
+          "packed": 21845
+        },
+        {
+          "index": 39,
+          "rgb555": [
+            21,
+            10,
+            31
+          ],
+          "packed": 32085
+        },
+        {
+          "index": 40,
+          "rgb555": [
+            21,
+            21,
+            0
+          ],
+          "packed": 693
+        },
+        {
+          "index": 41,
+          "rgb555": [
+            21,
+            21,
+            10
+          ],
+          "packed": 10933
+        },
+        {
+          "index": 42,
+          "rgb555": [
+            21,
+            21,
+            21
+          ],
+          "packed": 22197
+        },
+        {
+          "index": 43,
+          "rgb555": [
+            21,
+            21,
+            31
+          ],
+          "packed": 32437
+        },
+        {
+          "index": 44,
+          "rgb555": [
+            21,
+            31,
+            0
+          ],
+          "packed": 1013
+        },
+        {
+          "index": 45,
+          "rgb555": [
+            21,
+            31,
+            10
+          ],
+          "packed": 11253
+        },
+        {
+          "index": 46,
+          "rgb555": [
+            21,
+            31,
+            21
+          ],
+          "packed": 22517
+        },
+        {
+          "index": 47,
+          "rgb555": [
+            21,
+            31,
+            31
+          ],
+          "packed": 32757
+        },
+        {
+          "index": 48,
+          "rgb555": [
+            31,
+            0,
+            0
+          ],
+          "packed": 31
+        },
+        {
+          "index": 49,
+          "rgb555": [
+            31,
+            0,
+            10
+          ],
+          "packed": 10271
+        },
+        {
+          "index": 50,
+          "rgb555": [
+            31,
+            0,
+            21
+          ],
+          "packed": 21535
+        },
+        {
+          "index": 51,
+          "rgb555": [
+            31,
+            0,
+            31
+          ],
+          "packed": 31775
+        },
+        {
+          "index": 52,
+          "rgb555": [
+            31,
+            10,
+            0
+          ],
+          "packed": 351
+        },
+        {
+          "index": 53,
+          "rgb555": [
+            31,
+            10,
+            10
+          ],
+          "packed": 10591
+        },
+        {
+          "index": 54,
+          "rgb555": [
+            31,
+            10,
+            21
+          ],
+          "packed": 21855
+        },
+        {
+          "index": 55,
+          "rgb555": [
+            31,
+            10,
+            31
+          ],
+          "packed": 32095
+        },
+        {
+          "index": 56,
+          "rgb555": [
+            31,
+            21,
+            0
+          ],
+          "packed": 703
+        },
+        {
+          "index": 57,
+          "rgb555": [
+            31,
+            21,
+            10
+          ],
+          "packed": 10943
+        },
+        {
+          "index": 58,
+          "rgb555": [
+            31,
+            21,
+            21
+          ],
+          "packed": 22207
+        },
+        {
+          "index": 59,
+          "rgb555": [
+            31,
+            21,
+            31
+          ],
+          "packed": 32447
+        },
+        {
+          "index": 60,
+          "rgb555": [
+            31,
+            31,
+            0
+          ],
+          "packed": 1023
+        },
+        {
+          "index": 61,
+          "rgb555": [
+            31,
+            31,
+            10
+          ],
+          "packed": 11263
+        },
+        {
+          "index": 62,
+          "rgb555": [
+            31,
+            31,
+            21
+          ],
+          "packed": 22527
+        },
+        {
+          "index": 63,
+          "rgb555": [
+            31,
+            31,
+            31
+          ],
+          "packed": 32767
+        }
+      ]
+    },
+    {
+      "sceneId": "row-markers",
+      "type": "row-markers",
+      "description": "Per-row code markers with explicit top, center, and bottom sentinels.",
+      "filename": "row-markers.gba",
+      "sha256": "2461c6817978eeea91b3dea1bed608f4bcaf06872765ab789280780dec33fe1c",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 202,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647,
+      "pageSha256": [
+        "4599971b59d638328ac82a83d0c02331db679b4d023bbe2ca29865c24a03ec18",
+        "4599971b59d638328ac82a83d0c02331db679b4d023bbe2ca29865c24a03ec18"
+      ],
+      "programSha256": "79c77f849144a4cf249315e238942fee3f8a20b78b31830750a2c13289fb513e",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            31,
+            0,
+            0
+          ],
+          "packed": 31
+        },
+        {
+          "index": 2,
+          "rgb555": [
+            31,
+            31,
+            31
+          ],
+          "packed": 32767
+        },
+        {
+          "index": 3,
+          "rgb555": [
+            1,
+            1,
+            1
+          ],
+          "packed": 1057
+        },
+        {
+          "index": 4,
+          "rgb555": [
+            2,
+            2,
+            2
+          ],
+          "packed": 2114
+        },
+        {
+          "index": 5,
+          "rgb555": [
+            3,
+            3,
+            3
+          ],
+          "packed": 3171
+        },
+        {
+          "index": 6,
+          "rgb555": [
+            4,
+            4,
+            4
+          ],
+          "packed": 4228
+        },
+        {
+          "index": 7,
+          "rgb555": [
+            5,
+            5,
+            5
+          ],
+          "packed": 5285
+        },
+        {
+          "index": 8,
+          "rgb555": [
+            6,
+            6,
+            6
+          ],
+          "packed": 6342
+        },
+        {
+          "index": 9,
+          "rgb555": [
+            7,
+            7,
+            7
+          ],
+          "packed": 7399
+        },
+        {
+          "index": 10,
+          "rgb555": [
+            8,
+            8,
+            8
+          ],
+          "packed": 8456
+        },
+        {
+          "index": 11,
+          "rgb555": [
+            9,
+            9,
+            9
+          ],
+          "packed": 9513
+        },
+        {
+          "index": 12,
+          "rgb555": [
+            10,
+            10,
+            10
+          ],
+          "packed": 10570
+        },
+        {
+          "index": 13,
+          "rgb555": [
+            11,
+            11,
+            11
+          ],
+          "packed": 11627
+        },
+        {
+          "index": 14,
+          "rgb555": [
+            12,
+            12,
+            12
+          ],
+          "packed": 12684
+        },
+        {
+          "index": 15,
+          "rgb555": [
+            13,
+            13,
+            13
+          ],
+          "packed": 13741
+        },
+        {
+          "index": 16,
+          "rgb555": [
+            14,
+            14,
+            14
+          ],
+          "packed": 14798
+        },
+        {
+          "index": 17,
+          "rgb555": [
+            15,
+            15,
+            15
+          ],
+          "packed": 15855
+        },
+        {
+          "index": 18,
+          "rgb555": [
+            16,
+            16,
+            16
+          ],
+          "packed": 16912
+        },
+        {
+          "index": 19,
+          "rgb555": [
+            17,
+            17,
+            17
+          ],
+          "packed": 17969
+        },
+        {
+          "index": 20,
+          "rgb555": [
+            18,
+            18,
+            18
+          ],
+          "packed": 19026
+        },
+        {
+          "index": 21,
+          "rgb555": [
+            19,
+            19,
+            19
+          ],
+          "packed": 20083
+        },
+        {
+          "index": 22,
+          "rgb555": [
+            20,
+            20,
+            20
+          ],
+          "packed": 21140
+        },
+        {
+          "index": 23,
+          "rgb555": [
+            21,
+            21,
+            21
+          ],
+          "packed": 22197
+        },
+        {
+          "index": 24,
+          "rgb555": [
+            22,
+            22,
+            22
+          ],
+          "packed": 23254
+        },
+        {
+          "index": 25,
+          "rgb555": [
+            23,
+            23,
+            23
+          ],
+          "packed": 24311
+        },
+        {
+          "index": 26,
+          "rgb555": [
+            24,
+            24,
+            24
+          ],
+          "packed": 25368
+        },
+        {
+          "index": 27,
+          "rgb555": [
+            25,
+            25,
+            25
+          ],
+          "packed": 26425
+        },
+        {
+          "index": 28,
+          "rgb555": [
+            26,
+            26,
+            26
+          ],
+          "packed": 27482
+        },
+        {
+          "index": 29,
+          "rgb555": [
+            27,
+            27,
+            27
+          ],
+          "packed": 28539
+        },
+        {
+          "index": 30,
+          "rgb555": [
+            28,
+            28,
+            28
+          ],
+          "packed": 29596
+        },
+        {
+          "index": 31,
+          "rgb555": [
+            29,
+            29,
+            29
+          ],
+          "packed": 30653
+        },
+        {
+          "index": 32,
+          "rgb555": [
+            30,
+            30,
+            30
+          ],
+          "packed": 31710
+        },
+        {
+          "index": 33,
+          "rgb555": [
+            0,
+            31,
+            0
+          ],
+          "packed": 992
+        },
+        {
+          "index": 34,
+          "rgb555": [
+            0,
+            0,
+            31
+          ],
+          "packed": 31744
+        }
+      ]
+    },
+    {
+      "sceneId": "checkerboard",
+      "type": "checkerboard",
+      "description": "One-source-pixel alternating low/high neutral checkerboard.",
+      "filename": "checkerboard.gba",
+      "sha256": "db0560213cae16451cba3f31cab50bdf0e5751e4a86945778b8e6c74d57519e4",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 180,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647,
+      "pageSha256": [
+        "b5065e9761ef16d5e7dc4e89e882a3867b4e08a93d99f602e7c231f594278c9f",
+        "b5065e9761ef16d5e7dc4e89e882a3867b4e08a93d99f602e7c231f594278c9f"
+      ],
+      "programSha256": "79c77f849144a4cf249315e238942fee3f8a20b78b31830750a2c13289fb513e",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            4,
+            4,
+            4
+          ],
+          "packed": 4228
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            27,
+            27,
+            27
+          ],
+          "packed": 28539
+        }
+      ]
+    },
+    {
+      "sceneId": "isolated-window",
+      "type": "isolated-window",
+      "description": "High neutral center window on a low neutral surround.",
+      "filename": "isolated-window.gba",
+      "sha256": "4e8ad1a0553f68a647c8148da664f500d5bedaff28b5a8f22afc6cf3eddf0fbe",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 199,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647,
+      "pageSha256": [
+        "09b1b96f3499e5173846900b7e58a20f2b3a629ec15677bc6716182b67ac4ffd",
+        "09b1b96f3499e5173846900b7e58a20f2b3a629ec15677bc6716182b67ac4ffd"
+      ],
+      "programSha256": "79c77f849144a4cf249315e238942fee3f8a20b78b31830750a2c13289fb513e",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            6,
+            6,
+            6
+          ],
+          "packed": 6342
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            26,
+            26,
+            26
+          ],
+          "packed": 27482
+        }
+      ]
+    },
+    {
+      "sceneId": "parity-toggle",
+      "type": "full-toggle",
+      "description": "Black/white full-field alternation on every source frame.",
+      "filename": "parity-toggle.gba",
+      "sha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 189,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "programSha256": "4de6c35a499c606788c44d5e2a798fbe366664d8f27181665f4a2791f8ba897c",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            31,
+            31,
+            31
+          ],
+          "packed": 32767
+        }
+      ]
+    },
+    {
+      "sceneId": "gtg-neutral-gate",
+      "type": "gtg-neutral-gate",
+      "description": "Neutral RGB555 0-to-31 gate with two-second nominal dwells.",
+      "filename": "gtg-neutral-gate.gba",
+      "sha256": "c11f1fa89a3b3c0ad021affc3564042e259175380b47bb07e08525edda7f5e9b",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 160,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "programSha256": "f2842a670e150234c55a8c8e06ca843074b4ec0e150c074a50b58c4ae1e052b3",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            31,
+            31,
+            31
+          ],
+          "packed": 32767
+        }
+      ]
+    },
+    {
+      "sceneId": "gtg-red-gate",
+      "type": "gtg-red-gate",
+      "description": "Red-channel RGB555 0-to-31 gate.",
+      "filename": "gtg-red-gate.gba",
+      "sha256": "8062f9d007de490a6890b7b73d54e7c147105804b110f67f4d6442e44216abdc",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 174,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "programSha256": "f2842a670e150234c55a8c8e06ca843074b4ec0e150c074a50b58c4ae1e052b3",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            31,
+            0,
+            0
+          ],
+          "packed": 31
+        }
+      ]
+    },
+    {
+      "sceneId": "gtg-green-gate",
+      "type": "gtg-green-gate",
+      "description": "Green-channel RGB555 0-to-31 gate.",
+      "filename": "gtg-green-gate.gba",
+      "sha256": "9193dbdb099ae13be984ba5888644f48fe135b27f139ba100bde537ed6a70c8f",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 152,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "programSha256": "f2842a670e150234c55a8c8e06ca843074b4ec0e150c074a50b58c4ae1e052b3",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            0,
+            31,
+            0
+          ],
+          "packed": 992
+        }
+      ]
+    },
+    {
+      "sceneId": "gtg-blue-gate",
+      "type": "gtg-blue-gate",
+      "description": "Blue-channel RGB555 0-to-31 gate.",
+      "filename": "gtg-blue-gate.gba",
+      "sha256": "d47cbf7145d3e8c20bcc31e3e4f2da89a067eef2a219e0d1f6ccfa3b37df6435",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 194,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "programSha256": "f2842a670e150234c55a8c8e06ca843074b4ec0e150c074a50b58c4ae1e052b3",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            0,
+            0,
+            0
+          ],
+          "packed": 0
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            0,
+            0,
+            31
+          ],
+          "packed": 31744
+        }
+      ]
+    },
+    {
+      "sceneId": "retention-stress-recovery",
+      "type": "retention-stress-recovery",
+      "description": "Thirty-second isolated-window stress followed by fifteen-second uniform recovery.",
+      "filename": "retention-stress-recovery.gba",
+      "sha256": "cd1a3b1d847b294c8dce54900ee44658770b655618c45a53e843a003522165f5",
+      "sizeBytes": 131072,
+      "gbaHeaderChecksum": 191,
+      "mode": "GBA bitmap Mode 4 double buffer",
+      "page0DwellFrames": 1800,
+      "page1DwellFrames": 900,
+      "pageSha256": [
+        "de305073573060e3925b5944f33423ec852b3a20afe2a4ef50b29d4ec4db73c5",
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba"
+      ],
+      "programSha256": "51acc8302bec6f6da9d3b38d2508d232fa14885206d3e17566a3bdc388b0796a",
+      "programSizeBytes": 220,
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "palette": [
+        {
+          "index": 0,
+          "rgb555": [
+            8,
+            8,
+            8
+          ],
+          "packed": 8456
+        },
+        {
+          "index": 1,
+          "rgb555": [
+            24,
+            24,
+            24
+          ],
+          "packed": 25368
+        }
+      ]
+    }
+  ]
+}

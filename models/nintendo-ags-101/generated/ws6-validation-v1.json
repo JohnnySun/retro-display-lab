@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-ags-101-ws6-validation-v1",
+  "classification": "repository-cpu-equation-and-coverage-receipt-not-panel-measurement",
+  "generatedBy": "tools/build-ags101-ws6.mjs",
+  "sources": {
+    "panelOptics": "models/nintendo-ags-101/data/ws6-panel-optics-v1.json",
+    "panelOpticsSha256": "88666763de41f81a64745d279630994b960b32d7a320f1a4f3d49cace28769b5",
+    "generatedColor": "models/nintendo-ags-101/generated/hcs-e688fc5-color.json",
+    "generatedColorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
+    "displayShader": "models/nintendo-ags-101/shaders/ags101-display-v1.slang",
+    "displayShaderSha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524",
+    "presetManifest": "models/nintendo-ags-101/generated/ws6-presets-v1/manifest.json",
+    "presetManifestSha256": "0bb3171a495e82870657f4678614ca1a91a2c30ec907210092c89141c630545b"
+  },
+  "color": {
+    "measuredCoverage": {
+      "neutralRampRgb555": {
+        "codes": 32,
+        "complete": true
+      },
+      "blackWhiteAnchors": true,
+      "fullLevelPatches": [
+        "red",
+        "green",
+        "blue",
+        "cyan",
+        "magenta",
+        "yellow"
+      ],
+      "perChannelRamps": false,
+      "intermediateMixedPatches": false,
+      "repeatedMeasurements": false,
+      "brightnessModeRecorded": false,
+      "absolutePeakLuminanceContextRecorded": false,
+      "interUnitVariationRecorded": false
+    },
+    "namedPolicies": [
+      "hcs-black-subtracted",
+      "hcs-physical-black"
+    ],
+    "physicalBlackEncodedSrgb": [
+      0.0529420427908,
+      0.0455266255781,
+      0.0718227109379
+    ],
+    "blackSubtractedEncodedSrgb": [
+      0,
+      0,
+      0
+    ]
+  },
+  "backlight": {
+    "establishedModes": 2,
+    "unknown": {
+      "hcsMeasurementMode": null,
+      "absoluteLuminanceCdM2": null,
+      "lowToHighLuminanceRatio": null,
+      "ledCountAndPlacement": null,
+      "electricalTopology": null,
+      "dcOrPwm": null,
+      "pwmFrequencyHz": null,
+      "pwmDutyCycles": null,
+      "spatialUniformity": null
+    },
+    "modulationSelected": false,
+    "pwmFrequencySelected": false,
+    "bypassGain": 1,
+    "sensitivityGain": 0.75
+  },
+  "aperture": {
+    "selectedClass": "generic-prior",
+    "agsSpecificKernelGenerated": false,
+    "polynomialIntegrals": {
+      "horizontal": 0.977511377511,
+      "vertical": 1.28689088689
+    },
+    "nominalNormalization": 2.52363126857,
+    "fixtures": [
+      {
+        "variant": "generic-narrow",
+        "scale": 4,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 9.10382880193e-15,
+        "neutralityError": 1.80966353014e-14
+      },
+      {
+        "variant": "generic-narrow",
+        "scale": 5,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 8.10462807976e-15,
+        "neutralityError": 1.14352971536e-14
+      },
+      {
+        "variant": "generic-narrow",
+        "scale": 6,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 1.11022302463e-15,
+        "neutralityError": 1.7763568394e-15
+      },
+      {
+        "variant": "generic-narrow",
+        "scale": 3.5,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 1.88737914186e-15,
+        "neutralityError": 2.77555756156e-15
+      },
+      {
+        "variant": "generic-narrow",
+        "scale": 3.75,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 1.11022302463e-15,
+        "neutralityError": 1.11022302463e-15
+      },
+      {
+        "variant": "generic-narrow",
+        "scale": 4.25,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 1.55431223448e-15,
+        "neutralityError": 1.33226762955e-15
+      },
+      {
+        "variant": "generic-nominal",
+        "scale": 4,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 6.88338275268e-15,
+        "neutralityError": 1.1768364061e-14
+      },
+      {
+        "variant": "generic-nominal",
+        "scale": 5,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 6.66133814775e-15,
+        "neutralityError": 1.04360964315e-14
+      },
+      {
+        "variant": "generic-nominal",
+        "scale": 6,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 2.0650148258e-14,
+        "neutralityError": 2.6645352591e-15
+      },
+      {
+        "variant": "generic-nominal",
+        "scale": 3.5,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 2.33146835171e-15,
+        "neutralityError": 9.99200722163e-16
+      },
+      {
+        "variant": "generic-nominal",
+        "scale": 3.75,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 1.11022302463e-15,
+        "neutralityError": 2.22044604925e-16
+      },
+      {
+        "variant": "generic-nominal",
+        "scale": 4.25,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 2.6645352591e-15,
+        "neutralityError": 2.55351295664e-15
+      },
+      {
+        "variant": "generic-wide",
+        "scale": 4,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 2.6645352591e-15,
+        "neutralityError": 4.4408920985e-15
+      },
+      {
+        "variant": "generic-wide",
+        "scale": 5,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 7.9936057773e-15,
+        "neutralityError": 1.1990408666e-14
+      },
+      {
+        "variant": "generic-wide",
+        "scale": 6,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 8.54871728961e-15,
+        "neutralityError": 2.22044604925e-16
+      },
+      {
+        "variant": "generic-wide",
+        "scale": 3.5,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 3.33066907388e-15,
+        "neutralityError": 5.21804821574e-15
+      },
+      {
+        "variant": "generic-wide",
+        "scale": 3.75,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 8.881784197e-16,
+        "neutralityError": 5.55111512313e-16
+      },
+      {
+        "variant": "generic-wide",
+        "scale": 4.25,
+        "meanRgbLinear": [
+          1,
+          1,
+          1
+        ],
+        "meanError": 4.66293670343e-15,
+        "neutralityError": 4.88498130835e-15
+      }
+    ],
+    "phaseSamples": [
+      {
+        "id": "first-third",
+        "bgr": [
+          0.513834742499,
+          0.515352116482,
+          2.50885569426
+        ],
+        "rgb": [
+          2.50885569426,
+          0.515352116482,
+          0.513834742499
+        ]
+      },
+      {
+        "id": "middle-third",
+        "bgr": [
+          0.515352116482,
+          2.50885569426,
+          0.513834742499
+        ],
+        "rgb": [
+          0.513834742499,
+          2.50885569426,
+          0.515352116482
+        ]
+      },
+      {
+        "id": "last-third",
+        "bgr": [
+          2.50885569426,
+          0.513834742499,
+          0.515352116482
+        ],
+        "rgb": [
+          0.515352116482,
+          0.513834742499,
+          2.50885569426
+        ]
+      }
+    ],
+    "maximumMeanError": 2.0650148258e-14,
+    "maximumNeutralityError": 1.80966353014e-14,
+    "orderReverses": true
+  },
+  "acceptance": {
+    "hcsCoverageSeparated": true,
+    "blackPoliciesNamedSeparately": true,
+    "backlightUnknownsExplicit": true,
+    "brightnessSensitivityIndependentBypass": true,
+    "genericAperturePriorExplicit": true,
+    "integerAndFractionalCpuEnergy": "pass",
+    "channelOrderAndNeutrality": "pass",
+    "shaderCompileAndSpirvValidation": "covered-by-current-ws3-receipt",
+    "gpuNumericApertureReadback": "deferred-to-ws8"
+  }
+}

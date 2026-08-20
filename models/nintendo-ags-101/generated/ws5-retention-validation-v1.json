@@ -1,0 +1,1296 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-ags-101-ws5-retention-validation-v1",
+  "classification": "literature-mechanism-constrained-normalized-reconstruction-not-panel-measurement",
+  "equationId": "WS5-CODE-POLARITY-EXCITATION-V1",
+  "stateEquationId": "WS5-MIZUSAKI-ONE-STATE-V1",
+  "sourceHashes": {
+    "evidenceInventory": "25b9eaf6b6c4b8e337b4b85546f5ff2a948a3fcb6f1cf0c8ac1aed2dd6f8ed3c",
+    "reconstruction": "80eaf3e3f8ca1e90deec87b83e2738bd677d80771bad292c115b784355804c43",
+    "ws2Scenes": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2",
+    "ws2Manifest": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
+    "ws3Constraints": "0d8b76642aad5d8f4b2450aad0bb72e94e85d9c7f6b5bbae6fe9475effb757b1",
+    "ws3CompileReceipt": "be1017488fba302ab7dda98eddfe619eb06e9403011033b42093cae0d824dec1",
+    "ws4Ensemble": "434b86e46fcc9eccaff26ca6f682441911de5089e246b33c949fa43c9647c40e"
+  },
+  "evidenceItemCount": 7,
+  "ws3ConstraintSetId": "nintendo-ags-101-ws3-timing-constraints-v1",
+  "checks": {
+    "balancedUniformExactlyZero": true,
+    "differentCodeHistoriesDiffer": true,
+    "identicalHistoriesIdentical": true,
+    "stressAndRecoveryAreFinite": true,
+    "polarityReversalChangesSlope": true,
+    "unequalDutyDiffersFromBalancedDuty": true,
+    "longerStressIncreasesMagnitude": true,
+    "spatialDisabledMatchesWs1GlobalPath": true,
+    "resetAndN1BypassStateIsZero": true,
+    "completeWs3Ws4Matrix": true,
+    "cpuVsShaderFloat32WithinTolerance": true,
+    "displayedLumaAbsentFromExcitation": true
+  },
+  "maximumCpuVsShaderFloat32AbsoluteError": 0.000060415313036,
+  "cpuVsShaderFloat32Tolerance": 0.0001,
+  "actualGpuNumericReadback": "separate target receipt required; repository equation emulator is not GPU evidence",
+  "fixtures": {
+    "checks": {
+      "balancedUniformExactlyZero": true,
+      "differentCodeHistoriesDiffer": true,
+      "identicalHistoriesIdentical": true,
+      "stressAndRecoveryAreFinite": true,
+      "polarityReversalChangesSlope": true,
+      "unequalDutyDiffersFromBalancedDuty": true,
+      "longerStressIncreasesMagnitude": true,
+      "spatialDisabledMatchesWs1GlobalPath": true,
+      "resetAndN1BypassStateIsZero": true,
+      "completeWs3Ws4Matrix": true,
+      "cpuVsShaderFloat32WithinTolerance": true,
+      "displayedLumaAbsentFromExcitation": true
+    },
+    "maximumCpuVsShaderFloat32AbsoluteError": 0.000060415313036,
+    "tolerance": 0.0001,
+    "balanced": [
+      {
+        "code": 0,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 0,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 4,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 4,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 8,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 8,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 16,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 16,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 24,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 24,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 27,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 27,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 31,
+        "polarity": -1,
+        "excitation": 0,
+        "state": 0
+      },
+      {
+        "code": 31,
+        "polarity": 1,
+        "excitation": 0,
+        "state": 0
+      }
+    ],
+    "uniformCodePair": {
+      "low": {
+        "state": 0.00196209682644,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0
+          },
+          {
+            "frame": 300,
+            "state": 0.00033313733774
+          },
+          {
+            "frame": 600,
+            "state": 0.000663801857621
+          },
+          {
+            "frame": 900,
+            "state": 0.00099201191492
+          },
+          {
+            "frame": 1200,
+            "state": 0.00131778572867
+          },
+          {
+            "frame": 1500,
+            "state": 0.00164114138265
+          },
+          {
+            "frame": 1800,
+            "state": 0.00196209682644
+          }
+        ]
+      },
+      "high": {
+        "state": 0.00427637629948,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0
+          },
+          {
+            "frame": 300,
+            "state": 0.000726070495803
+          },
+          {
+            "frame": 600,
+            "state": 0.00144675150239
+          },
+          {
+            "frame": 900,
+            "state": 0.00216208302496
+          },
+          {
+            "frame": 1200,
+            "state": 0.00287210477176
+          },
+          {
+            "frame": 1500,
+            "state": 0.00357685615628
+          },
+          {
+            "frame": 1800,
+            "state": 0.00427637629948
+          }
+        ]
+      }
+    },
+    "checkerboard": {
+      "codes": [
+        4,
+        27
+      ],
+      "states": [
+        0.00196209682644,
+        0.00427637629948
+      ]
+    },
+    "isolatedWindow": {
+      "outsideCode": 8,
+      "insideCode": 24,
+      "stress": {
+        "state": 0.00397451375951,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0
+          },
+          {
+            "frame": 300,
+            "state": 0.000674818344751
+          },
+          {
+            "frame": 600,
+            "state": 0.00134462763568
+          },
+          {
+            "frame": 900,
+            "state": 0.00200946505408
+          },
+          {
+            "frame": 1200,
+            "state": 0.00266936750527
+          },
+          {
+            "frame": 1500,
+            "state": 0.00332437162059
+          },
+          {
+            "frame": 1800,
+            "state": 0.00397451375951
+          }
+        ]
+      },
+      "recovery": {
+        "state": 0.00508216536477,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0.00397451375951
+          },
+          {
+            "frame": 300,
+            "state": 0.004346485206
+          },
+          {
+            "frame": 600,
+            "state": 0.00471569557609
+          },
+          {
+            "frame": 900,
+            "state": 0.00508216536477
+          }
+        ]
+      }
+    },
+    "polarityReversal": {
+      "positive": {
+        "state": 0.00147472128767,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0
+          },
+          {
+            "frame": 300,
+            "state": 0.000738885177661
+          },
+          {
+            "frame": 600,
+            "state": 0.00147228574505
+          },
+          {
+            "frame": 601,
+            "state": 0.00147472128767
+          }
+        ]
+      },
+      "thenNegative": {
+        "state": 0.00239908174015,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0.00147472128767
+          },
+          {
+            "frame": 300,
+            "state": 0.00193785709703
+          },
+          {
+            "frame": 600,
+            "state": 0.00239755513353
+          },
+          {
+            "frame": 601,
+            "state": 0.00239908174015
+          }
+        ]
+      },
+      "continuedPositiveControl": {
+        "state": 0.00292759457157,
+        "samples": [
+          {
+            "frame": 0,
+            "state": 0.00147472128767
+          },
+          {
+            "frame": 300,
+            "state": 0.00220265987747
+          },
+          {
+            "frame": 600,
+            "state": 0.00292519511153
+          },
+          {
+            "frame": 601,
+            "state": 0.00292759457157
+          }
+        ]
+      }
+    },
+    "unequalDutyCycle": {
+      "state": 0.00342948094565,
+      "samples": [
+        {
+          "frame": 0,
+          "state": 0
+        },
+        {
+          "frame": 300,
+          "state": 0.000582279190645
+        },
+        {
+          "frame": 600,
+          "state": 0.00116023622878
+        },
+        {
+          "frame": 900,
+          "state": 0.00173390319694
+        },
+        {
+          "frame": 1200,
+          "state": 0.00230331193956
+        },
+        {
+          "frame": 1500,
+          "state": 0.00286849406466
+        },
+        {
+          "frame": 1800,
+          "state": 0.00342948094565
+        }
+      ]
+    },
+    "stressDurationSweep": [
+      {
+        "frames": 60,
+        "state": 0.000135366187284
+      },
+      {
+        "frames": 300,
+        "state": 0.000674818344751
+      },
+      {
+        "frames": 900,
+        "state": 0.00200946505408
+      },
+      {
+        "frames": 1800,
+        "state": 0.00397451375951
+      },
+      {
+        "frames": 3600,
+        "state": 0.00777526746326
+      }
+    ],
+    "recoveryDurationSweep": [
+      {
+        "frames": 60,
+        "state": 0.00404912992382
+      },
+      {
+        "frames": 300,
+        "state": 0.004346485206
+      },
+      {
+        "frames": 900,
+        "state": 0.00508216536477
+      },
+      {
+        "frames": 1800,
+        "state": 0.0061653339168
+      }
+    ],
+    "spatialDisabledBaseline": {
+      "reconstructed": 0.00311924624627,
+      "ws1Global": 0.00311924624627
+    },
+    "matrix": [
+      {
+        "ws4Member": "fast",
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "fast",
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 48.8272128297,
+          "darkening": 122.068032074
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "nominal",
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 36.6204096223,
+          "darkening": 73.2408192445
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236458021305,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.000006730974692,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397451375951,
+        "shaderFloat32State": 0.00391435623169,
+        "absoluteError": 0.0000601575278253,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "outside",
+          "x": 31,
+          "y": 79,
+          "code": 8
+        },
+        "finalState": 0.00236459957968,
+        "shaderFloat32State": 0.00237131118774,
+        "absoluteError": 0.00000671160806096,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      },
+      {
+        "ws4Member": "slow",
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "coordinate": {
+          "id": "inside",
+          "x": 120,
+          "y": 80,
+          "code": 24
+        },
+        "finalState": 0.00397453312615,
+        "shaderFloat32State": 0.00391411781311,
+        "absoluteError": 0.000060415313036,
+        "opticalEndpointRatesPerSecond": {
+          "brightening": 21.9722457734,
+          "darkening": 43.9444915467
+        }
+      }
+    ]
+  },
+  "comparisonImage": {
+    "file": "ws5-comparison-v1.png",
+    "sha256": "4c4ad54ae59b67d9285e272b7a342fccd210da9b070c95fe12d21988e1ec96b4",
+    "width": 320,
+    "height": 162,
+    "layout": "orange stress-duration rows followed by blue recovery-duration rows; normalized bar length"
+  },
+  "unresolved": [
+    "No AGS-101 VCOM, feed-through, gate waveform, capacitance, code-voltage curve, or residual-DC waveform selects the proxy weights.",
+    "The one scalar per source pixel is not subpixel-resolved and has no lateral ion diffusion or row-line gradient.",
+    "WS3 parity and inversion candidates remain unselected; generated results expose their sensitivity rather than choosing one.",
+    "The default represents a period-mechanism reconstruction, not measured or calibrated AGS-101 image sticking."
+  ]
+}

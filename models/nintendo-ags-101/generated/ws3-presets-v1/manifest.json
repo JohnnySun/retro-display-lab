@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "manifestId": "nintendo-ags-101-ws3-presets-v1",
+  "generator": "tools/build-ags101-ws3.mjs",
+  "classification": "generated-sensitivity-candidates-not-formal-ags101-profiles",
+  "sourceConstraintSha256": "0d8b76642aad5d8f4b2450aad0bb72e94e85d9c7f6b5bbae6fe9475effb757b1",
+  "basePreset": "models/nintendo-ags-101/presets/period-reconstruction-v1.slangp",
+  "basePresetSha256": "f16913621b4d287b799edea0b14be3dd5675d506ccc03ff75b5b8303c2131ead",
+  "presets": [
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-start__no-separate-dead-time",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-start__no-separate-dead-time-v1.slangp",
+      "sha256": "b8714eb9d65358f1f7075473fc4e5b5daecf3eb709ddb00473e076302dd16648",
+      "overrides": {
+        "LatchOffsetLines": "0",
+        "OpticalDelaySeconds": "0.000000000000000"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-start__one-line-sensitivity",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-start__one-line-sensitivity-v1.slangp",
+      "sha256": "3fd63d78dad40839653c7b320e94d9913247941cb074b2c2faf4fbb22415fbe1",
+      "overrides": {
+        "LatchOffsetLines": "0",
+        "OpticalDelaySeconds": "0.000073432922363"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-start__half-frame-sensitivity",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-start__half-frame-sensitivity-v1.slangp",
+      "sha256": "533d7a7a091d92a152a003f3d9bce1e2e833fa0ba1a423d72a4857a56fd6f8a3",
+      "overrides": {
+        "LatchOffsetLines": "0",
+        "OpticalDelaySeconds": "0.008371353149414"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-center__no-separate-dead-time",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-center__no-separate-dead-time-v1.slangp",
+      "sha256": "2488285c4b3abd77b058db7b2f38e7d26c5e24c86aeb8b8467b00943eceb527c",
+      "overrides": {
+        "LatchOffsetLines": "0.5",
+        "OpticalDelaySeconds": "0.000000000000000"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-center__one-line-sensitivity",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-center__one-line-sensitivity-v1.slangp",
+      "sha256": "20a873b6ad88a6de5aa17d57317bc02c40235f5eac7ae4d4655340c98e0c50ed",
+      "overrides": {
+        "LatchOffsetLines": "0.5",
+        "OpticalDelaySeconds": "0.000073432922363"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-center__half-frame-sensitivity",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-center__half-frame-sensitivity-v1.slangp",
+      "sha256": "c4799ee8e95a5a45325550582c05ad8163a340e6295ccc3b32d78a4826897436",
+      "overrides": {
+        "LatchOffsetLines": "0.5",
+        "OpticalDelaySeconds": "0.008371353149414"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-end__no-separate-dead-time",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-end__no-separate-dead-time-v1.slangp",
+      "sha256": "3df9603a03f5466bcfe5c358ea3b5c25a5031ad689cfffaac314f6216dde263a",
+      "overrides": {
+        "LatchOffsetLines": "1",
+        "OpticalDelaySeconds": "0.000000000000000"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-end__one-line-sensitivity",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-end__one-line-sensitivity-v1.slangp",
+      "sha256": "6c8ff5205f1ce818dff61da81d18f676d1701ab6b30f3acac2903ad69d53a2e9",
+      "overrides": {
+        "LatchOffsetLines": "1",
+        "OpticalDelaySeconds": "0.000073432922363"
+      }
+    },
+    {
+      "kind": "timing-candidate",
+      "candidateId": "line-end__half-frame-sensitivity",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/timing-line-end__half-frame-sensitivity-v1.slangp",
+      "sha256": "32ac4f77a745592456e9732aee4974bed60bedf2d0d839e3fba182bcaa8ce775",
+      "overrides": {
+        "LatchOffsetLines": "1",
+        "OpticalDelaySeconds": "0.008371353149414"
+      }
+    },
+    {
+      "kind": "parity-candidate",
+      "candidateId": "even-positive",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/parity-even-positive-v1.slangp",
+      "sha256": "682e0887b824a2e81ff9323c8e0d0824daa552290161d9eb40258f94574693be",
+      "overrides": {
+        "ParityPhase": "0.0"
+      }
+    },
+    {
+      "kind": "parity-candidate",
+      "candidateId": "odd-positive",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/parity-odd-positive-v1.slangp",
+      "sha256": "9ffb6bf0162bbc655b9f8a9102c12b417bcb5dd3964c9e31f64c1f69eae0165b",
+      "overrides": {
+        "ParityPhase": "1.0"
+      }
+    },
+    {
+      "kind": "inversion-candidate",
+      "candidateId": "frame-global",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/inversion-frame-global-v1.slangp",
+      "sha256": "5efef9dc6d4878c5757e15c5c6d99914a35c770ecd53ccd01f32fcd847ec578d",
+      "overrides": {
+        "InversionTopology": "0.0"
+      }
+    },
+    {
+      "kind": "inversion-candidate",
+      "candidateId": "row-alternating",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/inversion-row-alternating-v1.slangp",
+      "sha256": "eed3783cdc1fc0c34c984af0b6a4500c0e213f0ebabfe4d693dc4a7ea9fc5576",
+      "overrides": {
+        "InversionTopology": "1.0"
+      }
+    },
+    {
+      "kind": "inversion-candidate",
+      "candidateId": "column-alternating",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/inversion-column-alternating-v1.slangp",
+      "sha256": "97ce1d07efbcfaa07f2c076994714ec5f341e9c6f75077bd9aebe83e009efadb",
+      "overrides": {
+        "InversionTopology": "2.0"
+      }
+    },
+    {
+      "kind": "inversion-candidate",
+      "candidateId": "dot-checkerboard",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/inversion-dot-checkerboard-v1.slangp",
+      "sha256": "e0d36dd5fc0f19f03dcb2ee0600c5f0620618e34a2046fe8dd5ff5ff86486345",
+      "overrides": {
+        "InversionTopology": "3.0"
+      }
+    },
+    {
+      "kind": "read-only-diagnostic",
+      "candidateId": "row-start",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/diagnostic-row-start-v1.slangp",
+      "sha256": "7135ed7a39f0b273ac4f51f43ff2086259c6489829a9bf116a278c256bfd49f6",
+      "overrides": {
+        "DebugView": "6.0"
+      }
+    },
+    {
+      "kind": "read-only-diagnostic",
+      "candidateId": "latch",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/diagnostic-latch-v1.slangp",
+      "sha256": "c93e0be6f560250f30f51acaf51612db13f97d2743d5b3883b4adb3a80858152",
+      "overrides": {
+        "DebugView": "7.0"
+      }
+    },
+    {
+      "kind": "read-only-diagnostic",
+      "candidateId": "optical-onset",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/diagnostic-optical-onset-v1.slangp",
+      "sha256": "00aff2179f9045dcd92fbf837943bf8223471c36ddd2cf8651ce2a1ff82701b4",
+      "overrides": {
+        "DebugView": "8.0"
+      }
+    },
+    {
+      "kind": "read-only-diagnostic",
+      "candidateId": "parity-phase",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/diagnostic-parity-phase-v1.slangp",
+      "sha256": "c83d1a197e6ea00fca02ff5b123502fe212a0a21ef5280e6970059fe98a596fd",
+      "overrides": {
+        "DebugView": "9.0"
+      }
+    },
+    {
+      "kind": "read-only-diagnostic",
+      "candidateId": "inversion-topology",
+      "path": "models/nintendo-ags-101/generated/ws3-presets-v1/diagnostic-inversion-topology-v1.slangp",
+      "sha256": "7fb5a30f7ade293efd2fad33b83cadf82294e723858e86b21cd1aebd479bfb9e",
+      "overrides": {
+        "DebugView": "10.0"
+      }
+    }
+  ]
+}

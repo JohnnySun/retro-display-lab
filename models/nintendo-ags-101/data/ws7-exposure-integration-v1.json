@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-ags-101-ws7-exposure-integration-v1",
+  "scope": "Exposure-integrated presentation over the fixed native GBA panel frame without changing endpoint feedback state.",
+  "evidenceIds": ["AGS-TIMING-01", "AGS-GTGENSEMBLE-01", "AGS-BACKLIGHT-01", "AGS-EXPOSURE-01"],
+  "nativeClock": {
+    "source": "WS3 exact platform timing",
+    "masterClockHz": 16777216,
+    "cyclesPerLine": 1232,
+    "linesPerFrame": 228,
+    "observationSeconds": 0.016742706298828125,
+    "observationFramesPerShaderExecution": 1
+  },
+  "stateContract": {
+    "endpointPass": "Pass 0 RGBA32F keeps native optical endpoint RGB and residual-DC alpha for the next emulated frame.",
+    "exposurePass": "Pass 1 computes average emitted native-linear RGB over the same native frame and forwards endpoint residual-DC alpha without feedback.",
+    "displayPass": "Pass 2 applies aperture, optional relative backlight sensitivity, and HCS/neutral host conversion to exposure RGB.",
+    "endpointDiagnostic": "ExposureMode=0 bypasses the frame average and presents the Pass 0 frame-boundary endpoint."
+  },
+  "intervalProfiles": [
+    {
+      "id": "ordinary-refresh",
+      "frontendEvent": "one emulated frame executed and presented once",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.016742706298828125,
+      "runtimeStatus": "supported"
+    },
+    {
+      "id": "content-duplicate",
+      "frontendEvent": "the emulator executes the next native frame with identical source content",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.016742706298828125,
+      "runtimeStatus": "supported",
+      "note": "Identical content is still real panel dwell and must advance GtG and retention."
+    },
+    {
+      "id": "frontend-generated-duplicate",
+      "frontendEvent": "host repeats a previously presented image without executing an emulated frame",
+      "nativeFramesAdvanced": 0,
+      "observationSeconds": null,
+      "runtimeStatus": "presentation-hold-not-physical-advance",
+      "note": "The Shader cannot observe or reconstruct this elapsed host interval."
+    },
+    {
+      "id": "fast-forward-every-frame",
+      "frontendEvent": "every emulated native frame still executes exactly once",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.016742706298828125,
+      "runtimeStatus": "equation-supported-host-pacing-irrelevant",
+      "note": "Native panel time remains fixed; accelerated wall-clock presentation is not an AGS physical clock change."
+    },
+    {
+      "id": "fast-forward-skipped-frames",
+      "frontendEvent": "emulated frames are skipped before Shader execution",
+      "nativeFramesAdvanced": null,
+      "observationSeconds": null,
+      "runtimeStatus": "unsupported-safe-bypass-required"
+    },
+    {
+      "id": "variable-refresh-one-execution-per-frame",
+      "frontendEvent": "host present intervals vary but every emulated frame executes once",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.016742706298828125,
+      "runtimeStatus": "equation-supported-host-pacing-independent"
+    },
+    {
+      "id": "variable-refresh-unknown-duplication-or-drop",
+      "frontendEvent": "host timing causes an unknown duplicate/drop history",
+      "nativeFramesAdvanced": null,
+      "observationSeconds": null,
+      "runtimeStatus": "unsupported-safe-bypass-required"
+    }
+  ],
+  "integration": {
+    "opticalEquation": "For each constant-target segment, x(t)=q+(x0-q)exp(-kt) and integral=q*dt+(x0-q)(1-exp(-k*dt))/k.",
+    "ratePolicy": "The WS4 runtime rate is frozen at each segment start, matching the existing endpoint pass.",
+    "scanPolicy": "Changed channels integrate old target before WS3 optical onset and new target afterward; unchanged channels retain one full-frame segment.",
+    "retentionPolicy": "The exposure pass uses the same boundary residual-DC reductions as the endpoint pass. It does not introduce a new within-segment electrical model.",
+    "referenceCheck": "Closed-form integrals are compared with composite Simpson integration using at least 4096 subintervals per nonzero segment."
+  },
+  "backlightCandidates": {
+    "acceptedForRuntime": [
+      { "id": "unity-control", "relativeGain": 1 },
+      { "id": "static-relative-sensitivity-0_75", "relativeGain": 0.75 },
+      { "id": "static-relative-sensitivity-0_50", "relativeGain": 0.5 }
+    ],
+    "excluded": [
+      {
+        "id": "dc-dimming-unselected",
+        "reason": "No transferable low/high ratio or electrical topology."
+      },
+      {
+        "id": "pwm-dimming-unselected",
+        "reason": "Frequency, duty, phase, and even PWM use remain unknown; no temporal waveform is invented."
+      }
+    ]
+  },
+  "runtimeLimits": [
+    "TotalSubFrames must equal one.",
+    "The frontend must execute every emulated native frame exactly once.",
+    "Host refresh rate does not replace or rescale the native GBA panel clock.",
+    "PWM exposure is unavailable until a traceable candidate waveform exists."
+  ]
+}

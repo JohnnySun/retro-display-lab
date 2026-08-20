@@ -1,9 +1,10 @@
 # AGS-101 drive imbalance and residual-DC retention
 
-Status: WS2 research gate, accepted 2026-08-18. This document defines the
-electrical/kinetic model that may replace the old luma-driven `ION` effect. It
-does not claim that any electrical coefficient has been measured on the HCS
-AGS-101 specimen.
+Status: WS5 reconstructed implementation, accepted 2026-08-20. This document
+defines the electrical/kinetic model that replaced the old luma-driven `ION`
+effect and the WS5 code/polarity excitation extension. It does not claim that
+any electrical coefficient or image-sticking trajectory was measured on the
+HCS AGS-101 specimen.
 
 ## Decision
 
@@ -69,14 +70,27 @@ DC for every static source code. Picture luma does not appear in this equation.
 
 ## Reduced adsorption/desorption state
 
-Let
+For raw integer RGB555 command `(R5,G5,B5)`, define
 
 ```text
-u = clamp(ΔV_DC / V_scale, -1, 1)
+q = (R5 + G5 + B5) / (3*31)
+p = selected WS3 frame/row/column/dot polarity in {-1,+1}
+u = clamp(ΔDC * (1 + Wcode*(2q-1) + Wpolarity*p), -1, 1)
 x = signed normalized adsorbed-ion / residual-DC state
 A = k_a N_s  [s^-1]
 D = k_d      [s^-1]
 ```
+
+`q` is a command-coordinate reduction, not displayed luma, optical output, or
+voltage. The released nominal sensitivity member uses `Wcode=0.5` and
+`Wpolarity=0.25`; low, high, and global-only controls remain generated
+candidates. The weights are unfitted project priors because exact AGS VCOM,
+feed-through, capacitance, and code-voltage data are unavailable.
+
+This construction preserves two hard compatibility gates. `ΔDC=0` produces
+`u=0` for every code, coordinate, polarity, and topology. Setting
+`SpatialRetention=0` produces `u=ΔDC` and exactly restores the former global
+WS1 excitation.
 
 The signed normalized extension of Mizusaki eq. 1 is
 
@@ -92,7 +106,7 @@ one differential state. It guarantees:
 - balanced drive with `u=0` and `x=0` remains exactly zero;
 - reversing `u` reverses the equilibrium sign;
 - removing `u` relaxes the state with the published desorption topology;
-- a static bright or dark image cannot create DC by itself.
+- a static command cannot create DC by itself when `ΔDC=0`.
 
 For constant nonzero `u`, define `λ=A+D` and
 
@@ -127,9 +141,18 @@ the neutral EOTF. This places the retained electrical offset before the optical
 mapping instead of adding an arbitrary brightness term after it.
 
 Linear interpolation between adjacent RGB555 codes is required because the
-offset need not land on an integer code. `DriveCodeCoupling` remains zero in
-the conservative default until a VCOM/drive-versus-code bridge is measured; an
-explicit laboratory preset may enable a bounded candidate for diagnostics.
+offset need not land on an integer code. The normal period reconstruction uses
+`DriveCodeCoupling=0.15` as an explicit project bridge prior. This is the
+value pinned by the preset, Shader default, CPU validator, and historical
+device readback; it is not an AGS-101 measurement. Zero remains the balanced
+isolation control.
+
+The alpha state is stored per pixel and WS5 now drives it from each pixel's raw
+RGB555 command plus the selected WS3 polarity candidate. Different held-code or
+polarity histories can therefore create different slow states. The reduction
+is deliberately one scalar per pixel: equal-mean chromatic triplets share a
+state, and lateral diffusion, subpixel-resolved capacitance, and row-line
+voltage gradients are not reconstructed.
 
 ## Polarity and frontend contract
 
@@ -147,8 +170,10 @@ run-ahead cannot reconstruct the shader's slow electrical state and are
 unsupported. Shader-subframe counts other than one bypass retention.
 
 A frame-parity reset can change the instantaneous flicker phase but not the
-signed slow state. The debug view must show both `x` and current polarity so a
-reset is observable.
+signed slow state. WS3 also exposes frame-global, row, column, and dot
+inversion hypotheses. The debug views show retained `x`, selected polarity,
+parity phase, and spatial inversion separately so a reset or topology change is
+observable without claiming that one hypothesis is authentic.
 
 ## State texture and precision
 
@@ -172,28 +197,33 @@ enough for the tested target but still requires a Vulkan runtime probe.
 
 | Runtime quantity | Classification | Default policy |
 | --- | --- | --- |
-| Polarity alternation | Literature/frontend-derived | Enabled from `FrameCount`; N=1 only. |
-| `DriveDcOffset` | Normalized bridge quantity; no pristine AGS value exists | Project theoretical prior `0.1`; never inferred from luma and not described as a paper measurement. |
+| `ParityPhase` | Unresolved WS3 hypothesis selector | Even-positive legacy candidate or odd-positive sensitivity candidate; N=1 only. |
+| `InversionTopology` | Unresolved WS3 hypothesis selector | Frame-global legacy candidate plus row, column, and dot sensitivity candidates. |
+| `DriveDcOffset` | Normalized bridge quantity; no pristine AGS value exists | Project theoretical prior `0.1`; zero is the exact charge-balanced control. |
+| `SpatialRetention` | WS5 compatibility selector | Enabled for the reconstructed path; disabling it exactly restores the WS1 global excitation. |
+| `SpatialCodeWeight` | Normalized RGB555-command sensitivity; no AGS value exists | Project sensitivity prior `0.5`; generated low/global/high controls remain available. |
+| `PolarityDriveWeight` | Normalized polarity-asymmetry sensitivity; no AGS value exists | Project sensitivity prior `0.25`; WS3 topology and parity remain unselected. |
 | `IonAdsorptionRate` (`A`) | Direct period-literature cell measurement | Default `0.0635 min^-1 = 0.0010583333 s^-1`, the midpoint of the reported range. |
 | `IonDesorptionRate` (`D`) | Direct period-literature cell measurement | Default `0.0255 min^-1 = 0.000425 s^-1`, the midpoint of the reported slow-component range. |
 | `DriveCodeCoupling` | Normalized electro-optical bridge; no pristine AGS value exists | Project theoretical prior `0.15`, kept distinct from the direct literature rates. |
 | HCS EOTF | Measured optical source record | Existing default, unchanged. |
 | Fast GtG coefficients | Experimental AGS candidates | Unchanged by WS2. |
 
-## Acceptance tests before default replacement
+## WS5 acceptance receipt
 
-1. Exact zero under balanced positive/negative drive for every source code.
-2. Equal-magnitude sign reversal under `u -> -u`.
-3. Desorption-only exponential relaxation after `u -> 0`.
-4. Full-step and partitioned exact updates agree within float64 tolerance.
-5. Long-duration state remains bounded and converges to `A u/(A+D)`.
-6. Excitation is identical for black, middle gray, and white when drive error
-   is identical.
-7. Electrical offset is applied before EOTF; no linear-RGB addition remains.
-8. Float16 demonstrates the predicted stalled-update failure and float32 does
-   not at the selected rates.
-9. Vulkan runtime compiles RGBA32F feedback and alternates parity at N=1.
-10. Neutral/HCS static color is unchanged when all WS2 quantities are zero.
+[`generated/ws5-retention-validation-v1.json`](../../models/nintendo-ags-101/generated/ws5-retention-validation-v1.json)
+is regenerated by `tools/build-ags101-ws5.mjs`. It covers balanced uniform,
+uniform code-pair, checkerboard, isolated-window stress/recovery,
+polarity-reversal, unequal-duty-cycle, stress-duration, recovery-duration,
+latch partition, spatial-off baseline, reset, and `N=1` gates. The matrix spans
+three WS4 GtG members, four WS3 inversion topologies, two parity phases, and two
+spatial probes. CPU double precision and the Shader float32/alpha round-trip
+emulator must remain within `1e-4` after 1,800 feedback frames.
+
+The generated receipt is repository equation evidence, not a GPU claim.
+DebugView 11 exposes code proxy, excitation, retained state, and net mismatch;
+DebugView 12 encodes outside/inside retained-state floats, `FrameCount`, and
+the outside excitation as binary bit bands for a separate target GPU receipt.
 
 ## Historical reconstruction policy
 

@@ -23,7 +23,7 @@
     "runId": { "type": "string", "minLength": 1 },
     "date": { "type": "string", "minLength": 1 },
     "repositoryCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
-    "modelId": { "const": "nintendo-ags-101-physics-seed" },
+    "modelId": { "const": "nintendo-ags-101-period-reconstruction" },
     "targetProfile": { "type": "string", "minLength": 1 },
     "frontend": {
       "type": "object",
@@ -110,6 +110,10 @@
         "presentationOnly": { "const": true },
         "files": { "type": "array", "items": { "type": "string" } }
       }
+    },
+    "runEvidence": {
+      "type": "object",
+      "description": "Run-specific structured evidence. Device receipts may use this for deployment hashes, compile traces, pacing samples, response observations, restoration checks, and explicit limits."
     },
     "notes": { "type": "string" }
   }

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "reconstructionId": "nintendo-ags-101-ws5-spatial-retention-v1",
+  "classification": "literature-mechanism-constrained-normalized-reconstruction-not-panel-measurement",
+  "evidenceInventory": "data/ws5-evidence-inventory-v1.json",
+  "equationId": "WS5-CODE-POLARITY-EXCITATION-V1",
+  "stateEquationId": "WS5-MIZUSAKI-ONE-STATE-V1",
+  "codeProxy": {
+    "input": "raw integer RGB555 source command before HCS EOTF, GtG, aperture, and host conversion",
+    "equation": "q=(R5+G5+B5)/(3*31)",
+    "range": [0, 1],
+    "classification": "project reduction of three subpixel commands to the one scalar state available in RGBA32F alpha",
+    "limits": "Equal-mean chromatic RGB555 triplets share one slow state; this is not a subpixel-resolved electrical model."
+  },
+  "excitation": {
+    "equation": "u=clamp(deltaDC*(1+Wcode*(2*q-1)+Wpolarity*p(x,y,t)),-1,1)",
+    "units": "normalized resultant imbalance; not volts",
+    "inputs": {
+      "deltaDC": "DriveDcOffset project bridge prior",
+      "Wcode": "SpatialCodeWeight project sensitivity hypothesis",
+      "Wpolarity": "PolarityDriveWeight project sensitivity hypothesis",
+      "p": "WS3 frame parity plus selected frame/row/column/dot spatial phase"
+    },
+    "invariants": [
+      "deltaDC=0 produces u=0 exactly for every code, coordinate, polarity, and topology",
+      "SpatialRetention=0 produces u=deltaDC and exactly recovers the WS1 global-only path",
+      "displayed luma and optical feedback do not enter u",
+      "identical command/polarity histories produce identical state"
+    ]
+  },
+  "state": {
+    "equation": "dx/dt=A*(u-x)-D*x for nonzero u; dx/dt=-D*x for zero u",
+    "storage": "one signed float32 scalar per 240x160 source pixel in response-pass alpha",
+    "adsorptionRatePerSecond": {
+      "default": 0.0010583333,
+      "sourceRange": [0.001, 0.0011166667],
+      "classification": "later laboratory-cell literature range, not AGS-101"
+    },
+    "desorptionRatePerSecond": {
+      "default": 0.000425,
+      "sourceRange": [0.0003833333, 0.0004666667],
+      "classification": "later laboratory-cell slow-component range, not AGS-101"
+    },
+    "secondState": "not selected; Mizusaki two-component recovery is preserved as a future fit option requiring AGS waveform evidence"
+  },
+  "sensitivityMembers": [
+    {
+      "id": "global-only",
+      "role": "WS1 compatibility control",
+      "spatialRetention": 0,
+      "spatialCodeWeight": 0,
+      "polarityDriveWeight": 0,
+      "classification": "control"
+    },
+    {
+      "id": "low",
+      "role": "lower spatial sensitivity hypothesis",
+      "spatialRetention": 1,
+      "spatialCodeWeight": 0.25,
+      "polarityDriveWeight": 0,
+      "classification": "project prior"
+    },
+    {
+      "id": "nominal",
+      "role": "released period-reconstruction sensitivity midpoint",
+      "spatialRetention": 1,
+      "spatialCodeWeight": 0.5,
+      "polarityDriveWeight": 0.25,
+      "classification": "project prior; not fitted"
+    },
+    {
+      "id": "high",
+      "role": "upper spatial sensitivity hypothesis",
+      "spatialRetention": 1,
+      "spatialCodeWeight": 1,
+      "polarityDriveWeight": 0.5,
+      "classification": "project prior"
+    }
+  ],
+  "defaultMember": "nominal",
+  "ws3Matrix": {
+    "parityPhases": [0, 1],
+    "inversionTopologies": [
+      {"id": "frame-global", "shaderValue": 0},
+      {"id": "row-alternating", "shaderValue": 1},
+      {"id": "column-alternating", "shaderValue": 2},
+      {"id": "dot-checkerboard", "shaderValue": 3}
+    ],
+    "formalSelection": null
+  },
+  "ws4Matrix": ["fast", "nominal", "slow"],
+  "fixtures": [
+    "balanced-uniform",
+    "uniform-code-pair",
+    "checkerboard",
+    "isolated-window-stress-recovery",
+    "polarity-reversal",
+    "unequal-duty-cycle",
+    "stress-duration-sweep",
+    "recovery-duration-sweep",
+    "latch-discontinuity-partition",
+    "spatial-disabled-baseline",
+    "n1-bypass-reset"
+  ],
+  "runtimePolicy": {
+    "normalForwardOnly": true,
+    "requiredTotalSubFrames": 1,
+    "resetState": 0,
+    "unsupported": ["rewind", "run-ahead", "dropped-frame fast-forward", "unknown variable-refresh time"]
+  },
+  "limitations": [
+    "No AGS-101 VCOM, feed-through, gate waveform, capacitance, code-voltage curve, or residual-DC waveform selects the proxy weights.",
+    "The one scalar per source pixel is not subpixel-resolved and has no lateral ion diffusion or row-line gradient.",
+    "WS3 parity and inversion candidates remain unselected; generated results expose their sensitivity rather than choosing one.",
+    "The default represents a period-mechanism reconstruction, not measured or calibrated AGS-101 image sticking."
+  ]
+}

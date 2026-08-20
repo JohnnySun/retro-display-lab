@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-ags-101-ws2-mgba-smoke-v1",
+  "classification": "emulator-runtime-smoke-plus-static-rom-consistency",
+  "capturedAt": "2026-08-20T07:37:00.029Z",
+  "generator": "tools/validate-ags101-ws2-mgba.mjs",
+  "emulator": {
+    "name": "mGBA",
+    "executablePath": "/Applications/mGBA.app/Contents/MacOS/mGBA",
+    "executableSha256": "f2f329b4947baa5082fcaf27ced1e2b21f2999ccf73ca481f22b44c4c87d6640",
+    "version": "/Applications/mGBA.app/Contents/MacOS/mGBA 0.10.5 (26b7884bc25a5933960f3cdcd98bac1ae14d42e2)",
+    "platform": "darwin-arm64",
+    "options": [
+      "audioSync=0",
+      "videoSync=0",
+      "mute=1",
+      "skipBios=1"
+    ]
+  },
+  "source": {
+    "sceneSource": "models/nintendo-ags-101/data/ws2-stimulus-scenes-v1.json",
+    "sceneSourceSha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2",
+    "manifest": "models/nintendo-ags-101/generated/ws2-stimulus-v1/manifest.json",
+    "manifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a"
+  },
+  "scope": {
+    "runtime": "Each ROM remained alive in pinned mGBA for the hold interval and was then terminated by this validator.",
+    "consistency": "ROM header, program, palette, both pages, page-selection instructions, and dwell literals independently match the source and manifest.",
+    "limitation": "This receipt does not claim original-GBA electrical timing or observe an AGS-101 panel."
+  },
+  "summary": {
+    "scenes": 11,
+    "runtimeBootPasses": 11,
+    "consistencyPasses": 11,
+    "pass": true
+  },
+  "scenes": [
+    {
+      "sceneId": "color-ramps",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/color-ramps.gba",
+      "romSha256": "4467ce9c81160e6d1bc8b2c10d5df79206d2baf338734d6f148f538035f61c13",
+      "gbaHeaderChecksum": 184,
+      "pageSha256": [
+        "116eb8dd937f36fb67617e5b95792bfed2c7df706212924d8ced312e52d99d85",
+        "116eb8dd937f36fb67617e5b95792bfed2c7df706212924d8ced312e52d99d85"
+      ],
+      "paletteEntries": 156,
+      "dwellFrames": [
+        2147483647,
+        2147483647
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "color-ramps",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "mixed-patches",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/mixed-patches.gba",
+      "romSha256": "e0384ca86d0948141393cc119a8631b16740e467fdfb69eea97406c3b3edcf48",
+      "gbaHeaderChecksum": 204,
+      "pageSha256": [
+        "837f3126e6a292b5be7e9742d4a06b0a04b623d8e0d8da28f1b79845b1d00497",
+        "837f3126e6a292b5be7e9742d4a06b0a04b623d8e0d8da28f1b79845b1d00497"
+      ],
+      "paletteEntries": 64,
+      "dwellFrames": [
+        2147483647,
+        2147483647
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "mixed-patches",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "row-markers",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/row-markers.gba",
+      "romSha256": "2461c6817978eeea91b3dea1bed608f4bcaf06872765ab789280780dec33fe1c",
+      "gbaHeaderChecksum": 202,
+      "pageSha256": [
+        "4599971b59d638328ac82a83d0c02331db679b4d023bbe2ca29865c24a03ec18",
+        "4599971b59d638328ac82a83d0c02331db679b4d023bbe2ca29865c24a03ec18"
+      ],
+      "paletteEntries": 35,
+      "dwellFrames": [
+        2147483647,
+        2147483647
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "row-markers",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "checkerboard",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/checkerboard.gba",
+      "romSha256": "db0560213cae16451cba3f31cab50bdf0e5751e4a86945778b8e6c74d57519e4",
+      "gbaHeaderChecksum": 180,
+      "pageSha256": [
+        "b5065e9761ef16d5e7dc4e89e882a3867b4e08a93d99f602e7c231f594278c9f",
+        "b5065e9761ef16d5e7dc4e89e882a3867b4e08a93d99f602e7c231f594278c9f"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        2147483647,
+        2147483647
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "checkerboard",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "isolated-window",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/isolated-window.gba",
+      "romSha256": "4e8ad1a0553f68a647c8148da664f500d5bedaff28b5a8f22afc6cf3eddf0fbe",
+      "gbaHeaderChecksum": 199,
+      "pageSha256": [
+        "09b1b96f3499e5173846900b7e58a20f2b3a629ec15677bc6716182b67ac4ffd",
+        "09b1b96f3499e5173846900b7e58a20f2b3a629ec15677bc6716182b67ac4ffd"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        2147483647,
+        2147483647
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "isolated-window",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "parity-toggle",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/parity-toggle.gba",
+      "romSha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d",
+      "gbaHeaderChecksum": 189,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        1,
+        1
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "parity-toggle",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "gtg-neutral-gate",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/gtg-neutral-gate.gba",
+      "romSha256": "c11f1fa89a3b3c0ad021affc3564042e259175380b47bb07e08525edda7f5e9b",
+      "gbaHeaderChecksum": 160,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        120,
+        120
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "gtg-neutral-gate",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "gtg-red-gate",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/gtg-red-gate.gba",
+      "romSha256": "8062f9d007de490a6890b7b73d54e7c147105804b110f67f4d6442e44216abdc",
+      "gbaHeaderChecksum": 174,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        120,
+        120
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "gtg-red-gate",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "gtg-green-gate",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/gtg-green-gate.gba",
+      "romSha256": "9193dbdb099ae13be984ba5888644f48fe135b27f139ba100bde537ed6a70c8f",
+      "gbaHeaderChecksum": 152,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        120,
+        120
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "gtg-green-gate",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "gtg-blue-gate",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/gtg-blue-gate.gba",
+      "romSha256": "d47cbf7145d3e8c20bcc31e3e4f2da89a067eef2a219e0d1f6ccfa3b37df6435",
+      "gbaHeaderChecksum": 194,
+      "pageSha256": [
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
+        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        120,
+        120
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "gtg-blue-gate",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    },
+    {
+      "sceneId": "retention-stress-recovery",
+      "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/retention-stress-recovery.gba",
+      "romSha256": "cd1a3b1d847b294c8dce54900ee44658770b655618c45a53e843a003522165f5",
+      "gbaHeaderChecksum": 191,
+      "pageSha256": [
+        "de305073573060e3925b5944f33423ec852b3a20afe2a4ef50b29d4ec4db73c5",
+        "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba"
+      ],
+      "paletteEntries": 2,
+      "dwellFrames": [
+        1800,
+        900
+      ],
+      "runtimeProbe": {
+        "entryAddress": 134217920,
+        "frameLoopAddress": 134218024,
+        "waitVBlankAddress": 134218036,
+        "pageFlipWriteAddress": 134218060,
+        "displayControlAddress": 67108864,
+        "paletteAddress": 83886080,
+        "page0Address": 100663296,
+        "page1Address": 100704256
+      },
+      "consistencyStatus": "pass",
+      "issues": [],
+      "runtime": {
+        "sceneId": "retention-stress-recovery",
+        "holdMilliseconds": 750,
+        "aliveAfterHold": true,
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "stdout": "",
+        "stderr": "qt.qpa.backingstore: Back buffer dpr of 2 doesn't match <NSViewBackingLayer: 0x<pointer>> contents scale of 1 - updating layer to match.",
+        "pass": true
+      }
+    }
+  ]
+}

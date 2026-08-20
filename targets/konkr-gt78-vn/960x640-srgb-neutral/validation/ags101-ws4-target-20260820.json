@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "classification": "device-run",
+  "runId": "konkr-gt78-vn-ags101-ws4-target-20260820",
+  "date": "2026-08-20",
+  "repositoryCommit": "0acbfa55744e20cddd5d1528854b322ea5730eeb",
+  "modelId": "nintendo-ags-101-physics-seed",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "frontend": {
+    "name": "RetroArch",
+    "version": "1.22.2 (Git a609b709eb; Android versionCode 1597175267)",
+    "videoDriver": "Vulkan on Mali-G76 MC4",
+    "shaderSubframes": 1,
+    "historySemantics": "Normal-forward N=1 with Original as the current core image and PassFeedback0 as the preceding response-pass output; this run exercised clean process starts and repeated two-second RGB555 gate dwells.",
+    "feedbackFormat": "R32G32B32A32_SFLOAT",
+    "integerScaling": true,
+    "sourceRefreshHz": 59.727500569606,
+    "targetRefreshHz": 60,
+    "rewindEnabled": false,
+    "runAheadEnabled": false,
+    "fastForwardRatio": 1,
+    "frameDuplication": "No explicit duplication mode was used; the fixed-vsync presentation path was sampled through SurfaceFlinger.",
+    "variableRefresh": "Unavailable; the target exposes one 960x640 60 Hz mode."
+  },
+  "artifacts": {
+    "models/nintendo-ags-101/data/ws4-gtg-ensemble-v1.json": "434b86e46fcc9eccaff26ca6f682441911de5089e246b33c949fa43c9647c40e",
+    "models/nintendo-ags-101/generated/ws2-stimulus-v1/gtg-neutral-gate.gba": "c11f1fa89a3b3c0ad021affc3564042e259175380b47bb07e08525edda7f5e9b",
+    "models/nintendo-ags-101/generated/ws2-stimulus-v1/manifest.json": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
+    "models/nintendo-ags-101/generated/ws4-gtg-fast-v1.png": "26a7e2f0f705aafe8f42ec4c7737f2adcc475b2ab059af9e29d837c0ed065919",
+    "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e",
+    "models/nintendo-ags-101/generated/ws4-gtg-slow-v1.png": "8b7636fa1ad46f43d08c67d0d813aebb50c762c6b5703235913003ddafa02a15",
+    "models/nintendo-ags-101/generated/ws4-presets-v1/ags101-ws4-fast-v1.slangp": "15fc05404187b1bdfbff1e9d7b08afc58d23c616f9384c0521d6b9d06d1ffa75",
+    "models/nintendo-ags-101/generated/ws4-presets-v1/ags101-ws4-nominal-v1.slangp": "69419faa9e2f1bd521edc2f691d747da20da88171f4aa967aff84fd0f3c22bbd",
+    "models/nintendo-ags-101/generated/ws4-presets-v1/ags101-ws4-slow-v1.slangp": "1a95e38290d3bcef489173e5f5aee01467cbf128480377e53e79c628107703f1",
+    "models/nintendo-ags-101/generated/ws4-presets-v1/manifest.json": "8ddbf91680b0f91ab21a565df1cf21d17cb63fd21f06472275cd2ebe68c2815e",
+    "models/nintendo-ags-101/generated/ws4-validation-v1.json": "a4ed84e548c87cd74443027d3b52a2be22b4b796624d43bbecead5a9e9ae6611",
+    "models/nintendo-ags-101/shaders/ags101-display-v1.slang": "3618521c3f5bef3f4a830a7e6d9017db66ef0a77c4eb5fff92384b8a94e0efe4",
+    "models/nintendo-ags-101/shaders/ags101-drive-retention.inc": "dfe898de261e067fba0ddf1edcf863e117b06159c96ea3fbe8bb279ad50b8cfb",
+    "models/nintendo-ags-101/shaders/ags101-response-v1.slang": "cfedf3cbdbb0e57aa7197976292f7623496d80924cc316105da45756ecdc80c3",
+    "models/nintendo-ags-101/shaders/ags101-ws3-timing.inc": "30e6e1c4b4819594ab9afedc548a10e63bb9ab3efb7e724719fb215a68c9f38c",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp": "5452ff92634f8be2b095bc8654feabd65f4ae9c316244ebff4f269993110f8a6",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg": "d437f4afafc801bc4bc3bb70e1fb3fa692e15be78ce78595380824fdc226c9ca"
+  },
+  "checks": [
+    {
+      "event": "reset",
+      "outcome": "tested-limited",
+      "observation": "Each fast, nominal, and slow run used a clean RetroArch process start, which exercised deterministic feedback initialization. Quick Menu Restart was not repeated in this WS4-focused run."
+    },
+    {
+      "event": "content-reload",
+      "outcome": "supported-passed",
+      "observation": "The same neutral-gate ROM cold-loaded four times while switching only the isolated WS4 preset; every launch reached live mGBA output and rebuilt feedback without error."
+    },
+    {
+      "event": "save-state-load",
+      "outcome": "tested-limited",
+      "observation": "Not repeated because the deterministic ROM requires no save state and this run targeted current-artifact compilation, response ordering, and pacing. The limitation is not promoted to a new lifecycle claim."
+    },
+    {
+      "event": "pause-resume",
+      "outcome": "tested-limited",
+      "observation": "Not repeated in this WS4-focused run; presentation remained foreground and continuous for every capture."
+    },
+    {
+      "event": "rewind",
+      "outcome": "unsupported-disabled",
+      "observation": "Disabled in both effective mGBA override configurations because backward emulator time is outside the causal feedback contract."
+    },
+    {
+      "event": "run-ahead",
+      "outcome": "unsupported-disabled",
+      "observation": "Disabled in both effective mGBA override configurations because speculative frames are outside the causal feedback contract."
+    },
+    {
+      "event": "fast-forward",
+      "outcome": "unsupported-disabled",
+      "observation": "The effective override fixed fastforward_ratio to 1.000000; no accelerated interval was used in the response or pacing observations."
+    },
+    {
+      "event": "frame-duplication",
+      "outcome": "tested-limited",
+      "observation": "No explicit duplicate-frame mode was exposed. Fixed-vsync samples are reported as presented-frame evidence only."
+    },
+    {
+      "event": "variable-refresh",
+      "outcome": "not-applicable",
+      "observation": "The target reports one 960x640 mode at 60 Hz with no alternative refresh rates."
+    }
+  ],
+  "captures": {
+    "presentationOnly": true,
+    "files": [
+      ".codex-validation/ags101-ws4-target-20260820/fast.mp4 sha256=427f9f55eac4bdf1f8ed9ee0a523beb46d31c0ae7734eccf8808591d80edc3c9",
+      ".codex-validation/ags101-ws4-target-20260820/nominal.mp4 sha256=94e365c45b78d71fdbcc05a0d275597db9c7277ff9b3ce05b83858ed9e12ef82",
+      ".codex-validation/ags101-ws4-target-20260820/slow.mp4 sha256=0e0a006f9c86a490b10126e10a3c80ec7cd27cd1bc28b284f7d3d7ebdab137f9",
+      ".codex-validation/ags101-ws4-target-20260820/target-preset.png sha256=3d48d0f1cf2432393aeb22658f0541461c3a2096bf2d3aadcd7c1aaac2471125"
+    ]
+  },
+  "runEvidence": {
+    "device": {
+      "serial": "BW0306N250002377",
+      "manufacturer": "ARBOR",
+      "model": "GT78-VN",
+      "androidRelease": "12",
+      "buildFingerprint": "ARBOR/GT78-VN/GT78-VN:11/RP1A.200720.011/mp1V95182:user/release-keys",
+      "display": "960x640 at fixed 60 Hz, density 240, color mode 0",
+      "gpu": "Mali-G76 MC4"
+    },
+    "core": {
+      "name": "mGBA",
+      "loadedPath": "/data/data/com.retroarch/cores/mgba_libretro_android.so",
+      "externalInstallationCopy": "/sdcard/RetroArch/cores/mgba_libretro_android.so",
+      "externalInstallationCopySha256": "abdcb33611b3cd6380fe75c010184a174c124a3a3c64c822064ed388ba6ec9a7",
+      "externalInstallationCopyBytes": 2472240,
+      "loadedCoreByteHash": "unavailable: Android app sandbox is non-debuggable and the device has no su; the runtime log pins the loaded path but not its byte hash"
+    },
+    "deployment": {
+      "classification": "isolated-current-working-tree-artifacts",
+      "repositoryState": "HEAD identifies the base commit; the artifact SHA-256 values above are authoritative for the uncommitted WS1-WS4 bytes deployed by adb",
+      "shaderRoot": "/sdcard/RetroArch/shaders/.codex-validation/20260820-ags101-ws4/retro-display-lab",
+      "config": "/sdcard/RetroArch/config/.codex-validation/20260820-ags101-ws4/retroarch-ws4.cfg",
+      "configSha256": "2f16d92335b4230d09e686fd0ce93647f0c489bdd6e862c56ee0fc32e2b693cc",
+      "rom": "/sdcard/RetroArch/downloads/RDL-AGS101-WS4-GtG-Neutral.gba",
+      "romScene": "gtg-neutral-gate",
+      "romDwellFrames": [120, 120],
+      "deviceReadbackHashesMatchedRepository": true
+    },
+    "compile": {
+      "members": ["fast", "nominal", "slow", "exact-konkr-target-nominal"],
+      "allColdStartsPassed": true,
+      "responsePassFormat": "R32G32B32A32_SFLOAT",
+      "displayPassFormat": "R8G8B8A8_UNORM",
+      "feedbackPass": 0,
+      "tableBackendParameter": 1,
+      "shaderTextureCompileErrors": 0,
+      "logs": {
+        "fast": "sha256=522e45728ec705a664475736e7c3221513135ec53a2dba8b0f8b2fad9da38b4a",
+        "nominal": "sha256=0ae7095687fda31b82b59ddb8bc390eda8ca4760ce996eb179b1b78df1e76bfb",
+        "slow": "sha256=e615a0c879765c640a0b14ce4ca19d4606a0c73e1eda97d18c56fccbf4e22b6c",
+        "exactKonkrTargetNominal": "sha256=0647b0de647c32bcb915cd4d91888af1e86d00e3d7605bddcf97ccef80a38219"
+      }
+    },
+    "presentationResponse": {
+      "method": "Decode the 960x640 H.264 capture, average a centered 480x320 crop per frame, locate repeated 10% and 90% crossings between approximately code 0 and code 148, and linearly interpolate crossing time using each video's measured average frame rate.",
+      "scope": "post-display and post-RGB565/RGBA8/H.264 presentation evidence; not a float feedback readback and not an AGS-101 optical measurement",
+      "profiles": {
+        "fast": {
+          "videoFrames": 722,
+          "durationSeconds": 11.990833,
+          "averageFps": 60.212662,
+          "brighteningT10To90Ms": [38.135, 38.391, 38.391],
+          "brighteningMedianMs": 38.391,
+          "darkeningT10To90Ms": [40.726, 40.663, 40.663],
+          "darkeningMedianMs": 40.663
+        },
+        "nominal": {
+          "videoFrames": 722,
+          "durationSeconds": 11.9956,
+          "averageFps": 60.188736,
+          "brighteningT10To90Ms": [49.344, 49.344, 49.344],
+          "brighteningMedianMs": 49.344,
+          "darkeningT10To90Ms": [65.672, 65.713, 65.636],
+          "darkeningMedianMs": 65.672
+        },
+        "slow": {
+          "videoFrames": 723,
+          "durationSeconds": 12.007256,
+          "averageFps": 60.213593,
+          "brighteningT10To90Ms": [88.071, 88.071, 87.39],
+          "brighteningMedianMs": 88.071,
+          "darkeningT10To90Ms": [112.072, 112.447, 112.352],
+          "darkeningMedianMs": 112.352
+        }
+      },
+      "ordering": {
+        "brightening": "fast < nominal < slow",
+        "darkening": "fast < nominal < slow",
+        "pass": true
+      }
+    },
+    "surfaceFlinger": {
+      "refreshPeriodNanoseconds": 16666667,
+      "surface": "com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture#0",
+      "samples": {
+        "fast": [
+          {"intervals": 126, "fps": 60.432, "meanMs": 16.547, "medianMs": 15.967, "p95Ms": 22.324, "maxMs": 23.139, "doubleIntervals": 0}
+        ],
+        "nominal": [
+          {"intervals": 126, "fps": 59.801, "meanMs": 16.722, "medianMs": 16.086, "p95Ms": 21.029, "maxMs": 37.375, "doubleIntervals": 1},
+          {"intervals": 126, "fps": 60.271, "meanMs": 16.592, "medianMs": 16.045, "p95Ms": 21.206, "maxMs": 22.657, "doubleIntervals": 0},
+          {"intervals": 126, "fps": 59.654, "meanMs": 16.763, "medianMs": 16.036, "p95Ms": 21.23, "maxMs": 32.3, "doubleIntervals": 1},
+          {"intervals": 126, "fps": 60.302, "meanMs": 16.583, "medianMs": 15.989, "p95Ms": 21.568, "maxMs": 23.439, "doubleIntervals": 0}
+        ],
+        "slow": [
+          {"intervals": 126, "fps": 60.273, "meanMs": 16.591, "medianMs": 16.019, "p95Ms": 22.287, "maxMs": 23.854, "doubleIntervals": 0}
+        ]
+      },
+      "nominalAggregate": {
+        "intervals": 504,
+        "meanMs": 16.665,
+        "fps": 60.006,
+        "doubleIntervals": 2,
+        "doubleIntervalPercent": 0.397
+      },
+      "result": "pass: no sustained performance loss; two isolated nominal samples crossed 25 ms"
+    },
+    "restoration": {
+      "retroarchTestProcessStopped": true,
+      "gbaOverrideBeforeAfterSha256": "85d470b4aa41417c76c6f96e92d79e97a5411a5e7e9ef318379079135d9300bc",
+      "mgbaOverrideBeforeAfterSha256": "f50f14658651ca8aa7e69b8ee7c81a8c602eaf7ca304e8640a3f86442bf46d7b",
+      "globalRetroArchConfigurationModified": false,
+      "isolatedEvidenceRetainedOnDevice": true
+    },
+    "limits": [
+      "The post-display capture proves a causal and ordered runtime difference between the three current reconstructed LUTs; it does not expose the RGBA32F feedback values directly.",
+      "Screen recording includes target display transfer, RGB565/RGBA8 conversion, frame quantization, and H.264 compression, so its 10-90 values must not replace the generated linear-state endpoint constants.",
+      "The KONKR panel is a presentation target, not an AGS-101 specimen. No result here validates the Sharp-family transfer as original AGS-101 physics.",
+      "The actual loaded mGBA core is protected by the Android app sandbox; the external installation copy is hashed but cannot be proven byte-identical from the shell account."
+    ]
+  },
+  "notes": "Current WS4 assets compiled and ran through the packed-table backend on the named target. The deterministic neutral gate produced stable repeated transitions whose post-display 10-90 ordering was fast < nominal < slow in both directions. Device overrides were restored byte-for-byte after the run. Actual float GPU numeric readback remains an explicit WS8 item."
+}

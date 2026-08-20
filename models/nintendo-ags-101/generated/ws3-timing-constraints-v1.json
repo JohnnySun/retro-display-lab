@@ -1,0 +1,723 @@
+{
+  "schemaVersion": 1,
+  "artifactId": "nintendo-ags-101-ws3-timing-constraints-v1",
+  "generator": "tools/build-ags101-ws3.mjs",
+  "source": {
+    "evidenceInventory": "models/nintendo-ags-101/data/ws3-evidence-inventory-v1.json",
+    "evidenceInventorySha256": "2cd588d927efe303839daeade95d17aee40e07cfeed10d435ba64bd9a85253ed",
+    "constraints": "models/nintendo-ags-101/data/ws3-timing-constraints-v1.json",
+    "constraintsSha256": "0d8b76642aad5d8f4b2450aad0bb72e94e85d9c7f6b5bbae6fe9475effb757b1"
+  },
+  "ws2Gate": {
+    "status": "pass",
+    "sceneSourceSha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2",
+    "manifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
+    "runtimeReceiptSha256": "98826d05d4592bb4b4e6a05b227968500e0d78b5fe71d629b081546cf746e1ce",
+    "emulator": {
+      "name": "mGBA",
+      "executablePath": "/Applications/mGBA.app/Contents/MacOS/mGBA",
+      "executableSha256": "f2f329b4947baa5082fcaf27ced1e2b21f2999ccf73ca481f22b44c4c87d6640",
+      "version": "/Applications/mGBA.app/Contents/MacOS/mGBA 0.10.5 (26b7884bc25a5933960f3cdcd98bac1ae14d42e2)",
+      "platform": "darwin-arm64",
+      "options": [
+        "audioSync=0",
+        "videoSync=0",
+        "mute=1",
+        "skipBios=1"
+      ]
+    },
+    "scenes": 11,
+    "runtimeBootPasses": 11,
+    "consistencyPasses": 11
+  },
+  "exactPlatformTiming": {
+    "classification": "exact-platform-timing",
+    "evidenceIds": [
+      "WS3-NIN-AGB-MANUAL-2005",
+      "WS3-GBATEK-GBA-TIMING-IF"
+    ],
+    "masterClockHz": 16777216,
+    "cyclesPerDot": 4,
+    "visibleDotsPerLine": 240,
+    "totalDotsPerLine": 308,
+    "horizontalBlankDots": 68,
+    "cyclesPerLine": 1232,
+    "visibleLinesPerFrame": 160,
+    "totalLinesPerFrame": 228,
+    "verticalBlankLines": 68,
+    "cyclesPerFrame": 280896,
+    "visibleRowOrder": "top-to-bottom",
+    "sourceColorEncoding": "RGB555",
+    "sourceUpdateContract": "WS2 Mode 4 dynamic scenes switch complete preloaded pages at a VBlank edge",
+    "derived": {
+      "lineSeconds": 0.00007343292236328125,
+      "lineMicroseconds": 73.43292236328125,
+      "frameSeconds": 0.016742706298828125,
+      "frameMilliseconds": 16.742706298828125,
+      "frameHz": 59.72750056960583,
+      "visibleScanSeconds": 0.011749267578125,
+      "verticalBlankSeconds": 0.004993438720703125
+    }
+  },
+  "hardwareIdentity": {
+    "consoleModel": "AGS-101",
+    "motherboard": {
+      "marking": "C/AGT-CPU-01",
+      "status": "authenticated-artifact-identity",
+      "evidenceIds": [
+        "WS3-ICEBOY-AGT-ARTIFACT",
+        "WS3-GBHWDB-AGT-ARTIFACTS"
+      ],
+      "scope": "At least one documented matching board/panel specimen and multiple board photographs; not a universal-revision claim."
+    },
+    "panel": {
+      "marking": "LQ029B1DC01F",
+      "status": "single-artifact-label; exact-datasheet-not-found",
+      "evidenceIds": [
+        "WS3-ICEBOY-AGT-ARTIFACT",
+        "WS3-PANEL-DATASHEET-SEARCH-2026-08-20"
+      ],
+      "scope": "Identity label only; manufacturer, electrical specification, and population-wide equivalence remain unresolved."
+    }
+  },
+  "signalEvidence": [
+    {
+      "signal": "DCK",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "pixel/data clock; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF",
+        "WS3-SHARP-LZ9JG17B-FAMILY"
+      ]
+    },
+    {
+      "signal": "LP",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "source/line timing role; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF",
+        "WS3-SHARP-LZ9JG17B-FAMILY"
+      ]
+    },
+    {
+      "signal": "PS",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "named interface control; exact role unresolved",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF"
+      ]
+    },
+    {
+      "signal": "SPL",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "source-driver start timing; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF",
+        "WS3-SHARP-LZ9JG17B-FAMILY"
+      ]
+    },
+    {
+      "signal": "CLS",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "gate-driver clock timing; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF",
+        "WS3-SHARP-LZ9JG17B-FAMILY"
+      ]
+    },
+    {
+      "signal": "SPS",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "gate-driver start timing; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF",
+        "WS3-SHARP-LZ9JG17B-FAMILY"
+      ]
+    },
+    {
+      "signal": "MOD",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "named modulation control; exact AGS-101 role unresolved",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF"
+      ]
+    },
+    {
+      "signal": "REVC",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "common-electrode drive preparation in Sharp family documentation",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF",
+        "WS3-SHARP-LZ9JG17B-FAMILY"
+      ]
+    },
+    {
+      "signal": "COM",
+      "existence": "known-generic-gba-sp-socket-contact",
+      "direction": "analog relationship unresolved",
+      "function": "common-electrode connection by interface naming",
+      "ags101Timing": "unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF"
+      ]
+    },
+    {
+      "signal": "RGB-segment-buses",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "five digital conductors per R, G, and B channel",
+      "ags101Timing": "unknown relative to DCK and latch",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF"
+      ]
+    },
+    {
+      "signal": "P2VDD/P2VSS",
+      "existence": "known-generic-gba-sp-socket-contacts",
+      "direction": "power/return by interface naming",
+      "function": "panel-side supply contacts",
+      "ags101Timing": "not applicable; voltage and AGT implementation unknown",
+      "evidenceIds": [
+        "WS3-GBATEK-GBA-TIMING-IF"
+      ]
+    },
+    {
+      "signal": "brightness-control",
+      "existence": "AGS-101 has two user-selectable brightness modes; electrical net not established here",
+      "direction": "unknown",
+      "function": "unknown DC, PWM, or hybrid implementation",
+      "ags101Timing": "unknown",
+      "evidenceIds": []
+    }
+  ],
+  "candidateSets": {
+    "sourceLatchPhase": {
+      "units": "lines after row start",
+      "runtimeBounds": [
+        0,
+        1
+      ],
+      "status": "unresolved-project-hypotheses",
+      "candidates": [
+        {
+          "id": "line-start",
+          "value": 0,
+          "classification": "diagnostic-bound"
+        },
+        {
+          "id": "line-center",
+          "value": 0.5,
+          "classification": "legacy-project-prior"
+        },
+        {
+          "id": "line-end",
+          "value": 1,
+          "classification": "diagnostic-bound"
+        }
+      ],
+      "formalSelection": null
+    },
+    "pureOpticalDelay": {
+      "units": "seconds after electrical latch",
+      "runtimeRepresentableBounds": [
+        0,
+        0.016742706298828125
+      ],
+      "status": "unresolved; no exact-panel source",
+      "candidates": [
+        {
+          "id": "no-separate-dead-time",
+          "value": 0,
+          "classification": "legacy-causal-project-prior"
+        },
+        {
+          "id": "one-line-sensitivity",
+          "value": 0.00007343292236328125,
+          "classification": "sensitivity-only"
+        },
+        {
+          "id": "half-frame-sensitivity",
+          "value": 0.008371353149414062,
+          "classification": "sensitivity-only"
+        }
+      ],
+      "formalSelection": null
+    },
+    "frameParityPhase": {
+      "status": "unresolved-discrete-hypothesis",
+      "candidates": [
+        {
+          "id": "even-positive",
+          "shaderValue": 0,
+          "positivePolarityWhen": "FrameCount modulo 2 equals 0"
+        },
+        {
+          "id": "odd-positive",
+          "shaderValue": 1,
+          "positivePolarityWhen": "FrameCount modulo 2 equals 1"
+        }
+      ],
+      "formalSelection": null
+    },
+    "inversionTopology": {
+      "status": "unresolved-discrete-hypothesis",
+      "candidates": [
+        {
+          "id": "frame-global",
+          "shaderValue": 0,
+          "runtimeSupport": "implemented candidate"
+        },
+        {
+          "id": "row-alternating",
+          "shaderValue": 1,
+          "runtimeSupport": "implemented candidate"
+        },
+        {
+          "id": "column-alternating",
+          "shaderValue": 2,
+          "runtimeSupport": "implemented candidate"
+        },
+        {
+          "id": "dot-checkerboard",
+          "shaderValue": 3,
+          "runtimeSupport": "implemented candidate"
+        }
+      ],
+      "formalSelection": null
+    },
+    "brightnessCoupling": {
+      "status": "unresolved-discrete-hypothesis",
+      "candidates": [
+        {
+          "id": "none",
+          "runtimeSupport": "implicit current behavior"
+        },
+        {
+          "id": "dc-gain-only",
+          "runtimeSupport": "not implemented"
+        },
+        {
+          "id": "pwm-exposure",
+          "runtimeSupport": "not implemented; frequency unknown"
+        }
+      ],
+      "formalSelection": null
+    }
+  },
+  "timingProfiles": [
+    {
+      "profileId": "line-start__no-separate-dead-time",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 0,
+      "pureOpticalDelaySeconds": 0,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0,
+          "beforeOpticalSeconds": 0,
+          "afterOpticalSeconds": 0.016742706298828125
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.005801200866699219,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.005801200866699219,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.005801200866699219,
+          "beforeOpticalSeconds": 0.005801200866699219,
+          "afterOpticalSeconds": 0.010941505432128906
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.011675834655761719,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.011675834655761719,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.011675834655761719,
+          "beforeOpticalSeconds": 0.011675834655761719,
+          "afterOpticalSeconds": 0.005066871643066406
+        }
+      ]
+    },
+    {
+      "profileId": "line-start__one-line-sensitivity",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 0,
+      "pureOpticalDelaySeconds": 0.00007343292236328125,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.00007343292236328125,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.00007343292236328125,
+          "beforeOpticalSeconds": 0.00007343292236328125,
+          "afterOpticalSeconds": 0.016669273376464844
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.005801200866699219,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.0058746337890625,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.0058746337890625,
+          "beforeOpticalSeconds": 0.0058746337890625,
+          "afterOpticalSeconds": 0.010868072509765625
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.011675834655761719,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.011749267578125,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.011749267578125,
+          "beforeOpticalSeconds": 0.011749267578125,
+          "afterOpticalSeconds": 0.004993438720703125
+        }
+      ]
+    },
+    {
+      "profileId": "line-start__half-frame-sensitivity",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 0,
+      "pureOpticalDelaySeconds": 0.008371353149414062,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.008371353149414062,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.008371353149414062,
+          "beforeOpticalSeconds": 0.008371353149414062,
+          "afterOpticalSeconds": 0.008371353149414062
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.005801200866699219,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.014172554016113281,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.014172554016113281,
+          "beforeOpticalSeconds": 0.014172554016113281,
+          "afterOpticalSeconds": 0.0025701522827148438
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.011675834655761719,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.02004718780517578,
+          "sourceFrameOffset": 1,
+          "opticalTimeInFrame": 0.0033044815063476562,
+          "beforeOpticalSeconds": 0.0033044815063476562,
+          "afterOpticalSeconds": 0.013438224792480469
+        }
+      ]
+    },
+    {
+      "profileId": "line-center__no-separate-dead-time",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 0.5,
+      "pureOpticalDelaySeconds": 0,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0.000036716461181640625,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.000036716461181640625,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.000036716461181640625,
+          "beforeOpticalSeconds": 0.000036716461181640625,
+          "afterOpticalSeconds": 0.016705989837646484
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.005837917327880859,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.005837917327880859,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.005837917327880859,
+          "beforeOpticalSeconds": 0.005837917327880859,
+          "afterOpticalSeconds": 0.010904788970947266
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.01171255111694336,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.01171255111694336,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.01171255111694336,
+          "beforeOpticalSeconds": 0.01171255111694336,
+          "afterOpticalSeconds": 0.005030155181884766
+        }
+      ]
+    },
+    {
+      "profileId": "line-center__one-line-sensitivity",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 0.5,
+      "pureOpticalDelaySeconds": 0.00007343292236328125,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0.000036716461181640625,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.00011014938354492188,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.00011014938354492188,
+          "beforeOpticalSeconds": 0.00011014938354492188,
+          "afterOpticalSeconds": 0.016632556915283203
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.005837917327880859,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.005911350250244141,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.005911350250244141,
+          "beforeOpticalSeconds": 0.005911350250244141,
+          "afterOpticalSeconds": 0.010831356048583984
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.01171255111694336,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.01178598403930664,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.01178598403930664,
+          "beforeOpticalSeconds": 0.01178598403930664,
+          "afterOpticalSeconds": 0.004956722259521484
+        }
+      ]
+    },
+    {
+      "profileId": "line-center__half-frame-sensitivity",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 0.5,
+      "pureOpticalDelaySeconds": 0.008371353149414062,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0.000036716461181640625,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.008408069610595703,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.008408069610595703,
+          "beforeOpticalSeconds": 0.008408069610595703,
+          "afterOpticalSeconds": 0.008334636688232422
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.005837917327880859,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.014209270477294922,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.014209270477294922,
+          "beforeOpticalSeconds": 0.014209270477294922,
+          "afterOpticalSeconds": 0.002533435821533203
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.01171255111694336,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.020083904266357422,
+          "sourceFrameOffset": 1,
+          "opticalTimeInFrame": 0.003341197967529297,
+          "beforeOpticalSeconds": 0.003341197967529297,
+          "afterOpticalSeconds": 0.013401508331298828
+        }
+      ]
+    },
+    {
+      "profileId": "line-end__no-separate-dead-time",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 1,
+      "pureOpticalDelaySeconds": 0,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0.00007343292236328125,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.00007343292236328125,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.00007343292236328125,
+          "beforeOpticalSeconds": 0.00007343292236328125,
+          "afterOpticalSeconds": 0.016669273376464844
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.0058746337890625,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.0058746337890625,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.0058746337890625,
+          "beforeOpticalSeconds": 0.0058746337890625,
+          "afterOpticalSeconds": 0.010868072509765625
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.011749267578125,
+          "opticalDelaySeconds": 0,
+          "opticalAbsoluteSeconds": 0.011749267578125,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.011749267578125,
+          "beforeOpticalSeconds": 0.011749267578125,
+          "afterOpticalSeconds": 0.004993438720703125
+        }
+      ]
+    },
+    {
+      "profileId": "line-end__one-line-sensitivity",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 1,
+      "pureOpticalDelaySeconds": 0.00007343292236328125,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0.00007343292236328125,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.0001468658447265625,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.0001468658447265625,
+          "beforeOpticalSeconds": 0.0001468658447265625,
+          "afterOpticalSeconds": 0.016595840454101562
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.0058746337890625,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.005948066711425781,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.005948066711425781,
+          "beforeOpticalSeconds": 0.005948066711425781,
+          "afterOpticalSeconds": 0.010794639587402344
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.011749267578125,
+          "opticalDelaySeconds": 0.00007343292236328125,
+          "opticalAbsoluteSeconds": 0.011822700500488281,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.011822700500488281,
+          "beforeOpticalSeconds": 0.011822700500488281,
+          "afterOpticalSeconds": 0.004920005798339844
+        }
+      ]
+    },
+    {
+      "profileId": "line-end__half-frame-sensitivity",
+      "classification": "sensitivity-candidate-not-formal-ags101-constant",
+      "latchOffsetLines": 1,
+      "pureOpticalDelaySeconds": 0.008371353149414062,
+      "rowFixtures": [
+        {
+          "row": 0,
+          "rowStartSeconds": 0,
+          "latchSeconds": 0.00007343292236328125,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.008444786071777344,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.008444786071777344,
+          "beforeOpticalSeconds": 0.008444786071777344,
+          "afterOpticalSeconds": 0.008297920227050781
+        },
+        {
+          "row": 79,
+          "rowStartSeconds": 0.005801200866699219,
+          "latchSeconds": 0.0058746337890625,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.014245986938476562,
+          "sourceFrameOffset": 0,
+          "opticalTimeInFrame": 0.014245986938476562,
+          "beforeOpticalSeconds": 0.014245986938476562,
+          "afterOpticalSeconds": 0.0024967193603515625
+        },
+        {
+          "row": 159,
+          "rowStartSeconds": 0.011675834655761719,
+          "latchSeconds": 0.011749267578125,
+          "opticalDelaySeconds": 0.008371353149414062,
+          "opticalAbsoluteSeconds": 0.020120620727539062,
+          "sourceFrameOffset": 1,
+          "opticalTimeInFrame": 0.0033779144287109375,
+          "beforeOpticalSeconds": 0.0033779144287109375,
+          "afterOpticalSeconds": 0.013364791870117188
+        }
+      ]
+    }
+  ],
+  "runtimeArtifacts": {
+    "sharedShaderInclude": "models/nintendo-ags-101/shaders/ags101-ws3-timing.inc",
+    "sharedShaderIncludeSha256": "30e6e1c4b4819594ab9afedc548a10e63bb9ab3efb7e724719fb215a68c9f38c",
+    "candidatePresetManifest": "models/nintendo-ags-101/generated/ws3-presets-v1/manifest.json",
+    "candidatePresetManifestSha256": "46232e247a70790473e479a5f620f3a2d607e2c9172826ef4e9cfe55598a38e1",
+    "sensitivityReport": "models/nintendo-ags-101/generated/ws3-sensitivity-v1.json",
+    "sensitivityReportSha256": "b35f9c092fcd3f704f650ce9a68d58f6e88521a0a4a706bcd1536d59ebfbbed0",
+    "shaderCompileReceipt": "models/nintendo-ags-101/generated/ws3-shader-compile-v1.json",
+    "shaderCompileReceiptSha256": "be1017488fba302ab7dda98eddfe619eb06e9403011033b42093cae0d824dec1"
+  },
+  "formalAgs101SpecificConstants": {
+    "latchPhase": null,
+    "pureOpticalDelaySeconds": null,
+    "frameParityPhase": null,
+    "inversionTopology": null,
+    "brightnessElectricalCoupling": null,
+    "reason": "No direct AGT-CPU-01 electrical trace or exact LQ029B1DC01F specification was found. Candidate profiles remain sensitivity hypotheses."
+  },
+  "acceptance": {
+    "exactArithmetic": "pass",
+    "evidenceReferencesResolve": "pass",
+    "ws2SceneManifestRuntimeConsistency": "pass",
+    "sharedCpuShaderEquations": "pass",
+    "shaderCompileAndSpirvValidation": "pass",
+    "candidatePresetGeneration": "pass",
+    "readOnlyDiagnosticSeparation": "pass",
+    "modelSensitivityReport": "pass",
+    "hypothesesRemainUnselected": true
+  }
+}

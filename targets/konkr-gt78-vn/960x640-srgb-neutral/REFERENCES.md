@@ -92,7 +92,7 @@ original DMG behavior belongs to the
 
 - Source: GBA source geometry `240×160` and the system-reported 960×640 target
   framebuffer [TARGET-KPA-HW-01].
-- Transformation: `240×4=960`, `160×4=640`; the AGS-101 physics seed fills the
+- Transformation: `240×4=960`, `160×4=640`; the AGS-101 period reconstruction fills the
   target at exact 4× integer scale without model-specific target color
   compensation.
 - Limits: geometric/device-tested target evidence. The AGS source color stage
@@ -329,7 +329,71 @@ original DMG behavior belongs to the
   deterministic synthetic fixture, not an AGS-101 measurement or an optical
   validation of its transition rates.
 
-## TARGET-KPA-VALIDATION-01 — WS5 diagnostics and frontend lifecycle run
+## TARGET-KPA-GTGENSEMBLE-01 — Current WS4 reconstructed-ensemble target run
+
+- Source: direct run on serial `BW0306N250002377` on 2026-08-20, recorded in
+  [`validation/ags101-ws4-target-20260820.json`](validation/ags101-ws4-target-20260820.json).
+  RetroArch 1.22.2 Git `a609b709eb`, mGBA, Vulkan/Mali-G76 MC4, one shader
+  subframe, exact 4x output, and the fixed 960x640 60 Hz mode were used.
+- Deployment integrity: all deployed Shader, include, reconstructed LUT,
+  comparison-preset, target-preset, and deterministic ROM hashes matched the
+  repository. The loaded app-private core path is logged; Android's
+  non-debuggable sandbox prevented hashing that byte stream, so the accessible
+  2,472,240-byte external installation copy is pinned separately and is not
+  claimed to prove identity.
+- Compile result: fast, nominal, slow, and the exact KONKR target preset all
+  cold-compiled. Pass 0 allocated `R32G32B32A32_SFLOAT`, pass 1 allocated
+  `R8G8B8A8_UNORM`, table backend parameter `1` loaded, feedback attached to
+  pass 0, and no Shader/texture/Slang error appeared in the preserved logs.
+- Causal presentation result: the same WS2 `gtg-neutral-gate` ROM drove
+  two-second RGB555 0/31 dwells for three 12-second recordings. Centered
+  post-display 10-90 analysis measured brightening/darkening medians of
+  `38.391/40.663 ms` fast, `49.344/65.672 ms` nominal, and
+  `88.071/112.352 ms` slow. Both directions preserved fast < nominal < slow.
+- Performance: fast and slow each presented one 126-interval sample at
+  `60.432` and `60.273 fps`. Four nominal samples totaled 504 intervals at
+  approximately `60.006 fps`; two isolated intervals exceeded 25 ms, with no
+  sustained slowdown.
+- Restoration: the test process was stopped and both temporary mGBA/GBA
+  overrides were restored byte-for-byte to their pre-run SHA-256 values. The
+  global RetroArch configuration was not modified.
+- Limits: screen recording is downstream of the display transfer, RGB565/RGBA8
+  conversion, frame sampling, and H.264. It validates current target
+  compatibility and relative table-dependent behavior, not the RGBA32F values
+  directly, not absolute linear-state response constants, and not original
+  AGS-101 optics. Direct numeric GPU readback remains a WS8 task.
+
+## TARGET-KPA-AGSRETENTION-01 — Current WS5 numeric retention readback
+
+- Source: direct run on serial `BW0306N250002377` on 2026-08-20, recorded in
+  [`validation/ags101-ws5-target-20260820.json`](validation/ags101-ws5-target-20260820.json).
+  The isolated WS2 `retention-stress-recovery` ROM and generated WS5 numeric
+  preset ran through RetroArch 1.22.2, mGBA, Vulkan/Mali-G76 MC4, one shader
+  subframe, and exact 4x output.
+- Compile result: the current response/display shaders cold-compiled without
+  error. Vulkan allocated `R32G32B32A32_SFLOAT` to pass 0,
+  `R8G8B8A8_UNORM` to pass 1, and feedback to pass 0. The loaded values were
+  `SpatialRetention=1`, `SpatialCodeWeight=0.5`,
+  `PolarityDriveWeight=0.25`, and `DebugView=12`.
+- Numeric method: DebugView 12 emits outside/inside retained-state floats,
+  `FrameCount`, and outside excitation as four black/white uint32 bit bands.
+  Every bit was repeated over seven or eight source columns; all decoded bits
+  were unanimous in every accepted capture.
+- Result: the stress trajectory at frames `6865/7001/7136` separated the
+  outside state `0.008374→0.008696` from the stressed inside state
+  `0.012610→0.013125`. CPU float32 recurrence agreed within `2.3842e-6`
+  against a `3e-6` asynchronous-capture tolerance, with one interval matching
+  bit-for-bit. The uniform-recovery interval at frames `2444→2459` matched
+  both states and the parity-dependent excitation bit-for-bit.
+- Restoration: the RetroArch test process was stopped. Temporary mGBA/GBA
+  shader overrides were restored to their exact pre-run SHA-256 values; the
+  global RetroArch configuration was not modified.
+- Limits: this validates current GPU state implementation, not the WS5 proxy
+  weights as authentic AGS-101 physics. Actual GPU coverage used the nominal
+  GtG/frame-global/even-positive candidate; the repository equation receipt
+  covers the full WS3/WS4 sensitivity matrix.
+
+## TARGET-KPA-VALIDATION-01 — Historical diagnostics and frontend lifecycle run
 
 - Source: direct device run on 2026-08-18, recorded in
   [`validation/ags101-ws5-20260818.json`](validation/ags101-ws5-20260818.json),

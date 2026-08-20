@@ -11,7 +11,7 @@
   "contentViewport": [640, 576],
   "integerScale": 4,
   "additionalContent": {
-    "Nintendo GBA SP AGS-101 physics seed": {
+    "Nintendo GBA SP AGS-101 period reconstruction": {
       "contentViewport": [960, 640],
       "integerScale": 4
     }
@@ -36,10 +36,14 @@
     "TARGET-KPA-HCS-01",
     "TARGET-KPA-DRIVE-01",
     "TARGET-KPA-GTG-01",
+    "TARGET-KPA-GTGENSEMBLE-01",
+    "TARGET-KPA-AGSRETENTION-01",
     "TARGET-KPA-VALIDATION-01"
   ],
   "validationRecords": [
     "validation/ags101-ws5-20260818.json",
+    "validation/ags101-ws4-target-20260820.json",
+    "validation/ags101-ws5-target-20260820.json",
     "validation/dmg01-ws2-20260819.json",
     "validation/dmg01-ws3-20260819.json",
     "validation/dmg01-ws7-20260819.json",
@@ -49,6 +53,7 @@
     "validation/dmg01-ws5-20260819.json",
     "validation/dmg01-ws5-common-mode-20260819.json"
   ],
+  "currentAgs101ValidationRecord": "validation/ags101-ws8-target-20260820.json",
   "compensation": {
     "ScreenBrightness": 0.68,
     "ScreenChroma": 0.90

@@ -19,10 +19,10 @@ retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-refer
 For GBA content on the same 960×640 target, load:
 
 ```text
-retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp
 ```
 
-The AGS-101 preset is a literature-constrained physics seed whose default
+The AGS-101 preset is an evidence-bounded period reconstruction whose default
 static-color path is derived from the pinned HCS AGS-101 measurement record.
 Its main response shader also enables the period-theory row/latch/optical scan
 model; no separate scanout shader or A/B preset is required.
@@ -57,7 +57,7 @@ Their relative references assume this repository is installed at
 `RetroArch/shaders/retro-display-lab`. The Gambatte override selects the
 one-year-used visual approximation used by the project screenshots; this is a
 mild visual profile, not calibrated elapsed-time aging. The mGBA override
-selects the AGS-101 physics preset.
+selects the AGS-101 period-reconstruction preset.
 
 These filenames are content-directory overrides: `gb.slangp` applies only to
 content loaded from a directory named `gb`, and `gba.slangp` only to a directory

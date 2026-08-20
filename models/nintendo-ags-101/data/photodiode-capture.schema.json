@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/ags101-photodiode-capture-v1.json",
+  "title": "AGS-101 synchronized photodiode transition capture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "sessionId", "classification", "capturedAt", "specimen",
+    "detector", "acquisition", "stimulus", "transitions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "sessionId": { "type": "string", "minLength": 1 },
+    "classification": { "enum": ["measured-specimen", "synthetic-loopback"] },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "specimen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consoleId", "boardId", "lcdLabel", "brightnessMode", "warmupSeconds",
+        "temperatureC", "ambientIlluminanceLux", "chargerConnected",
+        "batteryVoltage", "panelHistory"
+      ],
+      "properties": {
+        "consoleId": { "type": "string", "minLength": 1 },
+        "boardId": { "type": "string", "minLength": 1 },
+        "lcdLabel": { "type": "string", "minLength": 1 },
+        "brightnessMode": { "type": "string", "minLength": 1 },
+        "warmupSeconds": { "type": "number", "minimum": 0 },
+        "temperatureC": { "type": ["number", "null"] },
+        "ambientIlluminanceLux": { "type": ["number", "null"], "minimum": 0 },
+        "chargerConnected": { "type": ["boolean", "null"] },
+        "batteryVoltage": { "type": ["number", "null"], "minimum": 0 },
+        "panelHistory": { "type": "string", "minLength": 1 }
+      }
+    },
+    "detector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manufacturer", "model", "serial", "bandwidthHz",
+        "linearityCalibration", "positionPixels", "footprintPixels"
+      ],
+      "properties": {
+        "manufacturer": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "serial": { "type": "string", "minLength": 1 },
+        "bandwidthHz": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "linearityCalibration": { "type": "string", "minLength": 1 },
+        "positionPixels": {
+          "type": "array",
+          "prefixItems": [{ "type": "number" }, { "type": "number" }],
+          "items": false
+        },
+        "footprintPixels": {
+          "type": "array",
+          "prefixItems": [
+            { "type": "number", "exclusiveMinimum": 0 },
+            { "type": "number", "exclusiveMinimum": 0 }
+          ],
+          "items": false
+        }
+      }
+    },
+    "acquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sampleRateHz", "pretriggerSeconds", "timeUnits", "responseUnits",
+        "triggerThreshold"
+      ],
+      "properties": {
+        "sampleRateHz": { "type": "number", "exclusiveMinimum": 0 },
+        "pretriggerSeconds": { "type": "number", "minimum": 0 },
+        "timeUnits": { "const": "s" },
+        "responseUnits": { "enum": ["V", "cd/m2", "relative-luminance"] },
+        "triggerThreshold": { "type": "number" }
+      }
+    },
+    "stimulus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["suiteId", "manifestSha256"],
+      "properties": {
+        "suiteId": { "type": "string", "minLength": 1 },
+        "manifestSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "transitionId", "sceneId", "channel", "fromCode", "toCode",
+          "repetition", "row", "frameParity", "eventReference", "rawFile",
+          "sha256"
+        ],
+        "properties": {
+          "transitionId": { "type": "string", "minLength": 1 },
+          "sceneId": { "type": "string", "minLength": 1 },
+          "channel": { "enum": ["r", "g", "b"] },
+          "fromCode": { "type": "integer", "minimum": 0, "maximum": 31 },
+          "toCode": { "type": "integer", "minimum": 0, "maximum": 31 },
+          "repetition": { "type": "integer", "minimum": 0 },
+          "row": { "type": "integer", "minimum": 0, "maximum": 159 },
+          "frameParity": { "enum": [0, 1] },
+          "eventReference": {
+            "enum": ["source-frame-edge", "row-start", "electrical-latch", "optical-onset"]
+          },
+          "rawFile": { "type": "string", "minLength": 1 },
+          "sha256": { "$ref": "#/$defs/sha256" },
+          "fromPlateau": { "type": ["number", "null"] },
+          "toPlateau": { "type": ["number", "null"] },
+          "triggerUncertaintySeconds": { "type": ["number", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

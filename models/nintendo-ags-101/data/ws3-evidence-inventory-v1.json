@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "nintendo-ags-101-ws3-evidence-inventory-v1",
+  "snapshotDate": "2026-08-20",
+  "scope": "Period reconstruction of GBA raster timing and the AGS-101 board-to-panel interface without access to an authentic motherboard, panel, or synchronized measurement rig.",
+  "classificationOrder": [
+    "manufacturer-period-document",
+    "primary-hardware-artifact-record",
+    "manufacturer-family-datasheet",
+    "technical-reverse-engineering",
+    "cross-model-reverse-engineered-schematic",
+    "qualitative-direct-hardware-observation",
+    "local-emulator-runtime-receipt",
+    "negative-search-record",
+    "excluded-uncertain-third-party-design"
+  ],
+  "rules": [
+    "Exact GBA raster constants may be formal constants when a period manufacturer document and an independent technical reconstruction agree.",
+    "An artifact photograph establishes only the markings and construction visible in that artifact.",
+    "A manufacturer-family document can establish signal semantics but not AGS-101-specific phase, voltage, or topology.",
+    "AGS-001 topology is never promoted to AGS-101 fact without a separately recorded transfer argument.",
+    "A failed exact-part search is evidence of an unresolved field, not evidence that a nearby part is equivalent.",
+    "Emulator execution validates ROM compatibility and the scene contract, not original hardware timing."
+  ],
+  "items": [
+    {
+      "evidenceId": "WS3-NIN-AGB-MANUAL-2005",
+      "classification": "manufacturer-period-document",
+      "title": "Nintendo Game Boy Advance Programming Manual, version 1.35",
+      "documentCode": "AGB-06-0001-002-B13",
+      "documentDate": "2005-05-27",
+      "url": "https://www.manualslib.com/manual/3342081/Nintendo-Game-Boy-Advance.html",
+      "preservation": "third-party mirror of a Nintendo period document",
+      "claimsUsed": [
+        "240 visible and 308 total dots per line",
+        "160 visible and 228 total lines per frame",
+        "68 horizontal-blank dots and 68 vertical-blank lines",
+        "73.433 microseconds per line, 16.743 milliseconds per frame, and 59.727 hertz as rounded published values",
+        "Mode 4 defines two 240 by 160 indexed-color frame buffers"
+      ],
+      "limits": "The document does not identify the AGS-101 panel latch edge, VCOM phase, inversion topology, or optical delay. The hosting site is not Nintendo."
+    },
+    {
+      "evidenceId": "WS3-GBATEK-GBA-TIMING-IF",
+      "classification": "technical-reverse-engineering",
+      "title": "GBATEK GBA LCD timing, CPU pinout, and GBA SP display socket",
+      "url": "https://rust-console.github.io/gbatek-gbaonly/",
+      "claimsUsed": [
+        "four CPU cycles per dot, 1232 cycles per line, and 280896 cycles per frame",
+        "the generic GBA SP display socket exposes DCK, LP, PS, SPL, CLS, SPS, MOD, REVC, RGB data buses, panel supplies, and COM",
+        "the GBA SP CPU pinout names the corresponding LCD-interface signals"
+      ],
+      "limits": "This is technical reverse engineering, not Nintendo electrical documentation. The generic GBA SP interface map is not direct proof of the AGT-CPU-01 routing, edge polarity, voltage, or timing."
+    },
+    {
+      "evidenceId": "WS3-ICEBOY-AGT-ARTIFACT",
+      "classification": "primary-hardware-artifact-record",
+      "title": "AGS-101 XU70954250-4 artifact record",
+      "url": "https://iceboy.a-singer.de/db/ags_iceboy_2.html",
+      "claimsUsed": [
+        "one recorded 2005 AGS-101 contains a C/AGT-CPU-01 motherboard",
+        "the same recorded unit carries panel sticker LQ029B1DC01F 58E06466754 and panel stamp 0026 050820",
+        "the board carries a CPU AGB B E marked Nintendo and manufactured by Sharp"
+      ],
+      "limits": "One community-curated photographed specimen establishes identity markings only. It is not an electrical trace, optical measurement, or Sharp panel datasheet."
+    },
+    {
+      "evidenceId": "WS3-GBHWDB-AGT-ARTIFACTS",
+      "classification": "primary-hardware-artifact-record",
+      "title": "Game Boy hardware database AGS artifact index",
+      "url": "https://gbhwdb.gekkio.fi/consoles/ags/",
+      "claimsUsed": [
+        "multiple archived AGS-101 units are photographed with C/AGT-CPU-01 motherboards",
+        "archived AGT board records span multiple serials and manufacture years"
+      ],
+      "limits": "Board photography supports identity and visual topology only; it does not establish hidden routing, component values, or panel timing."
+    },
+    {
+      "evidenceId": "WS3-GEKKIO-AGS001-SCHEMATIC",
+      "classification": "cross-model-reverse-engineered-schematic",
+      "title": "Reverse-engineered AGS-CPU-11 schematic",
+      "url": "https://github.com/Gekkio/gb-schematics",
+      "claimsUsed": [
+        "an AGS-001 board provides a period-adjacent example of SP display-interface and power topology",
+        "the repository documents component identification by desoldering and measurement"
+      ],
+      "limits": "The author explicitly says the schematic is accurate only for AGS-CPU-11. It cannot establish an AGT-CPU-01 net, component value, phase, or inversion mode."
+    },
+    {
+      "evidenceId": "WS3-SHARP-LZ9JG17B-FAMILY",
+      "classification": "manufacturer-family-datasheet",
+      "title": "Sharp LZ9JG17B TFT-LCD timing-controller datasheet",
+      "url": "https://www1.futureelectronics.com/doc/SHARP/LZ9JG17B.pdf",
+      "claimsUsed": [
+        "DCK is a data clock in the documented Sharp controller family",
+        "LP and source-driver timing are distinct from CLS and SPS gate-driver timing",
+        "REVC is associated with preparation for common-electrode drive"
+      ],
+      "limits": "LZ9JG17B is not identified as the AGS-101 controller. Its dimensions, edge polarities, frequencies, and phase values are not transferred."
+    },
+    {
+      "evidenceId": "WS3-VEIKKOS-FRAME-TEST",
+      "classification": "qualitative-direct-hardware-observation",
+      "title": "GBA Frame Test ROM and original-display high-speed examples",
+      "url": "https://github.com/veikkos/gba-frame-test",
+      "claimsUsed": [
+        "original GBA-family displays show a line-by-line scan pattern in high-speed video"
+      ],
+      "limits": "The repository supplies qualitative examples, not synchronized timing metrology or an AGS-101-specific edge measurement."
+    },
+    {
+      "evidenceId": "WS3-WS2-MGBA-RECEIPT",
+      "classification": "local-emulator-runtime-receipt",
+      "title": "Pinned mGBA WS2 ROM smoke and independent scene consistency receipt",
+      "localPath": "generated/ws2-mgba-smoke-v1/report.json",
+      "claimsUsed": [
+        "all eleven generated ROMs boot in the pinned mGBA executable",
+        "ROM headers, code probes, palettes, framebuffer pages, page-selection writes, and dwell literals match the WS2 source and manifest"
+      ],
+      "limits": "The receipt does not observe original hardware signals or AGS-101 optical output."
+    },
+    {
+      "evidenceId": "WS3-PANEL-DATASHEET-SEARCH-2026-08-20",
+      "classification": "negative-search-record",
+      "title": "Exact LQ029B1DC01F specification search",
+      "searchedAt": "2026-08-20",
+      "queries": [
+        "LQ029B1DC01F",
+        "LQ029B1DC01",
+        "LQ029B1DC01F datasheet",
+        "LQ029B1DC01F filetype:pdf",
+        "site:sharp-world.com LQ029B1DC01F",
+        "site:archive.org LQ029B1DC01F"
+      ],
+      "result": "No exact manufacturer specification or traceable exact-part datasheet was located in the checked web and archive indexes.",
+      "claimsUsed": [],
+      "limits": "Absence from this search does not prove that no specification exists. Nearby LQ029 or LQ030 part numbers are explicitly excluded as exact substitutes."
+    },
+    {
+      "evidenceId": "WS3-GBA2-DLF-EXCLUDED",
+      "classification": "excluded-uncertain-third-party-design",
+      "title": "GBA2-DLF reverse-engineering design note",
+      "url": "https://cdn.hackaday.io/files/1699987273194432/GBA2-DLF.pdf",
+      "claimsUsed": [],
+      "limits": "The note labels key LCD-interface interpretation as uncertain. It is retained in the search log but excluded from formal constants and phase selection."
+    }
+  ]
+}

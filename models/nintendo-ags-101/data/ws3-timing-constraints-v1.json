@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "constraintSetId": "nintendo-ags-101-ws3-timing-constraints-v1",
+  "evidenceInventory": "data/ws3-evidence-inventory-v1.json",
+  "hardwareIdentity": {
+    "consoleModel": "AGS-101",
+    "motherboard": {
+      "marking": "C/AGT-CPU-01",
+      "status": "authenticated-artifact-identity",
+      "evidenceIds": ["WS3-ICEBOY-AGT-ARTIFACT", "WS3-GBHWDB-AGT-ARTIFACTS"],
+      "scope": "At least one documented matching board/panel specimen and multiple board photographs; not a universal-revision claim."
+    },
+    "panel": {
+      "marking": "LQ029B1DC01F",
+      "status": "single-artifact-label; exact-datasheet-not-found",
+      "evidenceIds": ["WS3-ICEBOY-AGT-ARTIFACT", "WS3-PANEL-DATASHEET-SEARCH-2026-08-20"],
+      "scope": "Identity label only; manufacturer, electrical specification, and population-wide equivalence remain unresolved."
+    }
+  },
+  "exactPlatformTiming": {
+    "classification": "exact-platform-timing",
+    "evidenceIds": ["WS3-NIN-AGB-MANUAL-2005", "WS3-GBATEK-GBA-TIMING-IF"],
+    "masterClockHz": 16777216,
+    "cyclesPerDot": 4,
+    "visibleDotsPerLine": 240,
+    "totalDotsPerLine": 308,
+    "horizontalBlankDots": 68,
+    "cyclesPerLine": 1232,
+    "visibleLinesPerFrame": 160,
+    "totalLinesPerFrame": 228,
+    "verticalBlankLines": 68,
+    "cyclesPerFrame": 280896,
+    "visibleRowOrder": "top-to-bottom",
+    "sourceColorEncoding": "RGB555",
+    "sourceUpdateContract": "WS2 Mode 4 dynamic scenes switch complete preloaded pages at a VBlank edge"
+  },
+  "signalEvidence": [
+    {
+      "signal": "DCK",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "pixel/data clock; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+    },
+    {
+      "signal": "LP",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "source/line timing role; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+    },
+    {
+      "signal": "PS",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "named interface control; exact role unresolved",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF"]
+    },
+    {
+      "signal": "SPL",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "source-driver start timing; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+    },
+    {
+      "signal": "CLS",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "gate-driver clock timing; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+    },
+    {
+      "signal": "SPS",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "gate-driver start timing; family semantic support",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+    },
+    {
+      "signal": "MOD",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "named modulation control; exact AGS-101 role unresolved",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF"]
+    },
+    {
+      "signal": "REVC",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "common-electrode drive preparation in Sharp family documentation",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+    },
+    {
+      "signal": "COM",
+      "existence": "known-generic-gba-sp-socket-contact",
+      "direction": "analog relationship unresolved",
+      "function": "common-electrode connection by interface naming",
+      "ags101Timing": "unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF"]
+    },
+    {
+      "signal": "RGB-segment-buses",
+      "existence": "known-generic-gba-sp-interface",
+      "direction": "CPU-to-panel in technical interface reconstruction",
+      "function": "five digital conductors per R, G, and B channel",
+      "ags101Timing": "unknown relative to DCK and latch",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF"]
+    },
+    {
+      "signal": "P2VDD/P2VSS",
+      "existence": "known-generic-gba-sp-socket-contacts",
+      "direction": "power/return by interface naming",
+      "function": "panel-side supply contacts",
+      "ags101Timing": "not applicable; voltage and AGT implementation unknown",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF"]
+    },
+    {
+      "signal": "brightness-control",
+      "existence": "AGS-101 has two user-selectable brightness modes; electrical net not established here",
+      "direction": "unknown",
+      "function": "unknown DC, PWM, or hybrid implementation",
+      "ags101Timing": "unknown",
+      "evidenceIds": []
+    }
+  ],
+  "candidateSets": {
+    "sourceLatchPhase": {
+      "units": "lines after row start",
+      "runtimeBounds": [0, 1],
+      "status": "unresolved-project-hypotheses",
+      "candidates": [
+        {"id": "line-start", "value": 0, "classification": "diagnostic-bound"},
+        {"id": "line-center", "value": 0.5, "classification": "legacy-project-prior"},
+        {"id": "line-end", "value": 1, "classification": "diagnostic-bound"}
+      ],
+      "formalSelection": null
+    },
+    "pureOpticalDelay": {
+      "units": "seconds after electrical latch",
+      "runtimeRepresentableBounds": [0, 0.016742706298828125],
+      "status": "unresolved; no exact-panel source",
+      "candidates": [
+        {"id": "no-separate-dead-time", "value": 0, "classification": "legacy-causal-project-prior"},
+        {"id": "one-line-sensitivity", "value": 0.00007343292236328125, "classification": "sensitivity-only"},
+        {"id": "half-frame-sensitivity", "value": 0.008371353149414062, "classification": "sensitivity-only"}
+      ],
+      "formalSelection": null
+    },
+    "frameParityPhase": {
+      "status": "unresolved-discrete-hypothesis",
+      "candidates": [
+        {"id": "even-positive", "shaderValue": 0, "positivePolarityWhen": "FrameCount modulo 2 equals 0"},
+        {"id": "odd-positive", "shaderValue": 1, "positivePolarityWhen": "FrameCount modulo 2 equals 1"}
+      ],
+      "formalSelection": null
+    },
+    "inversionTopology": {
+      "status": "unresolved-discrete-hypothesis",
+      "candidates": [
+        {"id": "frame-global", "shaderValue": 0, "runtimeSupport": "implemented candidate"},
+        {"id": "row-alternating", "shaderValue": 1, "runtimeSupport": "implemented candidate"},
+        {"id": "column-alternating", "shaderValue": 2, "runtimeSupport": "implemented candidate"},
+        {"id": "dot-checkerboard", "shaderValue": 3, "runtimeSupport": "implemented candidate"}
+      ],
+      "formalSelection": null
+    },
+    "brightnessCoupling": {
+      "status": "unresolved-discrete-hypothesis",
+      "candidates": [
+        {"id": "none", "runtimeSupport": "implicit current behavior"},
+        {"id": "dc-gain-only", "runtimeSupport": "not implemented"},
+        {"id": "pwm-exposure", "runtimeSupport": "not implemented; frequency unknown"}
+      ],
+      "formalSelection": null
+    }
+  },
+  "ws2FormalConstantsGate": {
+    "manifest": "generated/ws2-stimulus-v1/manifest.json",
+    "runtimeReceipt": "generated/ws2-mgba-smoke-v1/report.json",
+    "requiredChecks": [
+      "scene source hash equals manifest source hash",
+      "every ROM hash and decoded scene payload equals its manifest entry",
+      "every dwell literal equals the declared page schedule",
+      "every ROM boots in the pinned mGBA runtime receipt"
+    ]
+  },
+  "formalAgs101SpecificConstants": {
+    "latchPhase": null,
+    "pureOpticalDelaySeconds": null,
+    "frameParityPhase": null,
+    "inversionTopology": null,
+    "brightnessElectricalCoupling": null,
+    "reason": "No direct AGT-CPU-01 electrical trace or exact LQ029B1DC01F specification was found. Candidate profiles remain sensitivity hypotheses."
+  }
+}

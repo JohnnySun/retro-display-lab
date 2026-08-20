@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "manifestId": "nintendo-ags-101-ws6-presets-v1",
+  "generatedBy": "tools/build-ags101-ws6.mjs",
+  "sourceSha256": "88666763de41f81a64745d279630994b960b32d7a320f1a4f3d49cace28769b5",
+  "basePresetSha256": "f16913621b4d287b799edea0b14be3dd5675d506ccc03ff75b5b8303c2131ead",
+  "presets": [
+    {
+      "id": "hcs-black-subtracted",
+      "path": "generated/ws6-presets-v1/hcs-black-subtracted-v1.slangp",
+      "sha256": "464a10de90ea45f39e86ce27ee427aa859ffb45227883e617b54a5f45de33b68",
+      "overrides": {
+        "HcsMeasuredColor": "1.0",
+        "HcsImproveContrast": "1.0",
+        "BacklightScaleEnabled": "0.0"
+      }
+    },
+    {
+      "id": "hcs-physical-black",
+      "path": "generated/ws6-presets-v1/hcs-physical-black-v1.slangp",
+      "sha256": "78fbada9da02145438327b5929a21bdd3ffe58b892cd259fcda047c7c82a047b",
+      "overrides": {
+        "HcsMeasuredColor": "1.0",
+        "HcsImproveContrast": "0.0",
+        "BacklightScaleEnabled": "0.0"
+      }
+    },
+    {
+      "id": "aperture-generic-narrow",
+      "path": "generated/ws6-presets-v1/aperture-generic-narrow-v1.slangp",
+      "sha256": "135df133a41560e758c6b4b02e09579c7d4851f5259d0f8834ed00469d594220",
+      "overrides": {
+        "ApertureEnabled": "1.0",
+        "ApertureHorizontalRadius": "1.25",
+        "ApertureVerticalRadius": "0.52",
+        "ApertureGain": "1.0"
+      }
+    },
+    {
+      "id": "aperture-generic-nominal",
+      "path": "generated/ws6-presets-v1/aperture-generic-nominal-v1.slangp",
+      "sha256": "7f07711bdfa2fc15aabbd3c82ab972cb4481fce26813092a1b48d0d13bdcf336",
+      "overrides": {
+        "ApertureEnabled": "1.0",
+        "ApertureHorizontalRadius": "1.50",
+        "ApertureVerticalRadius": "0.63",
+        "ApertureGain": "1.0"
+      }
+    },
+    {
+      "id": "aperture-generic-wide",
+      "path": "generated/ws6-presets-v1/aperture-generic-wide-v1.slangp",
+      "sha256": "de1c8f47aecd1b0f0f3d14d0fbf4260f949b9bbee4e32e47ab91d8fcf3199bb3",
+      "overrides": {
+        "ApertureEnabled": "1.0",
+        "ApertureHorizontalRadius": "1.70",
+        "ApertureVerticalRadius": "0.74",
+        "ApertureGain": "1.0"
+      }
+    },
+    {
+      "id": "aperture-rgb-order-control",
+      "path": "generated/ws6-presets-v1/aperture-rgb-order-control-v1.slangp",
+      "sha256": "0cbe99b79c696b37875a544e2f0b82ac9b0df605a5b1b732a4cd9998160373fb",
+      "overrides": {
+        "ApertureEnabled": "1.0",
+        "BGR": "0.0"
+      }
+    },
+    {
+      "id": "backlight-relative-low-sensitivity",
+      "path": "generated/ws6-presets-v1/backlight-relative-low-sensitivity-v1.slangp",
+      "sha256": "883a2e2b4d3406fef764dacd154069bbd82e690e384c182a10c8cf923706b5ed",
+      "overrides": {
+        "BacklightScaleEnabled": "1.0",
+        "BacklightRelativeGain": "0.75"
+      }
+    }
+  ]
+}

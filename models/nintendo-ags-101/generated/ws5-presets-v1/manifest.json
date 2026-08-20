@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "manifestId": "nintendo-ags-101-ws5-presets-v1",
+  "generatedBy": "tools/build-ags101-ws5.mjs",
+  "classification": "literature-mechanism-constrained-normalized-reconstruction-not-panel-measurement",
+  "default": "ags101-ws5-nominal-frame-global-v1.slangp",
+  "candidateCount": 12,
+  "controlCount": 3,
+  "parityPhasesCoveredByFixtureReceipt": [
+    0,
+    1
+  ],
+  "artifacts": [
+    {
+      "member": "fast",
+      "topology": "frame-global",
+      "file": "ags101-ws5-fast-frame-global-v1.slangp",
+      "sha256": "9ebfadd01d746933b7d26514cfcc06fc075c5313716e1182cf4bfbaa6374d7aa"
+    },
+    {
+      "member": "fast",
+      "topology": "row-alternating",
+      "file": "ags101-ws5-fast-row-alternating-v1.slangp",
+      "sha256": "01826d1ab2067b61685a252fb1df04eb2f5fc3ce1bb8f01d1d77bf0c18c2af1a"
+    },
+    {
+      "member": "fast",
+      "topology": "column-alternating",
+      "file": "ags101-ws5-fast-column-alternating-v1.slangp",
+      "sha256": "4eec8ade320fdb1f697ce968822e36007175159c284fe7655d7643464dec547d"
+    },
+    {
+      "member": "fast",
+      "topology": "dot-checkerboard",
+      "file": "ags101-ws5-fast-dot-checkerboard-v1.slangp",
+      "sha256": "7993b73fdda7709448919946399e8da834a55a980de54830e3676cc6fc275c7b"
+    },
+    {
+      "member": "nominal",
+      "topology": "frame-global",
+      "file": "ags101-ws5-nominal-frame-global-v1.slangp",
+      "sha256": "bdcac50ff77ee95e317e49e43a80b2b84cf087febed2b1abeaf52a67c426e865"
+    },
+    {
+      "member": "nominal",
+      "topology": "row-alternating",
+      "file": "ags101-ws5-nominal-row-alternating-v1.slangp",
+      "sha256": "a33478043da6a0d4926d930e6ae9c2b0fd1e7b26937d2fd8a8aedf1010f8d556"
+    },
+    {
+      "member": "nominal",
+      "topology": "column-alternating",
+      "file": "ags101-ws5-nominal-column-alternating-v1.slangp",
+      "sha256": "92e763df5c9b4e6141c5f137300be20de22c1b78efa83259fe33e63d960e10ea"
+    },
+    {
+      "member": "nominal",
+      "topology": "dot-checkerboard",
+      "file": "ags101-ws5-nominal-dot-checkerboard-v1.slangp",
+      "sha256": "4e49df036a13397f45b3769a42e6fb831d493fa5adcddd4ba57f8a8734327f7e"
+    },
+    {
+      "member": "slow",
+      "topology": "frame-global",
+      "file": "ags101-ws5-slow-frame-global-v1.slangp",
+      "sha256": "4c5e16294d331674b888bd47157c394ed08b36011c7e5c260ff18cf7f90213f2"
+    },
+    {
+      "member": "slow",
+      "topology": "row-alternating",
+      "file": "ags101-ws5-slow-row-alternating-v1.slangp",
+      "sha256": "d8770155d9e8a37ae5986e2b3988561bd81698e584dc2edb1f0aa9072cb8f60b"
+    },
+    {
+      "member": "slow",
+      "topology": "column-alternating",
+      "file": "ags101-ws5-slow-column-alternating-v1.slangp",
+      "sha256": "0dcd40171cf1765dbd58620bc727d695e33919c2695cccab36cb472f333f0bb4"
+    },
+    {
+      "member": "slow",
+      "topology": "dot-checkerboard",
+      "file": "ags101-ws5-slow-dot-checkerboard-v1.slangp",
+      "sha256": "ffd7b4ace561d206593f176be5db2802822c35196a9f16ff01dca3cd24d7d8a6"
+    },
+    {
+      "control": "spatial-off",
+      "file": "ags101-ws5-spatial-off-v1.slangp",
+      "sha256": "27e2c2ca396dfe1990f48eb81da3db5d816a4a9188ea3bda1668333172c31843"
+    },
+    {
+      "control": "balanced",
+      "file": "ags101-ws5-balanced-v1.slangp",
+      "sha256": "b4ede93837e2b2a0d9d71cb4b3102ed6d340626bea3dec52df022cff6a7c2466"
+    },
+    {
+      "control": "numeric",
+      "file": "ags101-ws5-numeric-v1.slangp",
+      "sha256": "55b7f3e429c067d06df159c967add39be709dc672f5d80a56851bedf253ca375"
+    }
+  ],
+  "validationReceipt": "../ws5-retention-validation-v1.json",
+  "validationReceiptSha256": "22089fa5c1790dcb39d49b81d358428a38c0f03b97aa26a2a6ce0fbd60f006c2"
+}

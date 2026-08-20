@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-ags-101-ws4-coverage-v1",
+  "generatedCells": 9216,
+  "measuredCells": 0,
+  "reconstructedTransitionCells": 8928,
+  "derivedIdentityAnchors": 288,
+  "runtimeFallbackCells": 0,
+  "unsupportedDimensions": {
+    "exactPanelWaveform": "unsupported",
+    "channelDifferences": "unsupported-held-neutral",
+    "temperatureDependence": "unsupported-reference-only-at-25C",
+    "brightnessModeDependence": "unsupported",
+    "overshoot": "unsupported-monotone-first-order-selected",
+    "grayToGrayDistanceMagnitude": "project-prior-range"
+  },
+  "specimenOverridePath": {
+    "schema": "data/gtg-measurement.schema.json",
+    "builder": "tools/build-ags101-gtg.mjs",
+    "status": "retained-separate-path",
+    "rule": "A future measured specimen produces a separate texture/preset and never overwrites this reconstructed ensemble."
+  },
+  "rule": "Complete runtime coverage is generated reconstruction coverage, not measurement coverage."
+}

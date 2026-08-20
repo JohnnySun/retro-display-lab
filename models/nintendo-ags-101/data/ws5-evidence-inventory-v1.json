@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "nintendo-ags-101-ws5-evidence-v1",
+  "created": "2026-08-20",
+  "scope": "Spatial code/polarity-history residual-DC reconstruction without authentic AGS-101 electrical or optical measurements.",
+  "rules": [
+    "Raw RGB555 drive code is an electrical-command coordinate; displayed luma and measured optical output are not excitation inputs.",
+    "A source may constrain mechanism or a range without identifying the AGS-101 amplitude.",
+    "VCOM, feed-through, capacitance, and gate-swing quantities remain normalized because no exact LQ029B1DC01F circuit values were recovered.",
+    "No aged-specimen profile or second slow state is introduced without direct data."
+  ],
+  "evidence": [
+    {
+      "id": "WS5-MIZUSAKI-2011",
+      "evidenceId": "AGS-ION-01",
+      "class": "primary-peer-reviewed-later-tft-literature",
+      "title": "Interaction between Impurity Ions and Alignment Polymer Layers Affecting the Image Sticking Effect on Liquid Crystal Displays",
+      "date": "2011",
+      "locator": "https://doi.org/10.1295/koron.68.39",
+      "retained": [
+        "residual DC can arise from adsorption/desorption of impurity ions at an alignment-polyimide surface under DC-offset stress",
+        "one-component formation and zero-bias relaxation have exact exponential forms",
+        "reported 25 C laboratory-cell rate ranges are 0.060-0.067 min^-1 adsorption and 0.023-0.028 min^-1 slow desorption"
+      ],
+      "notRetained": [
+        "laboratory-cell amplitude as an AGS-101 amplitude",
+        "a second recovery component without an AGS waveform",
+        "the paper's material system as an LQ029B1DC01F identity"
+      ]
+    },
+    {
+      "id": "WS5-RENESAS-AN1208-2005",
+      "evidenceId": "AGS-DRIVE-01",
+      "class": "primary-period-manufacturer-application-note",
+      "title": "AN1208: LCD Screens - Don't Flicker - Or Do They?",
+      "date": "2005-09-26",
+      "locator": "https://www.renesas.com/in/en/document/apn/an1208-lcd-screens-dont-flicker-or-do-they",
+      "retained": [
+        "alternating pixel voltage about VCOM is intended to produce zero net DC",
+        "VCOM midpoint error makes positive and negative field magnitudes unequal",
+        "long-term DC stress is associated with charge storage and image retention"
+      ],
+      "notRetained": [
+        "the note's example voltage range as an AGS-101 voltage",
+        "the calibrator circuit as an AGT-CPU-01 circuit"
+      ]
+    },
+    {
+      "id": "WS5-FEEDTHROUGH-CN100407281C",
+      "evidenceId": "AGS-FEED-01",
+      "class": "primary-period-patent-mechanism",
+      "title": "LCD gate driving method and circuit",
+      "date": "priority 2004",
+      "locator": "https://patents.google.com/patent/CN100407281C/en",
+      "retained": [
+        "Vfeedthrough = CGD/(CGD+CLC+CST) * deltaVG",
+        "gate-line position and waveform distortion can make feed-through spatially nonuniform",
+        "one VCOM adjustment cannot remove every subpixel's unequal feed-through"
+      ],
+      "notRetained": [
+        "any capacitance, gate swing, row-gradient magnitude, or sign for the AGS-101"
+      ]
+    },
+    {
+      "id": "WS5-POLARITY-CN102254538A",
+      "evidenceId": "AGS-FEED-01",
+      "class": "primary-later-patent-mechanism",
+      "title": "Polarity-dependent TFT feed-through compensation",
+      "date": "priority 2010",
+      "locator": "https://patents.google.com/patent/CN102254538A/en",
+      "retained": [
+        "positive and negative held-pixel paths can have unequal kickback because effective LC/storage paths differ",
+        "polarity-dependent resultant imbalance is a valid uncertainty dimension"
+      ],
+      "notRetained": [
+        "the patent implementation as an AGS-101 topology",
+        "a selected polarity asymmetry amplitude"
+      ]
+    },
+    {
+      "id": "WS5-WS3-CANDIDATES",
+      "evidenceId": "AGS-RECON-01",
+      "class": "derived-project-constraint",
+      "title": "WS3 unselected parity and inversion candidate set",
+      "locator": "data/ws3-timing-constraints-v1.json",
+      "retained": [
+        "even/odd parity phase and frame, row, column, and dot inversion remain explicit candidates",
+        "source command changes at the reconstructed electrical latch independently from optical onset"
+      ],
+      "notRetained": [
+        "any candidate as the authentic AGS-101 selection"
+      ]
+    },
+    {
+      "id": "WS5-WS2-FIXTURES",
+      "evidenceId": "AGS-STIMULUS-01",
+      "class": "deterministic-project-fixture",
+      "title": "WS2 deterministic RGB555 scenes and mGBA receipt",
+      "locator": "generated/ws2-stimulus-v1/manifest.json",
+      "retained": [
+        "uniform, checkerboard, isolated-window, parity-toggle, and stress/recovery source histories",
+        "exact RGB555 codes, dwell frames, and ROM hashes"
+      ],
+      "notRetained": [
+        "emulator execution as AGS-101 electrical timing or optical evidence"
+      ]
+    },
+    {
+      "id": "WS5-RUNTIME-FEEDBACK",
+      "evidenceId": "AGS-FRONTEND-01",
+      "class": "primary-runtime-interface",
+      "title": "Slang RGBA32F feedback and FrameCount contract",
+      "locator": "https://github.com/libretro/slang-shaders",
+      "retained": [
+        "one persistent scalar can be stored per source pixel beside optical RGB",
+        "FrameCount and source coordinate can select WS3 polarity candidates",
+        "TotalSubFrames other than one must bypass temporal state"
+      ],
+      "notRetained": [
+        "rewind, run-ahead, or dropped presentation as monotonic physical time"
+      ]
+    }
+  ],
+  "conclusion": {
+    "selectedStateCount": 1,
+    "selectedMechanism": "signed normalized residual-DC adsorption/desorption state driven by a code/polarity-dependent resultant imbalance proxy",
+    "rejected": [
+      "displayed-luma excitation",
+      "unidentified voltage or capacitance values",
+      "second kinetic branch without direct recovery data",
+      "spatial PNP transport without cell/material/boundary inputs",
+      "aged-specimen tuning"
+    ]
+  }
+}

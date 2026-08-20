@@ -1,9 +1,9 @@
 #version 450
 
-// Retro Display Lab AGS-101 candidate model, pass 1.
+// Retro Display Lab AGS-101 candidate model, pass 2.
 // Analytic BGR aperture integration and selectable HCS-measured host rendering.
 // Provenance: ../REFERENCES.md
-// Evidence: [AGS-COLOR-01] [AGS-APERTURE-01] [AGS-FRONTEND-01] [AGS-NEUTRAL-01]
+// Evidence: [AGS-COLOR-01] [AGS-BACKLIGHT-01] [AGS-APERTURE-01] [AGS-RETENTION-01] [AGS-FRONTEND-01] [AGS-NEUTRAL-01] [AGS-TIMING-01] [AGS-RECON-01]
 //
 // Special thanks: cgwg and Libretro lcd-grid-v2 for the published analytic
 // aperture method. This implementation re-derives the polynomial integration.
@@ -13,30 +13,48 @@ layout(push_constant) uniform Push
 {
    float ApertureGain;
    float ApertureEnabled;
+   float ApertureHorizontalRadius;
+   float ApertureVerticalRadius;
    float BlackLevel;
    float BGR;
+   float BacklightScaleEnabled;
+   float BacklightRelativeGain;
    float DebugView;
    float HcsMeasuredColor;
    float HcsChromaticAdaptation;
    float HcsImproveContrast;
    float GtgTableBackend;
+   float SpatialRetention;
+   float SpatialCodeWeight;
+   float PolarityDriveWeight;
    float DriveDcOffset;
    float LatchOffsetLines;
    float OpticalDelaySeconds;
+   float ParityPhase;
+   float InversionTopology;
 } params;
 
 #pragma parameter ApertureGain "AGS BGR aperture gain" 1.0 0.5 2.0 0.05
 #pragma parameter ApertureEnabled "AGS BGR aperture integration" 1.0 0.0 1.0 1.0
+#pragma parameter ApertureHorizontalRadius "AGS generic aperture horizontal radius" 1.50 1.00 1.80 0.05
+#pragma parameter ApertureVerticalRadius "AGS generic aperture vertical radius" 0.63 0.40 0.85 0.01
 #pragma parameter BlackLevel "AGS candidate black floor" 0.012 0.000 0.100 0.002
 #pragma parameter BGR "AGS BGR subpixel order" 1.0 0.0 1.0 1.0
-#pragma parameter DebugView "AGS diagnostic view" 0.0 0.0 5.0 1.0
+#pragma parameter BacklightScaleEnabled "AGS relative backlight sensitivity" 0.0 0.0 1.0 1.0
+#pragma parameter BacklightRelativeGain "AGS relative backlight gain (unmeasured)" 1.0 0.5 1.0 0.05
+#pragma parameter DebugView "AGS diagnostic view" 0.0 0.0 14.0 1.0
 #pragma parameter HcsMeasuredColor "AGS HCS measured color" 1.0 0.0 1.0 1.0
 #pragma parameter HcsChromaticAdaptation "AGS HCS adapt white to D65" 0.0 0.0 1.0 1.0
 #pragma parameter HcsImproveContrast "AGS HCS remove measured black" 1.0 0.0 1.0 1.0
 #pragma parameter GtgTableBackend "AGS GtG table backend" 0.0 0.0 1.0 1.0
+#pragma parameter SpatialRetention "AGS reconstructed spatial retention" 1.0 0.0 1.0 1.0
+#pragma parameter SpatialCodeWeight "AGS code-dependent DC proxy weight" 0.500 0.000 1.000 0.025
+#pragma parameter PolarityDriveWeight "AGS polarity-dependent DC proxy weight" 0.250 0.000 1.000 0.025
 #pragma parameter DriveDcOffset "AGS project-prior normalized drive DC" 0.100 -0.250 0.250 0.005
-#pragma parameter LatchOffsetLines "AGS latch offset (lines, theoretical)" 0.5 0.0 1.0 0.05
-#pragma parameter OpticalDelaySeconds "AGS optical delay (s, theoretical)" 0.000000 0.000000 0.016743 0.000050
+#pragma parameter LatchOffsetLines "AGS latch offset candidate (lines)" 0.5 0.0 1.0 0.05
+#pragma parameter OpticalDelaySeconds "AGS pure-delay candidate (s)" 0.000000 0.000000 0.016743 0.000050
+#pragma parameter ParityPhase "AGS polarity-phase hypothesis" 0.0 0.0 1.0 1.0
+#pragma parameter InversionTopology "AGS inversion hypothesis (frame/row/column/dot)" 0.0 0.0 3.0 1.0
 
 layout(std140, set = 0, binding = 0) uniform UBO
 {
@@ -65,11 +83,8 @@ layout(set = 0, binding = 2) uniform sampler2D Source;
 layout(set = 0, binding = 3) uniform sampler2D Original;
 layout(set = 0, binding = 4) uniform sampler2D GtgRateLut;
 
-const float GBA_MASTER_CLOCK_HZ = 16777216.0;
-const float GBA_CYCLES_PER_LINE = 1232.0;
-const float GBA_TOTAL_LINES = 228.0;
-const float LINE_SECONDS = GBA_CYCLES_PER_LINE / GBA_MASTER_CLOCK_HZ;
-const float FRAME_SECONDS = LINE_SECONDS * GBA_TOTAL_LINES;
+#include "ags101-ws3-timing.inc"
+#include "ags101-drive-retention.inc"
 
 const float APERTURE_X[7] = float[](
    1.0, -2.0 / 3.0, -1.0 / 5.0, 4.0 / 7.0,
@@ -79,6 +94,13 @@ const float APERTURE_Y[7] = float[](
    1.0, 0.0, -4.0 / 5.0, 2.0 / 7.0,
    4.0 / 9.0, -4.0 / 11.0, 1.0 / 13.0
 );
+
+// Exact full-support integrals of the two generic lcd-grid-v2-derived
+// polynomials.  Each channel occupies one of three horizontal stripe periods,
+// so the factor of three normalizes every source channel to unit mean
+// linear-light energy. ApertureGain remains a separate presentation control.
+const float APERTURE_X_INTEGRAL = 0.9775113775113773;
+const float APERTURE_Y_INTEGRAL = 1.2868908868908866;
 
 float aperture_antiderivative(float position, float coefficients[7])
 {
@@ -100,6 +122,20 @@ float integrate_aperture(float center, float footprint, float radius, float coef
       aperture_antiderivative(high, coefficients)
       - aperture_antiderivative(low, coefficients)
    ) / footprint;
+}
+
+float aperture_energy_normalization(float horizontalRadius, float verticalRadius)
+{
+   float energy = horizontalRadius * APERTURE_X_INTEGRAL
+      * verticalRadius * APERTURE_Y_INTEGRAL;
+   return 3.0 / max(energy, 1e-8);
+}
+
+float backlight_relative_gain()
+{
+   return params.BacklightScaleEnabled > 0.5
+      ? clamp(params.BacklightRelativeGain, 0.5, 1.0)
+      : 1.0;
 }
 
 ivec2 bounded_coord(ivec2 coord)
@@ -203,6 +239,8 @@ vec3 hcs_native_to_host_linear(vec3 nativeLinear)
    if (!improveContrast)
       xyz += HCS_BLACK_XYZ_NORMALIZED;
 
+   xyz *= backlight_relative_gain();
+
    if (params.HcsChromaticAdaptation > 0.5) {
       xyz = improveContrast
          ? HCS_BRADFORD_TO_D65 * xyz
@@ -277,7 +315,13 @@ vec3 panel_without_aperture(vec2 coord)
    return black + (vec3(1.0) - black) * texture(Source, coord).rgb;
 }
 
-vec3 panel_with_aperture(vec2 coord)
+void aperture_weights(
+   vec2 coord,
+   out vec3 leftMask,
+   out vec3 rightMask,
+   out float topMask,
+   out float bottomMask
+)
 {
    vec2 texelSize = global.SourceSize.zw;
    vec2 outputFootprint = global.OutputSize.zw;
@@ -285,15 +329,15 @@ vec3 panel_with_aperture(vec2 coord)
 
    float subpixel = (coord.x / texelSize.x - 0.4999 - float(topLeft.x)) * 3.0;
    float subpixelFootprint = outputFootprint.x / texelSize.x * 3.0;
-   vec3 leftMask = vec3(
-      integrate_aperture(subpixel + 1.0, subpixelFootprint, 1.5, APERTURE_X),
-      integrate_aperture(subpixel,       subpixelFootprint, 1.5, APERTURE_X),
-      integrate_aperture(subpixel - 1.0, subpixelFootprint, 1.5, APERTURE_X)
+   leftMask = vec3(
+      integrate_aperture(subpixel + 1.0, subpixelFootprint, params.ApertureHorizontalRadius, APERTURE_X),
+      integrate_aperture(subpixel,       subpixelFootprint, params.ApertureHorizontalRadius, APERTURE_X),
+      integrate_aperture(subpixel - 1.0, subpixelFootprint, params.ApertureHorizontalRadius, APERTURE_X)
    );
-   vec3 rightMask = vec3(
-      integrate_aperture(subpixel - 2.0, subpixelFootprint, 1.5, APERTURE_X),
-      integrate_aperture(subpixel - 3.0, subpixelFootprint, 1.5, APERTURE_X),
-      integrate_aperture(subpixel - 4.0, subpixelFootprint, 1.5, APERTURE_X)
+   rightMask = vec3(
+      integrate_aperture(subpixel - 2.0, subpixelFootprint, params.ApertureHorizontalRadius, APERTURE_X),
+      integrate_aperture(subpixel - 3.0, subpixelFootprint, params.ApertureHorizontalRadius, APERTURE_X),
+      integrate_aperture(subpixel - 4.0, subpixelFootprint, params.ApertureHorizontalRadius, APERTURE_X)
    );
    if (params.BGR > 0.5) {
       leftMask = leftMask.bgr;
@@ -302,8 +346,33 @@ vec3 panel_with_aperture(vec2 coord)
 
    float row = coord.y / texelSize.y - 0.4999 - float(topLeft.y);
    float rowFootprint = outputFootprint.y / texelSize.y;
-   float topMask = integrate_aperture(row,       rowFootprint, 0.63, APERTURE_Y);
-   float bottomMask = integrate_aperture(row - 1.0, rowFootprint, 0.63, APERTURE_Y);
+   topMask = integrate_aperture(row, rowFootprint, params.ApertureVerticalRadius, APERTURE_Y);
+   bottomMask = integrate_aperture(row - 1.0, rowFootprint, params.ApertureVerticalRadius, APERTURE_Y);
+}
+
+vec3 aperture_uniform_energy(vec2 coord)
+{
+   vec3 leftMask;
+   vec3 rightMask;
+   float topMask;
+   float bottomMask;
+   aperture_weights(coord, leftMask, rightMask, topMask, bottomMask);
+   float normalization = aperture_energy_normalization(
+      params.ApertureHorizontalRadius,
+      params.ApertureVerticalRadius
+   );
+   return normalization * (leftMask + rightMask) * (topMask + bottomMask);
+}
+
+vec3 panel_with_aperture(vec2 coord)
+{
+   vec2 texelSize = global.SourceSize.zw;
+   ivec2 topLeft = ivec2(floor(coord / texelSize - vec2(0.4999)));
+   vec3 leftMask;
+   vec3 rightMask;
+   float topMask;
+   float bottomMask;
+   aperture_weights(coord, leftMask, rightMask, topMask, bottomMask);
 
    vec3 black = vec3(candidate_black());
    vec3 topLeftColor = texelFetch(Source, bounded_coord(topLeft), 0).rgb;
@@ -315,7 +384,11 @@ vec3 panel_with_aperture(vec2 coord)
    bottomLeftColor = black + (vec3(1.0) - black) * bottomLeftColor;
    bottomRightColor = black + (vec3(1.0) - black) * bottomRightColor;
 
-   return params.ApertureGain * (
+   float normalization = aperture_energy_normalization(
+      params.ApertureHorizontalRadius,
+      params.ApertureVerticalRadius
+   );
+   return params.ApertureGain * normalization * (
       topLeftColor * leftMask * topMask
       + topRightColor * rightMask * topMask
       + bottomLeftColor * leftMask * bottomMask
@@ -327,7 +400,7 @@ vec3 panel_to_host(vec3 panelLinear)
 {
    vec3 hostLinear = params.HcsMeasuredColor > 0.5
       ? hcs_native_to_host_linear(panelLinear)
-      : panelLinear;
+      : panelLinear * backlight_relative_gain();
    return clamp(srgb_encode(hostLinear), 0.0, 1.0);
 }
 
@@ -345,40 +418,200 @@ vec3 signed_debug_color(float value)
 vec3 drive_diagnostic()
 {
    float retained = clamp((texture(Source, vTexCoord).a - 0.5) * 4.0, -1.0, 1.0);
-   float polarity = (global.FrameCount & 1u) == 0u ? 1.0 : -1.0;
+   ivec2 sourceCoord = original_coord(vTexCoord);
+   ivec3 targetIndex = rgb555_index(texelFetch(Original, sourceCoord, 0).rgb);
+   float polarity = ws3_drive_polarity(
+      global.FrameCount,
+      sourceCoord,
+      params.ParityPhase,
+      params.InversionTopology
+   );
+   float excitation = ws5_drive_excitation(
+      targetIndex,
+      polarity,
+      params.DriveDcOffset,
+      params.SpatialRetention,
+      params.SpatialCodeWeight,
+      params.PolarityDriveWeight
+   );
    if (vTexCoord.x < 0.25)
       return polarity > 0.0 ? vec3(1.0) : vec3(0.0);
    if (vTexCoord.x < 0.50)
-      return signed_debug_color(params.DriveDcOffset);
+      return signed_debug_color(excitation);
    if (vTexCoord.x < 0.75)
       return signed_debug_color(retained);
-   return signed_debug_color(params.DriveDcOffset - retained);
+   return signed_debug_color(excitation - retained);
+}
+
+vec3 ws5_spatial_diagnostic()
+{
+   ivec2 sourceCoord = original_coord(vTexCoord);
+   ivec3 targetIndex = rgb555_index(texelFetch(Original, sourceCoord, 0).rgb);
+   float retained = clamp((texture(Source, vTexCoord).a - 0.5) * 4.0, -1.0, 1.0);
+   float polarity = ws3_drive_polarity(
+      global.FrameCount,
+      sourceCoord,
+      params.ParityPhase,
+      params.InversionTopology
+   );
+   float codeProxy = ws5_rgb555_code_proxy(targetIndex);
+   float excitation = ws5_drive_excitation(
+      targetIndex,
+      polarity,
+      params.DriveDcOffset,
+      params.SpatialRetention,
+      params.SpatialCodeWeight,
+      params.PolarityDriveWeight
+   );
+   if (vTexCoord.x < 0.25)
+      return vec3(codeProxy);
+   if (vTexCoord.x < 0.50)
+      return signed_debug_color(excitation);
+   if (vTexCoord.x < 0.75)
+      return signed_debug_color(retained);
+   return signed_debug_color(excitation - retained);
+}
+
+vec3 ws5_numeric_readback()
+{
+   ivec2 sourceCoord = original_coord(vTexCoord);
+   ivec2 sourceSize = max(ivec2(global.OriginalSize.xy), ivec2(1));
+   ivec2 leftProbe = clamp(
+      // The WS2 retention ROM window spans x=48..191.  The one-eighth probe
+      // is therefore an explicit outside control at 240x160.
+      ivec2(sourceSize.x / 8, sourceSize.y / 2),
+      ivec2(0),
+      sourceSize - ivec2(1)
+   );
+   ivec2 rightProbe = clamp(
+      // The centre probe is inside the stressed window.
+      ivec2(sourceSize.x / 2, sourceSize.y / 2),
+      ivec2(0),
+      sourceSize - ivec2(1)
+   );
+   float leftState = clamp(
+      (texelFetch(Source, leftProbe, 0).a - 0.5) * 4.0,
+      -1.0,
+      1.0
+   );
+   float rightState = clamp(
+      (texelFetch(Source, rightProbe, 0).a - 0.5) * 4.0,
+      -1.0,
+      1.0
+   );
+   ivec3 leftTarget = rgb555_index(texelFetch(Original, leftProbe, 0).rgb);
+   float leftPolarity = ws3_drive_polarity(
+      global.FrameCount,
+      leftProbe,
+      params.ParityPhase,
+      params.InversionTopology
+   );
+   float leftExcitation = ws5_drive_excitation(
+      leftTarget,
+      leftPolarity,
+      params.DriveDcOffset,
+      params.SpatialRetention,
+      params.SpatialCodeWeight,
+      params.PolarityDriveWeight
+   );
+   int band = clamp((4 * sourceCoord.y) / sourceSize.y, 0, 3);
+   uint word = band == 0
+      ? floatBitsToUint(leftState)
+      : (band == 1
+         ? floatBitsToUint(rightState)
+         : (band == 2 ? global.FrameCount : floatBitsToUint(leftExcitation)));
+   uint mask = 1u << uint(sourceCoord.x & 31);
+   return (word & mask) != 0u ? vec3(1.0) : vec3(0.0);
+}
+
+vec3 ws8_exposure_numeric_readback()
+{
+   ivec2 sourceCoord = original_coord(vTexCoord);
+   ivec2 sourceSize = max(ivec2(global.OriginalSize.xy), ivec2(1));
+   ivec2 probe = clamp(
+      ivec2(sourceSize.x / 2, sourceSize.y / 2),
+      ivec2(0),
+      sourceSize - ivec2(1)
+   );
+   vec3 exposure = texelFetch(Source, probe, 0).rgb;
+   ivec3 targetIndex = rgb555_index(texelFetch(Original, probe, 0).rgb);
+   uint packedTarget = uint(targetIndex.r)
+      | (uint(targetIndex.g) << 5u)
+      | (uint(targetIndex.b) << 10u);
+   int band = clamp((5 * sourceCoord.y) / sourceSize.y, 0, 4);
+   uint word = band == 0
+      ? floatBitsToUint(exposure.r)
+      : (band == 1
+         ? floatBitsToUint(exposure.g)
+         : (band == 2
+            ? floatBitsToUint(exposure.b)
+            : (band == 3 ? global.FrameCount : packedTarget)));
+   uint mask = 1u << uint(sourceCoord.x & 31);
+   return (word & mask) != 0u ? vec3(1.0) : vec3(0.0);
 }
 
 vec3 scan_diagnostic()
 {
    int sourceRow = clamp(original_coord(vTexCoord).y, 0, 159);
-   float rowStart = float(sourceRow) * LINE_SECONDS;
-   float latch = rowStart
-      + clamp(params.LatchOffsetLines, 0.0, 1.0) * LINE_SECONDS;
-   float opticalAbsolute = latch
-      + clamp(params.OpticalDelaySeconds, 0.0, FRAME_SECONDS);
-   float optical = opticalAbsolute >= FRAME_SECONDS
-      ? opticalAbsolute - FRAME_SECONDS
-      : opticalAbsolute;
+   Ws3ScanEvent event = ws3_scan_event(
+      sourceRow,
+      params.LatchOffsetLines,
+      params.OpticalDelaySeconds
+   );
    float width = 1.5 / global.OutputSize.x;
    vec3 base = 0.12 * srgb_encode(clamp(texture(Source, vTexCoord).rgb, 0.0, 1.0));
    vec3 marker = vec3(0.0);
-   if (abs(vTexCoord.x - rowStart / FRAME_SECONDS) <= width)
+   if (abs(vTexCoord.x - event.rowStartSeconds / FRAME_SECONDS) <= width)
       marker.r = 1.0;
-   if (abs(vTexCoord.x - latch / FRAME_SECONDS) <= width)
+   if (abs(vTexCoord.x - event.latchSeconds / FRAME_SECONDS) <= width)
       marker.g = 1.0;
-   if (abs(vTexCoord.x - optical / FRAME_SECONDS) <= width) {
+   if (abs(vTexCoord.x - event.opticalTimeInFrame / FRAME_SECONDS) <= width) {
       marker.b = 1.0;
-      if (opticalAbsolute >= FRAME_SECONDS)
+      if (event.sourceFrameOffset == 1u)
          marker.r = 1.0;
    }
    return max(base, marker);
+}
+
+vec3 scan_event_diagnostic(int eventKind)
+{
+   int sourceRow = clamp(original_coord(vTexCoord).y, 0, 159);
+   Ws3ScanEvent event = ws3_scan_event(
+      sourceRow,
+      params.LatchOffsetLines,
+      params.OpticalDelaySeconds
+   );
+   float eventSeconds = eventKind == 0
+      ? event.rowStartSeconds
+      : (eventKind == 1 ? event.latchSeconds : event.opticalTimeInFrame);
+   float width = 1.5 / global.OutputSize.x;
+   float marker = abs(vTexCoord.x - eventSeconds / FRAME_SECONDS) <= width ? 1.0 : 0.0;
+   vec3 color = eventKind == 0
+      ? vec3(1.0, 0.0, 0.0)
+      : (eventKind == 1 ? vec3(0.0, 1.0, 0.0) : vec3(0.0, 0.25, 1.0));
+   if (eventKind == 2 && event.sourceFrameOffset == 1u)
+      color = vec3(1.0, 0.0, 1.0);
+   return max(vec3(0.04), marker * color);
+}
+
+vec3 parity_phase_diagnostic()
+{
+   float polarity = ws3_drive_polarity(
+      global.FrameCount,
+      ivec2(0),
+      params.ParityPhase,
+      0.0
+   );
+   return polarity > 0.0 ? vec3(1.0) : vec3(0.0);
+}
+
+vec3 inversion_topology_diagnostic()
+{
+   float phase = ws3_inversion_spatial_phase(
+      original_coord(vTexCoord),
+      params.InversionTopology
+   );
+   return phase > 0.5 ? vec3(0.0) : vec3(1.0);
 }
 
 bool gtg_table_available(float fromCode, int toCode, int channel)
@@ -430,6 +663,41 @@ void main()
    if (debugView == 4) {
       // R=continuous from-code, G=target code, B=analytic/table/fallback status.
       FragColor = vec4(gtg_diagnostic(), 1.0);
+      return;
+   }
+   if (debugView == 6 || debugView == 7 || debugView == 8) {
+      // Independent row-start, latch, and optical-onset views.
+      FragColor = vec4(scan_event_diagnostic(debugView - 6), 1.0);
+      return;
+   }
+   if (debugView == 9) {
+      // Frame parity phase only; spatial inversion is deliberately ignored.
+      FragColor = vec4(parity_phase_diagnostic(), 1.0);
+      return;
+   }
+   if (debugView == 10) {
+      // Spatial inversion phase only; frame parity is deliberately ignored.
+      FragColor = vec4(inversion_topology_diagnostic(), 1.0);
+      return;
+   }
+   if (debugView == 11) {
+      // Left to right: raw RGB555 code proxy, excitation, retained state, net.
+      FragColor = vec4(ws5_spatial_diagnostic(), 1.0);
+      return;
+   }
+   if (debugView == 12) {
+      // Four bit bands: left/right retained float, FrameCount, left excitation.
+      FragColor = vec4(ws5_numeric_readback(), 1.0);
+      return;
+   }
+   if (debugView == 13) {
+      // Five bit bands: exposure RGB, FrameCount, and current packed RGB555.
+      FragColor = vec4(ws8_exposure_numeric_readback(), 1.0);
+      return;
+   }
+   if (debugView == 14) {
+      // Quarter-scale linear aperture energy for lossless unclipped averaging.
+      FragColor = vec4(srgb_encode(0.25 * aperture_uniform_energy(vTexCoord)), 1.0);
       return;
    }
 

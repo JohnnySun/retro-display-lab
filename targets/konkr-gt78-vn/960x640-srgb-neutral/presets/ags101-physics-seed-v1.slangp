@@ -1,6 +1,4 @@
-#reference "../../../../models/nintendo-ags-101/presets/physics-seed-v1.slangp"
-
-## Model provenance: ../../../../models/nintendo-ags-101/REFERENCES.md
-## Target provenance: ../REFERENCES.md
-## Evidence: [TARGET-KPA-AGS-01] [TARGET-KPA-HCS-01] [TARGET-KPA-DRIVE-01]
-## 240x160 fills the 960x640 target at exact 4x integer scale.
+## Deprecated compatibility alias.
+## The model was promoted to period-reconstruction on 2026-08-20.
+## Historical receipts retain this path and their original byte hashes.
+#reference "ags101-period-reconstruction-v1.slangp"

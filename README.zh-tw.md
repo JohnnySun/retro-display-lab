@@ -161,7 +161,7 @@ retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-refer
 同一台裝置的 GBA 內容請使用：
 
 ```text
-retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp
 ```
 
 其他面板請從 model preset 出發建立自己的 target profile，不要把 KONKR 的補償

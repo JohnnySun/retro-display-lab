@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 1,
+  "runId": "konkr-gt78-vn-ags101-ws8-current-20260820",
+  "classification": "current-three-pass-device-run-and-explicit-frontend-boundary-receipt",
+  "date": "2026-08-20",
+  "modelId": "nintendo-ags-101-period-reconstruction",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "repositoryCommit": "0acbfa55744e20cddd5d1528854b322ea5730eeb",
+  "repositoryState": "HEAD identifies the base commit; SHA-256 values pin the current uncommitted WS7/WS8 working-tree bytes deployed by adb.",
+  "device": {
+    "serial": "BW0306N250002377",
+    "manufacturer": "ARBOR",
+    "model": "GT78-VN",
+    "androidRelease": "12",
+    "buildFingerprint": "ARBOR/GT78-VN/GT78-VN:11/RP1A.200720.011/mp1V95182:user/release-keys",
+    "display": "960x640 fixed 60 Hz, density 240, color mode 0",
+    "gpu": "Mali-G76 MC4"
+  },
+  "frontend": {
+    "name": "RetroArch",
+    "version": "1.22.2 (Git a609b709eb; Android versionCode 1597175267)",
+    "core": "mGBA at /data/data/com.retroarch/cores/mgba_libretro_android.so",
+    "videoDriver": "Vulkan",
+    "source": "240x160 at 59.727500569606 Hz",
+    "target": "960x640 at fixed 60 Hz"
+  },
+  "currentPipeline": {
+    "passes": 3,
+    "response": {
+      "format": "R32G32B32A32_SFLOAT",
+      "feedback": true
+    },
+    "exposure": {
+      "format": "R32G32B32A32_SFLOAT",
+      "feedback": false
+    },
+    "display": {
+      "format": "R8G8B8A8_UNORM",
+      "output": "960x640"
+    },
+    "coldCompilePass": true,
+    "shaderTextureCompileErrors": 0
+  },
+  "numericReadback": {
+    "exposure": {
+      "method": "DebugView 13 float-bit bands at exact 4x",
+      "coveredTargets": [
+        "0,0,0",
+        "31,31,31"
+      ],
+      "maximumCpuVsGpuAbsoluteError": 3.338007159570111e-8,
+      "tolerance": 0.000003,
+      "pass": true
+    },
+    "aperture": {
+      "method": "DebugView 14 quarter-linear energy averaged over exact 4x and centered 3.5x",
+      "maximumCpuVsGpuAbsoluteError": 0.0013340823909293587,
+      "maximumScaleDifference": 0.0009026413666439748,
+      "tolerance": 0.006,
+      "pass": true
+    },
+    "retention": {
+      "method": "DebugView 12 float-bit bands through the current three-pass route",
+      "intervals": [
+        [
+          621,
+          638
+        ],
+        [
+          638,
+          655
+        ]
+      ],
+      "maximumCpuVsGpuAbsoluteError": 0,
+      "tolerance": 0.000003,
+      "pass": true
+    },
+    "frontendSafeBypass": {
+      "method": "DebugView 13 with TemporalResponse/DriveRetention/BakedScanout/ExposureMode all disabled",
+      "captures": [
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-0.png",
+          "sha256": "07ca20195f02757b00890626126cf7a895023b132eda0d7092727ab138465c88",
+          "frameCount": 641,
+          "targetRgb555": [
+            31,
+            31,
+            31
+          ],
+          "exposure": [
+            1,
+            1,
+            1
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-1.png",
+          "sha256": "cc5587acebd853899e6987b79b24336a70f4376b29e7efec953ff42a8d328d1e",
+          "frameCount": 653,
+          "targetRgb555": [
+            31,
+            31,
+            31
+          ],
+          "exposure": [
+            1,
+            1,
+            1
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-2.png",
+          "sha256": "7d08f593da5392b08f03fb41b16d90744d245c8a0fc2baf4d84c5a63264411ae",
+          "frameCount": 667,
+          "targetRgb555": [
+            31,
+            31,
+            31
+          ],
+          "exposure": [
+            1,
+            1,
+            1
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-3.png",
+          "sha256": "da10e5538f88447ab0ece720b8a0dcd6b7898274ede5fe2c26ad79b0da32914c",
+          "frameCount": 680,
+          "targetRgb555": [
+            0,
+            0,
+            0
+          ],
+          "exposure": [
+            0,
+            0,
+            0
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-4.png",
+          "sha256": "9ff740f702d2866cae099c5942409268482a12517947ad71dc640a7dd5cfe7b3",
+          "frameCount": 692,
+          "targetRgb555": [
+            0,
+            0,
+            0
+          ],
+          "exposure": [
+            0,
+            0,
+            0
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-5.png",
+          "sha256": "0d055dddb9f146cec50c35ae829c8492ee2ac886ec0b1c15f5226d2d27c66a00",
+          "frameCount": 705,
+          "targetRgb555": [
+            31,
+            31,
+            31
+          ],
+          "exposure": [
+            1,
+            1,
+            1
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-6.png",
+          "sha256": "1ecdb122cacbd8fb8df597fe49a118ff701b0e220f731c98bcb7d12d0607a1ef",
+          "frameCount": 719,
+          "targetRgb555": [
+            31,
+            31,
+            31
+          ],
+          "exposure": [
+            1,
+            1,
+            1
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        },
+        {
+          "path": ".codex-validation/ags101-ws8-target-20260820/safe-captures/safe-7.png",
+          "sha256": "f6c58f3c38d96a39cfb8756a9bbdfc8ef225245ccbca9dff6f0dff7f1fb641b7",
+          "frameCount": 732,
+          "targetRgb555": [
+            0,
+            0,
+            0
+          ],
+          "exposure": [
+            0,
+            0,
+            0
+          ],
+          "unanimousBitsPerBand": [
+            32,
+            32,
+            32,
+            32,
+            32
+          ]
+        }
+      ],
+      "everyEndpointMatchedCurrentRgb555Exactly": true,
+      "pass": true
+    }
+  },
+  "lifecycle": {
+    "schemaVersion": 1,
+    "sessionDate": "2026-08-20",
+    "deviceSerial": "BW0306N250002377",
+    "appBackgroundResume": {
+      "pidBefore": 31361,
+      "pidWhileBackgrounded": 31361,
+      "frameCountBefore": 6326,
+      "frameCountAfter": 249,
+      "interpretation": "The same Android process resumed, but the Vulkan/Shader frame domain restarted. Resume is safe as a reset boundary, not as continuous panel history."
+    },
+    "contentReload": {
+      "outcome": "passed-as-clean-reset",
+      "evidence": "Independent force-stop/start sessions compiled the current three-pass preset and began deterministic ROM trajectories from a new feedback domain."
+    },
+    "saveStateLoad": {
+      "outcome": "unsupported-history-restore",
+      "evidence": "The frontend serializes core state, not PassFeedback0. No current receipt claims continuous GtG or retained-DC history across load."
+    },
+    "pauseAndRepeatedPresentation": {
+      "outcome": "supported-only-as-hold-or-reset-boundary",
+      "evidence": "Background pause retained the process but reset Shader FrameCount on resume; the accepted trajectory restarts instead of fabricating elapsed panel history."
+    },
+    "fastForward": {
+      "normalAcceptedConfigRatio": 1,
+      "boundaryConfigRatio": 4,
+      "outcome": "normal-path-disabled-safe-bypass-validated",
+      "evidence": "The normal current-artifact run pins 1x. The 4x boundary configuration compiled the stateless preset, but no accelerated history-bearing trajectory is accepted."
+    },
+    "variableRefresh": {
+      "requestedInBoundaryConfig": true,
+      "physicalModes": [
+        "960x640@60Hz"
+      ],
+      "vulkanPresentMode": "FIFO",
+      "outcome": "not-applicable-on-target-safe-bypass-validated",
+      "evidence": "KONKR exposes one fixed 60 Hz mode. Unknown VRR duplication/drop histories remain outside the stateful contract."
+    },
+    "inputAutomationLimits": {
+      "keyboardAndVirtualGamepadHotkeysAccepted": false,
+      "networkCommandSocketAvailable": false,
+      "rawControllerInjection": "denied to adb shell by /dev/input/event3 permissions",
+      "impact": "No new claim is made for save-state history restoration or active 4x fast-forward; these modes remain explicitly unsupported by the stateful preset."
+    },
+    "restoration": {
+      "retroarchTestProcessStopped": true,
+      "mGbaShaderOverrideSha256": "f50f14658651ca8aa7e69b8ee7c81a8c602eaf7ca304e8640a3f86442bf46d7b",
+      "gbaShaderOverrideSha256": "85d470b4aa41417c76c6f96e92d79e97a5411a5e7e9ef318379079135d9300bc",
+      "mGbaCoreOverrideSha256": "c0c54e9f79517f16b4b7fe3ed15d564eb083eff9c0b36287989eb7c29969dc2e",
+      "gbaContentOverrideSha256": "c0c54e9f79517f16b4b7fe3ed15d564eb083eff9c0b36287989eb7c29969dc2e"
+    }
+  },
+  "acceptance": {
+    "currentWs7ThreePassArtifactsCompiledOnTarget": true,
+    "gpuExposureMatchesCpu": true,
+    "gpuApertureEnergyMatchesCpuAtIntegerAndFractionalScale": true,
+    "gpuRetentionRecurrenceMatchesCpuThroughCurrentRoute": true,
+    "normalForwardFixedPeriodPath": "pass",
+    "backgroundResume": "safe-reset-boundary-not-continuous-history",
+    "contentReload": "pass-as-clean-reset",
+    "saveStateLoad": "unsupported-for-shader-history",
+    "rewindAndRunAhead": "disabled",
+    "activeFastForwardHistory": "unsupported; normal target configuration is fixed at 1x",
+    "variableRefresh": "not-applicable-on-this-fixed-60-Hz-target",
+    "statelessSafeBoundary": "pass",
+    "currentArtifactReceipt": "pass-with-explicit-unsupported-boundaries",
+    "promotionEligible": true,
+    "promotionApplied": true,
+    "promotedModelId": "nintendo-ags-101-period-reconstruction"
+  },
+  "explicitPostPromotionLimitations": [
+    "Save-state load does not serialize PassFeedback0 and therefore cannot restore GtG or retained-DC history.",
+    "No active accelerated-frame history is accepted; the current target route remains fixed at 1x.",
+    "KONKR has no VRR mode, so stateful behavior under unknown VRR duplicate/drop histories is not validated.",
+    "The current aperture remains a generic prior and the GtG/retention weights remain literature/project reconstructions rather than AGS-101 specimen measurements."
+  ],
+  "artifacts": {
+    "repository": [
+      {
+        "path": "models/nintendo-ags-101/data/ws7-exposure-integration-v1.json",
+        "sha256": "fc0964f3ef833cc9f5721ae6457d15e1e8562cd099df6bda83e60e29f69039cd"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws7-exposure-validation-v1.json",
+        "sha256": "14d632e7a2b9d2acf7132dc0fecc87b3ad2e42e90a414f56e2322c564bffdb5c"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws8-exposure-gpu-reference-v1.json",
+        "sha256": "ee4db978f5e121d653ed6c953d740c73113b56ef0e2758f02b793372c3e6ae13"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws8-presets-v1/manifest.json",
+        "sha256": "62ea82df4ebd0822c6a0d09fbbedaf2c83bb1a67b30df17d9797f692abb8470f"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png",
+        "sha256": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws5-presets-v1/ags101-ws5-numeric-v1.slangp",
+        "sha256": "55b7f3e429c067d06df159c967add39be709dc672f5d80a56851bedf253ca375"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws2-stimulus-v1/parity-toggle.gba",
+        "sha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws2-stimulus-v1/retention-stress-recovery.gba",
+        "sha256": "cd1a3b1d847b294c8dce54900ee44658770b655618c45a53e843a003522165f5"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-response-v1.slang",
+        "sha256": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-exposure-v1.slang",
+        "sha256": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-display-v1.slang",
+        "sha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524"
+      },
+      {
+        "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp",
+        "sha256": "54a038ebc25f64d45eab21368f34d83adea9a42031f7127bf76ba965fa3b2e28"
+      },
+      {
+        "path": "tools/analyze-ags101-ws8-aperture.mjs",
+        "sha256": "1c6f505d5974720e10d83eb75344d46973fa2e312aa971b319b221ba14c69d1c"
+      },
+      {
+        "path": "tools/build-ags101-ws8.mjs",
+        "sha256": "8ed89a8db57261bbc6a1fd1b402be81c23f2f93ac0e281f94e2933589e42fd74"
+      },
+      {
+        "path": "tools/build-ags101-ws8-receipt.mjs",
+        "sha256": "f9e34c03bea7ad9883bba64ae1f4ab722c93a367215e00e89ca33ea364e4a3ad"
+      },
+      {
+        "path": "tools/compare-ags101-ws8-exposure.mjs",
+        "sha256": "c9f529f405108f7e2c2480af3f2123ea7c62cbbc8fda536cbb0fe661dd179688"
+      },
+      {
+        "path": "tools/compare-ags101-ws5-target.mjs",
+        "sha256": "650e929fc8d2fb6e39e5c5bb624af4b853db42766553de938cca406d2c4612f9"
+      },
+      {
+        "path": "tools/decode-ags101-ws8-exposure.mjs",
+        "sha256": "a977aa0aae8c8b406a3894fda09aadd784a5f3d23cc8237d4639981dc288029f"
+      }
+    ],
+    "runEvidence": [
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/exposure-comparison.json",
+        "sha256": "468ed9a6ae52cf30fe4f591e5010df3c4818003c41408eeaa689268224ce42cc"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/aperture-comparison.json",
+        "sha256": "a05c4fd6b7e2dd433576314adaac4367773ecb66f6acd75d5b814cfe935bbf4b"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/current-retention-comparison.json",
+        "sha256": "6b77a46fd04e24fb4e518d676d89a36e2c4b9fb76db2e3e066f0116bbfcb9cb4"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/lifecycle-observations.json",
+        "sha256": "572ab798374a055131a0060d83ad26251234a6ee2c5b31e35d777fccc4dffe3c"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/cold-compile-retroarch.log",
+        "sha256": "1cbd5b2b3889424a388abc896c6cc008ffd72fc8520101b8c1391a0a629a7e53"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/safe-boundary-retroarch.log",
+        "sha256": "8ae19b34c5efebdc432933c06b476b6f9bd5ca58f7a3eca036a7ff15d2bd68cc"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/cold-compile-config.cfg",
+        "sha256": "977d4763679c6e93465ffcc8a14e4278e061ec366f94fbeb950d2f021c62be10"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/safe-boundary-config.cfg",
+        "sha256": "4c5d9c60b0d87c1f789ca80418a4f1f290bb5c5e702bd0ff025af876ce0c1540"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/current-retention-config.cfg",
+        "sha256": "c315bb9046d59ef0aff7e883e20baecb61c5bfae82e4d244fe72c503a6a14dd3"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/current-three-pass.png",
+        "sha256": "d3a929df80de601de6f60e7214261ae10e4f00c13533e502e2acea3d75074a6c"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/aperture-exact4.png",
+        "sha256": "9253a0600739f492e2e38f39ed815a8b19ad9e8aebc58a53db101644d6cea821"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/aperture-fractional3_5.png",
+        "sha256": "414c53c35bd02e00ca53a6db4b34ffdc3839e11d7541296a277ce7a512157213"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/background-before.png",
+        "sha256": "ab6e1098dad01f3eb966dae6fc9968436feaee4a5314cf004f4893b1378c251c"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/background-after.png",
+        "sha256": "633b51a24c40921016bb24d470763492e66e4149112d6127e763d853bd481eb3"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/current-retention-a.png",
+        "sha256": "67eaa2ad93a816efede6ec275031c7dc6c76c327caf2016cbdf208b53b955b8f"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/current-retention-b.png",
+        "sha256": "fbe9cfa84c708acd1e1e83ceaf97045eb603926c30b90e94b708aad7fc792fe1"
+      },
+      {
+        "path": ".codex-validation/ags101-ws8-target-20260820/current-retention-c.png",
+        "sha256": "e2bb1a24e5b5c1c08aca0355ffe78526b28736c453ceb3019698302c95992d55"
+      }
+    ]
+  },
+  "restoration": {
+    "retroarchTestProcessStopped": true,
+    "mGbaShaderOverrideSha256": "f50f14658651ca8aa7e69b8ee7c81a8c602eaf7ca304e8640a3f86442bf46d7b",
+    "gbaShaderOverrideSha256": "85d470b4aa41417c76c6f96e92d79e97a5411a5e7e9ef318379079135d9300bc",
+    "mGbaCoreOverrideSha256": "c0c54e9f79517f16b4b7fe3ed15d564eb083eff9c0b36287989eb7c29969dc2e",
+    "gbaContentOverrideSha256": "c0c54e9f79517f16b4b7fe3ed15d564eb083eff9c0b36287989eb7c29969dc2e"
+  },
+  "notes": "This replaces the WS5-only historical-current status for the checked-out WS7 three-pass pipeline. It validates implementation on KONKR, not an AGS-101 specimen or calibrated emitted-light output."
+}

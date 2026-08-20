@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -9,7 +10,10 @@ import {
   PANEL_FRAME_SECONDS,
   effectiveDriveCode,
   framePolarity,
+  rgb555DriveCodeProxy,
+  spatialDriveExcitation,
   stepResidualDc,
+  stepSpatialRetention,
 } from "../models/nintendo-ags-101/reference/drive-retention.mjs";
 import {
   GBA_CYCLES_PER_LINE,
@@ -18,6 +22,8 @@ import {
   GBA_LINE_SECONDS,
   GBA_MASTER_CLOCK_HZ,
   GBA_TOTAL_LINES,
+  drivePolarity,
+  inversionSpatialPhase,
   scanEvent,
   sourcePairForEvent,
 } from "../models/nintendo-ags-101/reference/scan-timing.mjs";
@@ -36,6 +42,12 @@ import {
   stepFirstOrder,
 } from "../models/nintendo-ags-101/reference/gtg-response.mjs";
 import {
+  WS4_EQUATION_ID,
+  buildReconstructedCells,
+  reconstructedTransition,
+  validateEnsembleDefinition,
+} from "../models/nintendo-ags-101/reference/gtg-ensemble.mjs";
+import {
   clamp,
   hcsHostLinear,
   renderStaticRgb555,
@@ -50,6 +62,16 @@ import {
   integrateSegment,
   opticalToCode,
 } from "../models/nintendo-ags-101/reference/temporal-pipeline.mjs";
+import {
+  apertureEnergyNormalization,
+  averageUniformAperture,
+  relativeBacklightGain,
+} from "../models/nintendo-ags-101/reference/panel-optics.mjs";
+import {
+  applyStaticBacklight,
+  compositeSimpsonFirstOrder,
+  firstOrderIntegral,
+} from "../models/nintendo-ags-101/reference/exposure-integration.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const modelDir = path.join(root, "models", "nintendo-ags-101");
@@ -91,10 +113,136 @@ const frontendValidationTemplate = JSON.parse(fs.readFileSync(
   path.join(modelDir, "data", "frontend-validation-template.json"),
   "utf8",
 ));
+const ws1Inventory = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "ws1-evidence-inventory-v1.json"),
+  "utf8",
+));
+const ws1Baseline = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws1-baseline-v1.json"),
+  "utf8",
+));
+const electricalCaptureSchema = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "electrical-capture.schema.json"),
+  "utf8",
+));
+const photodiodeCaptureSchema = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "photodiode-capture.schema.json"),
+  "utf8",
+));
+const ws2StimulusManifestPath = path.join(
+  modelDir,
+  "generated",
+  "ws2-stimulus-v1",
+  "manifest.json",
+);
+const ws2StimulusManifest = JSON.parse(fs.readFileSync(ws2StimulusManifestPath, "utf8"));
+const ws2CaptureDir = path.join(modelDir, "generated", "ws2-capture-loopback-v1");
+const ws2CaptureSession = JSON.parse(fs.readFileSync(
+  path.join(ws2CaptureDir, "session.json"),
+  "utf8",
+));
+const ws2CaptureReport = JSON.parse(fs.readFileSync(
+  path.join(ws2CaptureDir, "report.json"),
+  "utf8",
+));
+const ws2GtgSubset = JSON.parse(fs.readFileSync(
+  path.join(ws2CaptureDir, "gtg-measurement-subset.json"),
+  "utf8",
+));
+const ws2GtgRuntime = JSON.parse(fs.readFileSync(
+  path.join(ws2CaptureDir, "gtg-runtime.json"),
+  "utf8",
+));
+const ws2MgbaReceiptPath = path.join(modelDir, "generated", "ws2-mgba-smoke-v1", "report.json");
+const ws2MgbaReceipt = JSON.parse(fs.readFileSync(ws2MgbaReceiptPath, "utf8"));
+const ws3ConstraintSourcePath = path.join(modelDir, "data", "ws3-timing-constraints-v1.json");
+const ws3ConstraintSource = JSON.parse(fs.readFileSync(ws3ConstraintSourcePath, "utf8"));
+const ws3GeneratedPath = path.join(modelDir, "generated", "ws3-timing-constraints-v1.json");
+const ws3Generated = JSON.parse(fs.readFileSync(ws3GeneratedPath, "utf8"));
+const ws3SensitivityPath = path.join(modelDir, "generated", "ws3-sensitivity-v1.json");
+const ws3Sensitivity = JSON.parse(fs.readFileSync(ws3SensitivityPath, "utf8"));
+const ws3CompilePath = path.join(modelDir, "generated", "ws3-shader-compile-v1.json");
+const ws3Compile = JSON.parse(fs.readFileSync(ws3CompilePath, "utf8"));
+const ws3PresetDir = path.join(modelDir, "generated", "ws3-presets-v1");
+const ws3PresetManifestPath = path.join(ws3PresetDir, "manifest.json");
+const ws3PresetManifest = JSON.parse(fs.readFileSync(ws3PresetManifestPath, "utf8"));
+const ws4Evidence = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "ws4-evidence-inventory-v1.json"), "utf8",
+));
+const ws4Ensemble = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "ws4-gtg-ensemble-v1.json"), "utf8",
+));
+const ws4Manifests = Object.fromEntries(["fast", "nominal", "slow"].map((member) => [
+  member,
+  JSON.parse(fs.readFileSync(path.join(modelDir, "generated", `ws4-gtg-${member}-v1.json`), "utf8")),
+]));
+const ws4Coverage = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws4-coverage-v1.json"), "utf8",
+));
+const ws4Validation = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws4-validation-v1.json"), "utf8",
+));
+const ws4PresetManifest = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws4-presets-v1", "manifest.json"), "utf8",
+));
+const ws5Evidence = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "ws5-evidence-inventory-v1.json"), "utf8",
+));
+const ws5Reconstruction = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "ws5-retention-reconstruction-v1.json"), "utf8",
+));
+const ws5Validation = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws5-retention-validation-v1.json"), "utf8",
+));
+const ws5PresetManifest = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws5-presets-v1", "manifest.json"), "utf8",
+));
+const ws6Definition = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "data", "ws6-panel-optics-v1.json"), "utf8",
+));
+const ws6Validation = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws6-validation-v1.json"), "utf8",
+));
+const ws6PresetManifest = JSON.parse(fs.readFileSync(
+  path.join(modelDir, "generated", "ws6-presets-v1", "manifest.json"), "utf8",
+));
+const ws7DefinitionPath = path.join(modelDir, "data", "ws7-exposure-integration-v1.json");
+const ws7Definition = JSON.parse(fs.readFileSync(ws7DefinitionPath, "utf8"));
+const ws7ValidationPath = path.join(
+  modelDir, "generated", "ws7-exposure-validation-v1.json",
+);
+const ws7Validation = JSON.parse(fs.readFileSync(ws7ValidationPath, "utf8"));
+const ws7PresetManifestPath = path.join(
+  modelDir, "generated", "ws7-presets-v1", "manifest.json",
+);
+const ws7PresetManifest = JSON.parse(fs.readFileSync(ws7PresetManifestPath, "utf8"));
+const ws8ReferencePath = path.join(
+  modelDir, "generated", "ws8-exposure-gpu-reference-v1.json",
+);
+const ws8Reference = JSON.parse(fs.readFileSync(ws8ReferencePath, "utf8"));
+const ws8PresetManifestPath = path.join(
+  modelDir, "generated", "ws8-presets-v1", "manifest.json",
+);
+const ws8PresetManifest = JSON.parse(fs.readFileSync(ws8PresetManifestPath, "utf8"));
+const ws8TargetReceiptPath = path.join(
+  root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "validation",
+  "ags101-ws8-target-20260820.json",
+);
+const ws8TargetReceipt = JSON.parse(fs.readFileSync(ws8TargetReceiptPath, "utf8"));
 const failures = [];
 
 function check(condition, message) {
   if (!condition) failures.push(message);
+}
+
+function sha256File(file) {
+  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+}
+
+function presetNumber(source, name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = source.match(new RegExp(`^${escaped}\\s*=\\s*"([^"]+)"$`, "m"));
+  return match ? Number(match[1]) : Number.NaN;
 }
 
 const references = fs.readFileSync(path.join(modelDir, "REFERENCES.md"), "utf8");
@@ -114,11 +262,19 @@ const requiredEvidenceIds = [
   "AGS-ION-01",
   "AGS-DRIVE-01",
   "AGS-FEED-01",
+  "AGS-RETENTION-01",
   "AGS-FRONTEND-01",
   "AGS-PANEL-01",
   "AGS-APERTURE-01",
+  "AGS-BACKLIGHT-01",
   "AGS-NEUTRAL-01",
   "AGS-TIMING-01",
+  "AGS-BASELINE-01",
+  "AGS-STIMULUS-01",
+  "AGS-CAPTURE-01",
+  "AGS-MGBA-01",
+  "AGS-RECON-01",
+  "AGS-EXPOSURE-01",
 ];
 for (const id of requiredEvidenceIds) {
   check(evidenceIds.has(id), `AGS evidence map is missing required ID ${id}`);
@@ -137,9 +293,9 @@ function checkEvidence(source, file) {
 const shaderFiles = fs.readdirSync(shaderDir).filter((file) => file.endsWith(".slang")).sort();
 const includeFiles = fs.readdirSync(shaderDir).filter((file) => file.endsWith(".inc")).sort();
 const presetFiles = fs.readdirSync(presetDir).filter((file) => file.endsWith(".slangp")).sort();
-check(shaderFiles.length === 2, `expected 2 AGS shaders, found ${shaderFiles.length}`);
-check(includeFiles.length === 1, `expected 1 AGS shader include, found ${includeFiles.length}`);
-check(presetFiles.length === 12, `expected 12 AGS presets, found ${presetFiles.length}`);
+check(shaderFiles.length === 3, `expected 3 AGS shaders, found ${shaderFiles.length}`);
+check(includeFiles.length === 3, `expected 3 AGS shader includes, found ${includeFiles.length}`);
+check(presetFiles.length === 13, `expected 13 AGS presets, found ${presetFiles.length}`);
 
 for (const file of includeFiles) {
   checkEvidence(fs.readFileSync(path.join(shaderDir, file), "utf8"), file);
@@ -163,6 +319,16 @@ for (const file of shaderFiles) {
 for (const file of presetFiles) {
   const source = fs.readFileSync(path.join(presetDir, file), "utf8");
   checkEvidence(source, file);
+  if (file === "physics-seed-v1.slangp") {
+    check(source.includes("Deprecated compatibility alias")
+      && source.includes('#reference "period-reconstruction-v1.slangp"'),
+    `${file}: legacy alias no longer routes to the promoted preset`);
+  } else if (file !== "period-reconstruction-v1.slangp") {
+    check(source.includes("Generated by tools/build-ags101-ws1.mjs"),
+      `${file}: diagnostic preset is not generated in full compatibility form`);
+    check(!source.includes("#reference"),
+      `${file}: diagnostic preset still depends on inherited #reference overrides`);
+  }
   const localReferences = [
     ...[...source.matchAll(/shader\d+\s*=\s*"([^"]+)"/g)].map((match) => match[1]),
     ...[...source.matchAll(/#reference\s+"([^"]+)"/g)].map((match) => match[1]),
@@ -180,9 +346,13 @@ check(responseSource.includes("optical_to_code"), "AGS response lost continuous 
 check(responseSource.includes("MidGrayDrag"), "AGS response lost GtG middle-gray term");
 check(responseSource.includes('include "ags101-drive-retention.inc"'),
   "AGS response lost shared drive-retention equations");
+check(responseSource.includes('include "ags101-ws3-timing.inc"'),
+  "AGS response lost generated WS3 timing equations");
 check(responseSource.includes("encode_residual_dc"), "AGS response lost residual-DC state");
-check(responseSource.includes("drive_polarity(global.FrameCount)"),
-  "AGS response lost explicit frame polarity");
+check(responseSource.includes("ws3_drive_polarity(")
+  && responseSource.includes("params.ParityPhase")
+  && responseSource.includes("params.InversionTopology"),
+"AGS response lost selectable WS3 polarity/inversion hypotheses");
 check(responseSource.includes("effective_drive_code"),
   "AGS response lost electrical-to-optical drive coupling");
 check(responseSource.includes("R32G32B32A32_SFLOAT"),
@@ -201,19 +371,28 @@ check(responseSource.includes("analytic_gtg_rate"), "AGS response lost analytic 
 check(responseSource.includes("GtgTableBackend"), "AGS response lost GtG backend selector");
 check(responseSource.includes("TemporalResponse"), "AGS response lost GtG isolation switch");
 check(responseSource.includes("DriveRetention"), "AGS response lost drive-retention isolation switch");
+check(responseSource.includes("SpatialRetention")
+  && responseSource.includes("SpatialCodeWeight")
+  && responseSource.includes("PolarityDriveWeight")
+  && responseSource.includes("ws5_drive_excitation"),
+"AGS response lost WS5 code/polarity excitation");
 check(!responseSource.includes("nearest_rgb555_code"),
   "AGS response restored repeated nearest-code GtG quantization");
 check(responseSource.includes("OriginalHistory1"), "AGS scanout lost previous source frame");
 check(responseSource.includes("OriginalHistory2"), "AGS scanout lost causal cross-frame source history");
-check(responseSource.includes("GBA_TOTAL_LINES = 228.0"), "AGS scanout lost 228-line timebase");
-check(responseSource.includes("GBA_MASTER_CLOCK_HZ = 16777216.0"),
-  "AGS scanout lost exact GBA master clock");
-check(responseSource.includes("GBA_CYCLES_PER_LINE = 1232.0"),
-  "AGS scanout lost exact GBA line cycle count");
+const ws3TimingIncludeSource = fs.readFileSync(
+  path.join(shaderDir, "ags101-ws3-timing.inc"), "utf8",
+);
+check(ws3TimingIncludeSource.includes("GBA_TOTAL_LINES = 228.0"),
+  "AGS generated WS3 timing include lost 228-line timebase");
+check(ws3TimingIncludeSource.includes("GBA_MASTER_CLOCK_HZ = 16777216.0"),
+  "AGS generated WS3 timing include lost exact GBA master clock");
+check(ws3TimingIncludeSource.includes("GBA_CYCLES_PER_LINE = 1232.0"),
+  "AGS generated WS3 timing include lost exact GBA line cycle count");
 check(responseSource.includes("sourceCoord.y"), "AGS scanout phase is not source-row based");
 check(responseSource.includes("LatchOffsetLines"), "AGS scanout lost explicit latch event");
 check(responseSource.includes("OpticalDelaySeconds"), "AGS scanout lost explicit optical event");
-check(responseSource.includes("scan_event"), "AGS scanout lost three-component event calculation");
+check(responseSource.includes("ws3_scan_event"), "AGS scanout lost generated event calculation");
 check(responseSource.includes("response_for_time"), "AGS scanout lost time-scaled response");
 check(responseSource.includes("BakedScanout"), "AGS scanout lost temporal-only switch");
 check(responseSource.includes("global.TotalSubFrames != 1u"), "AGS scanout lost N=1 fail-safe");
@@ -229,55 +408,125 @@ check(
   "AGS scanout uses source history before first-frame feedback initialization",
 );
 
+const exposureSource = fs.readFileSync(path.join(shaderDir, "ags101-exposure-v1.slang"), "utf8");
+check(exposureSource.includes("PassFeedback0")
+  && exposureSource.includes("uniform sampler2D Source"),
+"AGS exposure pass lost previous endpoint feedback or current pass-0 endpoint input");
+check(exposureSource.includes("OriginalHistory1")
+  && exposureSource.includes("OriginalHistory2")
+  && exposureSource.includes("ws3_scan_event"),
+"AGS exposure pass lost causal WS3 source history or scan-event reconstruction");
+check(exposureSource.includes("integrate_exposure_segment")
+  && exposureSource.includes("effectiveTarget * dtSeconds")
+  && exposureSource.includes("(vec3(1.0) - decay) / rate"),
+"AGS exposure pass lost the exact first-order emitted-light segment integral");
+check(exposureSource.includes("lightIntegral / FRAME_SECONDS")
+  && exposureSource.includes("endpoint.a"),
+"AGS exposure pass no longer outputs a native-frame average with endpoint residual alpha");
+check(exposureSource.includes("ExposureMode")
+  && exposureSource.includes("global.TotalSubFrames != 1u"),
+"AGS exposure pass lost its endpoint diagnostic or unsupported-subframe bypass");
+check(exposureSource.includes('include "ags101-exposure-optics.inc"')
+  && exposureSource.includes('include "ags101-ws3-timing.inc"'),
+"AGS exposure pass lost generated HCS/GtG constants or shared WS3 timing");
+check(exposureSource.includes("R32G32B32A32_SFLOAT"),
+  "AGS exposure pass lost float32 emitted-light precision");
+
 const displaySource = fs.readFileSync(path.join(shaderDir, "ags101-display-v1.slang"), "utf8");
 check(displaySource.includes("integrate_aperture"), "AGS display lost analytic aperture integration");
 check(displaySource.includes("leftMask.bgr"), "AGS display lost BGR ordering");
+check(displaySource.includes("aperture_energy_normalization")
+  && displaySource.includes("ApertureHorizontalRadius")
+  && displaySource.includes("ApertureVerticalRadius"),
+"AGS display lost WS6 generic-aperture geometry or energy normalization");
+check(displaySource.includes("backlight_relative_gain")
+  && displaySource.includes("BacklightScaleEnabled")
+  && displaySource.includes("BacklightRelativeGain"),
+"AGS display lost independently bypassable WS6 backlight sensitivity");
 check(displaySource.includes("srgb_encode_channel"), "AGS display lost neutral host encoding");
 check(displaySource.includes("HCS_NATIVE_RGB_TO_XYZ"), "AGS display lost generated HCS matrix");
 check(displaySource.includes("hcs_native_to_host_linear"), "AGS display lost HCS output transform");
 check(displaySource.includes("HcsImproveContrast"), "AGS display lost measured-black control");
 check(displaySource.includes("HcsChromaticAdaptation"), "AGS display lost HCS white adaptation control");
 check(displaySource.includes("DebugView"), "AGS display lost unified diagnostic selector");
+check(displaySource.includes('#pragma parameter DebugView "AGS diagnostic view" 0.0 0.0 14.0 1.0'),
+  "AGS display diagnostic range no longer exposes WS8 readback views 13 and 14");
 check(displaySource.includes("uniform sampler2D Original"),
   "AGS display diagnostics lost original source access");
 check(displaySource.includes("gtg_table_available"),
   "AGS display diagnostics lost GtG table/fallback status");
 check(displaySource.includes("scan_diagnostic"),
   "AGS display diagnostics lost row/latch/optical overlay");
+check(displaySource.includes('include "ags101-ws3-timing.inc"')
+  && displaySource.includes("scan_event_diagnostic")
+  && displaySource.includes("parity_phase_diagnostic")
+  && displaySource.includes("inversion_topology_diagnostic"),
+"AGS display lost independent WS3 event/parity/inversion diagnostics");
 check(displaySource.includes("drive_diagnostic"),
   "AGS display diagnostics lost separated electrical views");
+check(displaySource.includes("ws5_spatial_diagnostic")
+  && displaySource.includes("ws5_numeric_readback")
+  && displaySource.includes("debugView == 11")
+  && displaySource.includes("debugView == 12"),
+"AGS display lost WS5 spatial or numeric diagnostics");
+check(displaySource.includes("ws8_exposure_numeric_readback")
+  && displaySource.includes("floatBitsToUint(exposure.r)")
+  && displaySource.includes("packedTarget")
+  && displaySource.includes("debugView == 13"),
+"AGS display lost the WS8 lossless exposure numeric readback");
+check(displaySource.includes("aperture_uniform_energy")
+  && displaySource.includes("0.25 * aperture_uniform_energy(vTexCoord)")
+  && displaySource.includes("debugView == 14"),
+"AGS display lost the WS8 quarter-linear aperture energy view");
 check(displaySource.includes("panel_without_aperture")
   && displaySource.includes("panel_with_aperture")
   && displaySource.includes("ApertureEnabled"),
 "AGS display lost aperture isolation/comparison path");
-check(displaySource.includes("global.FrameCount & 1u"),
-  "AGS drive diagnostic lost frame-polarity view");
+check(displaySource.includes("ws3_drive_polarity("),
+  "AGS drive diagnostic lost selected polarity/inversion view");
 check(!displaySource.includes("DebugIonState"),
   "AGS display retained the superseded one-purpose debug selector");
 check(!responseSource.includes("DebugView"),
   "AGS read-only diagnostic selector leaked into the feedback-writing pass");
 
-const physicsPresetSource = fs.readFileSync(path.join(presetDir, "physics-seed-v1.slangp"), "utf8");
+const reconstructionPresetSource = fs.readFileSync(
+  path.join(presetDir, "period-reconstruction-v1.slangp"), "utf8",
+);
 const neutralPresetSource = fs.readFileSync(path.join(presetDir, "neutral-baseline-v1.slangp"), "utf8");
 const gtgSyntheticPresetSource = fs.readFileSync(
   path.join(presetDir, "gtg-synthetic-table-v1.slangp"), "utf8",
 );
-check(physicsPresetSource.includes('HcsMeasuredColor = "1.0"'),
+check(reconstructionPresetSource.includes('HcsMeasuredColor = "1.0"'),
   "AGS default physics preset does not enable HCS measured color");
-check(physicsPresetSource.includes('HcsImproveContrast = "1.0"'),
+check(reconstructionPresetSource.includes('HcsImproveContrast = "1.0"'),
   "AGS default physics preset does not select HCS black-subtracted mode");
-check(physicsPresetSource.includes('GtgTableBackend = "0.0"'),
-  "AGS default preset must not label the synthetic table as measured runtime data");
-check(physicsPresetSource.includes('GtgRateLut = "../generated/gtg-synthetic-v1.png"'),
-  "AGS default preset lost deterministic GtG runtime texture binding");
-check(!physicsPresetSource.includes("float_framebuffer0"),
+check(reconstructionPresetSource.includes('GtgTableBackend = "1.0"'),
+  "AGS default preset does not enable the WS4 reconstructed table");
+check(reconstructionPresetSource.includes('GtgRateLut = "../generated/ws4-gtg-nominal-v1.png"'),
+  "AGS default preset lost the WS4 nominal GtG texture binding");
+check(reconstructionPresetSource.includes('shaders = "3"')
+  && reconstructionPresetSource.includes('shader0 = "../shaders/ags101-response-v1.slang"')
+  && reconstructionPresetSource.includes('shader1 = "../shaders/ags101-exposure-v1.slang"')
+  && reconstructionPresetSource.includes('shader2 = "../shaders/ags101-display-v1.slang"'),
+"AGS default preset lost the WS7 three-pass endpoint/exposure/display order");
+check(!reconstructionPresetSource.includes("float_framebuffer0"),
   "AGS default preset overrides the response shader's required RGBA32F format");
 check(gtgSyntheticPresetSource.includes('GtgTableBackend = "1.0"'),
   "AGS synthetic GtG pipeline preset does not enable the table backend");
-check(physicsPresetSource.includes('TemporalResponse = "1.0"')
-  && physicsPresetSource.includes('DriveRetention = "1.0"')
-  && physicsPresetSource.includes('ApertureEnabled = "1.0"')
-  && physicsPresetSource.includes('DebugView = "0.0"'),
+check(gtgSyntheticPresetSource.includes('GtgRateLut = "../generated/gtg-synthetic-v1.png"'),
+  "AGS synthetic GtG pipeline preset no longer binds the test-only fixture");
+check(reconstructionPresetSource.includes('TemporalResponse = "1.0"')
+  && reconstructionPresetSource.includes('DriveRetention = "1.0"')
+  && reconstructionPresetSource.includes('SpatialRetention = "1.0"')
+  && reconstructionPresetSource.includes('SpatialCodeWeight = "0.500"')
+  && reconstructionPresetSource.includes('PolarityDriveWeight = "0.250"')
+  && reconstructionPresetSource.includes('ApertureEnabled = "1.0"')
+  && reconstructionPresetSource.includes('ApertureHorizontalRadius = "1.50"')
+  && reconstructionPresetSource.includes('ApertureVerticalRadius = "0.63"')
+  && reconstructionPresetSource.includes('BacklightScaleEnabled = "0.0"')
+  && reconstructionPresetSource.includes('BacklightRelativeGain = "1.0"')
+  && reconstructionPresetSource.includes('ExposureMode = "1.0"')
+  && reconstructionPresetSource.includes('DebugView = "0.0"'),
 "AGS default preset lost normal mechanism/diagnostic switches");
 for (const [parameter, expected] of [
   ["DriveDcOffset", "0.100"],
@@ -285,21 +534,103 @@ for (const [parameter, expected] of [
   ["IonDesorptionRate", "0.0004250000"],
   ["DriveCodeCoupling", "0.150"],
 ]) {
-  check(physicsPresetSource.includes(`${parameter} = "${expected}"`),
+  check(reconstructionPresetSource.includes(`${parameter} = "${expected}"`),
     `AGS default preset lost theoretical reconstruction ${parameter}=${expected}`);
 }
 for (const legacyParameter of ["IonChargeTau", "IonReleaseTau", "IonOpticalGain", "IonStrength"]) {
-  check(!physicsPresetSource.includes(legacyParameter),
+  check(!reconstructionPresetSource.includes(legacyParameter),
     `AGS default preset retains legacy luma-ION parameter ${legacyParameter}`);
 }
 check(neutralPresetSource.includes('HcsMeasuredColor = "0.0"'),
   "AGS neutral regression preset does not disable HCS measured color");
-check(physicsPresetSource.includes('BakedScanout = "1.0"'),
+for (const [parameter, expected] of Object.entries(ws1Baseline.controls ?? {})) {
+  check(presetNumber(neutralPresetSource, parameter) === expected,
+    `AGS neutral/static baseline control ${parameter} drifted from WS1 record`);
+}
+check(ws1Baseline.classification === "repository-regression-baseline-not-device-run",
+  "AGS WS1 repository baseline is misclassified as device evidence");
+check(ws1Baseline.deviceReceipt?.status
+  === "last-device-run-complete-for-ws5-artifacts-current-ws7-run-pending",
+  "AGS WS1 baseline does not disclose the pending current-WS7 target run");
+check(ws1Baseline.deviceReceipt?.lastCompletedRecord
+  === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
+"AGS WS1 baseline lost the last completed WS5 device receipt path");
+
+const shaderParameterNames = new Set(
+  [responseSource, exposureSource, displaySource].flatMap((source) => (
+    [...source.matchAll(/^#pragma parameter\s+(\w+)\b/gm)].map((match) => match[1])
+  )),
+);
+const inventoryParameterNames = Object.keys(ws1Inventory.parameters ?? {});
+check(ws1Inventory.sourcePreset === "presets/period-reconstruction-v1.slangp",
+  "AGS WS1 evidence inventory lost its canonical source preset");
+check(inventoryParameterNames.length === shaderParameterNames.size,
+  "AGS WS1 evidence inventory does not cover every runtime parameter");
+for (const parameter of shaderParameterNames) {
+  const entry = ws1Inventory.parameters?.[parameter];
+  check(Boolean(entry), `AGS WS1 evidence inventory is missing ${parameter}`);
+  if (!entry) continue;
+  check(Number.isFinite(entry.value), `AGS WS1 inventory ${parameter} has no numeric value`);
+  check([
+    "measured",
+    "literature-derived",
+    "project-derived",
+    "target-compensation",
+    "synthetic-fixture",
+  ].includes(entry.claimClass), `AGS WS1 inventory ${parameter} has invalid claim class`);
+  check(presetNumber(reconstructionPresetSource, parameter) === entry.value,
+    `AGS default ${parameter} drifted from the canonical WS1 inventory`);
+  for (const id of entry.evidenceIds ?? []) {
+    check(evidenceIds.has(id), `AGS WS1 inventory ${parameter} uses undefined ${id}`);
+  }
+}
+for (const parameter of inventoryParameterNames) {
+  check(shaderParameterNames.has(parameter),
+    `AGS WS1 evidence inventory retains unknown parameter ${parameter}`);
+}
+check(ws1Inventory.parameters?.DriveCodeCoupling?.value === 0.15,
+  "AGS canonical DriveCodeCoupling default is not the validated 0.15 project prior");
+check(metadata.evidence?.parameterEvidenceInventory === "data/ws1-evidence-inventory-v1.json",
+  "AGS model metadata lost the canonical WS1 evidence inventory");
+check(metadata.evidence?.repositoryBaseline === "generated/ws1-baseline-v1.json",
+  "AGS model metadata lost the WS1 repository baseline");
+check(metadata.evidence?.retentionExcitation?.includes("RGB555-command")
+  && metadata.evidence?.retentionValidationReceipt === "generated/ws5-retention-validation-v1.json",
+"AGS model metadata lost the WS5 reconstructed excitation or receipt");
+check(metadata.limitations?.some((value) => value.includes("unfitted sensitivity priors")),
+  "AGS limitations no longer disclose the WS5 parameter gap");
+
+for (const vector of ws1Baseline.vectors ?? []) {
+  const expected = renderStaticRgb555(vector.rgb555, hcsColor, { measured: false });
+  check(expected.length === vector.encodedSrgb?.length
+    && expected.every((value, channel) => (
+      Math.abs(value - vector.encodedSrgb[channel]) <= ws1Baseline.tolerance.cpuAbsolute
+    )), `AGS WS1 neutral/static vector drifted at ${vector.rgb555?.join("/")}`);
+}
+for (const [relative, expectedHash] of Object.entries(ws1Baseline.artifacts ?? {})) {
+  const artifactPath = path.join(root, relative);
+  check(fs.existsSync(artifactPath), `AGS WS1 baseline artifact is missing: ${relative}`);
+  if (!fs.existsSync(artifactPath)) continue;
+  const actualHash = crypto.createHash("sha256").update(fs.readFileSync(artifactPath)).digest("hex");
+  check(actualHash === expectedHash, `AGS WS1 baseline artifact hash drifted: ${relative}`);
+}
+
+const driveResearch = fs.readFileSync(
+  path.join(root, "docs", "research", "ags-101-drive-retention.md"),
+  "utf8",
+);
+check(driveResearch.includes("`DriveCodeCoupling=0.15`")
+  && !driveResearch.includes("`DriveCodeCoupling` remains zero"),
+"AGS drive-retention research still contradicts the 0.15 default");
+check(reconstructionPresetSource.includes('BakedScanout = "1.0"'),
   "AGS default physics preset does not enable three-phase scan timing");
-check(physicsPresetSource.includes('LatchOffsetLines = "0.5"'),
+check(reconstructionPresetSource.includes('LatchOffsetLines = "0.5"'),
   "AGS scanout default lost theoretical line-center latch");
-check(physicsPresetSource.includes('OpticalDelaySeconds = "0.000000"'),
+check(reconstructionPresetSource.includes('OpticalDelaySeconds = "0.000000"'),
   "AGS scanout default lost zero pure optical-delay prior");
+check(reconstructionPresetSource.includes('ParityPhase = "0.0"')
+  && reconstructionPresetSource.includes('InversionTopology = "0.0"'),
+"AGS default profile lost its explicitly named legacy parity/inversion candidates");
 const temporalOnlyPresetSource = fs.readFileSync(
   path.join(presetDir, "scanout-temporal-only-v1.slangp"), "utf8",
 );
@@ -321,6 +652,12 @@ const diagnosticsPresetSource = fs.readFileSync(
 );
 check(diagnosticsPresetSource.includes('DebugView = "1.0"'),
   "AGS unified diagnostic preset lost its native-state entry view");
+for (const debugView of [6, 7, 8, 9, 10, 11, 12, 13, 14]) {
+  check(displaySource.includes(`debugView == ${debugView}`),
+    `AGS display lost independent WS3 DebugView ${debugView}`);
+}
+check(!responseSource.includes("DebugView"),
+  "AGS WS3 read-only diagnostic selector leaked into persistent feedback");
 const staticIsolationSource = fs.readFileSync(
   path.join(presetDir, "isolation-static-color-v1.slangp"), "utf8",
 );
@@ -387,6 +724,295 @@ for (const signal of ["DCK", "LP", "SPS", "MOD", "REVC", "COM"]) {
   check(signalNames.includes(signal), `AGS scan capture schema lost signal ${signal}`);
 }
 
+for (const [schema, label] of [
+  [electricalCaptureSchema, "electrical"],
+  [photodiodeCaptureSchema, "photodiode"],
+]) {
+  check(schema.$schema === "https://json-schema.org/draft/2020-12/schema",
+    `AGS WS2 ${label} capture schema lost its JSON Schema dialect`);
+  check(schema.properties?.schemaVersion?.const === 1,
+    `AGS WS2 ${label} capture schema version changed without migration`);
+  for (const required of label === "electrical"
+    ? ["specimen", "instrument", "stimulus", "trigger", "runs", "rawFiles"]
+    : ["specimen", "detector", "acquisition", "stimulus", "transitions"]) {
+    check(schema.required?.includes(required),
+      `AGS WS2 ${label} capture schema no longer requires ${required}`);
+  }
+}
+const electricalSpecimenRequired =
+  electricalCaptureSchema.properties?.specimen?.required ?? [];
+for (const field of [
+  "brightnessMode", "warmupSeconds", "temperatureC", "ambientIlluminanceLux",
+  "chargerConnected", "batteryVoltage", "vcomState",
+]) {
+  check(electricalSpecimenRequired.includes(field),
+    `AGS electrical capture schema lost specimen field ${field}`);
+}
+const photodiodeSpecimenRequired =
+  photodiodeCaptureSchema.properties?.specimen?.required ?? [];
+for (const field of [
+  "lcdLabel", "brightnessMode", "warmupSeconds", "temperatureC",
+  "ambientIlluminanceLux", "chargerConnected", "batteryVoltage",
+]) {
+  check(photodiodeSpecimenRequired.includes(field),
+    `AGS photodiode capture schema lost specimen field ${field}`);
+}
+
+check(ws2StimulusManifest.schemaVersion === 1
+  && ws2StimulusManifest.suiteId === "nintendo-ags-101-ws2-stimulus-v1",
+"AGS WS2 stimulus manifest identity drifted");
+check(ws2StimulusManifest.sourceResolution?.join("x") === "240x160"
+  && ws2StimulusManifest.colorEncoding === "GBA RGB555",
+"AGS WS2 stimulus manifest lost exact GBA source geometry/color encoding");
+check(ws2StimulusManifest.timing?.masterClockHz === GBA_MASTER_CLOCK_HZ
+  && ws2StimulusManifest.timing?.cyclesPerLine === GBA_CYCLES_PER_LINE
+  && ws2StimulusManifest.timing?.totalLines === GBA_TOTAL_LINES,
+"AGS WS2 stimulus manifest timing drifted from the GBA clock");
+const requiredScenes = [
+  "color-ramps",
+  "mixed-patches",
+  "row-markers",
+  "checkerboard",
+  "isolated-window",
+  "parity-toggle",
+  "gtg-neutral-gate",
+  "gtg-red-gate",
+  "gtg-green-gate",
+  "gtg-blue-gate",
+  "retention-stress-recovery",
+];
+const stimulusScenes = new Map(
+  (ws2StimulusManifest.scenes ?? []).map((scene) => [scene.sceneId, scene]),
+);
+check(stimulusScenes.size === requiredScenes.length,
+  "AGS WS2 stimulus manifest has duplicate or unexpected scene count");
+for (const sceneId of requiredScenes) {
+  const scene = stimulusScenes.get(sceneId);
+  check(Boolean(scene), `AGS WS2 stimulus suite is missing ${sceneId}`);
+  if (!scene) continue;
+  const romPath = path.join(path.dirname(ws2StimulusManifestPath), scene.filename);
+  check(fs.existsSync(romPath), `AGS WS2 stimulus ROM is missing: ${scene.filename}`);
+  if (!fs.existsSync(romPath)) continue;
+  const rom = fs.readFileSync(romPath);
+  check(rom.length === 128 * 1024, `${sceneId}: unexpected ROM size`);
+  check(crypto.createHash("sha256").update(rom).digest("hex") === scene.sha256,
+    `${sceneId}: ROM SHA-256 drifted`);
+  check(rom.readUInt32LE(0) === 0xea00002e && rom[0xb2] === 0x96,
+    `${sceneId}: invalid GBA entry/header fixed value`);
+  let headerSum = 0;
+  for (let offset = 0xa0; offset <= 0xbc; offset += 1) headerSum += rom[offset];
+  check((-(headerSum + 0x19) & 0xff) === rom[0xbd]
+    && scene.gbaHeaderChecksum === rom[0xbd],
+  `${sceneId}: invalid GBA header checksum`);
+  const program = rom.subarray(0xc0, 0xc0 + scene.programSizeBytes);
+  check(crypto.createHash("sha256").update(program).digest("hex") === scene.programSha256,
+    `${sceneId}: ARM stimulus program drifted`);
+  for (const [pageIndex, offset] of [[0, 0x600], [1, 0x9c00]]) {
+    const page = rom.subarray(offset, offset + 240 * 160);
+    check(crypto.createHash("sha256").update(page).digest("hex") === scene.pageSha256?.[pageIndex],
+      `${sceneId}: framebuffer page ${pageIndex} drifted`);
+  }
+  check(scene.palette?.length > 0 && scene.palette.length <= 256,
+    `${sceneId}: invalid Mode 4 palette size`);
+}
+check(stimulusScenes.get("parity-toggle")?.page0DwellFrames === 1
+  && stimulusScenes.get("parity-toggle")?.page1DwellFrames === 1,
+"AGS WS2 parity stimulus no longer toggles every source frame");
+check(stimulusScenes.get("retention-stress-recovery")?.page0DwellFrames === 1800
+  && stimulusScenes.get("retention-stress-recovery")?.page1DwellFrames === 900,
+"AGS WS2 retention stimulus lost its 30 s/15 s nominal schedule");
+
+check(ws2CaptureSession.classification === "synthetic-loopback",
+  "AGS WS2 synthetic session is misclassified as measurement");
+check(ws2CaptureSession.stimulus?.suiteId === ws2StimulusManifest.suiteId,
+  "AGS WS2 capture session lost its stimulus suite identity");
+const stimulusManifestHash = crypto.createHash("sha256")
+  .update(fs.readFileSync(ws2StimulusManifestPath)).digest("hex");
+check(ws2CaptureSession.stimulus?.manifestSha256 === stimulusManifestHash,
+  "AGS WS2 capture session manifest hash drifted");
+check(ws2CaptureSession.transitions?.length === 15,
+  "AGS WS2 loopback no longer contains five three-repeat cases");
+for (const transition of ws2CaptureSession.transitions ?? []) {
+  const rawPath = path.join(ws2CaptureDir, transition.rawFile);
+  check(fs.existsSync(rawPath), `AGS WS2 raw capture is missing: ${transition.rawFile}`);
+  if (!fs.existsSync(rawPath)) continue;
+  const actual = crypto.createHash("sha256").update(fs.readFileSync(rawPath)).digest("hex");
+  check(actual === transition.sha256,
+    `AGS WS2 raw capture hash drifted: ${transition.rawFile}`);
+  check(stimulusScenes.has(transition.sceneId),
+    `AGS WS2 transition uses unknown scene ${transition.sceneId}`);
+}
+check(ws2CaptureReport.classification === "synthetic-pipeline-validation-only"
+  && ws2CaptureReport.summary?.pass === true,
+"AGS WS2 synthetic capture loopback is not passing or is misclassified");
+for (const requiredCase of [
+  "accepted-clean",
+  "rejected-noisy",
+  "rejected-overshoot",
+  "rejected-missing",
+  "rejected-censored",
+]) {
+  check(ws2CaptureReport.cases?.some((entry) => entry.caseId === requiredCase && entry.pass),
+    `AGS WS2 loopback lost passing case ${requiredCase}`);
+}
+check(ws2GtgSubset.schemaVersion === GTG_SCHEMA_VERSION
+  && ws2GtgSubset.classification === "synthetic"
+  && ws2GtgSubset.coverage?.recordedCellCount === 1
+  && ws2GtgSubset.samples?.length === 3
+  && ws2GtgSubset.missingCells?.length === 3071,
+"AGS WS2 accepted-waveform GtG handoff has inconsistent coverage");
+check(ws2GtgSubset.integrity?.samplesSha256 === crypto.createHash("sha256")
+  .update(JSON.stringify(ws2GtgSubset.samples)).digest("hex"),
+"AGS WS2 GtG handoff samples hash drifted");
+check(ws2GtgRuntime.sourceRecordId === ws2GtgSubset.recordId
+  && ws2GtgRuntime.sourceClassification === "synthetic"
+  && ws2GtgRuntime.errorMetrics?.packedCount === 1
+  && ws2GtgRuntime.errorMetrics?.fallbackCount === 3071,
+"AGS WS2 standard GtG builder did not preserve accepted/rejected coverage");
+const ws2GtgTexturePath = path.join(ws2CaptureDir, ws2GtgRuntime.texture.file);
+check(fs.existsSync(ws2GtgTexturePath)
+  && crypto.createHash("sha256").update(fs.readFileSync(ws2GtgTexturePath)).digest("hex")
+    === ws2GtgRuntime.texture.sha256,
+"AGS WS2 loopback runtime texture is missing or stale");
+check(metadata.evidence?.stimulusSuite === "generated/ws2-stimulus-v1/manifest.json"
+  && metadata.evidence?.capturePipeline === "reference/capture-pipeline.mjs",
+"AGS model metadata lost the WS2 stimulus/capture pipeline");
+check(metadata.limitations?.some((value) => value.includes("synthetic pipeline validation")),
+  "AGS model limitations no longer distinguish WS2 loopback from measurement");
+
+const ws3ConstraintHash = sha256File(ws3ConstraintSourcePath);
+check(ws2MgbaReceipt.summary?.pass === true
+  && ws2MgbaReceipt.summary?.scenes === 11
+  && ws2MgbaReceipt.summary?.runtimeBootPasses === 11
+  && ws2MgbaReceipt.summary?.consistencyPasses === 11,
+"AGS WS2 mGBA scene/manifest gate is not passing");
+check(ws3Generated.source?.constraintsSha256 === ws3ConstraintHash,
+  "AGS WS3 generated artifact is stale for its normalized constraints");
+check(ws3Generated.ws2Gate?.status === "pass"
+  && ws3Generated.ws2Gate?.runtimeReceiptSha256 === sha256File(ws2MgbaReceiptPath),
+"AGS WS3 artifact lost its current WS2 runtime gate");
+check(Object.values(ws3Generated.acceptance ?? {}).every((value) => (
+  value === "pass" || value === true
+)), "AGS WS3 generated acceptance contains a failed or unresolved implementation check");
+const formalWs3 = ws3ConstraintSource.formalAgs101SpecificConstants ?? {};
+for (const field of [
+  "latchPhase",
+  "pureOpticalDelaySeconds",
+  "frameParityPhase",
+  "inversionTopology",
+  "brightnessElectricalCoupling",
+]) {
+  check(formalWs3[field] === null,
+    `AGS WS3 improperly promoted hypothesis ${field} to a formal constant`);
+}
+check(ws3Generated.formalAgs101SpecificConstants?.reason?.includes("No direct AGT-CPU-01"),
+  "AGS WS3 artifact lost the unresolved-hardware reason");
+
+check(responseSource.includes('include "ags101-ws3-timing.inc"')
+  && exposureSource.includes('include "ags101-ws3-timing.inc"')
+  && displaySource.includes('include "ags101-ws3-timing.inc"'),
+"AGS response/exposure/display no longer share the generated WS3 equations");
+check(ws3TimingIncludeSource.includes(`Constraint SHA-256: ${ws3ConstraintHash}`),
+  "AGS shared WS3 Shader include is stale for the normalized constraints");
+check(ws3Generated.runtimeArtifacts?.sharedShaderIncludeSha256
+  === sha256File(path.join(shaderDir, "ags101-ws3-timing.inc")),
+"AGS WS3 shared Shader include hash drifted");
+
+check(ws3Compile.summary?.pass === true && ws3Compile.stages?.length === 6
+  && ws3Compile.stages.every((entry) => entry.pass && entry.spirvBytes > 0),
+"AGS WS3 Shader compilation/SPIR-V receipt is not passing six stages");
+check(ws3Compile.sources?.responseShaderSha256
+  === sha256File(path.join(shaderDir, "ags101-response-v1.slang"))
+  && ws3Compile.sources?.exposureShaderSha256
+    === sha256File(path.join(shaderDir, "ags101-exposure-v1.slang"))
+  && ws3Compile.sources?.displayShaderSha256
+    === sha256File(path.join(shaderDir, "ags101-display-v1.slang"))
+  && ws3Compile.sources?.sharedTimingIncludeSha256
+    === sha256File(path.join(shaderDir, "ags101-ws3-timing.inc")),
+"AGS WS3 Shader compile receipt is stale for current sources");
+check(ws3Generated.runtimeArtifacts?.shaderCompileReceiptSha256 === sha256File(ws3CompilePath),
+  "AGS WS3 generated artifact lost the compile-receipt hash");
+
+check(ws3PresetManifest.classification
+  === "generated-sensitivity-candidates-not-formal-ags101-profiles",
+"AGS WS3 candidate presets are misclassified as formal profiles");
+check(ws3PresetManifest.sourceConstraintSha256 === ws3ConstraintHash
+  && ws3PresetManifest.basePresetSha256 === sha256File(
+    path.join(presetDir, "period-reconstruction-v1.slangp"),
+  ), "AGS WS3 preset manifest is stale for its constraints or base preset");
+const ws3PresetKinds = Object.groupBy
+  ? Object.groupBy(ws3PresetManifest.presets ?? [], (entry) => entry.kind)
+  : (ws3PresetManifest.presets ?? []).reduce((groups, entry) => {
+      (groups[entry.kind] ??= []).push(entry);
+      return groups;
+    }, {});
+check(ws3PresetKinds["timing-candidate"]?.length === 9
+  && ws3PresetKinds["parity-candidate"]?.length === 2
+  && ws3PresetKinds["inversion-candidate"]?.length === 4
+  && ws3PresetKinds["read-only-diagnostic"]?.length === 5,
+"AGS WS3 candidate preset matrix is incomplete");
+for (const entry of ws3PresetManifest.presets ?? []) {
+  const candidatePath = path.resolve(root, entry.path);
+  check(candidatePath.startsWith(`${ws3PresetDir}${path.sep}`),
+    `AGS WS3 candidate preset escapes its generated directory: ${entry.path}`);
+  check(fs.existsSync(candidatePath), `AGS WS3 candidate preset is missing: ${entry.path}`);
+  if (!fs.existsSync(candidatePath)) continue;
+  const candidateSource = fs.readFileSync(candidatePath, "utf8");
+  check(sha256File(candidatePath) === entry.sha256,
+    `AGS WS3 candidate preset hash drifted: ${entry.path}`);
+  check(candidateSource.includes("Generated by tools/build-ags101-ws3.mjs")
+    && candidateSource.includes("no formal AGS-101 selection is made"),
+  `AGS WS3 candidate preset lost hypothesis classification: ${entry.path}`);
+  check(!candidateSource.includes("#reference"),
+    `AGS WS3 candidate preset uses inherited parameter state: ${entry.path}`);
+  for (const target of [
+    ...[...candidateSource.matchAll(/shader\d+\s*=\s*"([^"]+)"/g)].map((match) => match[1]),
+    ...[...candidateSource.matchAll(/^\w+\s*=\s*"([^"]+\.(?:png|jpg|jpeg|bmp|tga))"/gmi)]
+      .map((match) => match[1]),
+  ]) {
+    check(fs.existsSync(path.resolve(path.dirname(candidatePath), target)),
+      `AGS WS3 candidate preset has a missing reference: ${entry.path} -> ${target}`);
+  }
+}
+check(ws3Generated.runtimeArtifacts?.candidatePresetManifestSha256
+  === sha256File(ws3PresetManifestPath),
+"AGS WS3 generated artifact lost the candidate-preset manifest hash");
+
+check(ws3Sensitivity.classification === "cpu-model-sensitivity-not-hardware-measurement"
+  && ws3Sensitivity.sourceConstraintSha256 === ws3ConstraintHash,
+"AGS WS3 sensitivity report is stale or misclassified");
+check(ws3Sensitivity.shaderContract?.sharedIncludeSha256
+  === sha256File(path.join(shaderDir, "ags101-ws3-timing.inc")),
+"AGS WS3 sensitivity report lost its shared Shader-equation contract");
+check(ws3Sensitivity.summary?.timingProfiles === 9
+  && ws3Sensitivity.summary?.timingProfilesChangingOutput === 8
+  && ws3Sensitivity.summary?.polarityRuns === 16
+  && ws3Sensitivity.summary?.polarityRunsChangingExcitation === 14
+  && ws3Sensitivity.summary?.equationVectors === 80
+  && ws3Sensitivity.summary?.formalAgs101SelectionMade === false,
+"AGS WS3 sensitivity coverage or unresolved-selection status drifted");
+for (const vector of ws3Sensitivity.equationVectors ?? []) {
+  check(vector.spatialPhase === inversionSpatialPhase(vector)
+    && vector.expectedPolarity === drivePolarity(vector),
+  `AGS WS3 CPU/Shader polarity vector drifted at ${vector.x}/${vector.y}`);
+}
+for (const profile of ws3Generated.timingProfiles ?? []) {
+  for (const fixture of profile.rowFixtures ?? []) {
+    const expected = scanEvent({
+      row: fixture.row,
+      latchOffsetLines: profile.latchOffsetLines,
+      opticalDelaySeconds: profile.pureOpticalDelaySeconds,
+    });
+    check(Object.entries(expected).every(([key, value]) => fixture[key] === value),
+      `AGS WS3 CPU/Shader scan vector drifted for ${profile.profileId} row ${fixture.row}`);
+  }
+}
+check(ws3Generated.runtimeArtifacts?.sensitivityReportSha256 === sha256File(ws3SensitivityPath),
+  "AGS WS3 generated artifact lost the sensitivity-report hash");
+check(metadata.evidence?.timingConstraintArtifact
+  === "generated/ws3-timing-constraints-v1.json",
+"AGS model metadata lost the WS3 runtime constraint artifact");
+
 check(frontendValidationSchema.$schema === "https://json-schema.org/draft/2020-12/schema",
   "AGS frontend validation schema lost its JSON Schema dialect");
 check(frontendValidationSchema.properties?.schemaVersion?.const === 1,
@@ -398,6 +1024,8 @@ for (const required of [
   check(frontendValidationSchema.required?.includes(required),
     `AGS frontend validation schema no longer requires ${required}`);
 }
+check(frontendValidationSchema.properties?.runEvidence?.type === "object",
+  "AGS frontend validation schema cannot retain structured run evidence");
 const requiredFrontendEvents = [
   "reset",
   "content-reload",
@@ -409,9 +1037,9 @@ const requiredFrontendEvents = [
   "frame-duplication",
   "variable-refresh",
 ];
-function checkFrontendRecord(record, label, allowTemplate = false) {
+function checkFrontendRecord(record, label, allowTemplate = false, allowedModelIds = [metadata.id]) {
   check(record.schemaVersion === 1, `${label}: wrong schema version`);
-  check(record.modelId === metadata.id, `${label}: wrong model ID`);
+  check(allowedModelIds.includes(record.modelId), `${label}: wrong model ID`);
   check(/^[0-9a-f]{40}$/.test(record.repositoryCommit ?? ""),
     `${label}: invalid repository commit`);
   check(allowTemplate ? record.classification === "template" : record.classification === "device-run",
@@ -481,11 +1109,357 @@ check(gtgManifest.errorMetrics?.fallbackCount === 0
 check(gtgManifest.errorMetrics?.maxRateRoundTripRelativeError < 6e-5,
   "AGS GtG packed rate precision exceeded its documented bound");
 
+check(validateEnsembleDefinition(ws4Ensemble, ws4Evidence).length === 0,
+  "AGS WS4 ensemble definition is invalid");
+check(ws4Evidence.exactPanelSearchRecord
+  === "data/ws3-evidence-inventory-v1.json#WS3-PANEL-DATASHEET-SEARCH-2026-08-20",
+"AGS WS4 lost the preserved exact-panel search record");
+check(ws4Ensemble.runtimeModel?.equationId === WS4_EQUATION_ID
+  && ws4Ensemble.defaultMember === "nominal",
+"AGS WS4 equation or nominal selection drifted");
+for (const member of ws4Ensemble.members) {
+  const manifest = ws4Manifests[member.id];
+  const regeneratedCells = buildReconstructedCells(member);
+  check(manifest?.sourceClassification
+    === "literature-constrained-reconstruction-not-panel-measurement",
+  `AGS WS4 ${member.id} lost reconstructed classification`);
+  check(manifest?.coverage?.packedCount === 3072
+    && manifest.coverage.fallbackCount === 0
+    && manifest.provenanceDictionary?.measuredCellCount === 0
+    && manifest.cells?.length === 3072,
+  `AGS WS4 ${member.id} coverage is incomplete or mislabeled`);
+  check(manifest.cells.every((cell) => {
+    const provenance = manifest.provenanceDictionary?.[cell.provenanceId];
+    return provenance?.ensembleMember === member.id
+      && provenance?.equationId === WS4_EQUATION_ID
+      && provenance?.parameterRangeId === "data/ws4-gtg-ensemble-v1.json#parameterRanges"
+      && Array.isArray(provenance?.sourceEvidenceIds)
+      && typeof provenance?.fallbackBehavior === "string";
+  }), `AGS WS4 ${member.id} lost per-cell provenance`);
+  check(regeneratedCells.every((cell, index) => (
+    cell.id === manifest.cells[index].id
+      && Math.abs(cell.ratePerSecond - manifest.cells[index].ratePerSecond) < 1e-7
+  )), `AGS WS4 ${member.id} manifest disagrees with the reference equation`);
+  const darkening = reconstructedTransition(member, 31, 0);
+  const brightening = reconstructedTransition(member, 0, 31);
+  check(Math.abs(darkening.t10To90Ms - member.opticalDarkeningEndpointT10To90Ms) < 1e-12
+    && Math.abs(brightening.t10To90Ms - member.opticalBrighteningEndpointT10To90Ms) < 1e-12,
+  `AGS WS4 ${member.id} endpoint no longer reproduces its source selection`);
+}
+check(ws4Coverage.measuredCells === 0
+  && ws4Coverage.generatedCells === 9216
+  && ws4Coverage.unsupportedDimensions?.exactPanelWaveform === "unsupported",
+"AGS WS4 coverage disguises reconstructed or unsupported dimensions");
+check(ws4Validation.checks?.ws2SceneManifestGate === "passed"
+  && ws4Validation.checks?.syntheticFixtureUsedAsDefault === false
+  && ws4Validation.checks?.cpuVsShaderFloat32EquationMaximumAbsoluteError
+    <= ws4Validation.checks?.cpuVsShaderFloat32EquationTolerance,
+"AGS WS4 validation receipt failed its scene, default, or equation gate");
+check(ws4Validation.checks?.actualGpuNumericReadback
+  === "not-run; reserved for WS8 target instrumentation",
+"AGS WS4 must not claim an unperformed GPU numeric readback");
+check(ws4PresetManifest.defaultMember === "nominal"
+  && ws4PresetManifest.artifacts?.length === 3,
+"AGS WS4 comparison preset manifest is incomplete");
+
+check(ws5Evidence.inventoryId === "nintendo-ags-101-ws5-evidence-v1"
+  && ws5Evidence.evidence?.length === 7,
+"AGS WS5 evidence inventory is incomplete");
+check(ws5Reconstruction.equationId === "WS5-CODE-POLARITY-EXCITATION-V1"
+  && ws5Reconstruction.stateEquationId === "WS5-MIZUSAKI-ONE-STATE-V1"
+  && ws5Reconstruction.defaultMember === "nominal",
+"AGS WS5 reconstruction identity or default drifted");
+check(ws5Reconstruction.ws3Matrix?.inversionTopologies?.length === 4
+  && ws5Reconstruction.ws3Matrix?.parityPhases?.length === 2
+  && ws5Reconstruction.ws4Matrix?.length === 3,
+"AGS WS5 WS3/WS4 candidate matrix is incomplete");
+check(ws5Validation.reportId === "nintendo-ags-101-ws5-retention-validation-v1"
+  && Object.values(ws5Validation.checks ?? {}).every((value) => value === true)
+  && ws5Validation.fixtures?.matrix?.length === 48
+  && ws5Validation.maximumCpuVsShaderFloat32AbsoluteError
+    <= ws5Validation.cpuVsShaderFloat32Tolerance,
+"AGS WS5 fixture or CPU/Shader-equation receipt failed");
+check(ws5Validation.actualGpuNumericReadback
+  === "separate target receipt required; repository equation emulator is not GPU evidence",
+"AGS WS5 repository receipt falsely claims GPU evidence");
+check(ws5PresetManifest.candidateCount === 12
+  && ws5PresetManifest.controlCount === 3
+  && ws5PresetManifest.artifacts?.length === 15,
+"AGS WS5 preset manifest is incomplete");
+for (const artifact of ws5PresetManifest.artifacts ?? []) {
+  const artifactPath = path.join(modelDir, "generated", "ws5-presets-v1", artifact.file);
+  check(fs.existsSync(artifactPath), `AGS WS5 preset is missing: ${artifact.file}`);
+  if (fs.existsSync(artifactPath)) {
+    check(sha256File(artifactPath) === artifact.sha256,
+      `AGS WS5 preset hash drifted: ${artifact.file}`);
+  }
+}
+check(ws6Definition.recordId === "nintendo-ags-101-ws6-panel-optics-v1"
+  && ws6Definition.backlight?.established?.userBrightnessModes === 2
+  && ws6Definition.backlight?.unknown?.pwmFrequencyHz === null
+  && ws6Definition.aperture?.archivalImageAssessment?.sufficientForAgsSpecificKernel === false,
+"AGS WS6 source definition lost its brightness or aperture evidence boundary");
+check(ws6Validation.reportId === "nintendo-ags-101-ws6-validation-v1"
+  && ws6Validation.acceptance?.blackPoliciesNamedSeparately === true
+  && ws6Validation.acceptance?.brightnessSensitivityIndependentBypass === true
+  && ws6Validation.acceptance?.integerAndFractionalCpuEnergy === "pass"
+  && ws6Validation.acceptance?.gpuNumericApertureReadback === "deferred-to-ws8",
+"AGS WS6 validation receipt is incomplete or overclaims GPU evidence");
+check(ws6PresetManifest.presets?.length === 7,
+  "AGS WS6 preset manifest is incomplete");
+for (const artifact of ws6PresetManifest.presets ?? []) {
+  const artifactPath = path.join(modelDir, artifact.path);
+  check(fs.existsSync(artifactPath), `AGS WS6 preset is missing: ${artifact.path}`);
+  if (fs.existsSync(artifactPath)) {
+    check(sha256File(artifactPath) === artifact.sha256,
+      `AGS WS6 preset hash drifted: ${artifact.path}`);
+  }
+}
+check(relativeBacklightGain({ enabled: false, ratio: 0.5 }) === 1
+  && relativeBacklightGain({ enabled: true, ratio: 0.75 }) === 0.75,
+"AGS WS6 relative-backlight bypass or sensitivity gain drifted");
+check(Math.abs(apertureEnergyNormalization(1.5, 0.63)
+  - ws6Validation.aperture.nominalNormalization) < 1e-11,
+"AGS WS6 aperture normalization disagrees with its generated receipt");
+for (const scale of [4, 3.5, 4.25]) {
+  const mean = averageUniformAperture(12, 8, scale, scale);
+  check(mean.every((value) => Math.abs(value - 1) < 2e-3),
+    `AGS WS6 aperture lost unit mean energy at ${scale}x`);
+}
+check(ws7Definition.recordId === "nintendo-ags-101-ws7-exposure-integration-v1"
+  && ws7Definition.nativeClock?.masterClockHz === 16_777_216
+  && ws7Definition.nativeClock?.cyclesPerLine === 1_232
+  && ws7Definition.nativeClock?.linesPerFrame === 228
+  && Math.abs(ws7Definition.nativeClock?.observationSeconds - GBA_FRAME_SECONDS) < 1e-18,
+"AGS WS7 definition lost the exact native observation interval");
+check(ws7Definition.stateContract?.endpointPass?.includes("Pass 0 RGBA32F")
+  && ws7Definition.stateContract?.exposurePass?.includes("Pass 1")
+  && ws7Definition.stateContract?.displayPass?.includes("Pass 2")
+  && ws7Definition.stateContract?.endpointDiagnostic?.includes("ExposureMode=0"),
+"AGS WS7 three-pass state or endpoint-diagnostic contract is incomplete");
+const ws7Intervals = Object.fromEntries(
+  (ws7Definition.intervalProfiles ?? []).map((entry) => [entry.id, entry]),
+);
+check(Object.keys(ws7Intervals).length === 7
+  && ws7Intervals["ordinary-refresh"]?.nativeFramesAdvanced === 1
+  && ws7Intervals["content-duplicate"]?.nativeFramesAdvanced === 1
+  && ws7Intervals["frontend-generated-duplicate"]?.nativeFramesAdvanced === 0
+  && ws7Intervals["fast-forward-skipped-frames"]?.runtimeStatus
+    === "unsupported-safe-bypass-required"
+  && ws7Intervals["variable-refresh-unknown-duplication-or-drop"]?.runtimeStatus
+    === "unsupported-safe-bypass-required",
+"AGS WS7 frontend interval classifications are incomplete or unsafe");
+check((ws7Definition.intervalProfiles ?? [])
+  .filter((entry) => entry.nativeFramesAdvanced === 1)
+  .every((entry) => entry.observationSeconds === GBA_FRAME_SECONDS),
+"AGS WS7 supported interval changed the native GBA panel clock");
+check(ws7Definition.backlightCandidates?.acceptedForRuntime?.length === 3
+  && ws7Definition.backlightCandidates?.excluded?.some(
+    (entry) => entry.id === "pwm-dimming-unselected",
+  ), "AGS WS7 backlight bounds silently selected an unknown PWM waveform");
+
+check(ws7Validation.reportId === "nintendo-ags-101-ws7-exposure-validation-v1"
+  && ws7Validation.classification
+    === "repository-cpu-shader-equation-receipt-not-device-readback",
+"AGS WS7 validation receipt identity or evidence class drifted");
+check(ws7Validation.sources?.definitionSha256 === sha256File(ws7DefinitionPath)
+  && ws7Validation.sources?.presetManifestSha256 === sha256File(ws7PresetManifestPath)
+  && ws7Validation.sources?.ws6ValidationSha256
+    === sha256File(path.join(modelDir, "generated", "ws6-validation-v1.json")),
+"AGS WS7 validation receipt is stale for its source definition, preset manifest, or WS6 input");
+check(ws7Validation.numericalReference?.maximumSimpsonAbsoluteError < 1e-13
+  && ws7Validation.numericalReference?.maximumMovingAlternatingHighResolutionAbsoluteError < 1e-13
+  && ws7Validation.numericalReference?.maximumShaderFloatIntegralAbsoluteError
+    <= ws7Validation.numericalReference?.shaderFloatTolerance,
+"AGS WS7 closed-form, high-resolution, or Shader-float exposure bound failed");
+const ws7ExactFixture = firstOrderIntegral(0.17, 0.83, 40, GBA_FRAME_SECONDS);
+const ws7SimpsonFixture = compositeSimpsonFirstOrder(
+  0.17, 0.83, 40, GBA_FRAME_SECONDS, 4096,
+);
+check(Math.abs(ws7ExactFixture - ws7SimpsonFixture) < 1e-13,
+  "AGS independent WS7 first-order exposure fixture disagrees with Simpson 4096");
+check(ws7Validation.staticFixtures?.length === 12
+  && ws7Validation.staticFixtures.every((entry) => entry.error < 1e-14)
+  && ws7Validation.transitionFixtures?.length === 27
+  && ws7Validation.transitionFixtures.every((entry) => entry.highResolutionError < 1e-13)
+  && ws7Validation.alternating?.length === 3
+  && ws7Validation.alternating.every((entry) => entry.frames?.length === 12
+    && entry.frames.every((frame) => frame.highResolutionError < 1e-13)),
+"AGS WS7 static, scan-row, partial-channel, or alternating fixture coverage is incomplete");
+const ws7RiseBounds = ws7Validation.uncertaintyBounds?.riseGreenAtRow80 ?? {};
+const ws7FallBounds = ws7Validation.uncertaintyBounds?.fallGreenAtRow80 ?? {};
+check(ws7RiseBounds.fast > ws7RiseBounds.nominal
+  && ws7RiseBounds.nominal > ws7RiseBounds.slow
+  && ws7FallBounds.fast < ws7FallBounds.nominal
+  && ws7FallBounds.nominal < ws7FallBounds.slow,
+"AGS WS7 fast/nominal/slow emitted-light bounds lost their expected ordering");
+const ws7BacklightFixture = applyStaticBacklight([0.2, 0.4, 0.8], 0.75);
+check(ws7BacklightFixture.every((value, channel) => (
+  Math.abs(value - [0.15, 0.3, 0.6][channel]) < 1e-15
+)) && ws7Validation.uncertaintyBounds?.pwmIncluded === false,
+"AGS WS7 static backlight integration or PWM exclusion drifted");
+check(ws7Validation.invariants?.colorArtifactSha256UnchangedByExposure
+    === sha256File(path.join(modelDir, "generated", "hcs-e688fc5-color.json"))
+  && ws7Validation.invariants?.apertureValidationSha256UnchangedByExposure
+    === sha256File(path.join(modelDir, "generated", "ws6-validation-v1.json")),
+"AGS WS7 changed or lost the pinned color/aperture inputs");
+check(ws7Validation.acceptance?.intervalContractComplete === true
+  && ws7Validation.acceptance?.nativeClockInvariant === true
+  && ws7Validation.acceptance?.staticMatchesEndpoint === true
+  && ws7Validation.acceptance?.movingAndAlternatingReference === "pass"
+  && ws7Validation.acceptance?.closedFormVsHighResolutionReference === "pass"
+  && ws7Validation.acceptance?.endpointDiagnosticPreset === true
+  && ws7Validation.acceptance?.colorAndApertureInvariant === true
+  && ws7Validation.acceptance?.reproducibleGtgAndBacklightBounds === true
+  && ws7Validation.acceptance?.pwmFrequencyInvented === false
+  && ws7Validation.acceptance?.gpuNumericExposureReadback === "deferred-to-ws8",
+"AGS WS7 acceptance is incomplete or overclaims actual GPU exposure readback");
+check(ws7PresetManifest.manifestId === "nintendo-ags-101-ws7-presets-v1"
+  && ws7PresetManifest.definitionSha256 === sha256File(ws7DefinitionPath)
+  && ws7PresetManifest.presets?.length === 7,
+"AGS WS7 exposure preset manifest is incomplete or stale");
+for (const artifact of ws7PresetManifest.presets ?? []) {
+  const artifactPath = path.join(modelDir, artifact.path);
+  check(fs.existsSync(artifactPath), `AGS WS7 preset is missing: ${artifact.path}`);
+  if (fs.existsSync(artifactPath)) {
+    check(sha256File(artifactPath) === artifact.sha256,
+      `AGS WS7 preset hash drifted: ${artifact.path}`);
+    const source = fs.readFileSync(artifactPath, "utf8");
+    check(source.includes('shaders = "3"')
+      && source.includes("ags101-exposure-v1.slang"),
+    `AGS WS7 preset lost the exposure pass: ${artifact.path}`);
+  }
+}
+check(ws8Reference.referenceId === "nintendo-ags-101-ws8-exposure-gpu-reference-v1"
+  && ws8Reference.classification
+    === "cpu-reference-for-target-gpu-readback-not-panel-measurement"
+  && ws8Reference.pipeline?.debugView === 13
+  && ws8Reference.pipeline?.driveRetention === false
+  && ws8Reference.stimulus?.sceneId === "parity-toggle"
+  && ws8Reference.stimulus?.dwellFrames?.join(",") === "1,1",
+"AGS WS8 exposure GPU reference identity or isolation contract drifted");
+check(ws8Reference.probe?.join(",") === "120,80"
+  && Object.keys(ws8Reference.expectedByPackedTarget ?? {}).sort().join("|")
+    === "0,0,0|31,31,31"
+  && ws8Reference.convergence?.maximumSuccessiveSameTargetAverageDrift < 1e-12
+  && ws8Reference.gpuComparisonTolerance === 3e-6,
+"AGS WS8 alternating exposure reference is incomplete or unconverged");
+check(ws8Reference.apertureEnergy?.debugView === 14
+  && ws8Reference.apertureEnergy?.encodedLinearScale === 0.25
+  && Object.keys(ws8Reference.apertureEnergy?.expectedByScale ?? {}).sort().join(",") === "3.5,4"
+  && ws8Reference.apertureEnergy?.screenshotComparisonTolerance === 0.006,
+"AGS WS8 aperture GPU reference is incomplete");
+check(ws8Reference.sources?.responseShaderSha256
+    === sha256File(path.join(shaderDir, "ags101-response-v1.slang"))
+  && ws8Reference.sources?.exposureShaderSha256
+    === sha256File(path.join(shaderDir, "ags101-exposure-v1.slang"))
+  && ws8Reference.sources?.displayShaderSha256
+    === sha256File(path.join(shaderDir, "ags101-display-v1.slang")),
+"AGS WS8 GPU reference is stale for the current three Shader passes");
+check(ws8PresetManifest.manifestId === "nintendo-ags-101-ws8-presets-v1"
+  && ws8PresetManifest.presets?.length === 3
+  && ws8PresetManifest.presets.some((preset) => preset.debugView === 13)
+  && ws8PresetManifest.presets.some((preset) => preset.debugView === 14)
+  && ws8PresetManifest.exposureReference?.sha256 === sha256File(ws8ReferencePath),
+"AGS WS8 exposure preset manifest or CPU reference hash drifted");
+for (const artifact of ws8PresetManifest.presets ?? []) {
+  const artifactPath = path.join(modelDir, artifact.path);
+  check(fs.existsSync(artifactPath), `AGS WS8 preset is missing: ${artifact.path}`);
+  if (fs.existsSync(artifactPath)) {
+    const source = fs.readFileSync(artifactPath, "utf8");
+    check(sha256File(artifactPath) === artifact.sha256
+      && source.includes(`DebugView = "${artifact.debugView}.0"`)
+      && source.includes('DriveRetention = "0.0"')
+      && (artifact.id !== "exposure-numeric" || source.includes('ExposureMode = "1.0"')),
+    `AGS WS8 preset lost hash or isolation settings: ${artifact.path}`);
+  }
+}
+const ws8SafeBypass = ws8PresetManifest.presets?.find(
+  (preset) => preset.id === "frontend-safe-bypass",
+);
+if (ws8SafeBypass) {
+  const source = fs.readFileSync(path.join(modelDir, ws8SafeBypass.path), "utf8");
+  check(source.includes('TemporalResponse = "0.0"')
+    && source.includes('DriveRetention = "0.0"')
+    && source.includes('BakedScanout = "0.0"')
+    && source.includes('ExposureMode = "0.0"'),
+  "AGS WS8 frontend safe-bypass preset regained temporal state");
+}
+check(metadata.evidence?.gpuExposureReference
+  === "generated/ws8-exposure-gpu-reference-v1.json"
+  && metadata.evidence?.ws8ValidationPresets === "generated/ws8-presets-v1/manifest.json"
+  && metadata.evidence?.currentTargetValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
+  && metadata.diagnostics?.currentWs7DeviceValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json",
+"AGS model metadata lost WS8 exposure validation artifacts");
+check(ws8TargetReceipt.runId === "konkr-gt78-vn-ags101-ws8-current-20260820"
+  && ws8TargetReceipt.modelId === metadata.id
+  && ws8TargetReceipt.currentPipeline?.passes === 3
+  && ws8TargetReceipt.numericReadback?.exposure?.pass === true
+  && ws8TargetReceipt.numericReadback?.aperture?.pass === true
+  && ws8TargetReceipt.numericReadback?.retention?.pass === true
+  && ws8TargetReceipt.numericReadback?.frontendSafeBypass?.pass === true
+  && ws8TargetReceipt.acceptance?.currentArtifactReceipt
+    === "pass-with-explicit-unsupported-boundaries"
+  && ws8TargetReceipt.acceptance?.promotionEligible === true
+  && ws8TargetReceipt.acceptance?.promotionApplied === true
+  && ws8TargetReceipt.acceptance?.promotedModelId
+    === "nintendo-ags-101-period-reconstruction",
+"AGS current WS8 KONKR receipt lost a numeric, safe-boundary, or promotion gate");
+for (const shader of ["ags101-response-v1.slang", "ags101-exposure-v1.slang", "ags101-display-v1.slang"]) {
+  const receiptArtifact = ws8TargetReceipt.artifacts?.repository?.find(
+    (item) => item.path === `models/nintendo-ags-101/shaders/${shader}`,
+  );
+  check(receiptArtifact?.sha256 === sha256File(path.join(shaderDir, shader)),
+    `AGS current WS8 KONKR receipt is stale for ${shader}`);
+}
+for (const code of [0, 4, 16, 27, 31]) {
+  check(Math.abs(rgb555DriveCodeProxy([code, code, code]) - code / 31) < 1e-15,
+    `AGS WS5 RGB555 command proxy drifted at code ${code}`);
+  for (const polarity of [-1, 1]) {
+    check(spatialDriveExcitation({
+      sourceRgb555: [code, code, code],
+      polarity,
+      driveDcOffset: 0,
+      spatialRetentionEnabled: true,
+      codeWeight: 0.5,
+      polarityWeight: 0.25,
+    }) === 0, `AGS WS5 balanced drive is nonzero at code ${code}, polarity ${polarity}`);
+  }
+}
+const ws5SpatialOff = stepSpatialRetention({
+  state: 0.17,
+  sourceRgb555: [0, 17, 31],
+  polarity: -1,
+  driveDcOffset: 0.1,
+  spatialRetentionEnabled: false,
+  adsorptionRatePerSecond: LITERATURE_CELL_PRIOR.adsorptionRatePerSecond,
+  desorptionRatePerSecond: LITERATURE_CELL_PRIOR.desorptionRatePerSecond,
+  dtSeconds: 0.37,
+});
+const ws5GlobalControl = stepResidualDc({
+  state: 0.17,
+  driveDcOffset: 0.1,
+  adsorptionRatePerSecond: LITERATURE_CELL_PRIOR.adsorptionRatePerSecond,
+  desorptionRatePerSecond: LITERATURE_CELL_PRIOR.desorptionRatePerSecond,
+  dtSeconds: 0.37,
+});
+check(ws5SpatialOff.excitation === 0.1 && ws5SpatialOff.state === ws5GlobalControl,
+  "AGS WS5 spatial-off mode no longer exactly restores the WS1 global path");
+
 check(hcsSource.source.commit === "e688fc51141c0974728aa1bdcb89b94d74123f6b",
   "AGS HCS normalized record lost pinned source commit");
 check(hcsSource.grayscale.length === 32, "AGS HCS normalized record lost 32-code gray ramp");
 check(hcsColor.source.evidenceId === "AGS-COLOR-01", "AGS HCS artifact lost evidence ID");
 check(hcsColor.eotfRgb555Runtime.length === 32, "AGS HCS artifact lost 32-code EOTF");
+check(hcsColor.outputPolicies?.hcsBlackSubtracted?.id === "hcs-black-subtracted"
+  && hcsColor.outputPolicies?.hcsPhysicalBlack?.id === "hcs-physical-black",
+"AGS HCS artifact lost separately named black policies");
+check(hcsColor.coverage?.measured?.neutralRampRgb555Codes === 32
+  && hcsColor.coverage?.notMeasuredOrNotRecorded?.perChannelRamps === true
+  && hcsColor.coverage?.notMeasuredOrNotRecorded?.interUnitVariation === true,
+"AGS HCS artifact lost measured/unmeasured coverage separation");
 check(hcsColor.blackXyz.every((value, channel) => (
   Math.abs(value - hcsSource.grayscale[0].xyz[channel]) < 1e-12
 )), "AGS HCS black anchor drifted from normalized record");
@@ -994,7 +1968,7 @@ const targetProfile = JSON.parse(fs.readFileSync(
   path.join(root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "profile.json"),
   "utf8",
 ));
-const agsTarget = targetProfile.additionalContent?.["Nintendo GBA SP AGS-101 physics seed"];
+const agsTarget = targetProfile.additionalContent?.["Nintendo GBA SP AGS-101 period reconstruction"];
 check(Boolean(agsTarget), "KPA profile lost AGS-101 target geometry");
 check(agsTarget?.contentViewport?.join("x") === "960x640", "KPA AGS viewport is not 960x640");
 check(agsTarget?.integerScale === 4, "KPA AGS target lost exact 4x scale");
@@ -1003,6 +1977,12 @@ const targetDir = path.join(root, "targets", "konkr-gt78-vn", "960x640-srgb-neut
 const validationRecords = (targetProfile.validationRecords ?? [])
   .filter((relativeRecord) => path.basename(relativeRecord).startsWith("ags101-"));
 check(validationRecords.length > 0, "KPA profile has no AGS frontend validation record");
+const lastCompletedTargetRecord = "validation/ags101-ws5-target-20260820.json";
+check(validationRecords.includes(lastCompletedTargetRecord),
+  "KPA profile omits the last completed AGS WS5 target record");
+check(targetProfile.currentAgs101ValidationRecord
+  === "validation/ags101-ws8-target-20260820.json",
+"KPA profile lost the current promoted AGS WS8 target record");
 for (const relativeRecord of validationRecords) {
   const recordPath = path.resolve(targetDir, relativeRecord);
   check(recordPath.startsWith(`${targetDir}${path.sep}`),
@@ -1010,7 +1990,10 @@ for (const relativeRecord of validationRecords) {
   check(fs.existsSync(recordPath), `KPA validation record is missing: ${relativeRecord}`);
   if (!fs.existsSync(recordPath)) continue;
   const record = JSON.parse(fs.readFileSync(recordPath, "utf8"));
-  checkFrontendRecord(record, relativeRecord);
+  checkFrontendRecord(record, relativeRecord, false, [
+    metadata.id,
+    metadata.promotion?.from,
+  ]);
   check(record.targetProfile === targetProfile.id,
     `${relativeRecord}: target profile ID does not match profile.json`);
   for (const relativeArtifact of Object.keys(record.artifacts ?? {})) {
@@ -1019,6 +2002,43 @@ for (const relativeRecord of validationRecords) {
       `${relativeRecord}: artifact escapes repository: ${relativeArtifact}`);
     check(fs.existsSync(artifactPath),
       `${relativeRecord}: artifact is missing: ${relativeArtifact}`);
+    // Historical device records pin the exact bytes they exercised. They are
+    // intentionally not rewritten or compared with a later WS6/WS7 checkout.
+  }
+
+  if (relativeRecord === lastCompletedTargetRecord) {
+    const runEvidence = record.runEvidence ?? {};
+    check(runEvidence.compile?.allColdStartsPassed === true,
+      `${relativeRecord}: pinned WS5 cold-start compile did not pass`);
+    check(runEvidence.compile?.responsePassFormat === "R32G32B32A32_SFLOAT",
+      `${relativeRecord}: response feedback was not RGBA32F`);
+    check(runEvidence.compile?.displayPassFormat === "R8G8B8A8_UNORM",
+      `${relativeRecord}: display pass was not RGBA8`);
+    check(runEvidence.compile?.loadedParameters?.SpatialRetention === 1
+      && runEvidence.compile?.loadedParameters?.SpatialCodeWeight === 0.5
+      && runEvidence.compile?.loadedParameters?.PolarityDriveWeight === 0.25
+      && runEvidence.compile?.loadedParameters?.DebugView === 12,
+    `${relativeRecord}: WS5 numeric parameters were not loaded`);
+    check(runEvidence.compile?.shaderTextureCompileErrors === 0,
+      `${relativeRecord}: pinned WS5 run reported Shader/texture errors`);
+
+    const numeric = runEvidence.gpuNumericReadback ?? {};
+    check(numeric.pass === true
+      && numeric.allDecodedBandsUnanimous === true
+      && numeric.spatialSeparationObserved === true
+      && numeric.parityExcitationWordsMatchedExactly === true,
+    `${relativeRecord}: WS5 GPU numeric readback did not pass`);
+    check(numeric.stress?.pass === true
+      && numeric.stress?.maximumCpuVsGpuAbsoluteError <= numeric.stress?.tolerance
+      && numeric.recovery?.pass === true
+      && numeric.recovery?.maximumCpuVsGpuAbsoluteError <= numeric.recovery?.tolerance,
+    `${relativeRecord}: WS5 CPU/GPU stress or recovery recurrence failed`);
+    check(runEvidence.restoration?.retroarchTestProcessStopped === true
+      && runEvidence.restoration?.globalRetroArchConfigurationModified === false,
+    `${relativeRecord}: target restoration contract did not pass`);
+    check(/^[0-9a-f]{64}$/.test(runEvidence.restoration?.gbaOverrideBeforeAfterSha256 ?? "")
+      && /^[0-9a-f]{64}$/.test(runEvidence.restoration?.mgbaOverrideBeforeAfterSha256 ?? ""),
+    `${relativeRecord}: override restoration hashes are missing`);
   }
 }
 
@@ -1040,16 +2060,22 @@ if (fs.existsSync(temporalConfigPath)) {
 }
 
 const targetPreset = path.join(
-  root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "presets", "ags101-physics-seed-v1.slangp",
+  root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "presets",
+  "ags101-period-reconstruction-v1.slangp",
 );
 check(fs.existsSync(targetPreset), "missing KPA AGS target preset");
 if (fs.existsSync(targetPreset)) {
   const source = fs.readFileSync(targetPreset, "utf8");
-  const modelReference = source.match(/#reference\s+"([^"]+)"/);
-  check(Boolean(modelReference), "KPA AGS target preset has no model reference");
-  if (modelReference) {
-    check(fs.existsSync(path.resolve(path.dirname(targetPreset), modelReference[1])), "KPA AGS target model reference is missing");
-  }
+  check(source.includes("Generated by tools/build-ags101-ws1.mjs"),
+    "KPA AGS target preset is not the generated full-preset compatibility form");
+  check(!source.includes("#reference"),
+    "KPA AGS target preset still depends on a referenced model preset");
+  check(source.includes('../../../../models/nintendo-ags-101/shaders/ags101-response-v1.slang')
+    && source.includes('../../../../models/nintendo-ags-101/shaders/ags101-exposure-v1.slang')
+    && source.includes('../../../../models/nintendo-ags-101/shaders/ags101-display-v1.slang'),
+  "KPA AGS target full preset lost its three model shader paths");
+  check(source.includes('../../../../models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png'),
+    "KPA AGS target full preset lost its WS4 nominal GtG path");
 }
 
 if (failures.length) {
@@ -1058,6 +2084,9 @@ if (failures.length) {
 }
 
 console.log(
-  `AGS-101 physics-seed checks passed (${shaderFiles.length} shaders, ${presetFiles.length} presets; `
-  + `${endpointBrightening.toFixed(1)}/${endpointDarkening.toFixed(1)} ms endpoints).`,
+  `AGS-101 period-reconstruction checks passed (${shaderFiles.length} shaders, ${presetFiles.length} presets; `
+  + `WS4 nominal brightening/darkening `
+  + `${ws4Ensemble.members.find((member) => member.id === "nominal").opticalBrighteningEndpointT10To90Ms.toFixed(1)}/`
+  + `${ws4Ensemble.members.find((member) => member.id === "nominal").opticalDarkeningEndpointT10To90Ms.toFixed(1)} ms; `
+  + `analytic fallback ${endpointBrightening.toFixed(1)}/${endpointDarkening.toFixed(1)} ms).`,
 );

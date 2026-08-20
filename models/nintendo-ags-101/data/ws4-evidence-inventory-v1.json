@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "nintendo-ags-101-ws4-evidence-inventory-v1",
+  "snapshotDate": "2026-08-20",
+  "scope": "Literature-constrained AGS-101 optical-response ensemble without an authentic LQ029B1DC01F waveform measurement.",
+  "exactPanelSearchRecord": "data/ws3-evidence-inventory-v1.json#WS3-PANEL-DATASHEET-SEARCH-2026-08-20",
+  "classificationOrder": [
+    "exact-panel-manufacturer-datasheet",
+    "period-manufacturer-family-datasheet",
+    "near-size-manufacturer-family-datasheet",
+    "primary-display-response-research",
+    "official-measurement-standard",
+    "qualitative-direct-hardware-observation",
+    "negative-search-record"
+  ],
+  "transferabilityScale": {
+    "0": "not compatible or not reported",
+    "1": "partial compatibility; direction or envelope use only",
+    "2": "close compatibility, but still not exact-panel evidence"
+  },
+  "transferabilityDimensions": [
+    "date",
+    "panelTechnology",
+    "sizeAndResolution",
+    "driveArchitecture",
+    "temperature",
+    "responseDefinition"
+  ],
+  "rules": [
+    "No nearby Sharp part number is promoted to LQ029B1DC01F identity.",
+    "Manufacturer-family endpoint timings constrain an ensemble; they do not create AGS-101 measurements.",
+    "Sharp Tr is mapped from white to black and Sharp Td from black to white according to each document's response diagram, rather than by the English names of runtime variables.",
+    "Cross-product research can justify qualitative transition-distance and temperature dimensions but cannot supply an AGS-101 table cell.",
+    "Community ghosting reports remain qualitative and supply no milliseconds.",
+    "A first-order model matching a published 10-to-90 endpoint is scalar-compatible only; it is not proof of the unreported waveform shape."
+  ],
+  "items": [
+    {
+      "evidenceId": "WS4-EXACT-PANEL-SEARCH-2026-08-20",
+      "classification": "negative-search-record",
+      "title": "Preserved LQ029B1DC01F manufacturer-specification search",
+      "sourceRecord": "data/ws3-evidence-inventory-v1.json#WS3-PANEL-DATASHEET-SEARCH-2026-08-20",
+      "claimsUsed": [],
+      "limits": "No exact manufacturer datasheet or exact-panel response waveform was located. The search result is not proof that no document exists."
+    },
+    {
+      "evidenceId": "WS4-SHARP-LQ022B8UD04-2003",
+      "classification": "period-manufacturer-family-datasheet",
+      "title": "Sharp LQ022B8UD04 TFT-LCD Module Product Specification LCY-303Z01",
+      "documentDate": "2003-12-27",
+      "url": "https://www.beyondinfinite.com/lcd/Library/Sharp/LQ022B8UD04.pdf",
+      "preservation": "third-party mirror of a Sharp product specification",
+      "documentSha256": "050ccc173566e3f87335e152bb0c763dea314a72d2da1feb7803ae0a00cf5d51",
+      "identity": {
+        "diagonalInches": 2.2,
+        "resolution": [176, 220],
+        "technology": "active-matrix TFT, normally-white; LC mode and transmissive/transflective classification not stated in the checked specification pages",
+        "interface": "integrated driver with host CPU interface"
+      },
+      "conditions": {
+        "ambientTemperatureC": 25,
+        "viewAngleDegrees": 0,
+        "definition": "10-to-90 percent detector-output interval shown for white-to-black and black-to-white",
+        "measurementInstrument": "Ohtsuka LCD-5200, panel center"
+      },
+      "response": {
+        "whiteToBlackMs": { "typical": 18, "maximum": 35, "sharpSymbol": "Tr" },
+        "blackToWhiteMs": { "typical": 45, "maximum": 75, "sharpSymbol": "Td" },
+        "overshoot": null,
+        "grayToGrayMatrix": null
+      },
+      "transferability": {
+        "scores": { "date": 2, "panelTechnology": 1, "sizeAndResolution": 1, "driveArchitecture": 0, "temperature": 2, "responseDefinition": 2 },
+        "total": 8,
+        "maximum": 12,
+        "use": "fast endpoint anchor and period-family asymmetry direction"
+      },
+      "limits": "Different part, smaller portrait panel, different resolution and integrated drive architecture. The checked specification does not state the LC mode or transmissive/transflective class. It does not identify AGS-101 behavior."
+    },
+    {
+      "evidenceId": "WS4-SHARP-LQ030B1DC-FAMILY-2008",
+      "classification": "near-size-manufacturer-family-datasheet",
+      "title": "Sharp LQ030B1DC4xx/LQ030B1DC6xx TFT-LCD Module Delivery Specification LCG-02039B",
+      "documentDate": "2008-12-02",
+      "url": "https://www.beyondinfinite.com/lcd/Library/Sharp/LQ030B1DC60J.pdf",
+      "preservation": "third-party mirror of a Sharp delivery specification",
+      "documentSha256": "148811ec8f9c34234d819ae477d17b3e5f9d6e82586fe37fad1c03a35425c0b6",
+      "identity": {
+        "diagonalInches": 3.0,
+        "resolution": [256, 192],
+        "technology": "active-matrix a-Si TFT, normally-white, transmissive",
+        "interface": "raw parallel RGB with external timing/control"
+      },
+      "conditions": {
+        "ambientTemperatureC": 25,
+        "viewAngleDegrees": 0,
+        "suppliesV": { "VSHA": 5, "VSHD": 3.3, "CVDD": 10, "GVSS": -5 },
+        "definition": "10-to-90 percent detector-output interval shown for white-to-black and black-to-white",
+        "measurementInstrument": "Topcon BM-5(A), one-degree field, 350 mm, panel center"
+      },
+      "response": {
+        "whiteToBlackMs": { "typical": 30, "maximum": 50, "sharpSymbol": "Tr" },
+        "blackToWhiteMs": { "typical": 60, "maximum": 100, "sharpSymbol": "Td" },
+        "overshoot": null,
+        "grayToGrayMatrix": null
+      },
+      "transferability": {
+        "scores": { "date": 1, "panelTechnology": 2, "sizeAndResolution": 2, "driveArchitecture": 2, "temperature": 2, "responseDefinition": 2 },
+        "total": 11,
+        "maximum": 12,
+        "use": "nominal typical endpoint and slow maximum endpoint anchors"
+      },
+      "limits": "Different part family, 256x192 rather than 240x160, and a specification issued three years after the documented AGS-101 specimen. Values constrain a nearby family envelope only."
+    },
+    {
+      "evidenceId": "WS4-LIANG-BADANO-2007",
+      "classification": "primary-display-response-research",
+      "title": "Temporal response of medical liquid crystal displays",
+      "documentDate": "2007-01-25",
+      "url": "https://doi.org/10.1118/1.2428403",
+      "claimsUsed": [
+        "inter-gray transition times are nonuniform",
+        "large transitions are generally faster than adjacent transitions",
+        "adjacent-gray measurements have poorer repeatability",
+        "temperature and warm-up materially affect response"
+      ],
+      "transferability": {
+        "scores": { "date": 1, "panelTechnology": 1, "sizeAndResolution": 0, "driveArchitecture": 0, "temperature": 1, "responseDefinition": 1 },
+        "total": 4,
+        "maximum": 12,
+        "use": "qualitative shape and uncertainty dimensions only"
+      },
+      "limits": "Medical and television LCDs are not small Sharp handheld panels. No reported millisecond value is transferred to AGS-101."
+    },
+    {
+      "evidenceId": "WS4-BECKER-2008",
+      "classification": "primary-display-response-research",
+      "title": "LCD Response Time Evaluation in the Presence of Backlight Modulations",
+      "documentDate": "2008",
+      "url": "https://www.display-messtechnik.de/fileadmin/template/main/docs/SID08-4_3.pdf",
+      "claimsUsed": [
+        "10-to-90 timing can be corrupted by PWM backlight and frame modulation",
+        "raw modulation and the LCD transition should be separated before fitting",
+        "overshoot can invalidate a simple monotone reduction"
+      ],
+      "transferability": {
+        "scores": { "date": 1, "panelTechnology": 1, "sizeAndResolution": 0, "driveArchitecture": 0, "temperature": 0, "responseDefinition": 2 },
+        "total": 4,
+        "maximum": 12,
+        "use": "measurement and model-selection method only"
+      },
+      "limits": "No AGS-family timing value or waveform is supplied."
+    },
+    {
+      "evidenceId": "WS4-VESA-AS-CTS-1.1",
+      "classification": "official-measurement-standard",
+      "title": "VESA Adaptive-Sync Display Compliance Test Specification revision 1.1a",
+      "documentDate": "2023-05-19",
+      "url": "https://vesa.org/wp-content/uploads/2023/05/Adaptive-Sync-Display-CTS-r1.1.pdf",
+      "claimsUsed": [
+        "controlled warm-up and ambient temperature",
+        "repeatable gray-to-gray sampling",
+        "10-to-90 timing with overshoot and undershoot evaluation"
+      ],
+      "transferability": {
+        "scores": { "date": 0, "panelTechnology": 0, "sizeAndResolution": 0, "driveArchitecture": 0, "temperature": 2, "responseDefinition": 2 },
+        "total": 4,
+        "maximum": 12,
+        "use": "future specimen measurement protocol only"
+      },
+      "limits": "A modern test standard, not period panel evidence."
+    }
+  ]
+}

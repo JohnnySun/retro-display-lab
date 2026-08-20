@@ -1,8 +1,10 @@
-# AGS-101 measurement-ready gray-to-gray model
+# AGS-101 literature-constrained gray-to-gray ensemble
 
-Status: WS4 implementation accepted 2026-08-18, including KONKR Vulkan runtime
-and 60 Hz performance validation of both the normal analytic path and the
-opt-in synthetic-table path (`TARGET-KPA-GTG-01`).
+Status: WS4 repository implementation and current-artifact KONKR compilation,
+presentation-response, and pacing validation completed 2026-08-20. The normal
+preset uses the nominal reconstructed table. WS8 now revalidates the nominal
+retention recurrence through the current three-pass GPU route; full numeric
+coverage of every fast/nominal/slow GtG cell remains open.
 
 ## Decision
 
@@ -25,6 +27,30 @@ This is the state-space alternative allowed by the WS4 state inventory. It
 does not retain a discrete transition identity or repeatedly quantize the
 optical state to a nearest code. A target arriving mid-transition simply
 changes `v`; the current optical state `x` remains continuous.
+
+## Source envelope and direction mapping
+
+No exact `LQ029B1DC01F` manufacturer datasheet or waveform was found. WS4
+therefore uses two explicitly non-equivalent Sharp-family specifications:
+
+| Member | Optical darkening, white→black | Optical brightening, black→white | Anchor |
+| --- | ---: | ---: | --- |
+| fast | 18 ms | 45 ms | 2003 LQ022B8UD04 typical |
+| nominal | 30 ms | 60 ms | 2008 LQ030B1DC family typical |
+| slow | 50 ms | 100 ms | 2008 LQ030B1DC family maximum |
+
+Sharp's diagrams label white→black as `Tr` and black→white as `Td`. WS4 maps
+those physical directions explicitly; it does not equate Sharp's `rise` label
+with increasing RGB code. Both specifications use a 10–90% detector-output
+interval at 25 C and normal view. The evidence inventory scores their date,
+technology, size/resolution, drive, temperature, and definition compatibility.
+
+For non-endpoint cells, the selected endpoint time is multiplied by bounded
+near-transition and mid-gray penalties. Literature supports nonuniform GtG
+timing and generally slower small transitions, but it does not provide a
+transferable AGS magnitude. Those penalties are consequently marked project
+priors. RGB channel multipliers are held neutral; brightness and temperature
+dependence remain unsupported dimensions.
 
 ## Why the v1 model is first order
 
@@ -68,6 +94,15 @@ generated exactly from the analytic prior. It tests the complete pipeline but
 is classified `synthetic`; it is not evidence about an AGS-101 panel and is
 not enabled by the normal preset.
 
+The reconstructed source record is
+[`data/ws4-gtg-ensemble-v1.json`](../../models/nintendo-ags-101/data/ws4-gtg-ensemble-v1.json).
+`tools/build-ags101-ws4.mjs` creates fast, nominal, and slow tables directly
+from that equation rather than fabricating raw waveforms. Each of the 3,072
+cells per member records the equation, source class, parameter-range record,
+ensemble member, source IDs, and fallback behavior. Measurement coverage stays
+zero even though runtime coverage is complete. Future authentic-panel data
+continues to use the separate raw-waveform schema and fitter.
+
 ## Runtime packing
 
 Three representations were evaluated. A 3,072-float constant array and
@@ -96,14 +131,37 @@ Identity-grid rates cannot be measured because no optical transition exists;
 the generator derives and labels those interpolation anchors from adjacent
 eligible transitions. An identity update itself remains exactly stationary.
 
-The generated synthetic asset has maximum encode/decode relative rate error
-below `5.3e-5`. The shader uses `texelFetch`; texture filtering and mipmaps are
-disabled. The table backend is opt-in until a qualifying measured or accepted
-period-literature table exists.
+The generated assets report their encode/decode rate error independently. The
+shader uses `texelFetch`; texture filtering and mipmaps are disabled. The
+normal preset selects `ws4-gtg-nominal-v1.png`; fast and slow comparison
+presets are under `generated/ws4-presets-v1`. The legacy analytic field remains
+an explicit missing-corner fallback, while `gtg-synthetic-table-v1` alone binds
+the synthetic fixture.
 
 ## Target runtime validation
 
-The KONKR GT78-VN probe ran RetroArch 1.22.2 with the Vulkan driver,
+The current-artifact run is recorded in
+[`targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws4-target-20260820.json`](../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws4-target-20260820.json).
+Fast, nominal, slow, and the exact KONKR target preset cold-compiled on
+RetroArch 1.22.2/Vulkan/Mali-G76 MC4. The response pass was RGBA32F, the display
+pass was RGBA8, pass-0 feedback was active, and device readback hashes matched
+the deployed Shader, LUT, preset, and deterministic neutral-gate ROM bytes.
+
+Three 12-second recordings repeated the same two-second RGB555 0/31 gate. A
+center-crop presentation analysis found median post-display 10–90% times of
+`38.391/40.663 ms` for fast, `49.344/65.672 ms` for nominal, and
+`88.071/112.352 ms` for slow (brightening/darkening). Both directions therefore
+preserved the required fast < nominal < slow ordering. These numbers include
+display transfer, RGB565/RGBA8 quantization, frame sampling, and H.264; they
+prove a causal table-dependent presentation difference but do not replace the
+linear-state constants or constitute AGS-101 optical measurements.
+
+SurfaceFlinger measured approximately 60 fps for every member. Four nominal
+samples totaled 504 intervals at about 60.006 fps, with two isolated intervals
+above 25 ms and no sustained slowdown. Both temporary mGBA/GBA overrides were
+restored to their exact pre-run hashes and the test process was stopped.
+
+The historical KONKR GT78-VN probe ran RetroArch 1.22.2 with the Vulkan driver,
 `video_shader_subframes=1`, and the target's only 960×640 at 60 Hz display
 mode. The normal analytic preset loaded the packed texture but selected the
 analytic rate field. A temporary diagnostic override then selected the
@@ -117,8 +175,11 @@ The response shader, physics preset, and 2,224-byte PNG read back from the
 device with SHA-256 values identical to the repository. After the diagnostic
 run, both mGBA/GBA content overrides were restored to the target
 `ags101-physics-seed-v1` preset and RetroArch was restarted successfully. This
-probe validates frontend compatibility and runtime cost only. Because the
-table is synthetic, it does not convert its rates into AGS-101 measurements.
+probe validates frontend compatibility and runtime cost of the shared table
+path only. It does not validate the new reconstructed values. WS4's repository
+receipt compares CPU double precision with a Shader-equation float32 emulator.
+The current WS8 target receipt adds bit-exact nominal retained-state recurrence;
+it does not expand that evidence into a full GPU readback of every ensemble cell.
 
 ## Measurement protocol
 
@@ -168,6 +229,10 @@ irreplaceable-display policy.
 - Identity transitions are stationary.
 - For fixed `k` and target, any time partition composes exactly.
 - The synthetic raw record fits back to its known analytic rates.
+- All reconstructed endpoint cells reproduce their selected 10–90% source
+  anchor exactly; non-endpoint cells remain labelled reconstructed.
+- Fast, nominal, and slow comparison traces consume the same four WS2 GtG
+  scene definitions and the scene/manifest hash gate must pass first.
 - PNG encode/decode error is reported and bounded.
 - Ineligible or missing table corners invoke channel-local analytic fallback.
 - A record cannot be labelled measured if specimen/protocol identity is a

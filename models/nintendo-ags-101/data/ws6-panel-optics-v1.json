@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-ags-101-ws6-panel-optics-v1",
+  "scope": "Static HCS color policy, unresolved AGS-101 backlight behavior, and generic-prior aperture sensitivity.",
+  "panelIdentity": {
+    "board": "C/AGT-CPU-01",
+    "panelLabel": "LQ029B1DC01F",
+    "identityEvidence": "AGS-PANEL-01",
+    "transferBoundary": "The archival label identifies one authentic recorded assembly; it does not establish that every AGS-101 used the same panel or that the HCS unit used this panel."
+  },
+  "staticColor": {
+    "evidenceId": "AGS-COLOR-01",
+    "measurementCoverage": {
+      "neutralRampRgb555": { "codes": 32, "complete": true },
+      "blackWhiteAnchors": true,
+      "fullLevelPatches": ["red", "green", "blue", "cyan", "magenta", "yellow"],
+      "perChannelRamps": false,
+      "intermediateMixedPatches": false,
+      "repeatedMeasurements": false,
+      "brightnessModeRecorded": false,
+      "absolutePeakLuminanceContextRecorded": false,
+      "interUnitVariationRecorded": false
+    },
+    "outputPolicies": [
+      {
+        "id": "hcs-black-subtracted",
+        "label": "HCS black-subtracted",
+        "HcsImproveContrast": 1,
+        "meaning": "Reproduces the pinned HCS derivation after subtracting the measured black XYZ before normalization."
+      },
+      {
+        "id": "hcs-physical-black",
+        "label": "HCS physical measured black",
+        "HcsImproveContrast": 0,
+        "meaning": "Restores the recorded black XYZ normalized by raw white Y; it is one measured unit/protocol state, not a universal AGS-101 black floor."
+      }
+    ]
+  },
+  "backlight": {
+    "evidenceId": "AGS-BACKLIGHT-01",
+    "established": {
+      "displayIllumination": "backlit",
+      "userBrightnessModes": 2,
+      "modeLabels": ["normal-low", "bright-high"]
+    },
+    "unknown": {
+      "hcsMeasurementMode": null,
+      "absoluteLuminanceCdM2": null,
+      "lowToHighLuminanceRatio": null,
+      "ledCountAndPlacement": null,
+      "electricalTopology": null,
+      "dcOrPwm": null,
+      "pwmFrequencyHz": null,
+      "pwmDutyCycles": null,
+      "spatialUniformity": null
+    },
+    "runtimePolicy": {
+      "default": "measured-static-color-unchanged",
+      "relativeGainEnabled": false,
+      "relativeGain": 1,
+      "modulationEnabled": false,
+      "note": "Relative brightness sensitivity is independently bypassed. Temporal modulation is not implemented or selected without a transferable source and belongs to WS7 exposure integration."
+    },
+    "sensitivityCandidates": [
+      {
+        "id": "unity-control",
+        "topology": "disabled",
+        "relativeGain": 1,
+        "claimClass": "identity-control"
+      },
+      {
+        "id": "low-mode-ratio-sweep",
+        "topology": "static-relative-gain",
+        "relativeGainRange": [0.5, 1],
+        "samples": [0.5, 0.75, 1],
+        "claimClass": "project-sensitivity-range-not-physical-bound"
+      },
+      {
+        "id": "dc-dimming-unselected",
+        "topology": "dc",
+        "relativeGain": null,
+        "claimClass": "unselected-hypothesis"
+      },
+      {
+        "id": "pwm-dimming-unselected",
+        "topology": "pwm",
+        "frequencyHz": null,
+        "dutyCycle": null,
+        "claimClass": "unselected-hypothesis",
+        "runtimeAllowed": false
+      }
+    ]
+  },
+  "aperture": {
+    "evidenceId": "AGS-APERTURE-01",
+    "archivalImageAssessment": {
+      "authenticPanelLabelImagesAvailable": true,
+      "calibratedMicroscopeOrMacroAvailable": false,
+      "overlaySeparated": false,
+      "replacementPanelExcluded": false,
+      "moireExcluded": false,
+      "sufficientForAgsSpecificKernel": false
+    },
+    "selected": {
+      "id": "lcd-grid-v2-generic-nominal",
+      "claimClass": "generic-prior",
+      "horizontalRadiusSubpixels": 1.5,
+      "verticalRadiusPixels": 0.63,
+      "order": "bgr-candidate",
+      "energyPolicy": "unit-mean-linear-light"
+    },
+    "sensitivityVariants": [
+      { "id": "generic-narrow", "horizontalRadiusSubpixels": 1.25, "verticalRadiusPixels": 0.52 },
+      { "id": "generic-nominal", "horizontalRadiusSubpixels": 1.5, "verticalRadiusPixels": 0.63 },
+      { "id": "generic-wide", "horizontalRadiusSubpixels": 1.7, "verticalRadiusPixels": 0.74 }
+    ],
+    "unsupportedClaims": [
+      "AGS-specific fill factor",
+      "calibrated gap width",
+      "universal BGR order across all panel variants",
+      "overlay optical transfer",
+      "diffuser or backlight spatial profile"
+    ]
+  }
+}

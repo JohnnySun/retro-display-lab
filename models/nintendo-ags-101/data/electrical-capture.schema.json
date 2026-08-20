@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/ags101-electrical-capture-v1.json",
+  "title": "AGS-101 synchronized motherboard electrical capture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "captureId", "classification", "capturedAt", "specimen",
+    "instrument", "stimulus", "trigger", "runs", "rawFiles"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "captureId": { "type": "string", "minLength": 1 },
+    "classification": { "enum": ["measured-specimen", "synthetic-loopback"] },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "operator": { "type": "string" },
+    "specimen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consoleModel", "boardRevision", "lcdLabel", "brightnessMode",
+        "warmupSeconds", "temperatureC", "ambientIlluminanceLux",
+        "powerSource", "chargerConnected", "batteryVoltage", "vcomState"
+      ],
+      "properties": {
+        "consoleModel": { "const": "AGS-101" },
+        "boardRevision": { "type": "string", "minLength": 1 },
+        "lcdLabel": { "type": ["string", "null"] },
+        "brightnessMode": { "type": "string", "minLength": 1 },
+        "warmupSeconds": { "type": "number", "minimum": 0 },
+        "temperatureC": { "type": ["number", "null"] },
+        "ambientIlluminanceLux": { "type": ["number", "null"], "minimum": 0 },
+        "powerSource": { "type": "string", "minLength": 1 },
+        "chargerConnected": { "type": ["boolean", "null"] },
+        "batteryVoltage": { "type": ["number", "null"], "minimum": 0 },
+        "vcomState": { "type": "string", "minLength": 1 },
+        "modificationHistory": { "type": "string" }
+      }
+    },
+    "instrument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manufacturer", "model", "sampleRateHz", "bandwidthHz",
+        "timebaseAccuracyPpm", "probeLoading"
+      ],
+      "properties": {
+        "manufacturer": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "serial": { "type": ["string", "null"] },
+        "sampleRateHz": { "type": "number", "exclusiveMinimum": 0 },
+        "bandwidthHz": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "timebaseAccuracyPpm": { "type": ["number", "null"], "minimum": 0 },
+        "probeLoading": { "type": "string", "minLength": 1 }
+      }
+    },
+    "stimulus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["suiteId", "sceneId", "romSha256", "manifestSha256"],
+      "properties": {
+        "suiteId": { "type": "string", "minLength": 1 },
+        "sceneId": { "type": "string", "minLength": 1 },
+        "romSha256": { "$ref": "#/$defs/sha256" },
+        "manifestSha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signal", "edge", "pretriggerSeconds", "uncertaintySeconds"],
+      "properties": {
+        "signal": { "enum": ["DCK", "LP", "SPS", "MOD", "REVC", "FRAME_REF"] },
+        "edge": { "enum": ["rising", "falling"] },
+        "pretriggerSeconds": { "type": "number", "minimum": 0 },
+        "uncertaintySeconds": { "type": "number", "minimum": 0 }
+      }
+    },
+    "runs": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["runId", "row", "frameParity", "sourceCodes", "signalFiles"],
+        "properties": {
+          "runId": { "type": "string", "minLength": 1 },
+          "row": { "type": "integer", "minimum": 0, "maximum": 159 },
+          "frameParity": { "enum": [0, 1] },
+          "sourceCodes": {
+            "type": "array",
+            "prefixItems": [
+              { "type": "integer", "minimum": 0, "maximum": 31 },
+              { "type": "integer", "minimum": 0, "maximum": 31 },
+              { "type": "integer", "minimum": 0, "maximum": 31 }
+            ],
+            "items": false
+          },
+          "signalFiles": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "rawFiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/rawFile" }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "rawFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "format", "timeUnits", "signalUnits"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "format": { "enum": ["csv", "vcd", "wfm", "vendor-binary"] },
+        "timeUnits": { "const": "s" },
+        "signalUnits": { "enum": ["logic", "V"] },
+        "columns": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

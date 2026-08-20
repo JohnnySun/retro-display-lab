@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "manifestId": "nintendo-ags-101-ws8-presets-v1",
+  "generatedBy": "tools/build-ags101-ws8.mjs",
+  "presets": [
+    {
+      "id": "exposure-numeric",
+      "path": "generated/ws8-presets-v1/exposure-numeric-v1.slangp",
+      "sha256": "6221af095c4240fc5bd9594a73e0f9ab383db1d8c893e62821ce92d6da7b205f",
+      "stimulus": "generated/ws2-stimulus-v1/parity-toggle.gba",
+      "debugView": 13
+    },
+    {
+      "id": "aperture-energy",
+      "path": "generated/ws8-presets-v1/aperture-energy-v1.slangp",
+      "sha256": "54dc75184d416885599faf6d894465937288d65af7fb3ae2357438f3ed3ac69a",
+      "stimulus": "generated/ws2-stimulus-v1/parity-toggle.gba",
+      "debugView": 14,
+      "targetScales": [
+        4,
+        3.5
+      ]
+    },
+    {
+      "id": "frontend-safe-bypass",
+      "path": "generated/ws8-presets-v1/frontend-safe-bypass-v1.slangp",
+      "sha256": "5aef864150c08d8e74be209473f5a3b4c2f1c282304eba43d919b0a00cbb6937",
+      "stimulus": "generated/ws2-stimulus-v1/parity-toggle.gba",
+      "debugView": 13,
+      "unsupportedIntervals": [
+        "duplicate",
+        "skip",
+        "run-ahead",
+        "rewind",
+        "unknown-vrr"
+      ]
+    }
+  ],
+  "exposureReference": {
+    "path": "generated/ws8-exposure-gpu-reference-v1.json",
+    "sha256": "ee4db978f5e121d653ed6c953d740c73113b56ef0e2758f02b793372c3e6ae13"
+  }
+}

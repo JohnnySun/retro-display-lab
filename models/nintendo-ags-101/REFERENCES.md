@@ -1,6 +1,6 @@
 # Nintendo GBA SP AGS-101 evidence map
 
-Accessed 2026-08-18. The default physics-seed presets use the HCS-measured
+Accessed 2026-08-18. The default period-reconstruction presets use the HCS-measured
 static color model and the closest traceable period-literature retention
 parameters. Direct literature values and normalized project bridge priors are
 identified separately below. A neutral sRGB adapter remains available only as
@@ -164,8 +164,48 @@ a regression baseline.
   [`generated/gtg-synthetic-v1.json`](generated/gtg-synthetic-v1.json), and
   [`docs/research/ags-101-gtg.md`](../../docs/research/ags-101-gtg.md).
 - Limits: none of these sources contains a measured AGS-101 3×32×32 matrix.
-  The checked-in full table is synthetic pipeline validation and is never
-  labelled as panel measurement.
+  The checked-in `gtg-synthetic-v1` table is pipeline validation and is never
+  labelled as panel measurement or used by the normal preset.
+
+### AGS-GTGENSEMBLE-01 — Literature-constrained Sharp-family response ensemble
+
+- Period manufacturer-family source: Sharp, *LQ022B8UD04 TFT-LCD Module
+  Product Specification*, `LCY-303Z01`, issued 2003-12-27, preserved in the
+  [Sharp specification mirror](https://www.beyondinfinite.com/lcd/Library/Sharp/LQ022B8UD04.pdf).
+  At 25 C and normal view it specifies 10–90% white-to-black `Tr=18 ms`
+  typical (`35 ms` maximum) and black-to-white `Td=45 ms` typical (`75 ms`
+  maximum). It is a 2.2-inch, 176×220, normally-white active-matrix TFT with
+  an integrated host interface; the checked specification does not state its
+  LC mode or transmissive/transflective class. It is not the AGS panel.
+- Near-size manufacturer-family source: Sharp, *LQ030B1DC4xx/LQ030B1DC6xx
+  TFT-LCD Module Delivery Specification*, `LCG-02039B`, revised 2008-12-02,
+  preserved in the
+  [Sharp specification mirror](https://www.beyondinfinite.com/lcd/Library/Sharp/LQ030B1DC60J.pdf).
+  At 25 C and normal view it specifies 10–90% white-to-black `Tr=30 ms`
+  typical (`50 ms` maximum) and black-to-white `Td=60 ms` typical (`100 ms`
+  maximum). It is a 3.0-inch, 256×192, normally-white transmissive a-Si TFT
+  with raw RGB/timing input; it is close family evidence, not part identity.
+- Supporting primary research: Hongye Liang and Aldo Badano,
+  [“Temporal response of medical liquid crystal displays”](https://doi.org/10.1118/1.2428403),
+  *Medical Physics* 34(2) (2007). It supports nonuniform GtG timing, generally
+  slower small transitions, poorer adjacent-level repeatability, and material
+  temperature dependence. Its display timings are not transferred.
+- Local transformation: `fast` uses the period Sharp typical 18/45 ms
+  darkening/brightening endpoints; `nominal` uses the near-size Sharp typical
+  30/60 ms pair; `slow` uses its 50/100 ms maxima. A bounded project-prior
+  distance penalty expands these scalar endpoints to full 3×32×32 monotone
+  first-order tables. Every generated cell records its equation, source class,
+  selected member, parameter-range record, and fallback behavior.
+- Local evidence, definition, generator, and receipts:
+  [`data/ws4-evidence-inventory-v1.json`](data/ws4-evidence-inventory-v1.json),
+  [`data/ws4-gtg-ensemble-v1.json`](data/ws4-gtg-ensemble-v1.json),
+  [`reference/gtg-ensemble.mjs`](reference/gtg-ensemble.mjs),
+  [`tools/build-ags101-ws4.mjs`](../../tools/build-ags101-ws4.mjs), and
+  [`generated/ws4-presets-v1/manifest.json`](generated/ws4-presets-v1/manifest.json).
+- Limits: no exact `LQ029B1DC01F` datasheet or waveform was found. Channel,
+  brightness-mode, temperature, overshoot, and true gray-distance magnitude
+  remain explicit unsupported dimensions. These are reconstructed reference
+  tables with zero measured cells.
 
 ### AGS-STICK-01 — TFT residual DC and image sticking
 
@@ -247,13 +287,42 @@ a regression baseline.
   accepts the normalized resultant error and does not synthesize capacitance
   values.
 
+### AGS-RETENTION-01 — WS5 spatial retention reconstruction
+
+- Evidence audit: [`data/ws5-evidence-inventory-v1.json`](data/ws5-evidence-inventory-v1.json)
+  separates transferable period mechanisms from quantities that cannot be
+  identified for `LQ029B1DC01F`. It combines the primary sources catalogued by
+  `AGS-ION-01`, `AGS-DRIVE-01`, and `AGS-FEED-01` with the unselected WS3
+  parity/inversion candidates and deterministic WS2 RGB555 fixtures.
+- Local reconstruction: the raw integer command proxy is
+  `q=(R5+G5+B5)/93`; the normalized excitation is
+  `u=clamp(DriveDcOffset*(1+Wcode*(2q-1)+Wpolarity*p(x,y,t)),-1,1)`.
+  Displayed luma, HCS optical output, GtG state, and aperture output do not
+  enter this equation. `DriveDcOffset=0` remains exactly balanced, and
+  disabling `SpatialRetention` exactly restores the WS1 global path.
+- Parameter policy: `SpatialCodeWeight=0.5` and
+  `PolarityDriveWeight=0.25` are named project sensitivity priors, not volts,
+  capacitances, or fitted AGS-101 values. Frame/row/column/dot polarity remains
+  an exposed candidate matrix rather than a selected panel identity.
+- Local definition, CPU reference, generator, and receipts:
+  [`data/ws5-retention-reconstruction-v1.json`](data/ws5-retention-reconstruction-v1.json),
+  [`reference/drive-retention.mjs`](reference/drive-retention.mjs),
+  [`tools/build-ags101-ws5.mjs`](../../tools/build-ags101-ws5.mjs),
+  [`generated/ws5-retention-validation-v1.json`](generated/ws5-retention-validation-v1.json),
+  and [`generated/ws5-presets-v1/manifest.json`](generated/ws5-presets-v1/manifest.json).
+- Limits: no AGS-101 VCOM/feed-through waveform, code-voltage curve, or
+  image-sticking capture selects the weights. One alpha scalar reduces the
+  three subpixel commands to their arithmetic mean and contains no lateral ion
+  diffusion or row-line voltage gradient. This is a bounded period-mechanism
+  reconstruction, not measured AGS-101 image sticking.
+
 ### AGS-FRONTEND-01 — Slang feedback, precision, and frame parity
 
 - Source: Libretro,
   [Slang shader format](https://github.com/libretro/slang-shaders), including
   previous-frame framebuffer feedback, reflected `FrameCount`, and supported
   `R32G32B32A32_SFLOAT` render-target format.
-- Used for: explicit alternating frame polarity, one persistent electrical
+- Used for: explicit selectable parity/inversion polarity candidates, one persistent electrical
   scalar beside optical RGB, float32 precision required by minute-scale
   kinetic rates, causal scan events crossing a frame boundary, and the WS4
   static PNG lookup texture. The official format describes PNG lookup input as
@@ -280,7 +349,9 @@ a regression baseline.
 - Limits: community hardware record; not optical metrology or manufacturer
   confirmation of all AGS-101 units. AGS-COLOR-01 does not record its panel
   sticker or board revision, so the two records are not asserted to describe
-  the same specimen.
+  the same specimen. The WS3 exact-part search did not locate a manufacturer
+  specification for `LQ029B1DC01F`; nearby Sharp part numbers are not treated
+  as exact substitutes.
 
 ### AGS-APERTURE-01 — Analytic LCD aperture prior art
 
@@ -296,6 +367,78 @@ a regression baseline.
   measurement of an identified AGS-101 aperture, fill factor, or subpixel order.
 - Attribution: special thanks to cgwg and Libretro shader maintainers. The
   mathematical method is cited even though source code is not copied verbatim.
+- WS6 result: the available provenance-bearing `LQ029B1DC01F` record identifies
+  the panel label but does not provide calibrated macro/microscope scale, an
+  overlay-separated view, or enough information to exclude camera moire and
+  replacement-panel geometry. No AGS-specific kernel is therefore generated.
+  The generic polynomial prior now has narrow/nominal/wide sensitivity
+  variants and an exact per-channel unit-mean linear-light normalization.
+
+### AGS-BACKLIGHT-01 — AGS-101 brightness/backlight evidence audit
+
+- Manufacturer artifact fact: the AGS-101 retail revision is identified as a
+  brighter *backlit* Game Boy Advance SP; period product/manual records identify
+  its light button as a two-level brightness control rather than the AGS-001
+  light on/off control.
+- Supporting primary/manual boundary: Nintendo's preserved 2003
+  [AGS instruction booklet](https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/agsmanual_english?_a=DATAg1AAZAA0)
+  documents the earlier AGS-001 screen-light on/off behavior and is used only
+  as the cross-revision control, not as an AGS-101 electrical specification.
+- Hardware sources audited: the `C/AGT-CPU-01` and `LQ029B1DC01F` artifact
+  photographs in AGS-PANEL-01, the WS3 exact-part search, AGS-001 schematics,
+  and period/near-family Sharp material already catalogued under AGS-RECON-01.
+- Established: two user-facing brightness states, conventionally normal/low
+  and bright/high. Unknown: the HCS session's selected state, absolute peak
+  luminance context, low/high ratio, LED count/placement, DC versus PWM,
+  frequency/duty/phase, and spatial uniformity.
+- Runtime policy: measured static color is unchanged by default. A separately
+  bypassable 0.5/0.75/1.0 relative-gain sweep exists only for WS7 sensitivity;
+  it is not a physical bound. DC and PWM remain unselected hypotheses, and no
+  PWM frequency is inferred from camera banding, modding adapters, or unrelated
+  Nintendo hardware.
+- Local closure artifacts:
+  [`data/ws6-panel-optics-v1.json`](data/ws6-panel-optics-v1.json),
+  [`reference/panel-optics.mjs`](reference/panel-optics.mjs),
+  [`generated/ws6-presets-v1/manifest.json`](generated/ws6-presets-v1/manifest.json),
+  [`generated/ws6-validation-v1.json`](generated/ws6-validation-v1.json), and
+  [`tools/build-ags101-ws6.mjs`](../../tools/build-ags101-ws6.mjs).
+
+### AGS-EXPOSURE-01 — Native-frame emitted-light integration
+
+- Exact interval basis: AGS-TIMING-01 fixes one native observation frame to
+  `1232 * 228 / 16777216 = 0.016742706298828125 s`. Host refresh and wall-clock
+  fast-forward never replace this panel clock.
+- Optical basis: every WS4 member uses a first-order constant-rate segment.
+  For `x(t)=q+(x0-q)exp(-kt)`, WS7 uses the exact emitted-light integral
+  `q*dt+(x0-q)(1-exp(-k*dt))/k`; each nonzero fixture segment is independently
+  checked against composite Simpson integration with at least 4096 intervals.
+- Scan basis: the same WS3 optical-onset event partitions changed channels;
+  unchanged channels retain one full-frame segment to avoid an artificial rate
+  re-quantization boundary. The existing residual-DC boundary reduction is
+  preserved rather than replaced with a new within-segment electrical model.
+- State separation: response pass RGB/alpha remains the physical endpoint and
+  retention state for the next emulated frame. A new non-feedback exposure pass
+  emits the native-linear frame average; the display pass then applies the
+  unchanged WS6 aperture, relative-backlight sensitivity, and color policy.
+- Frontend contract: ordinary frames and executed identical-content frames each
+  advance one native interval. Host-generated duplicates advance no observable
+  Shader state. Fast-forward/VRR are equation-safe only when every emulated
+  frame executes once; unknown skipped/duplicated histories require the safe
+  bypass and cannot be reconstructed from host presentation time.
+- Backlight boundary: unity and static 0.75/0.5 project-sensitivity gains are
+  reproducible exposure bounds. DC/PWM remain unselected; no frequency, duty,
+  or phase is invented.
+- Local closure artifacts:
+  [`data/ws7-exposure-integration-v1.json`](data/ws7-exposure-integration-v1.json),
+  [`reference/exposure-integration.mjs`](reference/exposure-integration.mjs),
+  [`shaders/ags101-exposure-v1.slang`](shaders/ags101-exposure-v1.slang),
+  [`generated/ws7-presets-v1/manifest.json`](generated/ws7-presets-v1/manifest.json),
+  [`generated/ws7-exposure-validation-v1.json`](generated/ws7-exposure-validation-v1.json),
+  and [`tools/build-ags101-ws7.mjs`](../../tools/build-ags101-ws7.mjs).
+- Acceptance boundary: repository CPU/high-resolution/Shader-float equations
+  and all six Shader stages pass. The WS8 KONKR receipt additionally decodes
+  exposure floats from the current three-pass GPU route; it remains target
+  implementation evidence rather than AGS-101 panel metrology.
 
 ### AGS-NEUTRAL-01 — Neutral regression color adapter
 
@@ -318,42 +461,151 @@ a regression baseline.
 
 - Primary period source: Nintendo, *Game Boy Advance Programming Manual*,
   `AGB-06-0001-002-B13`, released 2005-05-27, LCD Table 5, as preserved in the
-  [manual text/PDF mirror](https://pdfcoffee.com/gameboy-advance-programming-manual-pdf-free.html).
+  [manual text/PDF mirror](https://www.manualslib.com/manual/3342081/Nintendo-Game-Boy-Advance.html).
 - Technical source: mGBA GBATEK fork, [LCD dimensions and timing](https://mgba-emu.github.io/gbatek/#lcd-dimensions-and-timing), with the
   [GBA-only GBATEK mirror](https://rust-console.github.io/gbatek-gbaonly/) used
   for the AGS-101 connector signal list.
-- Supporting observation: Veikkos, [gba-frame-test](https://github.com/veikkos/gba-frame-test), reporting top-to-bottom line drawing on original AGB,
-  AGS-001, and AGS-101 hardware.
+- Supporting qualitative observation: Veikkos,
+  [gba-frame-test](https://github.com/veikkos/gba-frame-test), documenting the
+  line-by-line scan pattern of original GBA-family displays in high-speed
+  examples.
 - Used for: 16,777,216 Hz master clock, 1,232 cycles per scanline, 228 total
   scanlines, 160 visible rows, exact `T_line=73.43292236328125 us`, and exact
   `T_frame=16.742706298828125 ms`. The three-event scan model derives row start
   from these values, then adds separately classified `LatchOffsetLines` and
   `OpticalDelaySeconds`. GBATEK also records
-  the SP connector signals DCK, LP, PS, RGB, SPL, CLS, SPS, MOD, REVC, and COM;
-  these make digital latch and polarity timing testable at the motherboard even
-  without an attached optical panel.
-- Established by the cited records: frame/line timing and top-to-bottom scan
-  direction.
+  the generic SP connector signals DCK, LP, PS, RGB, SPL, CLS, SPS, MOD, REVC,
+  and COM. That technical map makes future motherboard testing possible, but is
+  not direct proof of AGT-CPU-01 routing or phase.
+- Established by the cited records: exact frame/line arithmetic and a
+  top-to-bottom raster model corroborated qualitatively on original displays.
 - Not established by the cited records: the exact LP/SPS/DCK latch point within
   a line, MOD/REVC phase and polarity mapping, and a separate panel optical dead
-  time. `LatchOffsetLines=0.5` is the period-theory line-center convention;
-  `OpticalDelaySeconds=0` means the existing causal GtG response begins at the
-  latch rather than inventing an additional pure delay.
+  time. `LatchOffsetLines=0.5` and `OpticalDelaySeconds=0` are retained legacy
+  candidates. Neither is selected as a formal AGS-101-specific constant.
 - Local derivation and capture handoff:
   [`docs/research/ags-101-scan-timing.md`](../../docs/research/ags-101-scan-timing.md),
   [`reference/scan-timing.mjs`](reference/scan-timing.mjs), and
-  [`data/scan-capture.schema.json`](data/scan-capture.schema.json).
+  [`data/scan-capture.schema.json`](data/scan-capture.schema.json). The WS3
+  evidence inventory, source constraints, and generated fixtures are listed in
+  `AGS-RECON-01`.
+
+### AGS-STIMULUS-01 — Deterministic GBA capture stimulus suite
+
+- Local sources:
+  [`data/ws2-stimulus-scenes-v1.json`](data/ws2-stimulus-scenes-v1.json),
+  [`tools/build-ags101-test-rom.mjs`](../../tools/build-ags101-test-rom.mjs),
+  and
+  [`generated/ws2-stimulus-v1/manifest.json`](generated/ws2-stimulus-v1/manifest.json).
+- Used for: exact RGB555 color ramps, mixed patches, row markers,
+  checkerboard/window patterns, frame-parity alternation, channel GtG gates,
+  and retention stress/recovery. Each scene is a separate deterministic GBA ROM
+  with a stable ID, SHA-256, exact framebuffer hashes, and dwell schedule.
+- Implementation: bitmap Mode 4 with preloaded double buffers; dynamic scenes
+  change only the display-page bit at VBlank, avoiding visible-time full-frame
+  uploads.
+- Limits: deterministic electrical source stimulus, not evidence about the LCD
+  response. Emulator execution is recorded by `AGS-MGBA-01`; original
+  hardware remains an optional additional compatibility receipt.
+
+### AGS-CAPTURE-01 — Synchronized capture and normalization pipeline
+
+- Local sources:
+  [`data/electrical-capture.schema.json`](data/electrical-capture.schema.json),
+  [`data/photodiode-capture.schema.json`](data/photodiode-capture.schema.json),
+  [`reference/capture-pipeline.mjs`](reference/capture-pipeline.mjs), and
+  [`tools/build-ags101-ws2.mjs`](../../tools/build-ags101-ws2.mjs).
+- Used for: recording specimen/environment/instrument/stimulus identity,
+  aligning raw photodiode CSV to a trigger edge, detecting missing samples,
+  normalizing plateaus, fitting/rejecting waveforms, and emitting the existing
+  GtG measurement schema.
+- Synthetic acceptance:
+  [`generated/ws2-capture-loopback-v1/report.json`](generated/ws2-capture-loopback-v1/report.json)
+  covers clean repetitions, noise, overshoot, missing samples, censored
+  settling, explicit rejection, standard GtG handoff, and runtime packing.
+- Limits: the loopback is synthetic validation only. It establishes data flow
+  and rejection behavior, not AGS-101 timing or optics.
+
+### AGS-MGBA-01 — Pinned ROM runtime and scene-consistency receipt
+
+- Local sources:
+  [`tools/validate-ags101-ws2-mgba.mjs`](../../tools/validate-ags101-ws2-mgba.mjs)
+  and
+  [`generated/ws2-mgba-smoke-v1/report.json`](generated/ws2-mgba-smoke-v1/report.json).
+- Runtime: all eleven WS2 ROMs remained alive for the declared hold interval in
+  mGBA 0.10.5 on Darwin arm64; the receipt pins the executable SHA-256, build
+  identifier, options, platform, and every ROM hash.
+- Independent consistency check: the validator decodes the GBA header, ARM
+  page-toggle path and dwell literals, palette, and both Mode 4 pages, then
+  compares them with the scene source and manifest.
+- Used for: the mandatory WS2 scene/manifest gate before WS3 emits timing
+  candidate fixtures.
+- Limits: emulator compatibility and artifact consistency only. It is not an
+  AGT electrical trace or AGS-101 panel observation.
+
+### AGS-RECON-01 — Timing evidence inventory and constraint artifact
+
+- Local sources:
+  [`data/ws3-evidence-inventory-v1.json`](data/ws3-evidence-inventory-v1.json),
+  [`data/ws3-timing-constraints-v1.json`](data/ws3-timing-constraints-v1.json),
+  [`generated/ws3-timing-constraints-v1.json`](generated/ws3-timing-constraints-v1.json),
+  [`generated/ws3-presets-v1/manifest.json`](generated/ws3-presets-v1/manifest.json),
+  [`generated/ws3-sensitivity-v1.json`](generated/ws3-sensitivity-v1.json),
+  [`generated/ws3-shader-compile-v1.json`](generated/ws3-shader-compile-v1.json),
+  [`shaders/ags101-ws3-timing.inc`](shaders/ags101-ws3-timing.inc),
+  and [`tools/build-ags101-ws3.mjs`](../../tools/build-ags101-ws3.mjs).
+- Used for: source classification; `C/AGT-CPU-01` and `LQ029B1DC01F` artifact
+  identity; per-signal existence/direction/function/timing status; exact raster
+  arithmetic; unresolved latch/delay/parity/inversion/brightness candidates;
+  nine CPU timing profiles, two parity candidates, four inversion candidates,
+  five independent read-only diagnostics, and generated Shader presets.
+- Cross-model boundary: Gekkio's
+  [AGS-CPU-11 schematic](https://github.com/Gekkio/gb-schematics) is classified
+  as AGS-001-only reverse engineering, while Sharp's
+  [LZ9JG17B datasheet](https://www1.futureelectronics.com/doc/SHARP/LZ9JG17B.pdf)
+  provides family signal semantics only.
+- Exact-part search: no traceable `LQ029B1DC01F` manufacturer datasheet was
+  located in the recorded 2026-08-20 search. The negative result and search
+  scope are preserved; no nearby part is promoted as equivalent.
+- Formal-selection status: latch phase, pure optical delay, frame parity phase,
+  inversion topology, and brightness coupling are all `null`. The generated
+  profiles are sensitivity hypotheses, not measured constants.
+- Runtime acceptance: response and display use the same generated timing and
+  polarity equations. Four Shader stages pass pinned local glslang compilation
+  and SPIR-V validation; 80 CPU equation vectors and the model-output
+  sensitivity report reproduce from the same constraint record. Compilation is
+  not GPU numeric readback or original-hardware validation.
+
+### AGS-BASELINE-01 — WS1 canonical inventory and repository baseline
+
+- Local sources:
+  [`data/ws1-evidence-inventory-v1.json`](data/ws1-evidence-inventory-v1.json),
+  [`generated/ws1-baseline-v1.json`](generated/ws1-baseline-v1.json), and
+  [`tools/build-ags101-ws1.mjs`](../../tools/build-ags101-ws1.mjs).
+- Used for: one canonical classification/value record for every active runtime
+  parameter, generated self-contained diagnostic/target presets, exact current
+  artifact hashes, and neutral/static RGB555 CPU golden vectors.
+- Established by the local checks: repository consistency and deterministic
+  regeneration. The baseline is explicitly classified as a repository
+  regression record, not a device run.
+- Limit: target receipts establish frontend/GPU execution, not original-panel
+  physics. Immutable historical records are never rewritten to match newer
+  shader bytes.
 
 ## Prototype status and evidence gap
 
 The public model separates BGR aperture structure, selectable measured/neutral
-color stages, transition-dependent optical response, slow residual-DC
-retention, and row/latch/optical scan events. AGS-COLOR-01 supplies the default measured static colorimetry.
+color stages, transition-dependent optical response, per-pixel RGB555/polarity
+residual-DC retention, and row/latch/optical scan events. WS5's code and
+polarity weights are bounded project sensitivity priors; they are not fitted
+image-sticking constants. AGS-COLOR-01 supplies the default measured static
+colorimetry.
 AGS-ION-01 supplies the default period-literature kinetic rates. No pristine
 AGS-101 temporal reference specimen is reasonably obtainable, so an aged unit
 would be secondary specimen evidence rather than automatic original-production
 ground truth. The normalized DC and code-coupling bridge remains a named
-project prior; accordingly the preset is `physics-seed-v1`, not `measured`.
+project prior; accordingly the preset is `period-reconstruction-v1`, not
+`measured` or specimen-calibrated.
 
 ## Special thanks
 

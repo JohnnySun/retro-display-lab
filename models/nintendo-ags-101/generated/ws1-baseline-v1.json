@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-ags-101-ws1-baseline-v1",
+  "generatedBy": "tools/build-ags101-ws1.mjs",
+  "modelId": "nintendo-ags-101-period-reconstruction",
+  "classification": "repository-regression-baseline-not-device-run",
+  "sourcePreset": "models/nintendo-ags-101/presets/neutral-baseline-v1.slangp",
+  "controls": {
+    "HcsMeasuredColor": 0,
+    "TemporalResponse": 0,
+    "DriveRetention": 0,
+    "BakedScanout": 0,
+    "ApertureEnabled": 0,
+    "ExposureMode": 0,
+    "DebugView": 0
+  },
+  "expectedPipeline": "RGB555 -> standard sRGB decode -> standard sRGB encode",
+  "tolerance": {
+    "cpuAbsolute": 1e-12,
+    "note": "GPU/target tolerance requires a later numeric readback receipt."
+  },
+  "vectors": [
+    {
+      "rgb555": [
+        0,
+        0,
+        0
+      ],
+      "encodedSrgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "rgb555": [
+        1,
+        1,
+        1
+      ],
+      "encodedSrgb": [
+        0.03225806451612903,
+        0.03225806451612903,
+        0.03225806451612903
+      ]
+    },
+    {
+      "rgb555": [
+        8,
+        8,
+        8
+      ],
+      "encodedSrgb": [
+        0.25806451612903225,
+        0.25806451612903225,
+        0.25806451612903225
+      ]
+    },
+    {
+      "rgb555": [
+        15,
+        15,
+        15
+      ],
+      "encodedSrgb": [
+        0.48387096774193555,
+        0.48387096774193555,
+        0.48387096774193555
+      ]
+    },
+    {
+      "rgb555": [
+        23,
+        23,
+        23
+      ],
+      "encodedSrgb": [
+        0.7419354838709677,
+        0.7419354838709677,
+        0.7419354838709677
+      ]
+    },
+    {
+      "rgb555": [
+        31,
+        31,
+        31
+      ],
+      "encodedSrgb": [
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999
+      ]
+    },
+    {
+      "rgb555": [
+        31,
+        0,
+        0
+      ],
+      "encodedSrgb": [
+        0.9999999999999999,
+        0,
+        0
+      ]
+    },
+    {
+      "rgb555": [
+        0,
+        31,
+        0
+      ],
+      "encodedSrgb": [
+        0,
+        0.9999999999999999,
+        0
+      ]
+    },
+    {
+      "rgb555": [
+        0,
+        0,
+        31
+      ],
+      "encodedSrgb": [
+        0,
+        0,
+        0.9999999999999999
+      ]
+    },
+    {
+      "rgb555": [
+        31,
+        16,
+        4
+      ],
+      "encodedSrgb": [
+        0.9999999999999999,
+        0.5161290322580645,
+        0.12903225806451613
+      ]
+    }
+  ],
+  "artifacts": {
+    "models/nintendo-ags-101/data/ws1-evidence-inventory-v1.json": "cf2828bf90f3bb68dc19ce40fe029e692e2c7bb41d77f06807bed0dc6a979f7a",
+    "models/nintendo-ags-101/data/ws6-panel-optics-v1.json": "88666763de41f81a64745d279630994b960b32d7a320f1a4f3d49cace28769b5",
+    "models/nintendo-ags-101/data/ws7-exposure-integration-v1.json": "fc0964f3ef833cc9f5721ae6457d15e1e8562cd099df6bda83e60e29f69039cd",
+    "models/nintendo-ags-101/generated/gtg-synthetic-v1-fit.json": "2f98b564864591323a3c10cfcdabaec865028de8a23f2b029b6fbab892faac15",
+    "models/nintendo-ags-101/generated/gtg-synthetic-v1.json": "d8f554f22e13cd7a94fff8962241eaa137328d723e5ecc2b392f0b32e68a800e",
+    "models/nintendo-ags-101/generated/gtg-synthetic-v1.png": "08ea36bfcc018217f92085d7fe41492275278e4d7a5850916fbfe76b47fc8255",
+    "models/nintendo-ags-101/generated/hcs-e688fc5-color.json": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
+    "models/nintendo-ags-101/generated/ws4-coverage-v1.json": "576bd2591a30bae78d3e486754e2e3e38463c351c6191f24e4c78e4d32afa3e9",
+    "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.json": "a5cd5aae6bb582d59b45b2ff1302788e36f827046f10d40d5f279dd12ede975d",
+    "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e",
+    "models/nintendo-ags-101/generated/ws4-validation-v1.json": "a4ed84e548c87cd74443027d3b52a2be22b4b796624d43bbecead5a9e9ae6611",
+    "models/nintendo-ags-101/generated/ws5-presets-v1/manifest.json": "d8e9221e217c1d8348b5a361b887bbd79bfe1bc5c7db2274678fab5cbbf27da4",
+    "models/nintendo-ags-101/generated/ws5-retention-validation-v1.json": "22089fa5c1790dcb39d49b81d358428a38c0f03b97aa26a2a6ce0fbd60f006c2",
+    "models/nintendo-ags-101/generated/ws6-presets-v1/manifest.json": "0bb3171a495e82870657f4678614ca1a91a2c30ec907210092c89141c630545b",
+    "models/nintendo-ags-101/generated/ws6-validation-v1.json": "2c79fee5f9784ebfb79d2b2ddc0d6dc69c8aecca8623044bd9e8c4d668a2d4e8",
+    "models/nintendo-ags-101/generated/ws7-exposure-validation-v1.json": "14d632e7a2b9d2acf7132dc0fecc87b3ad2e42e90a414f56e2322c564bffdb5c",
+    "models/nintendo-ags-101/generated/ws7-presets-v1/manifest.json": "97563e77224dc505dc484cd7f07df27d1751aa31852ce56110d4c1ffd26e16b8",
+    "models/nintendo-ags-101/generated/ws8-exposure-gpu-reference-v1.json": "ee4db978f5e121d653ed6c953d740c73113b56ef0e2758f02b793372c3e6ae13",
+    "models/nintendo-ags-101/generated/ws8-presets-v1/manifest.json": "62ea82df4ebd0822c6a0d09fbbedaf2c83bb1a67b30df17d9797f692abb8470f",
+    "models/nintendo-ags-101/model.json": "5266707190fc78143e7d20288d5cf6c59994f4499c1f94bfff9a36a261d8b461",
+    "models/nintendo-ags-101/presets/diagnostics-v1.slangp": "5433cc3e9722c8a7dbf41b8f97c1ba4ced41f30cfa34ac736a2e4cf55d80ef13",
+    "models/nintendo-ags-101/presets/drive-retention-debug-v2.slangp": "fa7e8f42cf30d8db72b08611ff0e6ee1b7f5cfefd58dab51b4b58649658779a9",
+    "models/nintendo-ags-101/presets/gtg-synthetic-table-v1.slangp": "1c0403da974c9d1238ce174815d63aedcce0838e3a246fc495d12b91df94d6d4",
+    "models/nintendo-ags-101/presets/isolation-gtg-v1.slangp": "7c263ade62b94a8a88da8e534e28c3bd18e9c9f9a2de42a793042ea98c3b213e",
+    "models/nintendo-ags-101/presets/isolation-scan-v1.slangp": "4c37a055379d201e97b01d8c8e01a3d718f48c90caba04de5f07e680ade12261",
+    "models/nintendo-ags-101/presets/isolation-static-color-v1.slangp": "b0b70f6bbcbec564bc9a4b51a5f0cb361ab5721cad5cdd61cbd567ded0c10bc9",
+    "models/nintendo-ags-101/presets/neutral-baseline-v1.slangp": "2d60d2c65fab299f5bff616246e172ade40953555964411dc6837fc7860b9dd9",
+    "models/nintendo-ags-101/presets/retention-stress-60x-v1.slangp": "7f9bd6e4a3239c3b6231eac6fb945243aa4175d5a46289e4ce7aec268d1055ab",
+    "models/nintendo-ags-101/presets/scanout-line-end-v1.slangp": "21d504875968e068cbf739ce035226e5d956c4564f9681829cd64a0ab4a28436",
+    "models/nintendo-ags-101/presets/scanout-line-start-v1.slangp": "053db9319e7229228ba13ef8b7fdeee2ef5d12e90e36ad430dd07ee6cd8f58ad",
+    "models/nintendo-ags-101/presets/scanout-temporal-only-v1.slangp": "790dd106ec65cb3aaa7fb44231b864154a3706cd72e7ba683a402c8bf9ed7b73",
+    "models/nintendo-ags-101/reference/exposure-integration.mjs": "22686653359a9013d97cdfe1d93a8ddbaac12c4d74d37590b08734373757df11",
+    "models/nintendo-ags-101/reference/panel-optics.mjs": "df7a6c3158b33867de429fc893936d6436f726f6a19e8c87722bccf47ea4169e",
+    "models/nintendo-ags-101/shaders/ags101-display-v1.slang": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524",
+    "models/nintendo-ags-101/shaders/ags101-drive-retention.inc": "2142fc2c846211418cb9980e626a02366e7329a7a51faefd30cdcea3237f15d2",
+    "models/nintendo-ags-101/shaders/ags101-exposure-optics.inc": "7feed771c56fca9a80851e129c56cc0b2ac32bb8912f988a1c1a80396db95f44",
+    "models/nintendo-ags-101/shaders/ags101-exposure-v1.slang": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b",
+    "models/nintendo-ags-101/shaders/ags101-response-v1.slang": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
+    "models/nintendo-ags-101/shaders/ags101-ws3-timing.inc": "30e6e1c4b4819594ab9afedc548a10e63bb9ab3efb7e724719fb215a68c9f38c",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp": "54a038ebc25f64d45eab21368f34d83adea9a42031f7127bf76ba965fa3b2e28",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json": "9d19b00272a17c179374b2c7503e229cbcb1b33d2f71534286060d4d7d91fdd2",
+    "tools/analyze-ags101-ws8-aperture.mjs": "1c6f505d5974720e10d83eb75344d46973fa2e312aa971b319b221ba14c69d1c",
+    "tools/build-ags101-ws1.mjs": "be63e6d26bae4fa45f9d7c59a08aa0d19ad9b738e8f0935a12455fbe6b8d315a",
+    "tools/build-ags101-ws8-receipt.mjs": "f9e34c03bea7ad9883bba64ae1f4ab722c93a367215e00e89ca33ea364e4a3ad",
+    "tools/build-ags101-ws8.mjs": "8ed89a8db57261bbc6a1fd1b402be81c23f2f93ac0e281f94e2933589e42fd74",
+    "tools/compare-ags101-ws8-exposure.mjs": "c9f529f405108f7e2c2480af3f2123ea7c62cbbc8fda536cbb0fe661dd179688",
+    "tools/decode-ags101-ws8-exposure.mjs": "a977aa0aae8c8b406a3894fda09aadd784a5f3d23cc8237d4639981dc288029f"
+  },
+  "deviceReceipt": {
+    "status": "last-device-run-complete-for-ws5-artifacts-current-ws7-run-pending",
+    "lastCompletedRecord": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
+    "historicalRecord": "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-20260818.json",
+    "note": "The WS5 record remains historical for its pinned two-pass checkout. The current WS8 KONKR receipt separately pins the WS7 three-pass route, exposure and retention floats, integer/fractional aperture energy, cold compile, and explicit stateless frontend boundaries."
+  }
+}

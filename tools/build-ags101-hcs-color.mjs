@@ -13,6 +13,7 @@ const generatedPath = path.join(modelDir, "generated", "hcs-e688fc5-color.json")
 const shaderPaths = [
   path.join(modelDir, "shaders", "ags101-response-v1.slang"),
   path.join(modelDir, "shaders", "ags101-display-v1.slang"),
+  path.join(modelDir, "shaders", "ags101-exposure-optics.inc"),
 ];
 const checkOnly = process.argv.includes("--check");
 
@@ -20,6 +21,8 @@ const RESPONSE_BEGIN = "// BEGIN GENERATED HCS COLOR: RESPONSE";
 const RESPONSE_END = "// END GENERATED HCS COLOR: RESPONSE";
 const DISPLAY_BEGIN = "// BEGIN GENERATED HCS COLOR: DISPLAY";
 const DISPLAY_END = "// END GENERATED HCS COLOR: DISPLAY";
+const EXPOSURE_BEGIN = "// BEGIN GENERATED HCS COLOR: EXPOSURE";
+const EXPOSURE_END = "// END GENERATED HCS COLOR: EXPOSURE";
 
 function fail(message) {
   console.error(message);
@@ -248,9 +251,10 @@ function derive(source) {
       : 1.055 * Math.max(value, 0) ** (1 / 2.4) - 0.055;
     return Math.min(Math.max(encoded, 0), 1);
   });
-  const defaultHcsOutput = (rgbIndex) => {
+  const hcsOutput = (rgbIndex, { improveContrast = true } = {}) => {
     const native = rgbIndex.map((code, channel) => runtimeEotf[code][channel]);
-    const xyz = multiplyMatrixVector(rgbToXyz, native);
+    let xyz = multiplyMatrixVector(rgbToXyz, native);
+    if (!improveContrast) xyz = add(xyz, blackXyzNormalizedByRawWhiteY);
     return srgbEncode(multiplyMatrixVector(srgbXyzToRgb, xyz));
   };
   const patchIndices = {
@@ -261,20 +265,62 @@ function derive(source) {
     cyan: [0, 31, 31],
     magenta: [31, 0, 31],
   };
-  const goldenVectors = {
+  const policyVectors = (improveContrast) => ({
     settings: {
       chromaticAdaptation: false,
-      improveContrast: true,
+      improveContrast,
       hostEncoding: "sRGB",
       outputClamp: [0, 1],
     },
     grayscaleRgb555: runtimeEotf.map((_, code) => ({
       code,
-      outputRgb: defaultHcsOutput([code, code, code]),
+      outputRgb: hcsOutput([code, code, code], { improveContrast }),
     })),
     fullLevelPatches: Object.fromEntries(Object.entries(patchIndices).map(([name, rgbIndex]) => (
-      [name, { rgbIndex, outputRgb: defaultHcsOutput(rgbIndex) }]
+      [name, { rgbIndex, outputRgb: hcsOutput(rgbIndex, { improveContrast }) }]
     ))),
+  });
+  const outputPolicies = {
+    hcsBlackSubtracted: {
+      id: "hcs-black-subtracted",
+      label: "HCS black-subtracted",
+      hcsImproveContrast: 1,
+      blackHandling: "subtract measured black before normalization",
+    },
+    hcsPhysicalBlack: {
+      id: "hcs-physical-black",
+      label: "HCS physical measured black",
+      hcsImproveContrast: 0,
+      blackHandling: "restore measured black XYZ normalized by raw white Y",
+    },
+  };
+  const coverage = {
+    measured: {
+      blackWhiteAnchors: true,
+      neutralRampRgb555Codes: 32,
+      fullLevelRgbCmyPatches: 6,
+    },
+    notMeasuredOrNotRecorded: {
+      perChannelRamps: true,
+      intermediateMixedPatches: true,
+      repeats: true,
+      brightnessMode: true,
+      absolutePeakLuminanceContext: true,
+      interUnitVariation: true,
+      ambientLighting: true,
+      warmup: true,
+      chargerState: true,
+      panelIdentity: true,
+    },
+    interpretation: "The EOTF and matrix are a deterministic model fitted to one pinned record; generated RGB555 combinations are not independent measurements.",
+  };
+  const goldenVectors = {
+    ...policyVectors(true),
+    policyId: outputPolicies.hcsBlackSubtracted.id,
+    policies: {
+      [outputPolicies.hcsBlackSubtracted.id]: policyVectors(true),
+      [outputPolicies.hcsPhysicalBlack.id]: policyVectors(false),
+    },
   };
   return {
     schemaVersion: 1,
@@ -298,6 +344,8 @@ function derive(source) {
     gammaFullPrecision: gamma,
     gammaRuntime: runtimeGamma,
     eotfRgb555Runtime: runtimeEotf,
+    coverage,
+    outputPolicies,
     goldenVectors,
   };
 }
@@ -324,6 +372,18 @@ const vec3 HCS_RGB555_EOTF[32] = vec3[](
 ${rows.join("\n")}
 );
 ${RESPONSE_END}`;
+}
+
+function exposureBlock(derived) {
+  const rows = derived.eotfRgb555Runtime.map((row, code) => (
+    `   vec3(${row.map(formatFloat).join(", ")})${code === 31 ? "" : ","}`
+  ));
+  return `${EXPOSURE_BEGIN}
+// Generated from AGS-COLOR-01 by tools/build-ags101-hcs-color.mjs.
+const vec3 HCS_RGB555_EOTF[32] = vec3[](
+${rows.join("\n")}
+);
+${EXPOSURE_END}`;
 }
 
 function displayBlock(derived) {
@@ -377,9 +437,12 @@ compareOrWrite(generatedPath, generatedJson);
 for (const shaderPath of shaderPaths) {
   const sourceText = fs.readFileSync(shaderPath, "utf8");
   const isDisplay = shaderPath.endsWith("ags101-display-v1.slang");
+  const isExposure = shaderPath.endsWith("ags101-exposure-optics.inc");
   const expected = isDisplay
     ? replaceBlock(sourceText, DISPLAY_BEGIN, DISPLAY_END, displayBlock(derived), shaderPath)
-    : replaceBlock(sourceText, RESPONSE_BEGIN, RESPONSE_END, responseBlock(derived), shaderPath);
+    : (isExposure
+      ? replaceBlock(sourceText, EXPOSURE_BEGIN, EXPOSURE_END, exposureBlock(derived), shaderPath)
+      : replaceBlock(sourceText, RESPONSE_BEGIN, RESPONSE_END, responseBlock(derived), shaderPath));
   compareOrWrite(shaderPath, expected);
 }
 

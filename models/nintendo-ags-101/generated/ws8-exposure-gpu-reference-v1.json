@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "referenceId": "nintendo-ags-101-ws8-exposure-gpu-reference-v1",
+  "classification": "cpu-reference-for-target-gpu-readback-not-panel-measurement",
+  "generatedBy": "tools/build-ags101-ws8.mjs",
+  "probe": [
+    120,
+    80
+  ],
+  "stimulus": {
+    "sceneId": "parity-toggle",
+    "filename": "parity-toggle.gba",
+    "sha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d",
+    "dwellFrames": [
+      1,
+      1
+    ]
+  },
+  "pipeline": {
+    "gtgMember": "nominal",
+    "packedRateTextureSha256": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e",
+    "driveRetention": false,
+    "bakedScanout": true,
+    "latchOffsetLines": 0.5,
+    "opticalDelaySeconds": 0,
+    "exposureMode": "native-frame-average",
+    "debugView": 13
+  },
+  "nativeFrameSeconds": 0.016742706298828125,
+  "opticalOnsetSeconds": 0.005911350250244141,
+  "expectedByPackedTarget": {
+    "0,0,0": {
+      "targetRgb555": [
+        0,
+        0,
+        0
+      ],
+      "average": [
+        0.3952836875357063,
+        0.39644444466381457,
+        0.4051099612678045
+      ],
+      "endpoint": [
+        0.2357901303739129,
+        0.23670690488461896,
+        0.24372380851033126
+      ],
+      "frameParity": 0
+    },
+    "31,31,31": {
+      "targetRgb555": [
+        31,
+        31,
+        31
+      ],
+      "average": [
+        0.25907763474258166,
+        0.26009729146810345,
+        0.26761652139266684
+      ],
+      "endpoint": [
+        0.41555699684178626,
+        0.41678902762413583,
+        0.4257601773770092
+      ],
+      "frameParity": 1
+    }
+  },
+  "convergence": {
+    "iterations": 2048,
+    "maximumSuccessiveSameTargetAverageDrift": 0
+  },
+  "gpuComparisonTolerance": 0.000003,
+  "apertureEnergy": {
+    "debugView": 14,
+    "encodedLinearScale": 0.25,
+    "geometry": {
+      "horizontalRadiusSubpixels": 1.5,
+      "verticalRadiusPixels": 0.63,
+      "order": "bgr"
+    },
+    "expectedByScale": {
+      "4": [
+        1.0000000000019098,
+        0.9999999999989921,
+        0.999999999999727
+      ],
+      "3.5": [
+        0.9999999999992197,
+        0.9999999999986721,
+        1.0000000000000395
+      ]
+    },
+    "screenshotComparisonTolerance": 0.006
+  },
+  "sources": {
+    "basePresetSha256": "f16913621b4d287b799edea0b14be3dd5675d506ccc03ff75b5b8303c2131ead",
+    "colorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
+    "gtgManifestSha256": "a5cd5aae6bb582d59b45b2ff1302788e36f827046f10d40d5f279dd12ede975d",
+    "stimulusManifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
+    "responseShaderSha256": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
+    "exposureShaderSha256": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b",
+    "displayShaderSha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524"
+  }
+}

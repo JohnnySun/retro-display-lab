@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "nintendo-ags-101-ws2-stimulus-v1",
+  "sourceResolution": [240, 160],
+  "colorEncoding": "GBA RGB555",
+  "scenes": [
+    {
+      "sceneId": "color-ramps",
+      "type": "color-ramps",
+      "description": "Neutral, red, green, blue, and mixed RGB555 ramps.",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647
+    },
+    {
+      "sceneId": "mixed-patches",
+      "type": "mixed-patches",
+      "description": "Intermediate mixed RGB555 color patches.",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647
+    },
+    {
+      "sceneId": "row-markers",
+      "type": "row-markers",
+      "description": "Per-row code markers with explicit top, center, and bottom sentinels.",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647
+    },
+    {
+      "sceneId": "checkerboard",
+      "type": "checkerboard",
+      "description": "One-source-pixel alternating low/high neutral checkerboard.",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647
+    },
+    {
+      "sceneId": "isolated-window",
+      "type": "isolated-window",
+      "description": "High neutral center window on a low neutral surround.",
+      "page0DwellFrames": 2147483647,
+      "page1DwellFrames": 2147483647
+    },
+    {
+      "sceneId": "parity-toggle",
+      "type": "full-toggle",
+      "description": "Black/white full-field alternation on every source frame.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "gtg-neutral-gate",
+      "type": "gtg-neutral-gate",
+      "description": "Neutral RGB555 0-to-31 gate with two-second nominal dwells.",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120
+    },
+    {
+      "sceneId": "gtg-red-gate",
+      "type": "gtg-red-gate",
+      "description": "Red-channel RGB555 0-to-31 gate.",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120
+    },
+    {
+      "sceneId": "gtg-green-gate",
+      "type": "gtg-green-gate",
+      "description": "Green-channel RGB555 0-to-31 gate.",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120
+    },
+    {
+      "sceneId": "gtg-blue-gate",
+      "type": "gtg-blue-gate",
+      "description": "Blue-channel RGB555 0-to-31 gate.",
+      "page0DwellFrames": 120,
+      "page1DwellFrames": 120
+    },
+    {
+      "sceneId": "retention-stress-recovery",
+      "type": "retention-stress-recovery",
+      "description": "Thirty-second isolated-window stress followed by fifteen-second uniform recovery.",
+      "page0DwellFrames": 1800,
+      "page1DwellFrames": 900
+    }
+  ]
+}

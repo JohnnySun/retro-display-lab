@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "manifestId": "nintendo-ags-101-ws4-presets-v1",
+  "generatedBy": "tools/build-ags101-ws4.mjs",
+  "classification": "literature-constrained-reconstruction-not-panel-measurement",
+  "defaultMember": "nominal",
+  "artifacts": [
+    {
+      "member": "fast",
+      "texture": {
+        "file": "../ws4-gtg-fast-v1.png",
+        "sha256": "26a7e2f0f705aafe8f42ec4c7737f2adcc475b2ab059af9e29d837c0ed065919"
+      },
+      "manifest": {
+        "file": "../ws4-gtg-fast-v1.json",
+        "sha256": "491734a6593393b77b370b76f32ced64e0a5783274f6ac167cfc17f62d1f7fb7"
+      },
+      "preset": {
+        "file": "ags101-ws4-fast-v1.slangp",
+        "sha256": "d44be2ce6432ada1a25567fa5e52d69d5c9750b3d3486c543c6c14225ab3ba32"
+      },
+      "endpointRatesPerSecond": {
+        "opticalDarkening": 122.0680321,
+        "opticalBrightening": 48.82721283
+      },
+      "coverage": {
+        "packedCount": 3072,
+        "fallbackCount": 0,
+        "reconstructedCount": 2976,
+        "identityAnchorCount": 96,
+        "maxRateRoundTripRelativeError": 0.00005279109572
+      }
+    },
+    {
+      "member": "nominal",
+      "texture": {
+        "file": "../ws4-gtg-nominal-v1.png",
+        "sha256": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e"
+      },
+      "manifest": {
+        "file": "../ws4-gtg-nominal-v1.json",
+        "sha256": "a5cd5aae6bb582d59b45b2ff1302788e36f827046f10d40d5f279dd12ede975d"
+      },
+      "preset": {
+        "file": "ags101-ws4-nominal-v1.slangp",
+        "sha256": "b6f21a8c933569402ea539304fb524362903dfc3db6f6733ea68a8363b77a8cb"
+      },
+      "endpointRatesPerSecond": {
+        "opticalDarkening": 73.24081924,
+        "opticalBrightening": 36.62040962
+      },
+      "coverage": {
+        "packedCount": 3072,
+        "fallbackCount": 0,
+        "reconstructedCount": 2976,
+        "identityAnchorCount": 96,
+        "maxRateRoundTripRelativeError": 0.00005288216656
+      }
+    },
+    {
+      "member": "slow",
+      "texture": {
+        "file": "../ws4-gtg-slow-v1.png",
+        "sha256": "8b7636fa1ad46f43d08c67d0d813aebb50c762c6b5703235913003ddafa02a15"
+      },
+      "manifest": {
+        "file": "../ws4-gtg-slow-v1.json",
+        "sha256": "61f3ca1704b543755c2f52263d23594b2e1000f6a2e061c937429d6368c2a3a2"
+      },
+      "preset": {
+        "file": "ags101-ws4-slow-v1.slangp",
+        "sha256": "ad49f5115f543f8b1b22fc840e7fa82e24a38ea02e106a48eaca1d0f68bff884"
+      },
+      "endpointRatesPerSecond": {
+        "opticalDarkening": 43.94449155,
+        "opticalBrightening": 21.97224577
+      },
+      "coverage": {
+        "packedCount": 3072,
+        "fallbackCount": 0,
+        "reconstructedCount": 2976,
+        "identityAnchorCount": 96,
+        "maxRateRoundTripRelativeError": 0.00005280556078
+      }
+    }
+  ],
+  "comparisonReceipt": "../ws4-comparison-v1.json",
+  "validationReceipt": "../ws4-validation-v1.json"
+}

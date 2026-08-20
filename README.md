@@ -128,7 +128,16 @@ color, electrical, temporal-response, and pixel-structure model.
 The difference is not just saturation or brightness. The model combines a
 measured 32-code color response and black/white anchors, continuous per-subpixel
 TFT gray-to-gray state, alternating drive and slow residual-DC retention, GBA
-scan/latch/optical-onset timing, and the final BGR pixel aperture.
+scan/latch/optical-onset timing, exact native-frame emitted-light integration,
+and the final BGR pixel aperture. The exposure average is a separate
+presentation pass, so it never replaces the physical endpoint used as the next
+frame's feedback state.
+
+The AGS-101 retention state is per pixel. WS5 now drives it from raw RGB555
+command history and explicit frame/row/column/dot polarity candidates, so
+different spatial histories can produce different slow states. Its code and
+polarity weights remain unfitted sensitivity priors—not measured AGS-101 image
+sticking—and balanced drive still produces exactly zero excitation.
 
 No complete gray-to-gray matrix or motherboard timing trace has yet been
 recovered for the referenced AGS-101. The default therefore uses documented
@@ -195,7 +204,7 @@ retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-refer
 For GBA content on the same device, use:
 
 ```text
-retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp
 ```
 
 For another display, start from the model preset and build a separate target

@@ -515,9 +515,6 @@ if (checkOnly) {
 const fit = fitRecord(record);
 const built = buildAsset(record, fit, path.basename(assetPath));
 
-if (inputPath !== defaultRawPath && checkOnly) {
-  throw new Error("--check supports only the checked-in synthetic record");
-}
 compareOrWrite(assetPath, built.png);
 compareOrWrite(manifestPath, built.manifestBuffer);
 compareOrWrite(fitPath, built.fitBuffer);

@@ -7,7 +7,7 @@
 // Row start, electrical latch, and optical response onset are separate events.
 // Optical events that cross a frame boundary use causal source history.
 // Provenance: ../REFERENCES.md
-// Evidence: [AGS-COLOR-01] [AGS-GTG-01] [AGS-GTGDATA-01] [AGS-ION-01] [AGS-DRIVE-01] [AGS-FEED-01] [AGS-FRONTEND-01] [AGS-NEUTRAL-01] [AGS-TIMING-01]
+// Evidence: [AGS-COLOR-01] [AGS-GTG-01] [AGS-GTGDATA-01] [AGS-ION-01] [AGS-DRIVE-01] [AGS-FEED-01] [AGS-RETENTION-01] [AGS-FRONTEND-01] [AGS-NEUTRAL-01] [AGS-TIMING-01] [AGS-RECON-01]
 
 layout(push_constant) uniform Push
 {
@@ -19,6 +19,9 @@ layout(push_constant) uniform Push
    float TemporalResponse;
    float HcsMeasuredColor;
    float DriveRetention;
+   float SpatialRetention;
+   float SpatialCodeWeight;
+   float PolarityDriveWeight;
    float DriveDcOffset;
    float IonAdsorptionRate;
    float IonDesorptionRate;
@@ -26,6 +29,8 @@ layout(push_constant) uniform Push
    float BakedScanout;
    float LatchOffsetLines;
    float OpticalDelaySeconds;
+   float ParityPhase;
+   float InversionTopology;
 } params;
 
 #pragma parameter RiseBase "AGS candidate brightening / frame" 0.620 0.100 1.000 0.025
@@ -36,13 +41,18 @@ layout(push_constant) uniform Push
 #pragma parameter TemporalResponse "AGS GtG optical response" 1.0 0.0 1.0 1.0
 #pragma parameter HcsMeasuredColor "AGS HCS measured color" 1.0 0.0 1.0 1.0
 #pragma parameter DriveRetention "AGS drive-retention state" 1.0 0.0 1.0 1.0
+#pragma parameter SpatialRetention "AGS reconstructed spatial retention" 1.0 0.0 1.0 1.0
+#pragma parameter SpatialCodeWeight "AGS code-dependent DC proxy weight" 0.500 0.000 1.000 0.025
+#pragma parameter PolarityDriveWeight "AGS polarity-dependent DC proxy weight" 0.250 0.000 1.000 0.025
 #pragma parameter DriveDcOffset "AGS project-prior normalized drive DC" 0.100 -0.250 0.250 0.005
 #pragma parameter IonAdsorptionRate "Mizusaki cell adsorption rate (1/s)" 0.0010583333 0.0000 0.0100 0.0001
 #pragma parameter IonDesorptionRate "Mizusaki cell desorption rate (1/s)" 0.0004250000 0.0000 0.0100 0.0001
 #pragma parameter DriveCodeCoupling "AGS project-prior DC-to-code coupling" 0.150 0.000 1.000 0.010
 #pragma parameter BakedScanout "AGS three-phase GBA scan timing" 1.0 0.0 1.0 1.0
-#pragma parameter LatchOffsetLines "AGS latch offset (lines, theoretical)" 0.5 0.0 1.0 0.05
-#pragma parameter OpticalDelaySeconds "AGS optical delay (s, theoretical)" 0.000000 0.000000 0.016743 0.000050
+#pragma parameter LatchOffsetLines "AGS latch offset candidate (lines)" 0.5 0.0 1.0 0.05
+#pragma parameter OpticalDelaySeconds "AGS pure-delay candidate (s)" 0.000000 0.000000 0.016743 0.000050
+#pragma parameter ParityPhase "AGS polarity-phase hypothesis" 0.0 0.0 1.0 1.0
+#pragma parameter InversionTopology "AGS inversion hypothesis (frame/row/column/dot)" 0.0 0.0 3.0 1.0
 
 layout(std140, set = 0, binding = 0) uniform UBO
 {
@@ -76,39 +86,7 @@ layout(set = 0, binding = 4) uniform sampler2D OriginalHistory1;
 layout(set = 0, binding = 5) uniform sampler2D OriginalHistory2;
 layout(set = 0, binding = 6) uniform sampler2D GtgRateLut;
 
-const float GBA_MASTER_CLOCK_HZ = 16777216.0;
-const float GBA_CYCLES_PER_LINE = 1232.0;
-const float GBA_TOTAL_LINES = 228.0;
-const float LINE_SECONDS = GBA_CYCLES_PER_LINE / GBA_MASTER_CLOCK_HZ;
-const float FRAME_SECONDS = LINE_SECONDS * GBA_TOTAL_LINES;
-
-struct ScanEvent
-{
-   float rowStartSeconds;
-   float latchSeconds;
-   float opticalAbsoluteSeconds;
-   float opticalTimeInFrame;
-   uint sourceFrameOffset;
-};
-
-ScanEvent scan_event(int sourceRow)
-{
-   ScanEvent event;
-   event.rowStartSeconds = float(sourceRow) * LINE_SECONDS;
-   event.latchSeconds = event.rowStartSeconds
-      + clamp(params.LatchOffsetLines, 0.0, 1.0) * LINE_SECONDS;
-   event.opticalAbsoluteSeconds = event.latchSeconds
-      + clamp(params.OpticalDelaySeconds, 0.0, FRAME_SECONDS);
-
-   // Visible rows plus at most one frame of optical delay can cross only one
-   // boundary. Preserve that boundary instead of clamping phase to [0, 1].
-   event.sourceFrameOffset = event.opticalAbsoluteSeconds >= FRAME_SECONDS
-      ? 1u
-      : 0u;
-   event.opticalTimeInFrame = event.opticalAbsoluteSeconds
-      - float(event.sourceFrameOffset) * FRAME_SECONDS;
-   return event;
-}
+#include "ags101-ws3-timing.inc"
 
 float srgb_decode_channel(float encoded)
 {
@@ -354,15 +332,25 @@ vec3 response_for_time(vec3 ratePerSecond, float dtSeconds)
 
 void integrate_residual_segment(
    inout float residualDc,
+   ivec3 targetIndex,
+   float polarity,
    float dtSeconds)
 {
    if (params.DriveRetention < 0.5) {
       residualDc = 0.0;
       return;
    }
+   float excitation = ws5_drive_excitation(
+      targetIndex,
+      polarity,
+      params.DriveDcOffset,
+      params.SpatialRetention,
+      params.SpatialCodeWeight,
+      params.PolarityDriveWeight
+   );
    residualDc = update_residual_dc(
       residualDc,
-      params.DriveDcOffset,
+      excitation,
       params.IonAdsorptionRate,
       params.IonDesorptionRate,
       dtSeconds
@@ -379,11 +367,19 @@ void integrate_optical_segment(
    if (dtSeconds <= 0.0)
       return;
 
+   float excitation = ws5_drive_excitation(
+      targetIndex,
+      polarity,
+      params.DriveDcOffset,
+      params.SpatialRetention,
+      params.SpatialCodeWeight,
+      params.PolarityDriveWeight
+   );
    vec3 effectiveCode = params.DriveRetention > 0.5
       ? effective_drive_code(
          targetIndex,
          polarity,
-         params.DriveDcOffset,
+         excitation,
          residualDc,
          params.DriveCodeCoupling
       )
@@ -407,10 +403,28 @@ void integrate_segment(
    float polarity,
    float dtSeconds)
 {
-   integrate_residual_segment(residualDc, dtSeconds);
+   integrate_residual_segment(residualDc, targetIndex, polarity, dtSeconds);
    integrate_optical_segment(
       panelState, targetIndex, residualDc, polarity, dtSeconds
    );
+}
+
+float integrate_electrical_until(
+   float initialResidualDc,
+   ivec3 oldTargetIndex,
+   ivec3 newTargetIndex,
+   float polarity,
+   float latchSeconds,
+   float endSeconds)
+{
+   float state = initialResidualDc;
+   float boundedEnd = clamp(endSeconds, 0.0, FRAME_SECONDS);
+   float boundedLatch = clamp(latchSeconds, 0.0, FRAME_SECONDS);
+   float oldSeconds = min(boundedEnd, boundedLatch);
+   float newSeconds = max(boundedEnd - boundedLatch, 0.0);
+   integrate_residual_segment(state, oldTargetIndex, polarity, oldSeconds);
+   integrate_residual_segment(state, newTargetIndex, polarity, newSeconds);
+   return state;
 }
 
 void main()
@@ -444,7 +458,12 @@ void main()
 
    vec3 panelState = clamp(feedback.rgb, 0.0, 1.0);
    float residualDc = decode_residual_dc(feedback.a);
-   float polarity = drive_polarity(global.FrameCount);
+   float polarity = ws3_drive_polarity(
+      global.FrameCount,
+      sourceCoord,
+      params.ParityPhase,
+      params.InversionTopology
+   );
 
    if (params.BakedScanout < 0.5) {
       integrate_segment(
@@ -453,41 +472,57 @@ void main()
    } else {
       vec4 previousSource = texelFetch(OriginalHistory1, sourceCoord, 0);
       vec4 olderSource = texelFetch(OriginalHistory2, sourceCoord, 0);
-      ScanEvent event = scan_event(sourceCoord.y);
+      ivec3 previousTargetIndex = rgb555_index(previousSource.rgb);
+      Ws3ScanEvent event = ws3_scan_event(
+         sourceCoord.y,
+         params.LatchOffsetLines,
+         params.OpticalDelaySeconds
+      );
 
       ivec3 oldTargetIndex;
       ivec3 newTargetIndex;
       if (event.sourceFrameOffset == 0u) {
-         oldTargetIndex = rgb555_index(previousSource.rgb);
+         oldTargetIndex = previousTargetIndex;
          newTargetIndex = currentTargetIndex;
       } else {
          // The current frame's optical event has not happened yet. Apply the
          // delayed transition submitted one source frame earlier. Negative
          // history is transparent black by the Slang contract; fall back to
          // history1 during startup rather than inventing an older target.
-         newTargetIndex = rgb555_index(previousSource.rgb);
+         newTargetIndex = previousTargetIndex;
          oldTargetIndex = previousSource.a > 0.5 && olderSource.a > 0.5
             ? rgb555_index(olderSource.rgb)
             : newTargetIndex;
       }
 
-      // Avoid changing the numerical partition when no optical target changed.
+      // Electrical retention follows the source command at the WS3 latch,
+      // independently from the later (and possibly wrapped) optical event.
+      float residualAtOptical = integrate_electrical_until(
+         residualDc,
+         previousTargetIndex,
+         currentTargetIndex,
+         polarity,
+         event.latchSeconds,
+         event.opticalTimeInFrame
+      );
+      float residualAtFrameEnd = integrate_electrical_until(
+         residualDc,
+         previousTargetIndex,
+         currentTargetIndex,
+         polarity,
+         event.latchSeconds,
+         FRAME_SECONDS
+      );
+
+      // Avoid changing the optical numerical partition when no target changed.
       if (all(equal(oldTargetIndex, newTargetIndex))) {
-         integrate_segment(
-            panelState, residualDc, newTargetIndex, polarity, FRAME_SECONDS
+         integrate_optical_segment(
+            panelState, newTargetIndex, residualAtFrameEnd, polarity, FRAME_SECONDS
          );
+         residualDc = residualAtFrameEnd;
       } else {
          float firstDt = event.opticalTimeInFrame;
          float secondDt = FRAME_SECONDS - firstDt;
-
-         // t_latch is the electrical sample event. The retained WS2 resultant
-         // DC prior is constant over a frame, so its kinetic input does not
-         // branch at latch. We partition it at t_optical only to obtain the
-         // state used by the piecewise optical integration.
-         float residualAtOptical = residualDc;
-         integrate_residual_segment(residualAtOptical, firstDt);
-         float residualAtFrameEnd = residualAtOptical;
-         integrate_residual_segment(residualAtFrameEnd, secondDt);
 
          // Changed subpixels take two piecewise closed-form updates. Unchanged
          // subpixels take one full-frame optical update so the row latch does

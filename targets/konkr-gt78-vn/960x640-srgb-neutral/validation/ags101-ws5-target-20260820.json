@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "runId": "konkr-gt78-vn-ags101-ws5-target-20260820",
+  "classification": "device-run",
+  "date": "2026-08-20",
+  "modelId": "nintendo-ags-101-physics-seed",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "repositoryCommit": "0acbfa55744e20cddd5d1528854b322ea5730eeb",
+  "frontend": {
+    "name": "RetroArch",
+    "version": "1.22.2 (Git a609b709eb; Android versionCode 1597175267)",
+    "videoDriver": "Vulkan on Mali-G76 MC4",
+    "shaderSubframes": 1,
+    "historySemantics": "Normal-forward N=1 with PassFeedback0 as the preceding response-pass output; deterministic WS2 content ran from clean process starts.",
+    "feedbackFormat": "R32G32B32A32_SFLOAT",
+    "integerScaling": true,
+    "sourceRefreshHz": 59.727500569606,
+    "targetRefreshHz": 60,
+    "rewindEnabled": false,
+    "runAheadEnabled": false,
+    "fastForwardRatio": 1,
+    "frameDuplication": "No explicit duplication mode was used; bit-band FrameCount is recorded per capture.",
+    "variableRefresh": "Unavailable; the target exposes one 960x640 60 Hz mode."
+  },
+  "artifacts": {
+    "models/nintendo-ags-101/data/ws5-evidence-inventory-v1.json": "25b9eaf6b6c4b8e337b4b85546f5ff2a948a3fcb6f1cf0c8ac1aed2dd6f8ed3c",
+    "models/nintendo-ags-101/data/ws5-retention-reconstruction-v1.json": "80eaf3e3f8ca1e90deec87b83e2738bd677d80771bad292c115b784355804c43",
+    "models/nintendo-ags-101/generated/ws2-stimulus-v1/retention-stress-recovery.gba": "cd1a3b1d847b294c8dce54900ee44658770b655618c45a53e843a003522165f5",
+    "models/nintendo-ags-101/generated/ws3-shader-compile-v1.json": "9a027d2fd16d8fedd8075d329d3f16ca4dfa894d81b50d5739580a8febda2bc6",
+    "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e",
+    "models/nintendo-ags-101/generated/ws5-presets-v1/ags101-ws5-numeric-v1.slangp": "59359063b5f72a89ea7dc3413067693cb98004bc3df4a72a8394280cc05a69b1",
+    "models/nintendo-ags-101/generated/ws5-presets-v1/manifest.json": "c78787f4c6c4f94bd6f2f9970d4d4e1fda81a4379de3677b9e68f8eabe0950e5",
+    "models/nintendo-ags-101/generated/ws5-retention-validation-v1.json": "ed87464b94f3347030065aec96afcb11d97e335e178b57f3974fd7bb5582bde0",
+    "models/nintendo-ags-101/shaders/ags101-display-v1.slang": "a51774fc56c47ea2de009b32cb97944343d0bb81b2a06b48e1cc48149eddca22",
+    "models/nintendo-ags-101/shaders/ags101-drive-retention.inc": "2142fc2c846211418cb9980e626a02366e7329a7a51faefd30cdcea3237f15d2",
+    "models/nintendo-ags-101/shaders/ags101-response-v1.slang": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp": "d8469b5ebc2426cbe0501251e508f22f277f11d0c98343e7e38b4dcdca46c4d6",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg": "d437f4afafc801bc4bc3bb70e1fb3fa692e15be78ce78595380824fdc226c9ca",
+    "tools/build-ags101-ws5.mjs": "0802275e4e0bd1a99131ee7117bd2ac76547d52e52d4a5d2150676b15a5cf494",
+    "tools/compare-ags101-ws5-target.mjs": "572959bc22e2532cea573b1ac8221760636262c1878b1f89640849e81edf42f6",
+    "tools/decode-ags101-ws5-readback.mjs": "2d67a4fd60a0177430ac79603484967ce84a628bd3abba3ec68483059b9e52a4",
+    ".codex-validation/ags101-ws5-target-20260820/device-sha256.txt": "6932aed3fae89764978b3df970bce552d10975cc6e4e8c8e79498d2ce3144ac9",
+    ".codex-validation/ags101-ws5-target-20260820/numeric-a.png": "fad044b89a30ef8d7ae13217f3522d0f32f175d0f07926c785b2bf5854668766",
+    ".codex-validation/ags101-ws5-target-20260820/numeric-b.png": "3bb093797a0d1858feb3ad757706d5b500536492d0f1e536d70363a37261c00f",
+    ".codex-validation/ags101-ws5-target-20260820/numeric-c.png": "1f81a37d3755855ec15d95189fa4dce1bd6cd23a3e562507213c4e22ba69b466",
+    ".codex-validation/ags101-ws5-target-20260820/recovery-tight3-a.png": "f96437760fea4689da06b70b554c526eb28ab058e0c693846716036eeee2c938",
+    ".codex-validation/ags101-ws5-target-20260820/recovery-tight3-b.png": "e227d34f1b702fd834340c7dcca5161880677db6523694903a827fce0377e131",
+    ".codex-validation/ags101-ws5-target-20260820/recovery-comparison.json": "15e78fbfda76901f58b30407d944e84ab9674c4e0ea605d9b94ba64b2816504a",
+    ".codex-validation/ags101-ws5-target-20260820/retroarch-ws5.cfg": "234b60c1406e45d433de9d41a608ae6ca7964e61195f37f24053b278ef047fb0",
+    ".codex-validation/ags101-ws5-target-20260820/retroarch.log": "e9ea4be57a1e6bf663e2fd7e98c83727945834d7e46716532f6f66c215fac742",
+    ".codex-validation/ags101-ws5-target-20260820/stress-comparison.json": "1f4bfab5407fa6d7629e053ef20c9b3d1bb551f2c73b9d4c08f2be9c6ffd15e7"
+  },
+  "checks": [
+    {
+      "event": "reset",
+      "outcome": "supported-passed",
+      "observation": "Three clean RetroArch process starts reset feedback; each reached deterministic bit-band output and the expected zero-origin state trajectory."
+    },
+    {
+      "event": "content-reload",
+      "outcome": "supported-passed",
+      "observation": "The deterministic retention ROM was cold-loaded repeatedly while the isolated numeric preset rebuilt both shader passes without error."
+    },
+    {
+      "event": "save-state-load",
+      "outcome": "tested-limited",
+      "observation": "Not repeated because WS5 validates normal-forward physical history; save-state restoration does not restore shader feedback and is not promoted to a support claim."
+    },
+    {
+      "event": "pause-resume",
+      "outcome": "tested-limited",
+      "observation": "Not repeated in this numeric run; bit-band captures use continuous foreground execution."
+    },
+    {
+      "event": "rewind",
+      "outcome": "unsupported-disabled",
+      "observation": "Disabled in the effective mGBA override because backward emulator time cannot reconstruct residual-DC history."
+    },
+    {
+      "event": "run-ahead",
+      "outcome": "unsupported-disabled",
+      "observation": "Disabled in the effective mGBA override because speculative frames are outside the feedback contract."
+    },
+    {
+      "event": "fast-forward",
+      "outcome": "unsupported-disabled",
+      "observation": "The isolated config fixed fastforward_ratio to 1.000000; no accelerated interval was used for accepted trajectories."
+    },
+    {
+      "event": "frame-duplication",
+      "outcome": "tested-limited",
+      "observation": "No explicit duplicate-frame mode was enabled; every accepted interval is aligned by the GPU-emitted FrameCount word."
+    },
+    {
+      "event": "variable-refresh",
+      "outcome": "not-applicable",
+      "observation": "The target reports one 960x640 mode at 60 Hz with no alternative refresh rate."
+    }
+  ],
+  "runEvidence": {
+    "device": {
+      "serial": "BW0306N250002377",
+      "manufacturer": "ARBOR",
+      "model": "GT78-VN",
+      "androidRelease": "12",
+      "buildFingerprint": "ARBOR/GT78-VN/GT78-VN:11/RP1A.200720.011/mp1V95182:user/release-keys",
+      "display": "960x640 at fixed 60 Hz, density 240, color mode 0",
+      "gpu": "Mali-G76 MC4"
+    },
+    "core": {
+      "name": "mGBA",
+      "loadedPath": "/data/data/com.retroarch/cores/mgba_libretro_android.so",
+      "loadedCoreByteHash": "unavailable: Android app sandbox is non-debuggable; runtime log pins the loaded path"
+    },
+    "deployment": {
+      "classification": "isolated-current-working-tree-artifacts",
+      "repositoryState": "HEAD identifies the base commit; artifact hashes pin the uncommitted WS5 bytes deployed by adb",
+      "shaderRoot": "/sdcard/RetroArch/shaders/.codex-validation/20260820-ags101-ws5/retro-display-lab",
+      "config": "/sdcard/RetroArch/config/.codex-validation/20260820-ags101-ws5/retroarch-ws5.cfg",
+      "rom": "/sdcard/RetroArch/downloads/RDL-AGS101-WS5-Retention.gba",
+      "romScene": "retention-stress-recovery",
+      "romDwellFrames": [1800, 900],
+      "deviceReadbackHashesMatchedRepository": true
+    },
+    "compile": {
+      "preset": "ags101-ws5-numeric-v1.slangp",
+      "allColdStartsPassed": true,
+      "responsePassFormat": "R32G32B32A32_SFLOAT",
+      "displayPassFormat": "R8G8B8A8_UNORM",
+      "feedbackPass": 0,
+      "shaderTextureCompileErrors": 0,
+      "loadedParameters": {
+        "SpatialRetention": 1,
+        "SpatialCodeWeight": 0.5,
+        "PolarityDriveWeight": 0.25,
+        "DebugView": 12
+      },
+      "log": ".codex-validation/ags101-ws5-target-20260820/retroarch.log"
+    },
+    "gpuNumericReadback": {
+      "method": "DebugView 12 emits four binary uint32 bands: outside retained float, inside retained float, FrameCount, and outside excitation. At exact 4x scale each bit is majority-decoded over seven or eight repeated source columns.",
+      "probes": {
+        "outside": [30, 80],
+        "inside": [120, 80],
+        "stressWindowX": [48, 191]
+      },
+      "allDecodedBandsUnanimous": true,
+      "stress": {
+        "frames": [6865, 7001, 7136],
+        "outsideStates": [0.008373737335205078, 0.00853419303894043, 0.008695602416992188],
+        "insideStates": [0.01260995864868164, 0.012866973876953125, 0.013124942779541016],
+        "maximumCpuVsGpuAbsoluteError": 0.000002384185791015625,
+        "tolerance": 0.000003,
+        "pass": true
+      },
+      "recovery": {
+        "frames": [2444, 2459],
+        "outsideStates": [0.0031206607818603516, 0.0031380653381347656],
+        "insideStates": [0.004647731781005859, 0.0046651363372802734],
+        "maximumCpuVsGpuAbsoluteError": 0,
+        "tolerance": 0.000003,
+        "pass": true
+      },
+      "spatialSeparationObserved": true,
+      "parityExcitationWordsMatchedExactly": true,
+      "pass": true
+    },
+    "restoration": {
+      "retroarchTestProcessStopped": true,
+      "gbaOverrideBeforeAfterSha256": "85d470b4aa41417c76c6f96e92d79e97a5411a5e7e9ef318379079135d9300bc",
+      "mgbaOverrideBeforeAfterSha256": "f50f14658651ca8aa7e69b8ee7c81a8c602eaf7ca304e8640a3f86442bf46d7b",
+      "globalRetroArchConfigurationModified": false,
+      "isolatedEvidenceRetainedOnDevice": true
+    },
+    "limits": [
+      "The target is a presentation/frontend instrument, not an AGS-101 specimen; this run validates implementation and numeric state, not the reconstructed physical weights.",
+      "Actual GPU numeric coverage is the nominal WS4 member with frame-global/even-positive candidates. The repository float32 receipt covers every WS3 topology, parity phase, and WS4 member.",
+      "Android screencap is asynchronous; the accepted stress tolerance permits slightly over one state increment, while one stress interval and the recovery interval match bit-for-bit."
+    ]
+  },
+  "captures": {
+    "presentationOnly": true,
+    "files": [
+      ".codex-validation/ags101-ws5-target-20260820/numeric-a.png",
+      ".codex-validation/ags101-ws5-target-20260820/numeric-b.png",
+      ".codex-validation/ags101-ws5-target-20260820/numeric-c.png",
+      ".codex-validation/ags101-ws5-target-20260820/recovery-tight3-a.png",
+      ".codex-validation/ags101-ws5-target-20260820/recovery-tight3-b.png"
+    ]
+  },
+  "notes": "Current WS5 shaders compiled with real RGBA32F feedback and produced decoded spatial retention trajectories on the named target. The retained-state and excitation words match the CPU float32 recurrence within the declared target tolerance. This is implementation evidence, not AGS-101 panel metrology. User mGBA/GBA shader overrides were restored byte-for-byte after the run."
+}

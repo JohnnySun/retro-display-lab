@@ -1,3 +1,3 @@
 # Deploy as RetroArch/config/mGBA/gba.slangp when this repository is installed
 # at RetroArch/shaders/retro-display-lab.
-#reference "../../shaders/retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-physics-seed-v1.slangp"
+#reference "../../shaders/retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp"

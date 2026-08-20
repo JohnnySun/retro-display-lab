@@ -1,6 +1,7 @@
 import {
   effectiveDriveCode,
   PANEL_FRAME_SECONDS,
+  spatialDriveExcitation,
   stepResidualDc,
 } from "./drive-retention.mjs";
 import { scanEvent, sourcePairForEvent } from "./scan-timing.mjs";
@@ -15,7 +16,21 @@ export const BALANCED_DRIVE = Object.freeze({
   adsorptionRatePerSecond: 0,
   desorptionRatePerSecond: 0,
   driveCodeCoupling: 0,
+  spatialRetentionEnabled: true,
+  spatialCodeWeight: 0.5,
+  polarityDriveWeight: 0.25,
 });
+
+export function excitationForTarget(target, drive = BALANCED_DRIVE, polarity = 1) {
+  return spatialDriveExcitation({
+    sourceRgb555: target,
+    polarity,
+    driveDcOffset: drive.driveDcOffset,
+    spatialRetentionEnabled: drive.spatialRetentionEnabled ?? false,
+    codeWeight: drive.spatialCodeWeight ?? 0.5,
+    polarityWeight: drive.polarityDriveWeight ?? 0.25,
+  });
+}
 
 export function opticalToCode(optical, eotf = (code) => srgbDecodeChannel(code / 31)) {
   const value = clamp(optical);
@@ -39,6 +54,22 @@ export function integrateResidualDc(state, seconds, drive = BALANCED_DRIVE) {
   });
 }
 
+export function integrateSpatialResidualDc(
+  state,
+  target,
+  seconds,
+  drive = BALANCED_DRIVE,
+  polarity = 1,
+) {
+  return stepResidualDc({
+    state,
+    driveDcOffset: excitationForTarget(target, drive, polarity),
+    adsorptionRatePerSecond: drive.adsorptionRatePerSecond,
+    desorptionRatePerSecond: drive.desorptionRatePerSecond,
+    dtSeconds: seconds,
+  });
+}
+
 export function integrateOptical(
   panel,
   target,
@@ -48,11 +79,13 @@ export function integrateOptical(
   polarity = 1,
 ) {
   const from = panel.map((value) => opticalToCode(value));
+  const excitation = excitationForTarget(target, drive, polarity);
   return panel.map((value, channel) => {
     const effectiveCode = effectiveDriveCode({
       sourceCode: target[channel] / 31,
       polarity,
       driveDcOffset: drive.driveDcOffset,
+      driveExcitation: excitation,
       residualDcState: residualDc,
       driveCodeCoupling: drive.driveCodeCoupling,
     });
@@ -69,11 +102,46 @@ export function integrateSegment(
   drive = BALANCED_DRIVE,
   polarity = 1,
 ) {
-  const residualDc = integrateResidualDc(state.residualDc, seconds, drive);
+  const residualDc = integrateSpatialResidualDc(
+    state.residualDc,
+    target,
+    seconds,
+    drive,
+    polarity,
+  );
   return {
     panel: integrateOptical(state.panel, target, residualDc, seconds, drive, polarity),
     residualDc,
   };
+}
+
+export function integrateElectricalUntil({
+  state,
+  oldTarget,
+  newTarget,
+  polarity,
+  latchSeconds,
+  endSeconds,
+  drive = BALANCED_DRIVE,
+}) {
+  const boundedEnd = Math.max(0, Math.min(PANEL_FRAME_SECONDS, endSeconds));
+  const boundedLatch = Math.max(0, Math.min(PANEL_FRAME_SECONDS, latchSeconds));
+  const oldSeconds = Math.min(boundedEnd, boundedLatch);
+  const newSeconds = Math.max(0, boundedEnd - boundedLatch);
+  const atLatch = integrateSpatialResidualDc(
+    state,
+    oldTarget,
+    oldSeconds,
+    drive,
+    polarity,
+  );
+  return integrateSpatialResidualDc(
+    atLatch,
+    newTarget,
+    newSeconds,
+    drive,
+    polarity,
+  );
 }
 
 export function integrateScanoutFrame(
@@ -102,18 +170,44 @@ export function integrateScanoutFrame(
     olderAvailable: timing.olderAvailable ?? true,
     sourceFrameOffset: event.sourceFrameOffset,
   });
+  const residualAtOptical = integrateElectricalUntil({
+    state: state.residualDc,
+    oldTarget: previousTarget,
+    newTarget: currentTarget,
+    polarity,
+    latchSeconds: event.latchSeconds,
+    endSeconds: event.opticalTimeInFrame,
+    drive,
+  });
+  const residualAtFrameEnd = integrateElectricalUntil({
+    state: state.residualDc,
+    oldTarget: previousTarget,
+    newTarget: currentTarget,
+    polarity,
+    latchSeconds: event.latchSeconds,
+    endSeconds: PANEL_FRAME_SECONDS,
+    drive,
+  });
   if (pair.oldTarget.every((value, channel) => value === pair.newTarget[channel])) {
-    return integrateSegment(state, pair.newTarget, PANEL_FRAME_SECONDS, drive, polarity);
+    return {
+      panel: integrateOptical(
+        state.panel,
+        pair.newTarget,
+        residualAtFrameEnd,
+        PANEL_FRAME_SECONDS,
+        drive,
+        polarity,
+      ),
+      residualDc: residualAtFrameEnd,
+    };
   }
 
   const firstSeconds = event.beforeOpticalSeconds;
   const secondSeconds = event.afterOpticalSeconds;
-  const residualAtLatch = integrateResidualDc(state.residualDc, firstSeconds, drive);
-  const residualAtFrameEnd = integrateResidualDc(residualAtLatch, secondSeconds, drive);
   const splitAtLatch = integrateOptical(
     state.panel,
     pair.oldTarget,
-    residualAtLatch,
+    residualAtOptical,
     firstSeconds,
     drive,
     polarity,

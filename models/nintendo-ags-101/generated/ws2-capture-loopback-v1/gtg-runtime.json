@@ -1,0 +1,35 @@
+{
+  "assetVersion": "ags101-gtg-rate-texture-v1",
+  "schemaVersion": "1.0.0",
+  "fitVersion": "monotone-first-order-rate-field-v1",
+  "sourceRecordId": "ags101-ws2-synthetic-capture-subset-v1",
+  "sourceClassification": "synthetic",
+  "sourceRecordSha256": "17c17f4b3518754b2d13183be95be98f4caa730adfc0818dfefebca59aebc742",
+  "fitReportSha256": "d6ebde2130a751b280a56fe5c744b6f5a6454000ea9cf4b55910918482924e20",
+  "texture": {
+    "file": "gtg-runtime.png",
+    "sha256": "b254a712f702b466fb0a91245d45570d44f7a28a6042db436617654b055952ea",
+    "width": 32,
+    "height": 96,
+    "format": "RGB8 PNG",
+    "addressing": "x=toCode, y=fromCode+32*channelIndex; channelIndex r=0,g=1,b=2",
+    "rateEncoding": {
+      "bytes": "R=uint16 high byte, G=uint16 low byte",
+      "equation": "rate=1*pow(1024, uint16/65535) per second",
+      "minimumPerSecond": 1,
+      "maximumPerSecond": 1024
+    },
+    "statusEncoding": "B=255 fitted, B=192 derived identity anchor, B=0 explicit fallback"
+  },
+  "errorMetrics": {
+    "cells": 3072,
+    "packedCount": 1,
+    "fallbackCount": 3071,
+    "derivedIdentityCount": 0,
+    "rmseMaximum": 0,
+    "maxAbsoluteError": 0,
+    "overshootMaximum": 0,
+    "undershootMaximum": 0,
+    "maxRateRoundTripRelativeError": 0.0000330285423
+  }
+}

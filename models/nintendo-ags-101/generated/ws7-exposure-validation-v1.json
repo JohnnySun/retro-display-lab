@@ -1,0 +1,3433 @@
+{
+  "schemaVersion": 1,
+  "reportId": "nintendo-ags-101-ws7-exposure-validation-v1",
+  "classification": "repository-cpu-shader-equation-receipt-not-device-readback",
+  "generatedBy": "tools/build-ags101-ws7.mjs",
+  "sources": {
+    "definition": "models/nintendo-ags-101/data/ws7-exposure-integration-v1.json",
+    "definitionSha256": "fc0964f3ef833cc9f5721ae6457d15e1e8562cd099df6bda83e60e29f69039cd",
+    "ensemble": "models/nintendo-ags-101/data/ws4-gtg-ensemble-v1.json",
+    "ensembleSha256": "434b86e46fcc9eccaff26ca6f682441911de5089e246b33c949fa43c9647c40e",
+    "color": "models/nintendo-ags-101/generated/hcs-e688fc5-color.json",
+    "colorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
+    "ws6Validation": "models/nintendo-ags-101/generated/ws6-validation-v1.json",
+    "ws6ValidationSha256": "2c79fee5f9784ebfb79d2b2ddc0d6dc69c8aecca8623044bd9e8c4d668a2d4e8",
+    "presetManifest": "models/nintendo-ags-101/generated/ws7-presets-v1/manifest.json",
+    "presetManifestSha256": "97563e77224dc505dc484cd7f07df27d1751aa31852ce56110d4c1ffd26e16b8"
+  },
+  "observationIntervals": [
+    {
+      "id": "ordinary-refresh",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.0167427062988,
+      "runtimeStatus": "supported",
+      "changesNativeClock": false
+    },
+    {
+      "id": "content-duplicate",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.0167427062988,
+      "runtimeStatus": "supported",
+      "changesNativeClock": false
+    },
+    {
+      "id": "frontend-generated-duplicate",
+      "nativeFramesAdvanced": 0,
+      "observationSeconds": null,
+      "runtimeStatus": "presentation-hold-not-physical-advance",
+      "changesNativeClock": false
+    },
+    {
+      "id": "fast-forward-every-frame",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.0167427062988,
+      "runtimeStatus": "equation-supported-host-pacing-irrelevant",
+      "changesNativeClock": false
+    },
+    {
+      "id": "fast-forward-skipped-frames",
+      "nativeFramesAdvanced": null,
+      "observationSeconds": null,
+      "runtimeStatus": "unsupported-safe-bypass-required",
+      "changesNativeClock": false
+    },
+    {
+      "id": "variable-refresh-one-execution-per-frame",
+      "nativeFramesAdvanced": 1,
+      "observationSeconds": 0.0167427062988,
+      "runtimeStatus": "equation-supported-host-pacing-independent",
+      "changesNativeClock": false
+    },
+    {
+      "id": "variable-refresh-unknown-duplication-or-drop",
+      "nativeFramesAdvanced": null,
+      "observationSeconds": null,
+      "runtimeStatus": "unsupported-safe-bypass-required",
+      "changesNativeClock": false
+    }
+  ],
+  "numericalReference": {
+    "method": "closed-form first-order segment integral versus composite Simpson 4096",
+    "vectors": [
+      {
+        "member": "fast",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 48.8272128297,
+        "exact": 0.000103379762401,
+        "simpson": 0.000103379762401,
+        "shaderFloat": 0.000103379832581,
+        "simpsonError": 0,
+        "shaderFloatError": 7.01796164584e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 48.8272128297,
+        "exact": 0.00149978412348,
+        "simpson": 0.00149978412348,
+        "shaderFloat": 0.00149978464469,
+        "simpsonError": 0,
+        "shaderFloatError": 5.21211172312e-10
+      },
+      {
+        "member": "fast",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 48.8272128297,
+        "exact": 0.00530511408575,
+        "simpson": 0.00530511408575,
+        "shaderFloat": 0.00530511513352,
+        "simpsonError": 0,
+        "shaderFloatError": 1.04777204274e-9
+      },
+      {
+        "member": "fast",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 122.068032074,
+        "exact": 0.00184689290602,
+        "simpson": 0.00184689290602,
+        "shaderFloat": 0.00184689287562,
+        "simpsonError": 0,
+        "shaderFloatError": 3.04006772013e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 122.068032074,
+        "exact": 0.00524363659135,
+        "simpson": 0.00524363659135,
+        "shaderFloat": 0.00524363666773,
+        "simpsonError": 0,
+        "shaderFloatError": 7.63803499615e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 122.068032074,
+        "exact": 0.00713092417785,
+        "simpson": 0.00713092417785,
+        "shaderFloat": 0.00713092414662,
+        "simpsonError": 0,
+        "shaderFloatError": 3.12304817424e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 48.0275860075,
+        "exact": 0.0000797999106881,
+        "simpson": 0.0000797999106881,
+        "shaderFloat": 0.0000797995598987,
+        "simpsonError": 0,
+        "shaderFloatError": 3.50789431357e-10
+      },
+      {
+        "member": "fast",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 48.0275860075,
+        "exact": 0.00102273428077,
+        "simpson": 0.00102273428077,
+        "shaderFloat": 0.00102273374796,
+        "simpsonError": 0,
+        "shaderFloatError": 5.32812224896e-10
+      },
+      {
+        "member": "fast",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 48.0275860075,
+        "exact": 0.00354403350732,
+        "simpson": 0.00354403350732,
+        "shaderFloat": 0.00354403303936,
+        "simpsonError": 0,
+        "shaderFloatError": 4.67958066394e-10
+      },
+      {
+        "member": "fast",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 39.5640400753,
+        "exact": 0.00036620003406,
+        "simpson": 0.00036620003406,
+        "shaderFloat": 0.000366200052667,
+        "simpsonError": 0,
+        "shaderFloatError": 1.86075391206e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 39.5640400753,
+        "exact": 0.00148431217206,
+        "simpson": 0.00148431217206,
+        "shaderFloat": 0.00148431223352,
+        "simpsonError": 0,
+        "shaderFloatError": 6.14553007008e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 39.5640400753,
+        "exact": 0.00301180274767,
+        "simpson": 0.00301180274767,
+        "shaderFloat": 0.0030118029099,
+        "simpsonError": 0,
+        "shaderFloatError": 1.62223483778e-10
+      },
+      {
+        "member": "fast",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 98.9101001883,
+        "exact": 0.000405014815294,
+        "simpson": 0.000405014815294,
+        "shaderFloat": 0.000405014841817,
+        "simpsonError": 0,
+        "shaderFloatError": 2.6523160892e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 98.9101001883,
+        "exact": 0.00157989660079,
+        "simpson": 0.00157989660079,
+        "shaderFloat": 0.00157989666332,
+        "simpsonError": 0,
+        "shaderFloatError": 6.25238758337e-11
+      },
+      {
+        "member": "fast",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 98.9101001883,
+        "exact": 0.00309090382494,
+        "simpson": 0.00309090382494,
+        "shaderFloat": 0.00309090386145,
+        "simpsonError": 0,
+        "shaderFloatError": 3.65037748293e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 36.6204096223,
+        "exact": 0.0000781880353551,
+        "simpson": 0.0000781880353551,
+        "shaderFloat": 0.0000781880225986,
+        "simpsonError": 0,
+        "shaderFloatError": 1.27565007169e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 36.6204096223,
+        "exact": 0.0011615104143,
+        "simpson": 0.0011615104143,
+        "shaderFloat": 0.0011615101248,
+        "simpsonError": 0,
+        "shaderFloatError": 2.89498045328e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 36.6204096223,
+        "exact": 0.00422661681906,
+        "simpson": 0.00422661681906,
+        "shaderFloat": 0.00422661658376,
+        "simpsonError": 0,
+        "shaderFloatError": 2.35299651291e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 73.2408192445,
+        "exact": 0.00194033250638,
+        "simpson": 0.00194033250638,
+        "shaderFloat": 0.00194033235312,
+        "simpsonError": 0,
+        "shaderFloatError": 1.53263139593e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 73.2408192445,
+        "exact": 0.00625804473988,
+        "simpson": 0.00625804473988,
+        "shaderFloat": 0.00625804485753,
+        "simpsonError": 0,
+        "shaderFloatError": 1.17649825646e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 73.2408192445,
+        "exact": 0.00964775019629,
+        "simpson": 0.00964775019629,
+        "shaderFloat": 0.0096477502957,
+        "simpsonError": 0,
+        "shaderFloatError": 9.94067449883e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 35.5548733552,
+        "exact": 0.000062874477232,
+        "simpson": 0.000062874477232,
+        "shaderFloat": 0.0000628748675808,
+        "simpsonError": 0,
+        "shaderFloatError": 3.90348841575e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 35.5548733552,
+        "exact": 0.000794602807306,
+        "simpson": 0.000794602807306,
+        "shaderFloat": 0.000794602558017,
+        "simpsonError": 0,
+        "shaderFloatError": 2.49289186516e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 35.5548733552,
+        "exact": 0.00281323427926,
+        "simpson": 0.00281323427926,
+        "shaderFloat": 0.00281323399395,
+        "simpsonError": 0,
+        "shaderFloatError": 2.85311675327e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 25.7629675307,
+        "exact": 0.000365579344223,
+        "simpson": 0.000365579344223,
+        "shaderFloat": 0.000365579355275,
+        "simpsonError": 0,
+        "shaderFloatError": 1.10521750714e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 25.7629675307,
+        "exact": 0.00147563089912,
+        "simpson": 0.00147563089912,
+        "shaderFloat": 0.00147563091014,
+        "simpsonError": 0,
+        "shaderFloatError": 1.10166261964e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 25.7629675307,
+        "exact": 0.00298265631343,
+        "simpson": 0.00298265631343,
+        "shaderFloat": 0.00298265647143,
+        "simpsonError": 0,
+        "shaderFloatError": 1.57998271584e-10
+      },
+      {
+        "member": "nominal",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 51.5259350615,
+        "exact": 0.000407024526676,
+        "simpson": 0.000407024526676,
+        "shaderFloat": 0.000407024548622,
+        "simpsonError": 0,
+        "shaderFloatError": 2.1946331254e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 51.5259350615,
+        "exact": 0.00160368390633,
+        "simpson": 0.00160368390633,
+        "shaderFloat": 0.00160368392244,
+        "simpsonError": 0,
+        "shaderFloatError": 1.6110588124e-11
+      },
+      {
+        "member": "nominal",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 51.5259350615,
+        "exact": 0.00315616904306,
+        "simpson": 0.00315616904306,
+        "shaderFloat": 0.00315616908483,
+        "simpsonError": 0,
+        "shaderFloatError": 4.17690682389e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 21.9722457734,
+        "exact": 0.0000473897410999,
+        "simpson": 0.0000473897410999,
+        "shaderFloat": 0.000047389883548,
+        "simpsonError": 0,
+        "shaderFloatError": 1.42448158304e-10
+      },
+      {
+        "member": "slow",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 21.9722457734,
+        "exact": 0.000724791159278,
+        "simpson": 0.000724791159278,
+        "shaderFloat": 0.000724791083485,
+        "simpsonError": 0,
+        "shaderFloatError": 7.57930758086e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 0,
+        "toCode": 31,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 21.9722457734,
+        "exact": 0.00273429755733,
+        "simpson": 0.00273429755733,
+        "shaderFloat": 0.00273429881781,
+        "simpsonError": 0,
+        "shaderFloatError": 1.26048069378e-9
+      },
+      {
+        "member": "slow",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 43.9444915467,
+        "exact": 0.00199948414884,
+        "simpson": 0.00199948414884,
+        "shaderFloat": 0.00199948390946,
+        "simpsonError": 0,
+        "shaderFloatError": 2.39382583634e-10
+      },
+      {
+        "member": "slow",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 43.9444915467,
+        "exact": 0.00700420437075,
+        "simpson": 0.00700420437075,
+        "shaderFloat": 0.00700420374051,
+        "simpsonError": 0,
+        "shaderFloatError": 6.3024034689e-10
+      },
+      {
+        "member": "slow",
+        "fromCode": 31,
+        "toCode": 0,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 43.9444915467,
+        "exact": 0.0118525412538,
+        "simpson": 0.0118525412538,
+        "shaderFloat": 0.0118525410071,
+        "simpsonError": 0,
+        "shaderFloatError": 2.46722382108e-10
+      },
+      {
+        "member": "slow",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 20.9935655083,
+        "exact": 0.0000427408649413,
+        "simpson": 0.0000427408649413,
+        "shaderFloat": 0.0000427414197475,
+        "simpsonError": 0,
+        "shaderFloatError": 5.5480615783e-10
+      },
+      {
+        "member": "slow",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 20.9935655083,
+        "exact": 0.000507916683515,
+        "simpson": 0.000507916683515,
+        "shaderFloat": 0.000507916789502,
+        "simpsonError": 0,
+        "shaderFloatError": 1.05986754095e-10
+      },
+      {
+        "member": "slow",
+        "fromCode": 4,
+        "toCode": 27,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 20.9935655083,
+        "exact": 0.00182834930482,
+        "simpson": 0.00182834930482,
+        "shaderFloat": 0.0018283482641,
+        "simpsonError": 0,
+        "shaderFloatError": 1.04072429147e-9
+      },
+      {
+        "member": "slow",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 13.2717336192,
+        "exact": 0.000365007213605,
+        "simpson": 0.000365007213605,
+        "shaderFloat": 0.000365007203072,
+        "simpsonError": 0,
+        "shaderFloatError": 1.053226305e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 13.2717336192,
+        "exact": 0.00146718723358,
+        "simpson": 0.00146718723358,
+        "shaderFloat": 0.00146718730684,
+        "simpsonError": 0,
+        "shaderFloatError": 7.3268519073e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 15,
+        "toCode": 16,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 13.2717336192,
+        "exact": 0.00295227900156,
+        "simpson": 0.00295227900156,
+        "shaderFloat": 0.00295227905735,
+        "simpsonError": 0,
+        "shaderFloatError": 5.57969846542e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 0.125,
+        "seconds": 0.00209283828735,
+        "rate": 26.5434672385,
+        "exact": 0.00040813825129,
+        "simpson": 0.00040813825129,
+        "shaderFloat": 0.000408138264902,
+        "simpsonError": 0,
+        "shaderFloatError": 1.36121337184e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 0.5,
+        "seconds": 0.00837135314941,
+        "rate": 26.5434672385,
+        "exact": 0.00161887256227,
+        "simpson": 0.00161887256227,
+        "shaderFloat": 0.00161887262948,
+        "simpsonError": 0,
+        "shaderFloatError": 6.72112318058e-11
+      },
+      {
+        "member": "slow",
+        "fromCode": 16,
+        "toCode": 15,
+        "fraction": 1,
+        "seconds": 0.0167427062988,
+        "rate": 26.5434672385,
+        "exact": 0.00320560249541,
+        "simpson": 0.00320560249541,
+        "shaderFloat": 0.00320560252294,
+        "simpsonError": 0,
+        "shaderFloatError": 2.75327876817e-11
+      }
+    ],
+    "maximumSimpsonAbsoluteError": 0,
+    "maximumShaderFloatIntegralAbsoluteError": 1.26048069378e-9,
+    "maximumMovingAlternatingHighResolutionAbsoluteError": 1.42108547152e-14,
+    "shaderFloatTolerance": 2e-7
+  },
+  "staticFixtures": [
+    {
+      "member": "fast",
+      "code": 0,
+      "average": [
+        0,
+        0,
+        0
+      ],
+      "endpoint": [
+        0,
+        0,
+        0
+      ],
+      "error": 0
+    },
+    {
+      "member": "fast",
+      "code": 8,
+      "average": [
+        0.0469550693109,
+        0.0489024521897,
+        0.0715541763163
+      ],
+      "endpoint": [
+        0.0469550693109,
+        0.0489024521897,
+        0.0715541763163
+      ],
+      "error": 0
+    },
+    {
+      "member": "fast",
+      "code": 16,
+      "average": [
+        0.195602633905,
+        0.205007080081,
+        0.286113718972
+      ],
+      "endpoint": [
+        0.195602633905,
+        0.205007080081,
+        0.286113718972
+      ],
+      "error": 0
+    },
+    {
+      "member": "fast",
+      "code": 31,
+      "average": [
+        1,
+        1,
+        1
+      ],
+      "endpoint": [
+        1,
+        1,
+        1
+      ],
+      "error": 0
+    },
+    {
+      "member": "nominal",
+      "code": 0,
+      "average": [
+        0,
+        0,
+        0
+      ],
+      "endpoint": [
+        0,
+        0,
+        0
+      ],
+      "error": 0
+    },
+    {
+      "member": "nominal",
+      "code": 8,
+      "average": [
+        0.0469550693109,
+        0.0489024521897,
+        0.0715541763163
+      ],
+      "endpoint": [
+        0.0469550693109,
+        0.0489024521897,
+        0.0715541763163
+      ],
+      "error": 0
+    },
+    {
+      "member": "nominal",
+      "code": 16,
+      "average": [
+        0.195602633905,
+        0.205007080081,
+        0.286113718972
+      ],
+      "endpoint": [
+        0.195602633905,
+        0.205007080081,
+        0.286113718972
+      ],
+      "error": 0
+    },
+    {
+      "member": "nominal",
+      "code": 31,
+      "average": [
+        1,
+        1,
+        1
+      ],
+      "endpoint": [
+        1,
+        1,
+        1
+      ],
+      "error": 0
+    },
+    {
+      "member": "slow",
+      "code": 0,
+      "average": [
+        0,
+        0,
+        0
+      ],
+      "endpoint": [
+        0,
+        0,
+        0
+      ],
+      "error": 0
+    },
+    {
+      "member": "slow",
+      "code": 8,
+      "average": [
+        0.0469550693109,
+        0.0489024521897,
+        0.0715541763163
+      ],
+      "endpoint": [
+        0.0469550693109,
+        0.0489024521897,
+        0.0715541763163
+      ],
+      "error": 0
+    },
+    {
+      "member": "slow",
+      "code": 16,
+      "average": [
+        0.195602633905,
+        0.205007080081,
+        0.286113718972
+      ],
+      "endpoint": [
+        0.195602633905,
+        0.205007080081,
+        0.286113718972
+      ],
+      "error": 0
+    },
+    {
+      "member": "slow",
+      "code": 31,
+      "average": [
+        1,
+        1,
+        1
+      ],
+      "endpoint": [
+        1,
+        1,
+        1
+      ],
+      "error": 0
+    }
+  ],
+  "transitionFixtures": [
+    {
+      "member": "fast",
+      "row": 0,
+      "id": "rise",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.557673473246,
+        0.557673473246,
+        0.557673473246
+      ],
+      "average": [
+        0.315637367452,
+        0.315637367452,
+        0.315637367452
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        }
+      ],
+      "highResolutionAverage": [
+        0.315637367452,
+        0.315637367452,
+        0.315637367452
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "fast",
+      "row": 0,
+      "id": "fall",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.130124017393,
+        0.130124017393,
+        0.130124017393
+      ],
+      "average": [
+        0.427820539187,
+        0.427820539187,
+        0.427820539187
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        }
+      ],
+      "highResolutionAverage": [
+        0.427820539187,
+        0.427820539187,
+        0.427820539187
+      ],
+      "highResolutionError": 1.55431223448e-15
+    },
+    {
+      "member": "fast",
+      "row": 0,
+      "id": "partial-red",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.557673473246,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.315637367452,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 39.5640400753
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 39.5640400753
+        }
+      ],
+      "highResolutionAverage": [
+        0.315637367452,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "fast",
+      "row": 80,
+      "id": "rise",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.410726541404,
+        0.410726541404,
+        0.410726541404
+      ],
+      "average": [
+        0.144511842581,
+        0.144511842581,
+        0.144511842581
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        }
+      ],
+      "highResolutionAverage": [
+        0.144511842581,
+        0.144511842581,
+        0.144511842581
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "fast",
+      "row": 80,
+      "id": "fall",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.266558294677,
+        0.266558294677,
+        0.266558294677
+      ],
+      "average": [
+        0.711940873426,
+        0.711940873426,
+        0.711940873426
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        }
+      ],
+      "highResolutionAverage": [
+        0.711940873426,
+        0.711940873426,
+        0.711940873426
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "fast",
+      "row": 80,
+      "id": "partial-red",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.410726541404,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.144511842581,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 39.5640400753
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 39.5640400753
+        }
+      ],
+      "highResolutionAverage": [
+        0.144511842581,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "fast",
+      "row": 159,
+      "id": "rise",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.217771559451,
+        0.217771559451,
+        0.217771559451
+      ],
+      "average": [
+        0.0340512647687,
+        0.0340512647687,
+        0.0340512647687
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        }
+      ],
+      "highResolutionAverage": [
+        0.0340512647687,
+        0.0340512647687,
+        0.0340512647687
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "fast",
+      "row": 159,
+      "id": "fall",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.541170363944,
+        0.541170363944,
+        0.541170363944
+      ],
+      "average": [
+        0.924065287803,
+        0.924065287803,
+        0.924065287803
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 106.477276938
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 122.068032074
+        }
+      ],
+      "highResolutionAverage": [
+        0.924065287803,
+        0.924065287803,
+        0.924065287803
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "fast",
+      "row": 159,
+      "id": "partial-red",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.217771559451,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.0340512647687,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 42.5909107753
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 48.8272128297
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 39.5640400753
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 39.5640400753
+        }
+      ],
+      "highResolutionAverage": [
+        0.0340512647687,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "nominal",
+      "row": 0,
+      "id": "rise",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.457615538802,
+        0.457615538802,
+        0.457615538802
+      ],
+      "average": [
+        0.251440916335,
+        0.251440916335,
+        0.251440916335
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        }
+      ],
+      "highResolutionAverage": [
+        0.251440916335,
+        0.251440916335,
+        0.251440916335
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "nominal",
+      "row": 0,
+      "id": "fall",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.294180903749,
+        0.294180903749,
+        0.294180903749
+      ],
+      "average": [
+        0.577784720891,
+        0.577784720891,
+        0.577784720891
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        }
+      ],
+      "highResolutionAverage": [
+        0.577784720891,
+        0.577784720891,
+        0.577784720891
+      ],
+      "highResolutionError": 1.11022302463e-15
+    },
+    {
+      "member": "nominal",
+      "row": 0,
+      "id": "partial-red",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.457615538802,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.251440916335,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 25.7629675307
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 25.7629675307
+        }
+      ],
+      "highResolutionAverage": [
+        0.251440916335,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "nominal",
+      "row": 80,
+      "id": "rise",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.327429738747,
+        0.327429738747,
+        0.327429738747
+      ],
+      "average": [
+        0.112895385591,
+        0.112895385591,
+        0.112895385591
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        }
+      ],
+      "highResolutionAverage": [
+        0.112895385591,
+        0.112895385591,
+        0.112895385591
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "nominal",
+      "row": 80,
+      "id": "fall",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.452350756322,
+        0.452350756322,
+        0.452350756322
+      ],
+      "average": [
+        0.799675235992,
+        0.799675235992,
+        0.799675235992
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        }
+      ],
+      "highResolutionAverage": [
+        0.799675235992,
+        0.799675235992,
+        0.799675235992
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "nominal",
+      "row": 80,
+      "id": "partial-red",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.327429738747,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.112895385591,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 25.7629675307
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 25.7629675307
+        }
+      ],
+      "highResolutionAverage": [
+        0.112895385591,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "nominal",
+      "row": 159,
+      "id": "rise",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.16823584278,
+        0.16823584278,
+        0.16823584278
+      ],
+      "average": [
+        0.0260477172219,
+        0.0260477172219,
+        0.0260477172219
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        }
+      ],
+      "highResolutionAverage": [
+        0.0260477172219,
+        0.0260477172219,
+        0.0260477172219
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "nominal",
+      "row": 159,
+      "id": "fall",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.691831613236,
+        0.691831613236,
+        0.691831613236
+      ],
+      "average": [
+        0.950871092366,
+        0.950871092366,
+        0.950871092366
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 58.7797917398
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 73.2408192445
+        }
+      ],
+      "highResolutionAverage": [
+        0.950871092366,
+        0.950871092366,
+        0.950871092366
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "nominal",
+      "row": 159,
+      "id": "partial-red",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.16823584278,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.0260477172219,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 29.3898958699
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 36.6204096223
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 25.7629675307
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 25.7629675307
+        }
+      ],
+      "highResolutionAverage": [
+        0.0260477172219,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "slow",
+      "row": 0,
+      "id": "rise",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.3072375438,
+        0.3072375438,
+        0.3072375438
+      ],
+      "average": [
+        0.162638379726,
+        0.162638379726,
+        0.162638379726
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        }
+      ],
+      "highResolutionAverage": [
+        0.162638379726,
+        0.162638379726,
+        0.162638379726
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "slow",
+      "row": 0,
+      "id": "fall",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.47991982072,
+        0.47991982072,
+        0.47991982072
+      ],
+      "average": [
+        0.709064039803,
+        0.709064039803,
+        0.709064039803
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        }
+      ],
+      "highResolutionAverage": [
+        0.709064039803,
+        0.709064039803,
+        0.709064039803
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "slow",
+      "row": 0,
+      "id": "partial-red",
+      "eventSeconds": 0.0000367164611816,
+      "endpoint": [
+        0.3072375438,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.162638379726,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0000367164611816,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0167059898376,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 13.2717336192
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 13.2717336192
+        }
+      ],
+      "highResolutionAverage": [
+        0.162638379726,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "slow",
+      "row": 80,
+      "id": "rise",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.211788809796,
+        0.211788809796,
+        0.211788809796
+      ],
+      "average": [
+        0.0712209785847,
+        0.0712209785847,
+        0.0712209785847
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        }
+      ],
+      "highResolutionAverage": [
+        0.0712209785847,
+        0.0712209785847,
+        0.0712209785847
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "slow",
+      "row": 80,
+      "id": "fall",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.621276880364,
+        0.621276880364,
+        0.621276880364
+      ],
+      "average": [
+        0.867814675776,
+        0.867814675776,
+        0.867814675776
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        }
+      ],
+      "highResolutionAverage": [
+        0.867814675776,
+        0.867814675776,
+        0.867814675776
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "slow",
+      "row": 80,
+      "id": "partial-red",
+      "eventSeconds": 0.00591135025024,
+      "endpoint": [
+        0.211788809796,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.0712209785847,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.00591135025024,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.0108313560486,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 13.2717336192
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 13.2717336192
+        }
+      ],
+      "highResolutionAverage": [
+        0.0712209785847,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    },
+    {
+      "member": "slow",
+      "row": 159,
+      "id": "rise",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.104634985065,
+        0.104634985065,
+        0.104634985065
+      ],
+      "average": [
+        0.0160076742022,
+        0.0160076742022,
+        0.0160076742022
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        }
+      ],
+      "highResolutionAverage": [
+        0.0160076742022,
+        0.0160076742022,
+        0.0160076742022
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "slow",
+      "row": 159,
+      "id": "fall",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.801678509969,
+        0.801678509969,
+        0.801678509969
+      ],
+      "average": [
+        0.969111613145,
+        0.969111613145,
+        0.969111613145
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        },
+        {
+          "channel": 1,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 1,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        },
+        {
+          "channel": 2,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 31,
+          "toCode": 31,
+          "rate": 31.5592590835
+        },
+        {
+          "channel": 2,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 31,
+          "toCode": 0,
+          "rate": 43.9444915467
+        }
+      ],
+      "highResolutionAverage": [
+        0.969111613145,
+        0.969111613145,
+        0.969111613145
+      ],
+      "highResolutionError": 0
+    },
+    {
+      "member": "slow",
+      "row": 159,
+      "id": "partial-red",
+      "eventSeconds": 0.0117125511169,
+      "endpoint": [
+        0.104634985065,
+        0.182127514167,
+        0.25618439051
+      ],
+      "average": [
+        0.0160076742022,
+        0.182127514167,
+        0.25618439051
+      ],
+      "segments": [
+        {
+          "channel": 0,
+          "kind": "before-optical",
+          "seconds": 0.0117125511169,
+          "fromCode": 0,
+          "toCode": 0,
+          "rate": 15.7796295418
+        },
+        {
+          "channel": 0,
+          "kind": "after-optical",
+          "seconds": 0.00503015518188,
+          "fromCode": 0,
+          "toCode": 31,
+          "rate": 21.9722457734
+        },
+        {
+          "channel": 1,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 13.2717336192
+        },
+        {
+          "channel": 2,
+          "kind": "single",
+          "seconds": 0.0167427062988,
+          "fromCode": 15,
+          "toCode": 15,
+          "rate": 13.2717336192
+        }
+      ],
+      "highResolutionAverage": [
+        0.0160076742022,
+        0.182127514167,
+        0.25618439051
+      ],
+      "highResolutionError": 1.42108547152e-14
+    }
+  ],
+  "alternating": [
+    {
+      "member": "fast",
+      "frames": [
+        {
+          "frame": 0,
+          "code": 31,
+          "average": [
+            0.144511842581,
+            0.144511842581,
+            0.144511842581
+          ],
+          "endpoint": [
+            0.410726541404,
+            0.410726541404,
+            0.410726541404
+          ],
+          "highResolutionAverage": [
+            0.144511842581,
+            0.144511842581,
+            0.144511842581
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 1,
+          "code": 0,
+          "average": [
+            0.366969740979,
+            0.367202099901,
+            0.369109354573
+          ],
+          "endpoint": [
+            0.147399434968,
+            0.14765975381,
+            0.149773068935
+          ],
+          "highResolutionAverage": [
+            0.366969740979,
+            0.367202099901,
+            0.369109354573
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 2,
+          "code": 31,
+          "average": [
+            0.217330237588,
+            0.217620998591,
+            0.219953947225
+          ],
+          "endpoint": [
+            0.44796414606,
+            0.448328345393,
+            0.451221916319
+          ],
+          "highResolutionAverage": [
+            0.217330237588,
+            0.217620998591,
+            0.219953947225
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 3,
+          "code": 0,
+          "average": [
+            0.388436447755,
+            0.388920200346,
+            0.39237061249
+          ],
+          "endpoint": [
+            0.154669614089,
+            0.155063986549,
+            0.157707882062
+          ],
+          "highResolutionAverage": [
+            0.388436447755,
+            0.388920200346,
+            0.39237061249
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 4,
+          "code": 31,
+          "average": [
+            0.220887237329,
+            0.221235718294,
+            0.22390227725
+          ],
+          "endpoint": [
+            0.449857306522,
+            0.45022312386,
+            0.453364472723
+          ],
+          "highResolutionAverage": [
+            0.220887237329,
+            0.221235718294,
+            0.22390227725
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 5,
+          "code": 0,
+          "average": [
+            0.389527643154,
+            0.390013436651,
+            0.393604324408
+          ],
+          "endpoint": [
+            0.15503895239,
+            0.155433449457,
+            0.158128663532
+          ],
+          "highResolutionAverage": [
+            0.389527643154,
+            0.390013436651,
+            0.393604324408
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 6,
+          "code": 31,
+          "average": [
+            0.221067992701,
+            0.221415876181,
+            0.2241114366
+          ],
+          "endpoint": [
+            0.449954376216,
+            0.450317465038,
+            0.453477875637
+          ],
+          "highResolutionAverage": [
+            0.221067992701,
+            0.221415876181,
+            0.2241114366
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 7,
+          "code": 0,
+          "average": [
+            0.389583596219,
+            0.390067871473,
+            0.39366962612
+          ],
+          "endpoint": [
+            0.155057891386,
+            0.155451846161,
+            0.158150935106
+          ],
+          "highResolutionAverage": [
+            0.389583596219,
+            0.390067871473,
+            0.39366962612
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 8,
+          "code": 31,
+          "average": [
+            0.221077260956,
+            0.221424846276,
+            0.224122506596
+          ],
+          "endpoint": [
+            0.449959353306,
+            0.450322162072,
+            0.453483877345
+          ],
+          "highResolutionAverage": [
+            0.221077260956,
+            0.221424846276,
+            0.224122506596
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 9,
+          "code": 0,
+          "average": [
+            0.38958646513,
+            0.390070581666,
+            0.39367308214
+          ],
+          "endpoint": [
+            0.155058862456,
+            0.155452762094,
+            0.158152113802
+          ],
+          "highResolutionAverage": [
+            0.38958646513,
+            0.390070581666,
+            0.39367308214
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 10,
+          "code": 31,
+          "average": [
+            0.221077736171,
+            0.221425292877,
+            0.22412309246
+          ],
+          "endpoint": [
+            0.449959608498,
+            0.450322395926,
+            0.453484194976
+          ],
+          "highResolutionAverage": [
+            0.221077736171,
+            0.221425292877,
+            0.22412309246
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 11,
+          "code": 0,
+          "average": [
+            0.389586612228,
+            0.3900707166,
+            0.393673265044
+          ],
+          "endpoint": [
+            0.155058912246,
+            0.155452807696,
+            0.158152176183
+          ],
+          "highResolutionAverage": [
+            0.389586612228,
+            0.3900707166,
+            0.393673265044
+          ],
+          "highResolutionError": 0
+        }
+      ]
+    },
+    {
+      "member": "nominal",
+      "frames": [
+        {
+          "frame": 0,
+          "code": 31,
+          "average": [
+            0.112895385591,
+            0.112895385591,
+            0.112895385591
+          ],
+          "endpoint": [
+            0.327429738747,
+            0.327429738747,
+            0.327429738747
+          ],
+          "highResolutionAverage": [
+            0.112895385591,
+            0.112895385591,
+            0.112895385591
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 1,
+          "code": 0,
+          "average": [
+            0.335707771997,
+            0.336085149146,
+            0.339544014107
+          ],
+          "endpoint": [
+            0.204318310051,
+            0.204854541968,
+            0.209377549019
+          ],
+          "highResolutionAverage": [
+            0.335707771997,
+            0.336085149146,
+            0.339544014107
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 2,
+          "code": 31,
+          "average": [
+            0.239770103421,
+            0.240459740056,
+            0.246074918617
+          ],
+          "endpoint": [
+            0.403468026583,
+            0.404401034265,
+            0.411743959194
+          ],
+          "highResolutionAverage": [
+            0.239770103421,
+            0.240459740056,
+            0.246074918617
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 3,
+          "code": 0,
+          "average": [
+            0.387035472987,
+            0.387993774725,
+            0.39569442941
+          ],
+          "endpoint": [
+            0.231394284609,
+            0.232207068637,
+            0.238794353622
+          ],
+          "highResolutionAverage": [
+            0.387035472987,
+            0.387993774725,
+            0.39569442941
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 4,
+          "code": 31,
+          "average": [
+            0.256398845361,
+            0.257335506678,
+            0.264537901885
+          ],
+          "endpoint": [
+            0.413889882908,
+            0.415044529717,
+            0.423762691249
+          ],
+          "highResolutionAverage": [
+            0.256398845361,
+            0.257335506678,
+            0.264537901885
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 5,
+          "code": 0,
+          "average": [
+            0.39413514514,
+            0.395244229858,
+            0.403757551566
+          ],
+          "endpoint": [
+            0.235164566063,
+            0.236056536689,
+            0.243001990785
+          ],
+          "highResolutionAverage": [
+            0.39413514514,
+            0.395244229858,
+            0.403757551566
+          ],
+          "highResolutionError": 1.33226762955e-15
+        },
+        {
+          "frame": 6,
+          "code": 31,
+          "average": [
+            0.258693281344,
+            0.259696170416,
+            0.267166196653
+          ],
+          "endpoint": [
+            0.415315761586,
+            0.416533643659,
+            0.425469848215
+          ],
+          "highResolutionAverage": [
+            0.258693281344,
+            0.259696170416,
+            0.267166196653
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 7,
+          "code": 0,
+          "average": [
+            0.39510677838,
+            0.396259089196,
+            0.404913314747
+          ],
+          "endpoint": [
+            0.235680478882,
+            0.236595592813,
+            0.243616018701
+          ],
+          "highResolutionAverage": [
+            0.39510677838,
+            0.396259089196,
+            0.404913314747
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 8,
+          "code": 31,
+          "average": [
+            0.25900711202,
+            0.260026148857,
+            0.267549560631
+          ],
+          "endpoint": [
+            0.415510805219,
+            0.416741707708,
+            0.425718835853
+          ],
+          "highResolutionAverage": [
+            0.25900711202,
+            0.260026148857,
+            0.267549560631
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 9,
+          "code": 0,
+          "average": [
+            0.395239691836,
+            0.396400894187,
+            0.405082208408
+          ],
+          "endpoint": [
+            0.235751051277,
+            0.23667091261,
+            0.243705798028
+          ],
+          "highResolutionAverage": [
+            0.395239691836,
+            0.396400894187,
+            0.405082208408
+          ],
+          "highResolutionError": 1.33226762955e-15
+        },
+        {
+          "frame": 10,
+          "code": 31,
+          "average": [
+            0.25905003888,
+            0.260072252411,
+            0.267605609727
+          ],
+          "endpoint": [
+            0.41553748424,
+            0.416770777954,
+            0.425755238289
+          ],
+          "highResolutionAverage": [
+            0.25905003888,
+            0.260072252411,
+            0.267605609727
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 11,
+          "code": 0,
+          "average": [
+            0.395257872488,
+            0.39642070697,
+            0.405106901111
+          ],
+          "endpoint": [
+            0.235760704543,
+            0.236681436145,
+            0.243718923904
+          ],
+          "highResolutionAverage": [
+            0.395257872488,
+            0.39642070697,
+            0.405106901111
+          ],
+          "highResolutionError": 0
+        }
+      ]
+    },
+    {
+      "member": "slow",
+      "frames": [
+        {
+          "frame": 0,
+          "code": 31,
+          "average": [
+            0.0712209785847,
+            0.0712209785847,
+            0.0712209785847
+          ],
+          "endpoint": [
+            0.211788809796,
+            0.211788809796,
+            0.211788809796
+          ],
+          "highResolutionAverage": [
+            0.0712209785847,
+            0.0712209785847,
+            0.0712209785847
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 1,
+          "code": 0,
+          "average": [
+            0.243738707862,
+            0.244199028047,
+            0.247918229798
+          ],
+          "endpoint": [
+            0.189899935925,
+            0.190607199203,
+            0.196404055034
+          ],
+          "highResolutionAverage": [
+            0.243738707862,
+            0.244199028047,
+            0.247918229798
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 2,
+          "code": 31,
+          "average": [
+            0.212090820495,
+            0.212998362426,
+            0.220108040388
+          ],
+          "endpoint": [
+            0.312878853685,
+            0.31408612671,
+            0.323423883871
+          ],
+          "highResolutionAverage": [
+            0.212090820495,
+            0.212998362426,
+            0.220108040388
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 3,
+          "code": 0,
+          "average": [
+            0.321154410083,
+            0.322508645652,
+            0.3334226103
+          ],
+          "endpoint": [
+            0.242856694108,
+            0.244221598602,
+            0.254932418411
+          ],
+          "highResolutionAverage": [
+            0.321154410083,
+            0.322508645652,
+            0.3334226103
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 4,
+          "code": 31,
+          "average": [
+            0.250985057134,
+            0.252501283273,
+            0.263803829949
+          ],
+          "endpoint": [
+            0.341920416084,
+            0.343730290913,
+            0.356678893027
+          ],
+          "highResolutionAverage": [
+            0.250985057134,
+            0.252501283273,
+            0.263803829949
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 5,
+          "code": 0,
+          "average": [
+            0.343830303035,
+            0.345611846578,
+            0.358965604556
+          ],
+          "endpoint": [
+            0.258503197699,
+            0.260078360031,
+            0.272344356787
+          ],
+          "highResolutionAverage": [
+            0.343830303035,
+            0.345611846578,
+            0.358965604556
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 6,
+          "code": 31,
+          "average": [
+            0.2624959568,
+            0.264130066753,
+            0.276794962994
+          ],
+          "endpoint": [
+            0.350713482757,
+            0.352531391469,
+            0.366721431735
+          ],
+          "highResolutionAverage": [
+            0.2624959568,
+            0.264130066753,
+            0.276794962994
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 7,
+          "code": 0,
+          "average": [
+            0.350692480054,
+            0.352495614312,
+            0.36672740549
+          ],
+          "endpoint": [
+            0.263231219247,
+            0.264830791887,
+            0.277677140667
+          ],
+          "highResolutionAverage": [
+            0.350692480054,
+            0.352495614312,
+            0.36672740549
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 8,
+          "code": 31,
+          "average": [
+            0.265978740226,
+            0.26764022927,
+            0.280767326846
+          ],
+          "endpoint": [
+            0.353392141425,
+            0.355235322827,
+            0.369793758768
+          ],
+          "highResolutionAverage": [
+            0.265978740226,
+            0.26764022927,
+            0.280767326846
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 9,
+          "code": 0,
+          "average": [
+            0.35278281586,
+            0.354611032553,
+            0.369105167601
+          ],
+          "endpoint": [
+            0.264670818645,
+            0.266290703346,
+            0.279314228112
+          ],
+          "highResolutionAverage": [
+            0.35278281586,
+            0.354611032553,
+            0.369105167601
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 10,
+          "code": 31,
+          "average": [
+            0.267038781446,
+            0.268718114656,
+            0.281986165403
+          ],
+          "endpoint": [
+            0.3542076842,
+            0.356065874649,
+            0.370736593681
+          ],
+          "highResolutionAverage": [
+            0.267038781446,
+            0.268718114656,
+            0.281986165403
+          ],
+          "highResolutionError": 0
+        },
+        {
+          "frame": 11,
+          "code": 0,
+          "average": [
+            0.353419304503,
+            0.355260865558,
+            0.36983494586
+          ],
+          "endpoint": [
+            0.265109120479,
+            0.266739122245,
+            0.279816591863
+          ],
+          "highResolutionAverage": [
+            0.353419304503,
+            0.355260865558,
+            0.36983494586
+          ],
+          "highResolutionError": 0
+        }
+      ]
+    }
+  ],
+  "uncertaintyBounds": {
+    "riseGreenAtRow80": {
+      "fast": 0.144511842581,
+      "nominal": 0.112895385591,
+      "slow": 0.0712209785847
+    },
+    "fallGreenAtRow80": {
+      "fast": 0.711940873426,
+      "nominal": 0.799675235992,
+      "slow": 0.867814675776
+    },
+    "nominalRiseStaticBacklight": {
+      "1": [
+        0.112895385591,
+        0.112895385591,
+        0.112895385591
+      ],
+      "0.75": [
+        0.0846715391929,
+        0.0846715391929,
+        0.0846715391929
+      ],
+      "0.5": [
+        0.0564476927953,
+        0.0564476927953,
+        0.0564476927953
+      ]
+    },
+    "pwmIncluded": false
+  },
+  "invariants": {
+    "colorArtifactSha256UnchangedByExposure": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
+    "apertureValidationSha256UnchangedByExposure": "2c79fee5f9784ebfb79d2b2ddc0d6dc69c8aecca8623044bd9e8c4d668a2d4e8",
+    "ws6ApertureMaximumMeanError": 2.0650148258e-14,
+    "endpointFeedbackSeparatedFromExposureOutput": true
+  },
+  "acceptance": {
+    "intervalContractComplete": true,
+    "nativeClockInvariant": true,
+    "staticMatchesEndpoint": true,
+    "movingAndAlternatingReference": "pass",
+    "closedFormVsHighResolutionReference": "pass",
+    "endpointDiagnosticPreset": true,
+    "colorAndApertureInvariant": true,
+    "reproducibleGtgAndBacklightBounds": true,
+    "pwmFrequencyInvented": false,
+    "shaderCompileAndSpirvValidation": "covered-by-current-ws3-receipt-after-generation",
+    "gpuNumericExposureReadback": "deferred-to-ws8"
+  }
+}

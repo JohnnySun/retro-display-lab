@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "nintendo-ags-101-ws3-shader-compile-v1",
+  "classification": "local-shader-compile-and-spirv-validation-receipt",
+  "capturedAt": "2026-08-20T12:56:07.551Z",
+  "tools": {
+    "glslangValidator": "Glslang Version: 11:16.5.0",
+    "spirvVal": "SPIRV-Tools v2026.3 unknown hash, 2026-07-22T20:34:54+00:00",
+    "targetEnvironment": "vulkan1.1"
+  },
+  "sources": {
+    "responseShaderSha256": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
+    "exposureShaderSha256": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b",
+    "displayShaderSha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524",
+    "sharedTimingIncludeSha256": "30e6e1c4b4819594ab9afedc548a10e63bb9ab3efb7e724719fb215a68c9f38c"
+  },
+  "stages": [
+    {
+      "shaderId": "response",
+      "stage": "vert",
+      "expandedSourceSha256": "366c8d11eb1c1a52744f4e97050e6a352bc596d57e76fd6b8e3bfcf1ccdd810e",
+      "spirvSha256": "62c92fdb54ee54182dbcf757e98cb70ac0c3f086f71f66a6ae51609d56d87b1a",
+      "spirvBytes": 2576,
+      "pass": true
+    },
+    {
+      "shaderId": "response",
+      "stage": "frag",
+      "expandedSourceSha256": "e535c5514a1d6b097a97ce1be17d4cd2d40e096256f018df77e644042d7fee64",
+      "spirvSha256": "da78f11d483266d1bba6eed4fdab592c259139109fa60a6d533f57ad0b084fd6",
+      "spirvBytes": 42088,
+      "pass": true
+    },
+    {
+      "shaderId": "exposure",
+      "stage": "vert",
+      "expandedSourceSha256": "438d39aaa8d5e621f7d0228ae77047a6adb1f20981d6837fbcd7a3038932c9d7",
+      "spirvSha256": "eadd0b29d64a632dd7026577fea1e41a225a61f9f6e35b31e974eec3f344ea17",
+      "spirvBytes": 2628,
+      "pass": true
+    },
+    {
+      "shaderId": "exposure",
+      "stage": "frag",
+      "expandedSourceSha256": "462e74d228a9d89efb16ab75afff3e7a07a3ad1c6aa2af798fbd1e87b4af3ff6",
+      "spirvSha256": "d52527ba42806eeb15c488a2379c97d3361963e3d9a243834896b7a7655a7bc0",
+      "spirvBytes": 41584,
+      "pass": true
+    },
+    {
+      "shaderId": "display",
+      "stage": "vert",
+      "expandedSourceSha256": "ee35fa8c14cdd4739f848473949db4aa89cfd5d632c77a4371b58e4b1ca8ee53",
+      "spirvSha256": "8d5d90687a181ad7001364eed3aed6e9fff6f82003fbe885f906c0252ab34298",
+      "spirvBytes": 2596,
+      "pass": true
+    },
+    {
+      "shaderId": "display",
+      "stage": "frag",
+      "expandedSourceSha256": "c23930231c781644a20124f1ed07f747b3f58f169ddf1e84f917477ee8ebd5ae",
+      "spirvSha256": "58e8e20ca1f48c36129a9bc1beb0edaf864ce3121b06664bae0cafd0ba9b3a63",
+      "spirvBytes": 53300,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "stages": 6,
+    "pass": true
+  },
+  "limits": "Compilation and SPIR-V validation prove Shader syntax/interface viability, not GPU numeric readback or AGS-101 hardware timing."
+}

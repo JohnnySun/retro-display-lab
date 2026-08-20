@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "ensembleId": "nintendo-ags-101-ws4-gtg-ensemble-v1",
+  "classification": "literature-constrained-reconstruction-not-panel-measurement",
+  "evidenceInventory": "data/ws4-evidence-inventory-v1.json",
+  "exactPanel": {
+    "label": "LQ029B1DC01F",
+    "datasheetStatus": "not-found",
+    "waveformStatus": "not-measured"
+  },
+  "runtimeModel": {
+    "equationId": "WS4-FIRST-ORDER-DISTANCE-V1",
+    "stateEquation": "x(t+dt)=target+(x(t)-target)*exp(-k*dt)",
+    "rateEquation": "k=ln(9)/(endpointT10To90Ms*0.001*(1+nearPenalty*(1-distance)^2+midPenalty*4*midpoint*(1-midpoint)*(1-distance)^2))",
+    "distance": "abs(toCode-fromCode)/31",
+    "midpoint": "0.5*(fromCode+toCode)/31",
+    "identityAnchor": "geometric mean of eligible adjacent incoming and outgoing reconstructed rates",
+    "fallbackBehavior": "if any bilinear lookup corner is unavailable, use the legacy analytic prior for that channel",
+    "compatibilityStatement": "First order exactly matches each selected scalar 10-to-90 endpoint and is monotone/bounded. Published family documents do not establish the complete waveform shape."
+  },
+  "parameterRanges": {
+    "opticalDarkeningEndpointT10To90Ms": {
+      "range": [18, 50],
+      "sourceEvidenceIds": ["WS4-SHARP-LQ022B8UD04-2003", "WS4-SHARP-LQ030B1DC-FAMILY-2008"]
+    },
+    "opticalBrighteningEndpointT10To90Ms": {
+      "range": [45, 100],
+      "sourceEvidenceIds": ["WS4-SHARP-LQ022B8UD04-2003", "WS4-SHARP-LQ030B1DC-FAMILY-2008"]
+    },
+    "nearTransitionPenalty": {
+      "range": [0.15, 0.4],
+      "classification": "project-prior-range",
+      "basis": "qualitative literature support for slower short-distance transitions; no transferable AGS magnitude"
+    },
+    "midGrayPenalty": {
+      "range": [0.1, 0.3],
+      "classification": "project-prior-range",
+      "basis": "retained bounded sensitivity dimension from the pre-WS4 analytic prior; no transferable AGS magnitude"
+    },
+    "channelMultiplier": {
+      "range": null,
+      "selected": { "r": 1, "g": 1, "b": 1 },
+      "classification": "unresolved-held-neutral"
+    },
+    "temperatureDependence": {
+      "range": null,
+      "referenceTemperatureC": 25,
+      "classification": "unresolved-dimension"
+    },
+    "brightnessModeDependence": {
+      "range": null,
+      "classification": "unresolved-dimension"
+    }
+  },
+  "members": [
+    {
+      "id": "fast",
+      "role": "period-family fast endpoint",
+      "opticalDarkeningEndpointT10To90Ms": 18,
+      "opticalBrighteningEndpointT10To90Ms": 45,
+      "nearTransitionPenalty": 0.15,
+      "midGrayPenalty": 0.1,
+      "endpointEvidenceIds": ["WS4-SHARP-LQ022B8UD04-2003"],
+      "endpointSelection": "2003 Sharp typical white-to-black and black-to-white values"
+    },
+    {
+      "id": "nominal",
+      "role": "near-size family typical endpoint",
+      "opticalDarkeningEndpointT10To90Ms": 30,
+      "opticalBrighteningEndpointT10To90Ms": 60,
+      "nearTransitionPenalty": 0.25,
+      "midGrayPenalty": 0.2,
+      "endpointEvidenceIds": ["WS4-SHARP-LQ030B1DC-FAMILY-2008"],
+      "endpointSelection": "2008 near-size Sharp typical white-to-black and black-to-white values"
+    },
+    {
+      "id": "slow",
+      "role": "near-size family specification maximum endpoint",
+      "opticalDarkeningEndpointT10To90Ms": 50,
+      "opticalBrighteningEndpointT10To90Ms": 100,
+      "nearTransitionPenalty": 0.4,
+      "midGrayPenalty": 0.3,
+      "endpointEvidenceIds": ["WS4-SHARP-LQ030B1DC-FAMILY-2008"],
+      "endpointSelection": "2008 near-size Sharp maximum white-to-black and black-to-white values"
+    }
+  ],
+  "defaultMember": "nominal",
+  "specimenOverride": {
+    "schema": "data/gtg-measurement.schema.json",
+    "builder": "tools/build-ags101-gtg.mjs",
+    "status": "retained-separate-path",
+    "rule": "A future measured specimen produces a separate texture/preset and never overwrites this reconstructed ensemble."
+  }
+}

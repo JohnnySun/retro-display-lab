@@ -7,6 +7,12 @@ export const GBA_VISIBLE_LINES = 160;
 export const GBA_LINE_SECONDS = GBA_CYCLES_PER_LINE / GBA_MASTER_CLOCK_HZ;
 export const GBA_FRAME_SECONDS = GBA_LINE_SECONDS * GBA_TOTAL_LINES;
 export const GBA_FRAME_HZ = 1 / GBA_FRAME_SECONDS;
+export const INVERSION_TOPOLOGIES = Object.freeze({
+  FRAME_GLOBAL: 0,
+  ROW_ALTERNATING: 1,
+  COLUMN_ALTERNATING: 2,
+  DOT_CHECKERBOARD: 3,
+});
 
 function finite(name, value) {
   if (!Number.isFinite(value)) throw new TypeError(`${name} must be finite`);
@@ -67,6 +73,36 @@ export function sourcePairForEvent({
     });
   }
   throw new RangeError("sourceFrameOffset must be 0 or 1");
+}
+
+export function inversionSpatialPhase({ x, y, inversionTopology = 0 }) {
+  if (!Number.isInteger(x) || x < 0 || !Number.isInteger(y) || y < 0) {
+    throw new RangeError("x and y must be non-negative integers");
+  }
+  const topology = Math.round(clamp(
+    finite("inversionTopology", inversionTopology),
+    INVERSION_TOPOLOGIES.FRAME_GLOBAL,
+    INVERSION_TOPOLOGIES.DOT_CHECKERBOARD,
+  ));
+  if (topology === INVERSION_TOPOLOGIES.ROW_ALTERNATING) return y % 2;
+  if (topology === INVERSION_TOPOLOGIES.COLUMN_ALTERNATING) return x % 2;
+  if (topology === INVERSION_TOPOLOGIES.DOT_CHECKERBOARD) return (x + y) % 2;
+  return 0;
+}
+
+export function drivePolarity({
+  frameCount,
+  x,
+  y,
+  parityPhase = 0,
+  inversionTopology = 0,
+}) {
+  if (!Number.isInteger(frameCount) || frameCount < 0) {
+    throw new RangeError("frameCount must be a non-negative integer");
+  }
+  const phase = Math.round(clamp(finite("parityPhase", parityPhase), 0, 1));
+  const spatial = inversionSpatialPhase({ x, y, inversionTopology });
+  return (frameCount + phase + spatial) % 2 === 0 ? 1 : -1;
 }
 
 function parseCli(argv) {

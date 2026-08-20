@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "recordId": "nintendo-ags-101-ws1-evidence-inventory-v1",
+  "modelId": "nintendo-ags-101-period-reconstruction",
+  "sourcePreset": "presets/period-reconstruction-v1.slangp",
+  "claimClasses": [
+    "measured",
+    "literature-derived",
+    "project-derived",
+    "target-compensation",
+    "synthetic-fixture"
+  ],
+  "parameters": {
+    "RiseBase": {
+      "value": 0.62,
+      "claimClass": "project-derived",
+      "role": "fallback-only-prior",
+      "evidenceIds": ["AGS-GTG-01"],
+      "note": "Legacy analytic brightening fallback; the normal profile uses the WS4 nominal reconstructed table."
+    },
+    "FallBase": {
+      "value": 0.45,
+      "claimClass": "project-derived",
+      "role": "fallback-only-prior",
+      "evidenceIds": ["AGS-GTG-01"],
+      "note": "Legacy analytic darkening fallback; the normal profile uses the WS4 nominal reconstructed table."
+    },
+    "NearTransitionDrag": {
+      "value": 0.25,
+      "claimClass": "project-derived",
+      "role": "fallback-only-prior",
+      "evidenceIds": ["AGS-GTG-01"],
+      "note": "Legacy analytic fallback near-level drag prior."
+    },
+    "MidGrayDrag": {
+      "value": 0.2,
+      "claimClass": "project-derived",
+      "role": "fallback-only-prior",
+      "evidenceIds": ["AGS-GTG-01"],
+      "note": "Legacy analytic fallback middle-gray drag prior."
+    },
+    "GtgTableBackend": {
+      "value": 1,
+      "claimClass": "literature-derived",
+      "role": "evidence-selector",
+      "evidenceIds": ["AGS-GTGDATA-01", "AGS-GTGENSEMBLE-01"],
+      "note": "Normal profile selects the WS4 nominal literature-constrained table; missing corners still use the analytic fallback."
+    },
+    "TemporalResponse": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "implementation-control",
+      "evidenceIds": ["AGS-GTG-01"],
+      "note": "Enables the current WS4 table-backed GtG reconstruction."
+    },
+    "HcsMeasuredColor": {
+      "value": 1,
+      "claimClass": "measured",
+      "role": "evidence-selector",
+      "evidenceIds": ["AGS-COLOR-01"],
+      "note": "Selects the HCS measurement-derived color path."
+    },
+    "HcsChromaticAdaptation": {
+      "value": 0,
+      "claimClass": "project-derived",
+      "role": "rendering-policy",
+      "evidenceIds": ["AGS-COLOR-01"],
+      "note": "Retains the measured native white instead of adapting it to D65."
+    },
+    "HcsImproveContrast": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "rendering-policy",
+      "evidenceIds": ["AGS-COLOR-01"],
+      "note": "Applies the HCS black-subtracted policy; this is not raw emitted black."
+    },
+    "DriveRetention": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "implementation-control",
+      "evidenceIds": ["AGS-ION-01", "AGS-DRIVE-01", "AGS-RETENTION-01"],
+      "note": "Enables the one-state residual-DC reconstruction; SpatialRetention independently selects global-only or code/polarity-dependent excitation."
+    },
+    "SpatialRetention": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "implementation-control",
+      "evidenceIds": ["AGS-RETENTION-01"],
+      "note": "Selects the WS5 normalized RGB555-code/polarity excitation proxy. It is reconstructed, not measured image sticking."
+    },
+    "SpatialCodeWeight": {
+      "value": 0.5,
+      "claimClass": "project-derived",
+      "role": "uncertainty-hypothesis",
+      "evidenceIds": ["AGS-FEED-01", "AGS-RETENTION-01"],
+      "note": "Nominal sensitivity midpoint for code-dependent resultant feed-through/VCOM imbalance; dimensionless and not a voltage."
+    },
+    "PolarityDriveWeight": {
+      "value": 0.25,
+      "claimClass": "project-derived",
+      "role": "uncertainty-hypothesis",
+      "evidenceIds": ["AGS-DRIVE-01", "AGS-FEED-01", "AGS-RETENTION-01"],
+      "note": "Nominal sensitivity midpoint for polarity-dependent resultant imbalance; topology and phase remain WS3 hypotheses."
+    },
+    "DriveDcOffset": {
+      "value": 0.1,
+      "claimClass": "project-derived",
+      "role": "physical-prior",
+      "evidenceIds": ["AGS-DRIVE-01", "AGS-FEED-01"],
+      "note": "Normalized global residual-DC bridge prior; no pristine AGS-101 measurement exists."
+    },
+    "IonAdsorptionRate": {
+      "value": 0.0010583333,
+      "claimClass": "literature-derived",
+      "role": "physical-parameter",
+      "units": "s^-1",
+      "evidenceIds": ["AGS-ION-01"],
+      "note": "Midpoint of a contemporary TFT laboratory-cell range, not an AGS-101 measurement."
+    },
+    "IonDesorptionRate": {
+      "value": 0.000425,
+      "claimClass": "literature-derived",
+      "role": "physical-parameter",
+      "units": "s^-1",
+      "evidenceIds": ["AGS-ION-01"],
+      "note": "Midpoint of a contemporary TFT laboratory-cell range, not an AGS-101 measurement."
+    },
+    "DriveCodeCoupling": {
+      "value": 0.15,
+      "claimClass": "project-derived",
+      "role": "physical-prior",
+      "evidenceIds": ["AGS-DRIVE-01", "AGS-FEED-01"],
+      "note": "Normalized electrical-to-code bridge prior. Zero is the balanced isolation control, not the normal default."
+    },
+    "BakedScanout": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "implementation-control",
+      "evidenceIds": ["AGS-TIMING-01"],
+      "note": "Enables the three-event theoretical scan reconstruction."
+    },
+    "LatchOffsetLines": {
+      "value": 0.5,
+      "claimClass": "project-derived",
+      "role": "physical-prior",
+      "units": "lines",
+      "evidenceIds": ["AGS-TIMING-01"],
+      "note": "Theoretical line-center latch prior; not captured AGS-101 timing."
+    },
+    "OpticalDelaySeconds": {
+      "value": 0,
+      "claimClass": "project-derived",
+      "role": "physical-prior",
+      "units": "s",
+      "evidenceIds": ["AGS-TIMING-01"],
+      "note": "No additional pure-delay prior; not a measured zero-delay result."
+    },
+    "ParityPhase": {
+      "value": 0,
+      "claimClass": "project-derived",
+      "role": "unresolved-hypothesis-selector",
+      "evidenceIds": ["AGS-RECON-01"],
+      "note": "Legacy even-frame-positive candidate. The AGS-101 polarity phase is not established."
+    },
+    "InversionTopology": {
+      "value": 0,
+      "claimClass": "project-derived",
+      "role": "unresolved-hypothesis-selector",
+      "evidenceIds": ["AGS-RECON-01"],
+      "note": "Legacy frame-global candidate. Row, column, and dot candidates are sensitivity hypotheses, not AGS-101 facts."
+    },
+    "ApertureGain": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "rendering-policy",
+      "evidenceIds": ["AGS-APERTURE-01"],
+      "note": "Unit-energy project convention for the analytic aperture candidate."
+    },
+    "ApertureEnabled": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "implementation-control",
+      "evidenceIds": ["AGS-APERTURE-01"],
+      "note": "Enables the generic analytic aperture candidate."
+    },
+    "ApertureHorizontalRadius": {
+      "value": 1.5,
+      "claimClass": "project-derived",
+      "role": "generic-prior-geometry",
+      "units": "subpixel periods",
+      "evidenceIds": ["AGS-APERTURE-01"],
+      "note": "lcd-grid-v2-derived nominal radius; narrow and wide WS6 variants are sensitivity candidates, not AGS measurements."
+    },
+    "ApertureVerticalRadius": {
+      "value": 0.63,
+      "claimClass": "project-derived",
+      "role": "generic-prior-geometry",
+      "units": "source-pixel periods",
+      "evidenceIds": ["AGS-APERTURE-01"],
+      "note": "lcd-grid-v2-derived nominal radius; the shader normalizes every geometry candidate to unit mean linear-light energy."
+    },
+    "BlackLevel": {
+      "value": 0.012,
+      "claimClass": "project-derived",
+      "role": "physical-prior",
+      "evidenceIds": ["AGS-NEUTRAL-01"],
+      "note": "Candidate black floor used only by the neutral adapter; the measured HCS path ignores it."
+    },
+    "BGR": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "physical-prior",
+      "evidenceIds": ["AGS-APERTURE-01"],
+      "note": "Prior-art-informed subpixel-order candidate pending calibrated AGS-101 aperture imaging."
+    },
+    "BacklightScaleEnabled": {
+      "value": 0,
+      "claimClass": "project-derived",
+      "role": "uncertainty-bypass",
+      "evidenceIds": ["AGS-BACKLIGHT-01"],
+      "note": "Disabled by default so unresolved low/high brightness uncertainty cannot alter the measured HCS static-color stage."
+    },
+    "BacklightRelativeGain": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "sensitivity-hypothesis",
+      "evidenceIds": ["AGS-BACKLIGHT-01"],
+      "note": "Dimensionless sensitivity control only. The generated 0.5/0.75/1.0 sweep is not a measured ratio or physical bound."
+    },
+    "ExposureMode": {
+      "value": 1,
+      "claimClass": "project-derived",
+      "role": "presentation-policy",
+      "evidenceIds": ["AGS-EXPOSURE-01"],
+      "note": "One selects exact native-frame emitted-light averaging. Zero is the named frame-boundary endpoint diagnostic; neither changes Pass 0 feedback state."
+    },
+    "DebugView": {
+      "value": 0,
+      "claimClass": "project-derived",
+      "role": "implementation-control",
+      "evidenceIds": ["AGS-FRONTEND-01"],
+      "note": "Normal rendering selector; diagnostic values 1 through 14 are read-only. Value 13 losslessly encodes WS8 exposure RGB, FrameCount, and current RGB555; value 14 emits quarter-linear aperture energy for integer/fractional GPU averaging."
+    }
+  },
+  "artifactClassifications": {
+    "generated/gtg-synthetic-v1.png": {
+      "claimClass": "synthetic-fixture",
+      "evidenceIds": ["AGS-GTGDATA-01"],
+      "note": "Bound only by gtg-synthetic-table-v1; never used by the normal profile."
+    },
+    "generated/ws4-gtg-nominal-v1.png": {
+      "claimClass": "literature-derived",
+      "evidenceIds": ["AGS-GTGENSEMBLE-01"],
+      "note": "Normal runtime reference; every cell is reconstructed rather than measured."
+    },
+    "presets/retention-stress-60x-v1.slangp": {
+      "claimClass": "synthetic-fixture",
+      "evidenceIds": ["AGS-ION-01"],
+      "note": "Accelerated laboratory diagnostic, never a normal-play parameter set."
+    }
+  },
+  "targetCompensation": {
+    "status": "separate",
+    "claimClass": "target-compensation",
+    "note": "KONKR/frontend behavior is recorded under the target profile and is not AGS-101 panel evidence."
+  }
+}
