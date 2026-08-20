@@ -10,11 +10,23 @@
   "stimulus": {
     "sceneId": "parity-toggle",
     "filename": "parity-toggle.gba",
-    "sha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d",
+    "sha256": "57d09ce03077e4382aabacfcb72aae8ff2f819c6bcc10fb51832b6cb3c2e35b5",
     "dwellFrames": [
       1,
       1
-    ]
+    ],
+    "alternatingCodes": [
+      8,
+      24
+    ],
+    "window": {
+      "x": 72,
+      "y": 48,
+      "width": 96,
+      "height": 64
+    },
+    "maximumDynamicSeconds": 10.045623779296875,
+    "terminalPage": 0
   },
   "pipeline": {
     "gtgMember": "nominal",
@@ -29,46 +41,46 @@
   "nativeFrameSeconds": 0.016742706298828125,
   "opticalOnsetSeconds": 0.005911350250244141,
   "expectedByPackedTarget": {
-    "0,0,0": {
+    "8,8,8": {
       "targetRgb555": [
-        0,
-        0,
-        0
+        8,
+        8,
+        8
       ],
       "average": [
-        0.3952836875357063,
-        0.39644444466381457,
-        0.4051099612678045
+        0.22413350417127975,
+        0.23373546482687108,
+        0.30429835067525346
       ],
       "endpoint": [
-        0.2357901303739129,
-        0.23670690488461896,
-        0.24372380851033126
+        0.16128859595189027,
+        0.16821198865015508,
+        0.22242340947939443
       ],
       "frameParity": 0
     },
-    "31,31,31": {
+    "24,24,24": {
       "targetRgb555": [
-        31,
-        31,
-        31
+        24,
+        24,
+        24
       ],
       "average": [
-        0.25907763474258166,
-        0.26009729146810345,
-        0.26761652139266684
+        0.16856403871511932,
+        0.17578693020863498,
+        0.23177017001665146
       ],
       "endpoint": [
-        0.41555699684178626,
-        0.41678902762413583,
-        0.4257601773770092
+        0.2300213154519518,
+        0.23986764227041057,
+        0.3118750521102747
       ],
       "frameParity": 1
     }
   },
   "convergence": {
     "iterations": 2048,
-    "maximumSuccessiveSameTargetAverageDrift": 0
+    "maximumSuccessiveSameTargetAverageDrift": 1.3877787807814457e-16
   },
   "gpuComparisonTolerance": 0.000003,
   "apertureEnergy": {
@@ -97,9 +109,9 @@
     "basePresetSha256": "f16913621b4d287b799edea0b14be3dd5675d506ccc03ff75b5b8303c2131ead",
     "colorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
     "gtgManifestSha256": "a5cd5aae6bb582d59b45b2ff1302788e36f827046f10d40d5f279dd12ede975d",
-    "stimulusManifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
-    "responseShaderSha256": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
-    "exposureShaderSha256": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b",
-    "displayShaderSha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524"
+    "stimulusManifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747",
+    "responseShaderSha256": "b98b179aac5a51e2518b4ffe212727743d217f152430cc1204e05123ff3d0385",
+    "exposureShaderSha256": "59f84e73179878c80c10e41801263bddf46ae8adbbce7d4043223ebd1ce794f8",
+    "displayShaderSha256": "9f588f5b88d732e5389902fb4f639e18101d1b4291a6c5f25e71cabc8a2adb81"
   }
 }

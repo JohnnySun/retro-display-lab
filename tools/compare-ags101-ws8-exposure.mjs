@@ -44,11 +44,12 @@ const captures = captureFiles.map((file) => {
   };
 });
 const targetKeys = new Set(captures.map((capture) => capture.targetRgb555.join(",")));
+const expectedTargetKeys = new Set(Object.keys(reference.expectedByPackedTarget ?? {}));
 const maximumAbsoluteError = Math.max(...captures.map((capture) => capture.maximumAbsoluteError));
 const pass = maximumAbsoluteError <= tolerance
   && captures.every((capture) => capture.allBitsUnanimous)
-  && targetKeys.has("0,0,0")
-  && targetKeys.has("31,31,31");
+  && expectedTargetKeys.size === 2
+  && [...expectedTargetKeys].every((key) => targetKeys.has(key));
 const report = {
   schemaVersion: 1,
   reportId: "nintendo-ags-101-ws8-konkr-exposure-gpu-v1",
@@ -56,6 +57,7 @@ const report = {
   reference: referenceFile,
   captures,
   coveredTargets: [...targetKeys].sort(),
+  expectedTargets: [...expectedTargetKeys].sort(),
   maximumAbsoluteError,
   tolerance,
   pass,

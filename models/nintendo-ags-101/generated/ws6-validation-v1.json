@@ -9,7 +9,7 @@
     "generatedColor": "models/nintendo-ags-101/generated/hcs-e688fc5-color.json",
     "generatedColorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
     "displayShader": "models/nintendo-ags-101/shaders/ags101-display-v1.slang",
-    "displayShaderSha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524",
+    "displayShaderSha256": "9f588f5b88d732e5389902fb4f639e18101d1b4291a6c5f25e71cabc8a2adb81",
     "presetManifest": "models/nintendo-ags-101/generated/ws6-presets-v1/manifest.json",
     "presetManifestSha256": "0bb3171a495e82870657f4678614ca1a91a2c30ec907210092c89141c630545b"
   },

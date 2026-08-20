@@ -1,8 +1,10 @@
 # AGS-101 diagnostics and frontend validation contract
 
-Status: the 2026-08-20 WS8 KONKR record covers the current three-pass WS7
-pipeline, GPU exposure/retention numeric readback, exact/fractional aperture
-energy, cold compile, restoration, and explicit frontend safety boundaries.
+Status: the 2026-08-20 WS8 KONKR record is the last full GPU
+exposure/retention, aperture-energy, compile, restoration, and frontend-safety
+numeric run. The 2026-08-21 performance record pins the current optimized
+three-pass Shader bytes, normal rendering, and moving-frame pacing. It does not
+claim that DebugView 12–14 were rerun after the performance-only transformations.
 
 ## One diagnostic interface
 
@@ -163,6 +165,13 @@ causal invariants determine pass/fail. Each completed record is anchored to a
 40-character `repositoryCommit`: its hashes describe the bytes deployed for
 that historical run, while the current generators independently validate the
 current checkout. Later asset regeneration must not rewrite old device evidence.
+
+Routine WS8 parity/exposure checks now use a bounded local-window ROM: RGB555
+8↔24 over 16% of the frame for at most 600 page flips (about 10.05 seconds),
+then a stationary low-neutral page. Full-field 0↔31 alternation is not required.
+The 2026-08-20 KONKR record below predates this safety change and remains a
+historical receipt; it must not be treated as a current-device run of the new
+stimulus.
 
 ## KONKR target results
 

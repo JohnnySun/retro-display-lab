@@ -39,7 +39,7 @@
   },
   "stimulus": {
     "suiteId": "nintendo-ags-101-ws2-stimulus-v1",
-    "manifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a"
+    "manifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747"
   },
   "transitions": [
     {

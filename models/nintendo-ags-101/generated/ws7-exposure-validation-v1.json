@@ -11,7 +11,7 @@
     "color": "models/nintendo-ags-101/generated/hcs-e688fc5-color.json",
     "colorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
     "ws6Validation": "models/nintendo-ags-101/generated/ws6-validation-v1.json",
-    "ws6ValidationSha256": "2c79fee5f9784ebfb79d2b2ddc0d6dc69c8aecca8623044bd9e8c4d668a2d4e8",
+    "ws6ValidationSha256": "b413b4e96577c3adf613a15433484332e964369382b32e07b2efcfd9b8976154",
     "presetManifest": "models/nintendo-ags-101/generated/ws7-presets-v1/manifest.json",
     "presetManifestSha256": "97563e77224dc505dc484cd7f07df27d1751aa31852ce56110d4c1ffd26e16b8"
   },
@@ -3413,7 +3413,7 @@
   },
   "invariants": {
     "colorArtifactSha256UnchangedByExposure": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
-    "apertureValidationSha256UnchangedByExposure": "2c79fee5f9784ebfb79d2b2ddc0d6dc69c8aecca8623044bd9e8c4d668a2d4e8",
+    "apertureValidationSha256UnchangedByExposure": "b413b4e96577c3adf613a15433484332e964369382b32e07b2efcfd9b8976154",
     "ws6ApertureMaximumMeanError": 2.0650148258e-14,
     "endpointFeedbackSeparatedFromExposureOutput": true
   },

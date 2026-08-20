@@ -10,9 +10,9 @@
   },
   "ws2Gate": {
     "status": "pass",
-    "sceneSourceSha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2",
-    "manifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
-    "runtimeReceiptSha256": "98826d05d4592bb4b4e6a05b227968500e0d78b5fe71d629b081546cf746e1ce",
+    "sceneSourceSha256": "a6aec34544e0e3cd61ca5940e096433e9f1a3e869d01f5b272e8a67eca1cddda",
+    "manifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747",
+    "runtimeReceiptSha256": "e230876b98b5df436bc473b12476397a75ccc33a5de79dc364f51f4d18511b04",
     "emulator": {
       "name": "mGBA",
       "executablePath": "/Applications/mGBA.app/Contents/MacOS/mGBA",
@@ -699,7 +699,7 @@
     "sensitivityReport": "models/nintendo-ags-101/generated/ws3-sensitivity-v1.json",
     "sensitivityReportSha256": "b35f9c092fcd3f704f650ce9a68d58f6e88521a0a4a706bcd1536d59ebfbbed0",
     "shaderCompileReceipt": "models/nintendo-ags-101/generated/ws3-shader-compile-v1.json",
-    "shaderCompileReceiptSha256": "be1017488fba302ab7dda98eddfe619eb06e9403011033b42093cae0d824dec1"
+    "shaderCompileReceiptSha256": "125c791704ad9b7ee7374b98012ce457c4ed40fbaffdfd4bde706a717b734593"
   },
   "formalAgs101SpecificConstants": {
     "latchPhase": null,

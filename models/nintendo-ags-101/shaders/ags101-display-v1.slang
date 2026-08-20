@@ -701,17 +701,20 @@ void main()
       return;
    }
 
-   vec3 directPanel = panel_without_aperture(vTexCoord);
-   vec3 aperturePanel = panel_with_aperture(vTexCoord);
-   vec3 panelLinear = params.ApertureEnabled > 0.5
-      ? aperturePanel
-      : directPanel;
+   vec3 panelLinear;
    if (debugView == 5) {
+      // The comparison view is the only path that needs both evaluations.
+      vec3 directPanel = panel_without_aperture(vTexCoord);
+      vec3 aperturePanel = panel_with_aperture(vTexCoord);
       panelLinear = vTexCoord.x < 0.5 ? directPanel : aperturePanel;
       if (abs(vTexCoord.x - 0.5) < 1.0 / global.OutputSize.x) {
          FragColor = vec4(1.0);
          return;
       }
+   } else if (params.ApertureEnabled > 0.5) {
+      panelLinear = panel_with_aperture(vTexCoord);
+   } else {
+      panelLinear = panel_without_aperture(vTexCoord);
    }
    FragColor = vec4(panel_to_host(panelLinear), 1.0);
 }

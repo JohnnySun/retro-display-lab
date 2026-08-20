@@ -3,9 +3,9 @@
   "reportId": "nintendo-ags-101-ws4-comparison-v1",
   "classification": "cpu-rendered-reconstruction-comparison-not-device-capture",
   "sourceSceneFile": "data/ws2-stimulus-scenes-v1.json",
-  "sourceSceneSha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2",
+  "sourceSceneSha256": "a6aec34544e0e3cd61ca5940e096433e9f1a3e869d01f5b272e8a67eca1cddda",
   "ws2Manifest": "generated/ws2-stimulus-v1/manifest.json",
-  "ws2ManifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a",
+  "ws2ManifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747",
   "image": {
     "file": "ws4-comparison-v1.png",
     "sha256": "f818042c662cb183f98430eed7e0947cc7f077ba9ebee60f8995a7738feeac95",

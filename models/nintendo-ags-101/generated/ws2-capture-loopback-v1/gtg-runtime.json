@@ -4,8 +4,8 @@
   "fitVersion": "monotone-first-order-rate-field-v1",
   "sourceRecordId": "ags101-ws2-synthetic-capture-subset-v1",
   "sourceClassification": "synthetic",
-  "sourceRecordSha256": "17c17f4b3518754b2d13183be95be98f4caa730adfc0818dfefebca59aebc742",
-  "fitReportSha256": "d6ebde2130a751b280a56fe5c744b6f5a6454000ea9cf4b55910918482924e20",
+  "sourceRecordSha256": "798e75186dfb8abceb0957d943a9ab63e2810e3a5562fa979476209e012b4c6d",
+  "fitReportSha256": "94dfddb0125658d0a489db797760f1397ca5dddaacfb53d01cc7760b1d479afb",
   "texture": {
     "file": "gtg-runtime.png",
     "sha256": "b254a712f702b466fb0a91245d45570d44f7a28a6042db436617654b055952ea",

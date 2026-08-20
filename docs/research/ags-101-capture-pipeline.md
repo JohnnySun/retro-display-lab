@@ -37,7 +37,7 @@ manifest under `generated/ws2-stimulus-v1`.
 | `row-markers` | row identity and top/center/bottom sentinels | static |
 | `checkerboard` | one-pixel alternating spatial load | static |
 | `isolated-window` | window/surround spatial stress | static |
-| `parity-toggle` | full-field frame parity marker | 1/1 frames |
+| `parity-toggle` | bounded local-window frame parity marker, RGB555 8↔24 on a stable code-8 surround | 1/1 frames, 600 flips maximum, then hold page 0 |
 | `gtg-neutral-gate` | neutral 0↔31 optical gate | 120/120 frames |
 | `gtg-red-gate` | red 0↔31 optical gate | 120/120 frames |
 | `gtg-green-gate` | green 0↔31 optical gate | 120/120 frames |
@@ -53,6 +53,27 @@ counts, and the exact GBA clock.
 
 Each scene is a separate ROM so a capture cannot begin in an undocumented
 phase of a long automatic demo loop.
+
+### Live-device stimulus safety
+
+The ordinary parity/exposure validation does not require full-field black/white
+alternation. The current `parity-toggle` ROM limits the changing region to a
+96×64 center window (16% of the 240×160 frame), limits neutral contrast to
+RGB555 8↔24, and hard-stops page flips after 600 VBlank events (about 10.05
+seconds). Its ARM program then holds the low-neutral page without further
+display-page changes. The generator and validators reject a window above 25%
+of the frame, contrast above 16 codes, more than 600 flips, a dynamic interval
+above 10.1 seconds, or a non-low terminal page.
+
+Full-range optical-gate scenes are specialized bench stimuli, not a prerequisite
+for routine shader, parity, exposure, build, or emulator validation. Do not run
+them on a user device merely to exercise the repository test suite; use the
+generated fixtures and host-side checks unless a separately reviewed physical
+measurement protocol explicitly requires panel observation.
+
+The KONKR receipts dated 2026-08-20 are historical evidence from the earlier
+full-field parity ROM. They are retained as records of that run and do not claim
+that the bounded replacement has been rerun on the device.
 
 ## Capture schemas
 

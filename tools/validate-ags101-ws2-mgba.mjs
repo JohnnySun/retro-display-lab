@@ -76,6 +76,16 @@ function decodeArmLiteral(rom, instructionOffset) {
   };
 }
 
+function decodeArmBranchTarget(rom, instructionOffset) {
+  const instruction = rom.readUInt32LE(instructionOffset);
+  if ((instruction & 0x0f000000) !== 0x0a000000) {
+    throw new Error(`0x${instructionOffset.toString(16)} is not an ARM branch`);
+  }
+  let relative = instruction & 0x00ffffff;
+  if (relative & 0x00800000) relative |= 0xff000000;
+  return ROM_BASE + instructionOffset + 8 + (relative << 2);
+}
+
 function verifyRom(scene, sourceScene) {
   const romPath = path.join(stimulusDir, scene.filename);
   if (!fs.existsSync(romPath)) throw new Error(`${relative(romPath)} is missing`);
@@ -90,6 +100,12 @@ function verifyRom(scene, sourceScene) {
   expect(scene.description === sourceScene.description, "description differs from source");
   expect(scene.page0DwellFrames === sourceScene.page0DwellFrames, "page 0 dwell differs from source");
   expect(scene.page1DwellFrames === sourceScene.page1DwellFrames, "page 1 dwell differs from source");
+  for (const field of [
+    "surroundCode", "window", "page0WindowCode", "page1WindowCode",
+    "maxPageFlips", "terminalPage",
+  ]) {
+    expect(JSON.stringify(scene[field]) === JSON.stringify(sourceScene[field]), `${field} differs from source`);
+  }
   expect(rom.length === scene.sizeBytes, "ROM size differs from manifest");
   expect(sha256(rom) === scene.sha256, "ROM SHA-256 differs from manifest");
   expect(rom.readUInt32LE(0) === 0xea00002e, "entry branch does not target 0x080000c0");
@@ -130,6 +146,27 @@ function verifyRom(scene, sourceScene) {
   expect(page1Literal.condition === 1 && page1Literal.register === 4, "page 1 dwell load is not LDRNE r4");
   expect(page0Literal.value === scene.page0DwellFrames, "page 0 dwell literal differs from manifest");
   expect(page1Literal.value === scene.page1DwellFrames, "page 1 dwell literal differs from manifest");
+  if (sourceScene.maxPageFlips !== undefined) {
+    const maxFlipLoadOffset = romOffset(probe.maxPageFlipsLoadAddress);
+    const maxFlipLiteral = decodeArmLiteral(rom, maxFlipLoadOffset);
+    const safeHoldOffset = romOffset(probe.safeHoldAddress);
+    expect(maxFlipLiteral.condition === 0xe && maxFlipLiteral.register === 7,
+      "maximum page-flip load is not LDR r7");
+    expect(maxFlipLiteral.value === sourceScene.maxPageFlips,
+      "maximum page-flip literal differs from source");
+    expect(rom.readUInt32LE(flipOffset + 16) === 0xe2577001,
+      "bounded scene does not decrement the page-flip counter");
+    expect((rom.readUInt32LE(flipOffset + 20) >>> 28) === 0,
+      "bounded scene does not use an equality branch after the page-flip counter");
+    expect(decodeArmBranchTarget(rom, flipOffset + 20) === probe.safeHoldAddress,
+      "bounded scene does not branch to the safe hold at its limit");
+    expect(rom.readUInt32LE(safeHoldOffset) === 0xeafffffe,
+      "safe hold is not a stationary self-loop");
+    expect(scene.maximumDynamicSeconds <= 10.1,
+      "bounded scene exceeds the 10.1-second dynamic safety limit");
+    expect(scene.terminalBehavior === "hold terminal page indefinitely without further page flips",
+      "bounded scene terminal behavior is absent or unexpected");
+  }
 
   return {
     sceneId: scene.sceneId,

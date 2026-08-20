@@ -229,6 +229,13 @@ const ws8TargetReceiptPath = path.join(
   "ags101-ws8-target-20260820.json",
 );
 const ws8TargetReceipt = JSON.parse(fs.readFileSync(ws8TargetReceiptPath, "utf8"));
+const performanceTargetReceiptPath = path.join(
+  root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "validation",
+  "ags101-performance-20260821.json",
+);
+const performanceTargetReceipt = JSON.parse(
+  fs.readFileSync(performanceTargetReceiptPath, "utf8"),
+);
 const failures = [];
 
 function check(condition, message) {
@@ -550,11 +557,13 @@ for (const [parameter, expected] of Object.entries(ws1Baseline.controls ?? {})) 
 check(ws1Baseline.classification === "repository-regression-baseline-not-device-run",
   "AGS WS1 repository baseline is misclassified as device evidence");
 check(ws1Baseline.deviceReceipt?.status
-  === "last-device-run-complete-for-ws5-artifacts-current-ws7-run-pending",
-  "AGS WS1 baseline does not disclose the pending current-WS7 target run");
-check(ws1Baseline.deviceReceipt?.lastCompletedRecord
-  === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
-"AGS WS1 baseline lost the last completed WS5 device receipt path");
+  === "last-full-numeric-ws8-plus-current-performance-receipt",
+  "AGS WS1 baseline does not separate full numeric and current performance receipts");
+check(ws1Baseline.deviceReceipt?.lastFullNumericRecord
+    === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
+  && ws1Baseline.deviceReceipt?.currentPerformanceRecord
+    === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+"AGS WS1 baseline lost its full numeric or current performance device receipt path");
 
 const shaderParameterNames = new Set(
   [responseSource, exposureSource, displaySource].flatMap((source) => (
@@ -816,8 +825,16 @@ for (const sceneId of requiredScenes) {
     `${sceneId}: invalid Mode 4 palette size`);
 }
 check(stimulusScenes.get("parity-toggle")?.page0DwellFrames === 1
-  && stimulusScenes.get("parity-toggle")?.page1DwellFrames === 1,
-"AGS WS2 parity stimulus no longer toggles every source frame");
+  && stimulusScenes.get("parity-toggle")?.page1DwellFrames === 1
+  && stimulusScenes.get("parity-toggle")?.type === "window-toggle"
+  && stimulusScenes.get("parity-toggle")?.window?.width === 96
+  && stimulusScenes.get("parity-toggle")?.window?.height === 64
+  && stimulusScenes.get("parity-toggle")?.page0WindowCode === 8
+  && stimulusScenes.get("parity-toggle")?.page1WindowCode === 24
+  && stimulusScenes.get("parity-toggle")?.maxPageFlips === 600
+  && stimulusScenes.get("parity-toggle")?.maximumDynamicSeconds <= 10.1
+  && stimulusScenes.get("parity-toggle")?.terminalPage === 0,
+"AGS WS2 parity stimulus lost its bounded local-window safety contract");
 check(stimulusScenes.get("retention-stress-recovery")?.page0DwellFrames === 1800
   && stimulusScenes.get("retention-stress-recovery")?.page1DwellFrames === 900,
 "AGS WS2 retention stimulus lost its 30 s/15 s nominal schedule");
@@ -1340,7 +1357,10 @@ check(ws8Reference.referenceId === "nintendo-ags-101-ws8-exposure-gpu-reference-
 "AGS WS8 exposure GPU reference identity or isolation contract drifted");
 check(ws8Reference.probe?.join(",") === "120,80"
   && Object.keys(ws8Reference.expectedByPackedTarget ?? {}).sort().join("|")
-    === "0,0,0|31,31,31"
+    === "24,24,24|8,8,8"
+  && ws8Reference.stimulus?.alternatingCodes?.join(",") === "8,24"
+  && ws8Reference.stimulus?.maximumDynamicSeconds <= 10.1
+  && ws8Reference.stimulus?.terminalPage === 0
   && ws8Reference.convergence?.maximumSuccessiveSameTargetAverageDrift < 1e-12
   && ws8Reference.gpuComparisonTolerance === 3e-6,
 "AGS WS8 alternating exposure reference is incomplete or unconverged");
@@ -1388,10 +1408,14 @@ if (ws8SafeBypass) {
 check(metadata.evidence?.gpuExposureReference
   === "generated/ws8-exposure-gpu-reference-v1.json"
   && metadata.evidence?.ws8ValidationPresets === "generated/ws8-presets-v1/manifest.json"
-  && metadata.evidence?.currentTargetValidation
+  && metadata.evidence?.lastFullNumericTargetValidation
     === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
-  && metadata.diagnostics?.currentWs7DeviceValidation
-    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json",
+  && metadata.evidence?.currentTargetValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json"
+  && metadata.diagnostics?.lastFullNumericWs7DeviceValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
+  && metadata.diagnostics?.currentPerformanceDeviceValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
 "AGS model metadata lost WS8 exposure validation artifacts");
 check(ws8TargetReceipt.runId === "konkr-gt78-vn-ags101-ws8-current-20260820"
   && ws8TargetReceipt.modelId === metadata.id
@@ -1407,12 +1431,42 @@ check(ws8TargetReceipt.runId === "konkr-gt78-vn-ags101-ws8-current-20260820"
   && ws8TargetReceipt.acceptance?.promotedModelId
     === "nintendo-ags-101-period-reconstruction",
 "AGS current WS8 KONKR receipt lost a numeric, safe-boundary, or promotion gate");
-for (const shader of ["ags101-response-v1.slang", "ags101-exposure-v1.slang", "ags101-display-v1.slang"]) {
+const historicalWs8ShaderHashes = {
+  "ags101-response-v1.slang": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
+  "ags101-exposure-v1.slang": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b",
+  "ags101-display-v1.slang": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524",
+};
+for (const [shader, expectedHash] of Object.entries(historicalWs8ShaderHashes)) {
   const receiptArtifact = ws8TargetReceipt.artifacts?.repository?.find(
     (item) => item.path === `models/nintendo-ags-101/shaders/${shader}`,
   );
+  check(receiptArtifact?.sha256 === expectedHash,
+    `AGS historical WS8 KONKR receipt drifted for ${shader}`);
+}
+check(performanceTargetReceipt.runId
+    === "konkr-gt78-vn-ags101-performance-current-20260821"
+  && performanceTargetReceipt.modelId === metadata.id
+  && performanceTargetReceipt.releaseCandidate === "0.6.0"
+  && performanceTargetReceipt.currentPipeline?.passes === 3
+  && performanceTargetReceipt.currentPipeline?.modelPathPreserved === true
+  && performanceTargetReceipt.performance?.aggregate?.intervals === 370
+  && performanceTargetReceipt.performance?.aggregate?.averageFps > 60.06
+  && performanceTargetReceipt.performance?.aggregate?.intervalsOver25Milliseconds === 0
+  && performanceTargetReceipt.performance?.aggregate?.pass === true
+  && performanceTargetReceipt.numericReadbackBoundary
+    ?.currentOptimizedShaderDebugView12To14Rerun === false,
+"AGS current performance receipt lost its target identity, frame pacing, or numeric boundary");
+for (const shader of [
+  "ags101-response-v1.slang",
+  "ags101-exposure-optics.inc",
+  "ags101-exposure-v1.slang",
+  "ags101-display-v1.slang",
+]) {
+  const receiptArtifact = performanceTargetReceipt.artifacts?.repository?.find(
+    (item) => item.path === `models/nintendo-ags-101/shaders/${shader}`,
+  );
   check(receiptArtifact?.sha256 === sha256File(path.join(shaderDir, shader)),
-    `AGS current WS8 KONKR receipt is stale for ${shader}`);
+    `AGS current performance receipt is stale for ${shader}`);
 }
 for (const code of [0, 4, 16, 27, 31]) {
   check(Math.abs(rgb555DriveCodeProxy([code, code, code]) - code / 31) < 1e-15,
@@ -1981,8 +2035,10 @@ const lastCompletedTargetRecord = "validation/ags101-ws5-target-20260820.json";
 check(validationRecords.includes(lastCompletedTargetRecord),
   "KPA profile omits the last completed AGS WS5 target record");
 check(targetProfile.currentAgs101ValidationRecord
-  === "validation/ags101-ws8-target-20260820.json",
-"KPA profile lost the current promoted AGS WS8 target record");
+  === "validation/ags101-performance-20260821.json"
+  && targetProfile.lastFullNumericAgs101ValidationRecord
+    === "validation/ags101-ws8-target-20260820.json",
+"KPA profile lost the current AGS performance or last full numeric target record");
 for (const relativeRecord of validationRecords) {
   const recordPath = path.resolve(targetDir, relativeRecord);
   check(recordPath.startsWith(`${targetDir}${path.sep}`),
@@ -1996,14 +2052,25 @@ for (const relativeRecord of validationRecords) {
   ]);
   check(record.targetProfile === targetProfile.id,
     `${relativeRecord}: target profile ID does not match profile.json`);
-  for (const relativeArtifact of Object.keys(record.artifacts ?? {})) {
+  for (const [relativeArtifact, expectedHash] of Object.entries(record.artifacts ?? {})) {
     const artifactPath = path.resolve(root, relativeArtifact);
     check(artifactPath.startsWith(`${root}${path.sep}`),
       `${relativeRecord}: artifact escapes repository: ${relativeArtifact}`);
-    check(fs.existsSync(artifactPath),
-      `${relativeRecord}: artifact is missing: ${relativeArtifact}`);
+    const isPrivateRunEvidence = relativeArtifact.startsWith(".codex-validation/");
+    check(fs.existsSync(artifactPath) || isPrivateRunEvidence,
+      `${relativeRecord}: repository artifact is missing: ${relativeArtifact}`);
+    if (isPrivateRunEvidence) {
+      check(/^[0-9a-f]{64}$/.test(expectedHash),
+        `${relativeRecord}: private evidence hash is invalid: ${relativeArtifact}`);
+      if (fs.existsSync(artifactPath)) {
+        check(sha256File(artifactPath) === expectedHash,
+          `${relativeRecord}: private evidence hash drifted: ${relativeArtifact}`);
+      }
+    }
     // Historical device records pin the exact bytes they exercised. They are
-    // intentionally not rewritten or compared with a later WS6/WS7 checkout.
+    // intentionally not rewritten or compared with a later Shader checkout.
+    // Ignored private captures can be absent in a clean clone; their committed
+    // SHA-256 values remain required, and are checked whenever files are present.
   }
 
   if (relativeRecord === lastCompletedTargetRecord) {

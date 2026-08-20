@@ -172,6 +172,13 @@ vec3 source_eotf(ivec3 index)
       : neutral_eotf(index);
 }
 
+float source_eotf_channel(int index, int channel)
+{
+   return params.HcsMeasuredColor > 0.5
+      ? HCS_RGB555_EOTF[index][channel]
+      : srgb_decode_channel(float(index) / 31.0);
+}
+
 vec3 hcs_measured_eotf_continuous(vec3 code)
 {
    vec3 scaled = clamp(code, 0.0, 1.0) * 31.0;
@@ -201,17 +208,28 @@ vec3 source_eotf_continuous(vec3 code)
 float optical_channel_to_code(float optical, int channel)
 {
    float value = clamp(optical, 0.0, 1.0);
-   float code = 31.0;
-   for (int i = 0; i < 31; i++) {
-      float lowValue = source_eotf(ivec3(i))[channel];
-      float highValue = source_eotf(ivec3(i + 1))[channel];
-      if (value <= highValue) {
-         float span = max(highValue - lowValue, 1e-8);
-         code = float(i) + clamp((value - lowValue) / span, 0.0, 1.0);
-         break;
-      }
+   int highIndex = 31;
+   int lowIndex = 0;
+
+   // The 32-entry EOTF is monotone. Find the first entry at or above the
+   // optical value in five fixed steps instead of walking as many as 31
+   // intervals for every channel and every temporal segment.
+   for (int stepIndex = 0; stepIndex < 5; stepIndex++) {
+      int midpoint = (lowIndex + highIndex) / 2;
+      if (value <= source_eotf_channel(midpoint, channel))
+         highIndex = midpoint;
+      else
+         lowIndex = midpoint + 1;
    }
-   return code;
+
+   int lowerIndex = max(highIndex - 1, 0);
+   float lowValue = source_eotf_channel(lowerIndex, channel);
+   float highValue = source_eotf_channel(highIndex, channel);
+   return float(lowerIndex) + clamp(
+      (value - lowValue) / max(highValue - lowValue, 1e-8),
+      0.0,
+      1.0
+   );
 }
 
 vec3 optical_to_code(vec3 optical)
@@ -253,50 +271,39 @@ float decode_table_rate(vec3 packed, out bool available)
    return exp2(10.0 * encoded / 65535.0);
 }
 
-float table_rate_channel(float fromCode, float toCode, int channel, out bool available)
+float table_rate_channel(float fromCode, int toCode, int channel, out bool available)
 {
    float fromValue = clamp(fromCode, 0.0, 31.0);
-   float toValue = clamp(toCode, 0.0, 31.0);
    int from0 = int(floor(fromValue));
    int from1 = min(from0 + 1, 31);
-   int to0 = int(floor(toValue));
+   int to0 = clamp(toCode, 0, 31);
    int to1 = min(to0 + 1, 31);
    int channelRow = channel * 32;
    bool available00;
-   bool available01;
    bool available10;
-   bool available11;
+   vec3 packed00 = texelFetch(GtgRateLut, ivec2(to0, channelRow + from0), 0).rgb;
+   vec3 packed01 = texelFetch(GtgRateLut, ivec2(to1, channelRow + from0), 0).rgb;
+   vec3 packed10 = texelFetch(GtgRateLut, ivec2(to0, channelRow + from1), 0).rgb;
+   vec3 packed11 = texelFetch(GtgRateLut, ivec2(to1, channelRow + from1), 0).rgb;
    float rate00 = decode_table_rate(
-      texelFetch(GtgRateLut, ivec2(to0, channelRow + from0), 0).rgb,
+      packed00,
       available00
    );
-   float rate01 = decode_table_rate(
-      texelFetch(GtgRateLut, ivec2(to1, channelRow + from0), 0).rgb,
-      available01
-   );
    float rate10 = decode_table_rate(
-      texelFetch(GtgRateLut, ivec2(to0, channelRow + from1), 0).rgb,
+      packed10,
       available10
    );
-   float rate11 = decode_table_rate(
-      texelFetch(GtgRateLut, ivec2(to1, channelRow + from1), 0).rgb,
-      available11
-   );
+   bool available01 = floor(packed01.b * 255.0 + 0.5) >= 128.0;
+   bool available11 = floor(packed11.b * 255.0 + 0.5) >= 128.0;
    available = available00 && available01 && available10 && available11;
-   float toFraction = toValue - float(to0);
    float fromFraction = fromValue - float(from0);
-   return mix(
-      mix(rate00, rate01, toFraction),
-      mix(rate10, rate11, toFraction),
-      fromFraction
-   );
+   return mix(rate00, rate10, fromFraction);
 }
 
-vec3 gtg_rate(vec3 fromCode, vec3 toCode)
+vec3 gtg_rate(vec3 fromCode, ivec3 toCode)
 {
-   vec3 analyticRate = analytic_gtg_rate(fromCode, toCode);
    if (params.GtgTableBackend < 0.5)
-      return analyticRate;
+      return analytic_gtg_rate(fromCode, vec3(toCode));
 
    bool redAvailable;
    bool greenAvailable;
@@ -306,6 +313,10 @@ vec3 gtg_rate(vec3 fromCode, vec3 toCode)
       table_rate_channel(fromCode.g, toCode.g, 1, greenAvailable),
       table_rate_channel(fromCode.b, toCode.b, 2, blueAvailable)
    );
+   if (redAvailable && greenAvailable && blueAvailable)
+      return tableRate;
+
+   vec3 analyticRate = analytic_gtg_rate(fromCode, vec3(toCode));
    return vec3(
       redAvailable ? tableRate.r : analyticRate.r,
       greenAvailable ? tableRate.g : analyticRate.g,
@@ -388,7 +399,7 @@ void integrate_optical_segment(
    vec3 fromCode = optical_to_code(panelState);
    vec3 response = params.TemporalResponse > 0.5
       ? response_for_time(
-         gtg_rate(fromCode, vec3(targetIndex)),
+         gtg_rate(fromCode, targetIndex),
          dtSeconds
       )
       : vec3(1.0);
@@ -542,21 +553,24 @@ void main()
             polarity,
             secondDt
          );
-         vec3 singlePanelState = panelState;
-         integrate_optical_segment(
-            singlePanelState,
-            newTargetIndex,
-            residualAtFrameEnd,
-            polarity,
-            FRAME_SECONDS
-         );
-
          bvec3 changed = notEqual(oldTargetIndex, newTargetIndex);
-         panelState = vec3(
-            changed.r ? splitPanelState.r : singlePanelState.r,
-            changed.g ? splitPanelState.g : singlePanelState.g,
-            changed.b ? splitPanelState.b : singlePanelState.b
-         );
+         if (all(changed)) {
+            panelState = splitPanelState;
+         } else {
+            vec3 singlePanelState = panelState;
+            integrate_optical_segment(
+               singlePanelState,
+               newTargetIndex,
+               residualAtFrameEnd,
+               polarity,
+               FRAME_SECONDS
+            );
+            panelState = vec3(
+               changed.r ? splitPanelState.r : singlePanelState.r,
+               changed.g ? splitPanelState.g : singlePanelState.g,
+               changed.b ? splitPanelState.b : singlePanelState.b
+            );
+         }
          residualDc = residualAtFrameEnd;
       }
    }

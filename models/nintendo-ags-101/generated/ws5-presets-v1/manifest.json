@@ -100,5 +100,5 @@
     }
   ],
   "validationReceipt": "../ws5-retention-validation-v1.json",
-  "validationReceiptSha256": "22089fa5c1790dcb39d49b81d358428a38c0f03b97aa26a2a6ce0fbd60f006c2"
+  "validationReceiptSha256": "c8689fcd02705effe71b29fb8b563754f479acb904193a92a06ce369dc791249"
 }

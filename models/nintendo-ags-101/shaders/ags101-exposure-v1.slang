@@ -176,7 +176,7 @@ void integrate_exposure_segment(
       lightIntegral += effectiveTarget * dtSeconds;
       return;
    }
-   vec3 rate = max(gtg_rate(optical_to_code(panelState), vec3(targetIndex)), vec3(1e-8));
+   vec3 rate = max(gtg_rate(optical_to_code(panelState), targetIndex), vec3(1e-8));
    vec3 decay = exp(-rate * dtSeconds);
    lightIntegral += effectiveTarget * dtSeconds
       + (panelState - effectiveTarget) * (vec3(1.0) - decay) / rate;
@@ -275,18 +275,22 @@ void main()
             residualAtFrameEnd, polarity,
             FRAME_SECONDS - event.opticalTimeInFrame
          );
-         vec3 singleState = panelState;
-         vec3 singleIntegral = vec3(0.0);
-         integrate_exposure_segment(
-            singleState, singleIntegral, newTargetIndex,
-            residualAtFrameEnd, polarity, FRAME_SECONDS
-         );
          bvec3 changed = notEqual(oldTargetIndex, newTargetIndex);
-         lightIntegral = vec3(
-            changed.r ? splitIntegral.r : singleIntegral.r,
-            changed.g ? splitIntegral.g : singleIntegral.g,
-            changed.b ? splitIntegral.b : singleIntegral.b
-         );
+         if (all(changed)) {
+            lightIntegral = splitIntegral;
+         } else {
+            vec3 singleState = panelState;
+            vec3 singleIntegral = vec3(0.0);
+            integrate_exposure_segment(
+               singleState, singleIntegral, newTargetIndex,
+               residualAtFrameEnd, polarity, FRAME_SECONDS
+            );
+            lightIntegral = vec3(
+               changed.r ? splitIntegral.r : singleIntegral.r,
+               changed.g ? splitIntegral.g : singleIntegral.g,
+               changed.b ? splitIntegral.b : singleIntegral.b
+            );
+         }
       }
    }
 

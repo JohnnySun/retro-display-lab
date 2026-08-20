@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "receiptId": "nintendo-ags-101-ws3-shader-compile-v1",
   "classification": "local-shader-compile-and-spirv-validation-receipt",
-  "capturedAt": "2026-08-20T12:56:07.551Z",
+  "capturedAt": "2026-08-20T16:17:12.334Z",
   "tools": {
     "glslangValidator": "Glslang Version: 11:16.5.0",
     "spirvVal": "SPIRV-Tools v2026.3 unknown hash, 2026-07-22T20:34:54+00:00",
     "targetEnvironment": "vulkan1.1"
   },
   "sources": {
-    "responseShaderSha256": "168f23a4bf52f371cd815f71f3e57ccab845ac9a1b63ae7bbc5f4444da333e54",
-    "exposureShaderSha256": "e7889fe8e58a77a1697a855da769451e9ea5cc7bf2c87c9fe989d0b6e1e06a4b",
-    "displayShaderSha256": "dd862305eb8d02b17cc797132b748c4f9e0b00e2434a9dc283c01df4bd64e524",
+    "responseShaderSha256": "b98b179aac5a51e2518b4ffe212727743d217f152430cc1204e05123ff3d0385",
+    "exposureShaderSha256": "59f84e73179878c80c10e41801263bddf46ae8adbbce7d4043223ebd1ce794f8",
+    "displayShaderSha256": "9f588f5b88d732e5389902fb4f639e18101d1b4291a6c5f25e71cabc8a2adb81",
     "sharedTimingIncludeSha256": "30e6e1c4b4819594ab9afedc548a10e63bb9ab3efb7e724719fb215a68c9f38c"
   },
   "stages": [
@@ -26,9 +26,9 @@
     {
       "shaderId": "response",
       "stage": "frag",
-      "expandedSourceSha256": "e535c5514a1d6b097a97ce1be17d4cd2d40e096256f018df77e644042d7fee64",
-      "spirvSha256": "da78f11d483266d1bba6eed4fdab592c259139109fa60a6d533f57ad0b084fd6",
-      "spirvBytes": 42088,
+      "expandedSourceSha256": "02b9438b22aef1b7993f2a8222b9dd29266a52ba71b9440f542da2102dcfab71",
+      "spirvSha256": "aed167464848cdc451f3714ef227abe2f199ed3118de1e33301a488db1771729",
+      "spirvBytes": 43316,
       "pass": true
     },
     {
@@ -42,9 +42,9 @@
     {
       "shaderId": "exposure",
       "stage": "frag",
-      "expandedSourceSha256": "462e74d228a9d89efb16ab75afff3e7a07a3ad1c6aa2af798fbd1e87b4af3ff6",
-      "spirvSha256": "d52527ba42806eeb15c488a2379c97d3361963e3d9a243834896b7a7655a7bc0",
-      "spirvBytes": 41584,
+      "expandedSourceSha256": "d0979948c9acb2b40652bfb2871fd526f0547628ef2bb3345b3b7b38be2577f1",
+      "spirvSha256": "989ec747f85cbedbb7c0d9bd615544c6a8cc31619e17e8f17cc4a48b87c48ea4",
+      "spirvBytes": 41688,
       "pass": true
     },
     {
@@ -58,9 +58,9 @@
     {
       "shaderId": "display",
       "stage": "frag",
-      "expandedSourceSha256": "c23930231c781644a20124f1ed07f747b3f58f169ddf1e84f917477ee8ebd5ae",
-      "spirvSha256": "58e8e20ca1f48c36129a9bc1beb0edaf864ce3121b06664bae0cafd0ba9b3a63",
-      "spirvBytes": 53300,
+      "expandedSourceSha256": "bbebade71bf2f0760b500bf65ca3e4c9c0300f54038364e9a47bdf949b945019",
+      "spirvSha256": "3e0c5ff0a960e06aab42127ff0148b54783d54e592e46bdbffe77e41f1f79b55",
+      "spirvBytes": 53476,
       "pass": true
     }
   ],

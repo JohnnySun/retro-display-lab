@@ -41,10 +41,21 @@
     },
     {
       "sceneId": "parity-toggle",
-      "type": "full-toggle",
-      "description": "Black/white full-field alternation on every source frame.",
+      "type": "window-toggle",
+      "description": "Bounded low/high neutral center-window alternation on a stable low-neutral surround.",
       "page0DwellFrames": 1,
-      "page1DwellFrames": 1
+      "page1DwellFrames": 1,
+      "surroundCode": 8,
+      "window": {
+        "x": 72,
+        "y": 48,
+        "width": 96,
+        "height": 64
+      },
+      "page0WindowCode": 8,
+      "page1WindowCode": 24,
+      "maxPageFlips": 600,
+      "terminalPage": 0
     },
     {
       "sceneId": "gtg-neutral-gate",

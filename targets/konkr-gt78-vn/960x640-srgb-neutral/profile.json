@@ -53,7 +53,8 @@
     "validation/dmg01-ws5-20260819.json",
     "validation/dmg01-ws5-common-mode-20260819.json"
   ],
-  "currentAgs101ValidationRecord": "validation/ags101-ws8-target-20260820.json",
+  "lastFullNumericAgs101ValidationRecord": "validation/ags101-ws8-target-20260820.json",
+  "currentAgs101ValidationRecord": "validation/ags101-performance-20260821.json",
   "compensation": {
     "ScreenBrightness": 0.68,
     "ScreenChroma": 0.90

@@ -15,6 +15,10 @@ const targetDir = path.join(root, "targets", "konkr-gt78-vn", "960x640-srgb-neut
 const outputPath = path.join(targetDir, "validation", "ags101-ws8-target-20260820.json");
 const checkOnly = process.argv.includes("--check");
 
+// This builder reconstructs the immutable 2026-08-20 receipt from its legacy
+// full-field 0/31 captures. It is not a live-device runner and must not be used
+// as a protocol for the bounded parity-toggle ROM that replaced that stimulus.
+
 const sha256 = (buffer) => crypto.createHash("sha256").update(buffer).digest("hex");
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
 const relative = (file) => path.relative(root, file);

@@ -300,6 +300,7 @@ const artifactPaths = [
   "tools/analyze-ags101-ws8-aperture.mjs",
   "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp",
   "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
+  "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
 ].sort();
 const artifacts = Object.fromEntries(artifactPaths.map((relative) => [
   relative,
@@ -332,10 +333,11 @@ const baseline = {
   })),
   artifacts,
   deviceReceipt: {
-    status: "last-device-run-complete-for-ws5-artifacts-current-ws7-run-pending",
-    lastCompletedRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
+    status: "last-full-numeric-ws8-plus-current-performance-receipt",
+    lastFullNumericRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json",
+    currentPerformanceRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
     historicalRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-20260818.json",
-    note: "The WS5 record remains historical for its pinned two-pass checkout. The current WS8 KONKR receipt separately pins the WS7 three-pass route, exposure and retention floats, integer/fractional aperture energy, cold compile, and explicit stateless frontend boundaries.",
+    note: "The 2026-08-20 WS8 receipt is the last full GPU numeric run. The 2026-08-21 receipt separately pins the current optimized Shader bytes, normal rendering, and moving-frame performance without relabeling the older DebugView captures as a rerun.",
   },
 };
 const baselineContent = `${JSON.stringify(baseline, null, 2)}\n`;

@@ -4,7 +4,7 @@
   "generator": "tools/build-ags101-test-rom.mjs",
   "source": {
     "path": "models/nintendo-ags-101/data/ws2-stimulus-scenes-v1.json",
-    "sha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2"
+    "sha256": "a6aec34544e0e3cd61ca5940e096433e9f1a3e869d01f5b272e8a67eca1cddda"
   },
   "timing": {
     "masterClockHz": 16777216,
@@ -2502,26 +2502,41 @@
     },
     {
       "sceneId": "parity-toggle",
-      "type": "full-toggle",
-      "description": "Black/white full-field alternation on every source frame.",
+      "type": "window-toggle",
+      "description": "Bounded low/high neutral center-window alternation on a stable low-neutral surround.",
       "filename": "parity-toggle.gba",
-      "sha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d",
+      "sha256": "57d09ce03077e4382aabacfcb72aae8ff2f819c6bcc10fb51832b6cb3c2e35b5",
       "sizeBytes": 131072,
       "gbaHeaderChecksum": 189,
       "mode": "GBA bitmap Mode 4 double buffer",
       "page0DwellFrames": 1,
       "page1DwellFrames": 1,
+      "surroundCode": 8,
+      "window": {
+        "x": 72,
+        "y": 48,
+        "width": 96,
+        "height": 64
+      },
+      "page0WindowCode": 8,
+      "page1WindowCode": 24,
+      "maxPageFlips": 600,
+      "terminalPage": 0,
+      "maximumDynamicSeconds": 10.045623779296875,
+      "terminalBehavior": "hold terminal page indefinitely without further page flips",
       "pageSha256": [
         "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
-        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+        "98f083a05a316aa4c68edff732246417935fa0c46d978cd9e09d12b7d92b7f64"
       ],
-      "programSha256": "4de6c35a499c606788c44d5e2a798fbe366664d8f27181665f4a2791f8ba897c",
-      "programSizeBytes": 220,
+      "programSha256": "4d508c3640f5914fba46a3d48fe91b0849454d44d9873fe4ac958e3f0720e105",
+      "programSizeBytes": 240,
       "runtimeProbe": {
         "entryAddress": 134217920,
-        "frameLoopAddress": 134218024,
-        "waitVBlankAddress": 134218036,
-        "pageFlipWriteAddress": 134218060,
+        "frameLoopAddress": 134218028,
+        "waitVBlankAddress": 134218040,
+        "pageFlipWriteAddress": 134218064,
+        "maxPageFlipsLoadAddress": 134218024,
+        "safeHoldAddress": 134218092,
         "displayControlAddress": 67108864,
         "paletteAddress": 83886080,
         "page0Address": 100663296,
@@ -2531,20 +2546,20 @@
         {
           "index": 0,
           "rgb555": [
-            0,
-            0,
-            0
+            8,
+            8,
+            8
           ],
-          "packed": 0
+          "packed": 8456
         },
         {
           "index": 1,
           "rgb555": [
-            31,
-            31,
-            31
+            24,
+            24,
+            24
           ],
-          "packed": 32767
+          "packed": 25368
         }
       ]
     },

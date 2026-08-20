@@ -19,6 +19,7 @@ const ROM_BYTES = 128 * 1024;
 const PROGRAM_OFFSET = 0xc0;
 const DATA_OFFSET = 0x400;
 const ROM_BASE = 0x08000000;
+const FRAME_SECONDS = 1232 * 228 / 16777216;
 
 const NINTENDO_LOGO = Buffer.from([
   0x24, 0xff, 0xae, 0x51, 0x69, 0x9a, 0xa2, 0x21, 0x3d, 0x84, 0x82, 0x0a,
@@ -58,7 +59,8 @@ function solid(color) {
   return new Uint16Array(WIDTH * HEIGHT).fill(color);
 }
 
-function sceneFrames(type) {
+function sceneFrames(scene) {
+  const { type } = scene;
   const page0 = solid(rgb555(0, 0, 0));
   const page1 = solid(rgb555(0, 0, 0));
   const set = (page, x, y, color) => {
@@ -126,9 +128,18 @@ function sceneFrames(type) {
       for (let x = 60; x < 180; x += 1) set(page0, x, y, rgb555(26, 26, 26));
     }
     page1.set(page0);
-  } else if (type === "full-toggle") {
-    page0.fill(rgb555(0, 0, 0));
-    page1.fill(rgb555(31, 31, 31));
+  } else if (type === "window-toggle") {
+    const surround = rgb555(scene.surroundCode, scene.surroundCode, scene.surroundCode);
+    const low = rgb555(scene.page0WindowCode, scene.page0WindowCode, scene.page0WindowCode);
+    const high = rgb555(scene.page1WindowCode, scene.page1WindowCode, scene.page1WindowCode);
+    page0.fill(surround);
+    page1.fill(surround);
+    for (let y = scene.window.y; y < scene.window.y + scene.window.height; y += 1) {
+      for (let x = scene.window.x; x < scene.window.x + scene.window.width; x += 1) {
+        set(page0, x, y, low);
+        set(page1, x, y, high);
+      }
+    }
   } else if (type === "gtg-neutral-gate") {
     page0.fill(rgb555(0, 0, 0));
     page1.fill(rgb555(31, 31, 31));
@@ -214,6 +225,10 @@ function armProgram(scene) {
   emit(0xe5865000); // STR r5,[r6]
   literal(0xe, 0, 0x04000006); // VCOUNT
   literal(0xe, 4, scene.page0DwellFrames);
+  if (scene.maxPageFlips !== undefined) {
+    label("max-page-flips-load");
+    literal(0xe, 7, scene.maxPageFlips);
+  }
 
   label("frame");
   label("wait-visible");
@@ -232,7 +247,15 @@ function armProgram(scene) {
   emit(0xe3150010); // TST r5,#0x10
   literal(0x0, 4, scene.page0DwellFrames); // LDREQ
   literal(0x1, 4, scene.page1DwellFrames); // LDRNE
+  if (scene.maxPageFlips !== undefined) {
+    emit(0xe2577001); // SUBS r7,r7,#1
+    branch(0x0, "safe-hold"); // BEQ
+  }
   branch(0xe, "frame");
+  if (scene.maxPageFlips !== undefined) {
+    label("safe-hold");
+    branch(0xe, "safe-hold");
+  }
 
   const literalStart = words.length;
   for (const fixup of literalFixups) {
@@ -283,7 +306,7 @@ function gbaHeader(rom, sceneId) {
 }
 
 function buildRom(scene) {
-  const frames = sceneFrames(scene.type);
+  const frames = sceneFrames(scene);
   const indexed = indexedPages(frames);
   const program = armProgram(scene);
   const rom = Buffer.alloc(ROM_BYTES, 0xff);
@@ -307,6 +330,10 @@ function buildRom(scene) {
       frameLoopAddress: program.symbols.frame,
       waitVBlankAddress: program.symbols["wait-vblank"],
       pageFlipWriteAddress: program.symbols["page-flip-write"],
+      ...(scene.maxPageFlips === undefined ? {} : {
+        maxPageFlipsLoadAddress: program.symbols["max-page-flips-load"],
+        safeHoldAddress: program.symbols["safe-hold"],
+      }),
       displayControlAddress: 0x04000000,
       paletteAddress: 0x05000000,
       page0Address: 0x06000000,
@@ -346,6 +373,40 @@ for (const scene of source.scenes) {
       fail(`${scene.sceneId}: invalid ${field}`);
     }
   }
+  if (scene.type === "window-toggle") {
+    for (const field of ["surroundCode", "page0WindowCode", "page1WindowCode"]) {
+      if (!Number.isInteger(scene[field]) || scene[field] < 0 || scene[field] > 31) {
+        fail(`${scene.sceneId}: invalid ${field}`);
+      }
+    }
+    const { window } = scene;
+    if (!window || ![window.x, window.y, window.width, window.height].every(Number.isInteger)
+      || window.x < 0 || window.y < 0 || window.width < 1 || window.height < 1
+      || window.x + window.width > WIDTH || window.y + window.height > HEIGHT) {
+      fail(`${scene.sceneId}: invalid window geometry`);
+    }
+    if (window.width * window.height > WIDTH * HEIGHT * 0.25) {
+      fail(`${scene.sceneId}: window exceeds the 25% live-stimulus safety limit`);
+    }
+    if (Math.abs(scene.page1WindowCode - scene.page0WindowCode) > 16) {
+      fail(`${scene.sceneId}: window contrast exceeds the 16-code live-stimulus safety limit`);
+    }
+    if (scene.page0WindowCode !== scene.surroundCode
+      || scene.page1WindowCode <= scene.page0WindowCode) {
+      fail(`${scene.sceneId}: terminal window must match the surround and precede the brighter page`);
+    }
+    if (!Number.isInteger(scene.maxPageFlips) || scene.maxPageFlips < 2 || scene.maxPageFlips > 600) {
+      fail(`${scene.sceneId}: maxPageFlips must be an integer from 2 through 600`);
+    }
+    const dynamicFrames = Math.ceil(scene.maxPageFlips / 2) * scene.page0DwellFrames
+      + Math.floor(scene.maxPageFlips / 2) * scene.page1DwellFrames;
+    if (dynamicFrames * FRAME_SECONDS > 10.1) {
+      fail(`${scene.sceneId}: dynamic interval exceeds the 10.1-second live-stimulus safety limit`);
+    }
+    if (scene.terminalPage !== 0 || scene.maxPageFlips % 2 !== scene.terminalPage) {
+      fail(`${scene.sceneId}: bounded stimulus must finish on terminal page 0`);
+    }
+  }
   const built = buildRom(scene);
   const filename = `${scene.sceneId}.gba`;
   changed = writeOrCheck(path.join(outputDir, filename), built.rom) || changed;
@@ -360,6 +421,19 @@ for (const scene of source.scenes) {
     mode: "GBA bitmap Mode 4 double buffer",
     page0DwellFrames: scene.page0DwellFrames,
     page1DwellFrames: scene.page1DwellFrames,
+    ...(scene.type === "window-toggle" ? {
+      surroundCode: scene.surroundCode,
+      window: scene.window,
+      page0WindowCode: scene.page0WindowCode,
+      page1WindowCode: scene.page1WindowCode,
+      maxPageFlips: scene.maxPageFlips,
+      terminalPage: scene.terminalPage,
+      maximumDynamicSeconds: (
+        Math.ceil(scene.maxPageFlips / 2) * scene.page0DwellFrames
+        + Math.floor(scene.maxPageFlips / 2) * scene.page1DwellFrames
+      ) * FRAME_SECONDS,
+      terminalBehavior: "hold terminal page indefinitely without further page flips",
+    } : {}),
     pageSha256: built.pageSha256,
     programSha256: built.programSha256,
     programSizeBytes: built.programSizeBytes,
@@ -379,7 +453,7 @@ const manifest = {
     masterClockHz: 16777216,
     cyclesPerLine: 1232,
     totalLines: 228,
-    frameSeconds: 1232 * 228 / 16777216,
+    frameSeconds: FRAME_SECONDS,
     pageFlipEvent: "first VBlank edge after the selected page dwell",
   },
   colorEncoding: source.colorEncoding,

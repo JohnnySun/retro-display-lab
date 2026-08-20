@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "runId": "konkr-gt78-vn-ags101-performance-current-20260821",
+  "classification": "current-shader-performance-and-rendering-receipt-not-full-numeric-readback",
+  "date": "2026-08-21",
+  "releaseCandidate": "0.6.0",
+  "modelId": "nintendo-ags-101-period-reconstruction",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "repositoryCommit": "7d1857c333168260e1871e5788381162921c09ab",
+  "repositoryState": "The commit identifies the checked-out base. Repository and deployed SHA-256 values pin the optimized working-tree shader bytes.",
+  "device": {
+    "serial": "BW0306N250002377",
+    "manufacturer": "ARBOR",
+    "model": "GT78-VN",
+    "androidRelease": "12",
+    "buildFingerprint": "ARBOR/GT78-VN/GT78-VN:11/RP1A.200720.011/mp1V95182:user/release-keys",
+    "display": "960x640 fixed 60 Hz",
+    "gpu": "Mali-G76 MC4"
+  },
+  "frontend": {
+    "name": "RetroArch",
+    "version": "1.22.2",
+    "versionCode": 1597175267,
+    "core": "mGBA",
+    "videoDriver": "Vulkan",
+    "source": "240x160",
+    "target": "960x640"
+  },
+  "currentPipeline": {
+    "passes": 3,
+    "responseFeedback": true,
+    "exposureFeedback": false,
+    "displayOutput": "960x640",
+    "modelPathPreserved": true,
+    "optimizations": [
+      "fixed-five-step inverse-EOTF search over the unchanged monotone 32-entry transfer",
+      "defer analytic GtG fallback unless a packed table corner is unavailable",
+      "skip the unused one-segment optical/exposure result when all three RGB targets changed",
+      "evaluate only the selected aperture path outside DebugView 5",
+      "specialize packed GtG interpolation for the integer RGB555 target codes used by every runtime call while retaining four-corner availability fallback"
+    ]
+  },
+  "artifacts": {
+    "repository": [
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-response-v1.slang",
+        "sha256": "b98b179aac5a51e2518b4ffe212727743d217f152430cc1204e05123ff3d0385"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-exposure-optics.inc",
+        "sha256": "7f9241aef6f650ad7e6ac365cdae7dcb90aef18aa83d4c773769e9d54c4e3be1"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-exposure-v1.slang",
+        "sha256": "59f84e73179878c80c10e41801263bddf46ae8adbbce7d4043223ebd1ce794f8"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-display-v1.slang",
+        "sha256": "9f588f5b88d732e5389902fb4f639e18101d1b4291a6c5f25e71cabc8a2adb81"
+      }
+    ],
+    "allRepositoryAndDeviceHashesMatched": true,
+    "movingScreenshot": {
+      "sha256": "fd1a3586b144f15cbbd375a59e62192b831d850f2e4e0fce42008f6668900ca7",
+      "width": 960,
+      "height": 640,
+      "captureMethod": "adb exec-out screencap -p",
+      "committed": false,
+      "visualInspection": "normal AGS-101 aperture, exposure, and motion response; no colored-block corruption or flashing"
+    }
+  },
+  "performance": {
+    "method": "SurfaceFlinger presentation timestamps from the active RetroArch layer while the user continuously moved the player with the D-pad",
+    "shaderDisabledMovingBaseline": {
+      "intervals": 123,
+      "fps": 60.06638181980566,
+      "p50Milliseconds": 16.64623,
+      "maximumMilliseconds": 21.663077,
+      "intervalsOver25Milliseconds": 0
+    },
+    "optimizedShaderMovingSamples": [
+      {
+        "intervals": 123,
+        "fps": 60.06616519570799,
+        "p50Milliseconds": 16.647923,
+        "p95Milliseconds": 16.753538,
+        "maximumMilliseconds": 21.456615,
+        "intervalsOver25Milliseconds": 0
+      },
+      {
+        "intervals": 124,
+        "fps": 60.06610251330197,
+        "p50Milliseconds": 16.646231,
+        "p95Milliseconds": 16.752,
+        "maximumMilliseconds": 21.638847,
+        "intervalsOver25Milliseconds": 0
+      },
+      {
+        "intervals": 123,
+        "fps": 60.06613583350978,
+        "p50Milliseconds": 16.648615,
+        "p95Milliseconds": 16.746385,
+        "maximumMilliseconds": 21.671385,
+        "intervalsOver25Milliseconds": 0
+      }
+    ],
+    "aggregate": {
+      "intervals": 370,
+      "averageFps": 60.06613451417325,
+      "intervalsOver25Milliseconds": 0,
+      "intervalsOver30Milliseconds": 0,
+      "matchesShaderDisabledMovingBaseline": true,
+      "pass": true
+    }
+  },
+  "validation": {
+    "vulkanStagesCompiled": 6,
+    "spirvValidationPassed": true,
+    "ws3RuntimeIntegrationPassed": true,
+    "ws7ExposureIntegrationPassed": true,
+    "currentShaderRenderedOnTarget": true,
+    "coloredBlockCorruptionObserved": false,
+    "flashingObserved": false
+  },
+  "numericReadbackBoundary": {
+    "lastFullGpuNumericReceipt": "validation/ags101-ws8-target-20260820.json",
+    "lastFullGpuNumericReceiptDate": "2026-08-20",
+    "currentOptimizedShaderDebugView12To14Rerun": false,
+    "statement": "The 2026-08-20 receipt remains the last full retention, exposure, aperture, and safe-bypass GPU numeric run. This receipt validates current shader compilation, normal rendering, deployed hashes, and moving-frame performance; it does not relabel the older numeric captures as a current rerun."
+  },
+  "acceptance": {
+    "normalRendering": "pass",
+    "movingFramePacing": "pass-at-fixed-60-hz-target",
+    "currentArtifactHashes": "pass",
+    "fullNumericGpuRerun": "not-run-for-performance-only-equivalent-transformations"
+  },
+  "limitations": [
+    "The 60.066 fps result is specific to this KONKR GT78-VN, RetroArch 1.22.2, Vulkan, Mali-G76 MC4, mGBA, 960x640 route and is not a universal GPU guarantee.",
+    "The screenshot is hash-pinned but is not committed because it contains third-party game imagery.",
+    "This performance receipt does not replace the 2026-08-20 full numeric WS8 receipt."
+  ]
+}

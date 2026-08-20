@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "reportId": "nintendo-ags-101-ws2-mgba-smoke-v1",
   "classification": "emulator-runtime-smoke-plus-static-rom-consistency",
-  "capturedAt": "2026-08-20T07:37:00.029Z",
+  "capturedAt": "2026-08-20T14:54:10.632Z",
   "generator": "tools/validate-ags101-ws2-mgba.mjs",
   "emulator": {
     "name": "mGBA",
@@ -19,9 +19,9 @@
   },
   "source": {
     "sceneSource": "models/nintendo-ags-101/data/ws2-stimulus-scenes-v1.json",
-    "sceneSourceSha256": "1ae06006b5adcf03cf21930e0a8b406c84b1c888a68f0bd98b37d8f484799ff2",
+    "sceneSourceSha256": "a6aec34544e0e3cd61ca5940e096433e9f1a3e869d01f5b272e8a67eca1cddda",
     "manifest": "models/nintendo-ags-101/generated/ws2-stimulus-v1/manifest.json",
-    "manifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a"
+    "manifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747"
   },
   "scope": {
     "runtime": "Each ROM remained alive in pinned mGBA for the hold interval and was then terminated by this validator.",
@@ -223,11 +223,11 @@
     {
       "sceneId": "parity-toggle",
       "rom": "models/nintendo-ags-101/generated/ws2-stimulus-v1/parity-toggle.gba",
-      "romSha256": "62c29fea0b8064d8cfd6c920a02619e1fcb4a1c7568e69d4b8492fc3a6c85f2d",
+      "romSha256": "57d09ce03077e4382aabacfcb72aae8ff2f819c6bcc10fb51832b6cb3c2e35b5",
       "gbaHeaderChecksum": 189,
       "pageSha256": [
         "5c9b37300155c1f3338bc88f17d69c51fb248b0de0155630962ca6504d789bba",
-        "64daf5419d658ff737cd76ffdba1c2b51935461eb11b7e662ebe7b7e5f92d943"
+        "98f083a05a316aa4c68edff732246417935fa0c46d978cd9e09d12b7d92b7f64"
       ],
       "paletteEntries": 2,
       "dwellFrames": [
@@ -236,9 +236,11 @@
       ],
       "runtimeProbe": {
         "entryAddress": 134217920,
-        "frameLoopAddress": 134218024,
-        "waitVBlankAddress": 134218036,
-        "pageFlipWriteAddress": 134218060,
+        "frameLoopAddress": 134218028,
+        "waitVBlankAddress": 134218040,
+        "pageFlipWriteAddress": 134218064,
+        "maxPageFlipsLoadAddress": 134218024,
+        "safeHoldAddress": 134218092,
         "displayControlAddress": 67108864,
         "paletteAddress": 83886080,
         "page0Address": 100663296,

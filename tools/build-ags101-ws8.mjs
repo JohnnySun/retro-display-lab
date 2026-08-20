@@ -143,8 +143,16 @@ const gtg = JSON.parse(gtgBuffer);
 const stimulusBuffer = fs.readFileSync(stimulusPath);
 const stimulus = JSON.parse(stimulusBuffer);
 const parityScene = stimulus.scenes.find((scene) => scene.sceneId === "parity-toggle");
-assert(parityScene?.page0DwellFrames === 1 && parityScene?.page1DwellFrames === 1,
-  "WS8 exposure reference requires the one-frame parity-toggle scene");
+assert(parityScene?.type === "window-toggle"
+  && parityScene.page0DwellFrames === 1 && parityScene.page1DwellFrames === 1,
+"WS8 exposure reference requires the bounded one-frame parity-toggle window");
+assert(parityScene.window?.x <= 120 && parityScene.window.x + parityScene.window.width > 120
+  && parityScene.window.y <= 80 && parityScene.window.y + parityScene.window.height > 80,
+"WS8 probe must remain inside the bounded parity-toggle window");
+assert(parityScene.maxPageFlips <= 600 && parityScene.maximumDynamicSeconds <= 10.1
+  && parityScene.terminalPage === 0,
+"WS8 parity-toggle scene exceeds its live-stimulus safety boundary");
+const alternatingCodes = [parityScene.page0WindowCode, parityScene.page1WindowCode];
 
 const cells = new Map(gtg.cells.map((cell) => [cell.id, cell]));
 const channels = ["r", "g", "b"];
@@ -169,12 +177,12 @@ function packedRate(fromCode, toCode, channel) {
 
 const frameSeconds = 1_232 * 228 / 16_777_216;
 const event = scanEvent({ row: 80, latchOffsetLines: 0.5, opticalDelaySeconds: 0 });
-let panel = [...color.eotfRgb555Runtime[0]];
-let previous = [0, 0, 0];
+let panel = [...color.eotfRgb555Runtime[alternatingCodes[0]]];
+let previous = [alternatingCodes[0], alternatingCodes[0], alternatingCodes[0]];
 const lastByTarget = {};
 let maximumCycleDrift = 0;
 for (let frame = 0; frame < 2_048; frame += 1) {
-  const code = frame % 2 === 0 ? 0 : 31;
+  const code = alternatingCodes[frame % 2];
   const current = [code, code, code];
   const result = integrateScannedExposure({
     initialPanel: panel,
@@ -214,6 +222,10 @@ const reference = {
     filename: parityScene.filename,
     sha256: parityScene.sha256,
     dwellFrames: [parityScene.page0DwellFrames, parityScene.page1DwellFrames],
+    alternatingCodes,
+    window: parityScene.window,
+    maximumDynamicSeconds: parityScene.maximumDynamicSeconds,
+    terminalPage: parityScene.terminalPage,
   },
   pipeline: {
     gtgMember: "nominal",

@@ -7,7 +7,7 @@
     "fixture": "models/nintendo-ags-101/data/ws2-synthetic-capture-v1.json",
     "fixtureSha256": "e3bb24330b4d897f09066442ecba687f550f0786bb68f920ba8be1550d19e526",
     "stimulusManifest": "models/nintendo-ags-101/generated/ws2-stimulus-v1/manifest.json",
-    "stimulusManifestSha256": "edda049b895154438710ece03401b039bcacd2be3de07db545d79370bd83457a"
+    "stimulusManifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747"
   },
   "traceability": "sceneId -> ROM manifest/hash -> session transition -> raw CSV/hash -> aligned waveform -> fit/status",
   "summary": {
