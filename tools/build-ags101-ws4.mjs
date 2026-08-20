@@ -162,7 +162,11 @@ function shaderParityReceipt(member, cells) {
         const target = toCode / 31;
         const cpu = stepFirstOrder(start, target, decodedRate, seconds);
         const shaderEquation = shaderFloatStep(start, target, decodedRate, seconds);
-        const absoluteError = Math.abs(cpu - shaderEquation);
+        // Float32 exp implementations can differ below the meaningful receipt
+        // precision across Node/libm versions. Keep seven significant digits
+        // for the error only; the CPU and Shader-equation values remain at the
+        // existing ten-digit precision.
+        const absoluteError = Number(Math.abs(cpu - shaderEquation).toPrecision(7));
         maxAbsoluteError = Math.max(maxAbsoluteError, absoluteError);
         vectors.push(clean({ channel, fromCode, toCode, seconds, decodedRate, cpu, shaderEquation, absoluteError }));
       }

@@ -38,6 +38,6 @@
   ],
   "exposureReference": {
     "path": "generated/ws8-exposure-gpu-reference-v1.json",
-    "sha256": "440a71bfb4e8a32360feed0112d7a91fbb170115d596b444367406a482dc9a66"
+    "sha256": "adc873a5cd1c6b7a7b804d1445a937976c88f39c245a55bfc54218d5d9324550"
   }
 }

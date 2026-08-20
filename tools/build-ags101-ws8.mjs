@@ -31,6 +31,10 @@ const checkOnly = process.argv.includes("--check");
 
 const sha256 = (buffer) => crypto.createHash("sha256").update(buffer).digest("hex");
 const jsonBuffer = (value) => Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
+// libm may differ in the final binary64 bit across supported Node runners.
+// Fifteen significant digits preserve far more precision than the 3e-6 GPU
+// comparison tolerance while keeping this generated receipt deterministic.
+const stableReceiptNumber = (value) => Number(value.toPrecision(15));
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -202,8 +206,8 @@ for (let frame = 0; frame < 2_048; frame += 1) {
   }
   lastByTarget[key] = {
     targetRgb555: current,
-    average: result.average,
-    endpoint: result.endpoint,
+    average: result.average.map(stableReceiptNumber),
+    endpoint: result.endpoint.map(stableReceiptNumber),
     frameParity: frame & 1,
   };
   panel = result.endpoint;

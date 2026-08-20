@@ -10,7 +10,7 @@
     "allCellsHaveEquationSourceRangeMemberAndFallback": true,
     "firstOrderScalarEndpointCompatibility": "passed",
     "packedRateRoundTripMaximum": 0.00005288216656,
-    "cpuVsShaderFloat32EquationMaximumAbsoluteError": 5.264356073e-8,
+    "cpuVsShaderFloat32EquationMaximumAbsoluteError": 5.264356e-8,
     "cpuVsShaderFloat32EquationTolerance": 2e-7,
     "actualGpuNumericReadback": "not-run; reserved for WS8 target instrumentation",
     "syntheticFixtureUsedAsDefault": false
@@ -27,7 +27,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.1848503146,
           "shaderEquation": 0.1848502755,
-          "absoluteError": 3.912486568e-8
+          "absoluteError": 3.912487e-8
         },
         {
           "channel": "r",
@@ -37,7 +37,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.5584809354,
           "shaderEquation": 0.5584809184,
-          "absoluteError": 1.695314011e-8
+          "absoluteError": 1.695314e-8
         },
         {
           "channel": "r",
@@ -47,7 +47,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.9139306778,
           "shaderEquation": 0.9139306545,
-          "absoluteError": 2.325059945e-8
+          "absoluteError": 2.32506e-8
         },
         {
           "channel": "r",
@@ -57,7 +57,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.5999283926,
           "shaderEquation": 0.5999283791,
-          "absoluteError": 1.349402245e-8
+          "absoluteError": 1.349402e-8
         },
         {
           "channel": "r",
@@ -67,7 +67,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.1295381422,
           "shaderEquation": 0.1295381784,
-          "absoluteError": 3.620344535e-8
+          "absoluteError": 3.620345e-8
         },
         {
           "channel": "r",
@@ -77,7 +77,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.002173666905,
           "shaderEquation": 0.002173662186,
-          "absoluteError": 4.719312607e-9
+          "absoluteError": 4.719313e-9
         },
         {
           "channel": "r",
@@ -87,7 +87,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.005267438355,
           "shaderEquation": 0.005267437082,
-          "absoluteError": 1.273343545e-9
+          "absoluteError": 1.273344e-9
         },
         {
           "channel": "r",
@@ -97,7 +97,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.01644788062,
           "shaderEquation": 0.01644787937,
-          "absoluteError": 1.250279592e-9
+          "absoluteError": 1.25028e-9
         },
         {
           "channel": "r",
@@ -107,7 +107,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.02846024649,
           "shaderEquation": 0.02846024558,
-          "absoluteError": 9.090487391e-10
+          "absoluteError": 9.090487e-10
         },
         {
           "channel": "r",
@@ -117,7 +117,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.4887942614,
           "shaderEquation": 0.4887942374,
-          "absoluteError": 2.397685828e-8
+          "absoluteError": 2.397686e-8
         },
         {
           "channel": "r",
@@ -127,7 +127,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.4994969419,
           "shaderEquation": 0.4994969368,
-          "absoluteError": 5.126577607e-9
+          "absoluteError": 5.126578e-9
         },
         {
           "channel": "r",
@@ -137,7 +137,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.5117075907,
           "shaderEquation": 0.5117076039,
-          "absoluteError": 1.327235211e-8
+          "absoluteError": 1.327235e-8
         },
         {
           "channel": "r",
@@ -147,7 +147,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.5051933635,
           "shaderEquation": 0.5051933527,
-          "absoluteError": 1.084803525e-8
+          "absoluteError": 1.084804e-8
         },
         {
           "channel": "r",
@@ -157,7 +157,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.4900288174,
           "shaderEquation": 0.4900287986,
-          "absoluteError": 1.886767231e-8
+          "absoluteError": 1.886767e-8
         },
         {
           "channel": "r",
@@ -167,7 +167,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.4840953614,
           "shaderEquation": 0.484095335,
-          "absoluteError": 2.642630548e-8
+          "absoluteError": 2.642631e-8
         },
         {
           "channel": "r",
@@ -177,7 +177,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.9730093738,
           "shaderEquation": 0.9730093479,
-          "absoluteError": 2.592334913e-8
+          "absoluteError": 2.592335e-8
         },
         {
           "channel": "r",
@@ -187,7 +187,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.9841898161,
           "shaderEquation": 0.9841898084,
-          "absoluteError": 7.739494934e-9
+          "absoluteError": 7.739495e-9
         },
         {
           "channel": "r",
@@ -197,7 +197,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.996202182,
           "shaderEquation": 0.9962021708,
-          "absoluteError": 1.112355441e-8
+          "absoluteError": 1.112355e-8
         },
         {
           "channel": "g",
@@ -207,7 +207,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.1848503146,
           "shaderEquation": 0.1848502755,
-          "absoluteError": 3.912486568e-8
+          "absoluteError": 3.912487e-8
         },
         {
           "channel": "g",
@@ -217,7 +217,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.5584809354,
           "shaderEquation": 0.5584809184,
-          "absoluteError": 1.695314011e-8
+          "absoluteError": 1.695314e-8
         },
         {
           "channel": "g",
@@ -227,7 +227,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.9139306778,
           "shaderEquation": 0.9139306545,
-          "absoluteError": 2.325059945e-8
+          "absoluteError": 2.32506e-8
         },
         {
           "channel": "g",
@@ -237,7 +237,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.5999283926,
           "shaderEquation": 0.5999283791,
-          "absoluteError": 1.349402245e-8
+          "absoluteError": 1.349402e-8
         },
         {
           "channel": "g",
@@ -247,7 +247,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.1295381422,
           "shaderEquation": 0.1295381784,
-          "absoluteError": 3.620344535e-8
+          "absoluteError": 3.620345e-8
         },
         {
           "channel": "g",
@@ -257,7 +257,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.002173666905,
           "shaderEquation": 0.002173662186,
-          "absoluteError": 4.719312607e-9
+          "absoluteError": 4.719313e-9
         },
         {
           "channel": "g",
@@ -267,7 +267,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.005267438355,
           "shaderEquation": 0.005267437082,
-          "absoluteError": 1.273343545e-9
+          "absoluteError": 1.273344e-9
         },
         {
           "channel": "g",
@@ -277,7 +277,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.01644788062,
           "shaderEquation": 0.01644787937,
-          "absoluteError": 1.250279592e-9
+          "absoluteError": 1.25028e-9
         },
         {
           "channel": "g",
@@ -287,7 +287,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.02846024649,
           "shaderEquation": 0.02846024558,
-          "absoluteError": 9.090487391e-10
+          "absoluteError": 9.090487e-10
         },
         {
           "channel": "g",
@@ -297,7 +297,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.4887942614,
           "shaderEquation": 0.4887942374,
-          "absoluteError": 2.397685828e-8
+          "absoluteError": 2.397686e-8
         },
         {
           "channel": "g",
@@ -307,7 +307,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.4994969419,
           "shaderEquation": 0.4994969368,
-          "absoluteError": 5.126577607e-9
+          "absoluteError": 5.126578e-9
         },
         {
           "channel": "g",
@@ -317,7 +317,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.5117075907,
           "shaderEquation": 0.5117076039,
-          "absoluteError": 1.327235211e-8
+          "absoluteError": 1.327235e-8
         },
         {
           "channel": "g",
@@ -327,7 +327,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.5051933635,
           "shaderEquation": 0.5051933527,
-          "absoluteError": 1.084803525e-8
+          "absoluteError": 1.084804e-8
         },
         {
           "channel": "g",
@@ -337,7 +337,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.4900288174,
           "shaderEquation": 0.4900287986,
-          "absoluteError": 1.886767231e-8
+          "absoluteError": 1.886767e-8
         },
         {
           "channel": "g",
@@ -347,7 +347,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.4840953614,
           "shaderEquation": 0.484095335,
-          "absoluteError": 2.642630548e-8
+          "absoluteError": 2.642631e-8
         },
         {
           "channel": "g",
@@ -357,7 +357,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.9730093738,
           "shaderEquation": 0.9730093479,
-          "absoluteError": 2.592334913e-8
+          "absoluteError": 2.592335e-8
         },
         {
           "channel": "g",
@@ -367,7 +367,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.9841898161,
           "shaderEquation": 0.9841898084,
-          "absoluteError": 7.739494934e-9
+          "absoluteError": 7.739495e-9
         },
         {
           "channel": "g",
@@ -377,7 +377,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.996202182,
           "shaderEquation": 0.9962021708,
-          "absoluteError": 1.112355441e-8
+          "absoluteError": 1.112355e-8
         },
         {
           "channel": "b",
@@ -387,7 +387,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.1848503146,
           "shaderEquation": 0.1848502755,
-          "absoluteError": 3.912486568e-8
+          "absoluteError": 3.912487e-8
         },
         {
           "channel": "b",
@@ -397,7 +397,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.5584809354,
           "shaderEquation": 0.5584809184,
-          "absoluteError": 1.695314011e-8
+          "absoluteError": 1.695314e-8
         },
         {
           "channel": "b",
@@ -407,7 +407,7 @@
           "decodedRate": 48.82926713,
           "cpu": 0.9139306778,
           "shaderEquation": 0.9139306545,
-          "absoluteError": 2.325059945e-8
+          "absoluteError": 2.32506e-8
         },
         {
           "channel": "b",
@@ -417,7 +417,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.5999283926,
           "shaderEquation": 0.5999283791,
-          "absoluteError": 1.349402245e-8
+          "absoluteError": 1.349402e-8
         },
         {
           "channel": "b",
@@ -427,7 +427,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.1295381422,
           "shaderEquation": 0.1295381784,
-          "absoluteError": 3.620344535e-8
+          "absoluteError": 3.620345e-8
         },
         {
           "channel": "b",
@@ -437,7 +437,7 @@
           "decodedRate": 122.0698655,
           "cpu": 0.002173666905,
           "shaderEquation": 0.002173662186,
-          "absoluteError": 4.719312607e-9
+          "absoluteError": 4.719313e-9
         },
         {
           "channel": "b",
@@ -447,7 +447,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.005267438355,
           "shaderEquation": 0.005267437082,
-          "absoluteError": 1.273343545e-9
+          "absoluteError": 1.273344e-9
         },
         {
           "channel": "b",
@@ -457,7 +457,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.01644788062,
           "shaderEquation": 0.01644787937,
-          "absoluteError": 1.250279592e-9
+          "absoluteError": 1.25028e-9
         },
         {
           "channel": "b",
@@ -467,7 +467,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.02846024649,
           "shaderEquation": 0.02846024558,
-          "absoluteError": 9.090487391e-10
+          "absoluteError": 9.090487e-10
         },
         {
           "channel": "b",
@@ -477,7 +477,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.4887942614,
           "shaderEquation": 0.4887942374,
-          "absoluteError": 2.397685828e-8
+          "absoluteError": 2.397686e-8
         },
         {
           "channel": "b",
@@ -487,7 +487,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.4994969419,
           "shaderEquation": 0.4994969368,
-          "absoluteError": 5.126577607e-9
+          "absoluteError": 5.126578e-9
         },
         {
           "channel": "b",
@@ -497,7 +497,7 @@
           "decodedRate": 39.56553265,
           "cpu": 0.5117075907,
           "shaderEquation": 0.5117076039,
-          "absoluteError": 1.327235211e-8
+          "absoluteError": 1.327235e-8
         },
         {
           "channel": "b",
@@ -507,7 +507,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.5051933635,
           "shaderEquation": 0.5051933527,
-          "absoluteError": 1.084803525e-8
+          "absoluteError": 1.084804e-8
         },
         {
           "channel": "b",
@@ -517,7 +517,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.4900288174,
           "shaderEquation": 0.4900287986,
-          "absoluteError": 1.886767231e-8
+          "absoluteError": 1.886767e-8
         },
         {
           "channel": "b",
@@ -527,7 +527,7 @@
           "decodedRate": 98.91115582,
           "cpu": 0.4840953614,
           "shaderEquation": 0.484095335,
-          "absoluteError": 2.642630548e-8
+          "absoluteError": 2.642631e-8
         },
         {
           "channel": "b",
@@ -537,7 +537,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.9730093738,
           "shaderEquation": 0.9730093479,
-          "absoluteError": 2.592334913e-8
+          "absoluteError": 2.592335e-8
         },
         {
           "channel": "b",
@@ -547,7 +547,7 @@
           "decodedRate": 42.59250442,
           "cpu": 0.9841898161,
           "shaderEquation": 0.9841898084,
-          "absoluteError": 7.739494934e-9
+          "absoluteError": 7.739495e-9
         },
         {
           "channel": "b",
@@ -557,10 +557,10 @@
           "decodedRate": 42.59250442,
           "cpu": 0.996202182,
           "shaderEquation": 0.9962021708,
-          "absoluteError": 1.112355441e-8
+          "absoluteError": 1.112355e-8
         }
       ],
-      "maxAbsoluteError": 3.912486568e-8
+      "maxAbsoluteError": 3.912487e-8
     },
     {
       "member": "nominal",
@@ -573,7 +573,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.1421163551,
           "shaderEquation": 0.1421163678,
-          "absoluteError": 1.270956146e-8
+          "absoluteError": 1.270956e-8
         },
         {
           "channel": "r",
@@ -583,7 +583,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.4583564782,
           "shaderEquation": 0.4583564997,
-          "absoluteError": 2.145552164e-8
+          "absoluteError": 2.145552e-8
         },
         {
           "channel": "r",
@@ -593,7 +593,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.8410938668,
           "shaderEquation": 0.8410938978,
-          "absoluteError": 3.100066337e-8
+          "absoluteError": 3.100066e-8
         },
         {
           "channel": "r",
@@ -603,7 +603,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.73597628,
           "shaderEquation": 0.7359762788,
-          "absoluteError": 1.185948006e-9
+          "absoluteError": 1.185948e-9
         },
         {
           "channel": "r",
@@ -613,7 +613,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.2933967307,
           "shaderEquation": 0.2933967113,
-          "absoluteError": 1.930213378e-8
+          "absoluteError": 1.930213e-8
         },
         {
           "channel": "r",
@@ -623,7 +623,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.0252560722,
           "shaderEquation": 0.02525609732,
-          "absoluteError": 2.511477581e-8
+          "absoluteError": 2.511478e-8
         },
         {
           "channel": "r",
@@ -633,7 +633,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.00373388626,
           "shaderEquation": 0.003733886639,
-          "absoluteError": 3.788998559e-10
+          "absoluteError": 3.788999e-10
         },
         {
           "channel": "r",
@@ -643,7 +643,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.01253666874,
           "shaderEquation": 0.01253666729,
-          "absoluteError": 1.450861778e-9
+          "absoluteError": 1.450862e-9
         },
         {
           "channel": "r",
@@ -653,7 +653,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.0248868961,
           "shaderEquation": 0.02488689497,
-          "absoluteError": 1.128638173e-9
+          "absoluteError": 1.128638e-9
         },
         {
           "channel": "r",
@@ -663,7 +663,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.4871686237,
           "shaderEquation": 0.4871686101,
-          "absoluteError": 1.361993551e-8
+          "absoluteError": 1.361994e-8
         },
         {
           "channel": "r",
@@ -673,7 +673,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.4951732529,
           "shaderEquation": 0.4951732457,
-          "absoluteError": 7.190019413e-9
+          "absoluteError": 7.190019e-9
         },
         {
           "channel": "r",
@@ -683,7 +683,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.5072853152,
           "shaderEquation": 0.5072852969,
-          "absoluteError": 1.823866402e-8
+          "absoluteError": 1.823866e-8
         },
         {
           "channel": "r",
@@ -693,7 +693,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.5098711274,
           "shaderEquation": 0.5098711252,
-          "absoluteError": 2.214440853e-9
+          "absoluteError": 2.214441e-9
         },
         {
           "channel": "r",
@@ -703,7 +703,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.4974850742,
           "shaderEquation": 0.4974850714,
-          "absoluteError": 2.807179877e-9
+          "absoluteError": 2.80718e-9
         },
         {
           "channel": "r",
@@ -713,7 +713,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.4862958509,
           "shaderEquation": 0.4862958491,
-          "absoluteError": 1.816088224e-9
+          "absoluteError": 1.816088e-9
         },
         {
           "channel": "r",
@@ -723,7 +723,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9714758217,
           "shaderEquation": 0.97147578,
-          "absoluteError": 4.173340395e-8
+          "absoluteError": 4.17334e-8
         },
         {
           "channel": "r",
@@ -733,7 +733,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9802786042,
           "shaderEquation": 0.9802785516,
-          "absoluteError": 5.264356073e-8
+          "absoluteError": 5.264356e-8
         },
         {
           "channel": "r",
@@ -743,7 +743,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9926288316,
           "shaderEquation": 0.9926288128,
-          "absoluteError": 1.879372447e-8
+          "absoluteError": 1.879372e-8
         },
         {
           "channel": "g",
@@ -753,7 +753,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.1421163551,
           "shaderEquation": 0.1421163678,
-          "absoluteError": 1.270956146e-8
+          "absoluteError": 1.270956e-8
         },
         {
           "channel": "g",
@@ -763,7 +763,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.4583564782,
           "shaderEquation": 0.4583564997,
-          "absoluteError": 2.145552164e-8
+          "absoluteError": 2.145552e-8
         },
         {
           "channel": "g",
@@ -773,7 +773,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.8410938668,
           "shaderEquation": 0.8410938978,
-          "absoluteError": 3.100066337e-8
+          "absoluteError": 3.100066e-8
         },
         {
           "channel": "g",
@@ -783,7 +783,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.73597628,
           "shaderEquation": 0.7359762788,
-          "absoluteError": 1.185948006e-9
+          "absoluteError": 1.185948e-9
         },
         {
           "channel": "g",
@@ -793,7 +793,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.2933967307,
           "shaderEquation": 0.2933967113,
-          "absoluteError": 1.930213378e-8
+          "absoluteError": 1.930213e-8
         },
         {
           "channel": "g",
@@ -803,7 +803,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.0252560722,
           "shaderEquation": 0.02525609732,
-          "absoluteError": 2.511477581e-8
+          "absoluteError": 2.511478e-8
         },
         {
           "channel": "g",
@@ -813,7 +813,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.00373388626,
           "shaderEquation": 0.003733886639,
-          "absoluteError": 3.788998559e-10
+          "absoluteError": 3.788999e-10
         },
         {
           "channel": "g",
@@ -823,7 +823,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.01253666874,
           "shaderEquation": 0.01253666729,
-          "absoluteError": 1.450861778e-9
+          "absoluteError": 1.450862e-9
         },
         {
           "channel": "g",
@@ -833,7 +833,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.0248868961,
           "shaderEquation": 0.02488689497,
-          "absoluteError": 1.128638173e-9
+          "absoluteError": 1.128638e-9
         },
         {
           "channel": "g",
@@ -843,7 +843,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.4871686237,
           "shaderEquation": 0.4871686101,
-          "absoluteError": 1.361993551e-8
+          "absoluteError": 1.361994e-8
         },
         {
           "channel": "g",
@@ -853,7 +853,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.4951732529,
           "shaderEquation": 0.4951732457,
-          "absoluteError": 7.190019413e-9
+          "absoluteError": 7.190019e-9
         },
         {
           "channel": "g",
@@ -863,7 +863,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.5072853152,
           "shaderEquation": 0.5072852969,
-          "absoluteError": 1.823866402e-8
+          "absoluteError": 1.823866e-8
         },
         {
           "channel": "g",
@@ -873,7 +873,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.5098711274,
           "shaderEquation": 0.5098711252,
-          "absoluteError": 2.214440853e-9
+          "absoluteError": 2.214441e-9
         },
         {
           "channel": "g",
@@ -883,7 +883,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.4974850742,
           "shaderEquation": 0.4974850714,
-          "absoluteError": 2.807179877e-9
+          "absoluteError": 2.80718e-9
         },
         {
           "channel": "g",
@@ -893,7 +893,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.4862958509,
           "shaderEquation": 0.4862958491,
-          "absoluteError": 1.816088224e-9
+          "absoluteError": 1.816088e-9
         },
         {
           "channel": "g",
@@ -903,7 +903,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9714758217,
           "shaderEquation": 0.97147578,
-          "absoluteError": 4.173340395e-8
+          "absoluteError": 4.17334e-8
         },
         {
           "channel": "g",
@@ -913,7 +913,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9802786042,
           "shaderEquation": 0.9802785516,
-          "absoluteError": 5.264356073e-8
+          "absoluteError": 5.264356e-8
         },
         {
           "channel": "g",
@@ -923,7 +923,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9926288316,
           "shaderEquation": 0.9926288128,
-          "absoluteError": 1.879372447e-8
+          "absoluteError": 1.879372e-8
         },
         {
           "channel": "b",
@@ -933,7 +933,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.1421163551,
           "shaderEquation": 0.1421163678,
-          "absoluteError": 1.270956146e-8
+          "absoluteError": 1.270956e-8
         },
         {
           "channel": "b",
@@ -943,7 +943,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.4583564782,
           "shaderEquation": 0.4583564997,
-          "absoluteError": 2.145552164e-8
+          "absoluteError": 2.145552e-8
         },
         {
           "channel": "b",
@@ -953,7 +953,7 @@
           "decodedRate": 36.62174991,
           "cpu": 0.8410938668,
           "shaderEquation": 0.8410938978,
-          "absoluteError": 3.100066337e-8
+          "absoluteError": 3.100066e-8
         },
         {
           "channel": "b",
@@ -963,7 +963,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.73597628,
           "shaderEquation": 0.7359762788,
-          "absoluteError": 1.185948006e-9
+          "absoluteError": 1.185948e-9
         },
         {
           "channel": "b",
@@ -973,7 +973,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.2933967307,
           "shaderEquation": 0.2933967113,
-          "absoluteError": 1.930213378e-8
+          "absoluteError": 1.930213e-8
         },
         {
           "channel": "b",
@@ -983,7 +983,7 @@
           "decodedRate": 73.23962652,
           "cpu": 0.0252560722,
           "shaderEquation": 0.02525609732,
-          "absoluteError": 2.511477581e-8
+          "absoluteError": 2.511478e-8
         },
         {
           "channel": "b",
@@ -993,7 +993,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.00373388626,
           "shaderEquation": 0.003733886639,
-          "absoluteError": 3.788998559e-10
+          "absoluteError": 3.788999e-10
         },
         {
           "channel": "b",
@@ -1003,7 +1003,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.01253666874,
           "shaderEquation": 0.01253666729,
-          "absoluteError": 1.450861778e-9
+          "absoluteError": 1.450862e-9
         },
         {
           "channel": "b",
@@ -1013,7 +1013,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.0248868961,
           "shaderEquation": 0.02488689497,
-          "absoluteError": 1.128638173e-9
+          "absoluteError": 1.128638e-9
         },
         {
           "channel": "b",
@@ -1023,7 +1023,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.4871686237,
           "shaderEquation": 0.4871686101,
-          "absoluteError": 1.361993551e-8
+          "absoluteError": 1.361994e-8
         },
         {
           "channel": "b",
@@ -1033,7 +1033,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.4951732529,
           "shaderEquation": 0.4951732457,
-          "absoluteError": 7.190019413e-9
+          "absoluteError": 7.190019e-9
         },
         {
           "channel": "b",
@@ -1043,7 +1043,7 @@
           "decodedRate": 25.76367238,
           "cpu": 0.5072853152,
           "shaderEquation": 0.5072852969,
-          "absoluteError": 1.823866402e-8
+          "absoluteError": 1.823866e-8
         },
         {
           "channel": "b",
@@ -1053,7 +1053,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.5098711274,
           "shaderEquation": 0.5098711252,
-          "absoluteError": 2.214440853e-9
+          "absoluteError": 2.214441e-9
         },
         {
           "channel": "b",
@@ -1063,7 +1063,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.4974850742,
           "shaderEquation": 0.4974850714,
-          "absoluteError": 2.807179877e-9
+          "absoluteError": 2.80718e-9
         },
         {
           "channel": "b",
@@ -1073,7 +1073,7 @@
           "decodedRate": 51.52461987,
           "cpu": 0.4862958509,
           "shaderEquation": 0.4862958491,
-          "absoluteError": 1.816088224e-9
+          "absoluteError": 1.816088e-9
         },
         {
           "channel": "b",
@@ -1083,7 +1083,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9714758217,
           "shaderEquation": 0.97147578,
-          "absoluteError": 4.173340395e-8
+          "absoluteError": 4.17334e-8
         },
         {
           "channel": "b",
@@ -1093,7 +1093,7 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9802786042,
           "shaderEquation": 0.9802785516,
-          "absoluteError": 5.264356073e-8
+          "absoluteError": 5.264356e-8
         },
         {
           "channel": "b",
@@ -1103,10 +1103,10 @@
           "decodedRate": 29.38974974,
           "cpu": 0.9926288316,
           "shaderEquation": 0.9926288128,
-          "absoluteError": 1.879372447e-8
+          "absoluteError": 1.879372e-8
         }
       ],
-      "maxAbsoluteError": 5.264356073e-8
+      "maxAbsoluteError": 5.264356e-8
     },
     {
       "member": "slow",
@@ -1119,7 +1119,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.08786675836,
           "shaderEquation": 0.08786678314,
-          "absoluteError": 2.47825617e-8
+          "absoluteError": 2.478256e-8
         },
         {
           "channel": "r",
@@ -1129,7 +1129,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.3077975478,
           "shaderEquation": 0.3077975512,
-          "absoluteError": 3.364023948e-9
+          "absoluteError": 3.364024e-9
         },
         {
           "channel": "r",
@@ -1139,7 +1139,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.6683351857,
           "shaderEquation": 0.6683351994,
-          "absoluteError": 1.367691138e-8
+          "absoluteError": 1.367691e-8
         },
         {
           "channel": "r",
@@ -1149,7 +1149,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.8319951434,
           "shaderEquation": 0.8319951296,
-          "absoluteError": 1.377544578e-8
+          "absoluteError": 1.377545e-8
         },
         {
           "channel": "r",
@@ -1159,7 +1159,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.4791628779,
           "shaderEquation": 0.4791628718,
-          "absoluteError": 6.092138682e-9
+          "absoluteError": 6.092139e-9
         },
         {
           "channel": "r",
@@ -1169,7 +1169,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.1100143898,
           "shaderEquation": 0.110014379,
-          "absoluteError": 1.072754707e-8
+          "absoluteError": 1.072755e-8
         },
         {
           "channel": "r",
@@ -1179,7 +1179,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.002061783627,
           "shaderEquation": 0.002061784267,
-          "absoluteError": 6.405080489e-10
+          "absoluteError": 6.40508e-10
         },
         {
           "channel": "r",
@@ -1189,7 +1189,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.007489610048,
           "shaderEquation": 0.007489609998,
-          "absoluteError": 5.028088623e-11
+          "absoluteError": 5.028089e-11
         },
         {
           "channel": "r",
@@ -1199,7 +1199,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.01765580337,
           "shaderEquation": 0.01765580289,
-          "absoluteError": 4.794962621e-10
+          "absoluteError": 4.794963e-10
         },
         {
           "channel": "r",
@@ -1209,7 +1209,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4856140016,
           "shaderEquation": 0.4856140018,
-          "absoluteError": 1.630487412e-10
+          "absoluteError": 1.630487e-10
         },
         {
           "channel": "r",
@@ -1219,7 +1219,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4902980855,
           "shaderEquation": 0.4902980626,
-          "absoluteError": 2.29120567e-8
+          "absoluteError": 2.291206e-8
         },
         {
           "channel": "r",
@@ -1229,7 +1229,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4995658278,
           "shaderEquation": 0.49956581,
-          "absoluteError": 1.787884329e-8
+          "absoluteError": 1.787884e-8
         },
         {
           "channel": "r",
@@ -1239,7 +1239,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.5127369781,
           "shaderEquation": 0.5127369761,
-          "absoluteError": 1.996170229e-9
+          "absoluteError": 1.99617e-9
         },
         {
           "channel": "r",
@@ -1249,7 +1249,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.5045548538,
           "shaderEquation": 0.5045548677,
-          "absoluteError": 1.394978644e-8
+          "absoluteError": 1.394979e-8
         },
         {
           "channel": "r",
@@ -1259,7 +1259,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.4923749001,
           "shaderEquation": 0.492374897,
-          "absoluteError": 3.103745538e-9
+          "absoluteError": 3.103746e-9
         },
         {
           "channel": "r",
@@ -1269,7 +1269,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9698037191,
           "shaderEquation": 0.9698036909,
-          "absoluteError": 2.820044909e-8
+          "absoluteError": 2.820045e-8
         },
         {
           "channel": "r",
@@ -1279,7 +1279,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9752315455,
           "shaderEquation": 0.9752315283,
-          "absoluteError": 1.724970589e-8
+          "absoluteError": 1.724971e-8
         },
         {
           "channel": "r",
@@ -1289,7 +1289,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9853977389,
           "shaderEquation": 0.9853976965,
-          "absoluteError": 4.235896944e-8
+          "absoluteError": 4.235897e-8
         },
         {
           "channel": "g",
@@ -1299,7 +1299,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.08786675836,
           "shaderEquation": 0.08786678314,
-          "absoluteError": 2.47825617e-8
+          "absoluteError": 2.478256e-8
         },
         {
           "channel": "g",
@@ -1309,7 +1309,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.3077975478,
           "shaderEquation": 0.3077975512,
-          "absoluteError": 3.364023948e-9
+          "absoluteError": 3.364024e-9
         },
         {
           "channel": "g",
@@ -1319,7 +1319,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.6683351857,
           "shaderEquation": 0.6683351994,
-          "absoluteError": 1.367691138e-8
+          "absoluteError": 1.367691e-8
         },
         {
           "channel": "g",
@@ -1329,7 +1329,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.8319951434,
           "shaderEquation": 0.8319951296,
-          "absoluteError": 1.377544578e-8
+          "absoluteError": 1.377545e-8
         },
         {
           "channel": "g",
@@ -1339,7 +1339,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.4791628779,
           "shaderEquation": 0.4791628718,
-          "absoluteError": 6.092138682e-9
+          "absoluteError": 6.092139e-9
         },
         {
           "channel": "g",
@@ -1349,7 +1349,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.1100143898,
           "shaderEquation": 0.110014379,
-          "absoluteError": 1.072754707e-8
+          "absoluteError": 1.072755e-8
         },
         {
           "channel": "g",
@@ -1359,7 +1359,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.002061783627,
           "shaderEquation": 0.002061784267,
-          "absoluteError": 6.405080489e-10
+          "absoluteError": 6.40508e-10
         },
         {
           "channel": "g",
@@ -1369,7 +1369,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.007489610048,
           "shaderEquation": 0.007489609998,
-          "absoluteError": 5.028088623e-11
+          "absoluteError": 5.028089e-11
         },
         {
           "channel": "g",
@@ -1379,7 +1379,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.01765580337,
           "shaderEquation": 0.01765580289,
-          "absoluteError": 4.794962621e-10
+          "absoluteError": 4.794963e-10
         },
         {
           "channel": "g",
@@ -1389,7 +1389,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4856140016,
           "shaderEquation": 0.4856140018,
-          "absoluteError": 1.630487412e-10
+          "absoluteError": 1.630487e-10
         },
         {
           "channel": "g",
@@ -1399,7 +1399,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4902980855,
           "shaderEquation": 0.4902980626,
-          "absoluteError": 2.29120567e-8
+          "absoluteError": 2.291206e-8
         },
         {
           "channel": "g",
@@ -1409,7 +1409,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4995658278,
           "shaderEquation": 0.49956581,
-          "absoluteError": 1.787884329e-8
+          "absoluteError": 1.787884e-8
         },
         {
           "channel": "g",
@@ -1419,7 +1419,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.5127369781,
           "shaderEquation": 0.5127369761,
-          "absoluteError": 1.996170229e-9
+          "absoluteError": 1.99617e-9
         },
         {
           "channel": "g",
@@ -1429,7 +1429,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.5045548538,
           "shaderEquation": 0.5045548677,
-          "absoluteError": 1.394978644e-8
+          "absoluteError": 1.394979e-8
         },
         {
           "channel": "g",
@@ -1439,7 +1439,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.4923749001,
           "shaderEquation": 0.492374897,
-          "absoluteError": 3.103745538e-9
+          "absoluteError": 3.103746e-9
         },
         {
           "channel": "g",
@@ -1449,7 +1449,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9698037191,
           "shaderEquation": 0.9698036909,
-          "absoluteError": 2.820044909e-8
+          "absoluteError": 2.820045e-8
         },
         {
           "channel": "g",
@@ -1459,7 +1459,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9752315455,
           "shaderEquation": 0.9752315283,
-          "absoluteError": 1.724970589e-8
+          "absoluteError": 1.724971e-8
         },
         {
           "channel": "g",
@@ -1469,7 +1469,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9853977389,
           "shaderEquation": 0.9853976965,
-          "absoluteError": 4.235896944e-8
+          "absoluteError": 4.235897e-8
         },
         {
           "channel": "b",
@@ -1479,7 +1479,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.08786675836,
           "shaderEquation": 0.08786678314,
-          "absoluteError": 2.47825617e-8
+          "absoluteError": 2.478256e-8
         },
         {
           "channel": "b",
@@ -1489,7 +1489,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.3077975478,
           "shaderEquation": 0.3077975512,
-          "absoluteError": 3.364023948e-9
+          "absoluteError": 3.364024e-9
         },
         {
           "channel": "b",
@@ -1499,7 +1499,7 @@
           "decodedRate": 21.97236209,
           "cpu": 0.6683351857,
           "shaderEquation": 0.6683351994,
-          "absoluteError": 1.367691138e-8
+          "absoluteError": 1.367691e-8
         },
         {
           "channel": "b",
@@ -1509,7 +1509,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.8319951434,
           "shaderEquation": 0.8319951296,
-          "absoluteError": 1.377544578e-8
+          "absoluteError": 1.377545e-8
         },
         {
           "channel": "b",
@@ -1519,7 +1519,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.4791628779,
           "shaderEquation": 0.4791628718,
-          "absoluteError": 6.092138682e-9
+          "absoluteError": 6.092139e-9
         },
         {
           "channel": "b",
@@ -1529,7 +1529,7 @@
           "decodedRate": 43.94240028,
           "cpu": 0.1100143898,
           "shaderEquation": 0.110014379,
-          "absoluteError": 1.072754707e-8
+          "absoluteError": 1.072755e-8
         },
         {
           "channel": "b",
@@ -1539,7 +1539,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.002061783627,
           "shaderEquation": 0.002061784267,
-          "absoluteError": 6.405080489e-10
+          "absoluteError": 6.40508e-10
         },
         {
           "channel": "b",
@@ -1549,7 +1549,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.007489610048,
           "shaderEquation": 0.007489609998,
-          "absoluteError": 5.028088623e-11
+          "absoluteError": 5.028089e-11
         },
         {
           "channel": "b",
@@ -1559,7 +1559,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.01765580337,
           "shaderEquation": 0.01765580289,
-          "absoluteError": 4.794962621e-10
+          "absoluteError": 4.794963e-10
         },
         {
           "channel": "b",
@@ -1569,7 +1569,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4856140016,
           "shaderEquation": 0.4856140018,
-          "absoluteError": 1.630487412e-10
+          "absoluteError": 1.630487e-10
         },
         {
           "channel": "b",
@@ -1579,7 +1579,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4902980855,
           "shaderEquation": 0.4902980626,
-          "absoluteError": 2.29120567e-8
+          "absoluteError": 2.291206e-8
         },
         {
           "channel": "b",
@@ -1589,7 +1589,7 @@
           "decodedRate": 13.27114086,
           "cpu": 0.4995658278,
           "shaderEquation": 0.49956581,
-          "absoluteError": 1.787884329e-8
+          "absoluteError": 1.787884e-8
         },
         {
           "channel": "b",
@@ -1599,7 +1599,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.5127369781,
           "shaderEquation": 0.5127369761,
-          "absoluteError": 1.996170229e-9
+          "absoluteError": 1.99617e-9
         },
         {
           "channel": "b",
@@ -1609,7 +1609,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.5045548538,
           "shaderEquation": 0.5045548677,
-          "absoluteError": 1.394978644e-8
+          "absoluteError": 1.394979e-8
         },
         {
           "channel": "b",
@@ -1619,7 +1619,7 @@
           "decodedRate": 26.54368541,
           "cpu": 0.4923749001,
           "shaderEquation": 0.492374897,
-          "absoluteError": 3.103745538e-9
+          "absoluteError": 3.103746e-9
         },
         {
           "channel": "b",
@@ -1629,7 +1629,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9698037191,
           "shaderEquation": 0.9698036909,
-          "absoluteError": 2.820044909e-8
+          "absoluteError": 2.820045e-8
         },
         {
           "channel": "b",
@@ -1639,7 +1639,7 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9752315455,
           "shaderEquation": 0.9752315283,
-          "absoluteError": 1.724970589e-8
+          "absoluteError": 1.724971e-8
         },
         {
           "channel": "b",
@@ -1649,10 +1649,10 @@
           "decodedRate": 15.7798401,
           "cpu": 0.9853977389,
           "shaderEquation": 0.9853976965,
-          "absoluteError": 4.235896944e-8
+          "absoluteError": 4.235897e-8
         }
       ],
-      "maxAbsoluteError": 4.235896944e-8
+      "maxAbsoluteError": 4.235897e-8
     }
   ],
   "unresolvedDimensions": {
