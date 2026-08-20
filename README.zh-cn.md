@@ -140,7 +140,7 @@ AGS-101 的驱动与时序数据，也查阅同时代相似面板和液晶材料
 
 ## 下载
 
-- 稳定版 v0.5.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.5.0.zip)
+- 稳定版 v0.6.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.6.0.zip)
 - 发布说明：[GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - 最新开发版：[`main` 的 ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git：`git clone https://github.com/JohnnySun/retro-display-lab.git`
