@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "profileId": "BW0306N250002377-b57-g7-retroarch-local-reference-v1",
+  "profileScope": "reference-unit-model-default",
+  "applicationLayer": "retroarch-local",
+  "mutualExclusionGroup": "kpa-host-correction",
+  "referenceDevice": {
+    "model": "GT78-VN",
+    "serial": "BW0306N250002377",
+    "firmware": "BW03_20260730"
+  },
+  "neutralAndroidConditions": {
+    "androidBrightness": 57,
+    "automaticBrightness": false,
+    "nightDisplay": false,
+    "gammaIndex": 7,
+    "pq": [
+      4,
+      4,
+      4,
+      2
+    ],
+    "surfaceFlingerMatrix": "identity"
+  },
+  "measurement": {
+    "source": "tools/kpa-display-calibration/measurements/2026-08-22-BW0306N250002377-baseline-g7-b57/baseline.ti3",
+    "sourceSha256": "39d054fb2b446059b9513fabc0e33af5303746dc5d8a7ddae6e056f2a7588e28",
+    "patchCount": 180,
+    "instrument": "Datacolor SpyderX 61091086 / ArgyllCMS Standard LED"
+  },
+  "generator": {
+    "argyllCmsVersion": "3.5.0",
+    "displayModel": "colprof -qh -aX -R",
+    "deviceLink": "collink -qh -r 65 -G -ir -b -3c",
+    "sourceColorSpace": "ArgyllCMS sRGB.icm",
+    "sourceProfileSha256": "1c5f1948454f34199b8a497611b6a25d23d542f93a6939cee5da86f20845328a",
+    "unquantizedCubeSha256": "206cc3888a39b0d540f356bdf7cbfdee31534371c2b10b45a35a98b78dede400",
+    "profileFit": {
+      "peakError": 1.723391,
+      "averageError": 0.307489,
+      "rmsError": 0.454568
+    }
+  },
+  "runtime": {
+    "texture": "kpa-reference-b57-g7-v1-lut65.png",
+    "textureSha256": "779f848077f285c1bfc1c03a67f153f76f41ca7c5942e010c092c3d83cba3a3e",
+    "characterizationProfile": "kpa-reference-b57-g7-v1-display.icc",
+    "characterizationProfileSha256": "a6ff2e34193ebefad0e316c5222ba849f6a5ec20a68c8205086f5d8bd6bd6ebb",
+    "gridSize": 65,
+    "textureSize": [
+      4225,
+      65
+    ],
+    "textureFormat": "RGB8 PNG",
+    "layout": "x = red + blue * gridSize; y = green",
+    "interpolation": "manual trilinear in encoded RGB",
+    "inputEndpoint": "sRGB encoded",
+    "outputEndpoint": "KPA neutral-baseline encoded RGB"
+  },
+  "validation": {
+    "status": "framebuffer-validated-optical-validation-pending",
+    "framebuffer": {
+      "record": "../../validation/kpa-host-correction-framebuffer-20260822.json",
+      "result": "pass",
+      "meanAbsoluteChannelErrorVsCpuPrediction": 0.14023980034722222,
+      "maxAbsoluteChannelErrorVsCpuPrediction": 3,
+      "p95PixelMaxErrorVsCpuPrediction": 1
+    },
+    "projection": {
+      "method": "96-patch target projected through the fitted display ICC; RGB8 LUT quantization and shader trilinear interpolation are included. This is not an independent optical validation.",
+      "targetSha256": "8fe7706deaa1fef229134dfb031bb6dd644c83e9dadc01012dae3fc0e95e8e5b",
+      "corrected": {
+        "count": 88,
+        "meanDeltaE2000": 0.4799,
+        "p95DeltaE2000": 1.0317,
+        "maxDeltaE2000": 5.3727
+      },
+      "identity": {
+        "count": 88,
+        "meanDeltaE2000": 2.9708,
+        "p95DeltaE2000": 6.9093,
+        "maxDeltaE2000": 7.8765
+      }
+    }
+  },
+  "limitations": [
+    "This is a reference-unit model default, not a per-unit calibration for every GT78-VN panel.",
+    "The 65^3 runtime LUT is derived from a smooth ICC fit to 180 optical patches; it is not a dense 65^3 direct measurement.",
+    "The independent 96-patch RGB set is used only for model projection here; RetroArch/Vulkan framebuffer execution has passed, but centered emitted-light validation remains required.",
+    "Panel gamut cannot be expanded; out-of-gamut sRGB primaries remain clipped or compressed.",
+    "Never combine this RetroArch-local LUT with the Android-system KPA correction matrix."
+  ]
+}

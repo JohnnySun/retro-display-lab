@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "recordId": "kpa-host-correction-framebuffer-20260822",
+  "recordedAt": "2026-08-22T02:30:00+08:00",
+  "result": "pass-framebuffer-optical-validation-pending",
+  "scope": "RetroArch/Vulkan framebuffer implementation validation; not emitted-light validation",
+  "device": {
+    "model": "KONKR GT78-VN",
+    "serial": "BW0306N250002377",
+    "firmware": "BW03_20260730",
+    "androidBrightness": 57,
+    "gammaIndex": 7,
+    "pq": [4, 4, 4, 2],
+    "surfaceFlingerMatrix": "identity"
+  },
+  "runtime": {
+    "retroArchVersion": "1.22.2",
+    "retroArchGit": "a609b709eb",
+    "videoDriver": "Vulkan",
+    "gpu": "Mali-G76 MC4",
+    "core": "mGBA",
+    "testContent": "/sdcard/RetroArch/downloads/gba/RDL-AGS101-Color-Ramps.gba",
+    "configDirectory": "/sdcard/RetroArch/config",
+    "configDirectorySetting": "rgui_config_directory",
+    "selectedAutomaticPreset": "/sdcard/RetroArch/config/mGBA/gba.slangp",
+    "localPreset": "../presets/ags101-period-reconstruction-kpa-local-v1.slangp",
+    "localPresetSha256": "be0f02d11e14abfad3efb434f2036196742565bf52042c002500e8b56617140b",
+    "hostShader": "../host-correction/kpa-reference-b57-g7-v1/kpa-host-correction-v1.slang",
+    "hostShaderSha256": "4b014bcf1917d62b53c0048011419d511ae5acfd4d988c8b3f1bad4784a28817",
+    "lutSha256": "779f848077f285c1bfc1c03a67f153f76f41ca7c5942e010c092c3d83cba3a3e"
+  },
+  "captures": {
+    "ags101BaseIdentityAndroidSha256": "2575e8095a99f0ba47775023601a45f13bdebf48737db918519c20aca5b2812b",
+    "ags101WithKpaLocalLutSha256": "e9bc67cf0fb3e3b16c5ae8fdac77d3391422d2279b32db1fa39118c0dc003625",
+    "cpuPredictionSha256": "875fb66af9741db0d3c49d906719d6e679419ef9f2e17e0a758e85da0dde047e",
+    "dimensions": [960, 640],
+    "format": "RGB8 PNG from adb exec-out screencap -p",
+    "captureArtifactsCommitted": false
+  },
+  "comparison": {
+    "method": "Apply the manifest 65^3 RGB8 LUT to every base framebuffer pixel using the shader's encoded-RGB manual trilinear interpolation, quantize with floor(value * 255 + 0.5), then compare against the KPA-local framebuffer.",
+    "baseToLocal": {
+      "changedPixels": 612297,
+      "exactPixels": 2103,
+      "totalPixels": 614400,
+      "meanAbsoluteChannelError": 11.958319769965279,
+      "maxAbsoluteChannelError": 98,
+      "p95PixelMaxError": 84
+    },
+    "cpuPredictionToLocal": {
+      "changedPixels": 174752,
+      "exactPixels": 439648,
+      "totalPixels": 614400,
+      "withinOneCodePixels": 600781,
+      "withinTwoCodePixels": 614214,
+      "meanAbsoluteChannelError": 0.14023980034722222,
+      "maxAbsoluteChannelError": 3,
+      "p95PixelMaxError": 1
+    },
+    "acceptance": {
+      "meanAbsoluteChannelErrorMax": 0.25,
+      "maxAbsoluteChannelErrorMax": 3,
+      "p95PixelMaxErrorMax": 1,
+      "passed": true
+    }
+  },
+  "loadEvidence": {
+    "specificPresetFound": "/sdcard/RetroArch/config/mGBA/gba.slangp",
+    "kpaHostCorrectionParameter": 1.0,
+    "shaderCompileOrLutLoadErrors": 0,
+    "steadyFrameRateObservedFps": 60
+  },
+  "notes": [
+    "The content-directory preset wins over the core preset for content stored in a directory named gba.",
+    "Direct Activity launches must provide a configuration whose rgui_config_directory points at /sdcard/RetroArch/config; otherwise RetroArch loads the stock shader and no automatic preset.",
+    "This record proves the final KPA LUT executes in the RetroArch framebuffer and matches the reference CPU implementation within RGB565/output quantization tolerance.",
+    "A centered SpyderX measurement of the RetroArch/Vulkan emitted output remains required before the profile may be described as optically validated."
+  ]
+}

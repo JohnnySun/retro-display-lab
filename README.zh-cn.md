@@ -132,8 +132,9 @@ AGS-101 的驱动与时序数据，也查阅同时代相似面板和液晶材料
 - GBA 的 240×160 画面以精确 4 倍映射填满 960×640；
 - GB 的 160×144 画面以精确 4 倍映射到 640×576 viewport，周围再放置外框。
 
-这些是掌机 GPU 的实际输出，不是用相机拍摄实体面板。KONKR target 目前标示为
-**sRGB-neutral、未测量**，不等同于经过仪器校准的 sRGB 显示器。
+这些是掌机 GPU 的实际输出，不是用相机拍摄实体面板。指定的 KONKR 参考机现已建立
+SpyderX 实测 host profile；它仍是单台参考机的机型预设，不能宣称每片 GT78-VN 面板
+都有完全相同的发光色度。
 
 游戏画面只用来说明 Shader 行为。俄罗斯方块、马力欧、Nintendo 商标和游戏
 内容都归各自的权利人所有。
@@ -164,6 +165,14 @@ retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-refer
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp
 ```
 
+以上 preset 假设 Android-system 实测 profile 已启用，本身不再叠加 KPA 校正。如果改用
+RetroArch-local 的实测 65^3 LUT，先在 Display Switcher 切换到 `retroarch-local`
+（Gamma 7、neutral PQ、SurfaceFlinger identity），再加载文件名以
+`kpa-local-v1.slangp` 结尾的对应 preset。两个 host-correction layer 绝对不能同时启用。
+目前 local LUT 已通过 RetroArch/Vulkan framebuffer 与 CPU LUT 参考实现的比对，
+仍待 RetroArch 实际发光的独立光学验证；详见
+[安装说明](docs/installation.md)。
+
 其他面板请从 model preset 出发建立自己的 target profile，不要把 KONKR 的补偿
 当成原始 GB 或 AGS-101 的特性。完整步骤见[安装说明](docs/installation.md)。
 
@@ -175,7 +184,7 @@ npm test
 
 测试会检查 Shader／preset 结构、生成文件可复现性、Reference ID、色阶顺序、
 STN surrogate、串扰、TFT gray-to-gray、residual-DC、扫描因果性、target scale、
-HCS 色彩向量，以及未测量 target 是否被如实标示。
+HCS 色彩向量、KPA host LUT 完整性与互斥条件，以及测量／验证边界是否被如实标示。
 
 要提交 PR 请先阅读[引用规范](docs/reference-policy.md)和
 [贡献指南](CONTRIBUTING.md)。学术或技术用途请引用 [`CITATION.cff`](CITATION.cff)，

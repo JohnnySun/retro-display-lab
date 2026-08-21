@@ -21,14 +21,49 @@ original DMG behavior belongs to the
   viewport and integer scale 4 inside the 960×640 framebuffer.
 - Limits: geometric configuration only; it does not validate optics or color.
 
-## TARGET-KPA-COLOR-01 — Neutral but unmeasured display state
+## TARGET-KPA-COLOR-01 — Measured reference-unit display state
 
-- Source: device configuration and framebuffer A/B captures made in the named
-  neutral vendor/SurfaceFlinger state.
-- Used for: target label `sRGB-neutral, unmeasured`.
-- Limits: no spectrophotometer/colorimeter readings are available for white
-  point, EOTF, gamut, luminance, black level, or Delta E. The label must never
-  be shortened to “calibrated sRGB.”
+- Source: SpyderX Pro `61091086` and ArgyllCMS 3.5.0 measurements of GT78-VN
+  reference unit `BW0306N250002377`, firmware `BW03_20260730`, Android
+  brightness `57`, Gamma `7`, neutral PQ, and identity SurfaceFlinger matrix.
+- Repository evidence: the KPA parent repository preserves the 180-patch raw
+  `.ti1/.ti3`, independent 96-patch validation, manifests, logs, reports, and
+  SHA-256 lists under `tools/kpa-display-calibration/measurements/2026-08-22-*`.
+- Baseline: white `160.160840 cd/m2`, xy `0.300472/0.325140`, fitted Gamma
+  `2.199882`, black about `0.163559 cd/m2`, and contrast about `979:1`.
+- Used for: the mutually exclusive Android-system and RetroArch-local KPA host
+  correction profiles recorded in `profile.json`.
+- Limits: this is one reference unit, not a panel-population characterization.
+  Firmware, panel, or fixed-brightness changes require remeasurement.
+
+## TARGET-KPA-HOSTCOLOR-01 — RetroArch-local 65^3 host correction
+
+- Source: the raw 180-patch reference-unit characterization in
+  [TARGET-KPA-COLOR-01]. ArgyllCMS `colprof -qh -aX -R` fits the display forward
+  model; `collink -qh -r 65 -G -ir -b -3c` inverts official sRGB into KPA
+  device RGB with forced black and white endpoints.
+- Runtime artifact:
+  [`host-correction/kpa-reference-b57-g7-v1/kpa-reference-b57-g7-v1.json`](host-correction/kpa-reference-b57-g7-v1/kpa-reference-b57-g7-v1.json)
+  records source hashes, the `4225x65` RGB8 texture, ICC audit artifact, LUT
+  layout, model fit, and limitations. The final shader manually performs
+  trilinear interpolation over the quantized 65^3 lattice.
+- Model projection: on the separate 96-patch target, excluding repeated black
+  and white, the fitted-model mean/P95/max CIEDE2000 changes from
+  `2.9708/6.9093/7.8765` at identity to `0.4799/1.0317/5.3727` with the RGB8
+  LUT. The maximum remains gamut-bound.
+- Framebuffer validation: RetroArch 1.22.2/Vulkan on the reference unit loaded
+  the complete AGS-101 `kpa-local` preset with identity SurfaceFlinger. Against
+  a CPU implementation of the same RGB8 trilinear lookup, the captured
+  framebuffer had mean absolute channel error `0.1402`, maximum `3`, and P95
+  pixel maximum `1`; `612297/614400` pixels changed relative to the non-LUT
+  AGS-101 base. Full hashes and procedure are recorded in
+  [`validation/kpa-host-correction-framebuffer-20260822.json`](validation/kpa-host-correction-framebuffer-20260822.json).
+- Mutual exclusion: the local LUT is valid only with Android brightness `57`,
+  Gamma `7`, neutral PQ, and identity SurfaceFlinger. It must not be combined
+  with the measured Android-system matrix.
+- Limits: framebuffer validation proves runtime execution but is not independent
+  emitted-light evidence. A centered RetroArch/Vulkan optical validation is
+  required before this artifact may be described as optically validated.
 
 ## TARGET-KPA-TUNE-01 — Brightness and chroma compensation
 

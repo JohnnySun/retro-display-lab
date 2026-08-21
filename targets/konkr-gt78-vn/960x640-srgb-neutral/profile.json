@@ -3,9 +3,9 @@
   "target": "KONKR GT78-VN",
   "panelResolution": [960, 640],
   "colorState": {
-    "label": "sRGB-neutral",
-    "measured": false,
-    "note": "Neutral vendor/SurfaceFlinger state; no white-point, gamma, gamut, or Delta E measurement."
+    "label": "reference-unit measured",
+    "measured": true,
+    "note": "Reference unit BW0306N250002377 was measured at Android brightness 57 and Gamma 7. Use either the Android-system profile with a normal target preset, or neutral Android plus a kpa-local preset; never both."
   },
   "content": "Nintendo DMG-01",
   "contentViewport": [640, 576],
@@ -24,6 +24,7 @@
     "TARGET-KPA-HW-01",
     "TARGET-KPA-SCALE-01",
     "TARGET-KPA-COLOR-01",
+    "TARGET-KPA-HOSTCOLOR-01",
     "TARGET-KPA-TUNE-01",
     "TARGET-KPA-DMG-01",
     "TARGET-KPA-DMGSCAN-01",
@@ -51,7 +52,8 @@
     "validation/dmg01-ws6-20260819.json",
     "validation/dmg01-ws4-20260819.json",
     "validation/dmg01-ws5-20260819.json",
-    "validation/dmg01-ws5-common-mode-20260819.json"
+    "validation/dmg01-ws5-common-mode-20260819.json",
+    "validation/kpa-host-correction-framebuffer-20260822.json"
   ],
   "lastFullNumericAgs101ValidationRecord": "validation/ags101-ws8-target-20260820.json",
   "lastPerformanceAgs101ValidationRecord": "validation/ags101-performance-20260821.json",
@@ -61,5 +63,19 @@
     "ScreenBrightness": 0.68,
     "ScreenChroma": 0.90
   },
-  "status": "device-tested"
+  "hostCorrectionProfiles": {
+    "android-system": {
+      "profileId": "BW0306N250002377-b57-g7-android-system-v1",
+      "runtimePresetSuffix": "none",
+      "surfaceFlinger": "measured encoded-RGB 3x3"
+    },
+    "retroarch-local": {
+      "profileId": "BW0306N250002377-b57-g7-retroarch-local-reference-v1",
+      "manifest": "host-correction/kpa-reference-b57-g7-v1/kpa-reference-b57-g7-v1.json",
+      "runtimePresetSuffix": "kpa-local-v1",
+      "surfaceFlinger": "identity",
+      "validationStatus": "framebuffer-validated-optical-validation-pending"
+    }
+  },
+  "status": "device-tested-reference-color-measured-retroarch-local-framebuffer-validated-optical-validation-pending"
 }

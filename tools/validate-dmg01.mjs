@@ -526,7 +526,16 @@ const targetProfile = JSON.parse(fs.readFileSync(
 check(targetProfile.panelResolution.join("x") === "960x640", "KPA target resolution drifted");
 check(targetProfile.contentViewport.join("x") === "640x576", "KPA DMG viewport drifted");
 check(targetProfile.integerScale === 4, "KPA target lost exact 4x DMG scale");
-check(targetProfile.colorState.measured === false, "unmeasured target must not claim calibration");
+check(targetProfile.colorState.measured === true,
+  "KPA target lost its 2026-08-22 reference-unit measurement state");
+check(targetProfile.colorState.note.includes("BW0306N250002377"),
+  "KPA measured state lost its reference-unit scope");
+check(targetProfile.hostCorrectionProfiles?.["retroarch-local"]?.validationStatus
+  === "framebuffer-validated-optical-validation-pending",
+"KPA local host correction overstates its optical validation state");
+check(targetProfile.validationRecords.includes(
+  "validation/kpa-host-correction-framebuffer-20260822.json"),
+"KPA target profile lost the host-correction framebuffer validation receipt");
 check(targetProfile.references === "REFERENCES.md", "target profile lost reference map");
 check(targetProfile.validationRecords.includes("validation/dmg01-ws2-20260819.json"),
   "KPA target profile lost the DMG WS2 validation receipt");
@@ -844,6 +853,7 @@ const requiredTargetEvidenceIds = [
   "TARGET-KPA-HW-01",
   "TARGET-KPA-SCALE-01",
   "TARGET-KPA-COLOR-01",
+  "TARGET-KPA-HOSTCOLOR-01",
   "TARGET-KPA-TUNE-01",
   "TARGET-KPA-DMG-01",
   "TARGET-KPA-DMGSCAN-01",

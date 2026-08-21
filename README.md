@@ -173,8 +173,9 @@ Every image in this README was rendered in RetroArch on a
   with a bezel around it.
 
 These are direct captures of the handheld GPU output, not photographs of the
-physical panel. The KONKR target is currently labeled **sRGB-neutral and
-unmeasured**; that is not the same as an instrument-calibrated sRGB display.
+physical panel. The named KONKR reference unit now has a SpyderX-measured host
+profile. It is still a one-unit model default, not a claim that every GT78-VN
+panel has identical emitted color.
 
 Game imagery is used only to demonstrate shader behavior. Tetris, Mario,
 Nintendo trademarks, and game content belong to their respective owners.
@@ -207,6 +208,15 @@ For GBA content on the same device, use:
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp
 ```
 
+Those presets assume the measured Android-system profile is active and do not
+contain a second KPA correction. To use the measured RetroArch-local 65^3 LUT
+instead, first switch Display Switcher to `retroarch-local` (Gamma 7, neutral
+PQ, identity SurfaceFlinger), then load the corresponding preset whose name
+ends in `kpa-local-v1.slangp`. Never combine both host-correction layers. The
+local LUT has passed RetroArch/Vulkan framebuffer validation against the CPU
+LUT reference and still awaits independent emitted-light validation; see the
+[installation guide](docs/installation.md).
+
 For another display, start from the model preset and build a separate target
 profile. Do not treat KONKR-specific compensation as a property of the original
 Game Boy or AGS-101 panel. See the [installation guide](docs/installation.md)
@@ -221,7 +231,8 @@ npm test
 The test suite checks shader and preset structure, deterministic generated
 assets, reference IDs, shade order, the STN surrogate, crosstalk, TFT
 gray-to-gray behavior, residual DC, scan causality, target scale, HCS color
-vectors, and honest labeling of unmeasured targets.
+vectors, KPA host-LUT integrity and mutual exclusion, and honest labeling of
+measurement and validation boundaries.
 
 Before submitting a PR, read the [reference policy](docs/reference-policy.md)
 and [contribution guide](CONTRIBUTING.md). For academic or technical use, cite
