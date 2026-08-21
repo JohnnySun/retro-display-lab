@@ -209,12 +209,13 @@ retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-peri
 ```
 
 Those presets assume the measured Android-system profile is active and do not
-contain a second KPA correction. To use the measured RetroArch-local 65^3 LUT
-instead, first switch Display Switcher to `retroarch-local` (Gamma 7, neutral
-PQ, identity SurfaceFlinger), then load the corresponding preset whose name
-ends in `kpa-local-v1.slangp`. Never combine both host-correction layers. The
-local LUT has passed RetroArch/Vulkan framebuffer validation against the CPU
-LUT reference and still awaits independent emitted-light validation; see the
+contain a second KPA correction. To use the measured RetroArch 65^3 KPA display
+color correction instead, first switch Display Switcher to `retroarch-local`
+(Gamma 7, neutral PQ, identity SurfaceFlinger), then load the corresponding
+preset whose name ends in `kpa-color-corrected.slangp`. Never combine both
+host-correction layers. The color-correction LUT has passed RetroArch/Vulkan
+framebuffer validation against the CPU LUT reference and still awaits independent
+emitted-light validation; see the
 [installation guide](docs/installation.md).
 
 For another display, start from the model preset and build a separate target

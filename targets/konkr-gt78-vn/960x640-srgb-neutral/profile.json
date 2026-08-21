@@ -5,7 +5,7 @@
   "colorState": {
     "label": "reference-unit measured",
     "measured": true,
-    "note": "Reference unit BW0306N250002377 was measured at Android brightness 57 and Gamma 7. Use either the Android-system profile with a normal target preset, or neutral Android plus a kpa-local preset; never both."
+    "note": "Reference unit BW0306N250002377 was measured at Android brightness 57 and Gamma 7. Use either the Android-system profile with a normal target preset, or neutral Android plus a KPA display color-corrected preset; never both."
   },
   "content": "Nintendo DMG-01",
   "contentViewport": [640, 576],
@@ -72,7 +72,7 @@
     "retroarch-local": {
       "profileId": "BW0306N250002377-b57-g7-retroarch-local-reference-v1",
       "manifest": "host-correction/kpa-reference-b57-g7-v1/kpa-reference-b57-g7-v1.json",
-      "runtimePresetSuffix": "kpa-local-v1",
+      "runtimePresetSuffix": "kpa-color-corrected",
       "surfaceFlinger": "identity",
       "validationStatus": "framebuffer-validated-optical-validation-pending"
     }

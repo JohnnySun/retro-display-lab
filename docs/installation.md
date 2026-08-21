@@ -30,9 +30,9 @@ to establish Android brightness 57, Gamma 7, neutral PQ, and an identity
 SurfaceFlinger matrix. Then load one of:
 
 ```text
-retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-local-v1.slangp
-retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-kpa-local-v1.slangp
-retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-kpa-local-v1.slangp
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-color-corrected.slangp
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-kpa-color-corrected.slangp
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-kpa-color-corrected.slangp
 ```
 
 These presets append the measured reference-unit 65^3 KPA LUT as the final
@@ -73,8 +73,9 @@ integrations/retroarch/overrides/mgba-gba.slangp
   -> RetroArch/config/mGBA/gba.slangp
 ```
 
-For the local-LUT route, use the separately named
-`gambatte-gb-kpa-local.slangp` and `mgba-gba-kpa-local.slangp` sources instead.
+For the KPA display color-corrected route, use the separately named
+`gambatte-gb-kpa-color-corrected.slangp` and
+`mgba-gba-kpa-color-corrected.slangp` sources instead.
 Do not deploy a local override unless the launcher or watcher switches Android
 to `retroarch-local` before RetroArch starts.
 

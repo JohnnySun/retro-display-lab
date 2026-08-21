@@ -23,7 +23,7 @@
     "configDirectory": "/sdcard/RetroArch/config",
     "configDirectorySetting": "rgui_config_directory",
     "selectedAutomaticPreset": "/sdcard/RetroArch/config/mGBA/gba.slangp",
-    "localPreset": "../presets/ags101-period-reconstruction-kpa-local-v1.slangp",
+    "colorCorrectedPreset": "../presets/ags101-period-reconstruction-kpa-color-corrected.slangp",
     "localPresetSha256": "be0f02d11e14abfad3efb434f2036196742565bf52042c002500e8b56617140b",
     "hostShader": "../host-correction/kpa-reference-b57-g7-v1/kpa-host-correction-v1.slang",
     "hostShaderSha256": "4b014bcf1917d62b53c0048011419d511ae5acfd4d988c8b3f1bad4784a28817",

@@ -18,6 +18,6 @@ absolute channel error `0.1402`, maximum `3`, and P95 pixel maximum `1`; see
 Centered emitted-light validation is still required before removing
 `optical-validation-pending` from the manifest.
 
-Use only a preset whose name contains `kpa-local`, after Display Switcher has
+Use only a preset whose name contains `kpa-color-corrected`, after Display Switcher has
 entered `retroarch-local` mode. Never enable this LUT while the Android-system
 KPA matrix is active.

@@ -52,7 +52,7 @@ original DMG behavior belongs to the
   `2.9708/6.9093/7.8765` at identity to `0.4799/1.0317/5.3727` with the RGB8
   LUT. The maximum remains gamut-bound.
 - Framebuffer validation: RetroArch 1.22.2/Vulkan on the reference unit loaded
-  the complete AGS-101 `kpa-local` preset with identity SurfaceFlinger. Against
+  the complete AGS-101 `kpa-color-corrected` preset with identity SurfaceFlinger. Against
   a CPU implementation of the same RGB8 trilinear lookup, the captured
   framebuffer had mean absolute channel error `0.1402`, maximum `3`, and P95
   pixel maximum `1`; `612297/614400` pixels changed relative to the non-LUT

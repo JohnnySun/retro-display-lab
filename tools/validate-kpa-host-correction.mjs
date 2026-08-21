@@ -50,9 +50,9 @@ assert.match(shader, /texelFetch\(KpaHostLut/);
 assert.match(shader, /mix\(mix\(c00, c10, fraction\.g\), mix\(c01, c11, fraction\.g\), fraction\.b\)/);
 
 const presets = [
-  ["ags101-period-reconstruction-kpa-local-v1.slangp", "4", "shader3"],
-  ["dmg01-reference-kpa-local-v1.slangp", "6", "shader5"],
-  ["dmg01-one-year-used-kpa-local-v1.slangp", "6", "shader5"],
+  ["ags101-period-reconstruction-kpa-color-corrected.slangp", "4", "shader3"],
+  ["dmg01-reference-kpa-color-corrected.slangp", "6", "shader5"],
+  ["dmg01-one-year-used-kpa-color-corrected.slangp", "6", "shader5"],
 ];
 for (const [name, count, finalShader] of presets) {
   const presetPath = path.join(target, "presets", name);
@@ -72,9 +72,9 @@ assert.equal(targetProfile.hostCorrectionProfiles["retroarch-local"].validationS
 assert.ok(targetProfile.validationRecords.includes(
   "validation/kpa-host-correction-framebuffer-20260822.json"));
 
-for (const name of ["mgba-gba-kpa-local.slangp", "gambatte-gb-kpa-local.slangp"]) {
+for (const name of ["mgba-gba-kpa-color-corrected.slangp", "gambatte-gb-kpa-color-corrected.slangp"]) {
   const override = fs.readFileSync(path.join(root, "integrations/retroarch/overrides", name), "utf8");
-  assert.match(override, /kpa-local-v1\.slangp/);
+  assert.match(override, /kpa-color-corrected\.slangp/);
 }
 
 console.log("KPA host-correction profile, LUT, shader, and presets: OK");

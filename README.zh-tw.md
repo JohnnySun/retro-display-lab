@@ -166,10 +166,10 @@ retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-peri
 ```
 
 以上 preset 假設 Android-system 實測 profile 已啟用，本身不再疊加 KPA 校正。若要改用
-RetroArch-local 的實測 65^3 LUT，先在 Display Switcher 切到 `retroarch-local`
+RetroArch 的實測 65^3 KPA 螢幕顏色校正，先在 Display Switcher 切到 `retroarch-local`
 （Gamma 7、neutral PQ、SurfaceFlinger identity），再載入檔名以
-`kpa-local-v1.slangp` 結尾的對應 preset。兩個 host-correction layer 絕對不能同時啟用。
-目前 local LUT 已通過 RetroArch/Vulkan framebuffer 與 CPU LUT 參考實作的比對，
+`kpa-color-corrected.slangp` 結尾的對應 preset。兩個 host-correction layer 絕對不能同時啟用。
+目前顏色校正 LUT 已通過 RetroArch/Vulkan framebuffer 與 CPU LUT 參考實作的比對，
 仍待 RetroArch 實際發光的獨立光學驗證；詳見
 [安裝說明](docs/installation.md)。
 
