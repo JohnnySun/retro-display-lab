@@ -7,13 +7,13 @@
     "definition": "models/nintendo-ags-101/data/ws7-exposure-integration-v1.json",
     "definitionSha256": "fc0964f3ef833cc9f5721ae6457d15e1e8562cd099df6bda83e60e29f69039cd",
     "ensemble": "models/nintendo-ags-101/data/ws4-gtg-ensemble-v1.json",
-    "ensembleSha256": "434b86e46fcc9eccaff26ca6f682441911de5089e246b33c949fa43c9647c40e",
+    "ensembleSha256": "595f3a567eaf237fbd192851cbed8cb9e82e9d1da95950e197625490609ace3f",
     "color": "models/nintendo-ags-101/generated/hcs-e688fc5-color.json",
     "colorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
     "ws6Validation": "models/nintendo-ags-101/generated/ws6-validation-v1.json",
-    "ws6ValidationSha256": "b413b4e96577c3adf613a15433484332e964369382b32e07b2efcfd9b8976154",
+    "ws6ValidationSha256": "985978314fd890774989860a6999c701d6bb9c5bb49a67e4ed19cd1efdbb7ba8",
     "presetManifest": "models/nintendo-ags-101/generated/ws7-presets-v1/manifest.json",
-    "presetManifestSha256": "97563e77224dc505dc484cd7f07df27d1751aa31852ce56110d4c1ffd26e16b8"
+    "presetManifestSha256": "dfdcc4cce57554e88f3e597c8715d34dfcea151bccb0bb2dce3ac6e3b8c62f55"
   },
   "observationIntervals": [
     {
@@ -847,22 +847,22 @@
       "member": "fast",
       "row": 0,
       "id": "rise",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.557673473246,
-        0.557673473246,
-        0.557673473246
+        0.558465749247,
+        0.558465749247,
+        0.558465749247
       ],
       "average": [
-        0.315637367452,
-        0.315637367452,
-        0.315637367452
+        0.316861204579,
+        0.316861204579,
+        0.316861204579
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -870,7 +870,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -878,7 +878,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -886,7 +886,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -894,7 +894,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -902,16 +902,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
         }
       ],
       "highResolutionAverage": [
-        0.315637367452,
-        0.315637367452,
-        0.315637367452
+        0.316861204579,
+        0.316861204579,
+        0.316861204579
       ],
       "highResolutionError": 0
     },
@@ -919,22 +919,22 @@
       "member": "fast",
       "row": 0,
       "id": "fall",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.130124017393,
-        0.130124017393,
-        0.130124017393
+        0.129542118739,
+        0.129542118739,
+        0.129542118739
       ],
       "average": [
-        0.427820539187,
-        0.427820539187,
-        0.427820539187
+        0.425912277895,
+        0.425912277895,
+        0.425912277895
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -942,7 +942,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
@@ -950,7 +950,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -958,7 +958,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
@@ -966,7 +966,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -974,31 +974,31 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
         }
       ],
       "highResolutionAverage": [
-        0.427820539187,
-        0.427820539187,
-        0.427820539187
+        0.425912277895,
+        0.425912277895,
+        0.425912277895
       ],
-      "highResolutionError": 1.55431223448e-15
+      "highResolutionError": 0
     },
     {
       "member": "fast",
       "row": 0,
       "id": "partial-red",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.557673473246,
+        0.558465749247,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.315637367452,
+        0.316861204579,
         0.182127514167,
         0.25618439051
       ],
@@ -1006,7 +1006,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1014,7 +1014,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1037,7 +1037,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.315637367452,
+        0.316861204579,
         0.182127514167,
         0.25618439051
       ],
@@ -1047,22 +1047,22 @@
       "member": "fast",
       "row": 80,
       "id": "rise",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.410726541404,
-        0.410726541404,
-        0.410726541404
+        0.411782022346,
+        0.411782022346,
+        0.411782022346
       ],
       "average": [
-        0.144511842581,
-        0.144511842581,
-        0.144511842581
+        0.145413716352,
+        0.145413716352,
+        0.145413716352
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1070,7 +1070,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1078,7 +1078,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1086,7 +1086,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1094,7 +1094,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1102,16 +1102,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
         }
       ],
       "highResolutionAverage": [
-        0.144511842581,
-        0.144511842581,
-        0.144511842581
+        0.145413716352,
+        0.145413716352,
+        0.145413716352
       ],
       "highResolutionError": 0
     },
@@ -1119,22 +1119,22 @@
       "member": "fast",
       "row": 80,
       "id": "fall",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.266558294677,
-        0.266558294677,
-        0.266558294677
+        0.265366278661,
+        0.265366278661,
+        0.265366278661
       ],
       "average": [
-        0.711940873426,
-        0.711940873426,
-        0.711940873426
+        0.710331140623,
+        0.710331140623,
+        0.710331140623
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -1142,7 +1142,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
@@ -1150,7 +1150,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -1158,7 +1158,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
@@ -1166,7 +1166,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -1174,16 +1174,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
         }
       ],
       "highResolutionAverage": [
-        0.711940873426,
-        0.711940873426,
-        0.711940873426
+        0.710331140623,
+        0.710331140623,
+        0.710331140623
       ],
       "highResolutionError": 0
     },
@@ -1191,14 +1191,14 @@
       "member": "fast",
       "row": 80,
       "id": "partial-red",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.410726541404,
+        0.411782022346,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.144511842581,
+        0.145413716352,
         0.182127514167,
         0.25618439051
       ],
@@ -1206,7 +1206,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1214,7 +1214,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1237,7 +1237,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.144511842581,
+        0.145413716352,
         0.182127514167,
         0.25618439051
       ],
@@ -1247,22 +1247,22 @@
       "member": "fast",
       "row": 159,
       "id": "rise",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.217771559451,
-        0.217771559451,
-        0.217771559451
+        0.219172652949,
+        0.219172652949,
+        0.219172652949
       ],
       "average": [
-        0.0340512647687,
-        0.0340512647687,
-        0.0340512647687
+        0.0345303707238,
+        0.0345303707238,
+        0.0345303707238
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1270,7 +1270,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1278,7 +1278,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1286,7 +1286,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1294,7 +1294,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1302,16 +1302,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
         }
       ],
       "highResolutionAverage": [
-        0.0340512647687,
-        0.0340512647687,
-        0.0340512647687
+        0.0345303707238,
+        0.0345303707238,
+        0.0345303707238
       ],
       "highResolutionError": 0
     },
@@ -1319,22 +1319,22 @@
       "member": "fast",
       "row": 159,
       "id": "fall",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.541170363944,
-        0.541170363944,
-        0.541170363944
+        0.53875031642,
+        0.53875031642,
+        0.53875031642
       ],
       "average": [
-        0.924065287803,
-        0.924065287803,
-        0.924065287803
+        0.923056426918,
+        0.923056426918,
+        0.923056426918
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -1342,7 +1342,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
@@ -1350,7 +1350,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -1358,7 +1358,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
@@ -1366,7 +1366,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 106.477276938
@@ -1374,16 +1374,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 122.068032074
         }
       ],
       "highResolutionAverage": [
-        0.924065287803,
-        0.924065287803,
-        0.924065287803
+        0.923056426918,
+        0.923056426918,
+        0.923056426918
       ],
       "highResolutionError": 0
     },
@@ -1391,14 +1391,14 @@
       "member": "fast",
       "row": 159,
       "id": "partial-red",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.217771559451,
+        0.219172652949,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.0340512647687,
+        0.0345303707238,
         0.182127514167,
         0.25618439051
       ],
@@ -1406,7 +1406,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 42.5909107753
@@ -1414,7 +1414,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 48.8272128297
@@ -1437,7 +1437,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.0340512647687,
+        0.0345303707238,
         0.182127514167,
         0.25618439051
       ],
@@ -1447,22 +1447,22 @@
       "member": "nominal",
       "row": 0,
       "id": "rise",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.457615538802,
-        0.457615538802,
-        0.457615538802
+        0.458344323618,
+        0.458344323618,
+        0.458344323618
       ],
       "average": [
-        0.251440916335,
-        0.251440916335,
-        0.251440916335
+        0.252445258468,
+        0.252445258468,
+        0.252445258468
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1470,7 +1470,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1478,7 +1478,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1486,7 +1486,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1494,7 +1494,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1502,16 +1502,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
         }
       ],
       "highResolutionAverage": [
-        0.251440916335,
-        0.251440916335,
-        0.251440916335
+        0.252445258468,
+        0.252445258468,
+        0.252445258468
       ],
       "highResolutionError": 0
     },
@@ -1519,22 +1519,22 @@
       "member": "nominal",
       "row": 0,
       "id": "fall",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.294180903749,
-        0.294180903749,
-        0.294180903749
+        0.293390871757,
+        0.293390871757,
+        0.293390871757
       ],
       "average": [
-        0.577784720891,
-        0.577784720891,
-        0.577784720891
+        0.576236005344,
+        0.576236005344,
+        0.576236005344
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1542,7 +1542,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
@@ -1550,7 +1550,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1558,7 +1558,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
@@ -1566,7 +1566,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1574,31 +1574,31 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
         }
       ],
       "highResolutionAverage": [
-        0.577784720891,
-        0.577784720891,
-        0.577784720891
+        0.576236005344,
+        0.576236005344,
+        0.576236005344
       ],
-      "highResolutionError": 1.11022302463e-15
+      "highResolutionError": 0
     },
     {
       "member": "nominal",
       "row": 0,
       "id": "partial-red",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.457615538802,
+        0.458344323618,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.251440916335,
+        0.252445258468,
         0.182127514167,
         0.25618439051
       ],
@@ -1606,7 +1606,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1614,7 +1614,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1637,7 +1637,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.251440916335,
+        0.252445258468,
         0.182127514167,
         0.25618439051
       ],
@@ -1647,22 +1647,22 @@
       "member": "nominal",
       "row": 80,
       "id": "rise",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.327429738747,
-        0.327429738747,
-        0.327429738747
+        0.328333450098,
+        0.328333450098,
+        0.328333450098
       ],
       "average": [
-        0.112895385591,
-        0.112895385591,
-        0.112895385591
+        0.113614424397,
+        0.113614424397,
+        0.113614424397
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1670,7 +1670,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1678,7 +1678,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1686,7 +1686,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1694,7 +1694,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1702,16 +1702,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
         }
       ],
       "highResolutionAverage": [
-        0.112895385591,
-        0.112895385591,
-        0.112895385591
+        0.113614424397,
+        0.113614424397,
+        0.113614424397
       ],
       "highResolutionError": 0
     },
@@ -1719,22 +1719,22 @@
       "member": "nominal",
       "row": 80,
       "id": "fall",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.452350756322,
-        0.452350756322,
-        0.452350756322
+        0.451135954258,
+        0.451135954258,
+        0.451135954258
       ],
       "average": [
-        0.799675235992,
-        0.799675235992,
-        0.799675235992
+        0.798472918192,
+        0.798472918192,
+        0.798472918192
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1742,7 +1742,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
@@ -1750,7 +1750,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1758,7 +1758,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
@@ -1766,7 +1766,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1774,16 +1774,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
         }
       ],
       "highResolutionAverage": [
-        0.799675235992,
-        0.799675235992,
-        0.799675235992
+        0.798472918192,
+        0.798472918192,
+        0.798472918192
       ],
       "highResolutionError": 0
     },
@@ -1791,14 +1791,14 @@
       "member": "nominal",
       "row": 80,
       "id": "partial-red",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.327429738747,
+        0.328333450098,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.112895385591,
+        0.113614424397,
         0.182127514167,
         0.25618439051
       ],
@@ -1806,7 +1806,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1814,7 +1814,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1837,7 +1837,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.112895385591,
+        0.113614424397,
         0.182127514167,
         0.25618439051
       ],
@@ -1847,22 +1847,22 @@
       "member": "nominal",
       "row": 159,
       "id": "rise",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.16823584278,
-        0.16823584278,
-        0.16823584278
+        0.169353457925,
+        0.169353457925,
+        0.169353457925
       ],
       "average": [
-        0.0260477172219,
-        0.0260477172219,
-        0.0260477172219
+        0.0264178812035,
+        0.0264178812035,
+        0.0264178812035
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1870,7 +1870,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1878,7 +1878,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1886,7 +1886,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -1894,7 +1894,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -1902,16 +1902,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
         }
       ],
       "highResolutionAverage": [
-        0.0260477172219,
-        0.0260477172219,
-        0.0260477172219
+        0.0264178812035,
+        0.0264178812035,
+        0.0264178812035
       ],
       "highResolutionError": 0
     },
@@ -1919,22 +1919,22 @@
       "member": "nominal",
       "row": 159,
       "id": "fall",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.691831613236,
-        0.691831613236,
-        0.691831613236
+        0.689973677862,
+        0.689973677862,
+        0.689973677862
       ],
       "average": [
-        0.950871092366,
-        0.950871092366,
-        0.950871092366
+        0.950193246377,
+        0.950193246377,
+        0.950193246377
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1942,7 +1942,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
@@ -1950,7 +1950,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1958,7 +1958,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
@@ -1966,7 +1966,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 58.7797917398
@@ -1974,16 +1974,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 73.2408192445
         }
       ],
       "highResolutionAverage": [
-        0.950871092366,
-        0.950871092366,
-        0.950871092366
+        0.950193246377,
+        0.950193246377,
+        0.950193246377
       ],
       "highResolutionError": 0
     },
@@ -1991,14 +1991,14 @@
       "member": "nominal",
       "row": 159,
       "id": "partial-red",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.16823584278,
+        0.169353457925,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.0260477172219,
+        0.0264178812035,
         0.182127514167,
         0.25618439051
       ],
@@ -2006,7 +2006,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 29.3898958699
@@ -2014,7 +2014,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 36.6204096223
@@ -2037,7 +2037,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.0260477172219,
+        0.0264178812035,
         0.182127514167,
         0.25618439051
       ],
@@ -2047,22 +2047,22 @@
       "member": "slow",
       "row": 0,
       "id": "rise",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.3072375438,
-        0.3072375438,
-        0.3072375438
+        0.307796199762,
+        0.307796199762,
+        0.307796199762
       ],
       "average": [
-        0.162638379726,
-        0.162638379726,
-        0.162638379726
+        0.163312758913,
+        0.163312758913,
+        0.163312758913
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2070,7 +2070,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2078,7 +2078,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2086,7 +2086,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2094,7 +2094,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2102,16 +2102,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
         }
       ],
       "highResolutionAverage": [
-        0.162638379726,
-        0.162638379726,
-        0.162638379726
+        0.163312758913,
+        0.163312758913,
+        0.163312758913
       ],
       "highResolutionError": 0
     },
@@ -2119,22 +2119,22 @@
       "member": "slow",
       "row": 0,
       "id": "fall",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.47991982072,
-        0.47991982072,
-        0.47991982072
+        0.479146101064,
+        0.479146101064,
+        0.479146101064
       ],
       "average": [
-        0.709064039803,
-        0.709064039803,
-        0.709064039803
+        0.707922664489,
+        0.707922664489,
+        0.707922664489
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2142,7 +2142,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
@@ -2150,7 +2150,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2158,7 +2158,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
@@ -2166,7 +2166,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2174,16 +2174,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
         }
       ],
       "highResolutionAverage": [
-        0.709064039803,
-        0.709064039803,
-        0.709064039803
+        0.707922664489,
+        0.707922664489,
+        0.707922664489
       ],
       "highResolutionError": 0
     },
@@ -2191,14 +2191,14 @@
       "member": "slow",
       "row": 0,
       "id": "partial-red",
-      "eventSeconds": 0.0000367164611816,
+      "eventSeconds": 0,
       "endpoint": [
-        0.3072375438,
+        0.307796199762,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.162638379726,
+        0.163312758913,
         0.182127514167,
         0.25618439051
       ],
@@ -2206,7 +2206,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0000367164611816,
+          "seconds": 0,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2214,7 +2214,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0167059898376,
+          "seconds": 0.0167427062988,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2237,7 +2237,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.162638379726,
+        0.163312758913,
         0.182127514167,
         0.25618439051
       ],
@@ -2247,22 +2247,22 @@
       "member": "slow",
       "row": 80,
       "id": "rise",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.211788809796,
-        0.211788809796,
-        0.211788809796
+        0.212424437313,
+        0.212424437313,
+        0.212424437313
       ],
       "average": [
-        0.0712209785847,
-        0.0712209785847,
-        0.0712209785847
+        0.0716861247827,
+        0.0716861247827,
+        0.0716861247827
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2270,7 +2270,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2278,7 +2278,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2286,7 +2286,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2294,7 +2294,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2302,16 +2302,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
         }
       ],
       "highResolutionAverage": [
-        0.0712209785847,
-        0.0712209785847,
-        0.0712209785847
+        0.0716861247827,
+        0.0716861247827,
+        0.0716861247827
       ],
       "highResolutionError": 0
     },
@@ -2319,22 +2319,22 @@
       "member": "slow",
       "row": 80,
       "id": "fall",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.621276880364,
-        0.621276880364,
-        0.621276880364
+        0.620275266941,
+        0.620275266941,
+        0.620275266941
       ],
       "average": [
-        0.867814675776,
-        0.867814675776,
-        0.867814675776
+        0.866983044063,
+        0.866983044063,
+        0.866983044063
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2342,7 +2342,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
@@ -2350,7 +2350,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2358,7 +2358,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
@@ -2366,7 +2366,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2374,16 +2374,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
         }
       ],
       "highResolutionAverage": [
-        0.867814675776,
-        0.867814675776,
-        0.867814675776
+        0.866983044063,
+        0.866983044063,
+        0.866983044063
       ],
       "highResolutionError": 0
     },
@@ -2391,14 +2391,14 @@
       "member": "slow",
       "row": 80,
       "id": "partial-red",
-      "eventSeconds": 0.00591135025024,
+      "eventSeconds": 0.00587463378906,
       "endpoint": [
-        0.211788809796,
+        0.212424437313,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.0712209785847,
+        0.0716861247827,
         0.182127514167,
         0.25618439051
       ],
@@ -2406,7 +2406,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.00591135025024,
+          "seconds": 0.00587463378906,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2414,7 +2414,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.0108313560486,
+          "seconds": 0.0108680725098,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2437,7 +2437,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.0712209785847,
+        0.0716861247827,
         0.182127514167,
         0.25618439051
       ],
@@ -2447,22 +2447,22 @@
       "member": "slow",
       "row": 159,
       "id": "rise",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.104634985065,
-        0.104634985065,
-        0.104634985065
+        0.105357023332,
+        0.105357023332,
+        0.105357023332
       ],
       "average": [
-        0.0160076742022,
-        0.0160076742022,
-        0.0160076742022
+        0.0162379287038,
+        0.0162379287038,
+        0.0162379287038
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2470,7 +2470,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2478,7 +2478,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2486,7 +2486,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2494,7 +2494,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2502,16 +2502,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
         }
       ],
       "highResolutionAverage": [
-        0.0160076742022,
-        0.0160076742022,
-        0.0160076742022
+        0.0162379287038,
+        0.0162379287038,
+        0.0162379287038
       ],
       "highResolutionError": 0
     },
@@ -2519,22 +2519,22 @@
       "member": "slow",
       "row": 159,
       "id": "fall",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.801678509969,
-        0.801678509969,
-        0.801678509969
+        0.800386055701,
+        0.800386055701,
+        0.800386055701
       ],
       "average": [
-        0.969111613145,
-        0.969111613145,
-        0.969111613145
+        0.968675280051,
+        0.968675280051,
+        0.968675280051
       ],
       "segments": [
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2542,7 +2542,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
@@ -2550,7 +2550,7 @@
         {
           "channel": 1,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2558,7 +2558,7 @@
         {
           "channel": 1,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
@@ -2566,7 +2566,7 @@
         {
           "channel": 2,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 31,
           "toCode": 31,
           "rate": 31.5592590835
@@ -2574,16 +2574,16 @@
         {
           "channel": 2,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 31,
           "toCode": 0,
           "rate": 43.9444915467
         }
       ],
       "highResolutionAverage": [
-        0.969111613145,
-        0.969111613145,
-        0.969111613145
+        0.968675280051,
+        0.968675280051,
+        0.968675280051
       ],
       "highResolutionError": 0
     },
@@ -2591,14 +2591,14 @@
       "member": "slow",
       "row": 159,
       "id": "partial-red",
-      "eventSeconds": 0.0117125511169,
+      "eventSeconds": 0.0116758346558,
       "endpoint": [
-        0.104634985065,
+        0.105357023332,
         0.182127514167,
         0.25618439051
       ],
       "average": [
-        0.0160076742022,
+        0.0162379287038,
         0.182127514167,
         0.25618439051
       ],
@@ -2606,7 +2606,7 @@
         {
           "channel": 0,
           "kind": "before-optical",
-          "seconds": 0.0117125511169,
+          "seconds": 0.0116758346558,
           "fromCode": 0,
           "toCode": 0,
           "rate": 15.7796295418
@@ -2614,7 +2614,7 @@
         {
           "channel": 0,
           "kind": "after-optical",
-          "seconds": 0.00503015518188,
+          "seconds": 0.00506687164307,
           "fromCode": 0,
           "toCode": 31,
           "rate": 21.9722457734
@@ -2637,7 +2637,7 @@
         }
       ],
       "highResolutionAverage": [
-        0.0160076742022,
+        0.0162379287038,
         0.182127514167,
         0.25618439051
       ],
@@ -2652,19 +2652,19 @@
           "frame": 0,
           "code": 31,
           "average": [
-            0.144511842581,
-            0.144511842581,
-            0.144511842581
+            0.145413716352,
+            0.145413716352,
+            0.145413716352
           ],
           "endpoint": [
-            0.410726541404,
-            0.410726541404,
-            0.410726541404
+            0.411782022346,
+            0.411782022346,
+            0.411782022346
           ],
           "highResolutionAverage": [
-            0.144511842581,
-            0.144511842581,
-            0.144511842581
+            0.145413716352,
+            0.145413716352,
+            0.145413716352
           ],
           "highResolutionError": 0
         },
@@ -2672,19 +2672,19 @@
           "frame": 1,
           "code": 0,
           "average": [
-            0.366969740979,
-            0.367202099901,
-            0.369109354573
+            0.366440978196,
+            0.366673052397,
+            0.368571745103
           ],
           "endpoint": [
-            0.147399434968,
-            0.14765975381,
-            0.149773068935
+            0.146762648483,
+            0.14702222258,
+            0.14912655197
           ],
           "highResolutionAverage": [
-            0.366969740979,
-            0.367202099901,
-            0.369109354573
+            0.366440978196,
+            0.366673052397,
+            0.368571745103
           ],
           "highResolutionError": 0
         },
@@ -2692,19 +2692,19 @@
           "frame": 2,
           "code": 31,
           "average": [
-            0.217330237588,
-            0.217620998591,
-            0.219953947225
+            0.217987902891,
+            0.218278227293,
+            0.22060693157
           ],
           "endpoint": [
-            0.44796414606,
-            0.448328345393,
-            0.451221916319
+            0.448928908836,
+            0.449292837558,
+            0.452183890025
           ],
           "highResolutionAverage": [
-            0.217330237588,
-            0.217620998591,
-            0.219953947225
+            0.217987902891,
+            0.218278227293,
+            0.22060693157
           ],
           "highResolutionError": 0
         },
@@ -2712,19 +2712,19 @@
           "frame": 3,
           "code": 0,
           "average": [
-            0.388436447755,
-            0.388920200346,
-            0.39237061249
+            0.387826912621,
+            0.388310772813,
+            0.391753293995
           ],
           "endpoint": [
-            0.154669614089,
-            0.155063986549,
-            0.157707882062
+            0.153994256093,
+            0.154387856068,
+            0.157022952886
           ],
           "highResolutionAverage": [
-            0.388436447755,
-            0.388920200346,
-            0.39237061249
+            0.387826912621,
+            0.388310772813,
+            0.391753293995
           ],
           "highResolutionError": 0
         },
@@ -2732,19 +2732,19 @@
           "frame": 4,
           "code": 31,
           "average": [
-            0.220887237329,
-            0.221235718294,
-            0.22390227725
+            0.221530939128,
+            0.221878456234,
+            0.22454089885
           ],
           "endpoint": [
-            0.449857306522,
-            0.45022312386,
-            0.453364472723
+            0.450816972287,
+            0.451182179156,
+            0.454321113779
           ],
           "highResolutionAverage": [
-            0.220887237329,
-            0.221235718294,
-            0.22390227725
+            0.221530939128,
+            0.221878456234,
+            0.22454089885
           ],
           "highResolutionError": 0
         },
@@ -2752,19 +2752,19 @@
           "frame": 5,
           "code": 0,
           "average": [
-            0.389527643154,
-            0.390013436651,
-            0.393604324408
+            0.388913776049,
+            0.389399453722,
+            0.392982383136
           ],
           "endpoint": [
-            0.15503895239,
-            0.155433449457,
-            0.158128663532
+            0.154361572165,
+            0.154755217345,
+            0.157441536251
           ],
           "highResolutionAverage": [
-            0.389527643154,
-            0.390013436651,
-            0.393604324408
+            0.388913776049,
+            0.389399453722,
+            0.392982383136
           ],
           "highResolutionError": 0
         },
@@ -2772,19 +2772,19 @@
           "frame": 6,
           "code": 31,
           "average": [
-            0.221067992701,
-            0.221415876181,
-            0.2241114366
+            0.221710940261,
+            0.222057807465,
+            0.224749218595
           ],
           "endpoint": [
-            0.449954376216,
-            0.450317465038,
-            0.453477875637
+            0.450913756667,
+            0.451276205907,
+            0.454434192292
           ],
           "highResolutionAverage": [
-            0.221067992701,
-            0.221415876181,
-            0.2241114366
+            0.221710940261,
+            0.222057807465,
+            0.224749218595
           ],
           "highResolutionError": 0
         },
@@ -2792,19 +2792,19 @@
           "frame": 7,
           "code": 0,
           "average": [
-            0.389583596219,
-            0.390067871473,
-            0.39366962612
+            0.388969493161,
+            0.389453636504,
+            0.393047415887
           ],
           "endpoint": [
-            0.155057891386,
-            0.155451846161,
-            0.158150935106
+            0.154380402788,
+            0.154773500889,
+            0.157463683207
           ],
           "highResolutionAverage": [
-            0.389583596219,
-            0.390067871473,
-            0.39366962612
+            0.388969493161,
+            0.389453636504,
+            0.393047415887
           ],
           "highResolutionError": 0
         },
@@ -2812,19 +2812,19 @@
           "frame": 8,
           "code": 31,
           "average": [
-            0.221077260956,
-            0.221424846276,
-            0.224122506596
+            0.221720167554,
+            0.222066733245,
+            0.224760240041
           ],
           "endpoint": [
-            0.449959353306,
-            0.450322162072,
-            0.453483877345
+            0.450918717899,
+            0.45128088511,
+            0.454440174601
           ],
           "highResolutionAverage": [
-            0.221077260956,
-            0.221424846276,
-            0.224122506596
+            0.221720167554,
+            0.222066733245,
+            0.224760240041
           ],
           "highResolutionError": 0
         },
@@ -2832,19 +2832,19 @@
           "frame": 9,
           "code": 0,
           "average": [
-            0.38958646513,
-            0.390070581666,
-            0.39367308214
+            0.388972349266,
+            0.389456332895,
+            0.39305085639
           ],
           "endpoint": [
-            0.155058862456,
-            0.155452762094,
-            0.158152113802
+            0.154381368063,
+            0.154774410765,
+            0.15746485487
           ],
           "highResolutionAverage": [
-            0.38958646513,
-            0.390070581666,
-            0.39367308214
+            0.388972349266,
+            0.389456332895,
+            0.39305085639
           ],
           "highResolutionError": 0
         },
@@ -2852,19 +2852,19 @@
           "frame": 10,
           "code": 31,
           "average": [
-            0.221077736171,
-            0.221425292877,
-            0.22412309246
+            0.221720640552,
+            0.222067177433,
+            0.224760823119
           ],
           "endpoint": [
-            0.449959608498,
-            0.450322395926,
-            0.453484194976
+            0.450918972215,
+            0.451281117969,
+            0.454440491087
           ],
           "highResolutionAverage": [
-            0.221077736171,
-            0.221425292877,
-            0.22412309246
+            0.221720640552,
+            0.222067177433,
+            0.224760823119
           ],
           "highResolutionError": 0
         },
@@ -2872,19 +2872,19 @@
           "frame": 11,
           "code": 0,
           "average": [
-            0.389586612228,
-            0.3900707166,
-            0.393673265044
+            0.388972495672,
+            0.389456467079,
+            0.393051038405
           ],
           "endpoint": [
-            0.155058912246,
-            0.155452807696,
-            0.158152176183
+            0.154381417544,
+            0.154774456045,
+            0.157464916856
           ],
           "highResolutionAverage": [
-            0.389586612228,
-            0.3900707166,
-            0.393673265044
+            0.388972495672,
+            0.389456467079,
+            0.393051038405
           ],
           "highResolutionError": 0
         }
@@ -2897,19 +2897,19 @@
           "frame": 0,
           "code": 31,
           "average": [
-            0.112895385591,
-            0.112895385591,
-            0.112895385591
+            0.113614424397,
+            0.113614424397,
+            0.113614424397
           ],
           "endpoint": [
-            0.327429738747,
-            0.327429738747,
-            0.327429738747
+            0.328333450098,
+            0.328333450098,
+            0.328333450098
           ],
           "highResolutionAverage": [
-            0.112895385591,
-            0.112895385591,
-            0.112895385591
+            0.113614424397,
+            0.113614424397,
+            0.113614424397
           ],
           "highResolutionError": 0
         },
@@ -2917,19 +2917,19 @@
           "frame": 1,
           "code": 0,
           "average": [
-            0.335707771997,
-            0.336085149146,
-            0.339544014107
+            0.335507545108,
+            0.335884849929,
+            0.339327949871
           ],
           "endpoint": [
-            0.204318310051,
-            0.204854541968,
-            0.209377549019
+            0.203819996373,
+            0.204355737917,
+            0.208861920734
           ],
           "highResolutionAverage": [
-            0.335707771997,
-            0.336085149146,
-            0.339544014107
+            0.335507545108,
+            0.335884849929,
+            0.339327949871
           ],
           "highResolutionError": 0
         },
@@ -2937,19 +2937,19 @@
           "frame": 2,
           "code": 31,
           "average": [
-            0.239770103421,
-            0.240459740056,
-            0.246074918617
+            0.240218159892,
+            0.240909510733,
+            0.246517056935
           ],
           "endpoint": [
-            0.403468026583,
-            0.404401034265,
-            0.411743959194
+            0.404221115744,
+            0.405155347132,
+            0.412494528933
           ],
           "highResolutionAverage": [
-            0.239770103421,
-            0.240459740056,
-            0.246074918617
+            0.240218159892,
+            0.240909510733,
+            0.246517056935
           ],
           "highResolutionError": 0
         },
@@ -2957,19 +2957,19 @@
           "frame": 3,
           "code": 0,
           "average": [
-            0.387035472987,
-            0.387993774725,
-            0.39569442941
+            0.38670034897,
+            0.387658728012,
+            0.395345248223
           ],
           "endpoint": [
-            0.231394284609,
-            0.232207068637,
-            0.238794353622
+            0.230807405599,
+            0.231619217964,
+            0.238191187961
           ],
           "highResolutionAverage": [
-            0.387035472987,
-            0.387993774725,
-            0.39569442941
+            0.38670034897,
+            0.387658728012,
+            0.395345248223
           ],
           "highResolutionError": 0
         },
@@ -2977,19 +2977,19 @@
           "frame": 4,
           "code": 31,
           "average": [
-            0.256398845361,
-            0.257335506678,
-            0.264537901885
+            0.256804590479,
+            0.257739102016,
+            0.264937613951
           ],
           "endpoint": [
-            0.413889882908,
-            0.415044529717,
-            0.423762691249
+            0.414621248967,
+            0.415774294197,
+            0.424491393717
           ],
           "highResolutionAverage": [
-            0.256398845361,
-            0.257335506678,
-            0.264537901885
+            0.256804590479,
+            0.257739102016,
+            0.264937613951
           ],
           "highResolutionError": 0
         },
@@ -2997,39 +2997,39 @@
           "frame": 5,
           "code": 0,
           "average": [
-            0.39413514514,
-            0.395244229858,
-            0.403757551566
+            0.393779877195,
+            0.394887089632,
+            0.403388718153
           ],
           "endpoint": [
-            0.235164566063,
-            0.236056536689,
-            0.243001990785
+            0.234564378606,
+            0.235454480751,
+            0.24238606482
           ],
           "highResolutionAverage": [
-            0.39413514514,
-            0.395244229858,
-            0.403757551566
+            0.393779877195,
+            0.394887089632,
+            0.403388718153
           ],
-          "highResolutionError": 1.33226762955e-15
+          "highResolutionError": 0
         },
         {
           "frame": 6,
           "code": 31,
           "average": [
-            0.258693281344,
-            0.259696170416,
-            0.267166196653
+            0.259092418524,
+            0.26009444801,
+            0.26755972435
           ],
           "endpoint": [
-            0.415315761586,
-            0.416533643659,
-            0.425469848215
+            0.41604365644,
+            0.41726113524,
+            0.426195368414
           ],
           "highResolutionAverage": [
-            0.258693281344,
-            0.259696170416,
-            0.267166196653
+            0.259092418524,
+            0.26009444801,
+            0.26755972435
           ],
           "highResolutionError": 0
         },
@@ -3037,19 +3037,19 @@
           "frame": 7,
           "code": 0,
           "average": [
-            0.39510677838,
-            0.396259089196,
-            0.404913314747
+            0.39474841073,
+            0.395899630434,
+            0.404543675878
           ],
           "endpoint": [
-            0.235680478882,
-            0.236595592813,
-            0.243616018701
+            0.235078287412,
+            0.235991930585,
+            0.242999629683
           ],
           "highResolutionAverage": [
-            0.39510677838,
-            0.396259089196,
-            0.404913314747
+            0.39474841073,
+            0.395899630434,
+            0.404543675878
           ],
           "highResolutionError": 0
         },
@@ -3057,19 +3057,19 @@
           "frame": 8,
           "code": 31,
           "average": [
-            0.25900711202,
-            0.260026148857,
-            0.267549560631
+            0.259405235036,
+            0.260423666402,
+            0.267943061758
           ],
           "endpoint": [
-            0.415510805219,
-            0.416741707708,
-            0.425718835853
+            0.41623815716,
+            0.417468819012,
+            0.426444461467
           ],
           "highResolutionAverage": [
-            0.25900711202,
-            0.260026148857,
-            0.267549560631
+            0.259405235036,
+            0.260423666402,
+            0.267943061758
           ],
           "highResolutionError": 0
         },
@@ -3077,39 +3077,39 @@
           "frame": 9,
           "code": 0,
           "average": [
-            0.395239691836,
-            0.396400894187,
-            0.405082208408
+            0.39488085374,
+            0.3960410687,
+            0.404712518594
           ],
           "endpoint": [
-            0.235751051277,
-            0.23667091261,
-            0.243705798028
+            0.235148561025,
+            0.236067003226,
+            0.243089321643
           ],
           "highResolutionAverage": [
-            0.395239691836,
-            0.396400894187,
-            0.405082208408
+            0.39488085374,
+            0.3960410687,
+            0.404712518594
           ],
-          "highResolutionError": 1.33226762955e-15
+          "highResolutionError": 0
         },
         {
           "frame": 10,
           "code": 31,
           "average": [
-            0.25905003888,
-            0.260072252411,
-            0.267605609727
+            0.259448008192,
+            0.260469649871,
+            0.267999094707
           ],
           "endpoint": [
-            0.41553748424,
-            0.416770777954,
-            0.425755238289
+            0.41626475261,
+            0.417497827373,
+            0.42648087136
           ],
           "highResolutionAverage": [
-            0.25905003888,
-            0.260072252411,
-            0.267605609727
+            0.259448008192,
+            0.260469649871,
+            0.267999094707
           ],
           "highResolutionError": 0
         },
@@ -3117,19 +3117,19 @@
           "frame": 11,
           "code": 0,
           "average": [
-            0.395257872488,
-            0.39642070697,
-            0.405106901111
+            0.394898963702,
+            0.396060824282,
+            0.404737198455
           ],
           "endpoint": [
-            0.235760704543,
-            0.236681436145,
-            0.243718923904
+            0.235158170057,
+            0.236077489063,
+            0.243102431879
           ],
           "highResolutionAverage": [
-            0.395257872488,
-            0.39642070697,
-            0.405106901111
+            0.394898963702,
+            0.396060824282,
+            0.404737198455
           ],
           "highResolutionError": 0
         }
@@ -3142,19 +3142,19 @@
           "frame": 0,
           "code": 31,
           "average": [
-            0.0712209785847,
-            0.0712209785847,
-            0.0712209785847
+            0.0716861247827,
+            0.0716861247827,
+            0.0716861247827
           ],
           "endpoint": [
-            0.211788809796,
-            0.211788809796,
-            0.211788809796
+            0.212424437313,
+            0.212424437313,
+            0.212424437313
           ],
           "highResolutionAverage": [
-            0.0712209785847,
-            0.0712209785847,
-            0.0712209785847
+            0.0716861247827,
+            0.0716861247827,
+            0.0716861247827
           ],
           "highResolutionError": 0
         },
@@ -3162,19 +3162,19 @@
           "frame": 1,
           "code": 0,
           "average": [
-            0.243738707862,
-            0.244199028047,
-            0.247918229798
+            0.243745778256,
+            0.244205699315,
+            0.24792110134
           ],
           "endpoint": [
-            0.189899935925,
-            0.190607199203,
-            0.196404055034
+            0.189653321569,
+            0.190359768995,
+            0.196149858388
           ],
           "highResolutionAverage": [
-            0.243738707862,
-            0.244199028047,
-            0.247918229798
+            0.243745778256,
+            0.244205699315,
+            0.24792110134
           ],
           "highResolutionError": 0
         },
@@ -3182,19 +3182,19 @@
           "frame": 2,
           "code": 31,
           "average": [
-            0.212090820495,
-            0.212998362426,
-            0.220108040388
+            0.212380187896,
+            0.213287647347,
+            0.22039909271
           ],
           "endpoint": [
-            0.312878853685,
-            0.31408612671,
-            0.323423883871
+            0.31338495109,
+            0.314592508638,
+            0.323934682512
           ],
           "highResolutionAverage": [
-            0.212090820495,
-            0.212998362426,
-            0.220108040388
+            0.212380187896,
+            0.213287647347,
+            0.22039909271
           ],
           "highResolutionError": 0
         },
@@ -3202,19 +3202,19 @@
           "frame": 3,
           "code": 0,
           "average": [
-            0.321154410083,
-            0.322508645652,
-            0.3334226103
+            0.321039886494,
+            0.322391206884,
+            0.333300379126
           ],
           "endpoint": [
-            0.242856694108,
-            0.244221598602,
-            0.254932418411
+            0.242512111214,
+            0.2438739512,
+            0.254574941845
           ],
           "highResolutionAverage": [
-            0.321154410083,
-            0.322508645652,
-            0.3334226103
+            0.321039886494,
+            0.322391206884,
+            0.333300379126
           ],
           "highResolutionError": 0
         },
@@ -3222,19 +3222,19 @@
           "frame": 4,
           "code": 31,
           "average": [
-            0.250985057134,
-            0.252501283273,
-            0.263803829949
+            0.251215297521,
+            0.252729966901,
+            0.264030584623
           ],
           "endpoint": [
-            0.341920416084,
-            0.343730290913,
-            0.356678893027
+            0.342387639821,
+            0.344196762347,
+            0.357146578093
           ],
           "highResolutionAverage": [
-            0.250985057134,
-            0.252501283273,
-            0.263803829949
+            0.251215297521,
+            0.252729966901,
+            0.264030584623
           ],
           "highResolutionError": 0
         },
@@ -3242,19 +3242,19 @@
           "frame": 5,
           "code": 0,
           "average": [
-            0.343830303035,
-            0.345611846578,
-            0.358965604556
+            0.343675303059,
+            0.345455429454,
+            0.358798951541
           ],
           "endpoint": [
-            0.258503197699,
-            0.260078360031,
-            0.272344356787
+            0.258125453217,
+            0.259698894547,
+            0.271950642331
           ],
           "highResolutionAverage": [
-            0.343830303035,
-            0.345611846578,
-            0.358965604556
+            0.343675303059,
+            0.345455429454,
+            0.358798951541
           ],
           "highResolutionError": 0
         },
@@ -3262,19 +3262,19 @@
           "frame": 6,
           "code": 31,
           "average": [
-            0.2624959568,
-            0.264130066753,
-            0.276794962994
+            0.262706134156,
+            0.264339299851,
+            0.276999739851
           ],
           "endpoint": [
-            0.350713482757,
-            0.352531391469,
-            0.366721431735
+            0.351167769343,
+            0.352985194159,
+            0.367174577143
           ],
           "highResolutionAverage": [
-            0.2624959568,
-            0.264130066753,
-            0.276794962994
+            0.262706134156,
+            0.264339299851,
+            0.276999739851
           ],
           "highResolutionError": 0
         },
@@ -3282,19 +3282,19 @@
           "frame": 7,
           "code": 0,
           "average": [
-            0.350692480054,
-            0.352495614312,
-            0.36672740549
+            0.350523571271,
+            0.352326084093,
+            0.366546467158
           ],
           "endpoint": [
-            0.263231219247,
-            0.264830791887,
-            0.277677140667
+            0.262842072389,
+            0.264440558069,
+            0.277272016537
           ],
           "highResolutionAverage": [
-            0.350692480054,
-            0.352495614312,
-            0.36672740549
+            0.350523571271,
+            0.352326084093,
+            0.366546467158
           ],
           "highResolutionError": 0
         },
@@ -3302,19 +3302,19 @@
           "frame": 8,
           "code": 31,
           "average": [
-            0.265978740226,
-            0.26764022927,
-            0.280767326846
+            0.266182123876,
+            0.267843092273,
+            0.280965291785
           ],
           "endpoint": [
-            0.353392141425,
-            0.355235322827,
-            0.369793758768
+            0.353841971073,
+            0.355684975867,
+            0.370242431828
           ],
           "highResolutionAverage": [
-            0.265978740226,
-            0.26764022927,
-            0.280767326846
+            0.266182123876,
+            0.267843092273,
+            0.280965291785
           ],
           "highResolutionError": 0
         },
@@ -3322,19 +3322,19 @@
           "frame": 9,
           "code": 0,
           "average": [
-            0.35278281586,
-            0.354611032553,
-            0.369105167601
+            0.35260947357,
+            0.354437263144,
+            0.368919815212
           ],
           "endpoint": [
-            0.264670818645,
-            0.266290703346,
-            0.279314228112
+            0.264278103177,
+            0.265897013744,
+            0.27890553722
           ],
           "highResolutionAverage": [
-            0.35278281586,
-            0.354611032553,
-            0.369105167601
+            0.35260947357,
+            0.354437263144,
+            0.368919815212
           ],
           "highResolutionError": 0
         },
@@ -3342,19 +3342,19 @@
           "frame": 10,
           "code": 31,
           "average": [
-            0.267038781446,
-            0.268718114656,
-            0.281986165403
+            0.26724003041,
+            0.268918916853,
+            0.282181998406
           ],
           "endpoint": [
-            0.3542076842,
-            0.356065874649,
-            0.370736593681
+            0.354656107633,
+            0.356514174643,
+            0.371183864758
           ],
           "highResolutionAverage": [
-            0.267038781446,
-            0.268718114656,
-            0.281986165403
+            0.26724003041,
+            0.268918916853,
+            0.282181998406
           ],
           "highResolutionError": 0
         },
@@ -3362,58 +3362,58 @@
           "frame": 11,
           "code": 0,
           "average": [
-            0.353419304503,
-            0.355260865558,
-            0.36983494586
+            0.353244572976,
+            0.355085731821,
+            0.369648214594
           ],
           "endpoint": [
-            0.265109120479,
-            0.266739122245,
-            0.279816591863
+            0.264715291142,
+            0.266344328041,
+            0.279406789294
           ],
           "highResolutionAverage": [
-            0.353419304503,
-            0.355260865558,
-            0.36983494586
+            0.353244572976,
+            0.355085731821,
+            0.369648214594
           ],
-          "highResolutionError": 0
+          "highResolutionError": 1.49880108324e-15
         }
       ]
     }
   ],
   "uncertaintyBounds": {
     "riseGreenAtRow80": {
-      "fast": 0.144511842581,
-      "nominal": 0.112895385591,
-      "slow": 0.0712209785847
+      "fast": 0.145413716352,
+      "nominal": 0.113614424397,
+      "slow": 0.0716861247827
     },
     "fallGreenAtRow80": {
-      "fast": 0.711940873426,
-      "nominal": 0.799675235992,
-      "slow": 0.867814675776
+      "fast": 0.710331140623,
+      "nominal": 0.798472918192,
+      "slow": 0.866983044063
     },
     "nominalRiseStaticBacklight": {
       "1": [
-        0.112895385591,
-        0.112895385591,
-        0.112895385591
+        0.113614424397,
+        0.113614424397,
+        0.113614424397
       ],
       "0.75": [
-        0.0846715391929,
-        0.0846715391929,
-        0.0846715391929
+        0.0852108182976,
+        0.0852108182976,
+        0.0852108182976
       ],
       "0.5": [
-        0.0564476927953,
-        0.0564476927953,
-        0.0564476927953
+        0.0568072121984,
+        0.0568072121984,
+        0.0568072121984
       ]
     },
     "pwmIncluded": false
   },
   "invariants": {
     "colorArtifactSha256UnchangedByExposure": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
-    "apertureValidationSha256UnchangedByExposure": "b413b4e96577c3adf613a15433484332e964369382b32e07b2efcfd9b8976154",
+    "apertureValidationSha256UnchangedByExposure": "985978314fd890774989860a6999c701d6bb9c5bb49a67e4ed19cd1efdbb7ba8",
     "ws6ApertureMaximumMeanError": 2.0650148258e-14,
     "endpointFeedbackSeparatedFromExposureOutput": true
   },

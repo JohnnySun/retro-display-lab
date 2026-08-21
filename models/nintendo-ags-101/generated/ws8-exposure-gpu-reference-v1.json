@@ -39,7 +39,7 @@
     "debugView": 13
   },
   "nativeFrameSeconds": 0.016742706298828125,
-  "opticalOnsetSeconds": 0.005911350250244141,
+  "opticalOnsetSeconds": 0.0058746337890625,
   "expectedByPackedTarget": {
     "8,8,8": {
       "targetRgb555": [
@@ -48,14 +48,14 @@
         8
       ],
       "average": [
-        0.22413350417128,
-        0.233735464826871,
-        0.304298350675253
+        0.223988897878783,
+        0.233584740647451,
+        0.304110860862329
       ],
       "endpoint": [
-        0.16128859595189,
-        0.168211988650155,
-        0.222423409479394
+        0.161032695866073,
+        0.167945151099286,
+        0.222089590493609
       ],
       "frameParity": 0
     },
@@ -66,21 +66,21 @@
         24
       ],
       "average": [
-        0.168564038715119,
-        0.175786930208635,
-        0.231770170016651
+        0.16870930053724,
+        0.175938421233336,
+        0.231959120988676
       ],
       "endpoint": [
-        0.230021315451952,
-        0.239867642270411,
-        0.311875052110275
+        0.230307832516703,
+        0.24016641332171,
+        0.31224798639845
       ],
       "frameParity": 1
     }
   },
   "convergence": {
     "iterations": 2048,
-    "maximumSuccessiveSameTargetAverageDrift": 5.828670879282072e-16
+    "maximumSuccessiveSameTargetAverageDrift": 4.718447854656915e-16
   },
   "gpuComparisonTolerance": 0.000003,
   "apertureEnergy": {
@@ -106,12 +106,12 @@
     "screenshotComparisonTolerance": 0.006
   },
   "sources": {
-    "basePresetSha256": "f16913621b4d287b799edea0b14be3dd5675d506ccc03ff75b5b8303c2131ead",
+    "basePresetSha256": "38e46895297dd2a843dbfaff18a004b1881acefe616a1e76b523bcc1491ceb35",
     "colorSha256": "101fb7cdcebcfd0d0d9142b5a3fee9a2355cd92c1d9aacab261feed4f091ed46",
-    "gtgManifestSha256": "a5cd5aae6bb582d59b45b2ff1302788e36f827046f10d40d5f279dd12ede975d",
+    "gtgManifestSha256": "78235fef3582412745d1fecc0cdf8a47bbd19098055a9bc416c671b159030db2",
     "stimulusManifestSha256": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747",
-    "responseShaderSha256": "b98b179aac5a51e2518b4ffe212727743d217f152430cc1204e05123ff3d0385",
-    "exposureShaderSha256": "59f84e73179878c80c10e41801263bddf46ae8adbbce7d4043223ebd1ce794f8",
-    "displayShaderSha256": "9f588f5b88d732e5389902fb4f639e18101d1b4291a6c5f25e71cabc8a2adb81"
+    "responseShaderSha256": "3a282af8a5bbc9b0b3a4424322cd6855aa344cb144e06ab392115a7dbda298a2",
+    "exposureShaderSha256": "47cea79a50f0980e8261112ae1338e772dc0c9f2b7f57cb35db121b01488e239",
+    "displayShaderSha256": "dd34b13812f368b5437d5a5ea1a1813208ad358a22b8ca09962139abd4c260a5"
   }
 }

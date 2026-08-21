@@ -51,10 +51,10 @@ layout(push_constant) uniform Push
 #pragma parameter SpatialCodeWeight "AGS code-dependent DC proxy weight" 0.500 0.000 1.000 0.025
 #pragma parameter PolarityDriveWeight "AGS polarity-dependent DC proxy weight" 0.250 0.000 1.000 0.025
 #pragma parameter DriveDcOffset "AGS project-prior normalized drive DC" 0.100 -0.250 0.250 0.005
-#pragma parameter LatchOffsetLines "AGS latch offset candidate (lines)" 0.5 0.0 1.0 0.05
+#pragma parameter LatchOffsetLines "AGS latch offset candidate (lines)" 0.0 0.0 1.0 0.05
 #pragma parameter OpticalDelaySeconds "AGS pure-delay candidate (s)" 0.000000 0.000000 0.016743 0.000050
 #pragma parameter ParityPhase "AGS polarity-phase hypothesis" 0.0 0.0 1.0 1.0
-#pragma parameter InversionTopology "AGS inversion hypothesis (frame/row/column/dot)" 0.0 0.0 3.0 1.0
+#pragma parameter InversionTopology "AGS inversion hypothesis (frame/row/column/dot)" 1.0 0.0 3.0 1.0
 
 layout(std140, set = 0, binding = 0) uniform UBO
 {

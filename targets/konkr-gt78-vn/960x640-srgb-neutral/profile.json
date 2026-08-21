@@ -54,7 +54,9 @@
     "validation/dmg01-ws5-common-mode-20260819.json"
   ],
   "lastFullNumericAgs101ValidationRecord": "validation/ags101-ws8-target-20260820.json",
-  "currentAgs101ValidationRecord": "validation/ags101-performance-20260821.json",
+  "lastPerformanceAgs101ValidationRecord": "validation/ags101-performance-20260821.json",
+  "currentAgs101ValidationRecord": "validation/ags101-timing-default-20260821.json",
+  "currentAgs101ValidationStatus": "pass-github-layout-deployment-presentation-and-frame-pacing-no-full-numeric-rerun",
   "compensation": {
     "ScreenBrightness": 0.68,
     "ScreenChroma": 0.90

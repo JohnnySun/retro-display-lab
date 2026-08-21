@@ -257,7 +257,7 @@ for (const member of ensemble.members) {
     ]) {
       const from = id === "partial-red" ? [fromCode, 15, 15] : [fromCode, fromCode, fromCode];
       const to = id === "partial-red" ? [toCode, 15, 15] : [toCode, toCode, toCode];
-      const event = scanEvent({ row, latchOffsetLines: 0.5, opticalDelaySeconds: 0 });
+      const event = scanEvent({ row, latchOffsetLines: 0, opticalDelaySeconds: 0 });
       const result = integrateScannedExposure({
         initialPanel: from.map((code, channel) => color.eotfRgb555Runtime[code][channel]),
         oldTargetRgb555: from,
@@ -301,7 +301,7 @@ for (const member of ensemble.members) {
   for (let frame = 0; frame < 12; frame += 1) {
     const code = frame % 2 === 0 ? 31 : 0;
     const current = [code, code, code];
-    const event = scanEvent({ row: 80, latchOffsetLines: 0.5, opticalDelaySeconds: 0 });
+    const event = scanEvent({ row: 80, latchOffsetLines: 0, opticalDelaySeconds: 0 });
     const result = integrateScannedExposure({
       initialPanel: panel,
       oldTargetRgb555: previous,

@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "runId": "konkr-gt78-vn-ags101-timing-default-current-20260821",
+  "classification": "current-github-layout-deployment-presentation-and-frame-pacing-receipt-not-full-numeric-readback",
+  "date": "2026-08-21",
+  "capturedAtUtc": "2026-08-21T07:59:05Z",
+  "modelId": "nintendo-ags-101-period-reconstruction",
+  "targetProfile": "konkr-gt78-vn-960x640-srgb-neutral",
+  "repositoryCommit": "24b25db69f471c0f6252f0f34b313c5e2e578dd0",
+  "repositoryState": "HEAD identifies the base commit; artifact SHA-256 values pin the uncommitted line-start/row-alternating working-tree bytes deployed before the requested commit.",
+  "device": {
+    "serial": "BW0306N250002377",
+    "manufacturer": "ARBOR",
+    "model": "GT78-VN",
+    "androidRelease": "12",
+    "buildFingerprint": "ARBOR/GT78-VN/GT78-VN:11/RP1A.200720.011/mp1V95182:user/release-keys",
+    "display": "960x640 fixed 60 Hz",
+    "gpu": "Mali-G76 MC4"
+  },
+  "frontend": {
+    "name": "RetroArch",
+    "version": "1.22.2",
+    "core": "mGBA at /data/data/com.retroarch/cores/mgba_libretro_android.so",
+    "videoDriver": "Vulkan",
+    "source": "240x160",
+    "target": "960x640"
+  },
+  "deployment": {
+    "method": "README.md and docs/installation.md GitHub-layout install updated over ADB",
+    "shaderRoot": "/sdcard/RetroArch/shaders/retro-display-lab",
+    "trackedFilesPushed": 316,
+    "bytesPushed": 13572411,
+    "mGbaContentDirectoryOverride": "/sdcard/RetroArch/config/mGBA/gba.slangp",
+    "mGbaCoreOverride": "/sdcard/RetroArch/config/mGBA/mGBA.cfg",
+    "mGbaContentOverride": "/sdcard/RetroArch/config/mGBA/GBA.cfg",
+    "runtimeSettings": {
+      "video_driver": "vulkan",
+      "video_shader_subframes": 1,
+      "video_scale_integer": true,
+      "rewind_enable": false,
+      "run_ahead_enabled": false,
+      "fastforward_ratio": 1
+    },
+    "testContent": "/sdcard/RetroArch/downloads/gba/RDL-AGS101-Color-Ramps.gba",
+    "contentDirectoryOverrideActivatedBy": "content directory named gba",
+    "predeploymentBackup": "/sdcard/RetroArch/shaders/.codex-validation/20260821-ags101-timing-default-predeploy"
+  },
+  "selectedReconstruction": {
+    "LatchOffsetLines": 0,
+    "OpticalDelaySeconds": 0,
+    "ParityPhase": 0,
+    "InversionTopology": 1,
+    "description": "family-constrained line-start latch and row-alternating plus frame reversal; not a formal exact-panel constant"
+  },
+  "artifacts": {
+    "repositoryAndDeviceHashesMatched": true,
+    "files": [
+      {
+        "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp",
+        "devicePath": "/sdcard/RetroArch/shaders/retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp",
+        "sha256": "99820133b908377ab13dc63fae538991187f9fdc533e349fe1a024d1049db6b4"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-response-v1.slang",
+        "devicePath": "/sdcard/RetroArch/shaders/retro-display-lab/models/nintendo-ags-101/shaders/ags101-response-v1.slang",
+        "sha256": "3a282af8a5bbc9b0b3a4424322cd6855aa344cb144e06ab392115a7dbda298a2"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-exposure-v1.slang",
+        "devicePath": "/sdcard/RetroArch/shaders/retro-display-lab/models/nintendo-ags-101/shaders/ags101-exposure-v1.slang",
+        "sha256": "47cea79a50f0980e8261112ae1338e772dc0c9f2b7f57cb35db121b01488e239"
+      },
+      {
+        "path": "models/nintendo-ags-101/shaders/ags101-display-v1.slang",
+        "devicePath": "/sdcard/RetroArch/shaders/retro-display-lab/models/nintendo-ags-101/shaders/ags101-display-v1.slang",
+        "sha256": "dd34b13812f368b5437d5a5ea1a1813208ad358a22b8ca09962139abd4c260a5"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png",
+        "devicePath": "/sdcard/RetroArch/shaders/retro-display-lab/models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png",
+        "sha256": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e"
+      },
+      {
+        "path": "integrations/retroarch/overrides/mgba-gba.slangp",
+        "devicePath": "/sdcard/RetroArch/config/mGBA/gba.slangp",
+        "sha256": "c22fd9e1832bc077d6708a5387d62239cb86f37cf46cb8c9688c3cdfa492b418"
+      },
+      {
+        "path": "models/nintendo-ags-101/generated/ws2-stimulus-v1/color-ramps.gba",
+        "devicePath": "/sdcard/RetroArch/downloads/gba/RDL-AGS101-Color-Ramps.gba",
+        "sha256": "4467ce9c81160e6d1bc8b2c10d5df79206d2baf338734d6f148f538035f61c13"
+      }
+    ],
+    "deviceConfigHashes": {
+      "/sdcard/RetroArch/config/mGBA/mGBA.cfg": "1fd6be58d7b2fdba6e8bca8074b05d9fcbcabd19979b47a8230a0e695a6ac527",
+      "/sdcard/RetroArch/config/mGBA/GBA.cfg": "1fd6be58d7b2fdba6e8bca8074b05d9fcbcabd19979b47a8230a0e695a6ac527"
+    }
+  },
+  "presentation": {
+    "processStarted": true,
+    "surface": "com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture#0",
+    "screenshot": {
+      "devicePath": "/sdcard/RetroArch/downloads/ags101-timing-default-deploy.png",
+      "committed": false,
+      "sha256": "da14fb209aa8f735cdadf471a3e1234b246ac5a877ef5418472b509aac503f45",
+      "width": 960,
+      "height": 640,
+      "format": "8-bit RGBA PNG",
+      "visualInspection": "The generated RGB ramps render through the target aperture/color path without black output, colored-block corruption, flashing, or fallback presentation."
+    },
+    "compileBoundary": "Successful 960x640 presentation establishes that the referenced three-pass preset, shaders, include files, and LUT loaded on the target. Verbose Vulkan compile logging was not enabled for this normal installed-route run."
+  },
+  "framePacing": {
+    "method": "SurfaceFlinger presentation timestamps from the active RetroArch layer",
+    "refreshPeriodNanoseconds": 16666667,
+    "frames": 127,
+    "intervals": 126,
+    "averageFps": 60.06509030737703,
+    "p50Milliseconds": 16.652616,
+    "p95Milliseconds": 16.945538,
+    "maximumMilliseconds": 22.849923,
+    "intervalsOver25Milliseconds": 0,
+    "pass": true
+  },
+  "acceptance": {
+    "githubLayoutDeployment": "pass",
+    "deviceHashesMatchRepository": true,
+    "contentDirectoryOverride": "pass",
+    "normalPresentation": "pass",
+    "fixed60HzFramePacing": "pass",
+    "fullDebugView12To14NumericReadbackRerun": false,
+    "lastFullNumericReceipt": "validation/ags101-ws8-target-20260820.json",
+    "currentArtifactReceipt": "pass-with-explicit-numeric-readback-boundary"
+  },
+  "restoration": {
+    "previousInstallRecoverable": true,
+    "backupPath": "/sdcard/RetroArch/shaders/.codex-validation/20260821-ags101-timing-default-predeploy",
+    "globalRetroArchConfigurationModified": false,
+    "deviceLeftRunning": "/sdcard/RetroArch/downloads/gba/RDL-AGS101-Color-Ramps.gba through the installed mGBA content-directory override"
+  },
+  "limits": [
+    "This is target implementation, installation, presentation, and pacing evidence, not AGS-101 panel metrology.",
+    "The run does not replace the 2026-08-20 DebugView 12-14 numeric receipt; no current full GPU numeric readback is claimed.",
+    "The screenshot is downstream of the Android compositor and KONKR panel path and is not a floating-point framebuffer capture."
+  ]
+}

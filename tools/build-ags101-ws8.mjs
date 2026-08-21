@@ -180,7 +180,7 @@ function packedRate(fromCode, toCode, channel) {
 }
 
 const frameSeconds = 1_232 * 228 / 16_777_216;
-const event = scanEvent({ row: 80, latchOffsetLines: 0.5, opticalDelaySeconds: 0 });
+const event = scanEvent({ row: 80, latchOffsetLines: 0, opticalDelaySeconds: 0 });
 let panel = [...color.eotfRgb555Runtime[alternatingCodes[0]]];
 let previous = [alternatingCodes[0], alternatingCodes[0], alternatingCodes[0]];
 const lastByTarget = {};

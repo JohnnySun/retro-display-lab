@@ -3,7 +3,7 @@
   "manifestId": "nintendo-ags-101-ws5-presets-v1",
   "generatedBy": "tools/build-ags101-ws5.mjs",
   "classification": "literature-mechanism-constrained-normalized-reconstruction-not-panel-measurement",
-  "default": "ags101-ws5-nominal-frame-global-v1.slangp",
+  "default": "ags101-ws5-nominal-row-alternating-v1.slangp",
   "candidateCount": 12,
   "controlCount": 3,
   "parityPhasesCoveredByFixtureReceipt": [
@@ -15,90 +15,90 @@
       "member": "fast",
       "topology": "frame-global",
       "file": "ags101-ws5-fast-frame-global-v1.slangp",
-      "sha256": "9ebfadd01d746933b7d26514cfcc06fc075c5313716e1182cf4bfbaa6374d7aa"
+      "sha256": "975a00712daf4a62cbf3bdbbcfe47da841099dda016523c5d192a7cec40b1138"
     },
     {
       "member": "fast",
       "topology": "row-alternating",
       "file": "ags101-ws5-fast-row-alternating-v1.slangp",
-      "sha256": "01826d1ab2067b61685a252fb1df04eb2f5fc3ce1bb8f01d1d77bf0c18c2af1a"
+      "sha256": "4885fceff5350ded4d3409fa5739500c67e3cfa4bcc0b9a5f1c26e6a3f375924"
     },
     {
       "member": "fast",
       "topology": "column-alternating",
       "file": "ags101-ws5-fast-column-alternating-v1.slangp",
-      "sha256": "4eec8ade320fdb1f697ce968822e36007175159c284fe7655d7643464dec547d"
+      "sha256": "7142e0edf1859f5c1a4a4679a4a193d4f4023dcfb0e6ee74a79fb03e6e539bec"
     },
     {
       "member": "fast",
       "topology": "dot-checkerboard",
       "file": "ags101-ws5-fast-dot-checkerboard-v1.slangp",
-      "sha256": "7993b73fdda7709448919946399e8da834a55a980de54830e3676cc6fc275c7b"
+      "sha256": "fc5e4de231c9a87f291446a551bf0faab4c81207f7f5710b4005baa646c365f3"
     },
     {
       "member": "nominal",
       "topology": "frame-global",
       "file": "ags101-ws5-nominal-frame-global-v1.slangp",
-      "sha256": "bdcac50ff77ee95e317e49e43a80b2b84cf087febed2b1abeaf52a67c426e865"
+      "sha256": "73a2227f00e19040a41525085f5759d88e95fca05fa927ed5d482d614e7cb8a2"
     },
     {
       "member": "nominal",
       "topology": "row-alternating",
       "file": "ags101-ws5-nominal-row-alternating-v1.slangp",
-      "sha256": "a33478043da6a0d4926d930e6ae9c2b0fd1e7b26937d2fd8a8aedf1010f8d556"
+      "sha256": "372a4f1bf281e466b1effdbc0d151076f2071d1d0b345d590e8fcd72a4a8e164"
     },
     {
       "member": "nominal",
       "topology": "column-alternating",
       "file": "ags101-ws5-nominal-column-alternating-v1.slangp",
-      "sha256": "92e763df5c9b4e6141c5f137300be20de22c1b78efa83259fe33e63d960e10ea"
+      "sha256": "216438ee140be89514ef61c0a8037f79bb827d15e78561fc40555631285d9d14"
     },
     {
       "member": "nominal",
       "topology": "dot-checkerboard",
       "file": "ags101-ws5-nominal-dot-checkerboard-v1.slangp",
-      "sha256": "4e49df036a13397f45b3769a42e6fb831d493fa5adcddd4ba57f8a8734327f7e"
+      "sha256": "ce0e4e79e91edbb9a38fb0038cdc2d0025c88c9f2ebc5edfb8b645a4f16dd9f3"
     },
     {
       "member": "slow",
       "topology": "frame-global",
       "file": "ags101-ws5-slow-frame-global-v1.slangp",
-      "sha256": "4c5e16294d331674b888bd47157c394ed08b36011c7e5c260ff18cf7f90213f2"
+      "sha256": "45f8eca5ff9e84906b6c7227f7a5b1cd06bd83e66738702988249ef57067ea79"
     },
     {
       "member": "slow",
       "topology": "row-alternating",
       "file": "ags101-ws5-slow-row-alternating-v1.slangp",
-      "sha256": "d8770155d9e8a37ae5986e2b3988561bd81698e584dc2edb1f0aa9072cb8f60b"
+      "sha256": "0894dbf9a08ba4be036d05cfee94269cb841a06ac28ae28413e7cb0fe13fec10"
     },
     {
       "member": "slow",
       "topology": "column-alternating",
       "file": "ags101-ws5-slow-column-alternating-v1.slangp",
-      "sha256": "0dcd40171cf1765dbd58620bc727d695e33919c2695cccab36cb472f333f0bb4"
+      "sha256": "26c905a81d2d21cdd55f3709ea4a33d2fc211046e0f4208d0fcced03815521b3"
     },
     {
       "member": "slow",
       "topology": "dot-checkerboard",
       "file": "ags101-ws5-slow-dot-checkerboard-v1.slangp",
-      "sha256": "ffd7b4ace561d206593f176be5db2802822c35196a9f16ff01dca3cd24d7d8a6"
+      "sha256": "93ff4f72f38957fa62870479827a3867a6eb82da2afde379e6e39e33a74acdc8"
     },
     {
       "control": "spatial-off",
       "file": "ags101-ws5-spatial-off-v1.slangp",
-      "sha256": "27e2c2ca396dfe1990f48eb81da3db5d816a4a9188ea3bda1668333172c31843"
+      "sha256": "98d9066ba913d20a7c3145eeb13f030aee76613650a8eb69832b04b0d7db63f1"
     },
     {
       "control": "balanced",
       "file": "ags101-ws5-balanced-v1.slangp",
-      "sha256": "b4ede93837e2b2a0d9d71cb4b3102ed6d340626bea3dec52df022cff6a7c2466"
+      "sha256": "5a5a13d8352d21db0d17f5a2af9ff7de0afcda95f91f9ceb78c068126bfa41c8"
     },
     {
       "control": "numeric",
       "file": "ags101-ws5-numeric-v1.slangp",
-      "sha256": "55b7f3e429c067d06df159c967add39be709dc672f5d80a56851bedf253ca375"
+      "sha256": "91d5c6558cf9849b888bb88e01da131610cd510be167e2af16891e1f720f6424"
     }
   ],
   "validationReceipt": "../ws5-retention-validation-v1.json",
-  "validationReceiptSha256": "c8689fcd02705effe71b29fb8b563754f479acb904193a92a06ce369dc791249"
+  "validationReceiptSha256": "00454284d1aadec73b84bb4f9c85dfcf96a92cd7cc12bfa759956e2c6414ecba"
 }

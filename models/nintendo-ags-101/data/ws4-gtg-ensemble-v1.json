@@ -5,6 +5,7 @@
   "evidenceInventory": "data/ws4-evidence-inventory-v1.json",
   "exactPanel": {
     "label": "LQ029B1DC01F",
+    "documentedArtifactYear": 2005,
     "datasheetStatus": "not-found",
     "waveformStatus": "not-measured"
   },
@@ -75,13 +76,13 @@
     },
     {
       "id": "slow",
-      "role": "near-size family specification maximum endpoint",
+      "role": "near-size family specification maximum endpoint and plausible slower-earlier-panel sensitivity bound",
       "opticalDarkeningEndpointT10To90Ms": 50,
       "opticalBrighteningEndpointT10To90Ms": 100,
       "nearTransitionPenalty": 0.4,
       "midGrayPenalty": 0.3,
       "endpointEvidenceIds": ["WS4-SHARP-LQ030B1DC-FAMILY-2008"],
-      "endpointSelection": "2008 near-size Sharp maximum white-to-black and black-to-white values"
+      "endpointSelection": "2008 near-size Sharp maximum white-to-black and black-to-white values; also bounds, but does not predict, a possibly slower 2005 custom LQ029 panel"
     }
   ],
   "defaultMember": "nominal",

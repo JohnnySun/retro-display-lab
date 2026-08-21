@@ -1,10 +1,13 @@
 # AGS-101 diagnostics and frontend validation contract
 
-Status: the 2026-08-20 WS8 KONKR record is the last full GPU
-exposure/retention, aperture-energy, compile, restoration, and frontend-safety
-numeric run. The 2026-08-21 performance record pins the current optimized
-three-pass Shader bytes, normal rendering, and moving-frame pacing. It does not
-claim that DebugView 12–14 were rerun after the performance-only transformations.
+Status: the promoted line-start/row-alternating reconstruction was deployed on
+the KONKR through the documented repository layout on 2026-08-21. The current
+receipt pins repository/device hashes, normal three-pass presentation, the mGBA
+content-directory override, and 126 SurfaceFlinger intervals at 60.065 fps with
+no interval above 25 ms. The 2026-08-20 WS8 record remains the last full GPU
+exposure/retention and aperture-energy numeric run; the current deployment did
+not repeat DebugView 12–14 readback and is not presented as a replacement for
+that numeric evidence.
 
 ## One diagnostic interface
 

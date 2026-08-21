@@ -393,13 +393,33 @@ original DMG behavior belongs to the
   GtG/frame-global/even-positive candidate; the repository equation receipt
   covers the full WS3/WS4 sensitivity matrix.
 
-## TARGET-KPA-VALIDATION-01 — Historical diagnostics and frontend lifecycle run
+## TARGET-KPA-VALIDATION-01 — Current deployment and historical diagnostics
 
-- Source: direct device run on 2026-08-18, recorded in
+- Current source: direct device deployment on 2026-08-21, recorded in
+  [`validation/ags101-timing-default-20260821.json`](validation/ags101-timing-default-20260821.json).
+  A clean 316-file tracked repository tree was installed at the documented
+  `/sdcard/RetroArch/shaders/retro-display-lab` root, and the mGBA `gba`
+  content-directory override selected the KONKR target preset.
+- Current integrity and presentation: the deployed target preset, three
+  shaders, nominal GtG LUT, override, and deterministic ramp ROM matched the
+  repository SHA-256 values. The promoted `LatchOffsetLines=0` and
+  `InversionTopology=1` path rendered at 960×640 without black output,
+  colored-block corruption, flashing, or fallback presentation.
+- Current pacing: 126 SurfaceFlinger presentation intervals averaged
+  `60.065 fps`; p95 was `16.946 ms`, maximum was `22.850 ms`, and no interval
+  exceeded 25 ms. Rewind and run-ahead remained disabled, Shader subframes
+  stayed at one, and fast-forward remained 1×.
+- Current boundary: this normal installed-route run did not enable verbose
+  Vulkan compile logs or repeat DebugView 12–14 numeric readback. It is current
+  deployment/presentation/pacing evidence; the 2026-08-20 WS8 receipt remains
+  the last full numeric GPU record. The previous install and mGBA configuration
+  remain recoverable in the timestamped on-device backup named by the receipt.
+- Historical source: direct device run on 2026-08-18, recorded in
   [`validation/ags101-ws5-20260818.json`](validation/ags101-ws5-20260818.json),
   using RetroArch 1.22.2 Git `a609b709eb`, Vulkan on Mali-G76 MC4,
   `video_shader_subframes=1`, exact 4x integer scaling, and the fixed 60 Hz
   target mode.
+
 - Deployment integrity: the device and repository matched exactly for the
   response shader (`dac4427f6fc34f4a96be8b8e407162d81ac97a7ad0cffda9eee37d63bacfe8c3`),
   display shader (`edaf42962e8f354fdd4cff1dce747537f8804c57f620052e4535da1b7c251ce2`),

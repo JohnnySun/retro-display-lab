@@ -23,9 +23,10 @@ The main `period-reconstruction-v1` preset includes the N=1 three-event model. I
 derives row start from the exact GBA clock and
 line cycle count, places an explicit electrical latch within that line, and
 changes the optical GtG target only after a separate optical delay. WS3 now
-classifies the active line-center/zero-delay behavior as a legacy sensitivity
-candidate rather than a formal AGS-101 constant; `scanout-line-start-v1` and
-`scanout-line-end-v1` provide the two within-line diagnostic bounds. Optical
+uses line-start/zero-delay as the best available family-constrained
+reconstruction default. Line-center remains a legacy sensitivity candidate,
+not a formal AGS-101 constant; `scanout-line-start-v1` and
+`scanout-line-end-v1` retain the within-line diagnostic endpoints. Optical
 events that cross a frame boundary use
 `OriginalHistory2 -> OriginalHistory1` in the following frame and never sample
 a future input. Static rows take the original one-segment path, and setting
@@ -37,8 +38,9 @@ one bypass temporal state; N=2/4 remains unsupported.
 WS3 generates nine timing, two parity-phase, and four inversion-topology
 sensitivity presets under `generated/ws3-presets-v1`. `ParityPhase` and
 `InversionTopology` implement the even/odd and frame/row/column/dot candidate
-sets; the normal preset retains the historical even-positive/frame-global pair
-only as a named legacy candidate. Debug views 6–10 isolate row start, latch,
+sets; the normal preset retains even-positive phase but now uses the
+Sharp-family-constrained row-alternating plus frame-reversal topology.
+Frame-global remains a named legacy sensitivity control. Debug views 6–10 isolate row start, latch,
 optical onset, parity, and inversion without entering the persistent response
 pass. The generated sensitivity and Shader compile receipts do not select an
 authentic AGS-101 topology.
@@ -51,6 +53,13 @@ white→black / 60 ms black→white endpoint member. It has zero measured AGS-10
 cells, and channel, brightness, temperature, overshoot, and true GtG-distance
 magnitude remain explicit unsupported dimensions. The legacy analytic path is
 retained only as a missing-corner fallback.
+
+The documented 2005 `LQ029B1DC01F` specimen predates the recovered 2007/2008
+`LQ030B1DC` specification. That makes slower LQ029 response a reasonable
+period/family sensitivity hypothesis, but diagonal size or model age alone
+does not prove worse response. The existing 50/100 ms slow member covers that
+hypothesis without promoting it to the normal or exact-panel value; brightness,
+view angle, color, and backlight behavior are not downgraded by analogy.
 
 `gtg-synthetic-table-v1` still exercises the full table path using a synthetic
 3×32×32 dataset, but it now explicitly binds that test texture and is never the
@@ -70,6 +79,14 @@ The generated WS4 comparison receipt uses the same four deterministic WS2 GtG
 scenes for all ensemble members. CPU double-precision and Shader-equation
 float32 traces are bounded in the repository receipt; an actual target GPU
 numeric readback has not been claimed.
+
+The repository-level promoted timing path passes regenerated numeric and
+six-stage Shader/SPIR-V checks. A 2026-08-21 KONKR run deployed those exact
+line-start/row-alternating bytes through the documented GitHub layout and
+validated normal presentation plus fixed-60-Hz frame pacing. It is the current
+deployment receipt, while the 2026-08-20 WS8 run remains the last full
+DebugView 12–14 GPU numeric readback; those two evidence scopes are kept
+separate.
 
 WS5 extended the then-two-pass runtime's one per-pixel
 residual-DC state with a raw RGB555-command and WS3 polarity/topology excitation

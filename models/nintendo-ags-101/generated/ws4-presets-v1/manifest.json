@@ -13,11 +13,11 @@
       },
       "manifest": {
         "file": "../ws4-gtg-fast-v1.json",
-        "sha256": "491734a6593393b77b370b76f32ced64e0a5783274f6ac167cfc17f62d1f7fb7"
+        "sha256": "5d7d1969f308ba8a973f0885e6cf0d27b99be0898f993789072b20889bbb150f"
       },
       "preset": {
         "file": "ags101-ws4-fast-v1.slangp",
-        "sha256": "d44be2ce6432ada1a25567fa5e52d69d5c9750b3d3486c543c6c14225ab3ba32"
+        "sha256": "c2733266478d9e5e3776136abb5a3c899eae6b6eb361fc569e6079b8f0394893"
       },
       "endpointRatesPerSecond": {
         "opticalDarkening": 122.0680321,
@@ -39,11 +39,11 @@
       },
       "manifest": {
         "file": "../ws4-gtg-nominal-v1.json",
-        "sha256": "a5cd5aae6bb582d59b45b2ff1302788e36f827046f10d40d5f279dd12ede975d"
+        "sha256": "78235fef3582412745d1fecc0cdf8a47bbd19098055a9bc416c671b159030db2"
       },
       "preset": {
         "file": "ags101-ws4-nominal-v1.slangp",
-        "sha256": "b6f21a8c933569402ea539304fb524362903dfc3db6f6733ea68a8363b77a8cb"
+        "sha256": "3aaf9aaac872934d8ed558705e19c93e71e02eb394f03f7a7ec2b5b3900b4426"
       },
       "endpointRatesPerSecond": {
         "opticalDarkening": 73.24081924,
@@ -65,11 +65,11 @@
       },
       "manifest": {
         "file": "../ws4-gtg-slow-v1.json",
-        "sha256": "61f3ca1704b543755c2f52263d23594b2e1000f6a2e061c937429d6368c2a3a2"
+        "sha256": "c9b05bd3f1d1674da07954cf3fe988d172c15a1aaf7d2ce78e2b82c24e1ee728"
       },
       "preset": {
         "file": "ags101-ws4-slow-v1.slangp",
-        "sha256": "ad49f5115f543f8b1b22fc840e7fa82e24a38ea02e106a48eaca1d0f68bff884"
+        "sha256": "52e2af0019730a6be4929850c734a8f916f569d7d74f6f94a34a6fc1a5dd0dec"
       },
       "endpointRatesPerSecond": {
         "opticalDarkening": 43.94449155,

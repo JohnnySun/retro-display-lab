@@ -373,12 +373,24 @@ const presetManifest = {
   sourceConstraintSha256: constraintHash,
   basePreset: path.relative(root, basePresetPath),
   basePresetSha256: sha256(Buffer.from(basePreset)),
+  reconstructionDefault: constraints.value.periodReconstructionDefaults,
   presets: generatedPresets,
 };
 const presetManifestBuffer = jsonBuffer(presetManifest);
 writeOrCheck(presetManifestPath, presetManifestBuffer);
 
-const baselineTiming = { latchOffsetLines: 0.5, opticalDelaySeconds: 0 };
+const defaultLatch = latchCandidates.find(
+  (candidate) => candidate.id === constraints.value.candidateSets.sourceLatchPhase.reconstructionDefault,
+);
+const defaultTopology = topologyCandidates.find(
+  (candidate) => candidate.id === constraints.value.candidateSets.inversionTopology.reconstructionDefault,
+);
+assert(defaultLatch, "source-latch reconstruction default is missing from candidates");
+assert(defaultTopology, "inversion reconstruction default is missing from candidates");
+const baselineTiming = {
+  latchOffsetLines: defaultLatch.value,
+  opticalDelaySeconds: constraints.value.periodReconstructionDefaults.pureOpticalDelaySeconds,
+};
 const riseRatePerSecond = -Math.log(1 - 0.62) / GBA_FRAME_SECONDS;
 const transitionResponse = (event) => 1 - Math.exp(
   -riseRatePerSecond * (GBA_FRAME_SECONDS - event.opticalTimeInFrame),
@@ -413,7 +425,7 @@ const timingSensitivity = timingProfiles.map((profile) => {
       Math.min(...samples.map((entry) => entry.blackToWhiteFrameEnd)),
       Math.max(...samples.map((entry) => entry.blackToWhiteFrameEnd)),
     ],
-    maximumOutputDifferenceFromLegacyCandidate: Math.max(...outputDifferences),
+    maximumOutputDifferenceFromReconstructionDefault: Math.max(...outputDifferences),
     changesModeledVisibleOutput: Math.max(...outputDifferences) > 1e-12,
   };
 });
@@ -423,7 +435,7 @@ for (const parity of parityCandidates) {
   for (const topology of topologyCandidates) {
     for (const frameCount of [0, 1]) {
       let positivePixels = 0;
-      let differsFromLegacy = 0;
+      let differsFromReconstructionDefault = 0;
       for (let y = 0; y < 160; y += 1) {
         for (let x = 0; x < 240; x += 1) {
           const polarity = drivePolarity({
@@ -433,11 +445,15 @@ for (const parity of parityCandidates) {
             parityPhase: parity.shaderValue,
             inversionTopology: topology.shaderValue,
           });
-          const legacy = drivePolarity({
-            frameCount, x, y, parityPhase: 0, inversionTopology: 0,
+          const reconstructionDefault = drivePolarity({
+            frameCount,
+            x,
+            y,
+            parityPhase: 0,
+            inversionTopology: defaultTopology.shaderValue,
           });
           if (polarity > 0) positivePixels += 1;
-          if (polarity !== legacy) differsFromLegacy += 1;
+          if (polarity !== reconstructionDefault) differsFromReconstructionDefault += 1;
         }
       }
       polaritySensitivity.push({
@@ -446,9 +462,9 @@ for (const parity of parityCandidates) {
         frameCount,
         positivePixels,
         negativePixels: 240 * 160 - positivePixels,
-        pixelsDifferentFromLegacyCandidate: differsFromLegacy,
+        pixelsDifferentFromReconstructionDefault: differsFromReconstructionDefault,
         normalizedEffectiveCodeExcursionAtProjectPrior: 0.15 * 0.1,
-        changesElectricalExcitation: differsFromLegacy > 0,
+        changesElectricalExcitation: differsFromReconstructionDefault > 0,
       });
     }
   }
@@ -492,6 +508,7 @@ const sensitivity = {
     stimulus: "unit black-to-white transition at the candidate optical event in its causal integration frame",
     riseFrameAlpha: 0.62,
     riseRatePerSecond,
+    reconstructionDefault: constraints.value.periodReconstructionDefaults,
     limitation: "This is a model-output sensitivity calculation, not an AGS-101 GtG measurement or GPU readback.",
   },
   timingProfiles: timingSensitivity,
@@ -503,6 +520,7 @@ const sensitivity = {
     polarityRuns: polaritySensitivity.length,
     polarityRunsChangingExcitation: polaritySensitivity.filter((entry) => entry.changesElectricalExcitation).length,
     equationVectors: equationVectors.length,
+    reconstructionDefaultApplied: true,
     formalAgs101SelectionMade: false,
   },
 };
@@ -567,6 +585,7 @@ const output = {
   hardwareIdentity: constraints.value.hardwareIdentity,
   signalEvidence: constraints.value.signalEvidence,
   candidateSets: constraints.value.candidateSets,
+  periodReconstructionDefaults: constraints.value.periodReconstructionDefaults,
   timingProfiles,
   runtimeArtifacts: {
     sharedShaderInclude: path.relative(root, shaderIncludePath),

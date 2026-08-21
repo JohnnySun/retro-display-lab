@@ -2,16 +2,24 @@
   "schemaVersion": 1,
   "reportId": "nintendo-ags-101-ws3-sensitivity-v1",
   "classification": "cpu-model-sensitivity-not-hardware-measurement",
-  "sourceConstraintSha256": "0d8b76642aad5d8f4b2450aad0bb72e94e85d9c7f6b5bbae6fe9475effb757b1",
+  "sourceConstraintSha256": "35ae5da4ac95c256bc35601dc70b93ed9130ed9e991a78afebd10f7f6908ecb7",
   "shaderContract": {
     "sharedInclude": "models/nintendo-ags-101/shaders/ags101-ws3-timing.inc",
-    "sharedIncludeSha256": "30e6e1c4b4819594ab9afedc548a10e63bb9ab3efb7e724719fb215a68c9f38c",
+    "sharedIncludeSha256": "4c9171e8c28ff487329ccc0f285b9a7bd076b845c6edd3df35c03869e3d85327",
     "statement": "Both Shader passes consume the generated scan and polarity equations represented by these CPU vectors."
   },
   "timingMethod": {
     "stimulus": "unit black-to-white transition at the candidate optical event in its causal integration frame",
     "riseFrameAlpha": 0.62,
     "riseRatePerSecond": 57.791375479687524,
+    "reconstructionDefault": {
+      "latchPhase": "line-start",
+      "pureOpticalDelaySeconds": 0,
+      "frameParityPhase": "even-positive",
+      "inversionTopology": "row-alternating",
+      "brightnessElectricalCoupling": "none",
+      "classification": "best-available-family-constrained-reconstruction-not-exact-panel-measurement"
+    },
     "limitation": "This is a model-output sensitivity calculation, not an AGS-101 GtG measurement or GPU readback."
   },
   "timingProfiles": [
@@ -19,117 +27,117 @@
       "profileId": "line-start__no-separate-dead-time",
       "latchOffsetLines": 0,
       "pureOpticalDelaySeconds": 0,
-      "eventShiftSeconds": -0.000036716461181640625,
+      "eventShiftSeconds": 0,
       "wrappedVisibleRows": 0,
       "blackToWhiteFrameEndRange": [
         0.25384466875947864,
         0.62
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.0015849440607983434,
-      "changesModeledVisibleOutput": true
+      "maximumOutputDifferenceFromReconstructionDefault": 0,
+      "changesModeledVisibleOutput": false
     },
     {
       "profileId": "line-start__one-line-sensitivity",
       "latchOffsetLines": 0,
       "pureOpticalDelaySeconds": 0.00007343292236328125,
-      "eventShiftSeconds": 0.000036716461181640625,
+      "eventShiftSeconds": 0.00007343292236328125,
       "wrappedVisibleRows": 0,
       "blackToWhiteFrameEndRange": [
         0.25067141398274917,
         0.6183839332580356
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.0015883107159311294,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.0031732547767294728,
       "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-start__half-frame-sensitivity",
       "latchOffsetLines": 0,
       "pureOpticalDelaySeconds": 0.008371353149414062,
-      "eventShiftSeconds": 0.008334636688232422,
+      "eventShiftSeconds": 0.008371353149414062,
       "wrappedVisibleRows": 46,
       "blackToWhiteFrameEndRange": [
         0.004234797438591675,
         0.62
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.3806304392994584,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.3819343067275298,
       "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-center__no-separate-dead-time",
       "latchOffsetLines": 0.5,
       "pureOpticalDelaySeconds": 0,
-      "eventShiftSeconds": 0,
+      "eventShiftSeconds": 0.000036716461181640625,
       "wrappedVisibleRows": 0,
       "blackToWhiteFrameEndRange": [
         0.2522597246986803,
         0.6191928239095981
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0,
-      "changesModeledVisibleOutput": false
+      "maximumOutputDifferenceFromReconstructionDefault": 0.0015849440607983434,
+      "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-center__one-line-sensitivity",
       "latchOffsetLines": 0.5,
       "pureOpticalDelaySeconds": 0.00007343292236328125,
-      "eventShiftSeconds": 0.00007343292236328125,
+      "eventShiftSeconds": 0.00011014938354492188,
       "wrappedVisibleRows": 0,
       "blackToWhiteFrameEndRange": [
         0.2490797294604128,
         0.6175733244033321
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.003179995238267508,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.004764939299065851,
       "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-center__half-frame-sensitivity",
       "latchOffsetLines": 0.5,
       "pureOpticalDelaySeconds": 0.008371353149414062,
-      "eventShiftSeconds": 0.008371353149414062,
+      "eventShiftSeconds": 0.008408069610595703,
       "wrappedVisibleRows": 46,
       "blackToWhiteFrameEndRange": [
         0.002119645167113049,
         0.6191928239095981
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.382745591570937,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.38404945899900844,
       "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-end__no-separate-dead-time",
       "latchOffsetLines": 1,
       "pureOpticalDelaySeconds": 0,
-      "eventShiftSeconds": 0.000036716461181640625,
+      "eventShiftSeconds": 0.00007343292236328125,
       "wrappedVisibleRows": 0,
       "blackToWhiteFrameEndRange": [
         0.25067141398274917,
         0.6183839332580356
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.0015883107159311294,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.0031732547767294728,
       "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-end__one-line-sensitivity",
       "latchOffsetLines": 1,
       "pureOpticalDelaySeconds": 0.00007343292236328125,
-      "eventShiftSeconds": 0.00011014938354492188,
+      "eventShiftSeconds": 0.0001468658447265625,
       "wrappedVisibleRows": 0,
       "blackToWhiteFrameEndRange": [
         0.24748466396520807,
         0.6167609936957701
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.004775060733472225,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.006360004794270568,
       "changesModeledVisibleOutput": true
     },
     {
       "profileId": "line-end__half-frame-sensitivity",
       "latchOffsetLines": 1,
       "pureOpticalDelaySeconds": 0.008371353149414062,
-      "eventShiftSeconds": 0.008408069610595703,
+      "eventShiftSeconds": 0.008444786071777344,
       "wrappedVisibleRows": 47,
       "blackToWhiteFrameEndRange": [
         0.004234797438591675,
         0.62
       ],
-      "maximumOutputDifferenceFromLegacyCandidate": 0.38323541041930875,
+      "maximumOutputDifferenceFromReconstructionDefault": 0.3845337562329355,
       "changesModeledVisibleOutput": true
     }
   ],
@@ -140,9 +148,9 @@
       "frameCount": 0,
       "positivePixels": 38400,
       "negativePixels": 0,
-      "pixelsDifferentFromLegacyCandidate": 0,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
-      "changesElectricalExcitation": false
+      "changesElectricalExcitation": true
     },
     {
       "parityCandidate": "even-positive",
@@ -150,29 +158,29 @@
       "frameCount": 1,
       "positivePixels": 0,
       "negativePixels": 38400,
-      "pixelsDifferentFromLegacyCandidate": 0,
+      "pixelsDifferentFromReconstructionDefault": 19200,
+      "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
+      "changesElectricalExcitation": true
+    },
+    {
+      "parityCandidate": "even-positive",
+      "inversionCandidate": "row-alternating",
+      "frameCount": 0,
+      "positivePixels": 19200,
+      "negativePixels": 19200,
+      "pixelsDifferentFromReconstructionDefault": 0,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": false
     },
     {
       "parityCandidate": "even-positive",
       "inversionCandidate": "row-alternating",
-      "frameCount": 0,
-      "positivePixels": 19200,
-      "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
-      "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
-      "changesElectricalExcitation": true
-    },
-    {
-      "parityCandidate": "even-positive",
-      "inversionCandidate": "row-alternating",
       "frameCount": 1,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 0,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
-      "changesElectricalExcitation": true
+      "changesElectricalExcitation": false
     },
     {
       "parityCandidate": "even-positive",
@@ -180,7 +188,7 @@
       "frameCount": 0,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -190,7 +198,7 @@
       "frameCount": 1,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -200,7 +208,7 @@
       "frameCount": 0,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -210,7 +218,7 @@
       "frameCount": 1,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -220,7 +228,7 @@
       "frameCount": 0,
       "positivePixels": 0,
       "negativePixels": 38400,
-      "pixelsDifferentFromLegacyCandidate": 38400,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -230,7 +238,7 @@
       "frameCount": 1,
       "positivePixels": 38400,
       "negativePixels": 0,
-      "pixelsDifferentFromLegacyCandidate": 38400,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -240,7 +248,7 @@
       "frameCount": 0,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 38400,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -250,7 +258,7 @@
       "frameCount": 1,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 38400,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -260,7 +268,7 @@
       "frameCount": 0,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -270,7 +278,7 @@
       "frameCount": 1,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -280,7 +288,7 @@
       "frameCount": 0,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     },
@@ -290,7 +298,7 @@
       "frameCount": 1,
       "positivePixels": 19200,
       "negativePixels": 19200,
-      "pixelsDifferentFromLegacyCandidate": 19200,
+      "pixelsDifferentFromReconstructionDefault": 19200,
       "normalizedEffectiveCodeExcursionAtProjectPrior": 0.015,
       "changesElectricalExcitation": true
     }
@@ -1023,6 +1031,7 @@
     "polarityRuns": 16,
     "polarityRunsChangingExcitation": 14,
     "equationVectors": 80,
+    "reconstructionDefaultApplied": true,
     "formalAgs101SelectionMade": false
   }
 }

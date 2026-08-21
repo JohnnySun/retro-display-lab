@@ -236,6 +236,13 @@ const performanceTargetReceiptPath = path.join(
 const performanceTargetReceipt = JSON.parse(
   fs.readFileSync(performanceTargetReceiptPath, "utf8"),
 );
+const currentTargetReceiptPath = path.join(
+  root, "targets", "konkr-gt78-vn", "960x640-srgb-neutral", "validation",
+  "ags101-timing-default-20260821.json",
+);
+const currentTargetReceipt = JSON.parse(
+  fs.readFileSync(currentTargetReceiptPath, "utf8"),
+);
 const failures = [];
 
 function check(condition, message) {
@@ -557,13 +564,15 @@ for (const [parameter, expected] of Object.entries(ws1Baseline.controls ?? {})) 
 check(ws1Baseline.classification === "repository-regression-baseline-not-device-run",
   "AGS WS1 repository baseline is misclassified as device evidence");
 check(ws1Baseline.deviceReceipt?.status
-  === "last-full-numeric-ws8-plus-current-performance-receipt",
-  "AGS WS1 baseline does not separate full numeric and current performance receipts");
+  === "current-deployment-presentation-and-frame-pacing-pass-full-numeric-rerun-not-performed",
+  "AGS WS1 baseline does not disclose the current device/numeric boundary");
 check(ws1Baseline.deviceReceipt?.lastFullNumericRecord
     === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
-  && ws1Baseline.deviceReceipt?.currentPerformanceRecord
-    === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
-"AGS WS1 baseline lost its full numeric or current performance device receipt path");
+  && ws1Baseline.deviceReceipt?.lastPerformanceRecord
+    === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json"
+  && ws1Baseline.deviceReceipt?.currentRecord
+    === "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json",
+"AGS WS1 baseline lost its historical receipts or current-artifact boundary");
 
 const shaderParameterNames = new Set(
   [responseSource, exposureSource, displaySource].flatMap((source) => (
@@ -599,6 +608,9 @@ for (const parameter of inventoryParameterNames) {
 }
 check(ws1Inventory.parameters?.DriveCodeCoupling?.value === 0.15,
   "AGS canonical DriveCodeCoupling default is not the validated 0.15 project prior");
+check(ws1Inventory.parameters?.LatchOffsetLines?.value === 0
+  && ws1Inventory.parameters?.InversionTopology?.value === 1,
+"AGS canonical inventory lost the line-start/row-alternating reconstruction defaults");
 check(metadata.evidence?.parameterEvidenceInventory === "data/ws1-evidence-inventory-v1.json",
   "AGS model metadata lost the canonical WS1 evidence inventory");
 check(metadata.evidence?.repositoryBaseline === "generated/ws1-baseline-v1.json",
@@ -633,13 +645,13 @@ check(driveResearch.includes("`DriveCodeCoupling=0.15`")
 "AGS drive-retention research still contradicts the 0.15 default");
 check(reconstructionPresetSource.includes('BakedScanout = "1.0"'),
   "AGS default physics preset does not enable three-phase scan timing");
-check(reconstructionPresetSource.includes('LatchOffsetLines = "0.5"'),
-  "AGS scanout default lost theoretical line-center latch");
+check(reconstructionPresetSource.includes('LatchOffsetLines = "0.0"'),
+  "AGS scanout default lost family-constrained line-start latch");
 check(reconstructionPresetSource.includes('OpticalDelaySeconds = "0.000000"'),
   "AGS scanout default lost zero pure optical-delay prior");
 check(reconstructionPresetSource.includes('ParityPhase = "0.0"')
-  && reconstructionPresetSource.includes('InversionTopology = "0.0"'),
-"AGS default profile lost its explicitly named legacy parity/inversion candidates");
+  && reconstructionPresetSource.includes('InversionTopology = "1.0"'),
+"AGS default profile lost its family-constrained row/frame inversion reconstruction");
 const temporalOnlyPresetSource = fs.readFileSync(
   path.join(presetDir, "scanout-temporal-only-v1.slangp"), "utf8",
 );
@@ -994,6 +1006,11 @@ for (const entry of ws3PresetManifest.presets ?? []) {
 check(ws3Generated.runtimeArtifacts?.candidatePresetManifestSha256
   === sha256File(ws3PresetManifestPath),
 "AGS WS3 generated artifact lost the candidate-preset manifest hash");
+check(ws3Generated.periodReconstructionDefaults?.latchPhase === "line-start"
+  && ws3Generated.periodReconstructionDefaults?.inversionTopology === "row-alternating"
+  && ws3PresetManifest.reconstructionDefault?.latchPhase === "line-start"
+  && ws3PresetManifest.reconstructionDefault?.inversionTopology === "row-alternating",
+"AGS WS3 generated artifacts lost the family-constrained reconstruction defaults");
 
 check(ws3Sensitivity.classification === "cpu-model-sensitivity-not-hardware-measurement"
   && ws3Sensitivity.sourceConstraintSha256 === ws3ConstraintHash,
@@ -1006,6 +1023,7 @@ check(ws3Sensitivity.summary?.timingProfiles === 9
   && ws3Sensitivity.summary?.polarityRuns === 16
   && ws3Sensitivity.summary?.polarityRunsChangingExcitation === 14
   && ws3Sensitivity.summary?.equationVectors === 80
+  && ws3Sensitivity.summary?.reconstructionDefaultApplied === true
   && ws3Sensitivity.summary?.formalAgs101SelectionMade === false,
 "AGS WS3 sensitivity coverage or unresolved-selection status drifted");
 for (const vector of ws3Sensitivity.equationVectors ?? []) {
@@ -1410,13 +1428,19 @@ check(metadata.evidence?.gpuExposureReference
   && metadata.evidence?.ws8ValidationPresets === "generated/ws8-presets-v1/manifest.json"
   && metadata.evidence?.lastFullNumericTargetValidation
     === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
-  && metadata.evidence?.currentTargetValidation
+  && metadata.evidence?.lastPerformanceTargetValidation
     === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json"
+  && metadata.evidence?.currentTargetValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json"
+  && metadata.evidence?.currentTargetValidationStatus
+    === "pass-github-layout-deployment-presentation-and-frame-pacing-no-full-numeric-rerun"
   && metadata.diagnostics?.lastFullNumericWs7DeviceValidation
     === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json"
+  && metadata.diagnostics?.lastPerformanceDeviceValidation
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json"
   && metadata.diagnostics?.currentPerformanceDeviceValidation
-    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
-"AGS model metadata lost WS8 exposure validation artifacts");
+    === "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json",
+"AGS model metadata lost historical validation or the current-artifact boundary");
 check(ws8TargetReceipt.runId === "konkr-gt78-vn-ags101-ws8-current-20260820"
   && ws8TargetReceipt.modelId === metadata.id
   && ws8TargetReceipt.currentPipeline?.passes === 3
@@ -1455,7 +1479,8 @@ check(performanceTargetReceipt.runId
   && performanceTargetReceipt.performance?.aggregate?.pass === true
   && performanceTargetReceipt.numericReadbackBoundary
     ?.currentOptimizedShaderDebugView12To14Rerun === false,
-"AGS current performance receipt lost its target identity, frame pacing, or numeric boundary");
+"AGS historical performance receipt lost its target identity, frame pacing, or numeric boundary");
+const performanceReceiptShaderMismatches = [];
 for (const shader of [
   "ags101-response-v1.slang",
   "ags101-exposure-optics.inc",
@@ -1465,8 +1490,46 @@ for (const shader of [
   const receiptArtifact = performanceTargetReceipt.artifacts?.repository?.find(
     (item) => item.path === `models/nintendo-ags-101/shaders/${shader}`,
   );
-  check(receiptArtifact?.sha256 === sha256File(path.join(shaderDir, shader)),
-    `AGS current performance receipt is stale for ${shader}`);
+  if (receiptArtifact?.sha256 !== sha256File(path.join(shaderDir, shader))) {
+    performanceReceiptShaderMismatches.push(shader);
+  }
+}
+check(performanceReceiptShaderMismatches.includes("ags101-response-v1.slang")
+  && performanceReceiptShaderMismatches.includes("ags101-exposure-v1.slang")
+  && performanceReceiptShaderMismatches.includes("ags101-display-v1.slang"),
+"AGS historical performance receipt was relabeled current or no longer exposes the timing-default shader change");
+check(currentTargetReceipt.runId
+    === "konkr-gt78-vn-ags101-timing-default-current-20260821"
+  && currentTargetReceipt.modelId === metadata.id
+  && currentTargetReceipt.targetProfile === "konkr-gt78-vn-960x640-srgb-neutral"
+  && currentTargetReceipt.classification
+    === "current-github-layout-deployment-presentation-and-frame-pacing-receipt-not-full-numeric-readback"
+  && currentTargetReceipt.deployment?.shaderRoot
+    === "/sdcard/RetroArch/shaders/retro-display-lab"
+  && currentTargetReceipt.deployment?.mGbaContentDirectoryOverride
+    === "/sdcard/RetroArch/config/mGBA/gba.slangp"
+  && currentTargetReceipt.selectedReconstruction?.LatchOffsetLines === 0
+  && currentTargetReceipt.selectedReconstruction?.InversionTopology === 1
+  && currentTargetReceipt.artifacts?.repositoryAndDeviceHashesMatched === true
+  && currentTargetReceipt.presentation?.processStarted === true
+  && currentTargetReceipt.presentation?.screenshot?.width === 960
+  && currentTargetReceipt.presentation?.screenshot?.height === 640
+  && currentTargetReceipt.framePacing?.intervals === 126
+  && currentTargetReceipt.framePacing?.averageFps > 60.06
+  && currentTargetReceipt.framePacing?.intervalsOver25Milliseconds === 0
+  && currentTargetReceipt.framePacing?.pass === true
+  && currentTargetReceipt.acceptance?.fullDebugView12To14NumericReadbackRerun === false
+  && currentTargetReceipt.acceptance?.lastFullNumericReceipt
+    === "validation/ags101-ws8-target-20260820.json"
+  && currentTargetReceipt.acceptance?.currentArtifactReceipt
+    === "pass-with-explicit-numeric-readback-boundary",
+"AGS current timing-default receipt lost deployment, presentation, pacing, or numeric-boundary evidence");
+for (const artifact of currentTargetReceipt.artifacts?.files ?? []) {
+  const artifactPath = path.resolve(root, artifact.path);
+  check(artifactPath.startsWith(`${root}${path.sep}`)
+    && fs.existsSync(artifactPath)
+    && sha256File(artifactPath) === artifact.sha256,
+  `AGS current timing-default receipt hash drifted: ${artifact.path}`);
 }
 for (const code of [0, 4, 16, 27, 31]) {
   check(Math.abs(rgb555DriveCodeProxy([code, code, code]) - code / 31) < 1e-15,
@@ -1716,9 +1779,9 @@ const firstVisibleEvent = scanEvent({ row: 0 });
 const lastVisibleEvent = scanEvent({ row: 159 });
 const firstVisibleLatchMs = firstVisibleEvent.latchSeconds * 1000;
 const lastVisibleLatchMs = lastVisibleEvent.latchSeconds * 1000;
-check(firstVisibleLatchMs > 0.03 && firstVisibleLatchMs < 0.04,
+check(firstVisibleLatchMs === 0,
   `AGS first-row latch phase drifted: ${firstVisibleLatchMs} ms`);
-check(lastVisibleLatchMs > 11.70 && lastVisibleLatchMs < 11.72,
+check(lastVisibleLatchMs > 11.67 && lastVisibleLatchMs < 11.68,
   `AGS last-row latch phase drifted: ${lastVisibleLatchMs} ms`);
 for (const row of [0, 1, 80, 159]) {
   const event = scanEvent({ row, latchOffsetLines: 0.5, opticalDelaySeconds: 0 });
@@ -2035,10 +2098,14 @@ const lastCompletedTargetRecord = "validation/ags101-ws5-target-20260820.json";
 check(validationRecords.includes(lastCompletedTargetRecord),
   "KPA profile omits the last completed AGS WS5 target record");
 check(targetProfile.currentAgs101ValidationRecord
-  === "validation/ags101-performance-20260821.json"
+    === "validation/ags101-timing-default-20260821.json"
+  && targetProfile.currentAgs101ValidationStatus
+    === "pass-github-layout-deployment-presentation-and-frame-pacing-no-full-numeric-rerun"
+  && targetProfile.lastPerformanceAgs101ValidationRecord
+    === "validation/ags101-performance-20260821.json"
   && targetProfile.lastFullNumericAgs101ValidationRecord
     === "validation/ags101-ws8-target-20260820.json",
-"KPA profile lost the current AGS performance or last full numeric target record");
+"KPA profile lost the current-artifact boundary or historical AGS target records");
 for (const relativeRecord of validationRecords) {
   const recordPath = path.resolve(targetDir, relativeRecord);
   check(recordPath.startsWith(`${targetDir}${path.sep}`),

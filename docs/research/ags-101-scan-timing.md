@@ -1,8 +1,9 @@
 # AGS-101 timing evidence and reconstruction
 
-Status: WS3 repository implementation complete on 2026-08-20. AGS-101-specific
-latch, parity, inversion, and pure-delay selection deliberately remains
-unresolved pending stronger evidence.
+Status: WS3 evidence promotion updated on 2026-08-21. Line-start latch and
+row-alternating plus frame-reversal drive are the best available
+family-constrained reconstruction defaults. They remain distinct from formal
+AGS-101-specific constants pending an AGT trace or exact-panel specification.
 
 ## Result
 
@@ -14,10 +15,12 @@ t_latch     = t_row_start + L * T_line      unresolved AGS-101 candidate
 t_optical   = t_latch + D                   unresolved pure-delay candidate
 ```
 
-`T_line` and `T_frame` are formal constants. `L`, `D`, polarity phase,
-inversion topology, and brightness coupling are not. The legacy line-center
-and zero-extra-delay behavior remains available as one sensitivity candidate;
-it is not described as a measured or selected AGS-101 constant.
+`T_line` and `T_frame` are formal constants. `L=0` and row-plus-frame inversion
+are reconstruction defaults supported by mutually consistent Sharp-family
+documents and a cross-model GBA signal observation; they are not formal AGT
+constants. `D=0`, starting polarity phase, and brightness coupling remain
+project conventions or unresolved. Legacy line-center/frame-global behavior
+remains available as a sensitivity control.
 
 The normalized records are:
 
@@ -39,15 +42,18 @@ Shader compile receipt.
 | --- | --- | --- | --- |
 | Manufacturer period document | Nintendo GBA Programming Manual `AGB-06-0001-002-B13` | 240/308 dots, 160/228 rows, blanking sizes, rounded line/frame periods, Mode 4 frame layout | AGS-101 panel-interface edge or optical delay |
 | Technical reconstruction | GBATEK GBA timing and SP interface | Exact clock/cycle arithmetic and generic SP signal/socket names | Direct AGT-CPU-01 routing, voltage, edge polarity, or phase |
+| Cross-model signal observation | InsideGadgets AGB logic-analyzer record | 240 visible-line DCLK pulses, RGB changes on DCLK negative edges, and control activity at line boundaries on the observed AGB | An AGT-CPU-01 edge capture or proof that every signal phase transfers |
 | Primary artifact records | iceboy and gbhwdb photographs | `C/AGT-CPU-01`; one documented matching panel label `LQ029B1DC01F` | Electrical behavior or population-wide panel identity |
 | Cross-model reverse engineering | Gekkio `AGS-CPU-11` schematic | Period-adjacent AGS-001 topology | AGS-101/AGT circuit facts; the author explicitly scopes it to AGS-CPU-11 |
 | Manufacturer-family document | Sharp `LZ9JG17B` datasheet | DCK/LP/source/gate/REVC family signal semantics | Identification as the AGS-101 controller or transferable phase values |
+| Period controller application note | NXP `AN2415` for Sharp HR-TFT | Distinct Sharp control roles and a REV transition on every line | Identification of the AGS panel, exact edge, voltage, or starting phase |
+| Near-size manufacturer-family document | Sharp `LQ030B1DC`, `LCG-02039B` | REV reversal every horizontal and vertical scan; per-module VCOM adjustment | Exact LQ029 behavior; the 2007/2008 document postdates the 2005 AGS specimen |
 | Qualitative direct observation | `gba-frame-test` high-speed examples | Original GBA-family panels visibly scan line by line | Synchronized AGS-101 timing metrology |
 | Local runtime receipt | WS2 mGBA report | Generated ROMs boot and decoded scenes match the manifest | Original-hardware timing or panel optics |
 
 An exact `LQ029B1DC01F` manufacturer specification was not found in searches
 of exact part-number variants, PDF indexes, Sharp-hosted results, and archive
-indexes on 2026-08-20. This is recorded as a bounded negative search, not proof
+indexes on 2026-08-20 and 2026-08-21. This is recorded as a bounded negative search, not proof
 that no document exists. Nearby `LQ029*` or `LQ030*` parts are not substituted.
 
 ## Exact platform constants
@@ -84,32 +90,38 @@ marking. This does not prove that every AGS-101 used that exact panel.
 The generic GBA SP interface exposes DCK, LP, PS, SPL, CLS, SPS, MOD, REVC,
 five-bit R/G/B buses, panel supply contacts, and COM. The constraint record
 tracks existence, inferred direction, family-level function, and AGS-101 timing
-independently for every signal. In all cases, AGS-101-specific phase remains
-unknown. Brightness control is even less resolved: two user modes are known,
+independently for every signal. The recovered evidence supports a line-boundary
+latch and row-plus-frame inversion as runtime reconstruction defaults, while
+AGS-101-specific edges and starting polarity remain unknown. Brightness
+control is even less resolved: two user modes are known,
 but this audit found no defensible DC/PWM net, frequency, or ratio.
 
 ## Candidate sets
 
-The current candidates are diagnostics and sensitivity bounds, not competing
-claims that one must already be true:
+The runtime retains the full diagnostic set while naming the strongest
+evidence-bounded reconstruction member:
 
-- latch phase: line start `0`, legacy line center `0.5`, line end `1.0`;
+- latch phase: line start `0` reconstruction default, legacy line center `0.5`,
+  line end `1.0`;
 - pure delay: zero extra dead time, one-line sensitivity, half-frame
   sensitivity;
 - frame parity phase: even-positive or odd-positive;
-- inversion topology: frame-global, row, column, or dot/checkerboard;
+- inversion topology: row-alternating plus frame reversal reconstruction
+  default; legacy frame-global, column, or dot/checkerboard controls;
 - brightness coupling: none, DC gain, or PWM exposure.
 
 The one-line and half-frame delays are test points inside the runtime's causal
 representable interval, not physical bounds derived for `LQ029B1DC01F`.
-Likewise, start/end latch values bound the software's within-line convention;
-they are not captured electrical edges.
+Line start is the boundary between the previous line's completion and the next
+line's start in this software convention. Family source/latch semantics plus
+the cross-model waveform make it the preferred reconstruction point, but it is
+still not a captured AGT electrical edge.
 
 The runtime implements all four inversion candidates and both frame-parity
 phases through `ParityPhase` and `InversionTopology`. Response and display use
-the same generated `ags101-ws3-timing.inc`; formal profile selection remains
-`null` until a transferable source, exact specification, or direct trace
-supports it.
+the same generated `ags101-ws3-timing.inc`. The runtime default is recorded
+separately from `formalSelection=null`: it is the best available reconstruction,
+not an authentic-panel measurement.
 
 ## WS2 gate before formal constants
 
@@ -156,12 +168,12 @@ The acceptance artifacts establish:
 1. 80 CPU polarity vectors reproduce the generated Shader equation;
 2. all 27 representative scan-event vectors reproduce `scanEvent` exactly;
 3. eight of nine timing candidates alter the modeled black-to-white output
-   relative to the legacy candidate; the legacy candidate is the one unchanged
-   control;
+   relative to the line-start/zero-delay reconstruction default; that default
+   is the one unchanged control;
 4. 14 of 16 parity/topology/frame runs alter electrical excitation relative to
-   the legacy frame-global/even-positive candidate;
+   the row-alternating/even-positive reconstruction default;
 5. response/exposure/display vertex and fragment stages compile through glslang and all
-   four SPIR-V modules pass `spirv-val` for Vulkan 1.1.
+   six SPIR-V modules pass `spirv-val` for Vulkan 1.1.
 
 This is equation, compilation, and model-output sensitivity acceptance. It is
 not GPU numeric readback, panel measurement, or evidence for selecting one
@@ -169,9 +181,11 @@ hypothesis as authentic.
 
 ## Closure and future evidence
 
-WS3 is complete under the no-hardware reconstruction policy. The broad bounds
-remain because the source audit found no defensible exact-panel or AGT circuit
-values; narrowing them visually would be less truthful than leaving them open.
+WS3 is complete under the no-hardware reconstruction policy. Family evidence
+now narrows the normal reconstruction to line-start and row-plus-frame
+inversion, while the broad candidate set remains because the source audit found
+no exact-panel or AGT circuit values. Optical delay and starting polarity are
+not narrowed visually.
 
 Authentic hardware remains optional future evidence. If an AGT motherboard is
 ever available, the existing electrical-capture schema can record DCK, LP,

@@ -40,16 +40,16 @@
       "existence": "known-generic-gba-sp-interface",
       "direction": "CPU-to-panel in technical interface reconstruction",
       "function": "pixel/data clock; family semantic support",
-      "ags101Timing": "unknown",
-      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+      "ags101Timing": "not directly captured; cross-model AGB observation reports 240 clocks per visible line",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY", "WS3-INSIDEGADGETS-AGB-SIGNALS"]
     },
     {
       "signal": "LP",
       "existence": "known-generic-gba-sp-interface",
       "direction": "CPU-to-panel in technical interface reconstruction",
       "function": "source/line timing role; family semantic support",
-      "ags101Timing": "unknown",
-      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+      "ags101Timing": "not directly captured; cross-model waveform and family semantics support a line-boundary reconstruction default",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY", "WS3-INSIDEGADGETS-AGB-SIGNALS"]
     },
     {
       "signal": "PS",
@@ -96,8 +96,8 @@
       "existence": "known-generic-gba-sp-interface",
       "direction": "CPU-to-panel in technical interface reconstruction",
       "function": "common-electrode drive preparation in Sharp family documentation",
-      "ags101Timing": "unknown",
-      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY"]
+      "ags101Timing": "not directly captured; period and near-size Sharp documents support line reversal plus frame reversal as the reconstruction default",
+      "evidenceIds": ["WS3-GBATEK-GBA-TIMING-IF", "WS3-SHARP-LZ9JG17B-FAMILY", "WS3-NXP-AN2415-SHARP-HRTFT", "WS3-SHARP-LQ030B1DC-FAMILY"]
     },
     {
       "signal": "COM",
@@ -136,12 +136,13 @@
     "sourceLatchPhase": {
       "units": "lines after row start",
       "runtimeBounds": [0, 1],
-      "status": "unresolved-project-hypotheses",
+      "status": "family-and-cross-model-constrained-reconstruction; exact AGT edge unresolved",
       "candidates": [
-        {"id": "line-start", "value": 0, "classification": "diagnostic-bound"},
-        {"id": "line-center", "value": 0.5, "classification": "legacy-project-prior"},
+        {"id": "line-start", "value": 0, "classification": "reconstruction-default", "evidenceIds": ["WS3-INSIDEGADGETS-AGB-SIGNALS", "WS3-SHARP-LZ9JG17B-FAMILY"]},
+        {"id": "line-center", "value": 0.5, "classification": "legacy-sensitivity-control"},
         {"id": "line-end", "value": 1, "classification": "diagnostic-bound"}
       ],
+      "reconstructionDefault": "line-start",
       "formalSelection": null
     },
     "pureOpticalDelay": {
@@ -164,13 +165,14 @@
       "formalSelection": null
     },
     "inversionTopology": {
-      "status": "unresolved-discrete-hypothesis",
+      "status": "Sharp-family-constrained reconstruction; exact AGT REVC waveform unresolved",
       "candidates": [
-        {"id": "frame-global", "shaderValue": 0, "runtimeSupport": "implemented candidate"},
-        {"id": "row-alternating", "shaderValue": 1, "runtimeSupport": "implemented candidate"},
+        {"id": "frame-global", "shaderValue": 0, "runtimeSupport": "implemented legacy sensitivity control"},
+        {"id": "row-alternating", "shaderValue": 1, "runtimeSupport": "implemented reconstruction default", "evidenceIds": ["WS3-NXP-AN2415-SHARP-HRTFT", "WS3-SHARP-LQ030B1DC-FAMILY"]},
         {"id": "column-alternating", "shaderValue": 2, "runtimeSupport": "implemented candidate"},
         {"id": "dot-checkerboard", "shaderValue": 3, "runtimeSupport": "implemented candidate"}
       ],
+      "reconstructionDefault": "row-alternating",
       "formalSelection": null
     },
     "brightnessCoupling": {
@@ -199,6 +201,14 @@
     "frameParityPhase": null,
     "inversionTopology": null,
     "brightnessElectricalCoupling": null,
-    "reason": "No direct AGT-CPU-01 electrical trace or exact LQ029B1DC01F specification was found. Candidate profiles remain sensitivity hypotheses."
+    "reason": "No direct AGT-CPU-01 electrical trace or exact LQ029B1DC01F specification was found. Family-constrained reconstruction defaults are selected for runtime use without promoting them to exact-panel constants."
+  },
+  "periodReconstructionDefaults": {
+    "latchPhase": "line-start",
+    "pureOpticalDelaySeconds": 0,
+    "frameParityPhase": "even-positive",
+    "inversionTopology": "row-alternating",
+    "brightnessElectricalCoupling": "none",
+    "classification": "best-available-family-constrained-reconstruction-not-exact-panel-measurement"
   }
 }

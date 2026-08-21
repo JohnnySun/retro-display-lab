@@ -422,6 +422,10 @@ for (const member of ws4.members) {
 }
 const nominal = ws4.members.find((item) => item.id === "nominal");
 const frameGlobal = reconstruction.ws3Matrix.inversionTopologies.find((item) => item.id === "frame-global");
+const reconstructionDefault = reconstruction.ws3Matrix.inversionTopologies.find(
+  (item) => item.id === reconstruction.ws3Matrix.reconstructionDefault,
+);
+if (!reconstructionDefault) throw new Error("WS5 reconstruction default topology is missing");
 for (const control of ["spatial-off", "balanced", "numeric"]) {
   const name = `ags101-ws5-${control}-v1.slangp`;
   const buffer = Buffer.from(preset(basePreset, nominal, frameGlobal, control));
@@ -468,7 +472,7 @@ const manifest = clean({
   manifestId: "nintendo-ags-101-ws5-presets-v1",
   generatedBy: "tools/build-ags101-ws5.mjs",
   classification: reconstruction.classification,
-  default: "ags101-ws5-nominal-frame-global-v1.slangp",
+  default: `ags101-ws5-nominal-${reconstructionDefault.id}-v1.slangp`,
   candidateCount: 12,
   controlCount: 3,
   parityPhasesCoveredByFixtureReceipt: reconstruction.ws3Matrix.parityPhases,

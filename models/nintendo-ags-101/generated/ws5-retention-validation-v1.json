@@ -6,12 +6,12 @@
   "stateEquationId": "WS5-MIZUSAKI-ONE-STATE-V1",
   "sourceHashes": {
     "evidenceInventory": "25b9eaf6b6c4b8e337b4b85546f5ff2a948a3fcb6f1cf0c8ac1aed2dd6f8ed3c",
-    "reconstruction": "80eaf3e3f8ca1e90deec87b83e2738bd677d80771bad292c115b784355804c43",
+    "reconstruction": "0c71ee8c4f3d0b167166306c831f6b9195b6d094759b5e92c8cdbfe5e38ae83b",
     "ws2Scenes": "a6aec34544e0e3cd61ca5940e096433e9f1a3e869d01f5b272e8a67eca1cddda",
     "ws2Manifest": "5475091cf9c67bc2082e569f52552745beb11359c08db0f91874c289acba2747",
-    "ws3Constraints": "0d8b76642aad5d8f4b2450aad0bb72e94e85d9c7f6b5bbae6fe9475effb757b1",
-    "ws3CompileReceipt": "125c791704ad9b7ee7374b98012ce457c4ed40fbaffdfd4bde706a717b734593",
-    "ws4Ensemble": "434b86e46fcc9eccaff26ca6f682441911de5089e246b33c949fa43c9647c40e"
+    "ws3Constraints": "35ae5da4ac95c256bc35601dc70b93ed9130ed9e991a78afebd10f7f6908ecb7",
+    "ws3CompileReceipt": "6a6f162bbf7ad86fb6c8db106eb588e2249b8dae62705376d3227ba7b8bc35c1",
+    "ws4Ensemble": "595f3a567eaf237fbd192851cbed8cb9e82e9d1da95950e197625490609ace3f"
   },
   "evidenceItemCount": 7,
   "ws3ConstraintSetId": "nintendo-ags-101-ws3-timing-constraints-v1",
@@ -1290,7 +1290,7 @@
   "unresolved": [
     "No AGS-101 VCOM, feed-through, gate waveform, capacitance, code-voltage curve, or residual-DC waveform selects the proxy weights.",
     "The one scalar per source pixel is not subpixel-resolved and has no lateral ion diffusion or row-line gradient.",
-    "WS3 parity and inversion candidates remain unselected; generated results expose their sensitivity rather than choosing one.",
+    "WS3 starting parity remains conventional and the exact AGT inversion waveform is unmeasured; row-alternating plus frame reversal is only the family-constrained reconstruction default, while generated results retain all topology sensitivities.",
     "The default represents a period-mechanism reconstruction, not measured or calibrated AGS-101 image sticking."
   ]
 }

@@ -170,8 +170,9 @@ run-ahead cannot reconstruct the shader's slow electrical state and are
 unsupported. Shader-subframe counts other than one bypass retention.
 
 A frame-parity reset can change the instantaneous flicker phase but not the
-signed slow state. WS3 also exposes frame-global, row, column, and dot
-inversion hypotheses. The debug views show retained `x`, selected polarity,
+signed slow state. WS3 uses row-alternating plus frame reversal as its
+family-constrained reconstruction default and also exposes frame-global,
+column, and dot sensitivity controls. The debug views show retained `x`, selected polarity,
 parity phase, and spatial inversion separately so a reset or topology change is
 observable without claiming that one hypothesis is authentic.
 
@@ -197,8 +198,8 @@ enough for the tested target but still requires a Vulkan runtime probe.
 
 | Runtime quantity | Classification | Default policy |
 | --- | --- | --- |
-| `ParityPhase` | Unresolved WS3 hypothesis selector | Even-positive legacy candidate or odd-positive sensitivity candidate; N=1 only. |
-| `InversionTopology` | Unresolved WS3 hypothesis selector | Frame-global legacy candidate plus row, column, and dot sensitivity candidates. |
+| `ParityPhase` | Unresolved WS3 starting-phase selector | Even-positive reconstruction convention or odd-positive sensitivity control; N=1 only. |
+| `InversionTopology` | Family-constrained WS3 reconstruction selector | Row-alternating plus frame reversal is the normal default; frame-global, column, and dot remain sensitivity controls. No AGT REVC trace was captured. |
 | `DriveDcOffset` | Normalized bridge quantity; no pristine AGS value exists | Project theoretical prior `0.1`; zero is the exact charge-balanced control. |
 | `SpatialRetention` | WS5 compatibility selector | Enabled for the reconstructed path; disabling it exactly restores the WS1 global excitation. |
 | `SpatialCodeWeight` | Normalized RGB555-command sensitivity; no AGS value exists | Project sensitivity prior `0.5`; generated low/global/high controls remain available. |

@@ -3,12 +3,12 @@
   "manifestId": "nintendo-ags-101-ws7-presets-v1",
   "generatedBy": "tools/build-ags101-ws7.mjs",
   "definitionSha256": "fc0964f3ef833cc9f5721ae6457d15e1e8562cd099df6bda83e60e29f69039cd",
-  "basePresetSha256": "f16913621b4d287b799edea0b14be3dd5675d506ccc03ff75b5b8303c2131ead",
+  "basePresetSha256": "38e46895297dd2a843dbfaff18a004b1881acefe616a1e76b523bcc1491ceb35",
   "presets": [
     {
       "id": "exposure-integrated",
       "path": "generated/ws7-presets-v1/exposure-integrated-v1.slangp",
-      "sha256": "62b4628ba196437469fe90ca2b0cdda752a0db43c6fdbd6f5b9aa8c4cca18be0",
+      "sha256": "f059bd293e174f7b00dbc52ef6a9f4f875bae904bc256c1e236af2706dab5fc1",
       "overrides": {
         "ExposureMode": "1.0",
         "BacklightScaleEnabled": "0.0"
@@ -18,7 +18,7 @@
     {
       "id": "exposure-endpoint-diagnostic",
       "path": "generated/ws7-presets-v1/exposure-endpoint-diagnostic-v1.slangp",
-      "sha256": "a325ed3e2f00e79ca9da0cc7c3e877d61a9ebb1ddac519f2f825241098c00e3c",
+      "sha256": "17ae08212bf7f02cd9d068b10dfe6caf316077bd2b98990128f08c7c0b301ed3",
       "overrides": {
         "ExposureMode": "0.0",
         "BacklightScaleEnabled": "0.0"
@@ -28,7 +28,7 @@
     {
       "id": "exposure-fast",
       "path": "generated/ws7-presets-v1/exposure-fast-v1.slangp",
-      "sha256": "7d5d83aef8923d68d14ce9e822fcf125aa9f29b1bcbd9420e58cf72b8996e266",
+      "sha256": "ee41b159d3d3c4ce409b59384df06c99445c993cb4b93d6b2213cb1e8d2ff891",
       "overrides": {
         "ExposureMode": "1.0",
         "GtgTableBackend": "1.0",
@@ -39,7 +39,7 @@
     {
       "id": "exposure-nominal",
       "path": "generated/ws7-presets-v1/exposure-nominal-v1.slangp",
-      "sha256": "b41c511fc21929f53ab3646b82ae236347eecded13a93e97c61fc3a2b40a2dc7",
+      "sha256": "f1573434ff43b4323e53f56819ba6e90d8b9afda8d278571c9696751e4a15ad0",
       "overrides": {
         "ExposureMode": "1.0",
         "GtgTableBackend": "1.0",
@@ -50,7 +50,7 @@
     {
       "id": "exposure-slow",
       "path": "generated/ws7-presets-v1/exposure-slow-v1.slangp",
-      "sha256": "425a751450c3845a2dd3799234a06f58fdd89bd9dad6fb336c19e56c1f9a7b3d",
+      "sha256": "6f9cf1e702b093a7459c68d65268ff44147eb96c6c51f230bb78c5cf9792e702",
       "overrides": {
         "ExposureMode": "1.0",
         "GtgTableBackend": "1.0",
@@ -61,7 +61,7 @@
     {
       "id": "exposure-backlight-0_75",
       "path": "generated/ws7-presets-v1/exposure-backlight-0_75-v1.slangp",
-      "sha256": "db794edbb68b81f0918450c479afe357f628d49ec3035eb0687921a6e058b2dc",
+      "sha256": "d4610bc171789a1603efc0e55b36c1dc26a5dd37703e920384db99358052fb10",
       "overrides": {
         "ExposureMode": "1.0",
         "BacklightScaleEnabled": "1.0",
@@ -72,7 +72,7 @@
     {
       "id": "exposure-backlight-0_50",
       "path": "generated/ws7-presets-v1/exposure-backlight-0_50-v1.slangp",
-      "sha256": "5862943fc0b60c8f69e2771dcd07f70d9cd77fd7fd578e0e286d3806ae205b13",
+      "sha256": "e86adf12444d50086dcc58a941354837f5c95769f31e95eb6e99ec4058158f2b",
       "overrides": {
         "ExposureMode": "1.0",
         "BacklightScaleEnabled": "1.0",

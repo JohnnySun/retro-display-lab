@@ -185,6 +185,13 @@ a regression baseline.
   typical (`50 ms` maximum) and black-to-white `Td=60 ms` typical (`100 ms`
   maximum). It is a 3.0-inch, 256×192, normally-white transmissive a-Si TFT
   with raw RGB/timing input; it is close family evidence, not part identity.
+- Chronology/sensitivity boundary: the specification was established
+  2007-10-26 and revised 2008-12-02, whereas AGS-PANEL-01 documents a 2005
+  `LQ029B1DC01F` specimen. A slower earlier/custom panel is therefore a
+  reasonable sensitivity hypothesis, not a measured direction or magnitude.
+  Panel diagonal and age alone do not establish response, brightness, view
+  angle, color, or backlight performance; the 50/100 ms slow member bounds the
+  response hypothesis without becoming the exact-panel or normal value.
 - Supporting primary research: Hongye Liang and Aldo Badano,
   [“Temporal response of medical liquid crystal displays”](https://doi.org/10.1118/1.2428403),
   *Medical Physics* 34(2) (2007). It supports nonuniform GtG timing, generally
@@ -465,6 +472,22 @@ a regression baseline.
 - Technical source: mGBA GBATEK fork, [LCD dimensions and timing](https://mgba-emu.github.io/gbatek/#lcd-dimensions-and-timing), with the
   [GBA-only GBATEK mirror](https://rust-console.github.io/gbatek-gbaonly/) used
   for the AGS-101 connector signal list.
+- Cross-model waveform source: InsideGadgets,
+  [GBA LCD logic-analyzer observation](https://www.insidegadgets.com/2019/08/08/playing-around-with-the-gba-lcd/).
+  The observed AGB interface has 240 visible-line DCLK pulses, RGB changes on
+  DCLK negative edges, and LP/PS/SPL/CLS activity grouped at line boundaries.
+  This is not an AGT-CPU-01 capture; informal guesses about signal roles are
+  excluded.
+- Period family-control source: NXP, *Programming the LCD Controller for Sharp
+  TFT Panel*, `AN2415`, April 2003,
+  [application note](https://www.nxp.com/docs/en/application-note/AN2415.pdf).
+  It identifies Sharp HR-TFT sampling/gate/power-save/reverse controls and
+  shows REV changing once per line relative to the last data transfer.
+- Near-size family source: Sharp, `LQ030B1DC4xx/LQ030B1DC6xx`,
+  `LCG-02039B`, [delivery specification](https://www.beyondinfinite.com/lcd/Library/Sharp/LQ030B1DC60J.pdf).
+  It requires polarity reversal on every horizontal and vertical scan and
+  per-module VCOM adjustment. The 2007/2008 document postdates the 2005 AGS
+  specimen and is never treated as an exact part or precursor.
 - Supporting qualitative observation: Veikkos,
   [gba-frame-test](https://github.com/veikkos/gba-frame-test), documenting the
   line-by-line scan pattern of original GBA-family displays in high-speed
@@ -479,10 +502,15 @@ a regression baseline.
   not direct proof of AGT-CPU-01 routing or phase.
 - Established by the cited records: exact frame/line arithmetic and a
   top-to-bottom raster model corroborated qualitatively on original displays.
-- Not established by the cited records: the exact LP/SPS/DCK latch point within
-  a line, MOD/REVC phase and polarity mapping, and a separate panel optical dead
-  time. `LatchOffsetLines=0.5` and `OpticalDelaySeconds=0` are retained legacy
-  candidates. Neither is selected as a formal AGS-101-specific constant.
+  Mutually consistent family semantics and cross-model waveforms make the line
+  boundary the best available latch reconstruction and row-plus-frame reversal
+  the best available inversion reconstruction.
+- Not established by the cited records: an exact AGT LP/SPS/DCK/REVC edge,
+  starting polarity phase, voltage mapping, or separate panel optical dead
+  time. `LatchOffsetLines=0`, `InversionTopology=1`, and
+  `OpticalDelaySeconds=0` are reconstruction defaults, not formal
+  AGS-101-specific constants. Line-center and frame-global remain legacy
+  sensitivity controls.
 - Local derivation and capture handoff:
   [`docs/research/ags-101-scan-timing.md`](../../docs/research/ags-101-scan-timing.md),
   [`reference/scan-timing.mjs`](reference/scan-timing.mjs), and
@@ -556,24 +584,30 @@ a regression baseline.
   and [`tools/build-ags101-ws3.mjs`](../../tools/build-ags101-ws3.mjs).
 - Used for: source classification; `C/AGT-CPU-01` and `LQ029B1DC01F` artifact
   identity; per-signal existence/direction/function/timing status; exact raster
-  arithmetic; unresolved latch/delay/parity/inversion/brightness candidates;
+  arithmetic; family-constrained latch/inversion defaults plus unresolved
+  delay/parity/brightness candidates;
   nine CPU timing profiles, two parity candidates, four inversion candidates,
   five independent read-only diagnostics, and generated Shader presets.
 - Cross-model boundary: Gekkio's
   [AGS-CPU-11 schematic](https://github.com/Gekkio/gb-schematics) is classified
   as AGS-001-only reverse engineering, while Sharp's
   [LZ9JG17B datasheet](https://www1.futureelectronics.com/doc/SHARP/LZ9JG17B.pdf)
-  provides family signal semantics only.
+  provides family signal semantics only. InsideGadgets' AGB waveform is
+  cross-model observation only; NXP `AN2415` and Sharp `LQ030B1DC` constrain
+  family behavior without identifying the AGS controller or panel.
 - Exact-part search: no traceable `LQ029B1DC01F` manufacturer datasheet was
-  located in the recorded 2026-08-20 search. The negative result and search
+  located in the recorded 2026-08-20 search extended on 2026-08-21. The negative result and search
   scope are preserved; no nearby part is promoted as equivalent.
-- Formal-selection status: latch phase, pure optical delay, frame parity phase,
-  inversion topology, and brightness coupling are all `null`. The generated
-  profiles are sensitivity hypotheses, not measured constants.
-- Runtime acceptance: response and display use the same generated timing and
-  polarity equations. Four Shader stages pass pinned local glslang compilation
-  and SPIR-V validation; 80 CPU equation vectors and the model-output
-  sensitivity report reproduce from the same constraint record. Compilation is
+- Selection status: formal AGS-specific latch phase, pure optical delay, frame
+  parity phase, inversion topology, and brightness coupling remain `null`.
+  Separately recorded reconstruction defaults select line start, zero extra
+  optical delay, even-positive convention, row-alternating plus frame reversal,
+  and no brightness coupling. They are evidence-bounded model choices, not
+  measured constants.
+- Runtime acceptance: response, exposure, and display use the same generated
+  timing and polarity equations. Six Shader stages pass pinned local glslang
+  compilation and SPIR-V validation; 80 CPU equation vectors and the
+  model-output sensitivity report reproduce from the same constraint record. Compilation is
   not GPU numeric readback or original-hardware validation.
 
 ### AGS-BASELINE-01 — WS1 canonical inventory and repository baseline
@@ -591,6 +625,10 @@ a regression baseline.
 - Limit: target receipts establish frontend/GPU execution, not original-panel
   physics. Immutable historical records are never rewritten to match newer
   shader bytes.
+- Current target link: the promoted timing defaults are pinned by the KONKR
+  [`ags101-timing-default-20260821.json`](../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json)
+  deployment/presentation/frame-pacing receipt. It explicitly preserves the
+  2026-08-20 WS8 record as the last full DebugView numeric GPU run.
 
 ## Prototype status and evidence gap
 

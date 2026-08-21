@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inventoryId": "nintendo-ags-101-ws4-evidence-inventory-v1",
-  "snapshotDate": "2026-08-20",
+  "snapshotDate": "2026-08-21",
   "scope": "Literature-constrained AGS-101 optical-response ensemble without an authentic LQ029B1DC01F waveform measurement.",
   "exactPanelSearchRecord": "data/ws3-evidence-inventory-v1.json#WS3-PANEL-DATASHEET-SEARCH-2026-08-20",
   "classificationOrder": [
@@ -32,6 +32,7 @@
     "Sharp Tr is mapped from white to black and Sharp Td from black to white according to each document's response diagram, rather than by the English names of runtime variables.",
     "Cross-product research can justify qualitative transition-distance and temperature dimensions but cannot supply an AGS-101 table cell.",
     "Community ghosting reports remain qualitative and supply no milliseconds.",
+    "The 2005 LQ029 artifact predating the 2007/2008 LQ030 specification makes slower response a sensitivity hypothesis only; model age and diagonal do not establish a direction or magnitude for response or any other optical property.",
     "A first-order model matching a published 10-to-90 endpoint is scalar-compatible only; it is not proof of the unreported waveform shape."
   ],
   "items": [
@@ -82,6 +83,7 @@
       "classification": "near-size-manufacturer-family-datasheet",
       "title": "Sharp LQ030B1DC4xx/LQ030B1DC6xx TFT-LCD Module Delivery Specification LCG-02039B",
       "documentDate": "2008-12-02",
+      "establishedDate": "2007-10-26",
       "url": "https://www.beyondinfinite.com/lcd/Library/Sharp/LQ030B1DC60J.pdf",
       "preservation": "third-party mirror of a Sharp delivery specification",
       "documentSha256": "148811ec8f9c34234d819ae477d17b3e5f9d6e82586fe37fad1c03a35425c0b6",
@@ -110,7 +112,7 @@
         "maximum": 12,
         "use": "nominal typical endpoint and slow maximum endpoint anchors"
       },
-      "limits": "Different part family, 256x192 rather than 240x160, and a specification issued three years after the documented AGS-101 specimen. Values constrain a nearby family envelope only."
+      "limits": "Different part family, 256x192 rather than 240x160, and a specification issued three years after the documented AGS-101 specimen. Values constrain a nearby family envelope only. The earlier/custom LQ029 may be slower, equal, or faster; only the existing slow member represents the plausible slower sensitivity direction."
     },
     {
       "evidenceId": "WS4-LIANG-BADANO-2007",

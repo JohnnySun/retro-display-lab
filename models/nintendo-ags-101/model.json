@@ -43,7 +43,7 @@
     "temporalParameters": "period-literature theoretical reconstruction",
     "residualDcTopology": "Mizusaki adsorption/desorption reduction with explicit drive polarity",
     "residualDcParameters": "Mizusaki laboratory-cell midpoint rates with normalized project bridge priors",
-    "scanTiming": "exact GBA raster timing plus unselected AGS-101 latch, delay, parity, and inversion candidate sets",
+    "scanTiming": "exact GBA raster timing plus family-constrained line-start and row/frame-inversion reconstruction defaults; exact AGT phase, delay, and polarity remain unresolved",
     "gtgRuntime": "continuous first-order rate field using the WS4 nominal literature-constrained table with analytic missing-corner fallback",
     "gtgRawSchema": "data/gtg-measurement.schema.json",
     "gtgSyntheticFixture": "data/gtg-synthetic-v1.json",
@@ -69,7 +69,9 @@
     "gpuExposureReference": "generated/ws8-exposure-gpu-reference-v1.json",
     "ws8ValidationPresets": "generated/ws8-presets-v1/manifest.json",
     "lastFullNumericTargetValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json",
-    "currentTargetValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+    "lastPerformanceTargetValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+    "currentTargetValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json",
+    "currentTargetValidationStatus": "pass-github-layout-deployment-presentation-and-frame-pacing-no-full-numeric-rerun",
     "retentionExcitation": "per-pixel RGB555-command and WS3 polarity/topology proxy multiplying the normalized DriveDcOffset; no displayed-luma input or voltage claim",
     "retentionEvidenceInventory": "data/ws5-evidence-inventory-v1.json",
     "retentionReconstruction": "data/ws5-retention-reconstruction-v1.json",
@@ -104,13 +106,14 @@
       "TFT drive polarity and residual-DC topology",
       "Mizusaki adsorption/desorption kinetic rates",
       "GBA row timing and top-to-bottom scan direction",
+      "Sharp-family line-boundary latch semantics and row-plus-frame polarity reversal used as reconstruction defaults",
       "continuous first-order GtG model structure and measurement protocol",
       "Sharp-family 10-to-90 response endpoint envelope for the WS4 reconstructed ensemble"
     ],
     "projectPriors": [
       "normalized DriveDcOffset and DriveCodeCoupling bridge values",
-      "line-center latch offset and zero independent optical delay as legacy candidates, not formal AGS-101 constants",
-      "even-positive parity and frame-global inversion as legacy runtime candidates, with alternate hypotheses generated for sensitivity testing",
+      "zero independent optical delay and even-positive starting phase, neither measured on AGS-101",
+      "line-center latch and frame-global inversion retained as legacy sensitivity controls",
       "legacy analytic GtG fallback parameters",
       "WS4 near-transition and mid-gray distance-penalty magnitudes",
       "WS5 RGB555 code and polarity sensitivity weights",
@@ -132,7 +135,9 @@
     "historicalDeviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-20260818.json",
     "lastCompletedArtifactDeviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
     "lastFullNumericWs7DeviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json",
-    "currentPerformanceDeviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+    "lastPerformanceDeviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+    "currentPerformanceDeviceValidation": "../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json",
+    "currentDeviceValidationStatus": "pass-github-layout-deployment-presentation-and-frame-pacing-no-full-numeric-rerun",
     "ws3CandidateManifest": "generated/ws3-presets-v1/manifest.json",
     "ws3ReadOnlyDebugViews": {
       "rowStart": 6,
@@ -167,7 +172,7 @@
     "The KONKR target exposes only fixed 960x640 at 60 Hz, so stateful behavior under actual VRR remains unvalidated; the WS8 target receipt validates only the stateless boundary for unknown intervals",
     "WS7 integrates unity and static relative-backlight sensitivity only; PWM/DC temporal modulation remains unavailable because topology, frequency, duty, and phase are unresolved",
     "The neutral sRGB adapter is a regression baseline, not the measured AGS-101 color stage documented by AGS-COLOR-01",
-    "GBA raster timing is exact; AGS-101 latch phase, pure optical delay, polarity phase, inversion topology, and brightness coupling remain unselected hypotheses because no direct AGT-CPU-01 trace or exact LQ029B1DC01F specification was found",
+    "GBA raster timing is exact; line-start latch and row-plus-frame inversion are best-available family-constrained reconstruction defaults, not formal AGS-101 constants; pure optical delay, starting polarity phase, brightness coupling, and exact AGT edges remain unresolved because no direct AGT-CPU-01 trace or exact LQ029B1DC01F specification was found",
     "Retention feedback is valid only for normal forward TotalSubFrames=1 rendering; rewind, run-ahead, and dropped fast-forward time are not reconstructed"
   ]
 }

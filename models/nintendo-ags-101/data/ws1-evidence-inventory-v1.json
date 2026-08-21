@@ -140,12 +140,12 @@
       "note": "Enables the three-event theoretical scan reconstruction."
     },
     "LatchOffsetLines": {
-      "value": 0.5,
+      "value": 0,
       "claimClass": "project-derived",
       "role": "physical-prior",
       "units": "lines",
-      "evidenceIds": ["AGS-TIMING-01"],
-      "note": "Theoretical line-center latch prior; not captured AGS-101 timing."
+      "evidenceIds": ["AGS-TIMING-01", "AGS-RECON-01"],
+      "note": "Family- and cross-model-constrained line-boundary reconstruction default; not a captured AGT-CPU-01 edge. Line-center remains a sensitivity control."
     },
     "OpticalDelaySeconds": {
       "value": 0,
@@ -163,11 +163,11 @@
       "note": "Legacy even-frame-positive candidate. The AGS-101 polarity phase is not established."
     },
     "InversionTopology": {
-      "value": 0,
+      "value": 1,
       "claimClass": "project-derived",
-      "role": "unresolved-hypothesis-selector",
+      "role": "family-constrained-reconstruction-selector",
       "evidenceIds": ["AGS-RECON-01"],
-      "note": "Legacy frame-global candidate. Row, column, and dot candidates are sensitivity hypotheses, not AGS-101 facts."
+      "note": "Row-alternating plus frame reversal is the best available Sharp-family reconstruction default. Frame-global, column, and dot remain sensitivity controls; exact AGT REVC phase was not captured."
     },
     "ApertureGain": {
       "value": 1,

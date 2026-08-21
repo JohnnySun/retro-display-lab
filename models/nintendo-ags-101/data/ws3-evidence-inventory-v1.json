@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inventoryId": "nintendo-ags-101-ws3-evidence-inventory-v1",
-  "snapshotDate": "2026-08-20",
+  "snapshotDate": "2026-08-21",
   "scope": "Period reconstruction of GBA raster timing and the AGS-101 board-to-panel interface without access to an authentic motherboard, panel, or synchronized measurement rig.",
   "classificationOrder": [
     "manufacturer-period-document",
@@ -18,6 +18,7 @@
     "Exact GBA raster constants may be formal constants when a period manufacturer document and an independent technical reconstruction agree.",
     "An artifact photograph establishes only the markings and construction visible in that artifact.",
     "A manufacturer-family document can establish signal semantics but not AGS-101-specific phase, voltage, or topology.",
+    "A reconstruction default may combine mutually consistent family documents and cross-model signal observations while remaining distinct from a formal AGS-101-specific constant.",
     "AGS-001 topology is never promoted to AGS-101 fact without a separately recorded transfer argument.",
     "A failed exact-part search is evidence of an unresolved field, not evidence that a nearby part is equivalent.",
     "Emulator execution validates ROM compatibility and the scene contract, not original hardware timing."
@@ -48,7 +49,7 @@
       "claimsUsed": [
         "four CPU cycles per dot, 1232 cycles per line, and 280896 cycles per frame",
         "the generic GBA SP display socket exposes DCK, LP, PS, SPL, CLS, SPS, MOD, REVC, RGB data buses, panel supplies, and COM",
-        "the GBA SP CPU pinout names the corresponding LCD-interface signals"
+        "the GBA SP CPU pinout names the corresponding LCD-interface signals as CPU outputs"
       ],
       "limits": "This is technical reverse engineering, not Nintendo electrical documentation. The generic GBA SP interface map is not direct proof of the AGT-CPU-01 routing, edge polarity, voltage, or timing."
     },
@@ -87,6 +88,31 @@
       "limits": "The author explicitly says the schematic is accurate only for AGS-CPU-11. It cannot establish an AGT-CPU-01 net, component value, phase, or inversion mode."
     },
     {
+      "evidenceId": "WS3-INSIDEGADGETS-AGB-SIGNALS",
+      "classification": "technical-reverse-engineering",
+      "title": "InsideGadgets GBA LCD logic-analyzer observation",
+      "url": "https://www.insidegadgets.com/2019/08/08/playing-around-with-the-gba-lcd/",
+      "claimsUsed": [
+        "an original AGB interface observation records 240 DCLK pulses per visible line",
+        "RGB data changes on the DCLK negative edge in the observed unit",
+        "LP, PS, SPL, and CLS activity is grouped at the visible-line boundary"
+      ],
+      "limits": "This is an AGB 40-pin observation, not a synchronized AGT-CPU-01 trace. The author's informal signal-role guesses are not used; only the reported waveform observations constrain the reconstruction."
+    },
+    {
+      "evidenceId": "WS3-NXP-AN2415-SHARP-HRTFT",
+      "classification": "manufacturer-period-document",
+      "title": "NXP AN2415 Programming the LCD Controller for Sharp TFT Panel",
+      "documentCode": "AN2415",
+      "documentDate": "2003-04",
+      "url": "https://www.nxp.com/docs/en/application-note/AN2415.pdf",
+      "claimsUsed": [
+        "Sharp HR-TFT control uses distinct sampling-start, gate-clock, power-save, and reverse-control signals",
+        "the documented REV waveform changes state once per line at a fixed position relative to the final line-data transfer"
+      ],
+      "limits": "The application note targets other Sharp panels and controllers. It constrains period-family signal semantics but does not identify the AGS-101 panel, voltage, exact edge, or starting polarity."
+    },
+    {
       "evidenceId": "WS3-SHARP-LZ9JG17B-FAMILY",
       "classification": "manufacturer-family-datasheet",
       "title": "Sharp LZ9JG17B TFT-LCD timing-controller datasheet",
@@ -97,6 +123,22 @@
         "REVC is associated with preparation for common-electrode drive"
       ],
       "limits": "LZ9JG17B is not identified as the AGS-101 controller. Its dimensions, edge polarities, frequencies, and phase values are not transferred."
+    },
+    {
+      "evidenceId": "WS3-SHARP-LQ030B1DC-FAMILY",
+      "classification": "manufacturer-family-datasheet",
+      "title": "Sharp LQ030B1DC4xx/LQ030B1DC6xx TFT-LCD module delivery specification",
+      "documentCode": "LCG-02039B",
+      "establishedDate": "2007-10-26",
+      "revisionDate": "2008-12-02",
+      "url": "https://www.beyondinfinite.com/lcd/Library/Sharp/LQ030B1DC60J.pdf",
+      "claimsUsed": [
+        "REV must reverse polarity on every horizontal scan and every vertical scan",
+        "VCOM DC voltage is adjusted for each module",
+        "the near-size family response envelope is 30/60 ms typical and 50/100 ms maximum at 25 C",
+        "the documented pixel stripe order is BGR"
+      ],
+      "limits": "This 3.0-inch 256x192 specification postdates the documented 2005 AGS-101 specimen and is not an LQ029B1DC01F precursor or exact substitute. Its response, BGR order, voltage, optics, backlight levels, and pinout are not transferred as exact AGS-101 constants."
     },
     {
       "evidenceId": "WS3-VEIKKOS-FRAME-TEST",
@@ -124,15 +166,21 @@
       "classification": "negative-search-record",
       "title": "Exact LQ029B1DC01F specification search",
       "searchedAt": "2026-08-20",
+      "lastExtendedAt": "2026-08-21",
       "queries": [
         "LQ029B1DC01F",
         "LQ029B1DC01",
         "LQ029B1DC01F datasheet",
         "LQ029B1DC01F filetype:pdf",
         "site:sharp-world.com LQ029B1DC01F",
-        "site:archive.org LQ029B1DC01F"
+        "site:archive.org LQ029B1DC01F",
+        "LQ029B1DC01C datasheet",
+        "LQ029B1DC02 datasheet",
+        "LQ029B1DC02C datasheet",
+        "LQ029B2DB51A specification",
+        "LQ030B1DC specification"
       ],
-      "result": "No exact manufacturer specification or traceable exact-part datasheet was located in the checked web and archive indexes.",
+      "result": "No exact manufacturer specification or traceable LQ029B1DC01F/sibling datasheet was located. A later LQ030B1DC family specification was recovered and is separately classified as non-equivalent family evidence.",
       "claimsUsed": [],
       "limits": "Absence from this search does not prove that no specification exists. Nearby LQ029 or LQ030 part numbers are explicitly excluded as exact substitutes."
     },

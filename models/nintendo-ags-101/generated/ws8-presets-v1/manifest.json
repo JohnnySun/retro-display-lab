@@ -6,14 +6,14 @@
     {
       "id": "exposure-numeric",
       "path": "generated/ws8-presets-v1/exposure-numeric-v1.slangp",
-      "sha256": "6221af095c4240fc5bd9594a73e0f9ab383db1d8c893e62821ce92d6da7b205f",
+      "sha256": "69edce3cbcc39060f4e4785cffead7370611416dd8c8f7f703920b3e797a239b",
       "stimulus": "generated/ws2-stimulus-v1/parity-toggle.gba",
       "debugView": 13
     },
     {
       "id": "aperture-energy",
       "path": "generated/ws8-presets-v1/aperture-energy-v1.slangp",
-      "sha256": "54dc75184d416885599faf6d894465937288d65af7fb3ae2357438f3ed3ac69a",
+      "sha256": "5d9d659591b3428f3eb10b34a39a8601c6fd62ca0fd39cd327e98d98f0f48405",
       "stimulus": "generated/ws2-stimulus-v1/parity-toggle.gba",
       "debugView": 14,
       "targetScales": [
@@ -24,7 +24,7 @@
     {
       "id": "frontend-safe-bypass",
       "path": "generated/ws8-presets-v1/frontend-safe-bypass-v1.slangp",
-      "sha256": "5aef864150c08d8e74be209473f5a3b4c2f1c282304eba43d919b0a00cbb6937",
+      "sha256": "8d55bb3b714e5d6adcac8ecfa603f6bf0338e03f6754d81110dc30b9fbcb8972",
       "stimulus": "generated/ws2-stimulus-v1/parity-toggle.gba",
       "debugView": 13,
       "unsupportedIntervals": [
@@ -38,6 +38,6 @@
   ],
   "exposureReference": {
     "path": "generated/ws8-exposure-gpu-reference-v1.json",
-    "sha256": "adc873a5cd1c6b7a7b804d1445a937976c88f39c245a55bfc54218d5d9324550"
+    "sha256": "0a4645ec3b8cfc4179365b9341338142f4596887152335bdfa4f15ec5d69f746"
   }
 }

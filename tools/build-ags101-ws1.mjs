@@ -209,7 +209,7 @@ const specs = [
     description: [
       "## Provenance: ../REFERENCES.md",
       "## Evidence: [AGS-TIMING-01] [AGS-FRONTEND-01]",
-      "## Theoretical sensitivity lower bound: electrical latch at source-row start.",
+      "## Family-constrained normal reconstruction: electrical latch at the source-row boundary.",
     ].join("\n"),
     overrides: {
       LatchOffsetLines: "0.0",
@@ -301,6 +301,7 @@ const artifactPaths = [
   "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp",
   "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-target-20260820.json",
   "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+  "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json",
 ].sort();
 const artifacts = Object.fromEntries(artifactPaths.map((relative) => [
   relative,
@@ -333,11 +334,12 @@ const baseline = {
   })),
   artifacts,
   deviceReceipt: {
-    status: "last-full-numeric-ws8-plus-current-performance-receipt",
+    status: "current-deployment-presentation-and-frame-pacing-pass-full-numeric-rerun-not-performed",
     lastFullNumericRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws8-target-20260820.json",
-    currentPerformanceRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+    lastPerformanceRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-performance-20260821.json",
+    currentRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-timing-default-20260821.json",
     historicalRecord: "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/ags101-ws5-20260818.json",
-    note: "The 2026-08-20 WS8 receipt is the last full GPU numeric run. The 2026-08-21 receipt separately pins the current optimized Shader bytes, normal rendering, and moving-frame performance without relabeling the older DebugView captures as a rerun.",
+    note: "The 2026-08-21 current receipt pins the promoted line-start/row-alternating bytes deployed through the documented GitHub layout and validates normal presentation plus fixed-60-Hz frame pacing. The 2026-08-20 WS8 receipt remains the last full GPU numeric run; no current DebugView 12-14 numeric rerun is claimed.",
   },
 };
 const baselineContent = `${JSON.stringify(baseline, null, 2)}\n`;

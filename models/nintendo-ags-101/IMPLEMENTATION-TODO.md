@@ -1,6 +1,6 @@
 # Nintendo GBA SP AGS-101 implementation plan
 
-Status: WS1–WS8 implemented; promoted to period reconstruction, 2026-08-20.
+Status: WS1–WS8 implemented; timing evidence promotion updated 2026-08-21.
 
 ## Outcome
 
@@ -72,9 +72,11 @@ reconstruction.
 
 ## WS1 — Freeze a truthful baseline
 
-Implementation status: repository work and the current-artifact KONKR
-compilation/presentation receipt completed on 2026-08-20. WS8 now adds current
-three-pass float exposure/retention readback and aperture-energy target evidence.
+Implementation status: repository work and full three-pass numeric KONKR
+evidence completed on 2026-08-20. The promoted line-start/row-alternating bytes
+were then deployed through the documented GitHub layout on 2026-08-21 and have
+current presentation/frame-pacing evidence; full DebugView numeric evidence
+still belongs to the 2026-08-20 receipt.
 
 ### Implementation
 
@@ -145,9 +147,11 @@ complete on 2026-08-20. Original GBA execution remains optional.
 
 ## WS3 — Reconstruct electrical drive and scan timing
 
-Implementation status: repository reconstruction complete on 2026-08-20.
+Implementation status: repository reconstruction complete; family-constrained
+default promotion completed on 2026-08-21.
 Evidence inventory, hardware identity, signal matrix, exact raster constants,
-unselected candidate sets, WS2 gate, generated CPU/Shader equations, candidate
+line-start/row-plus-frame reconstruction defaults, retained candidate sets,
+WS2 gate, generated CPU/Shader equations, candidate
 presets, independent diagnostics, compilation, and sensitivity acceptance all
 pass. Future direct hardware evidence may refine the candidates but is not a
 completion gate.
@@ -162,7 +166,9 @@ completion gate.
   `LQ029B1DC01F`. Keep identity evidence separate from electrical inference.
 - [x] Inventory AGS-001 schematics, GBA LCD interface documentation, AGT board
   photographs, connector markings, patents, and period Sharp interface
-  material. Label cross-model topology transfer explicitly.
+  material. Label cross-model topology transfer explicitly. The promoted
+  record includes InsideGadgets' AGB signal observation, NXP `AN2415`, Sharp
+  `LZ9JG17B`, and the later non-equivalent `LQ030B1DC` family specification.
 - [x] Build a signal evidence table for DCK, LP, SPS, MOD, REVC, COM, segment,
   brightness control, and panel supplies. For each signal, record whether its
   existence, direction, timing, and function are known independently.
@@ -176,8 +182,9 @@ completion gate.
   platform constants from ranges and discrete topology hypotheses.
 - [x] Define named candidate sets for source latch phase, row optical delay,
   frame parity, inversion topology, and brightness coupling. Include the
-  existing half-line latch and zero optical-delay behavior only as explicit
-  candidates.
+  former half-line/frame-global behavior as legacy controls; record line-start
+  and row-plus-frame inversion separately as reconstruction defaults rather
+  than formal AGS-specific constants.
 - [x] Audit physical candidate bounds from circuit topology and period
   documentation. No exact AGT circuit or panel specification supports narrower
   bounds, so the record deliberately retains broad runtime/sensitivity bounds.
@@ -450,8 +457,8 @@ Execution order:
    and WS7 exposure output, in the continuous WS8 instrumentation track.
 5. Preserve the completed WS7 interval contract, analytic integration, and
    fast/nominal/slow plus backlight bounds as the WS8 exposure baseline.
-6. Run WS8 continuously for CPU/GPU regression, uncertainty receipts, and final
-   target-device validation.
+6. Preserve the 2026-08-21 current deployment/presentation/pacing receipt and
+   run WS8 again whenever current-artifact DebugView numeric closure is needed.
 
 Authentic AGS-101 hardware is not part of the planned dependency chain. If
 future hardware measurements become available, ingest them through the WS2

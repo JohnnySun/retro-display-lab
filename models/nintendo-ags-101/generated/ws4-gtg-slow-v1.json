@@ -5,7 +5,7 @@
   "sourceClassification": "literature-constrained-reconstruction-not-panel-measurement",
   "ensembleMember": {
     "id": "slow",
-    "role": "near-size family specification maximum endpoint",
+    "role": "near-size family specification maximum endpoint and plausible slower-earlier-panel sensitivity bound",
     "opticalDarkeningEndpointT10To90Ms": 50,
     "opticalBrighteningEndpointT10To90Ms": 100,
     "nearTransitionPenalty": 0.4,
@@ -13,12 +13,12 @@
     "endpointEvidenceIds": [
       "WS4-SHARP-LQ030B1DC-FAMILY-2008"
     ],
-    "endpointSelection": "2008 near-size Sharp maximum white-to-black and black-to-white values"
+    "endpointSelection": "2008 near-size Sharp maximum white-to-black and black-to-white values; also bounds, but does not predict, a possibly slower 2005 custom LQ029 panel"
   },
   "evidenceInventory": "data/ws4-evidence-inventory-v1.json",
-  "evidenceInventorySha256": "fbf02543ac23baa491c9ddf72c04c6792bdd7e20781e060716ea15a8a85bc817",
+  "evidenceInventorySha256": "87e1e0af888e331941ad59eab8488575146f652e5a7db1de66529353eac4c2e9",
   "ensembleDefinition": "data/ws4-gtg-ensemble-v1.json",
-  "ensembleDefinitionSha256": "434b86e46fcc9eccaff26ca6f682441911de5089e246b33c949fa43c9647c40e",
+  "ensembleDefinitionSha256": "595f3a567eaf237fbd192851cbed8cb9e82e9d1da95950e197625490609ace3f",
   "texture": {
     "file": "ws4-gtg-slow-v1.png",
     "sha256": "8b7636fa1ad46f43d08c67d0d813aebb50c762c6b5703235913003ddafa02a15",

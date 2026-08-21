@@ -25,7 +25,7 @@ function clamp(value, low, high) {
 
 export function scanEvent({
   row,
-  latchOffsetLines = 0.5,
+  latchOffsetLines = 0,
   opticalDelaySeconds = 0,
 }) {
   if (!Number.isInteger(row) || row < 0 || row >= GBA_VISIBLE_LINES) {
@@ -75,7 +75,11 @@ export function sourcePairForEvent({
   throw new RangeError("sourceFrameOffset must be 0 or 1");
 }
 
-export function inversionSpatialPhase({ x, y, inversionTopology = 0 }) {
+export function inversionSpatialPhase({
+  x,
+  y,
+  inversionTopology = INVERSION_TOPOLOGIES.ROW_ALTERNATING,
+}) {
   if (!Number.isInteger(x) || x < 0 || !Number.isInteger(y) || y < 0) {
     throw new RangeError("x and y must be non-negative integers");
   }
@@ -95,7 +99,7 @@ export function drivePolarity({
   x,
   y,
   parityPhase = 0,
-  inversionTopology = 0,
+  inversionTopology = INVERSION_TOPOLOGIES.ROW_ALTERNATING,
 }) {
   if (!Number.isInteger(frameCount) || frameCount < 0) {
     throw new RangeError("frameCount must be a non-negative integer");
@@ -106,7 +110,7 @@ export function drivePolarity({
 }
 
 function parseCli(argv) {
-  const options = { latchOffsetLines: 0.5, opticalDelaySeconds: 0 };
+  const options = { latchOffsetLines: 0, opticalDelaySeconds: 0 };
   for (let index = 0; index < argv.length; index += 2) {
     const value = Number(argv[index + 1]);
     if (argv[index] === "--latch-lines") options.latchOffsetLines = value;
