@@ -67,10 +67,14 @@ const target = "targets/konkr-gt78-vn/960x640-srgb-neutral";
 // belongs to: an installer must never deploy a retroarch-local preset while the Android-system
 // host correction is active, and vice versa.
 const presets = [
+  // one-year-used, not reference: reference runs CurrentDriveCoherence at 0, the pure physical
+  // path, which leaves moving solids incomplete. It is the diagnostic preset. The project's own
+  // hand-deploy override in integrations/ has always named one-year-used as the default, and an
+  // installer that disagrees with it is the installer that is wrong.
   { core: "Gambatte", content: "gb", route: "android-system",
-    preset: `${target}/presets/dmg01-reference-v1.slangp` },
+    preset: `${target}/presets/dmg01-one-year-used-v1.slangp` },
   { core: "Gambatte", content: "gb", route: "retroarch-local",
-    preset: `${target}/presets/dmg01-reference-kpa-color-corrected.slangp` },
+    preset: `${target}/presets/dmg01-one-year-used-kpa-color-corrected.slangp` },
   { core: "mGBA", content: "gba", route: "android-system",
     preset: `${target}/presets/ags101-period-reconstruction-v1.slangp` },
   { core: "mGBA", content: "gba", route: "retroarch-local",
@@ -80,8 +84,8 @@ const presets = [
 // Alternative presets a user may select by hand. They are shipped so the selection exists, but
 // no override points at them.
 const extraPresets = [
-  `${target}/presets/dmg01-one-year-used-v1.slangp`,
-  `${target}/presets/dmg01-one-year-used-kpa-color-corrected.slangp`,
+  `${target}/presets/dmg01-reference-v1.slangp`,
+  `${target}/presets/dmg01-reference-kpa-color-corrected.slangp`,
   `${target}/presets/dmg01-lightly-used-v1.slangp`,
 ];
 
