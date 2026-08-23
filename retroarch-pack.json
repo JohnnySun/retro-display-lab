@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "0.7.0",
+  "ref": "v0.7.0",
+  "installRoot": "retro-display-lab",
+  "target": {
+    "id": "konkr-gt78-vn-960x640-srgb-neutral",
+    "profile": "targets/konkr-gt78-vn/960x640-srgb-neutral/profile.json"
+  },
+  "overrides": [
+    {
+      "core": "Gambatte",
+      "content": "gb",
+      "route": "android-system",
+      "configPath": "Gambatte/gb.slangp",
+      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp"
+    },
+    {
+      "core": "Gambatte",
+      "content": "gb",
+      "route": "retroarch-local",
+      "configPath": "Gambatte/gb.slangp",
+      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-color-corrected.slangp"
+    },
+    {
+      "core": "mGBA",
+      "content": "gba",
+      "route": "android-system",
+      "configPath": "mGBA/gba.slangp",
+      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp"
+    },
+    {
+      "core": "mGBA",
+      "content": "gba",
+      "route": "retroarch-local",
+      "configPath": "mGBA/gba.slangp",
+      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-kpa-color-corrected.slangp"
+    }
+  ],
+  "settings": [
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/dmg01-temporal.cfg",
+    "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg"
+  ],
+  "files": [
+    {
+      "path": "models/nintendo-ags-101/generated/ws4-gtg-nominal-v1.png",
+      "bytes": 9380,
+      "sha256": "83545b04023735b590406617231ce2d9411640adc3d3484ee760c8420809816e"
+    },
+    {
+      "path": "models/nintendo-ags-101/shaders/ags101-display-v1.slang",
+      "bytes": 25211,
+      "sha256": "dd34b13812f368b5437d5a5ea1a1813208ad358a22b8ca09962139abd4c260a5"
+    },
+    {
+      "path": "models/nintendo-ags-101/shaders/ags101-exposure-v1.slang",
+      "bytes": 10303,
+      "sha256": "47cea79a50f0980e8261112ae1338e772dc0c9f2b7f57cb35db121b01488e239"
+    },
+    {
+      "path": "models/nintendo-ags-101/shaders/ags101-response-v1.slang",
+      "bytes": 19511,
+      "sha256": "3a282af8a5bbc9b0b3a4424322cd6855aa344cb144e06ab392115a7dbda298a2"
+    },
+    {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-crosstalk-summary-v3.slang",
+      "bytes": 4160,
+      "sha256": "94ffaae04570a73b014aa5f23e329de8c32cc422c5cf6f0991f991c62c309744"
+    },
+    {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-display-v1.slang",
+      "bytes": 9232,
+      "sha256": "8edb01fa2931b8fc91df4b7905c2d437415e5b6c4ce4be59ee07092244432873"
+    },
+    {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-matrix-v1.slang",
+      "bytes": 2367,
+      "sha256": "4e03afde2a99a594258f4e9ad97c1a3c3f5f9406174b8cb49b424170145ec6a7"
+    },
+    {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
+      "bytes": 20717,
+      "sha256": "b18e3871100f999ff9cf88e77c4a75af71a14ed9fd19877c799e5560e975a1a4"
+    },
+    {
+      "path": "models/nintendo-dmg-01/shaders/dmg01-row-load-v2.slang",
+      "bytes": 1858,
+      "sha256": "59e7e2c956e4deeb4574b097722f8b13e8c4d4813bd10d289c29456cf48cf6f7"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/host-correction/kpa-reference-b57-g7-v1/kpa-host-correction-v1.slang",
+      "bytes": 2718,
+      "sha256": "4b014bcf1917d62b53c0048011419d511ae5acfd4d988c8b3f1bad4784a28817"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/host-correction/kpa-reference-b57-g7-v1/kpa-reference-b57-g7-v1-lut65.png",
+      "bytes": 746260,
+      "sha256": "779f848077f285c1bfc1c03a67f153f76f41ca7c5942e010c092c3d83cba3a3e"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-kpa-color-corrected.slangp",
+      "bytes": 2981,
+      "sha256": "4fd740c044b8d546f15ee3d2c313540c8d4483479b61ac91966bc98635260950"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp",
+      "bytes": 2366,
+      "sha256": "99820133b908377ab13dc63fae538991187f9fdc533e349fe1a024d1049db6b4"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-lightly-used-v1.slangp",
+      "bytes": 2183,
+      "sha256": "0b442c34ffe66dae3486c804f1061ce663cbc4e974c0d97014e6d9df7b3af021"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-kpa-color-corrected.slangp",
+      "bytes": 2915,
+      "sha256": "b168b329d857861b85637d7adbc7965a04ccdf6357a00132df1fa1e2ea2fb120"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-v1.slangp",
+      "bytes": 2286,
+      "sha256": "3abaf35de63fb1b6c42fc38323069c1e85c04b9ac3224003899decf940db76bd"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-color-corrected.slangp",
+      "bytes": 2809,
+      "sha256": "de437d7728d8b6c8255895a49526d292098dc4a5b984861c3bbf6adf4a69f140"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp",
+      "bytes": 2180,
+      "sha256": "3e4c5796eeffb424ec7d38ec28d1f5444b91b7390e00217ca4faf286754bb3ff"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg",
+      "bytes": 301,
+      "sha256": "d437f4afafc801bc4bc3bb70e1fb3fa692e15be78ce78595380824fdc226c9ca"
+    },
+    {
+      "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/dmg01-temporal.cfg",
+      "bytes": 546,
+      "sha256": "f3ce1479a6506f3f7c4b41545095dcdf340c3167b9fd98d2b9132c53312c7c67"
+    }
+  ],
+  "totalBytes": 870284
+}
