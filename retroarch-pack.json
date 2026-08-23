@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "packVersion": "0.7.0",
-  "ref": "v0.7.0",
+  "packVersion": "0.7.1",
+  "ref": "v0.7.1",
   "installRoot": "retro-display-lab",
   "target": {
     "id": "konkr-gt78-vn-960x640-srgb-neutral",
@@ -13,14 +13,14 @@
       "content": "gb",
       "route": "android-system",
       "configPath": "Gambatte/gb.slangp",
-      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp"
+      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-v1.slangp"
     },
     {
       "core": "Gambatte",
       "content": "gb",
       "route": "retroarch-local",
       "configPath": "Gambatte/gb.slangp",
-      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-color-corrected.slangp"
+      "preset": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-kpa-color-corrected.slangp"
     },
     {
       "core": "mGBA",
