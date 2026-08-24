@@ -5,7 +5,6 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import process from "node:process";
-import zlib from "node:zlib";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { evaluateUpstreamD65 } from "../models/nintendo-cgb-001/reference/color-reference.mjs";
@@ -39,7 +38,10 @@ function sha256File(file) {
 }
 
 function clean(value) {
-  return Number(Number(value).toPrecision(12));
+  const numeric = Number(value);
+  if (Math.abs(numeric) < 1e-12) return 0;
+  const cleaned = Number(numeric.toPrecision(9));
+  return Object.is(cleaned, -0) ? 0 : cleaned;
 }
 
 function output(relative, buffer) {
@@ -142,6 +144,31 @@ function pngChunk(type, data) {
   return result;
 }
 
+function deflateStored(buffer) {
+  // A zlib stream made from uncompressed DEFLATE blocks is larger than a
+  // compressor-produced stream, but its bytes do not depend on the host zlib
+  // release. PNG runtime texels therefore remain byte-identical across Node.
+  const blocks = [Buffer.from([0x78, 0x01])];
+  for (let offset = 0; offset < buffer.length; offset += 65_535) {
+    const length = Math.min(65_535, buffer.length - offset);
+    const header = Buffer.alloc(5);
+    header[0] = offset + length === buffer.length ? 1 : 0;
+    header.writeUInt16LE(length, 1);
+    header.writeUInt16LE((~length) & 0xffff, 3);
+    blocks.push(header, buffer.subarray(offset, offset + length));
+  }
+  let first = 1;
+  let second = 0;
+  for (const byte of buffer) {
+    first = (first + byte) % 65_521;
+    second = (second + first) % 65_521;
+  }
+  const checksum = Buffer.alloc(4);
+  checksum.writeUInt32BE(((second << 16) | first) >>> 0);
+  blocks.push(checksum);
+  return Buffer.concat(blocks);
+}
+
 function packTiledRgba16(values, scale) {
   const width = 32 * 34;
   const height = 32;
@@ -177,7 +204,7 @@ function packTiledRgba16(values, scale) {
   const png = Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     pngChunk("IHDR", ihdr),
-    pngChunk("IDAT", zlib.deflateSync(rows, { level: 9 })),
+    pngChunk("IDAT", deflateStored(rows)),
     pngChunk("IEND", Buffer.alloc(0)),
   ]);
   return { png, width, height, maximumAbsoluteError };
@@ -222,7 +249,7 @@ function packTiledRgba8Planes(values, scale) {
   const encode = (rows) => Buffer.concat([
     Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     pngChunk("IHDR", ihdr),
-    pngChunk("IDAT", zlib.deflateSync(rows, { level: 9 })),
+    pngChunk("IDAT", deflateStored(rows)),
     pngChunk("IEND", Buffer.alloc(0)),
   ]);
   return { high: encode(highRows), low: encode(lowRows), width, height, maximumAbsoluteError };

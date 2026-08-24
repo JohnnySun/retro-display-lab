@@ -12,12 +12,12 @@
     "models/nintendo-cgb-001/reference/rgb-aperture.mjs": "2d3ab09c1ca4e2f9ee9de3db35ac77338355c7bcecec357be758f52c71e0a4c3",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "3705d681547e1d99ac90cc7e8980e2512690c3711faf3ffd060ab039b47635f9",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
-    "models/nintendo-cgb-001/generated/ws5-receipt-v1.json": "394ad8673948b8f41601a0277d24d3f4f3676bb8740ebb971fbe8deae4a73b97",
+    "models/nintendo-cgb-001/generated/ws5-receipt-v1.json": "2e1a3ecbc211fe3c3e9a76b01b7fa34c8e5a52a032bba7ef3bdc2df5e7cd84ad",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
-    "tools/build-cgb001-ws6.mjs": "1482547558ec2ee3a310f2629adbb28f3c9db95e6b25f7e549248ee987f92f25"
+    "tools/build-cgb001-ws6.mjs": "d3c8290270574bce71a9c90762dc2bc9ddd274e40f49af08641098315bebd376"
   },
   "outputHashes": {
-    "models/nintendo-cgb-001/generated/ws6-aperture-validation-v1.json": "a36a38b1ec0850c6dd11ce4f9d3c7cc4e49d242be82d498d6c47c13b22105092"
+    "models/nintendo-cgb-001/generated/ws6-aperture-validation-v1.json": "1a6c8b5b9f4aaf442e8b6ce2dc0f43b84f4f2ab1def214f42c0404567ed2cea9"
   },
   "gates": {
     "evidenceAndImageProvenanceAudited": true,

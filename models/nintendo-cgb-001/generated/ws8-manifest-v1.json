@@ -55,12 +55,12 @@
     "presets/diagnostic-aperture-coverage-v1.slangp": "8cde838b34ad2ad7ee2d88aeff30604abc329633fc5b9ac9ed4abc524d2fad9c"
   },
   "textureHashes": {
-    "generated/cgb001-reference-d65-v1.png": "c63347e4e7709437b352ef5a33eb8c07a3ef5ae1c7a38d5926f4c3a594d852fc",
-    "generated/cgb001-hcs-upstream-d65-v1.png": "9ab43a2616a8c78dce69b5a435ef81f5235e11b03a177a13b34e55a51051c3c6",
-    "generated/cgb001-reference-d65-v1-hi-rgba8.png": "cfb01b62c67cd29066bea4d4e2bb329a32f2d0618d94a17a95d6a50325e8bbc1",
-    "generated/cgb001-reference-d65-v1-lo-rgba8.png": "eda45060a17dcb8298e858d6829982d7e219372ff9e5881886a16a77cb14a4cf",
-    "generated/cgb001-hcs-upstream-d65-v1-hi-rgba8.png": "c397cf39a3bbba78d6bc3701b6e931de61d73a121f3f3b2b3c47fbcac06030a5",
-    "generated/cgb001-hcs-upstream-d65-v1-lo-rgba8.png": "414cb3cab0988fec157a25e7d3bb355d50950fcc7d16e9aa93a937a82d047ba9",
+    "generated/cgb001-reference-d65-v1.png": "87924d6e3691049660ad9a9f51ee1cf8ad3a6fec913ab9ec713f6b5116e3a713",
+    "generated/cgb001-hcs-upstream-d65-v1.png": "bb2f20e1181c42284d7adc8de97d84b2101a0ec85e86fca13c8185a5fc2ecb4e",
+    "generated/cgb001-reference-d65-v1-hi-rgba8.png": "223a496f4371312271f212b5052d13228c95c9f0510feba72ba9df6e97d1d5eb",
+    "generated/cgb001-reference-d65-v1-lo-rgba8.png": "2a959ae5e8bd459c906bc8cbf12cf74bb5bae5ee71affc061f06fd71103e4339",
+    "generated/cgb001-hcs-upstream-d65-v1-hi-rgba8.png": "d112ed5e679ea1d220951bd9c5baff6df19e96ff87e8c72404ebbe8d64a5491d",
+    "generated/cgb001-hcs-upstream-d65-v1-lo-rgba8.png": "d103e494d82206e1ea66151d1ef7c5b786dce5d2892b25e232ba608d802f602c",
     "generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
     "generated/cgb001-ws4-gtg-rates-v1.r32f": "a43e901fbb103c578d1b26263057148d9ab8524507b5d826309879e50fb0ecf9"
   },
@@ -78,7 +78,7 @@
   },
   "compileReceipt": {
     "path": "generated/ws8-shader-compile-v1.json",
-    "sha256": "41809e0b842ec5f01c5ac2185a1e90b7516a4021c080ecc9bfe86cb83df03f38",
+    "sha256": "ba09e2d19a56418354d6522290fbfa31845027c6f7a0283cb926e4f7607ee03c",
     "stagesPassed": 6
   },
   "diagnostics": {
@@ -96,8 +96,8 @@
     "settledWs1ColorMutation": false
   },
   "validation": {
-    "referenceTextureMaximumIntegerXyzQuantizationError": 0.00000762931494924,
-    "upstreamTextureMaximumIntegerXyzQuantizationError": 0.00000953681919202,
+    "referenceTextureMaximumIntegerXyzQuantizationError": 0.00000762931495,
+    "upstreamTextureMaximumIntegerXyzQuantizationError": 0.00000953681919,
     "shaderRateMaximumFloat32DifferenceAcross9216Cells": 0,
     "completePresetCount": 15,
     "thinReferencePresets": 0,

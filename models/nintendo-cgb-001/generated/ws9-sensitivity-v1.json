@@ -153,7 +153,7 @@
       "phases": [
         {
           "phase": 0,
-          "sourceCenter": 79.6428571429,
+          "sourceCenter": 79.6428571,
           "coverage": [
             0,
             1.75,
@@ -162,7 +162,7 @@
         },
         {
           "phase": 1,
-          "sourceCenter": 79.9285714286,
+          "sourceCenter": 79.9285714,
           "coverage": [
             0.75,
             0,
@@ -171,7 +171,7 @@
         },
         {
           "phase": 2,
-          "sourceCenter": 80.2142857143,
+          "sourceCenter": 80.2142857,
           "coverage": [
             2.75,
             0.25,
@@ -285,7 +285,7 @@
       "phases": [
         {
           "phase": 0,
-          "sourceCenter": 79.5833333333,
+          "sourceCenter": 79.5833333,
           "coverage": [
             0,
             3,
@@ -303,7 +303,7 @@
         },
         {
           "phase": 2,
-          "sourceCenter": 79.9166666667,
+          "sourceCenter": 79.9166667,
           "coverage": [
             0,
             0,
@@ -312,7 +312,7 @@
         },
         {
           "phase": 3,
-          "sourceCenter": 80.0833333333,
+          "sourceCenter": 80.0833333,
           "coverage": [
             3,
             0,
@@ -330,7 +330,7 @@
         },
         {
           "phase": 5,
-          "sourceCenter": 80.4166666667,
+          "sourceCenter": 80.4166667,
           "coverage": [
             0,
             3,

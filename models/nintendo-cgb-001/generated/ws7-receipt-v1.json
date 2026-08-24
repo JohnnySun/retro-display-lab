@@ -17,10 +17,10 @@
     "models/nintendo-cgb-001/generated/ws4-receipt-v1.json": "4714a51a6c9a6b814f242b3c07042c8bff9ab2e766cc7effe34111d1754d2be5",
     "models/nintendo-cgb-001/data/frontend-contract-v1.json": "6c54904c9b626140d0a91e2eea5d4e56877d1afeaa98c8ebc982277143ad37ae",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
-    "tools/build-cgb001-ws7.mjs": "ae43b6897084b4d02f02bc8c6a55d58fc29bce78f466e5d652847d3543d2127b"
+    "tools/build-cgb001-ws7.mjs": "eb4bb7a2ef1d531fe0bb4ff18882a918892035833f5ae1c275b854aa97ef8dd3"
   },
   "outputHashes": {
-    "models/nintendo-cgb-001/generated/ws7-retention-validation-v1.json": "55a5e12d585d1dff082d6f4460ce272e993712e8f94dc1eff182c85b0d83f8a2"
+    "models/nintendo-cgb-001/generated/ws7-retention-validation-v1.json": "7802e7b77affbf8d7573612a3d1c639a801d81f0b8621df64c156b5206f477a1"
   },
   "gates": {
     "activeMatrixVcomAndIonMechanismsNormalized": true,

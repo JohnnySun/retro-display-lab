@@ -25,43 +25,43 @@
   "textures": {
     "referenceD65": {
       "path": "cgb001-reference-d65-v1-hi-rgba8.png",
-      "sha256": "cfb01b62c67cd29066bea4d4e2bb329a32f2d0618d94a17a95d6a50325e8bbc1",
+      "sha256": "223a496f4371312271f212b5052d13228c95c9f0510feba72ba9df6e97d1d5eb",
       "rejectedRgba16Probe": {
         "path": "cgb001-reference-d65-v1.png",
-        "sha256": "c63347e4e7709437b352ef5a33eb8c07a3ef5ae1c7a38d5926f4c3a594d852fc"
+        "sha256": "87924d6e3691049660ad9a9f51ee1cf8ad3a6fec913ab9ec713f6b5116e3a713"
       },
       "runtimeHighPlane": {
         "path": "cgb001-reference-d65-v1-hi-rgba8.png",
-        "sha256": "cfb01b62c67cd29066bea4d4e2bb329a32f2d0618d94a17a95d6a50325e8bbc1"
+        "sha256": "223a496f4371312271f212b5052d13228c95c9f0510feba72ba9df6e97d1d5eb"
       },
       "runtimeLowPlane": {
         "path": "cgb001-reference-d65-v1-lo-rgba8.png",
-        "sha256": "eda45060a17dcb8298e858d6829982d7e219372ff9e5881886a16a77cb14a4cf"
+        "sha256": "2a959ae5e8bd459c906bc8cbf12cf74bb5bae5ee71affc061f06fd71103e4339"
       },
       "encodedScale": 1,
       "authoritativeSource": "cgb001-d65-lut-v1.rgba32f",
       "authoritativeSourceSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
-      "maximumIntegerTexelAbsoluteXyzQuantizationError": 0.00000762931494924
+      "maximumIntegerTexelAbsoluteXyzQuantizationError": 0.00000762931495
     },
     "hcsUpstreamD65": {
       "path": "cgb001-hcs-upstream-d65-v1-hi-rgba8.png",
-      "sha256": "c397cf39a3bbba78d6bc3701b6e931de61d73a121f3f3b2b3c47fbcac06030a5",
+      "sha256": "d112ed5e679ea1d220951bd9c5baff6df19e96ff87e8c72404ebbe8d64a5491d",
       "rejectedRgba16Probe": {
         "path": "cgb001-hcs-upstream-d65-v1.png",
-        "sha256": "9ab43a2616a8c78dce69b5a435ef81f5235e11b03a177a13b34e55a51051c3c6"
+        "sha256": "bb2f20e1181c42284d7adc8de97d84b2101a0ec85e86fca13c8185a5fc2ecb4e"
       },
       "runtimeHighPlane": {
         "path": "cgb001-hcs-upstream-d65-v1-hi-rgba8.png",
-        "sha256": "c397cf39a3bbba78d6bc3701b6e931de61d73a121f3f3b2b3c47fbcac06030a5"
+        "sha256": "d112ed5e679ea1d220951bd9c5baff6df19e96ff87e8c72404ebbe8d64a5491d"
       },
       "runtimeLowPlane": {
         "path": "cgb001-hcs-upstream-d65-v1-lo-rgba8.png",
-        "sha256": "414cb3cab0988fec157a25e7d3bb355d50950fcc7d16e9aa93a937a82d047ba9"
+        "sha256": "d103e494d82206e1ea66151d1ef7c5b786dce5d2892b25e232ba608d802f602c"
       },
       "encodedScale": 1.25,
       "authoritativeSource": "../data/hcs-source-v1.json#upstreamD65Fixture",
       "authoritativeSourceSha256": "803829a1b02d9c2b0b664f632a211eb2b72cd9706645831f447fca954f79c9e1",
-      "maximumIntegerTexelAbsoluteXyzQuantizationError": 0.00000953681919202
+      "maximumIntegerTexelAbsoluteXyzQuantizationError": 0.00000953681919
     }
   },
   "rateBinding": {

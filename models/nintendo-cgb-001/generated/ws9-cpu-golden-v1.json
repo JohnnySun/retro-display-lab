@@ -33,28 +33,28 @@
     {
       "workstream": "ws5",
       "path": "generated/ws5-equation-vectors-v1.json",
-      "sha256": "9b5d3b7c03fe3ddaabe5cff46335c83cf648aa1b6d0d3766cfccdee5b84f8315"
+      "sha256": "c1f73b7b4f9617b441df27b3554a3adc9541164b0e20626ac5ead3cbbe9cde6a"
     },
     {
       "workstream": "ws6",
       "path": "generated/ws6-aperture-validation-v1.json",
-      "sha256": "a36a38b1ec0850c6dd11ce4f9d3c7cc4e49d242be82d498d6c47c13b22105092"
+      "sha256": "1a6c8b5b9f4aaf442e8b6ce2dc0f43b84f4f2ab1def214f42c0404567ed2cea9"
     },
     {
       "workstream": "ws7",
       "path": "generated/ws7-retention-validation-v1.json",
-      "sha256": "55a5e12d585d1dff082d6f4460ce272e993712e8f94dc1eff182c85b0d83f8a2"
+      "sha256": "7802e7b77affbf8d7573612a3d1c639a801d81f0b8621df64c156b5206f477a1"
     },
     {
       "workstream": "ws8",
       "path": "generated/ws8-manifest-v1.json",
-      "sha256": "44c6a80e46020387ffb12b0eecbfd5b93b32e1a807b60872515a7d5c1154b01d"
+      "sha256": "9fb3b28d33ec98127c657c64a184fdcb0a0ac1e8d64d0aac83ed709f5a685621"
     }
   ],
   "allRgb555Static": {
     "testedCodes": 32768,
     "maximumCpuFloat32VsAuthoritativeLutAbsoluteXyzError": 0,
-    "maximumPairedRgba8Uint16TransportVsAuthoritativeLutAbsoluteXyzError": 0.00000762939453125,
+    "maximumPairedRgba8Uint16TransportVsAuthoritativeLutAbsoluteXyzError": 0.00000762939453,
     "authoritativeLutSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
     "pass": true
   },
@@ -448,7 +448,7 @@
         "phases": [
           {
             "phase": 0,
-            "sourceCenter": 79.6428571429,
+            "sourceCenter": 79.6428571,
             "coverage": [
               0,
               1.75,
@@ -457,7 +457,7 @@
           },
           {
             "phase": 1,
-            "sourceCenter": 79.9285714286,
+            "sourceCenter": 79.9285714,
             "coverage": [
               0.75,
               0,
@@ -466,7 +466,7 @@
           },
           {
             "phase": 2,
-            "sourceCenter": 80.2142857143,
+            "sourceCenter": 80.2142857,
             "coverage": [
               2.75,
               0.25,
@@ -580,7 +580,7 @@
         "phases": [
           {
             "phase": 0,
-            "sourceCenter": 79.5833333333,
+            "sourceCenter": 79.5833333,
             "coverage": [
               0,
               3,
@@ -598,7 +598,7 @@
           },
           {
             "phase": 2,
-            "sourceCenter": 79.9166666667,
+            "sourceCenter": 79.9166667,
             "coverage": [
               0,
               0,
@@ -607,7 +607,7 @@
           },
           {
             "phase": 3,
-            "sourceCenter": 80.0833333333,
+            "sourceCenter": 80.0833333,
             "coverage": [
               3,
               0,
@@ -625,7 +625,7 @@
           },
           {
             "phase": 5,
-            "sourceCenter": 80.4166666667,
+            "sourceCenter": 80.4166667,
             "coverage": [
               0,
               3,

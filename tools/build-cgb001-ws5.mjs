@@ -68,8 +68,27 @@ function readJson(relative) {
   return JSON.parse(readBuffer(relative));
 }
 
+function cleanNumber(value, digits = 9) {
+  if (!Number.isFinite(value)) return value;
+  if (Math.abs(value) < 1e-12) return 0;
+  const cleaned = Number(value.toPrecision(digits));
+  return Object.is(cleaned, -0) ? 0 : cleaned;
+}
+
+function cleanDeep(value, key = "") {
+  if (typeof value === "number") {
+    const diagnosticDigits = /(?:Error|Difference)$/.test(key) ? 5 : 9;
+    return cleanNumber(value, diagnosticDigits);
+  }
+  if (Array.isArray(value)) return value.map((entry) => cleanDeep(entry, key));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([entryKey, entry]) => [entryKey, cleanDeep(entry, entryKey)]));
+  }
+  return value;
+}
+
 function jsonBuffer(value) {
-  return Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
+  return Buffer.from(`${JSON.stringify(cleanDeep(value), null, 2)}\n`);
 }
 
 function checkTopLevelSchema(instance, schema, label) {

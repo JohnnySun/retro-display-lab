@@ -29,61 +29,61 @@
     {
       "panelsPerNativeFrame": 4,
       "maximumSamplesPerPixelFrame": 10,
-      "maximumAbsoluteXyzError": 0.0033053561903002016,
+      "maximumAbsoluteXyzError": 0.0033054,
       "worstCase": "curated/hcr-like-fast/row-0/partial-red"
     },
     {
       "panelsPerNativeFrame": 8,
       "maximumSamplesPerPixelFrame": 18,
-      "maximumAbsoluteXyzError": 0.0005824916669714963,
+      "maximumAbsoluteXyzError": 0.00058249,
       "worstCase": "curated/gh-like-slow/row-1/mixed-rgb"
     },
     {
       "panelsPerNativeFrame": 16,
       "maximumSamplesPerPixelFrame": 34,
-      "maximumAbsoluteXyzError": 0.00011968950148638635,
+      "maximumAbsoluteXyzError": 0.00011969,
       "worstCase": "curated/gh-like-slow/row-0/mixed-rgb"
     },
     {
       "panelsPerNativeFrame": 24,
       "maximumSamplesPerPixelFrame": 50,
-      "maximumAbsoluteXyzError": 0.00006478757522210277,
+      "maximumAbsoluteXyzError": 0.000064788,
       "worstCase": "curated/hcr-like-fast/row-1/mixed-rgb"
     },
     {
       "panelsPerNativeFrame": 32,
       "maximumSamplesPerPixelFrame": 66,
-      "maximumAbsoluteXyzError": 0.000026201762790944993,
+      "maximumAbsoluteXyzError": 0.000026202,
       "worstCase": "curated/hcr-like-fast/row-1/primary-exchange"
     },
     {
       "panelsPerNativeFrame": 48,
       "maximumSamplesPerPixelFrame": 98,
-      "maximumAbsoluteXyzError": 0.000016673499919794832,
+      "maximumAbsoluteXyzError": 0.000016673,
       "worstCase": "curated/hcr-like-fast/row-1/mixed-rgb"
     },
     {
       "panelsPerNativeFrame": 64,
       "maximumSamplesPerPixelFrame": 130,
-      "maximumAbsoluteXyzError": 0.000007308436873798563,
+      "maximumAbsoluteXyzError": 0.0000073084,
       "worstCase": "curated/mid-envelope-nominal/row-1/mixed-rgb"
     },
     {
       "panelsPerNativeFrame": 128,
       "maximumSamplesPerPixelFrame": 258,
-      "maximumAbsoluteXyzError": 0.0000019674431320226837,
+      "maximumAbsoluteXyzError": 0.0000019674,
       "worstCase": "curated/mid-envelope-nominal/row-1/partial-red"
     },
     {
       "panelsPerNativeFrame": 256,
       "maximumSamplesPerPixelFrame": 514,
-      "maximumAbsoluteXyzError": 5.962335136722174e-7,
+      "maximumAbsoluteXyzError": 5.9623e-7,
       "worstCase": "curated/hcr-like-fast/row-72/mixed-rgb"
     }
   ],
   "highDensityIndependentCrossCheck": {
     "panelsPerNativeFrame": 256,
-    "maximumAbsoluteXyzError": 5.962335136722174e-7,
+    "maximumAbsoluteXyzError": 5.9623e-7,
     "tolerance": 0.000001,
     "pass": true
   },

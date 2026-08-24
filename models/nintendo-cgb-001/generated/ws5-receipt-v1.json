@@ -20,12 +20,12 @@
     "models/nintendo-cgb-001/generated/cgb001-ws4-gtg-rates-v1.r32f": "a43e901fbb103c578d1b26263057148d9ab8524507b5d826309879e50fb0ecf9",
     "models/nintendo-cgb-001/generated/ws4-receipt-v1.json": "4714a51a6c9a6b814f242b3c07042c8bff9ab2e766cc7effe34111d1754d2be5",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
-    "tools/build-cgb001-ws5.mjs": "7b42bf0092b3f925c6194a2e4bf2add7ea92544ad7d5f48a51c41c4c79ec03e3"
+    "tools/build-cgb001-ws5.mjs": "23d62644471f819194fc521ca8d85d0b544103a3348ae1700570b1b0ccc067f7"
   },
   "outputHashes": {
-    "models/nintendo-cgb-001/generated/ws5-equation-vectors-v1.json": "9b5d3b7c03fe3ddaabe5cff46335c83cf648aa1b6d0d3766cfccdee5b84f8315",
-    "models/nintendo-cgb-001/generated/ws5-quadrature-convergence-v1.json": "ce9759f8152cd89bb60fc3e4cfa8d845fa48d591b999d39c5aca4a94f5f81cc3",
-    "models/nintendo-cgb-001/generated/ws5-scan-exposure-fixtures-v1.json": "614ffd473bc8b71b67ffa227d5567dab366324c405bd5aa5f06a74e7007345d6"
+    "models/nintendo-cgb-001/generated/ws5-equation-vectors-v1.json": "c1f73b7b4f9617b441df27b3554a3adc9541164b0e20626ac5ead3cbbe9cde6a",
+    "models/nintendo-cgb-001/generated/ws5-quadrature-convergence-v1.json": "87befc2fb0695e0725e9dcfce05184408fb429fce9aa8e7794a0470399cbf244",
+    "models/nintendo-cgb-001/generated/ws5-scan-exposure-fixtures-v1.json": "b65c0a8afa906fe236fa68baf478c445f490ab00ce11cd2d8446c9e631d584db"
   },
   "gates": {
     "ws1Ws3Ws4ReceiptsPass": true,

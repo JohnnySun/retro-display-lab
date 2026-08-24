@@ -82,9 +82,9 @@
     },
     "deltaE00VersusMeasuredReferenceLut": {
       "count": 32768,
-      "minimum": 0.00000117075327592,
-      "maximum": 19.8193321876,
-      "mean": 9.53703260274
+      "minimum": 0.00000117075328,
+      "maximum": 19.8193322,
+      "mean": 9.5370326
     },
     "worst": {
       "rgb555": [
@@ -105,9 +105,9 @@
       "undefinedNegativeLinearPowCodes": 2581,
       "deltaE00VersusMeasuredReferenceLutForFiniteCodes": {
         "count": 30187,
-        "minimum": 0.00000117075327592,
-        "maximum": 15.7412733635,
-        "mean": 7.95469522551
+        "minimum": 0.00000117075328,
+        "maximum": 15.7412734,
+        "mean": 7.95469523
       },
       "worstFinite": {
         "rgb555": [
@@ -123,9 +123,9 @@
       "purpose": "show the intended all-code shape without treating undefined pow(negative, 1/2.2) as measured or exact prior-art output",
       "deltaE00VersusMeasuredReferenceLut": {
         "count": 32768,
-        "minimum": 0.00000117075327592,
-        "maximum": 15.7412733635,
-        "mean": 8.05269824886
+        "minimum": 0.00000117075328,
+        "maximum": 15.7412734,
+        "mean": 8.05269825
       },
       "worst": {
         "rgb555": [

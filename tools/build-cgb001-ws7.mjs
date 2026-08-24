@@ -67,8 +67,10 @@ function jsonBuffer(value) {
   return Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
 }
 
-function clean(value, digits = 15) {
-  return Number(value.toFixed(digits));
+function clean(value, digits = 9) {
+  if (Math.abs(value) < 1e-12) return 0;
+  const cleaned = Number(value.toPrecision(digits));
+  return Object.is(cleaned, -0) ? 0 : cleaned;
 }
 
 function checkTopLevelSchema(instance, schema, label) {

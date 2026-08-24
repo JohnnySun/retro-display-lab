@@ -44,7 +44,10 @@ function sha256File(relative) {
 }
 
 function clean(value) {
-  return Number(Number(value).toPrecision(12));
+  const numeric = Number(value);
+  if (Math.abs(numeric) < 1e-12) return 0;
+  const cleaned = Number(numeric.toPrecision(9));
+  return Object.is(cleaned, -0) ? 0 : cleaned;
 }
 
 function jsonBuffer(value) {

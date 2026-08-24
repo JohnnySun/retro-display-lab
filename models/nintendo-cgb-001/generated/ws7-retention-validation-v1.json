@@ -25,47 +25,47 @@
         },
         {
           "elapsedSeconds": 60,
-          "state": 0.005757748393726
+          "state": 0.00575774839
         },
         {
           "elapsedSeconds": 300,
-          "state": 0.024553714647833
+          "state": 0.0245537146
         },
         {
           "elapsedSeconds": 600,
-          "state": 0.040767521470732
+          "state": 0.0407675215
         },
         {
           "elapsedSeconds": 1200,
-          "state": 0.058544170113143
+          "state": 0.0585441701
         },
         {
           "elapsedSeconds": 3600,
-          "state": 0.071792236441627
+          "state": 0.0717922364
         },
         {
           "elapsedSeconds": 7200,
-          "state": 0.072285740766069
+          "state": 0.0722857408
         },
         {
           "elapsedSeconds": 7260,
-          "state": 0.07064214256244
+          "state": 0.0706421426
         },
         {
           "elapsedSeconds": 7500,
-          "state": 0.0644330620061
+          "state": 0.064433062
         },
         {
           "elapsedSeconds": 8100,
-          "state": 0.051194232876027
+          "state": 0.0511942329
         },
         {
           "elapsedSeconds": 9000,
-          "state": 0.036256797702973
+          "state": 0.0362567977
         },
         {
           "elapsedSeconds": 12600,
-          "state": 0.009121432704694
+          "state": 0.0091214327
         }
       ],
       "futureShaderFloat32": [
@@ -75,50 +75,50 @@
         },
         {
           "elapsedSeconds": 60,
-          "state": 0.005757749080658
+          "state": 0.00575774908
         },
         {
           "elapsedSeconds": 300,
-          "state": 0.024553716182709
+          "state": 0.0245537162
         },
         {
           "elapsedSeconds": 600,
-          "state": 0.040767524391413
+          "state": 0.0407675244
         },
         {
           "elapsedSeconds": 1200,
-          "state": 0.058544173836708
+          "state": 0.0585441738
         },
         {
           "elapsedSeconds": 3600,
-          "state": 0.071792237460613
+          "state": 0.0717922375
         },
         {
           "elapsedSeconds": 7200,
-          "state": 0.072285749018192
+          "state": 0.072285749
         },
         {
           "elapsedSeconds": 7260,
-          "state": 0.070642150938511
+          "state": 0.0706421509
         },
         {
           "elapsedSeconds": 7500,
-          "state": 0.064433068037033
+          "state": 0.064433068
         },
         {
           "elapsedSeconds": 8100,
-          "state": 0.051194239407778
+          "state": 0.0511942394
         },
         {
           "elapsedSeconds": 9000,
-          "state": 0.036256801337004
+          "state": 0.0362568013
         },
         {
           "elapsedSeconds": 12600,
-          "state": 0.009121432900429
+          "state": 0.0091214329
         }
       ],
-      "maximumFloat32Difference": 8.376071e-9
+      "maximumFloat32Difference": 8.37607099e-9
     },
     {
       "memberId": "nominal-midpoint",
@@ -133,47 +133,47 @@
         },
         {
           "elapsedSeconds": 60,
-          "state": 0.006075624806767
+          "state": 0.00607562481
         },
         {
           "elapsedSeconds": 300,
-          "state": 0.02562658255275
+          "state": 0.0256265826
         },
         {
           "elapsedSeconds": 600,
-          "state": 0.042048718764299
+          "state": 0.0420487188
         },
         {
           "elapsedSeconds": 1200,
-          "state": 0.059316267020724
+          "state": 0.059316267
         },
         {
           "elapsedSeconds": 3600,
-          "state": 0.07100613731449
+          "state": 0.0710061373
         },
         {
           "elapsedSeconds": 7200,
-          "state": 0.071346673568688
+          "state": 0.0713466736
         },
         {
           "elapsedSeconds": 7260,
-          "state": 0.069550334059521
+          "state": 0.0695503341
         },
         {
           "elapsedSeconds": 7500,
-          "state": 0.062806006984189
+          "state": 0.062806007
         },
         {
           "elapsedSeconds": 8100,
-          "state": 0.048669410983107
+          "state": 0.048669411
         },
         {
           "elapsedSeconds": 9000,
-          "state": 0.033200028073659
+          "state": 0.0332000281
         },
         {
           "elapsedSeconds": 12600,
-          "state": 0.00718899023384
+          "state": 0.00718899023
         }
       ],
       "futureShaderFloat32": [
@@ -183,47 +183,47 @@
         },
         {
           "elapsedSeconds": 60,
-          "state": 0.006075620651245
+          "state": 0.00607562065
         },
         {
           "elapsedSeconds": 300,
-          "state": 0.025626581162214
+          "state": 0.0256265812
         },
         {
           "elapsedSeconds": 600,
-          "state": 0.042048718780279
+          "state": 0.0420487188
         },
         {
           "elapsedSeconds": 1200,
-          "state": 0.059316270053387
+          "state": 0.0593162701
         },
         {
           "elapsedSeconds": 3600,
-          "state": 0.071006141602993
+          "state": 0.0710061416
         },
         {
           "elapsedSeconds": 7200,
-          "state": 0.071346677839756
+          "state": 0.0713466778
         },
         {
           "elapsedSeconds": 7260,
-          "state": 0.069550342857838
+          "state": 0.0695503429
         },
         {
           "elapsedSeconds": 7500,
-          "state": 0.062806017696857
+          "state": 0.0628060177
         },
         {
           "elapsedSeconds": 8100,
-          "state": 0.048669420182705
+          "state": 0.0486694202
         },
         {
           "elapsedSeconds": 9000,
-          "state": 0.033200033009052
+          "state": 0.033200033
         },
         {
           "elapsedSeconds": 12600,
-          "state": 0.007188991643488
+          "state": 0.00718899164
         }
       ],
       "maximumFloat32Difference": 1.0712668e-8
@@ -241,47 +241,47 @@
         },
         {
           "elapsedSeconds": 60,
-          "state": 0.006391593042767
+          "state": 0.00639159304
         },
         {
           "elapsedSeconds": 300,
-          "state": 0.026667053912467
+          "state": 0.0266670539
         },
         {
           "elapsedSeconds": 600,
-          "state": 0.043250896240577
+          "state": 0.0432508962
         },
         {
           "elapsedSeconds": 1200,
-          "state": 0.059977792117983
+          "state": 0.0599777921
         },
         {
           "elapsedSeconds": 3600,
-          "state": 0.070290337172999
+          "state": 0.0702903372
         },
         {
           "elapsedSeconds": 7200,
-          "state": 0.070525526213174
+          "state": 0.0705255262
         },
         {
           "elapsedSeconds": 7260,
-          "state": 0.068578201252227
+          "state": 0.0685782013
         },
         {
           "elapsedSeconds": 7500,
-          "state": 0.061311947019257
+          "state": 0.061311947
         },
         {
           "elapsedSeconds": 8100,
-          "state": 0.04633857271415
+          "state": 0.0463385727
         },
         {
           "elapsedSeconds": 9000,
-          "state": 0.030446611836601
+          "state": 0.0304466118
         },
         {
           "elapsedSeconds": 12600,
-          "state": 0.005674456104916
+          "state": 0.0056744561
         }
       ],
       "futureShaderFloat32": [
@@ -291,50 +291,50 @@
         },
         {
           "elapsedSeconds": 60,
-          "state": 0.00639159232378
+          "state": 0.00639159232
         },
         {
           "elapsedSeconds": 300,
-          "state": 0.026667051017284
+          "state": 0.026667051
         },
         {
           "elapsedSeconds": 600,
-          "state": 0.043250896036625
+          "state": 0.043250896
         },
         {
           "elapsedSeconds": 1200,
-          "state": 0.059977792203426
+          "state": 0.0599777922
         },
         {
           "elapsedSeconds": 3600,
-          "state": 0.070290334522724
+          "state": 0.0702903345
         },
         {
           "elapsedSeconds": 7200,
-          "state": 0.070525527000427
+          "state": 0.070525527
         },
         {
           "elapsedSeconds": 7260,
-          "state": 0.068578206002712
+          "state": 0.068578206
         },
         {
           "elapsedSeconds": 7500,
-          "state": 0.061311952769756
+          "state": 0.0613119528
         },
         {
           "elapsedSeconds": 8100,
-          "state": 0.046338576823473
+          "state": 0.0463385768
         },
         {
           "elapsedSeconds": 9000,
-          "state": 0.030446613207459
+          "state": 0.0304466132
         },
         {
           "elapsedSeconds": 12600,
-          "state": 0.005674455780536
+          "state": 0.00567445578
         }
       ],
-      "maximumFloat32Difference": 5.750499e-9
+      "maximumFloat32Difference": 5.75049892e-9
     }
   ],
   "topologyFixtures": [
@@ -346,29 +346,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         }
       ]
     },
@@ -380,29 +380,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.008589091218503,
-          "futureShaderFloat32": 0.008595995604992
+          "cpu": 0.00858909122,
+          "futureShaderFloat32": 0.0085959956
         }
       ]
     },
@@ -414,29 +414,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         }
       ]
     },
@@ -448,29 +448,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         }
       ]
     },
@@ -482,29 +482,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         }
       ]
     },
@@ -516,29 +516,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         }
       ]
     },
@@ -550,29 +550,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         }
       ]
     },
@@ -584,29 +584,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         }
       ]
     },
@@ -618,29 +618,29 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         }
       ]
     },
@@ -652,73 +652,73 @@
           "x": 0,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         },
         {
           "x": 1,
           "y": 0,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 0,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863843015727,
-          "futureShaderFloat32": 0.006869051605463
+          "cpu": 0.00686384302,
+          "futureShaderFloat32": 0.00686905161
         },
         {
           "x": 1,
           "y": 1,
           "zeroOffsetState": 0,
-          "cpu": 0.006863885861759,
-          "futureShaderFloat32": 0.006869070231915
+          "cpu": 0.00686388586,
+          "futureShaderFloat32": 0.00686907023
         }
       ]
     }
   ],
   "spatialFixtures": {
     "uniform": {
-      "minimum": 0.01334615257514,
-      "maximum": 0.013346234123076,
-      "range": 8.1547936e-8,
-      "checksum": 27.76009260428095
+      "minimum": 0.0133461526,
+      "maximum": 0.0133462341,
+      "range": 8.15479365e-8,
+      "checksum": 27.7600926
     },
     "isolatedWindow": {
-      "minimum": 0.006567133731149,
-      "maximum": 0.019701564289319,
-      "range": 0.01313443055817,
-      "checksum": 20.489594894100687
+      "minimum": 0.00656713373,
+      "maximum": 0.0197015643,
+      "range": 0.0131344306,
+      "checksum": 20.4895949
     },
     "checkerboard": {
-      "minimum": 0.006567133731149,
-      "maximum": 0.019701564289319,
-      "range": 0.01313443055817,
-      "checksum": 27.319456379422146
+      "minimum": 0.00656713373,
+      "maximum": 0.0197015643,
+      "range": 0.0131344306,
+      "checksum": 27.3194564
     }
   },
   "historyFixtures": {
-    "identicalA": 0.01861907396795,
-    "identicalB": 0.01861907396795,
-    "differentCode": 0.00919377379621,
-    "absoluteCodeHistoryDifference": 0.00942530017174
+    "identicalA": 0.018619074,
+    "identicalB": 0.018619074,
+    "differentCode": 0.0091937738,
+    "absoluteCodeHistoryDifference": 0.00942530017
   },
   "dutyFixtures": {
-    "balanced": 0.017102233151179,
-    "unequalPositive": 0.018634500242804,
-    "unequalNegative": 0.015570080222596
+    "balanced": 0.0171022332,
+    "unequalPositive": 0.0186345002,
+    "unequalNegative": 0.0155700802
   },
   "stressRecoveryFixtures": {
-    "stressed": 0.071346673568688,
-    "polarityReversed": -0.071345032568379,
-    "recovered": 0.00718899023384
+    "stressed": 0.0713466736,
+    "polarityReversed": -0.0713450326,
+    "recovered": 0.00718899023
   },
   "lifecycleFixtures": {
-    "pauseState": 0.071346673568688,
+    "pauseState": 0.0713466736,
     "resetState": 0,
-    "disabledState": 0.071346673568688,
+    "disabledState": 0.0713466736,
     "unsupportedFramePolicy": "clear to zero on content load, reset, save-state load, rewind, run-ahead discontinuity, skipped physical frames, or non-monotonic FrameCount"
   },
   "isolationFixtures": {
@@ -742,8 +742,8 @@
   "maxima": {
     "balancedZeroOffsetState": 0,
     "kineticFutureShaderFloat32Difference": 1.0712668e-8,
-    "topologyFutureShaderFloat32Difference": 0.000006904386489,
-    "allFutureShaderFloat32Difference": 0.000006904386489
+    "topologyFutureShaderFloat32Difference": 0.00000690438649,
+    "allFutureShaderFloat32Difference": 0.00000690438649
   },
   "tolerances": {
     "futureShaderFloat32State": 0.00002,
