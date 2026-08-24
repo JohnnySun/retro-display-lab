@@ -67,7 +67,7 @@
   "sourceRecordHashes": {
     "data/reconstruction-v1.json": "f014b013356632b128c665f1453fb0616877f8ced62a706fd1c525f9b86e5261",
     "data/hcs-source-v1.json": "803829a1b02d9c2b0b664f632a211eb2b72cd9706645831f447fca954f79c9e1",
-    "data/color-reference-v1.json": "9b482d45340bbead1feff2ebe9216c03f1533deea4b72c3395b4cc3450baa5ae",
+    "data/color-reference-v1.json": "40c9ef3e0fce0a4d83670c5ab5544d1af9af22099ce88523788304ca0fa390be",
     "data/scan-candidates-v1.json": "3f33ea131d3fbf09ea00f673cfa6300986bc0456246adae6d2c19c493035c663",
     "data/response-ensemble-v1.json": "33b355a0e70137dd1ad89ad677791f081a5fe869ca49e78130e64fdcbf18327a",
     "data/ws5-exposure-policy-v1.json": "dae6038390dac6baa107328005b981b1c7671eca4adc46de164191366bb06279",
@@ -78,7 +78,7 @@
   },
   "compileReceipt": {
     "path": "generated/ws8-shader-compile-v1.json",
-    "sha256": "321b993f5169c64b093774c6d67c68182a11ef711d812f3b534320d84f1a2159",
+    "sha256": "4e7884c4480128dea1055a9fce2c31c1d0f0bc14934501f7af4281dba2528442",
     "stagesPassed": 6
   },
   "diagnostics": {

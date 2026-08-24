@@ -84,10 +84,11 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function cleanNumber(value, digits = 11) {
+function cleanNumber(value, digits = 9) {
   if (!Number.isFinite(value)) return value;
+  if (Math.abs(value) < 1e-12) return 0;
   // Transcendental color-difference functions can differ by a few ULPs across
-  // operating-system math libraries even on the same Node major. Eleven
+  // operating-system math libraries and Node/V8 releases. Nine
   // significant digits remain far above Shader float32 precision while making
   // generated JSON byte-identical on the supported Linux/macOS matrix.
   const cleaned = Number(value.toPrecision(digits));

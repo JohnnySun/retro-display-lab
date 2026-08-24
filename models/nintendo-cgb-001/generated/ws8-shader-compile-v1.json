@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "receiptId": "cgb001-ws8-shader-compile-v1",
   "classification": "local-shader-compile-and-spirv-validation-not-gpu-readback",
-  "capturedAt": "2026-08-24T13:32:15.203Z",
+  "capturedAt": "2026-08-24T13:49:05.185Z",
   "tools": {
     "glslangValidator": "Glslang Version: 11:16.5.0",
     "spirvVal": "SPIRV-Tools v2026.3 unknown hash, 2026-07-22T20:34:54+00:00",

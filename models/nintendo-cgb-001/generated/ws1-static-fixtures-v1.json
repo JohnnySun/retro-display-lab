@@ -16,42 +16,42 @@
         0
       ],
       "xyzReflectance": [
-        0.19357239886,
-        0.19981257228,
-        0.21883629261
+        0.193572399,
+        0.199812572,
+        0.218836293
       ],
       "analyticSeedXyz": [
-        0.19357239886,
-        0.19981257228,
-        0.21883629261
+        0.193572399,
+        0.199812572,
+        0.218836293
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.31618045684,
-        0.32637313356,
-        0.19981257228
+        0.316180457,
+        0.326373134,
+        0.199812572
       ],
       "linearSrgbAbsolute": [
-        0.21102413302,
-        0.19632694717,
-        0.20132702096
+        0.211024133,
+        0.196326947,
+        0.201327021
       ],
       "srgbAbsoluteUnclipped": [
-        0.49672692453,
-        0.48037829084,
-        0.48601792496
+        0.496726925,
+        0.480378291,
+        0.486017925
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.18634787112,
-          0.19990936762,
-          0.18255448666
+          0.186347871,
+          0.199909368,
+          0.182554487
         ],
-        "maximumAbsoluteXyzDifference": 0.036281805943,
-        "deltaE00UsingRecordedRangeWhite": 8.2027721458
+        "maximumAbsoluteXyzDifference": 0.0362818059,
+        "deltaE00UsingRecordedRangeWhite": 8.20277215
       }
     },
     {
@@ -62,42 +62,42 @@
         0
       ],
       "xyzReflectance": [
-        0.3487088296,
-        0.30490131304,
-        0.2978010164
+        0.34870883,
+        0.304901313,
+        0.297801016
       ],
       "analyticSeedXyz": [
-        0.34897740082,
-        0.30508324201,
-        0.29793771963
+        0.348977401,
+        0.305083242,
+        0.29793772
       ],
       "monotonicProjection": {
-        "maximumAbsoluteXyzDifference": 0.00026857121667,
-        "deltaE00": 0.019497715589
+        "maximumAbsoluteXyzDifference": 0.000268571217,
+        "deltaE00": 0.0194977156
       },
       "xyY": [
-        0.36651748961,
-        0.32047271061,
-        0.30490131304
+        0.36651749,
+        0.320472711,
+        0.304901313
       ],
       "linearSrgbAbsolute": [
-        0.51284588378,
-        0.24640976116,
-        0.27199475584
+        0.512845884,
+        0.246409761,
+        0.271994756
       ],
       "srgbAbsoluteUnclipped": [
-        0.74375512403,
-        0.5335408171,
-        0.55827135624
+        0.743755124,
+        0.533540817,
+        0.558271356
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.33643911595,
-          0.30498564965,
-          0.23618360993
+          0.336439116,
+          0.30498565,
+          0.23618361
         ],
-        "maximumAbsoluteXyzDifference": 0.061617406466,
-        "deltaE00UsingRecordedRangeWhite": 8.0686412754
+        "maximumAbsoluteXyzDifference": 0.0616174065,
+        "deltaE00UsingRecordedRangeWhite": 8.06864128
       }
     },
     {
@@ -108,42 +108,42 @@
         0
       ],
       "xyzReflectance": [
-        0.33440640858,
-        0.41253376776,
+        0.334406409,
+        0.412533768,
         0.365906733
       ],
       "analyticSeedXyz": [
-        0.33463018705,
-        0.41287177152,
-        0.36614042087
+        0.334630187,
+        0.412871772,
+        0.366140421
       ],
       "monotonicProjection": {
-        "maximumAbsoluteXyzDifference": 0.00033800375731,
-        "deltaE00": 0.023005197448
+        "maximumAbsoluteXyzDifference": 0.000338003757,
+        "deltaE00": 0.0230051974
       },
       "xyY": [
-        0.30049632683,
-        0.37070127463,
-        0.41253376776
+        0.300496327,
+        0.370701275,
+        0.412533768
       ],
       "linearSrgbAbsolute": [
-        0.26708416492,
-        0.46498762858,
-        0.32122613794
+        0.267084165,
+        0.464987629,
+        0.321226138
       ],
       "srgbAbsoluteUnclipped": [
-        0.55363349787,
-        0.71180754165,
-        0.6022899492
+        0.553633498,
+        0.711807542,
+        0.602289949
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.32419773217,
-          0.4130018165,
-          0.31404859657
+          0.324197732,
+          0.413001816,
+          0.314048597
         ],
-        "maximumAbsoluteXyzDifference": 0.051858136434,
-        "deltaE00UsingRecordedRangeWhite": 4.0949595887
+        "maximumAbsoluteXyzDifference": 0.0518581364,
+        "deltaE00UsingRecordedRangeWhite": 4.09495959
       }
     },
     {
@@ -154,42 +154,42 @@
         31
       ],
       "xyzReflectance": [
-        0.25012874879,
-        0.2792350986,
-        0.43355641951
+        0.250128749,
+        0.279235099,
+        0.43355642
       ],
       "analyticSeedXyz": [
-        0.25015067886,
-        0.27926589517,
-        0.43363967855
+        0.250150679,
+        0.279265895,
+        0.433639679
       ],
       "monotonicProjection": {
-        "maximumAbsoluteXyzDifference": 0.000083259043097,
-        "deltaE00": 0.0040855706214
+        "maximumAbsoluteXyzDifference": 0.0000832590431,
+        "deltaE00": 0.00408557062
       },
       "xyY": [
-        0.25976060261,
-        0.28998776763,
-        0.2792350986
+        0.259760603,
+        0.289987768,
+        0.279235099
       ],
       "linearSrgbAbsolute": [
-        0.16514754369,
-        0.29941969453,
-        0.41523220347
+        0.165147544,
+        0.299419695,
+        0.415232203
       ],
       "srgbAbsoluteUnclipped": [
         0.443156547,
-        0.58331631398,
-        0.67648774513
+        0.583316314,
+        0.676487745
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.2337021072,
-          0.2791420948,
-          0.35218986628
+          0.233702107,
+          0.279142095,
+          0.352189866
         ],
-        "maximumAbsoluteXyzDifference": 0.081366553231,
-        "deltaE00UsingRecordedRangeWhite": 9.8670150683
+        "maximumAbsoluteXyzDifference": 0.0813665532,
+        "deltaE00UsingRecordedRangeWhite": 9.86701507
       }
     },
     {
@@ -200,42 +200,42 @@
         0
       ],
       "xyzReflectance": [
-        0.47205478701,
-        0.49813634539,
-        0.4067240976
+        0.472054787,
+        0.498136345,
+        0.406724098
       ],
       "analyticSeedXyz": [
-        0.47205478701,
-        0.49813634539,
-        0.4067240976
+        0.472054787,
+        0.498136345,
+        0.406724098
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.34283503932,
-        0.36177706117,
-        0.49813634539
+        0.342835039,
+        0.361777061,
+        0.498136345
       ],
       "linearSrgbAbsolute": [
-        0.56120933759,
+        0.561209338,
         0.493880081,
-        0.35457359785
+        0.354573598
       ],
       "srgbAbsoluteUnclipped": [
-        0.77431813644,
-        0.73131173244,
-        0.62990466436
+        0.774318136,
+        0.731311732,
+        0.629904664
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.45987420679,
-          0.49865058161,
-          0.34459984061
+          0.459874207,
+          0.498650582,
+          0.344599841
         ],
-        "maximumAbsoluteXyzDifference": 0.062124256996,
-        "deltaE00UsingRecordedRangeWhite": 5.4645266712
+        "maximumAbsoluteXyzDifference": 0.062124257,
+        "deltaE00UsingRecordedRangeWhite": 5.46452667
       }
     },
     {
@@ -246,42 +246,42 @@
         31
       ],
       "xyzReflectance": [
-        0.38768385966,
-        0.48713480122,
-        0.57694655089
+        0.38768386,
+        0.487134801,
+        0.576946551
       ],
       "analyticSeedXyz": [
-        0.38770013863,
-        0.48715889722,
-        0.57697658346
+        0.387700139,
+        0.487158897,
+        0.576976583
       ],
       "monotonicProjection": {
-        "maximumAbsoluteXyzDifference": 0.000030032568426,
-        "deltaE00": 0.0013016448267
+        "maximumAbsoluteXyzDifference": 0.0000300325684,
+        "deltaE00": 0.00130164483
       },
       "xyY": [
-        0.26704308418,
-        0.33554654518,
-        0.48713480122
+        0.267043084,
+        0.335546545,
+        0.487134801
       ],
       "linearSrgbAbsolute": [
-        0.21982863709,
-        0.56206065982,
-        0.5320422674
+        0.219828637,
+        0.56206066,
+        0.532042267
       ],
       "srgbAbsoluteUnclipped": [
-        0.50620418937,
-        0.77484208297,
-        0.75607935939
+        0.506204189,
+        0.774842083,
+        0.756079359
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.36753236869,
-          0.48739936727,
-          0.47664130006
+          0.367532369,
+          0.487399367,
+          0.4766413
         ],
-        "maximumAbsoluteXyzDifference": 0.10030525083,
-        "deltaE00UsingRecordedRangeWhite": 7.672067161
+        "maximumAbsoluteXyzDifference": 0.100305251,
+        "deltaE00UsingRecordedRangeWhite": 7.67206716
       }
     },
     {
@@ -292,42 +292,42 @@
         31
       ],
       "xyzReflectance": [
-        0.38576352393,
-        0.3685413722,
-        0.47810874928
+        0.385763524,
+        0.368541372,
+        0.478108749
       ],
       "analyticSeedXyz": [
-        0.38576352393,
-        0.3685413722,
-        0.47810874928
+        0.385763524,
+        0.368541372,
+        0.478108749
       ],
       "monotonicProjection": {
-        "maximumAbsoluteXyzDifference": 5.5511151231e-17,
-        "deltaE00": 4.4093415549e-14
+        "maximumAbsoluteXyzDifference": 0,
+        "deltaE00": 0
       },
       "xyY": [
-        0.31301464842,
-        0.29904032106,
-        0.3685413722
+        0.313014648,
+        0.299040321,
+        0.368541372
       ],
       "linearSrgbAbsolute": [
-        0.44519167065,
-        0.33736548573,
-        0.45165969609
+        0.445191671,
+        0.337365486,
+        0.451659696
       ],
       "srgbAbsoluteUnclipped": [
-        0.69803250347,
-        0.61585356255,
-        0.70257188795
+        0.698032503,
+        0.615853563,
+        0.702571888
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.36847583462,
-          0.36853894495,
-          0.39158862369
+          0.368475835,
+          0.368538945,
+          0.391588624
         ],
-        "maximumAbsoluteXyzDifference": 0.086520125591,
-        "deltaE00UsingRecordedRangeWhite": 8.5992133103
+        "maximumAbsoluteXyzDifference": 0.0865201256,
+        "deltaE00UsingRecordedRangeWhite": 8.59921331
       }
     },
     {
@@ -338,42 +338,42 @@
         31
       ],
       "xyzReflectance": [
-        0.54152168909,
-        0.59281273616,
-        0.65202388801
+        0.541521689,
+        0.592812736,
+        0.652023888
       ],
       "analyticSeedXyz": [
-        0.54152168909,
-        0.59281273616,
-        0.65202388801
+        0.541521689,
+        0.592812736,
+        0.652023888
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.30314281579,
-        0.33185544678,
-        0.59281273616
+        0.303142816,
+        0.331855447,
+        0.592812736
       ],
       "linearSrgbAbsolute": [
-        0.51847475549,
-        0.6143455185,
-        0.59840849726
+        0.518474755,
+        0.614345519,
+        0.598408497
       ],
       "srgbAbsoluteUnclipped": [
-        0.74739638993,
-        0.80617434294,
-        0.79679454841
+        0.74739639,
+        0.806174343,
+        0.796794548
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.51782222731,
+          0.517822227,
           0.593102032,
-          0.53351061981
+          0.53351062
         ],
-        "maximumAbsoluteXyzDifference": 0.1185132682,
-        "deltaE00UsingRecordedRangeWhite": 9.5884594448
+        "maximumAbsoluteXyzDifference": 0.118513268,
+        "deltaE00UsingRecordedRangeWhite": 9.58845944
       }
     },
     {
@@ -384,42 +384,42 @@
         8
       ],
       "xyzReflectance": [
-        0.29841892213,
-        0.3201165096,
-        0.3445450106
+        0.298418922,
+        0.32011651,
+        0.344545011
       ],
       "analyticSeedXyz": [
-        0.29841892213,
-        0.3201165096,
-        0.3445450106
+        0.298418922,
+        0.32011651,
+        0.344545011
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.30985877089,
-        0.33238813242,
-        0.3201165096
+        0.309858771,
+        0.332388132,
+        0.32011651
       ],
       "linearSrgbAbsolute": [
-        0.30317831297,
-        0.32561788796,
-        0.31549708915
+        0.303178313,
+        0.325617888,
+        0.315497089
       ],
       "srgbAbsoluteUnclipped": [
-        0.58664283346,
-        0.60601944102,
-        0.59737982951
+        0.586642833,
+        0.606019441,
+        0.59737983
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.2866449744,
-          0.32028271638,
-          0.28564296522
+          0.286644974,
+          0.320282716,
+          0.285642965
         ],
-        "maximumAbsoluteXyzDifference": 0.05890204538,
-        "deltaE00UsingRecordedRangeWhite": 7.9886778012
+        "maximumAbsoluteXyzDifference": 0.0589020454,
+        "deltaE00UsingRecordedRangeWhite": 7.9886778
       }
     },
     {
@@ -430,42 +430,42 @@
         16
       ],
       "xyzReflectance": [
-        0.39476342523,
-        0.43127581728,
-        0.45602869195
+        0.394763425,
+        0.431275817,
+        0.456028692
       ],
       "analyticSeedXyz": [
-        0.39476342523,
-        0.43127581728,
-        0.45602869195
+        0.394763425,
+        0.431275817,
+        0.456028692
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.30791147226,
-        0.33639076814,
-        0.43127581728
+        0.307911472,
+        0.336390768,
+        0.431275817
       ],
       "linearSrgbAbsolute": [
-        0.38893083751,
-        0.44540301432,
-        0.41602340092
+        0.388930838,
+        0.445403014,
+        0.416023401
       ],
       "srgbAbsoluteUnclipped": [
-        0.6568130581,
-        0.69818143428,
-        0.6770681733
+        0.656813058,
+        0.698181434,
+        0.677068173
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.3796307682,
-          0.43156643912,
-          0.37987471787
+          0.379630768,
+          0.431566439,
+          0.379874718
         ],
-        "maximumAbsoluteXyzDifference": 0.07615397408,
-        "deltaE00UsingRecordedRangeWhite": 7.717368314
+        "maximumAbsoluteXyzDifference": 0.0761539741,
+        "deltaE00UsingRecordedRangeWhite": 7.71736831
       }
     },
     {
@@ -476,42 +476,42 @@
         24
       ],
       "xyzReflectance": [
-        0.48690639279,
-        0.5312705513,
-        0.57181245909
+        0.486906393,
+        0.531270551,
+        0.571812459
       ],
       "analyticSeedXyz": [
-        0.48690639279,
-        0.5312705513,
-        0.57181245909
+        0.486906393,
+        0.531270551,
+        0.571812459
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.30623247665,
-        0.3341346491,
-        0.5312705513
+        0.306232477,
+        0.334134649,
+        0.531270551
       ],
       "linearSrgbAbsolute": [
-        0.47608588503,
-        0.54849564912,
-        0.52313862639
+        0.476085885,
+        0.548495649,
+        0.523138626
       ],
       "srgbAbsoluteUnclipped": [
-        0.71938096728,
-        0.76643768085,
-        0.75039597434
+        0.719380967,
+        0.766437681,
+        0.750395974
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.46668341006,
-          0.53156818982,
-          0.4704792326
+          0.46668341,
+          0.53156819,
+          0.470479233
         ],
-        "maximumAbsoluteXyzDifference": 0.10133322649,
-        "deltaE00UsingRecordedRangeWhite": 8.8355895697
+        "maximumAbsoluteXyzDifference": 0.101333226,
+        "deltaE00UsingRecordedRangeWhite": 8.83558957
       }
     },
     {
@@ -522,42 +522,42 @@
         29
       ],
       "xyzReflectance": [
-        0.38218217398,
-        0.45188466605,
-        0.52602363794
+        0.382182174,
+        0.451884666,
+        0.526023638
       ],
       "analyticSeedXyz": [
-        0.38218217398,
-        0.45188466605,
-        0.52602363794
+        0.382182174,
+        0.451884666,
+        0.526023638
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.28099761021,
-        0.33224603317,
-        0.45188466605
+        0.28099761,
+        0.332246033,
+        0.451884666
       ],
       "linearSrgbAbsolute": [
-        0.28157814474,
-        0.49915656388,
-        0.4851022291
+        0.281578145,
+        0.499156564,
+        0.485102229
       ],
       "srgbAbsoluteUnclipped": [
-        0.56718378121,
-        0.73480119647,
-        0.7254582137
+        0.567183781,
+        0.734801196,
+        0.725458214
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.36556794411,
-          0.45216166173,
-          0.4425412777
+          0.365567944,
+          0.452161662,
+          0.442541278
         ],
-        "maximumAbsoluteXyzDifference": 0.083482360245,
-        "deltaE00UsingRecordedRangeWhite": 7.3684060999
+        "maximumAbsoluteXyzDifference": 0.0834823602,
+        "deltaE00UsingRecordedRangeWhite": 7.3684061
       }
     },
     {
@@ -568,42 +568,42 @@
         4
       ],
       "xyzReflectance": [
-        0.40048092911,
-        0.39580210452,
-        0.36500135136
+        0.400480929,
+        0.395802105,
+        0.365001351
       ],
       "analyticSeedXyz": [
-        0.40048092911,
-        0.39580210452,
-        0.36500135136
+        0.400480929,
+        0.395802105,
+        0.365001351
       ],
       "monotonicProjection": {
         "maximumAbsoluteXyzDifference": 0,
         "deltaE00": 0
       },
       "xyY": [
-        0.34486034109,
-        0.34083133265,
-        0.39580210452
+        0.344860341,
+        0.340831333,
+        0.395802105
       ],
       "linearSrgbAbsolute": [
-        0.50737843683,
-        0.36954388857,
-        0.32736378374
+        0.507378437,
+        0.369543889,
+        0.327363784
       ],
       "srgbAbsoluteUnclipped": [
-        0.74019589388,
-        0.6418082808,
-        0.60749390872
+        0.740195894,
+        0.641808281,
+        0.607493909
       ],
       "sourceRangeSensitivity": {
         "authorUsable440To700Xyz": [
-          0.38707181697,
-          0.39603845832,
-          0.29808305528
+          0.387071817,
+          0.396038458,
+          0.298083055
         ],
-        "maximumAbsoluteXyzDifference": 0.06691829608,
-        "deltaE00UsingRecordedRangeWhite": 9.1988380627
+        "maximumAbsoluteXyzDifference": 0.0669182961,
+        "deltaE00UsingRecordedRangeWhite": 9.19883806
       }
     }
   ]

@@ -19,15 +19,15 @@
     "models/nintendo-cgb-001/data/measurement-normalization.schema.json": "3394a01bc6985fc174a568e3a2634426b2d476894bf7c1556c94e893855d3a08",
     "models/nintendo-cgb-001/data/color-model.schema.json": "50d9c4072caafd91e7fc3b382f13f22cb2aec56ce9528477c96ce7c833fdc8d5",
     "tools/import-cgb001-hcs.mjs": "9b178d4464b88688fec87de38b7e294290b7b97dee2010892155752488dd1198",
-    "tools/build-cgb001-ws1.mjs": "19569ff839ec1dec1b82998e126a8fd822deb384ad63f8315546aade18c5e664"
+    "tools/build-cgb001-ws1.mjs": "7082a39b880751114e78ede9a76c2a7ea55fd26b29cd1579c2382ba05bdf19ab"
   },
   "outputHashes": {
     "models/nintendo-cgb-001/data/hcs-source-v1.json": "803829a1b02d9c2b0b664f632a211eb2b72cd9706645831f447fca954f79c9e1",
-    "models/nintendo-cgb-001/data/color-reference-v1.json": "9b482d45340bbead1feff2ebe9216c03f1533deea4b72c3395b4cc3450baa5ae",
-    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "dfe13bece91169da0949b4dd91261fdce2ae322d277c02dd8a8a02b0c4d99483",
-    "models/nintendo-cgb-001/generated/ws1-color-audit-v1.json": "b1e1f4e38ca635fe677757f3143ef1c36987eb582a14a6c14449d74ce4cce97f",
-    "models/nintendo-cgb-001/generated/ws1-perceptual-v1.json": "62f64fa390d274d3c54c2f1694a473f4b1ac154cf68ec149e00f463fa8ffa90a",
-    "models/nintendo-cgb-001/generated/ws1-static-fixtures-v1.json": "8fef1d7d8fe34fea471e3798afd1bf6a20c384e6288d4adbf6140c09ad2136d9",
+    "models/nintendo-cgb-001/data/color-reference-v1.json": "40c9ef3e0fce0a4d83670c5ab5544d1af9af22099ce88523788304ca0fa390be",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "3705d681547e1d99ac90cc7e8980e2512690c3711faf3ffd060ab039b47635f9",
+    "models/nintendo-cgb-001/generated/ws1-color-audit-v1.json": "599cec6ed7b5cc8a23b5592846c294833452ba07dfdcd29c631a90c566dd970b",
+    "models/nintendo-cgb-001/generated/ws1-perceptual-v1.json": "43beed991bff443f5c790ba23f05d00648fc26b5bba530bbbfc1cba918d3ed19",
+    "models/nintendo-cgb-001/generated/ws1-static-fixtures-v1.json": "600dd5c7f3153301a4131410b91800d80b72d877c05ed34d1150d9c33b8a0bc7",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f"
   },
   "gates": {

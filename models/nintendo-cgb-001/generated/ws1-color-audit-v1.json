@@ -186,56 +186,56 @@
     "blackDriftPresent": true,
     "blackPointsD65RecordedRange": {
       "R": [
-        0.16111489245,
-        0.16660036434,
-        0.17094531085
+        0.161114892,
+        0.166600364,
+        0.170945311
       ],
       "G": [
-        0.16798604625,
-        0.17361721469,
-        0.1859184086
+        0.167986046,
+        0.173617215,
+        0.185918409
       ],
       "B": [
-        0.17443697178,
-        0.17994898443,
-        0.1958760035
+        0.174436972,
+        0.179948984,
+        0.195876003
       ],
       "Y": [
-        0.17725667576,
-        0.1822606402,
-        0.20469605633
+        0.177256676,
+        0.18226064,
+        0.204696056
       ],
       "C": [
-        0.17216960711,
-        0.17958526366,
-        0.18947098533
+        0.172169607,
+        0.179585264,
+        0.189470985
       ],
       "M": [
-        0.1785357683,
-        0.18421838755,
-        0.20247077966
+        0.178535768,
+        0.184218388,
+        0.20247078
       ],
       "Greyscale": [
-        0.18824607136,
-        0.19321128661,
-        0.20820985986
+        0.188246071,
+        0.193211287,
+        0.20820986
       ]
     },
     "blackPointComponentRanges": {
       "X": {
-        "minimum": 0.16111489245,
-        "maximum": 0.18824607136,
-        "range": 0.027131178902
+        "minimum": 0.161114892,
+        "maximum": 0.188246071,
+        "range": 0.0271311789
       },
       "Y": {
-        "minimum": 0.16660036434,
-        "maximum": 0.19321128661,
-        "range": 0.026610922267
+        "minimum": 0.166600364,
+        "maximum": 0.193211287,
+        "range": 0.0266109223
       },
       "Z": {
-        "minimum": 0.17094531085,
-        "maximum": 0.20820985986,
-        "range": 0.037264549011
+        "minimum": 0.170945311,
+        "maximum": 0.20820986,
+        "range": 0.037264549
       }
     },
     "xyzAdditivityFailureRecordedBySource": true,
@@ -252,7 +252,7 @@
   "colorMathRegression": {
     "fixtureSource": "Sharma, Wu, and Dalal (2005) CIEDE2000 supplementary test data",
     "tolerance": 0.00005,
-    "maximumDifference": 0.000040319843423,
+    "maximumDifference": 0.0000403198434,
     "pass": true,
     "referencePairs": [
       {
@@ -267,8 +267,8 @@
           -82.7485
         ],
         "expected": 2.0425,
-        "actual": 2.0424596802,
-        "difference": 0.000040319843423
+        "actual": 2.04245968,
+        "difference": 0.0000403198434
       },
       {
         "a": [
@@ -282,8 +282,8 @@
           -82.7485
         ],
         "expected": 2.8615,
-        "actual": 2.8615101747,
-        "difference": 0.000010174747492
+        "actual": 2.86151017,
+        "difference": 0.0000101747475
       },
       {
         "a": [
@@ -297,8 +297,8 @@
           -82.7485
         ],
         "expected": 3.4412,
-        "actual": 3.4411905987,
-        "difference": 0.0000094013092933
+        "actual": 3.4411906,
+        "difference": 0.00000940130929
       },
       {
         "a": [
@@ -312,8 +312,8 @@
           -82.7485
         ],
         "expected": 1,
-        "actual": 0.99999886475,
-        "difference": 0.000001135247507
+        "actual": 0.999998865,
+        "difference": 0.00000113524751
       }
     ]
   },
@@ -325,49 +325,49 @@
       {
         "series": "R",
         "sourceReading": 31,
-        "runtimeDeltaE00": 0.030160378318,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.35825794321,
+        "runtimeDeltaE00": 0.0301603783,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.358257943,
         "runtimeNoWorse": true
       },
       {
         "series": "G",
         "sourceReading": 33,
-        "runtimeDeltaE00": 0.091910192657,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.54798023711,
+        "runtimeDeltaE00": 0.0919101927,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.547980237,
         "runtimeNoWorse": true
       },
       {
         "series": "B",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.034675092203,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.36543779057,
+        "runtimeDeltaE00": 0.0346750922,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.365437791,
         "runtimeNoWorse": true
       },
       {
         "series": "Y",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.048846365955,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 1.8112678995,
+        "runtimeDeltaE00": 0.048846366,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 1.8112679,
         "runtimeNoWorse": true
       },
       {
         "series": "C",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.053281075776,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.36282667253,
+        "runtimeDeltaE00": 0.0532810758,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.362826673,
         "runtimeNoWorse": true
       },
       {
         "series": "M",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.082851643651,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.40983393266,
+        "runtimeDeltaE00": 0.0828516437,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.409833933,
         "runtimeNoWorse": true
       },
       {
         "series": "Greyscale",
         "sourceReading": 32,
-        "runtimeDeltaE00": 1.8376503654e-14,
+        "runtimeDeltaE00": 0,
         "upstreamWhiteAndBlackAlignedDeltaE00": 0,
         "runtimeNoWorse": true
       }
@@ -376,22 +376,22 @@
       "runtimeDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 0.60178778193,
-        "mean": 0.078891591377,
-        "standardDeviation": 0.13414213994
+        "maximum": 0.601787782,
+        "mean": 0.0788915914,
+        "standardDeviation": 0.13414214
       },
       "upstreamWhiteAndBlackAlignedDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 4.4838883001,
-        "mean": 1.2432952353,
-        "standardDeviation": 0.87526176054
+        "maximum": 4.4838883,
+        "mean": 1.24329524,
+        "standardDeviation": 0.875261761
       },
       "runtimeNoWorse": true
     },
     "heldOutGray": {
-      "pairwiseMeanDeltaE00": 1.769449228,
-      "runtimeMeanDeltaE00": 0.013225103537,
+      "pairwiseMeanDeltaE00": 1.76944923,
+      "runtimeMeanDeltaE00": 0.0132251035,
       "improved": true
     },
     "pass": true
@@ -415,26 +415,26 @@
       },
       {
         "field": "R.coefficient.0",
-        "expected": 1.3748424203,
-        "actual": 1.3748424203,
+        "expected": 1.37484242,
+        "actual": 1.37484242,
         "difference": 0
       },
       {
         "field": "R.coefficient.1",
-        "expected": -4.2178569943,
-        "actual": -4.2178569943,
+        "expected": -4.21785699,
+        "actual": -4.21785699,
         "difference": 0
       },
       {
         "field": "R.coefficient.2",
-        "expected": 8.1988201894,
-        "actual": 8.1988201894,
+        "expected": 8.19882019,
+        "actual": 8.19882019,
         "difference": 0
       },
       {
         "field": "R.coefficient.3",
-        "expected": -5.5958230464,
-        "actual": -5.5958230464,
+        "expected": -5.59582305,
+        "actual": -5.59582305,
         "difference": 0
       },
       {
@@ -469,20 +469,20 @@
       },
       {
         "field": "G.coefficient.0",
-        "expected": 1.4367789551,
-        "actual": 1.4367789551,
+        "expected": 1.43677896,
+        "actual": 1.43677896,
         "difference": 0
       },
       {
         "field": "G.coefficient.1",
-        "expected": -3.5303924918,
-        "actual": -3.5303924918,
+        "expected": -3.53039249,
+        "actual": -3.53039249,
         "difference": 0
       },
       {
         "field": "G.coefficient.2",
-        "expected": 5.8167692384,
-        "actual": 5.8167692384,
+        "expected": 5.81676924,
+        "actual": 5.81676924,
         "difference": 0
       },
       {
@@ -523,26 +523,26 @@
       },
       {
         "field": "B.coefficient.0",
-        "expected": 1.2427509369,
-        "actual": 1.2427509369,
+        "expected": 1.24275094,
+        "actual": 1.24275094,
         "difference": 0
       },
       {
         "field": "B.coefficient.1",
-        "expected": -2.3147239664,
-        "actual": -2.3147239664,
+        "expected": -2.31472397,
+        "actual": -2.31472397,
         "difference": 0
       },
       {
         "field": "B.coefficient.2",
-        "expected": 3.5072230209,
-        "actual": 3.5072230209,
+        "expected": 3.50722302,
+        "actual": 3.50722302,
         "difference": 0
       },
       {
         "field": "B.coefficient.3",
-        "expected": -2.4378295542,
-        "actual": -2.4378295542,
+        "expected": -2.43782955,
+        "actual": -2.43782955,
         "difference": 0
       },
       {
@@ -594,22 +594,22 @@
       "sourcePatchCount": 31,
       "mappingPolicy": "endpoint-preserving-uniform-source-index-resample-v1",
       "adjustedCodeCount": 3,
-      "maximumLuminanceAdjustment": 0.0011269803342,
+      "maximumLuminanceAdjustment": 0.00112698033,
       "adjustments": [
         {
           "index": 29,
-          "before": 0.10639765006,
-          "after": 0.10527066972
+          "before": 0.10639765,
+          "after": 0.10527067
         },
         {
           "index": 30,
-          "before": 0.10460660589,
-          "after": 0.10527066972
+          "before": 0.104606606,
+          "after": 0.10527067
         },
         {
           "index": 31,
-          "before": 0.10480775322,
-          "after": 0.10527066972
+          "before": 0.104807753,
+          "after": 0.10527067
         }
       ]
     },
@@ -617,22 +617,22 @@
       "sourcePatchCount": 33,
       "mappingPolicy": "endpoint-preserving-uniform-source-index-resample-v1",
       "adjustedCodeCount": 3,
-      "maximumLuminanceAdjustment": 0.0017558928017,
+      "maximumLuminanceAdjustment": 0.0017558928,
       "adjustments": [
         {
           "index": 29,
-          "before": 0.21481509204,
-          "after": 0.21305919924
+          "before": 0.214815092,
+          "after": 0.213059199
         },
         {
           "index": 30,
-          "before": 0.21298771269,
-          "after": 0.21305919924
+          "before": 0.212987713,
+          "after": 0.213059199
         },
         {
           "index": 31,
-          "before": 0.21137479298,
-          "after": 0.21305919924
+          "before": 0.211374793,
+          "after": 0.213059199
         }
       ]
     },
@@ -640,72 +640,72 @@
       "sourcePatchCount": 32,
       "mappingPolicy": "identity-reading-minus-one",
       "adjustedCodeCount": 13,
-      "maximumLuminanceAdjustment": 0.001381862592,
+      "maximumLuminanceAdjustment": 0.00138186259,
       "adjustments": [
         {
           "index": 2,
-          "before": 0.005943124361,
-          "after": 0.004977880906
+          "before": 0.00594312436,
+          "after": 0.00497788091
         },
         {
           "index": 3,
-          "before": 0.004012637451,
-          "after": 0.004977880906
+          "before": 0.00401263745,
+          "after": 0.00497788091
         },
         {
           "index": 5,
-          "before": 0.015694059632,
-          "after": 0.014552326134
+          "before": 0.0156940596,
+          "after": 0.0145523261
         },
         {
           "index": 6,
-          "before": 0.013410592636,
-          "after": 0.014552326134
+          "before": 0.0134105926,
+          "after": 0.0145523261
         },
         {
           "index": 12,
-          "before": 0.042866087575,
-          "after": 0.04229854122
+          "before": 0.0428660876,
+          "after": 0.0422985412
         },
         {
           "index": 13,
-          "before": 0.041730994864,
-          "after": 0.04229854122
+          "before": 0.0417309949,
+          "after": 0.0422985412
         },
         {
           "index": 19,
-          "before": 0.064141377476,
-          "after": 0.062759514884
+          "before": 0.0641413775,
+          "after": 0.0627595149
         },
         {
           "index": 20,
-          "before": 0.061377652292,
-          "after": 0.062759514884
+          "before": 0.0613776523,
+          "after": 0.0627595149
         },
         {
           "index": 24,
-          "before": 0.071453024659,
-          "after": 0.071427751963
+          "before": 0.0714530247,
+          "after": 0.071427752
         },
         {
           "index": 25,
-          "before": 0.071402479267,
-          "after": 0.071427751963
+          "before": 0.0714024793,
+          "after": 0.071427752
         },
         {
           "index": 29,
-          "before": 0.080151350689,
-          "after": 0.07945332289
+          "before": 0.0801513507,
+          "after": 0.0794533229
         },
         {
           "index": 30,
-          "before": 0.079047161258,
-          "after": 0.07945332289
+          "before": 0.0790471613,
+          "after": 0.0794533229
         },
         {
           "index": 31,
-          "before": 0.079161456722,
-          "after": 0.07945332289
+          "before": 0.0791614567,
+          "after": 0.0794533229
         }
       ]
     },
@@ -713,22 +713,22 @@
       "sourcePatchCount": 32,
       "mappingPolicy": "identity-reading-minus-one",
       "adjustedCodeCount": 3,
-      "maximumLuminanceAdjustment": 0.0010024690977,
+      "maximumLuminanceAdjustment": 0.0010024691,
       "adjustments": [
         {
           "index": 29,
-          "before": 0.29890878683,
-          "after": 0.29832377311
+          "before": 0.298908787,
+          "after": 0.298323773
         },
         {
           "index": 30,
-          "before": 0.29874122849,
-          "after": 0.29832377311
+          "before": 0.298741228,
+          "after": 0.298323773
         },
         {
           "index": 31,
-          "before": 0.29732130401,
-          "after": 0.29832377311
+          "before": 0.297321304,
+          "after": 0.298323773
         }
       ]
     },
@@ -736,17 +736,17 @@
       "sourcePatchCount": 32,
       "mappingPolicy": "identity-reading-minus-one",
       "adjustedCodeCount": 2,
-      "maximumLuminanceAdjustment": 0.001009111967,
+      "maximumLuminanceAdjustment": 0.00100911197,
       "adjustments": [
         {
           "index": 30,
-          "before": 0.2883554369,
-          "after": 0.28734632494
+          "before": 0.288355437,
+          "after": 0.287346325
         },
         {
           "index": 31,
-          "before": 0.28633721297,
-          "after": 0.28734632494
+          "before": 0.286337213,
+          "after": 0.287346325
         }
       ]
     },
@@ -754,17 +754,17 @@
       "sourcePatchCount": 32,
       "mappingPolicy": "identity-reading-minus-one",
       "adjustedCodeCount": 2,
-      "maximumLuminanceAdjustment": 0.0011798604115,
+      "maximumLuminanceAdjustment": 0.00117986041,
       "adjustments": [
         {
           "index": 30,
-          "before": 0.16990866033,
-          "after": 0.16872879992
+          "before": 0.16990866,
+          "after": 0.1687288
         },
         {
           "index": 31,
-          "before": 0.16754893951,
-          "after": 0.16872879992
+          "before": 0.16754894,
+          "after": 0.1687288
         }
       ]
     },
@@ -779,10 +779,10 @@
   "interactionEvidence": {
     "residualDefinition": "black-aligned measured Y/C/M/Greyscale ramps minus their primary, pair, and neutral lower-order components",
     "endpointResidualEuclideanXyz": {
-      "RG": 0.04698037691,
-      "GB": 0.0073984338122,
-      "BR": 0.04297645595,
-      "RGB": 0.086068201333
+      "RG": 0.0469803769,
+      "GB": 0.00739843381,
+      "BR": 0.042976456,
+      "RGB": 0.0860682013
     },
     "additivityFailurePresent": true
   },
@@ -793,13 +793,13 @@
     "measuredAxisWeight": 256,
     "iterationCount": 1741,
     "converged": true,
-    "maximumIterationChange": 9.9326102898e-13,
+    "maximumIterationChange": 0,
     "adjustedVoxelCount": 20074,
-    "maximumAbsoluteYAdjustment": 0.014742339223,
-    "rootMeanSquareYAdjustment": 0.0018151748394,
+    "maximumAbsoluteYAdjustment": 0.0147423392,
+    "rootMeanSquareYAdjustment": 0.00181517484,
     "before": {
       "violationCount": 15476,
-      "largestDrop": -0.016550012107
+      "largestDrop": -0.0165500121
     },
     "after": {
       "violationCount": 0,
@@ -819,69 +819,69 @@
     "fixtureDeltaE00": [
       {
         "id": "K",
-        "deltaE00": 8.2027721458
+        "deltaE00": 8.20277215
       },
       {
         "id": "R",
-        "deltaE00": 8.0686412754
+        "deltaE00": 8.06864128
       },
       {
         "id": "G",
-        "deltaE00": 4.0949595887
+        "deltaE00": 4.09495959
       },
       {
         "id": "B",
-        "deltaE00": 9.8670150683
+        "deltaE00": 9.86701507
       },
       {
         "id": "Y",
-        "deltaE00": 5.4645266712
+        "deltaE00": 5.46452667
       },
       {
         "id": "C",
-        "deltaE00": 7.672067161
+        "deltaE00": 7.67206716
       },
       {
         "id": "M",
-        "deltaE00": 8.5992133103
+        "deltaE00": 8.59921331
       },
       {
         "id": "W",
-        "deltaE00": 9.5884594448
+        "deltaE00": 9.58845944
       },
       {
         "id": "gray-08",
-        "deltaE00": 7.9886778012
+        "deltaE00": 7.9886778
       },
       {
         "id": "gray-16",
-        "deltaE00": 7.717368314
+        "deltaE00": 7.71736831
       },
       {
         "id": "gray-24",
-        "deltaE00": 8.8355895697
+        "deltaE00": 8.83558957
       },
       {
         "id": "mixed-07-19-29",
-        "deltaE00": 7.3684060999
+        "deltaE00": 7.3684061
       },
       {
         "id": "mixed-27-11-04",
-        "deltaE00": 9.1988380627
+        "deltaE00": 9.19883806
       }
     ]
   },
   "lutValidation": {
     "entryCount": 32768,
     "componentCount": 98304,
-    "minimumComponent": 0.1921729479,
-    "maximumComponent": 0.66460753469,
+    "minimumComponent": 0.192172948,
+    "maximumComponent": 0.664607535,
     "nonFiniteCount": 0,
     "negativeComponentCount": 0,
-    "maximumAnalyticSeedIntegerGridDifference": 0.023660934334,
+    "maximumAnalyticSeedIntegerGridDifference": 0.0236609343,
     "maximumCpuIntegerGridError": 0,
     "maximumTrilinearIntegerGridError": 0,
-    "maximumFloat32PackingError": 2.9796427325e-8,
+    "maximumFloat32PackingError": 2.97964273e-8,
     "monotonicLuminanceViolationCount": 0,
     "largestMonotonicLuminanceDrop": 0,
     "pass": true
