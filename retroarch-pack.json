@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "packVersion": "0.8.0",
-  "ref": "v0.8.0",
+  "packVersion": "0.8.1",
+  "ref": "v0.8.1",
   "installRoot": "retro-display-lab",
   "target": {
     "id": "konkr-gt78-vn-960x640-srgb-neutral",
@@ -95,23 +95,23 @@
     },
     {
       "path": "models/nintendo-cgb-001/generated/cgb001-hcs-upstream-d65-v1-hi-rgba8.png",
-      "bytes": 92691,
-      "sha256": "c397cf39a3bbba78d6bc3701b6e931de61d73a121f3f3b2b3c47fbcac06030a5"
+      "bytes": 139374,
+      "sha256": "d112ed5e679ea1d220951bd9c5baff6df19e96ff87e8c72404ebbe8d64a5491d"
     },
     {
       "path": "models/nintendo-cgb-001/generated/cgb001-hcs-upstream-d65-v1-lo-rgba8.png",
-      "bytes": 114417,
-      "sha256": "414cb3cab0988fec157a25e7d3bb355d50950fcc7d16e9aa93a937a82d047ba9"
+      "bytes": 139374,
+      "sha256": "d103e494d82206e1ea66151d1ef7c5b786dce5d2892b25e232ba608d802f602c"
     },
     {
       "path": "models/nintendo-cgb-001/generated/cgb001-reference-d65-v1-hi-rgba8.png",
-      "bytes": 69806,
-      "sha256": "cfb01b62c67cd29066bea4d4e2bb329a32f2d0618d94a17a95d6a50325e8bbc1"
+      "bytes": 139374,
+      "sha256": "223a496f4371312271f212b5052d13228c95c9f0510feba72ba9df6e97d1d5eb"
     },
     {
       "path": "models/nintendo-cgb-001/generated/cgb001-reference-d65-v1-lo-rgba8.png",
-      "bytes": 114109,
-      "sha256": "eda45060a17dcb8298e858d6829982d7e219372ff9e5881886a16a77cb14a4cf"
+      "bytes": 139374,
+      "sha256": "2a959ae5e8bd459c906bc8cbf12cf74bb5bae5ee71affc061f06fd71103e4339"
     },
     {
       "path": "models/nintendo-cgb-001/shaders/cgb001-color-v1.slang",
@@ -254,5 +254,5 @@
       "sha256": "f3ce1479a6506f3f7c4b41545095dcdf340c3167b9fd98d2b9132c53312c7c67"
     }
   ],
-  "totalBytes": 1363059
+  "totalBytes": 1529532
 }
