@@ -272,7 +272,7 @@
     "status": "pass",
     "coreSmokeReport": {
       "path": "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json",
-      "sha256": "025a99ab5f48a435b3a25a1d6175696b64d327c46fe3e151deb6a91f33c0f2f9"
+      "sha256": "bc572655172dec8e6bc9cef3b1e1d3cc47f3678784194566697f34a1c08de2c1"
     },
     "romDecoderReport": {
       "path": "models/nintendo-cgb-001/generated/ws2-decoder-v1.json",

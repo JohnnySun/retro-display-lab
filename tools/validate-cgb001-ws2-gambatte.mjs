@@ -215,7 +215,6 @@ function buildAndRun() {
         videoPitchBytes: Number(libraryIdentity.pitch),
       },
       runtimeScenes,
-      platform,
     };
   } finally {
     fs.rmSync(scratch, { recursive: true, force: true });
@@ -239,7 +238,12 @@ function main() {
       commit,
       sourceArchive: archiveRelative,
       sourceArchiveSha256: sha256(archive),
-      build: { makefile: "Makefile.libretro", platform: runtime.platform, videoDefine: "VIDEO_RGB565=1" },
+      build: {
+        makefile: "Makefile.libretro",
+        platformSelection: "host-native (osx on Darwin; unix otherwise)",
+        validatedPlatformArguments: ["osx", "unix"],
+        videoDefine: "VIDEO_RGB565=1",
+      },
       runtimeIdentity: runtime.libraryIdentity,
     },
     requiredCoreOptions: {

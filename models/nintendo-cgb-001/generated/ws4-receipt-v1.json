@@ -17,7 +17,7 @@
     "models/nintendo-cgb-001/data/response-ensemble.schema.json": "330931be2e1aaf8f8a8fbd565953b57664d8a215adef59b048ef6b1f10ba34ca",
     "models/nintendo-cgb-001/reference/optical-response.mjs": "e7d80a0c1580f6baae1e13c40fba94548187c1a83fce1493ecc1362b9ed45c16",
     "models/nintendo-cgb-001/generated/ws3-runtime-constants-v1.json": "590e2972d359f9af3a8d99ae7a4cd07e2eaf0223eec50451d38a731bd7782c95",
-    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "60c4efc8b94f2f06efb670572829d939ac32211026a9ce2e2ea9001a69d7fc20",
+    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "13c427e4322535103444a61d25e792cbd0b5da40bcad835b08677e56e0d865d3",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "3705d681547e1d99ac90cc7e8980e2512690c3711faf3ffd060ab039b47635f9",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
     "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "a4c2b652e678d7f127151533e057e1b54001423741f0def42077dd4f49e8d080",

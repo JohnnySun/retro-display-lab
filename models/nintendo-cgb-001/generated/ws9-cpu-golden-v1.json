@@ -48,7 +48,7 @@
     {
       "workstream": "ws8",
       "path": "generated/ws8-manifest-v1.json",
-      "sha256": "baa86250616668fd2e0af8874e5154a740f6a573aa0e71035d119928af1819e9"
+      "sha256": "44c6a80e46020387ffb12b0eecbfd5b93b32e1a807b60872515a7d5c1154b01d"
     }
   ],
   "allRgb555Static": {

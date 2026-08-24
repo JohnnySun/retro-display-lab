@@ -12,7 +12,7 @@
     "models/nintendo-cgb-001/reference/rgb-aperture.mjs": "2d3ab09c1ca4e2f9ee9de3db35ac77338355c7bcecec357be758f52c71e0a4c3",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "3705d681547e1d99ac90cc7e8980e2512690c3711faf3ffd060ab039b47635f9",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
-    "models/nintendo-cgb-001/generated/ws5-receipt-v1.json": "5cd87db8c1e5105d9c4d7d2250e1f8e14633be7aa2e321970cbd14cb379c94cb",
+    "models/nintendo-cgb-001/generated/ws5-receipt-v1.json": "394ad8673948b8f41601a0277d24d3f4f3676bb8740ebb971fbe8deae4a73b97",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
     "tools/build-cgb001-ws6.mjs": "1482547558ec2ee3a310f2629adbb28f3c9db95e6b25f7e549248ee987f92f25"
   },

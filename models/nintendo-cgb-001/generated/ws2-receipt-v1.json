@@ -11,11 +11,11 @@
     "models/nintendo-cgb-001/data/ws2-stimulus-scenes-v1.json": "3c8013b4bd6726db8ec79bc1e4d57eb3e9f144d4079f6e8e7846ce73c2a1ac1c",
     "models/nintendo-cgb-001/generated/ws2-stimulus-v1/manifest.json": "ff0a61f131b40da9ca74b56c837617200edc86090aba8c8285265c9e257d83ad",
     "models/nintendo-cgb-001/generated/ws2-decoder-v1.json": "bdf47eef8306185b8783e1cd5aeaddef44283f5c4542a8f67a63233ae8471344",
-    "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json": "025a99ab5f48a435b3a25a1d6175696b64d327c46fe3e151deb6a91f33c0f2f9",
+    "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json": "bc572655172dec8e6bc9cef3b1e1d3cc47f3678784194566697f34a1c08de2c1",
     "tools/build-cgb001-test-rom.mjs": "4f037fb9111dd36636ed1d15091e9c6864d93b95bf5ab5e8a89d5bb8a1f1df0e",
     "tools/decode-cgb001-test-rom.mjs": "0bceecc0484148135ac9a77d46ef9593c5e7ea9cf26ff4f5faf598b6dd4299e4",
     "tools/cgb001-libretro-smoke.c": "633b9b02682b20d1df024d039d658ca580acbfce96366a41eb0b0f184493b97f",
-    "tools/validate-cgb001-ws2-gambatte.mjs": "fb50176558a480c7f9d1eeeb6755cfb156b4eb300dfa3c5776a75daea5af88a9",
+    "tools/validate-cgb001-ws2-gambatte.mjs": "85af82e4bcfdbd3035a1555a49ce14e0b8041caf3c04a1fcce5f59633df02384",
     "tools/build-cgb001-ws2.mjs": "14044b8254e76424520db67ca3570096201668e577ca123b51dc7aac459452ef",
     "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/gambatte-libretro.tar.gz": "b67b5586f4a038c4e8b88cee537f59ab0878428b94a5c5bb10dd4b1870fac52f",
     "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/source/Makefile.libretro": "3c41f26d7296cb5d0f191853cb0e7891fa97ef1cb4ae984ce1db496b6bb7691f",
@@ -41,7 +41,7 @@
     "models/nintendo-cgb-001/generated/ws2-stimulus-v1/rgb555-exhaustive-transport.gbc": "72e42558d723f895ccea0634939d2cd80364b68ae959dff5942904a5c2bfc664"
   },
   "outputHashes": {
-    "models/nintendo-cgb-001/data/frontend-contract-v1.json": "12ba9b759c57a3d5255a05d286b63667039aee045f948db67ab5852d6fd773f9"
+    "models/nintendo-cgb-001/data/frontend-contract-v1.json": "6c54904c9b626140d0a91e2eea5d4e56877d1afeaa98c8ebc982277143ad37ae"
   },
   "gates": {
     "pinnedCoreSourceRetained": true,

@@ -10,7 +10,11 @@
     "sourceArchiveSha256": "b67b5586f4a038c4e8b88cee537f59ab0878428b94a5c5bb10dd4b1870fac52f",
     "build": {
       "makefile": "Makefile.libretro",
-      "platform": "osx",
+      "platformSelection": "host-native (osx on Darwin; unix otherwise)",
+      "validatedPlatformArguments": [
+        "osx",
+        "unix"
+      ],
       "videoDefine": "VIDEO_RGB565=1"
     },
     "runtimeIdentity": {
