@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "packVersion": "0.8.1",
-  "ref": "v0.8.1",
+  "packVersion": "0.8.2",
+  "ref": "v0.8.2",
   "installRoot": "retro-display-lab",
   "target": {
     "id": "konkr-gt78-vn-960x640-srgb-neutral",
@@ -210,8 +210,8 @@
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-lightly-used-v1.slangp",
-      "bytes": 2183,
-      "sha256": "0b442c34ffe66dae3486c804f1061ce663cbc4e974c0d97014e6d9df7b3af021"
+      "bytes": 2272,
+      "sha256": "f6e97d5aead1f607ed063590524d50ce5d4f7846158e6d07c489d7d4e41e5887"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-kpa-color-corrected.slangp",
@@ -225,13 +225,13 @@
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-color-corrected.slangp",
-      "bytes": 2809,
-      "sha256": "de437d7728d8b6c8255895a49526d292098dc4a5b984861c3bbf6adf4a69f140"
+      "bytes": 2898,
+      "sha256": "39a21cf55f2a8e4dd4960edbf9d0f3f513f10dfaf425810cbd82a04d1e4a5688"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp",
-      "bytes": 2180,
-      "sha256": "3e4c5796eeffb424ec7d38ec28d1f5444b91b7390e00217ca4faf286754bb3ff"
+      "bytes": 2269,
+      "sha256": "d2902760ad2aba609629580b48505cace1eef944d099cbd410f7c07256a3b1f0"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg",
@@ -254,5 +254,5 @@
       "sha256": "f3ce1479a6506f3f7c4b41545095dcdf340c3167b9fd98d2b9132c53312c7c67"
     }
   ],
-  "totalBytes": 1529532
+  "totalBytes": 1529799
 }
