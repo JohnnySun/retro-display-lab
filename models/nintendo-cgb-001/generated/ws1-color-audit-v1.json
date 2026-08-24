@@ -252,7 +252,7 @@
   "colorMathRegression": {
     "fixtureSource": "Sharma, Wu, and Dalal (2005) CIEDE2000 supplementary test data",
     "tolerance": 0.00005,
-    "maximumDifference": 0.00004031984342,
+    "maximumDifference": 0.0000403198434231,
     "pass": true,
     "referencePairs": [
       {
@@ -267,8 +267,8 @@
           -82.7485
         ],
         "expected": 2.0425,
-        "actual": 2.04245968015658,
-        "difference": 0.00004031984342
+        "actual": 2.04245968016,
+        "difference": 0.0000403198434231
       },
       {
         "a": [
@@ -282,8 +282,8 @@
           -82.7485
         ],
         "expected": 2.8615,
-        "actual": 2.86151017474749,
-        "difference": 0.00001017474749
+        "actual": 2.86151017475,
+        "difference": 0.0000101747474917
       },
       {
         "a": [
@@ -297,8 +297,8 @@
           -82.7485
         ],
         "expected": 3.4412,
-        "actual": 3.44119059869071,
-        "difference": 0.00000940130929
+        "actual": 3.44119059869,
+        "difference": 0.00000940130929328
       },
       {
         "a": [
@@ -312,8 +312,8 @@
           -82.7485
         ],
         "expected": 1,
-        "actual": 0.99999886475249,
-        "difference": 0.00000113524751
+        "actual": 0.999998864752,
+        "difference": 0.000001135247507
       }
     ]
   },
@@ -325,49 +325,49 @@
       {
         "series": "R",
         "sourceReading": 31,
-        "runtimeDeltaE00": 0.03016037831782,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.35825794320734,
+        "runtimeDeltaE00": 0.0301603783178,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.358257943207,
         "runtimeNoWorse": true
       },
       {
         "series": "G",
         "sourceReading": 33,
-        "runtimeDeltaE00": 0.09191019265701,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.54798023710712,
+        "runtimeDeltaE00": 0.091910192657,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.547980237107,
         "runtimeNoWorse": true
       },
       {
         "series": "B",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.03467509220329,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.3654377905723,
+        "runtimeDeltaE00": 0.0346750922033,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.365437790572,
         "runtimeNoWorse": true
       },
       {
         "series": "Y",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.04884636595493,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 1.81126789953206,
+        "runtimeDeltaE00": 0.0488463659549,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 1.81126789953,
         "runtimeNoWorse": true
       },
       {
         "series": "C",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.05328107577634,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.36282667252761,
+        "runtimeDeltaE00": 0.0532810757763,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.362826672528,
         "runtimeNoWorse": true
       },
       {
         "series": "M",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.08285164365119,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.40983393265512,
+        "runtimeDeltaE00": 0.0828516436512,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.409833932655,
         "runtimeNoWorse": true
       },
       {
         "series": "Greyscale",
         "sourceReading": 32,
-        "runtimeDeltaE00": 2e-14,
+        "runtimeDeltaE00": 1.83765036536e-14,
         "upstreamWhiteAndBlackAlignedDeltaE00": 0,
         "runtimeNoWorse": true
       }
@@ -376,22 +376,22 @@
       "runtimeDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 0.60178778193297,
-        "mean": 0.07889159137652,
-        "standardDeviation": 0.13414213994234
+        "maximum": 0.601787781933,
+        "mean": 0.0788915913765,
+        "standardDeviation": 0.134142139942
       },
       "upstreamWhiteAndBlackAlignedDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 4.48388830006839,
-        "mean": 1.24329523526688,
-        "standardDeviation": 0.87526176053742
+        "maximum": 4.48388830007,
+        "mean": 1.24329523527,
+        "standardDeviation": 0.875261760537
       },
       "runtimeNoWorse": true
     },
     "heldOutGray": {
-      "pairwiseMeanDeltaE00": 1.76944922798547,
-      "runtimeMeanDeltaE00": 0.01322510353743,
+      "pairwiseMeanDeltaE00": 1.76944922799,
+      "runtimeMeanDeltaE00": 0.0132251035374,
       "improved": true
     },
     "pass": true
@@ -598,18 +598,18 @@
       "adjustments": [
         {
           "index": 29,
-          "before": 0.1063976500559,
-          "after": 0.10527066972167
+          "before": 0.106397650056,
+          "after": 0.105270669722
         },
         {
           "index": 30,
-          "before": 0.1046066058881,
-          "after": 0.10527066972167
+          "before": 0.104606605888,
+          "after": 0.105270669722
         },
         {
           "index": 31,
           "before": 0.104807753221,
-          "after": 0.10527066972167
+          "after": 0.105270669722
         }
       ]
     },
@@ -621,18 +621,18 @@
       "adjustments": [
         {
           "index": 29,
-          "before": 0.21481509203848,
-          "after": 0.21305919923683
+          "before": 0.214815092038,
+          "after": 0.213059199237
         },
         {
           "index": 30,
           "before": 0.212987712693,
-          "after": 0.21305919923683
+          "after": 0.213059199237
         },
         {
           "index": 31,
           "before": 0.211374792979,
-          "after": 0.21305919923683
+          "after": 0.213059199237
         }
       ]
     },
@@ -695,17 +695,17 @@
         {
           "index": 29,
           "before": 0.080151350689,
-          "after": 0.07945332288967
+          "after": 0.0794533228897
         },
         {
           "index": 30,
           "before": 0.079047161258,
-          "after": 0.07945332288967
+          "after": 0.0794533228897
         },
         {
           "index": 31,
           "before": 0.079161456722,
-          "after": 0.07945332288967
+          "after": 0.0794533228897
         }
       ]
     },
@@ -718,17 +718,17 @@
         {
           "index": 29,
           "before": 0.298908786826,
-          "after": 0.29832377310867
+          "after": 0.298323773109
         },
         {
           "index": 30,
           "before": 0.298741228489,
-          "after": 0.29832377310867
+          "after": 0.298323773109
         },
         {
           "index": 31,
           "before": 0.297321304011,
-          "after": 0.29832377310867
+          "after": 0.298323773109
         }
       ]
     },
@@ -759,12 +759,12 @@
         {
           "index": 30,
           "before": 0.169908660328,
-          "after": 0.1687287999165
+          "after": 0.168728799916
         },
         {
           "index": 31,
           "before": 0.167548939505,
-          "after": 0.1687287999165
+          "after": 0.168728799916
         }
       ]
     },
@@ -779,10 +779,10 @@
   "interactionEvidence": {
     "residualDefinition": "black-aligned measured Y/C/M/Greyscale ramps minus their primary, pair, and neutral lower-order components",
     "endpointResidualEuclideanXyz": {
-      "RG": 0.04698037690977,
+      "RG": 0.0469803769098,
       "GB": 0.00739843381224,
-      "BR": 0.04297645595025,
-      "RGB": 0.08606820133296
+      "BR": 0.0429764559503,
+      "RGB": 0.086068201333
     },
     "additivityFailurePresent": true
   },
@@ -793,9 +793,9 @@
     "measuredAxisWeight": 256,
     "iterationCount": 1741,
     "converged": true,
-    "maximumIterationChange": 9.9e-13,
+    "maximumIterationChange": 9.93261028981e-13,
     "adjustedVoxelCount": 20074,
-    "maximumAbsoluteYAdjustment": 0.01474233922342,
+    "maximumAbsoluteYAdjustment": 0.0147423392234,
     "rootMeanSquareYAdjustment": 0.00181517483944,
     "before": {
       "violationCount": 15476,
@@ -819,69 +819,69 @@
     "fixtureDeltaE00": [
       {
         "id": "K",
-        "deltaE00": 8.20277214582871
+        "deltaE00": 8.20277214583
       },
       {
         "id": "R",
-        "deltaE00": 8.06864127538925
+        "deltaE00": 8.06864127539
       },
       {
         "id": "G",
-        "deltaE00": 4.09495958873014
+        "deltaE00": 4.09495958873
       },
       {
         "id": "B",
-        "deltaE00": 9.86701506825269
+        "deltaE00": 9.86701506825
       },
       {
         "id": "Y",
-        "deltaE00": 5.46452667123214
+        "deltaE00": 5.46452667123
       },
       {
         "id": "C",
-        "deltaE00": 7.67206716098829
+        "deltaE00": 7.67206716099
       },
       {
         "id": "M",
-        "deltaE00": 8.59921331027795
+        "deltaE00": 8.59921331028
       },
       {
         "id": "W",
-        "deltaE00": 9.58845944476179
+        "deltaE00": 9.58845944476
       },
       {
         "id": "gray-08",
-        "deltaE00": 7.98867780116495
+        "deltaE00": 7.98867780116
       },
       {
         "id": "gray-16",
-        "deltaE00": 7.71736831403368
+        "deltaE00": 7.71736831403
       },
       {
         "id": "gray-24",
-        "deltaE00": 8.83558956965473
+        "deltaE00": 8.83558956965
       },
       {
         "id": "mixed-07-19-29",
-        "deltaE00": 7.36840609985748
+        "deltaE00": 7.36840609986
       },
       {
         "id": "mixed-27-11-04",
-        "deltaE00": 9.19883806271442
+        "deltaE00": 9.19883806271
       }
     ]
   },
   "lutValidation": {
     "entryCount": 32768,
     "componentCount": 98304,
-    "minimumComponent": 0.19217294790474,
-    "maximumComponent": 0.66460753468518,
+    "minimumComponent": 0.192172947905,
+    "maximumComponent": 0.664607534685,
     "nonFiniteCount": 0,
     "negativeComponentCount": 0,
-    "maximumAnalyticSeedIntegerGridDifference": 0.02366093433387,
+    "maximumAnalyticSeedIntegerGridDifference": 0.0236609343339,
     "maximumCpuIntegerGridError": 0,
     "maximumTrilinearIntegerGridError": 0,
-    "maximumFloat32PackingError": 2.979643e-8,
+    "maximumFloat32PackingError": 2.97964273255e-8,
     "monotonicLuminanceViolationCount": 0,
     "largestMonotonicLuminanceDrop": 0,
     "pass": true

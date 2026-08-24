@@ -12,9 +12,9 @@
     "models/nintendo-cgb-001/reference/residual-dc-retention.mjs": "694bb4118f71d95c22055a22b4f8108f20ff33b91ba625f0f724f940b80af073",
     "models/nintendo-cgb-001/reference/scan-drive.mjs": "75b62d9d8c516c777454e61480055daa1c458e10b3bfddc1092d9e0848ea6382",
     "models/nintendo-cgb-001/data/scan-candidates-v1.json": "3f33ea131d3fbf09ea00f673cfa6300986bc0456246adae6d2c19c493035c663",
-    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "8589de027926840e0c7b06dd06bfa5949fed95fa788e5af72bebfb0f0ba22651",
+    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "0b2fbdab1222b67d16e299a8391cbdff82a6b0f5671ae662a2ec409200791f6e",
     "models/nintendo-cgb-001/data/response-ensemble-v1.json": "33b355a0e70137dd1ad89ad677791f081a5fe869ca49e78130e64fdcbf18327a",
-    "models/nintendo-cgb-001/generated/ws4-receipt-v1.json": "2a8915af1c6a8c446eed5850d9661e6472e41b93c6c35cd7be711a3289cebabc",
+    "models/nintendo-cgb-001/generated/ws4-receipt-v1.json": "b1fa8c72360074d211adce8bfd1f4851228d83c9739b2e0c4cd47579cee6c76c",
     "models/nintendo-cgb-001/data/frontend-contract-v1.json": "12ba9b759c57a3d5255a05d286b63667039aee045f948db67ab5852d6fd773f9",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
     "tools/build-cgb001-ws7.mjs": "ae43b6897084b4d02f02bc8c6a55d58fc29bce78f466e5d652847d3543d2127b"

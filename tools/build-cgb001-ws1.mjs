@@ -84,9 +84,13 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function cleanNumber(value, digits = 14) {
+function cleanNumber(value, digits = 12) {
   if (!Number.isFinite(value)) return value;
-  const cleaned = Number(value.toFixed(digits));
+  // Transcendental color-difference functions can differ by a few ULPs across
+  // operating-system math libraries even on the same Node major. Twelve
+  // significant digits remain far above Shader float32 precision while making
+  // generated JSON byte-identical on the supported Linux/macOS matrix.
+  const cleaned = Number(value.toPrecision(digits));
   return Object.is(cleaned, -0) ? 0 : cleaned;
 }
 
@@ -506,9 +510,15 @@ function jsonBuffer(value) {
   return Buffer.from(`${JSON.stringify(cleanDeep(value), null, 2)}\n`);
 }
 
+function sourceJsonBuffer(value) {
+  // Keep the imported measurement record byte-identical to the canonical
+  // importer. Cross-platform cleanup belongs only to derived WS1 artifacts.
+  return Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
+}
+
 function buildArtifacts() {
   const measurement = buildMeasurementRecord();
-  const measurementBuffer = jsonBuffer(measurement);
+  const measurementBuffer = sourceJsonBuffer(measurement);
   const model = buildColorModel(measurement, { field: "d65XyzRecordedRange", monotonic: true });
   const usableModel = buildColorModel(measurement, { field: "d65XyzAuthorUsableRange", monotonic: true, id: "cgb001-d65-440-700-sensitivity-v1" });
   const upstreamAudit = upstreamFixtureAudit(measurement.upstreamD65Fixture.parameters);

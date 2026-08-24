@@ -15,16 +15,16 @@
       "referenceRuntimeLutDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 0.60178778193297,
-        "mean": 0.07889159137652,
-        "standardDeviation": 0.13414213994234
+        "maximum": 0.601787781933,
+        "mean": 0.0788915913765,
+        "standardDeviation": 0.134142139942
       },
       "hcsUpstreamWhiteAndBlackAlignedDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 4.48388830006839,
-        "mean": 1.24329523526688,
-        "standardDeviation": 0.87526176053742
+        "maximum": 4.48388830007,
+        "mean": 1.24329523527,
+        "standardDeviation": 0.875261760537
       },
       "upstreamParameterMaximumDifference": 0,
       "upstreamParameterRegressionPass": true
@@ -82,9 +82,9 @@
     },
     "deltaE00VersusMeasuredReferenceLut": {
       "count": 32768,
-      "minimum": 9.27317723155e-7,
+      "minimum": 9.27317737045e-7,
       "maximum": 19.819332053,
-      "mean": 9.53703256752
+      "mean": 9.53703256753
     },
     "worst": {
       "rgb555": [
@@ -92,7 +92,7 @@
         8,
         25
       ],
-      "deltaE00": 19.819332053004533
+      "deltaE00": 19.819332053046754
     }
   },
   "libretroGbcColor": {
@@ -105,7 +105,7 @@
       "undefinedNegativeLinearPowCodes": 2581,
       "deltaE00VersusMeasuredReferenceLutForFiniteCodes": {
         "count": 30187,
-        "minimum": 9.27317723155e-7,
+        "minimum": 9.27317737045e-7,
         "maximum": 15.7412731294,
         "mean": 7.95469517892
       },
@@ -115,7 +115,7 @@
           8,
           8
         ],
-        "deltaE00": 15.741273129383359
+        "deltaE00": 15.741273129369299
       }
     },
     "postMatrixClampDiagnostic": {
@@ -123,9 +123,9 @@
       "purpose": "show the intended all-code shape without treating undefined pow(negative, 1/2.2) as measured or exact prior-art output",
       "deltaE00VersusMeasuredReferenceLut": {
         "count": 32768,
-        "minimum": 9.27317723155e-7,
+        "minimum": 9.27317737045e-7,
         "maximum": 15.7412731294,
-        "mean": 8.05269819468
+        "mean": 8.05269819469
       },
       "worst": {
         "rgb555": [
@@ -133,7 +133,7 @@
           8,
           8
         ],
-        "deltaE00": 15.741273129383359
+        "deltaE00": 15.741273129369299
       }
     }
   },

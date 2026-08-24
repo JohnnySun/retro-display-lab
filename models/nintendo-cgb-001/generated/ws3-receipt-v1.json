@@ -21,9 +21,9 @@
     "models/nintendo-cgb-001/generated/ws2-decoder-v1.json": "bdf47eef8306185b8783e1cd5aeaddef44283f5c4542a8f67a63233ae8471344",
     "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json": "025a99ab5f48a435b3a25a1d6175696b64d327c46fe3e151deb6a91f33c0f2f9",
     "models/nintendo-cgb-001/generated/ws2-receipt-v1.json": "d75bd5de706f75186a5f2582ad4ed0acf8620da5cf844e61aec71eae3218517b",
-    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "c58551ac09d2d79de9909e04173469e6c820e171870df6357a55c238fc6c8b1c",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "2265b2bd54374fff518a5b2585c212b51e3e27051a2ab3d3df19723ab1167c13",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
-    "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "6d11c61310f5a1e7b2edaac8c96253dbba79d91590bfb7065f0eee677236870c",
+    "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "c7c78bb29449c9633728360235e27c4793beb95b6287af997276a9ef5abc7694",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
     "tools/build-cgb001-ws3.mjs": "71985bbec22f7c6af5bfaa5d189a2054c70900c6dbe663ce6e6783713c04f8c0"
   },

@@ -28,14 +28,14 @@
   "validation": {
     "entryCount": 32768,
     "componentCount": 98304,
-    "minimumComponent": 0.19217294790474,
-    "maximumComponent": 0.66460753468518,
+    "minimumComponent": 0.192172947905,
+    "maximumComponent": 0.664607534685,
     "nonFiniteCount": 0,
     "negativeComponentCount": 0,
-    "maximumAnalyticSeedIntegerGridDifference": 0.02366093433387,
+    "maximumAnalyticSeedIntegerGridDifference": 0.0236609343339,
     "maximumCpuIntegerGridError": 0,
     "maximumTrilinearIntegerGridError": 0,
-    "maximumFloat32PackingError": 2.979643e-8,
+    "maximumFloat32PackingError": 2.97964273255e-8,
     "monotonicLuminanceViolationCount": 0,
     "largestMonotonicLuminanceDrop": 0,
     "pass": true
