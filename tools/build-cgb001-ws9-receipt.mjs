@@ -60,6 +60,20 @@ function hashMap(paths) {
   }));
 }
 
+// A stored target receipt proves the bytes that actually ran on the target.
+// Package metadata, documentation, CPU generators, and their release receipts
+// may change in a later patch release without changing that runtime. Keep the
+// full repository hash set in each new release receipt, but require fresh
+// device evidence only when the CGB runtime closure itself changes.
+function isTargetRuntimeArtifact(relative) {
+  return relative.startsWith(`${modelRelative}/shaders/`)
+    || relative.startsWith(`${modelRelative}/presets/`)
+    || relative.startsWith(`${modelRelative}/generated/cgb001-`)
+    || relative.startsWith(`${targetRelative}/presets/cgb001-`)
+    || relative.startsWith(`${targetRelative}/retroarch/cgb001-`)
+    || relative === `${targetRelative}/profile.json`;
+}
+
 const model = readJson(`${modelRelative}/model.json`);
 const reconstruction = readJson(`${modelRelative}/data/reconstruction-v1.json`);
 const cpuGolden = readJson(`${modelRelative}/generated/ws9-cpu-golden-v1.json`);
@@ -269,12 +283,18 @@ if (evidenceAvailable) {
   };
   output(targetReceiptRelative, jsonBuffer(targetReceipt));
 } else {
-  assert(checkOnly, `WS9 evidence directory is incomplete: ${evidenceRelative}`);
+  // Retain the historical target receipt when its original evidence bundle is
+  // not present locally. The runtime hashes below prevent reusing it after any
+  // target-facing CGB byte changes.
   targetReceipt = readJson(targetReceiptRelative);
   assert(targetReceipt.result?.status === "pass", "stored target receipt does not pass");
-  for (const [relative, expected] of Object.entries(targetReceipt.repositoryArtifactHashes ?? {})) {
+  const storedRuntimeHashes = Object.entries(targetReceipt.repositoryArtifactHashes ?? {})
+    .filter(([relative]) => isTargetRuntimeArtifact(relative));
+  assert(storedRuntimeHashes.length >= 30,
+    "stored target receipt lacks the complete CGB runtime closure");
+  for (const [relative, expected] of storedRuntimeHashes) {
     assert(fs.existsSync(path.join(root, relative)) && sha256File(relative) === expected,
-      `stored target receipt repository hash is stale: ${relative}`);
+      `stored target receipt runtime hash is stale: ${relative}`);
   }
   assert(Object.keys(targetReceipt.evidenceArtifactHashes ?? {}).length >= reportNames.length,
     "stored target receipt lacks original evidence hashes");

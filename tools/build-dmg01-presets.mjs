@@ -161,8 +161,10 @@ const specs = [
       "## Target provenance: ../REFERENCES.md",
       "## Evidence: [TARGET-KPA-TUNE-01]",
       "## KONKR neutral-state compensation; not an instrument-calibrated sRGB claim.",
+      "## Current-drive coherence keeps moving solids intact while retaining causal LCD trails.",
     ].join("\n"),
     overrides: {
+      CurrentDriveCoherence: "1.0",
       ScreenBrightness: "0.68",
       ScreenChroma: "0.90",
     },
@@ -174,8 +176,10 @@ const specs = [
       "## Target provenance: ../REFERENCES.md",
       "## Evidence: [TARGET-KPA-TUNE-01]",
       "## KONKR minimum-step lightly-used aesthetic; not calibrated elapsed-time aging.",
+      "## Current-drive coherence keeps moving solids intact while retaining causal LCD trails.",
     ].join("\n"),
     overrides: {
+      CurrentDriveCoherence: "1.0",
       LineVariation: "0.002",
       PanelMottle: "0.002",
       ScreenBrightness: "0.68",
@@ -188,8 +192,10 @@ const specs = [
     description: [
       "## KONKR Gambatte install payload for the minimum-step lightly-used aesthetic.",
       "## This is not calibrated elapsed-time aging.",
+      "## Current-drive coherence keeps moving solids intact while retaining causal LCD trails.",
     ].join("\n"),
     overrides: {
+      CurrentDriveCoherence: "1.0",
       LineVariation: "0.002",
       PanelMottle: "0.002",
       ScreenBrightness: "0.68",

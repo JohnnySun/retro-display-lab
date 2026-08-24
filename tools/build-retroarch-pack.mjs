@@ -67,10 +67,10 @@ const target = "targets/konkr-gt78-vn/960x640-srgb-neutral";
 // belongs to: an installer must never deploy a retroarch-local preset while the Android-system
 // host correction is active, and vice versa.
 const presets = [
-  // one-year-used, not reference: reference runs CurrentDriveCoherence at 0, the pure physical
-  // path, which leaves moving solids incomplete. It is the diagnostic preset. The project's own
-  // hand-deploy override in integrations/ has always named one-year-used as the default, and an
-  // installer that disagrees with it is the installer that is wrong.
+  // The project's hand-deploy override and screenshots use the mild one-year-used profile.
+  // Every player-facing target preset enables current-drive coherence so slow threshold
+  // crossings cannot break moving solids into stripes; the pure physical path remains available
+  // in the model presets for diagnostics.
   { core: "Gambatte", content: "gb", route: "android-system",
     preset: `${target}/presets/dmg01-one-year-used-v1.slangp` },
   { core: "Gambatte", content: "gb", route: "retroarch-local",

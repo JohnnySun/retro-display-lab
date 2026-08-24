@@ -8,6 +8,13 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const modelDir = path.join(root, "models", "nintendo-dmg-01");
 const shaderDir = path.join(modelDir, "shaders");
 const presetDir = path.join(modelDir, "presets");
+const targetPresetDir = path.join(
+  root,
+  "targets",
+  "konkr-gt78-vn",
+  "960x640-srgb-neutral",
+  "presets",
+);
 const packageVersion = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).version;
 const shaderFiles = fs.readdirSync(shaderDir).sort();
 const presetFiles = fs.readdirSync(presetDir).sort();
@@ -313,6 +320,23 @@ function presetNumber(source, name) {
   const match = source.match(new RegExp(`^${name}\\s*=\\s*"([^"]+)"`, "m"));
   return match ? Number(match[1]) : NaN;
 }
+
+const playerFacingTargetPresets = [
+  "dmg01-reference-v1.slangp",
+  "dmg01-lightly-used-v1.slangp",
+  "dmg01-one-year-used-v1.slangp",
+];
+for (const file of playerFacingTargetPresets) {
+  const source = fs.readFileSync(path.join(targetPresetDir, file), "utf8");
+  check(
+    presetNumber(source, "CurrentDriveCoherence") === 1,
+    `${file}: moving solids can fall below the current driven shade`,
+  );
+}
+check(
+  presetNumber(referencePreset, "CurrentDriveCoherence") === 0,
+  "DMG model diagnostic preset lost the pure physical response path",
+);
 const physicalModel = reconstruction.temporal.physicalModel;
 const physicalReport = JSON.parse(fs.readFileSync(
   path.join(modelDir, physicalModel.generatedReport),

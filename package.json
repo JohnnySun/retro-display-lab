@@ -1,6 +1,6 @@
 {
   "name": "retro-display-lab",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "description": "Validation for physics-informed handheld display shaders.",
   "scripts": {

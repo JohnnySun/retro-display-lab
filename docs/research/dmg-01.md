@@ -267,7 +267,8 @@ viewport 位移、crop、邊與角；最大面積誤差 `1×10⁻¹²`。KONKR �
 - `ws5-numeric-drive-v1`：以 `DebugView=6` 輸出串擾後 effective drive，供七場景 CPU／GPU 數值驗證，不是遊戲外觀。
 - `heavy-ghosting-v1`：較冷／較慢面板的候選，適合檢查利用殘影的遊戲場景。
 - `aged-v1`：展示明顯老化個體；增加固定線差、低頻污斑、對比衰退與偏色，不應被當作每一台 DMG 的標準狀態。
-- KONKR target 另提供 `dmg01-lightly-used-v1`：只把固定線差與低頻污斑各開到最小一檔 `0.002`，作為輕微使用感的視覺候選；它不是經量測的「半年老化」換算。
+- KONKR target 的 `dmg01-reference-v1` 與 `dmg01-lightly-used-v1` 都啟用 current-drive coherence：新出現的實心圖案至少保留目前驅動色階，不會因 STN 狀態尚未跨過可見門檻而碎成直條；離開後的因果拖影、離子狀態、掃描時序與串擾仍保留。純物理 response 仍可由 model preset 進行診斷。
+- `dmg01-lightly-used-v1` 另把固定線差與低頻污斑各開到最小一檔 `0.002`，作為輕微使用感的視覺候選；它不是經量測的「半年老化」換算。
 - `dmg01-one-year-used-v1` 把同兩項提高到 `0.003`，並加入極輕微的 `PolarizerAge=0.01`，作為約一年正常使用感的試看候選；串擾、電壓拖影、離子與響應參數不變，同樣不是經量測的時間換算。
 
 ## 量測邊界
