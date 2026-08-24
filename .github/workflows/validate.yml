@@ -16,6 +16,10 @@ jobs:
         node-version: [18, 22, 24]
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The RetroArch pack is pinned to a release tag and is deliberately
+          # re-derived from that tag during --check.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
