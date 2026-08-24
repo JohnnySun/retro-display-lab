@@ -53,6 +53,7 @@ const presets = [
   ["ags101-period-reconstruction-kpa-color-corrected.slangp", "4", "shader3"],
   ["dmg01-reference-kpa-color-corrected.slangp", "6", "shader5"],
   ["dmg01-one-year-used-kpa-color-corrected.slangp", "6", "shader5"],
+  ["cgb001-reference-d65-kpa-color-corrected.slangp", "4", "shader3"],
 ];
 for (const [name, count, finalShader] of presets) {
   const presetPath = path.join(target, "presets", name);

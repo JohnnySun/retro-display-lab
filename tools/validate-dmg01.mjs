@@ -8,6 +8,7 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const modelDir = path.join(root, "models", "nintendo-dmg-01");
 const shaderDir = path.join(modelDir, "shaders");
 const presetDir = path.join(modelDir, "presets");
+const packageVersion = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).version;
 const shaderFiles = fs.readdirSync(shaderDir).sort();
 const presetFiles = fs.readdirSync(presetDir).sort();
 const failures = [];
@@ -140,7 +141,8 @@ for (const [file, currentLanguage] of readmeFiles) {
   check(source.includes("繁體中文"), `${file}: missing zh-TW language label`);
   check(source.includes("简体中文"), `${file}: missing zh-CN language label`);
   check(source.includes(`**${currentLanguage}**`), `${file}: current language is not marked`);
-  check(source.includes("archive/refs/tags/v0.6.0.zip"), `${file}: missing fixed-version download link`);
+  check(source.includes(`archive/refs/tags/v${packageVersion}.zip`),
+    `${file}: missing fixed-version download link for v${packageVersion}`);
   check(source.includes("960x640-srgb-neutral/presets/dmg01-reference-v1.slangp"), `${file}: missing tested install path`);
   check(source.includes("models/nintendo-dmg-01/REFERENCES.md"), `${file}: missing DMG evidence-map link`);
   check(source.includes("models/nintendo-dmg-01/data/reconstruction-v1.json"), `${file}: missing DMG reconstruction-record link`);

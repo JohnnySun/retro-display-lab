@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/aperture-v1.json",
+  "title": "CGB-001 RGB aperture and reflective surface model v1",
+  "description": "Records evidence and uncertainty for subpixel order, active fill, inactive gaps, reflector, and footprint integration.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "apertureModelId", "modelId", "classification", "subpixelOrder", "geometry", "decomposition", "surface", "integration", "validation", "limits"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "apertureModelId": { "type": "string", "minLength": 1 },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "enum": ["measured", "derived", "period-reconstructed", "generic-prior", "synthetic"] },
+    "evidenceIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^CGB-" } },
+    "subpixelOrder": { "enum": ["RGB", "BGR", "unresolved"] },
+    "dependencies": { "type": "object", "additionalProperties": true },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["coordinateSystem", "activeFill", "inactiveGap", "uncertainty"]
+    },
+    "decomposition": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["modelSpace", "equation", "energyNormalization", "physicalClaim"]
+    },
+    "surface": { "type": "object", "additionalProperties": true, "required": ["inactiveRegionPolicy", "reflectorPolicy", "angleGainAlreadyInColorReference"] },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "scaleInvariant", "hostFootprintAware"],
+      "properties": {
+        "method": { "type": "string", "minLength": 1 },
+        "scaleInvariant": { "const": true },
+        "hostFootprintAware": { "const": true }
+      }
+    },
+    "validation": { "type": "object", "additionalProperties": true, "required": ["status", "scales", "report"] },
+    "limits": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  }
+}

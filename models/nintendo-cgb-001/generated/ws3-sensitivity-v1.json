@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws3-sensitivity-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "bounded-period-reconstruction-sensitivity",
+  "sourceConstantsRecord": "models/nintendo-cgb-001/generated/ws3-runtime-constants-v1.json",
+  "timing": {
+    "profileCount": 9,
+    "profiles": [
+      {
+        "profileId": "line-start/at-latch",
+        "latchOffsetLines": 0,
+        "rowActivationDelayLines": 0,
+        "combinedOffsetLines": 0,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0077190399169921875,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0077190399169921875
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015546798706054688,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015546798706054688
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015655517578125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015655517578125
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.016633987426757812,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.016633987426757812
+          }
+        ]
+      },
+      {
+        "profileId": "line-start/half-line-after-latch",
+        "latchOffsetLines": 0,
+        "rowActivationDelayLines": 0.5,
+        "combinedOffsetLines": 0.5,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.00005435943603515625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.00005435943603515625
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.007773399353027344,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.007773399353027344
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015601158142089844,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015601158142089844
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015709877014160156,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015709877014160156
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.01668834686279297,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.01668834686279297
+          }
+        ]
+      },
+      {
+        "profileId": "line-start/one-line-after-latch",
+        "latchOffsetLines": 0,
+        "rowActivationDelayLines": 1,
+        "combinedOffsetLines": 1,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0001087188720703125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0001087188720703125
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0078277587890625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0078277587890625
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015655517578125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015655517578125
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015764236450195312,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015764236450195312
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.016742706298828125,
+            "sourceFrameOffset": 1,
+            "activationTimeInFrame": 0
+          }
+        ]
+      },
+      {
+        "profileId": "line-center/at-latch",
+        "latchOffsetLines": 0.5,
+        "rowActivationDelayLines": 0,
+        "combinedOffsetLines": 0.5,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.00005435943603515625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.00005435943603515625
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.007773399353027344,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.007773399353027344
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015601158142089844,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015601158142089844
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015709877014160156,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015709877014160156
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.01668834686279297,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.01668834686279297
+          }
+        ]
+      },
+      {
+        "profileId": "line-center/half-line-after-latch",
+        "latchOffsetLines": 0.5,
+        "rowActivationDelayLines": 0.5,
+        "combinedOffsetLines": 1,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0001087188720703125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0001087188720703125
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0078277587890625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0078277587890625
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015655517578125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015655517578125
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015764236450195312,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015764236450195312
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.016742706298828125,
+            "sourceFrameOffset": 1,
+            "activationTimeInFrame": 0
+          }
+        ]
+      },
+      {
+        "profileId": "line-center/one-line-after-latch",
+        "latchOffsetLines": 0.5,
+        "rowActivationDelayLines": 1,
+        "combinedOffsetLines": 1.5,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.00016307830810546875,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.00016307830810546875
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.007882118225097656,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.007882118225097656
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015709877014160156,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015709877014160156
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.01581859588623047,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.01581859588623047
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.01679706573486328,
+            "sourceFrameOffset": 1,
+            "activationTimeInFrame": 0.00005435943603515625
+          }
+        ]
+      },
+      {
+        "profileId": "line-end/at-latch",
+        "latchOffsetLines": 1,
+        "rowActivationDelayLines": 0,
+        "combinedOffsetLines": 1,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0001087188720703125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0001087188720703125
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.0078277587890625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.0078277587890625
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015655517578125,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015655517578125
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015764236450195312,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015764236450195312
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.016742706298828125,
+            "sourceFrameOffset": 1,
+            "activationTimeInFrame": 0
+          }
+        ]
+      },
+      {
+        "profileId": "line-end/half-line-after-latch",
+        "latchOffsetLines": 1,
+        "rowActivationDelayLines": 0.5,
+        "combinedOffsetLines": 1.5,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.00016307830810546875,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.00016307830810546875
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.007882118225097656,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.007882118225097656
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015709877014160156,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015709877014160156
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.01581859588623047,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.01581859588623047
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.01679706573486328,
+            "sourceFrameOffset": 1,
+            "activationTimeInFrame": 0.00005435943603515625
+          }
+        ]
+      },
+      {
+        "profileId": "line-end/one-line-after-latch",
+        "latchOffsetLines": 1,
+        "rowActivationDelayLines": 1,
+        "combinedOffsetLines": 2,
+        "events": [
+          {
+            "id": "first-visible",
+            "row": 0,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.000217437744140625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.000217437744140625
+          },
+          {
+            "id": "middle-visible",
+            "row": 71,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.007936477661132812,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.007936477661132812
+          },
+          {
+            "id": "last-visible",
+            "row": 143,
+            "visible": true,
+            "activationAbsoluteSeconds": 0.015764236450195312,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015764236450195312
+          },
+          {
+            "id": "first-blank",
+            "row": 144,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.015872955322265625,
+            "sourceFrameOffset": 0,
+            "activationTimeInFrame": 0.015872955322265625
+          },
+          {
+            "id": "last-blank",
+            "row": 153,
+            "visible": false,
+            "activationAbsoluteSeconds": 0.016851425170898438,
+            "sourceFrameOffset": 1,
+            "activationTimeInFrame": 0.0001087188720703125
+          }
+        ]
+      }
+    ],
+    "visibleOnsetOffsetRangeLines": [
+      0,
+      2
+    ],
+    "visibleOnsetOffsetRangeSeconds": [
+      0,
+      0.000217437744140625
+    ],
+    "visibleOnsetSpreadSeconds": 0.000217437744140625,
+    "defaultProfile": "line-start/at-latch",
+    "effectBoundary": "Candidate selection moves only the causal previous/current row split. It does not alter RGB555 endpoints, equilibrium command, or WS1 color."
+  },
+  "sourceBusMapping": {
+    "runtimeSelection": "logical-rgb555-coordinate",
+    "formalRgb555ToSixLineSelection": null,
+    "diagnosticsExcludedFromRuntime": true,
+    "diagnosticTable": [
+      {
+        "code5": 0,
+        "zeroFillLsb": 0,
+        "replicateMsbToLsb": 0,
+        "difference": 0
+      },
+      {
+        "code5": 1,
+        "zeroFillLsb": 2,
+        "replicateMsbToLsb": 2,
+        "difference": 0
+      },
+      {
+        "code5": 2,
+        "zeroFillLsb": 4,
+        "replicateMsbToLsb": 4,
+        "difference": 0
+      },
+      {
+        "code5": 3,
+        "zeroFillLsb": 6,
+        "replicateMsbToLsb": 6,
+        "difference": 0
+      },
+      {
+        "code5": 4,
+        "zeroFillLsb": 8,
+        "replicateMsbToLsb": 8,
+        "difference": 0
+      },
+      {
+        "code5": 5,
+        "zeroFillLsb": 10,
+        "replicateMsbToLsb": 10,
+        "difference": 0
+      },
+      {
+        "code5": 6,
+        "zeroFillLsb": 12,
+        "replicateMsbToLsb": 12,
+        "difference": 0
+      },
+      {
+        "code5": 7,
+        "zeroFillLsb": 14,
+        "replicateMsbToLsb": 14,
+        "difference": 0
+      },
+      {
+        "code5": 8,
+        "zeroFillLsb": 16,
+        "replicateMsbToLsb": 16,
+        "difference": 0
+      },
+      {
+        "code5": 9,
+        "zeroFillLsb": 18,
+        "replicateMsbToLsb": 18,
+        "difference": 0
+      },
+      {
+        "code5": 10,
+        "zeroFillLsb": 20,
+        "replicateMsbToLsb": 20,
+        "difference": 0
+      },
+      {
+        "code5": 11,
+        "zeroFillLsb": 22,
+        "replicateMsbToLsb": 22,
+        "difference": 0
+      },
+      {
+        "code5": 12,
+        "zeroFillLsb": 24,
+        "replicateMsbToLsb": 24,
+        "difference": 0
+      },
+      {
+        "code5": 13,
+        "zeroFillLsb": 26,
+        "replicateMsbToLsb": 26,
+        "difference": 0
+      },
+      {
+        "code5": 14,
+        "zeroFillLsb": 28,
+        "replicateMsbToLsb": 28,
+        "difference": 0
+      },
+      {
+        "code5": 15,
+        "zeroFillLsb": 30,
+        "replicateMsbToLsb": 30,
+        "difference": 0
+      },
+      {
+        "code5": 16,
+        "zeroFillLsb": 32,
+        "replicateMsbToLsb": 33,
+        "difference": 1
+      },
+      {
+        "code5": 17,
+        "zeroFillLsb": 34,
+        "replicateMsbToLsb": 35,
+        "difference": 1
+      },
+      {
+        "code5": 18,
+        "zeroFillLsb": 36,
+        "replicateMsbToLsb": 37,
+        "difference": 1
+      },
+      {
+        "code5": 19,
+        "zeroFillLsb": 38,
+        "replicateMsbToLsb": 39,
+        "difference": 1
+      },
+      {
+        "code5": 20,
+        "zeroFillLsb": 40,
+        "replicateMsbToLsb": 41,
+        "difference": 1
+      },
+      {
+        "code5": 21,
+        "zeroFillLsb": 42,
+        "replicateMsbToLsb": 43,
+        "difference": 1
+      },
+      {
+        "code5": 22,
+        "zeroFillLsb": 44,
+        "replicateMsbToLsb": 45,
+        "difference": 1
+      },
+      {
+        "code5": 23,
+        "zeroFillLsb": 46,
+        "replicateMsbToLsb": 47,
+        "difference": 1
+      },
+      {
+        "code5": 24,
+        "zeroFillLsb": 48,
+        "replicateMsbToLsb": 49,
+        "difference": 1
+      },
+      {
+        "code5": 25,
+        "zeroFillLsb": 50,
+        "replicateMsbToLsb": 51,
+        "difference": 1
+      },
+      {
+        "code5": 26,
+        "zeroFillLsb": 52,
+        "replicateMsbToLsb": 53,
+        "difference": 1
+      },
+      {
+        "code5": 27,
+        "zeroFillLsb": 54,
+        "replicateMsbToLsb": 55,
+        "difference": 1
+      },
+      {
+        "code5": 28,
+        "zeroFillLsb": 56,
+        "replicateMsbToLsb": 57,
+        "difference": 1
+      },
+      {
+        "code5": 29,
+        "zeroFillLsb": 58,
+        "replicateMsbToLsb": 59,
+        "difference": 1
+      },
+      {
+        "code5": 30,
+        "zeroFillLsb": 60,
+        "replicateMsbToLsb": 61,
+        "difference": 1
+      },
+      {
+        "code5": 31,
+        "zeroFillLsb": 62,
+        "replicateMsbToLsb": 63,
+        "difference": 1
+      }
+    ],
+    "differingCodeCount": 16,
+    "interpretation": "The two generic expansions differ for codes 16-31; this is uncertainty evidence, not grounds to select either mapping."
+  },
+  "inversion": {
+    "topologyPatternCountsAtFrameZero": [
+      {
+        "topology": "none",
+        "parityPhase": 0,
+        "positivePixels": 23040,
+        "negativePixels": 0
+      },
+      {
+        "topology": "none",
+        "parityPhase": 1,
+        "positivePixels": 23040,
+        "negativePixels": 0
+      },
+      {
+        "topology": "frame-global",
+        "parityPhase": 0,
+        "positivePixels": 23040,
+        "negativePixels": 0
+      },
+      {
+        "topology": "frame-global",
+        "parityPhase": 1,
+        "positivePixels": 0,
+        "negativePixels": 23040
+      },
+      {
+        "topology": "row-alternating",
+        "parityPhase": 0,
+        "positivePixels": 11520,
+        "negativePixels": 11520
+      },
+      {
+        "topology": "row-alternating",
+        "parityPhase": 1,
+        "positivePixels": 11520,
+        "negativePixels": 11520
+      },
+      {
+        "topology": "column-alternating",
+        "parityPhase": 0,
+        "positivePixels": 11520,
+        "negativePixels": 11520
+      },
+      {
+        "topology": "column-alternating",
+        "parityPhase": 1,
+        "positivePixels": 11520,
+        "negativePixels": 11520
+      },
+      {
+        "topology": "dot-checkerboard",
+        "parityPhase": 0,
+        "positivePixels": 11520,
+        "negativePixels": 11520
+      },
+      {
+        "topology": "dot-checkerboard",
+        "parityPhase": 1,
+        "positivePixels": 11520,
+        "negativePixels": 11520
+      }
+    ],
+    "staticMagnitudeDependenceOnTopology": 0,
+    "staticColorDependenceOnTopology": 0,
+    "runtimeEffectBeforeWs7": "debug sign only; no optical or retention mechanism consumes polarity in WS3"
+  },
+  "constantFieldAndLocality": {
+    "constantFieldCases": 864,
+    "maximumCpuStaticDifference": 1.1102230246251565e-16,
+    "maximumShaderStaticDifference": 5.960464477539063e-8,
+    "noScanPreservesEquilibriumAndEndpoints": true,
+    "affectedPixelsForSinglePixelImpulse": 1,
+    "spatialCouplingImplemented": false,
+    "ws1LutSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "ws1StaticColorDifference": 0
+  },
+  "candidateClassification": {
+    "periodReconstructionDefaults": {
+      "sourceLatchPhase": "line-start",
+      "rowActivationDelay": "at-latch",
+      "frameParityPhase": "even-positive",
+      "inversionTopology": "row-alternating",
+      "sourceBusMapping": "logical-rgb555-coordinate"
+    },
+    "formalCgbSpecificConstants": {
+      "sourceLatchPhase": null,
+      "rowActivationDelay": null,
+      "frameParityPhase": null,
+      "inversionTopology": null,
+      "rgb555ToSixLineMapping": null,
+      "gammaOrVcomVoltages": null
+    },
+    "exactPanelTraceAvailable": false,
+    "comparableSharpNumericVoltagesTransferred": false
+  },
+  "pass": true
+}

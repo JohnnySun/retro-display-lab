@@ -14,6 +14,10 @@
     "Nintendo GBA SP AGS-101 period reconstruction": {
       "contentViewport": [960, 640],
       "integerScale": 4
+    },
+    "Nintendo CGB-001 period reconstruction": {
+      "contentViewport": [640, 576],
+      "integerScale": 4
     }
   },
   "frontend": "RetroArch",
@@ -39,7 +43,8 @@
     "TARGET-KPA-GTG-01",
     "TARGET-KPA-GTGENSEMBLE-01",
     "TARGET-KPA-AGSRETENTION-01",
-    "TARGET-KPA-VALIDATION-01"
+    "TARGET-KPA-VALIDATION-01",
+    "TARGET-KPA-CGB-01"
   ],
   "validationRecords": [
     "validation/ags101-ws5-20260818.json",
@@ -53,8 +58,11 @@
     "validation/dmg01-ws4-20260819.json",
     "validation/dmg01-ws5-20260819.json",
     "validation/dmg01-ws5-common-mode-20260819.json",
-    "validation/kpa-host-correction-framebuffer-20260822.json"
+    "validation/kpa-host-correction-framebuffer-20260822.json",
+    "validation/cgb001-ws9-target-20260824.json"
   ],
+  "currentCgb001ValidationRecord": "validation/cgb001-ws9-target-20260824.json",
+  "currentCgb001ValidationStatus": "pass-full-numeric-vulkan-lifecycle-pacing-and-restoration",
   "lastFullNumericAgs101ValidationRecord": "validation/ags101-ws8-target-20260820.json",
   "lastPerformanceAgs101ValidationRecord": "validation/ags101-performance-20260821.json",
   "currentAgs101ValidationRecord": "validation/ags101-timing-default-20260821.json",

@@ -1,0 +1,4297 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "cgb001-ws2-stimulus-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "synthetic",
+  "generator": "tools/build-cgb001-test-rom.mjs",
+  "source": {
+    "path": "models/nintendo-cgb-001/data/ws2-stimulus-scenes-v1.json",
+    "sha256": "3c8013b4bd6726db8ec79bc1e4d57eb3e9f144d4079f6e8e7846ce73c2a1ac1c"
+  },
+  "assetPolicy": "Project-generated program, tiles, maps, attributes, and palettes only; the Nintendo boot logo and proprietary game assets are absent.",
+  "raster": {
+    "width": 160,
+    "height": 144,
+    "tileColumns": 20,
+    "tileRows": 18
+  },
+  "timing": {
+    "masterClockHz": 4194304,
+    "dotsPerFrame": 70224,
+    "frameSeconds": 0.016742706298828125,
+    "frameRateHz": 59.72750056960583,
+    "pageFlipEvent": "first VBlank boundary after the selected dwell"
+  },
+  "exhaustiveTransport": {
+    "sceneId": "rgb555-exhaustive-transport",
+    "sequence": "frame 0 is R=0,G=0,B=0..31; each VBlank increments G modulo 32, then R modulo 32 after G wraps",
+    "cycleFrames": 1024,
+    "rgb555ValuesPerFrame": 32,
+    "totalRgb555Values": 32768
+  },
+  "fixedLayout": {
+    "programOffset": 336,
+    "metadataOffset": 1024,
+    "tileBankOffsets": [
+      4096,
+      8192
+    ],
+    "paletteOffset": 12288,
+    "mapOffsets": [
+      12352,
+      13376
+    ],
+    "attributeOffsets": [
+      14400,
+      15424
+    ]
+  },
+  "scenes": [
+    {
+      "sceneId": "red-ramp",
+      "type": "channel-ramp",
+      "description": "All 32 red channel codes with green and blue held at zero.",
+      "filename": "red-ramp.gbc",
+      "sha256": "343b03008d1214beedd82e0a98d79c3403e758d1ff919f46e6cd5bcc1a487508",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 130,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "2af7b2b9c9cdf96b989fd4e94dcd44f053604f58a2111d1c1ddcd92640322d73"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "2af7b2b9c9cdf96b989fd4e94dcd44f053604f58a2111d1c1ddcd92640322d73"
+        }
+      ],
+      "videoData": {
+        "tileCount": 6,
+        "tileBankSha256": [
+          "a8d31a2d2b07826400a465fb3bc07a51d6d222c459d9116adff037624e76cbe2",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "8ddaed4c3145c740d216bc4597d5c78cdb33460e1539a147c78f4c5ec1e4d5e8",
+        "mapSha256": [
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8",
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8"
+        ],
+        "attributeSha256": [
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa",
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                0,
+                0
+              ],
+              [
+                3,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                4,
+                0,
+                0
+              ],
+              [
+                5,
+                0,
+                0
+              ],
+              [
+                6,
+                0,
+                0
+              ],
+              [
+                7,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                8,
+                0,
+                0
+              ],
+              [
+                9,
+                0,
+                0
+              ],
+              [
+                10,
+                0,
+                0
+              ],
+              [
+                11,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                12,
+                0,
+                0
+              ],
+              [
+                13,
+                0,
+                0
+              ],
+              [
+                14,
+                0,
+                0
+              ],
+              [
+                15,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                16,
+                0,
+                0
+              ],
+              [
+                17,
+                0,
+                0
+              ],
+              [
+                18,
+                0,
+                0
+              ],
+              [
+                19,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                20,
+                0,
+                0
+              ],
+              [
+                21,
+                0,
+                0
+              ],
+              [
+                22,
+                0,
+                0
+              ],
+              [
+                23,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                24,
+                0,
+                0
+              ],
+              [
+                25,
+                0,
+                0
+              ],
+              [
+                26,
+                0,
+                0
+              ],
+              [
+                27,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                28,
+                0,
+                0
+              ],
+              [
+                29,
+                0,
+                0
+              ],
+              [
+                30,
+                0,
+                0
+              ],
+              [
+                31,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "green-ramp",
+      "type": "channel-ramp",
+      "description": "All 32 green channel codes with red and blue held at zero.",
+      "filename": "green-ramp.gbc",
+      "sha256": "84bd9878fe5277013c80e2d4988de132d1df0a63bedc577aa2fa55a224fdacee",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 61,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "bf5482849a2e502f13cce98b8f2431370d09403852f3fe9b144dedd09521f39d"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "bf5482849a2e502f13cce98b8f2431370d09403852f3fe9b144dedd09521f39d"
+        }
+      ],
+      "videoData": {
+        "tileCount": 6,
+        "tileBankSha256": [
+          "a8d31a2d2b07826400a465fb3bc07a51d6d222c459d9116adff037624e76cbe2",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "686868fbd4371a44ae81590f4f8070e4b31d13a06b78f3131f101574152da6b8",
+        "mapSha256": [
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8",
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8"
+        ],
+        "attributeSha256": [
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa",
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                3,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                4,
+                0
+              ],
+              [
+                0,
+                5,
+                0
+              ],
+              [
+                0,
+                6,
+                0
+              ],
+              [
+                0,
+                7,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                8,
+                0
+              ],
+              [
+                0,
+                9,
+                0
+              ],
+              [
+                0,
+                10,
+                0
+              ],
+              [
+                0,
+                11,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                12,
+                0
+              ],
+              [
+                0,
+                13,
+                0
+              ],
+              [
+                0,
+                14,
+                0
+              ],
+              [
+                0,
+                15,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                16,
+                0
+              ],
+              [
+                0,
+                17,
+                0
+              ],
+              [
+                0,
+                18,
+                0
+              ],
+              [
+                0,
+                19,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                20,
+                0
+              ],
+              [
+                0,
+                21,
+                0
+              ],
+              [
+                0,
+                22,
+                0
+              ],
+              [
+                0,
+                23,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                24,
+                0
+              ],
+              [
+                0,
+                25,
+                0
+              ],
+              [
+                0,
+                26,
+                0
+              ],
+              [
+                0,
+                27,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                28,
+                0
+              ],
+              [
+                0,
+                29,
+                0
+              ],
+              [
+                0,
+                30,
+                0
+              ],
+              [
+                0,
+                31,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "blue-ramp",
+      "type": "channel-ramp",
+      "description": "All 32 blue channel codes with red and green held at zero.",
+      "filename": "blue-ramp.gbc",
+      "sha256": "eee240263c137577a739b53576f0dd26f67d6c08cb2a72c62d071fe86377d42a",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 81,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+        }
+      ],
+      "videoData": {
+        "tileCount": 6,
+        "tileBankSha256": [
+          "a8d31a2d2b07826400a465fb3bc07a51d6d222c459d9116adff037624e76cbe2",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "eba8e5b0117d6a25d342c6d0be95a8b2a0b6b6821a00280e9af62c8be2c4cc85",
+        "mapSha256": [
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8",
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8"
+        ],
+        "attributeSha256": [
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa",
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                0,
+                7
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                0,
+                10
+              ],
+              [
+                0,
+                0,
+                11
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                12
+              ],
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                0,
+                14
+              ],
+              [
+                0,
+                0,
+                15
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                16
+              ],
+              [
+                0,
+                0,
+                17
+              ],
+              [
+                0,
+                0,
+                18
+              ],
+              [
+                0,
+                0,
+                19
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                20
+              ],
+              [
+                0,
+                0,
+                21
+              ],
+              [
+                0,
+                0,
+                22
+              ],
+              [
+                0,
+                0,
+                23
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                24
+              ],
+              [
+                0,
+                0,
+                25
+              ],
+              [
+                0,
+                0,
+                26
+              ],
+              [
+                0,
+                0,
+                27
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                28
+              ],
+              [
+                0,
+                0,
+                29
+              ],
+              [
+                0,
+                0,
+                30
+              ],
+              [
+                0,
+                0,
+                31
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "gray-ramp",
+      "type": "channel-ramp",
+      "description": "All 32 neutral RGB555 codes.",
+      "filename": "gray-ramp.gbc",
+      "sha256": "f1077ef5dd0e310cc0582bcfb483f0793f55d5351b56f3c02c15362afd1bb226",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 202,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "8cd0f529d7cfdb78fb73094ae167a2d87362ab609639a8e86c757f57ec0979c6"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "8cd0f529d7cfdb78fb73094ae167a2d87362ab609639a8e86c757f57ec0979c6"
+        }
+      ],
+      "videoData": {
+        "tileCount": 6,
+        "tileBankSha256": [
+          "a8d31a2d2b07826400a465fb3bc07a51d6d222c459d9116adff037624e76cbe2",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "2f0d7aa7403396708d8a261b86cef26cba8a47f5d3554b6d039fce313483e6bc",
+        "mapSha256": [
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8",
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8"
+        ],
+        "attributeSha256": [
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa",
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                3,
+                3
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                6,
+                6,
+                6
+              ],
+              [
+                7,
+                7,
+                7
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                8,
+                8,
+                8
+              ],
+              [
+                9,
+                9,
+                9
+              ],
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                11,
+                11,
+                11
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                12,
+                12,
+                12
+              ],
+              [
+                13,
+                13,
+                13
+              ],
+              [
+                14,
+                14,
+                14
+              ],
+              [
+                15,
+                15,
+                15
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                16,
+                16,
+                16
+              ],
+              [
+                17,
+                17,
+                17
+              ],
+              [
+                18,
+                18,
+                18
+              ],
+              [
+                19,
+                19,
+                19
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                20,
+                20,
+                20
+              ],
+              [
+                21,
+                21,
+                21
+              ],
+              [
+                22,
+                22,
+                22
+              ],
+              [
+                23,
+                23,
+                23
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                24,
+                24,
+                24
+              ],
+              [
+                25,
+                25,
+                25
+              ],
+              [
+                26,
+                26,
+                26
+              ],
+              [
+                27,
+                27,
+                27
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                28,
+                28,
+                28
+              ],
+              [
+                29,
+                29,
+                29
+              ],
+              [
+                30,
+                30,
+                30
+              ],
+              [
+                31,
+                31,
+                31
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "color-corners",
+      "type": "color-corners",
+      "description": "K/R/G/B/Y/C/M/W endpoint patches.",
+      "filename": "color-corners.gbc",
+      "sha256": "9ac84e295eef6d3d8e5b1d81e43081176e6d6720afe9640c3891cb26f61543f3",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 68,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "d478d6ac9df7aebbf1a6723209d684a50a9c33091b385205401538a55266081d"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "d478d6ac9df7aebbf1a6723209d684a50a9c33091b385205401538a55266081d"
+        }
+      ],
+      "videoData": {
+        "tileCount": 8,
+        "tileBankSha256": [
+          "c0fba13c9fd663cfede5c414c1cc06f967ed8f04abe7a2578ae0831607b732af",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "88069791bd27e46161dffd10977333bd93ec094b7503af1804f528dcb99567b2",
+        "mapSha256": [
+          "e109e5f4315aa9b32f533c7a90fa860c26c62dc62132763dce0804c3b211261b",
+          "e109e5f4315aa9b32f533c7a90fa860c26c62dc62132763dce0804c3b211261b"
+        ],
+        "attributeSha256": [
+          "845ec105ba6a7234d1e5372a2ccc4756acd3293d566dd36cbc584d4860254615",
+          "845ec105ba6a7234d1e5372a2ccc4756acd3293d566dd36cbc584d4860254615"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                31,
+                0,
+                0
+              ],
+              [
+                0,
+                31,
+                0
+              ],
+              [
+                0,
+                0,
+                31
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                31,
+                31,
+                0
+              ],
+              [
+                31,
+                0,
+                31
+              ],
+              [
+                0,
+                31,
+                31
+              ],
+              [
+                31,
+                31,
+                31
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "mixed-patches",
+      "type": "mixed-patches",
+      "description": "Thirty-two deterministic intermediate mixed RGB555 patches.",
+      "filename": "mixed-patches.gbc",
+      "sha256": "f2cfaef762544679cdb207523a5f631c935f13a775fc1cd8a942c484fc9d3a68",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 62,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "4a442c854001937c2fa7095182bd695d9fcc2f3422c36fbb091ac29a36193763"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "4a442c854001937c2fa7095182bd695d9fcc2f3422c36fbb091ac29a36193763"
+        }
+      ],
+      "videoData": {
+        "tileCount": 8,
+        "tileBankSha256": [
+          "fdcbdd0b58c07a1b44f9a704b224d7da3166b26fec026af1459bea5e3db65a35",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "7098d73904e56e1bf6a05adf637a0f533ab822eb802fb0903839d586846e8004",
+        "mapSha256": [
+          "c26d38bd218ee809ad294b49ced16d47ac8ab26bc1b6f4fbd5687e2c491541a9",
+          "c26d38bd218ee809ad294b49ced16d47ac8ab26bc1b6f4fbd5687e2c491541a9"
+        ],
+        "attributeSha256": [
+          "f179924026ca32357bedb4794d0e9876ae4fead3674b0611efce5265532b24b5",
+          "f179924026ca32357bedb4794d0e9876ae4fead3674b0611efce5265532b24b5"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                12,
+                11,
+                0
+              ],
+              [
+                3,
+                2,
+                1
+              ],
+              [
+                12,
+                2,
+                8
+              ],
+              [
+                3,
+                11,
+                25
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                30,
+                29,
+                2
+              ],
+              [
+                21,
+                20,
+                3
+              ],
+              [
+                30,
+                20,
+                10
+              ],
+              [
+                21,
+                29,
+                27
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                12,
+                11,
+                4
+              ],
+              [
+                3,
+                2,
+                5
+              ],
+              [
+                12,
+                2,
+                12
+              ],
+              [
+                3,
+                11,
+                29
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                30,
+                20,
+                6
+              ],
+              [
+                21,
+                11,
+                7
+              ],
+              [
+                30,
+                11,
+                14
+              ],
+              [
+                21,
+                20,
+                31
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                3,
+                29,
+                9
+              ],
+              [
+                21,
+                11,
+                11
+              ],
+              [
+                12,
+                29,
+                16
+              ],
+              [
+                30,
+                11,
+                18
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                3,
+                29,
+                13
+              ],
+              [
+                21,
+                2,
+                15
+              ],
+              [
+                12,
+                29,
+                20
+              ],
+              [
+                30,
+                2,
+                22
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                3,
+                20,
+                17
+              ],
+              [
+                21,
+                2,
+                19
+              ],
+              [
+                12,
+                20,
+                24
+              ],
+              [
+                30,
+                2,
+                26
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                3,
+                20,
+                21
+              ],
+              [
+                21,
+                29,
+                23
+              ],
+              [
+                12,
+                20,
+                28
+              ],
+              [
+                30,
+                29,
+                30
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "row-markers",
+      "type": "row-markers",
+      "description": "Binary tile-row identity plus first, middle, and last visible-row sentinels.",
+      "filename": "row-markers.gbc",
+      "sha256": "c2da01637c84c2d7dd9a006c29b177c78cc5b22e0ece7d57416a9df9496ec672",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 16,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "9ea3a241091803ca6d5e0623c37dc6628195778f03128df611ecc5b635a54304"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "9ea3a241091803ca6d5e0623c37dc6628195778f03128df611ecc5b635a54304"
+        }
+      ],
+      "videoData": {
+        "tileCount": 4,
+        "tileBankSha256": [
+          "3e1a6fce20950594ad225dae25b4198e9a2c6456191505f7dc52892803a513ec",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "3388989fc8bd1884fd5ba05bed7adf453b20c8c71cf35e11b3e9215ba1bb3c64",
+        "mapSha256": [
+          "ce4369d233c7a3799e4b19273348a6e2c78b8b209446138c65c34f17711b6fdd",
+          "ce4369d233c7a3799e4b19273348a6e2c78b8b209446138c65c34f17711b6fdd"
+        ],
+        "attributeSha256": [
+          "45949340b7a187a3ed8393c2bbdc28aa40fa6fbbdc3a3b9dde8a5124e9390726",
+          "45949340b7a187a3ed8393c2bbdc28aa40fa6fbbdc3a3b9dde8a5124e9390726"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                31,
+                0,
+                0
+              ],
+              [
+                0,
+                31,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                2,
+                2,
+                2
+              ],
+              [
+                3,
+                3,
+                3
+              ],
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                5,
+                5,
+                5
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                6,
+                6,
+                6
+              ],
+              [
+                7,
+                7,
+                7
+              ],
+              [
+                8,
+                8,
+                8
+              ],
+              [
+                9,
+                9,
+                9
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                11,
+                11,
+                11
+              ],
+              [
+                12,
+                12,
+                12
+              ],
+              [
+                13,
+                13,
+                13
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                14,
+                14,
+                14
+              ],
+              [
+                15,
+                15,
+                15
+              ],
+              [
+                16,
+                16,
+                16
+              ],
+              [
+                17,
+                17,
+                17
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                31
+              ],
+              [
+                31,
+                31,
+                31
+              ],
+              [
+                0,
+                0,
+                31
+              ],
+              [
+                0,
+                0,
+                31
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "first-last-row-change",
+      "type": "first-last-row-change",
+      "description": "Only the first and last visible rows change between pages.",
+      "filename": "first-last-row-change.gbc",
+      "sha256": "3ccb5e5a19b41580d5bca00eec2c55a509eedbcf99c4c697613894bb74a1df35",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 239,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 60,
+      "page1DwellFrames": 60,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "956cb0bff38f731f4a92eed7102f63e289190c663a534b16eb424255e2ae9de6"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "12e57b2cd2a9573724290d0cfa0c1373e5d69b3ccddb7850f6488333eabcf370"
+        }
+      ],
+      "videoData": {
+        "tileCount": 3,
+        "tileBankSha256": [
+          "7d5bf3089fde3197cc5d40461f9f8419185a1dd2b859aded117481c07dbf9625",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "10f4fb97920c7054906344e35e9dcb369574597d5f5409c2e11b532f2b868f88",
+        "mapSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "fef4c3cc97add5facb35971fc5a309005be002d4b141d37ee531635f4fb8a6c4"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                31,
+                0,
+                0
+              ],
+              [
+                8,
+                8,
+                8
+              ],
+              [
+                0,
+                0,
+                31
+              ],
+              [
+                31,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "595aa5bb07018ec744dd88f7b8ab931f0bd4e55c3a7aa6a8aa5e5438ab7e61a1",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "moving-edge",
+      "type": "moving-edge",
+      "description": "A vertical edge moves by one eight-pixel tile between VBlank-latched pages.",
+      "filename": "moving-edge.gbc",
+      "sha256": "27ab1d35fafc9aed6a8550b991ecea65cf98c58a0aa03b08a46b8deedad8f3b8",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 230,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 8,
+      "page1DwellFrames": 8,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "1a9819c4ab24270f7a2315376ae688079659919b72d1b6659b5867b587934b4a"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "ac1ac56e28ad3cacebeee0cf9d62d82d12387a115557497f8a9b849bff95227a"
+        }
+      ],
+      "videoData": {
+        "tileCount": 2,
+        "tileBankSha256": [
+          "e1d42613708270625bebe86cdbf3c17eb6bfd025f5dcea20985a66427c9953e7",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "4d8a5c7d79fac347680f61c2960d95ae243e4134abf699f9f3150d34c67a63be",
+        "mapSha256": [
+          "845ec105ba6a7234d1e5372a2ccc4756acd3293d566dd36cbc584d4860254615",
+          "4f77ed5bcef1b841fec4688e461a6b394da6daa40820fae5ed51dac5129b01c8"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                27,
+                27,
+                27
+              ],
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                4
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "f84c7b999d281d5f367b4940cf4884bf3dcf98362e269d831a9a333b37ad245e",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "checkerboard",
+      "type": "checkerboard",
+      "description": "One-pixel alternating low/high checkerboard.",
+      "filename": "checkerboard.gbc",
+      "sha256": "bf447d86674600e5d6fa3a4e851db36436b4748ca54776df2b5fcf2b3affb177",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 45,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14"
+        }
+      ],
+      "videoData": {
+        "tileCount": 1,
+        "tileBankSha256": [
+          "0c8d31a732535f8826131458c1bb0853ce1e3ef6b4e61ca405e47461f6488569",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "4d8a5c7d79fac347680f61c2960d95ae243e4134abf699f9f3150d34c67a63be",
+        "mapSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                27,
+                27,
+                27
+              ],
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                4
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "isolated-window",
+      "type": "isolated-window",
+      "description": "Bounded bright window occupying less than one quarter of the raster.",
+      "filename": "isolated-window.gbc",
+      "sha256": "e157062e9ce3fdda97be284ffbd9a606f6ae71d61a322dcb2f8bdcd077093592",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 242,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "da9c1a1b08319e220041b5df6b8820e3ce5a2de5cd5dbfbdd9a2451b6d2c5d45"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "da9c1a1b08319e220041b5df6b8820e3ce5a2de5cd5dbfbdd9a2451b6d2c5d45"
+        }
+      ],
+      "videoData": {
+        "tileCount": 2,
+        "tileBankSha256": [
+          "430cdcd6cdebe96b068053508788fae1f3170033e050f497028e5b4f5ddeebd3",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "7e2eb65a4c84dd32732c609f9e4482ddcdff9c9bbb2ea31c014dc37d9534bc53",
+        "mapSha256": [
+          "15fb5cfa8e1e3bf14e0a590cedcd5261d276c1e8e7a3d5ff9ef877666123e337",
+          "15fb5cfa8e1e3bf14e0a590cedcd5261d276c1e8e7a3d5ff9ef877666123e337"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                6,
+                6,
+                6
+              ],
+              [
+                26,
+                26,
+                26
+              ],
+              [
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "alternating-lines",
+      "type": "alternating-lines",
+      "description": "One-pixel alternating horizontal lines for row/exposure diagnostics.",
+      "filename": "alternating-lines.gbc",
+      "sha256": "7433ffe8e47924a0755c5901d521363af9bee45e4f6f1b786e0c07a6e4b03bd0",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 135,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "c70867f17991cd578cb8ec96cf39ef759502b2c45d9491402f119c2859ac3284"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "c70867f17991cd578cb8ec96cf39ef759502b2c45d9491402f119c2859ac3284"
+        }
+      ],
+      "videoData": {
+        "tileCount": 1,
+        "tileBankSha256": [
+          "5ab25397782c9651aca31019b1a9b4ff1ab9a86baf83bd73b6945ebb6a2a4dcf",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "9cddc8d900b99ce2e17f8921a5afc9d2552040749bc32a1f690ca11d0fb392ea",
+        "mapSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                6,
+                6,
+                6
+              ],
+              [
+                25,
+                25,
+                25
+              ],
+              [
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "parity-toggle",
+      "type": "parity-toggle",
+      "description": "Complementary checkerboards toggle at every VBlank for parity diagnostics.",
+      "filename": "parity-toggle.gbc",
+      "sha256": "65a05978587b0b797979238aa216a8779764ffe31af23f56ae3e008fdea6961b",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 33,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "fdedfd6301f83f89cf106e3685da4941238d798f5958f330aba8a17bdd2e6b57"
+        }
+      ],
+      "videoData": {
+        "tileCount": 2,
+        "tileBankSha256": [
+          "64a90fecc5d9d5ea7c14ed6e70d88478550acb57ef4c395cf1f15e19b6e91819",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "4d8a5c7d79fac347680f61c2960d95ae243e4134abf699f9f3150d34c67a63be",
+        "mapSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "eea8ca9982301953d9f2f56f1342e08ad8bd53a9110de2efee46df4f1c2028e0"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                27,
+                27,
+                27
+              ],
+              [
+                4,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                4
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "retention-stress-recovery",
+      "type": "retention-stress-recovery",
+      "description": "A bounded three-second stress page switches once to a uniform recovery page and then holds safely.",
+      "filename": "retention-stress-recovery.gbc",
+      "sha256": "ae121eaae5e62de6942da85ba1036ef5f1c53f4f062cca194ea3bf43945d93ca",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 41,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 180,
+      "page1DwellFrames": 180,
+      "maxPageFlips": 1,
+      "terminalPage": 1,
+      "pageSchedule": "toggle 1 time(s) at VBlank, then hold page 1",
+      "maximumDynamicSeconds": 3.0136871337890625,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "64f6ac982f48e3f1b8add58c03c5d00d8fc1337414d040df8d76342197e75a6a"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "956cb0bff38f731f4a92eed7102f63e289190c663a534b16eb424255e2ae9de6"
+        }
+      ],
+      "videoData": {
+        "tileCount": 2,
+        "tileBankSha256": [
+          "430cdcd6cdebe96b068053508788fae1f3170033e050f497028e5b4f5ddeebd3",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "b21275ab7f79275f203ff290d834d6926b4049900a5cf03ed2338a76c873d3b0",
+        "mapSha256": [
+          "f2fc4d2d62e0a5c7293c10eb273924284beeeee78a802214b6f261bfb5f46dc3",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                8,
+                8,
+                8
+              ],
+              [
+                24,
+                24,
+                24
+              ],
+              [
+                8,
+                8,
+                8
+              ],
+              [
+                8,
+                8,
+                8
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 178,
+        "sha256": "02e3fb4d8011b1ebb444bad3a3421ea31c9eaace3b5955b4514e11ebf01995be",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 464,
+          "wait-visible": 464,
+          "wait-vblank": 470,
+          "load-page0-dwell": 497,
+          "safe-hold": 502,
+          "copy": 505
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "pixel-grid-identity",
+      "type": "pixel-grid-identity",
+      "description": "Within-tile bit and coordinate identity pattern for nearest-source sampling checks.",
+      "filename": "pixel-grid-identity.gbc",
+      "sha256": "ba5ecf3d528154fb677f00a255ac81e196d28f42dfbca812b7a056c129c161dd",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 128,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "toggle map 0/map 1 at VBlank after each declared dwell forever",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "eb93cb5ed32de54ff8ba02d0232301e320b9b6a91a28a256d5ce2d95d1ab4a12"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "eb93cb5ed32de54ff8ba02d0232301e320b9b6a91a28a256d5ce2d95d1ab4a12"
+        }
+      ],
+      "videoData": {
+        "tileCount": 1,
+        "tileBankSha256": [
+          "886274f36ec50115168e3f5595ca95db288e6f04ffc500694d1b20b0e74cccd4",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "ceb5b99f5e3d1cf5fa5d442f7254f7c2465b2d4eb72a759cebadb1810bc2e65d",
+        "mapSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "attributeSha256": [
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                31,
+                0,
+                0
+              ],
+              [
+                0,
+                31,
+                0
+              ],
+              [
+                0,
+                0,
+                31
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 170,
+        "sha256": "6d73727fdd5bf1a013d7c67fb40b411a8990a8d619e765f4c3937d6847f87fba",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "frame": 462,
+          "wait-visible": 462,
+          "wait-vblank": 468,
+          "load-page0-dwell": 492,
+          "copy": 497
+        },
+        "pageFlipEvent": "LCDC background tile-map bit toggled only after LY enters VBlank"
+      }
+    },
+    {
+      "sceneId": "rgb555-exhaustive-transport",
+      "type": "rgb555-exhaustive-transport",
+      "description": "All 32 blue codes are visible while red/green advance at VBlank through every pair, emitting all 32,768 RGB555 values in 1,024 frames.",
+      "filename": "rgb555-exhaustive-transport.gbc",
+      "sha256": "72e42558d723f895ccea0634939d2cd80364b68ae959dff5942904a5c2bfc664",
+      "sizeBytes": 32768,
+      "cgbFlag": 128,
+      "headerChecksum": 25,
+      "proprietaryNintendoLogoPresent": false,
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1,
+      "maxPageFlips": null,
+      "terminalPage": null,
+      "pageSchedule": "hold both identical tile maps; after every VBlank advance G then R and rewrite 32 B-ramp palette words",
+      "maximumDynamicSeconds": null,
+      "expectedFramebuffer": [
+        {
+          "page": 0,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+        },
+        {
+          "page": 1,
+          "encoding": "little-endian CGB RGB555",
+          "byteLength": 46080,
+          "sha256": "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+        }
+      ],
+      "videoData": {
+        "tileCount": 6,
+        "tileBankSha256": [
+          "a8d31a2d2b07826400a465fb3bc07a51d6d222c459d9116adff037624e76cbe2",
+          "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        ],
+        "paletteSha256": "eba8e5b0117d6a25d342c6d0be95a8b2a0b6b6821a00280e9af62c8be2c4cc85",
+        "mapSha256": [
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8",
+          "044ce9a31df8f668d4054860f6950f7271c5e689f8a0fda6b5bcd9bd58d865d8"
+        ],
+        "attributeSha256": [
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa",
+          "79afa824cbf71f99a5b84eb8e97a754efbd54a1c15a32aea5e70531d5a0143fa"
+        ],
+        "paletteRgb555": [
+          {
+            "palette": 0,
+            "colors": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2
+              ],
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "palette": 1,
+            "colors": [
+              [
+                0,
+                0,
+                4
+              ],
+              [
+                0,
+                0,
+                5
+              ],
+              [
+                0,
+                0,
+                6
+              ],
+              [
+                0,
+                0,
+                7
+              ]
+            ]
+          },
+          {
+            "palette": 2,
+            "colors": [
+              [
+                0,
+                0,
+                8
+              ],
+              [
+                0,
+                0,
+                9
+              ],
+              [
+                0,
+                0,
+                10
+              ],
+              [
+                0,
+                0,
+                11
+              ]
+            ]
+          },
+          {
+            "palette": 3,
+            "colors": [
+              [
+                0,
+                0,
+                12
+              ],
+              [
+                0,
+                0,
+                13
+              ],
+              [
+                0,
+                0,
+                14
+              ],
+              [
+                0,
+                0,
+                15
+              ]
+            ]
+          },
+          {
+            "palette": 4,
+            "colors": [
+              [
+                0,
+                0,
+                16
+              ],
+              [
+                0,
+                0,
+                17
+              ],
+              [
+                0,
+                0,
+                18
+              ],
+              [
+                0,
+                0,
+                19
+              ]
+            ]
+          },
+          {
+            "palette": 5,
+            "colors": [
+              [
+                0,
+                0,
+                20
+              ],
+              [
+                0,
+                0,
+                21
+              ],
+              [
+                0,
+                0,
+                22
+              ],
+              [
+                0,
+                0,
+                23
+              ]
+            ]
+          },
+          {
+            "palette": 6,
+            "colors": [
+              [
+                0,
+                0,
+                24
+              ],
+              [
+                0,
+                0,
+                25
+              ],
+              [
+                0,
+                0,
+                26
+              ],
+              [
+                0,
+                0,
+                27
+              ]
+            ]
+          },
+          {
+            "palette": 7,
+            "colors": [
+              [
+                0,
+                0,
+                28
+              ],
+              [
+                0,
+                0,
+                29
+              ],
+              [
+                0,
+                0,
+                30
+              ],
+              [
+                0,
+                0,
+                31
+              ]
+            ]
+          }
+        ]
+      },
+      "program": {
+        "offset": 336,
+        "byteLength": 241,
+        "sha256": "b9c899dd719c4b883391886dedfb2199e05a880164297a941b1f28d32e586a00",
+        "symbols": {
+          "wait-lcd-vblank": 346,
+          "lcd-off": 352,
+          "palette-copy": 445,
+          "transport-frame": 464,
+          "transport-wait-visible": 464,
+          "transport-wait-vblank": 470,
+          "transport-have-rg": 489,
+          "transport-palette": 515,
+          "frame": 533,
+          "wait-visible": 533,
+          "wait-vblank": 539,
+          "load-page0-dwell": 563,
+          "copy": 568
+        },
+        "pageFlipEvent": "all 64 palette bytes rewritten only after LY enters VBlank"
+      }
+    }
+  ]
+}

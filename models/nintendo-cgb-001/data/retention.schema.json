@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/retention-v1.json",
+  "title": "CGB-001 residual-DC and retention model v1",
+  "description": "Keeps slow VCOM/residual-DC state independent of ordinary gray-to-gray response.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "retentionModelId", "modelId", "classification", "mechanism", "state", "referenceProfile", "excitation", "integration", "opticalBridge", "bypass", "candidates", "validation", "limits"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "retentionModelId": { "type": "string", "minLength": 1 },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "enum": ["period-reconstructed", "diagnostic"] },
+    "evidenceIds": { "type": "array", "contains": { "const": "CGB-VCOM-LEE-2008" }, "items": { "type": "string", "pattern": "^CGB-" } },
+    "mechanism": { "type": "string", "minLength": 1 },
+    "dependencies": { "type": "object", "additionalProperties": true },
+    "state": { "type": "object", "additionalProperties": true, "required": ["definition", "units", "initialization", "pausePolicy", "resetPolicy"] },
+    "referenceProfile": { "type": "object", "additionalProperties": true, "required": ["resultantDcOffset", "opticalCoupling", "reason"] },
+    "excitation": { "type": "object", "additionalProperties": true, "required": ["equation", "inputs", "prohibitions"] },
+    "integration": { "type": "object", "additionalProperties": true, "required": ["equation", "futureShaderContract"] },
+    "opticalBridge": { "type": "object", "additionalProperties": true, "required": ["equation", "referenceCoupling", "status"] },
+    "bypass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preservesStaticColor", "preservesOrdinaryResponse"],
+      "properties": {
+        "preservesStaticColor": { "const": true },
+        "preservesOrdinaryResponse": { "const": true }
+      }
+    },
+    "candidates": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": true, "required": ["id", "classification", "parameters", "uncertainty"] } },
+    "validation": { "type": "object", "additionalProperties": true, "required": ["status", "protocols", "report"] },
+    "limits": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/release-receipt-v1.json",
+  "title": "CGB-001 release acceptance receipt v1",
+  "description": "Binds source, normalized data, generated artifacts, CPU/GPU equations, frontend behavior, presets, and target validation to one release claim.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "modelId", "classification", "referenceCondition", "artifactHashes", "gates", "environments", "result"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "receiptId": { "type": "string", "minLength": 1 },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "const": "acceptance-receipt" },
+    "referenceCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["illuminant", "illuminationAngleDegrees", "viewAngleDegrees", "runtimeAngleModel"],
+      "properties": {
+        "illuminant": { "const": "CIE D65" },
+        "illuminationAngleDegrees": { "const": 45 },
+        "viewAngleDegrees": { "const": 0 },
+        "runtimeAngleModel": { "const": false }
+      }
+    },
+    "artifactHashes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ws1", "ws2", "ws3", "ws4", "ws5", "ws6", "ws7", "ws8", "ws9"],
+      "properties": {
+        "ws1": { "const": "pass" },
+        "ws2": { "const": "pass" },
+        "ws3": { "const": "pass" },
+        "ws4": { "const": "pass" },
+        "ws5": { "const": "pass" },
+        "ws6": { "const": "pass" },
+        "ws7": { "const": "pass" },
+        "ws8": { "const": "pass" },
+        "ws9": { "const": "pass" }
+      }
+    },
+    "environments": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": true, "required": ["id", "type", "result"] } },
+    "uncertainties": { "type": "array", "items": { "type": "string" } },
+    "result": { "type": "object", "additionalProperties": false, "required": ["status", "referenceV1NameAllowed"], "properties": { "status": { "const": "pass" }, "referenceV1NameAllowed": { "const": true } } }
+  }
+}

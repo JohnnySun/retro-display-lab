@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/scan-candidates-v1.json",
+  "title": "CGB-001 scan and electrical-drive candidates v1",
+  "description": "Keeps CGB facts, Sharp-family constraints, and bounded latch/inversion candidates distinct.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "candidateSetId", "modelId", "classification", "evidenceIds", "timing", "signalEvidence", "sourceBusMapping", "supplyAndAnalogTopology", "candidateSets", "runtimePolicy", "selection"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "candidateSetId": { "const": "cgb001-scan-drive-candidates-v1" },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "const": "period-reconstructed" },
+    "evidenceIds": { "type": "array", "minItems": 4, "items": { "type": "string", "pattern": "^CGB-" } },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ppuTimebase", "primaryDocumentRoundedValues", "panelSignalTimingBoundary"],
+      "properties": {
+        "ppuTimebase": { "type": "object", "additionalProperties": true, "required": ["masterClockHz", "dotsPerLine", "totalLines", "visibleLines", "verticalBlankLines", "dotsPerFrame", "lineSeconds", "frameSeconds", "frameRateHz"] },
+        "primaryDocumentRoundedValues": { "type": "object", "additionalProperties": true, "required": ["lineMicroseconds", "visibleMilliseconds", "verticalBlankMilliseconds", "frameRateHz"] },
+        "panelSignalTimingBoundary": { "type": "object", "additionalProperties": true, "required": ["status", "rule"] }
+      }
+    },
+    "signalEvidence": {
+      "type": "array",
+      "minItems": 11,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signal", "existence", "direction", "function", "timing", "confidence", "classification", "evidenceIds", "scope"],
+        "properties": {
+          "signal": { "type": "string", "minLength": 1 },
+          "existence": { "type": "string", "minLength": 1 },
+          "direction": { "type": "string", "minLength": 1 },
+          "function": { "type": "string", "minLength": 1 },
+          "timing": { "type": "string", "minLength": 1 },
+          "confidence": { "enum": ["high", "medium", "low", "unresolved"] },
+          "classification": { "enum": ["derived", "period-reconstructed", "generic-prior"] },
+          "evidenceIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^CGB-" } },
+          "scope": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sourceBusMapping": { "type": "object", "additionalProperties": true, "required": ["documentedFacts", "unresolvedQuestion", "runtimeBoundary", "diagnosticCandidates", "formalSelection"] },
+    "supplyAndAnalogTopology": { "type": "object", "additionalProperties": true, "required": ["cgbDocumentedRails", "comparableSharpTopology", "prohibitions"] },
+    "candidateSets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceLatchPhase", "rowActivationDelay", "frameParityPhase", "inversionTopology"],
+      "properties": {
+        "sourceLatchPhase": { "$ref": "#/$defs/candidateSet" },
+        "rowActivationDelay": { "$ref": "#/$defs/candidateSet" },
+        "frameParityPhase": { "$ref": "#/$defs/candidateSet" },
+        "inversionTopology": { "$ref": "#/$defs/candidateSet" }
+      }
+    },
+    "runtimePolicy": { "type": "object", "additionalProperties": true, "required": ["stateLocality", "changedPixelSplit", "noScanDiagnostic", "debugViews", "staticColorBoundary"] },
+    "selection": { "type": "object", "additionalProperties": true, "required": ["status", "periodReconstructionDefaults", "formalCgbSpecificConstants", "criteria"] }
+  },
+  "$defs": {
+    "candidateSet": { "type": "object", "additionalProperties": true, "required": ["status", "candidates", "runtimeBounds", "periodReconstructionDefault", "formalSelection"], "properties": { "candidates": { "type": "array", "minItems": 2, "items": { "type": "object", "additionalProperties": true, "required": ["id", "classification"] } } } }
+  }
+}

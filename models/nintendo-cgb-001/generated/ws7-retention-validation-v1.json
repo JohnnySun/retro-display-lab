@@ -1,0 +1,786 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws7-retention-validation-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "equationId": "CGB-WS7-MIZUSAKI-ONE-STATE-V1",
+  "generatedBy": "tools/build-cgb001-ws7.mjs",
+  "classification": "period-mechanism and later-laboratory-cell kinetic ensemble with zero-amplitude CGB reference profile",
+  "referenceProfile": {
+    "resultantDcOffset": 0,
+    "opticalCoupling": 0,
+    "enabledStateStorage": true,
+    "reason": "no direct healthy CGB measurement selects a nonzero residual-DC or optical amplitude; the normal reference therefore remains physically neutral while the diagnostic state equation is testable"
+  },
+  "kineticTrajectories": [
+    {
+      "memberId": "low-rate",
+      "adsorptionRatePerSecond": 0.001,
+      "desorptionRatePerSecond": 0.00038333333333333334,
+      "stressProtocolSeconds": 7200,
+      "recoveryProtocolSeconds": 5400,
+      "cpu": [
+        {
+          "elapsedSeconds": 0,
+          "state": 0
+        },
+        {
+          "elapsedSeconds": 60,
+          "state": 0.005757748393726
+        },
+        {
+          "elapsedSeconds": 300,
+          "state": 0.024553714647833
+        },
+        {
+          "elapsedSeconds": 600,
+          "state": 0.040767521470732
+        },
+        {
+          "elapsedSeconds": 1200,
+          "state": 0.058544170113143
+        },
+        {
+          "elapsedSeconds": 3600,
+          "state": 0.071792236441627
+        },
+        {
+          "elapsedSeconds": 7200,
+          "state": 0.072285740766069
+        },
+        {
+          "elapsedSeconds": 7260,
+          "state": 0.07064214256244
+        },
+        {
+          "elapsedSeconds": 7500,
+          "state": 0.0644330620061
+        },
+        {
+          "elapsedSeconds": 8100,
+          "state": 0.051194232876027
+        },
+        {
+          "elapsedSeconds": 9000,
+          "state": 0.036256797702973
+        },
+        {
+          "elapsedSeconds": 12600,
+          "state": 0.009121432704694
+        }
+      ],
+      "futureShaderFloat32": [
+        {
+          "elapsedSeconds": 0,
+          "state": 0
+        },
+        {
+          "elapsedSeconds": 60,
+          "state": 0.005757749080658
+        },
+        {
+          "elapsedSeconds": 300,
+          "state": 0.024553716182709
+        },
+        {
+          "elapsedSeconds": 600,
+          "state": 0.040767524391413
+        },
+        {
+          "elapsedSeconds": 1200,
+          "state": 0.058544173836708
+        },
+        {
+          "elapsedSeconds": 3600,
+          "state": 0.071792237460613
+        },
+        {
+          "elapsedSeconds": 7200,
+          "state": 0.072285749018192
+        },
+        {
+          "elapsedSeconds": 7260,
+          "state": 0.070642150938511
+        },
+        {
+          "elapsedSeconds": 7500,
+          "state": 0.064433068037033
+        },
+        {
+          "elapsedSeconds": 8100,
+          "state": 0.051194239407778
+        },
+        {
+          "elapsedSeconds": 9000,
+          "state": 0.036256801337004
+        },
+        {
+          "elapsedSeconds": 12600,
+          "state": 0.009121432900429
+        }
+      ],
+      "maximumFloat32Difference": 8.376071e-9
+    },
+    {
+      "memberId": "nominal-midpoint",
+      "adsorptionRatePerSecond": 0.0010583333333333334,
+      "desorptionRatePerSecond": 0.000425,
+      "stressProtocolSeconds": 7200,
+      "recoveryProtocolSeconds": 5400,
+      "cpu": [
+        {
+          "elapsedSeconds": 0,
+          "state": 0
+        },
+        {
+          "elapsedSeconds": 60,
+          "state": 0.006075624806767
+        },
+        {
+          "elapsedSeconds": 300,
+          "state": 0.02562658255275
+        },
+        {
+          "elapsedSeconds": 600,
+          "state": 0.042048718764299
+        },
+        {
+          "elapsedSeconds": 1200,
+          "state": 0.059316267020724
+        },
+        {
+          "elapsedSeconds": 3600,
+          "state": 0.07100613731449
+        },
+        {
+          "elapsedSeconds": 7200,
+          "state": 0.071346673568688
+        },
+        {
+          "elapsedSeconds": 7260,
+          "state": 0.069550334059521
+        },
+        {
+          "elapsedSeconds": 7500,
+          "state": 0.062806006984189
+        },
+        {
+          "elapsedSeconds": 8100,
+          "state": 0.048669410983107
+        },
+        {
+          "elapsedSeconds": 9000,
+          "state": 0.033200028073659
+        },
+        {
+          "elapsedSeconds": 12600,
+          "state": 0.00718899023384
+        }
+      ],
+      "futureShaderFloat32": [
+        {
+          "elapsedSeconds": 0,
+          "state": 0
+        },
+        {
+          "elapsedSeconds": 60,
+          "state": 0.006075620651245
+        },
+        {
+          "elapsedSeconds": 300,
+          "state": 0.025626581162214
+        },
+        {
+          "elapsedSeconds": 600,
+          "state": 0.042048718780279
+        },
+        {
+          "elapsedSeconds": 1200,
+          "state": 0.059316270053387
+        },
+        {
+          "elapsedSeconds": 3600,
+          "state": 0.071006141602993
+        },
+        {
+          "elapsedSeconds": 7200,
+          "state": 0.071346677839756
+        },
+        {
+          "elapsedSeconds": 7260,
+          "state": 0.069550342857838
+        },
+        {
+          "elapsedSeconds": 7500,
+          "state": 0.062806017696857
+        },
+        {
+          "elapsedSeconds": 8100,
+          "state": 0.048669420182705
+        },
+        {
+          "elapsedSeconds": 9000,
+          "state": 0.033200033009052
+        },
+        {
+          "elapsedSeconds": 12600,
+          "state": 0.007188991643488
+        }
+      ],
+      "maximumFloat32Difference": 1.0712668e-8
+    },
+    {
+      "memberId": "high-rate",
+      "adsorptionRatePerSecond": 0.0011166666666666666,
+      "desorptionRatePerSecond": 0.00046666666666666666,
+      "stressProtocolSeconds": 7200,
+      "recoveryProtocolSeconds": 5400,
+      "cpu": [
+        {
+          "elapsedSeconds": 0,
+          "state": 0
+        },
+        {
+          "elapsedSeconds": 60,
+          "state": 0.006391593042767
+        },
+        {
+          "elapsedSeconds": 300,
+          "state": 0.026667053912467
+        },
+        {
+          "elapsedSeconds": 600,
+          "state": 0.043250896240577
+        },
+        {
+          "elapsedSeconds": 1200,
+          "state": 0.059977792117983
+        },
+        {
+          "elapsedSeconds": 3600,
+          "state": 0.070290337172999
+        },
+        {
+          "elapsedSeconds": 7200,
+          "state": 0.070525526213174
+        },
+        {
+          "elapsedSeconds": 7260,
+          "state": 0.068578201252227
+        },
+        {
+          "elapsedSeconds": 7500,
+          "state": 0.061311947019257
+        },
+        {
+          "elapsedSeconds": 8100,
+          "state": 0.04633857271415
+        },
+        {
+          "elapsedSeconds": 9000,
+          "state": 0.030446611836601
+        },
+        {
+          "elapsedSeconds": 12600,
+          "state": 0.005674456104916
+        }
+      ],
+      "futureShaderFloat32": [
+        {
+          "elapsedSeconds": 0,
+          "state": 0
+        },
+        {
+          "elapsedSeconds": 60,
+          "state": 0.00639159232378
+        },
+        {
+          "elapsedSeconds": 300,
+          "state": 0.026667051017284
+        },
+        {
+          "elapsedSeconds": 600,
+          "state": 0.043250896036625
+        },
+        {
+          "elapsedSeconds": 1200,
+          "state": 0.059977792203426
+        },
+        {
+          "elapsedSeconds": 3600,
+          "state": 0.070290334522724
+        },
+        {
+          "elapsedSeconds": 7200,
+          "state": 0.070525527000427
+        },
+        {
+          "elapsedSeconds": 7260,
+          "state": 0.068578206002712
+        },
+        {
+          "elapsedSeconds": 7500,
+          "state": 0.061311952769756
+        },
+        {
+          "elapsedSeconds": 8100,
+          "state": 0.046338576823473
+        },
+        {
+          "elapsedSeconds": 9000,
+          "state": 0.030446613207459
+        },
+        {
+          "elapsedSeconds": 12600,
+          "state": 0.005674455780536
+        }
+      ],
+      "maximumFloat32Difference": 5.750499e-9
+    }
+  ],
+  "topologyFixtures": [
+    {
+      "topology": "none",
+      "parityPhase": 0,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        }
+      ]
+    },
+    {
+      "topology": "none",
+      "parityPhase": 1,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.008589091218503,
+          "futureShaderFloat32": 0.008595995604992
+        }
+      ]
+    },
+    {
+      "topology": "frame-global",
+      "parityPhase": 0,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        }
+      ]
+    },
+    {
+      "topology": "frame-global",
+      "parityPhase": 1,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        }
+      ]
+    },
+    {
+      "topology": "row-alternating",
+      "parityPhase": 0,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        }
+      ]
+    },
+    {
+      "topology": "row-alternating",
+      "parityPhase": 1,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        }
+      ]
+    },
+    {
+      "topology": "column-alternating",
+      "parityPhase": 0,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        }
+      ]
+    },
+    {
+      "topology": "column-alternating",
+      "parityPhase": 1,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        }
+      ]
+    },
+    {
+      "topology": "dot-checkerboard",
+      "parityPhase": 0,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        }
+      ]
+    },
+    {
+      "topology": "dot-checkerboard",
+      "parityPhase": 1,
+      "spatialStates": [
+        {
+          "x": 0,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863843015727,
+          "futureShaderFloat32": 0.006869051605463
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "zeroOffsetState": 0,
+          "cpu": 0.006863885861759,
+          "futureShaderFloat32": 0.006869070231915
+        }
+      ]
+    }
+  ],
+  "spatialFixtures": {
+    "uniform": {
+      "minimum": 0.01334615257514,
+      "maximum": 0.013346234123076,
+      "range": 8.1547936e-8,
+      "checksum": 27.76009260428095
+    },
+    "isolatedWindow": {
+      "minimum": 0.006567133731149,
+      "maximum": 0.019701564289319,
+      "range": 0.01313443055817,
+      "checksum": 20.489594894100687
+    },
+    "checkerboard": {
+      "minimum": 0.006567133731149,
+      "maximum": 0.019701564289319,
+      "range": 0.01313443055817,
+      "checksum": 27.319456379422146
+    }
+  },
+  "historyFixtures": {
+    "identicalA": 0.01861907396795,
+    "identicalB": 0.01861907396795,
+    "differentCode": 0.00919377379621,
+    "absoluteCodeHistoryDifference": 0.00942530017174
+  },
+  "dutyFixtures": {
+    "balanced": 0.017102233151179,
+    "unequalPositive": 0.018634500242804,
+    "unequalNegative": 0.015570080222596
+  },
+  "stressRecoveryFixtures": {
+    "stressed": 0.071346673568688,
+    "polarityReversed": -0.071345032568379,
+    "recovered": 0.00718899023384
+  },
+  "lifecycleFixtures": {
+    "pauseState": 0.071346673568688,
+    "resetState": 0,
+    "disabledState": 0.071346673568688,
+    "unsupportedFramePolicy": "clear to zero on content load, reset, save-state load, rewind, run-ahead discontinuity, skipped physical frames, or non-monotonic FrameCount"
+  },
+  "isolationFixtures": {
+    "ordinaryState": [
+      0.13,
+      0.51,
+      0.89
+    ],
+    "formationZeroState": 0,
+    "formationZeroBridge": [
+      0.13,
+      0.51,
+      0.89
+    ],
+    "referenceBridge": [
+      0.13,
+      0.51,
+      0.89
+    ]
+  },
+  "maxima": {
+    "balancedZeroOffsetState": 0,
+    "kineticFutureShaderFloat32Difference": 1.0712668e-8,
+    "topologyFutureShaderFloat32Difference": 0.000006904386489,
+    "allFutureShaderFloat32Difference": 0.000006904386489
+  },
+  "tolerances": {
+    "futureShaderFloat32State": 0.00002,
+    "balancedZeroOffsetState": 0,
+    "identicalHistory": 0,
+    "ordinaryResponseIsolation": 0,
+    "pause": 0
+  },
+  "invariants": {
+    "ws4OrdinaryResponseEquation": "CGB-WS4-FIRST-ORDER-RATE-FIELD-V1",
+    "ws4RateOrRgbStateModified": false,
+    "displayedLumaUsedAsExcitation": false,
+    "healthyCgbNonzeroAmplitudeInvented": false,
+    "agedCgbPresetInvented": false,
+    "shaderImplemented": false,
+    "presetImplemented": false
+  },
+  "checks": {
+    "literatureConditionsNormalized": true,
+    "lowNominalHighKineticsMatchSourceRange": true,
+    "referenceAmplitudeAndOpticalCouplingZero": true,
+    "balancedUniformZeroOffsetExact": true,
+    "identicalHistoriesExact": true,
+    "differentCodeHistoriesDiffer": true,
+    "spatialFixturesCreateOnlyDocumentedDiagnosticDifferences": true,
+    "unequalDutyChangesSlowState": true,
+    "polarityReversalChangesSign": true,
+    "recoveryDecaysMagnitude": true,
+    "formationZeroLeavesOrdinaryResponseExact": true,
+    "referenceBridgeLeavesWs4Exact": true,
+    "pauseFreezesStateExact": true,
+    "resetPolicyClearsToZero": true,
+    "disabledPathPreservesIndependentState": true,
+    "everyWs3TopologyAndParityCovered": true,
+    "futureShaderFloat32TrajectoriesAgree": true,
+    "ws4OrdinaryResponseUnchanged": true,
+    "shaderOrPresetCreated": false
+  },
+  "pass": true
+}

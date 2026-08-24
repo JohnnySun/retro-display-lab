@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws9-cpu-golden-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "modelVersion": "1.0.0",
+  "classification": "consolidated-prior-workstream-gold-and-end-to-end-float32-shader-equation-transcription",
+  "priorWorkstreamGold": [
+    {
+      "workstream": "ws0",
+      "path": "generated/ws0-scaffold-v1.json",
+      "sha256": "e7d52fec7ed86092747968af10715fc0510f3c018ad7e9f3604df2c96252ea45"
+    },
+    {
+      "workstream": "ws1",
+      "path": "generated/ws1-static-fixtures-v1.json",
+      "sha256": "b06fa0d56de34e6e8d03df48bdc0b17b51b8706af20874929d8457f8cdc80fbb"
+    },
+    {
+      "workstream": "ws2",
+      "path": "generated/ws2-decoder-v1.json",
+      "sha256": "bdf47eef8306185b8783e1cd5aeaddef44283f5c4542a8f67a63233ae8471344"
+    },
+    {
+      "workstream": "ws3",
+      "path": "generated/ws3-equation-vectors-v1.json",
+      "sha256": "a3f8e39890036dcb44ff846249ec9d36a5b1c5c0eb824dda64bc9a2fa9081dce"
+    },
+    {
+      "workstream": "ws4",
+      "path": "generated/ws4-equation-vectors-v1.json",
+      "sha256": "aa69f19e083970eaa52c6a3c60bf602a179db260d3af35733772c8a19cbb2f90"
+    },
+    {
+      "workstream": "ws5",
+      "path": "generated/ws5-equation-vectors-v1.json",
+      "sha256": "9b5d3b7c03fe3ddaabe5cff46335c83cf648aa1b6d0d3766cfccdee5b84f8315"
+    },
+    {
+      "workstream": "ws6",
+      "path": "generated/ws6-aperture-validation-v1.json",
+      "sha256": "a36a38b1ec0850c6dd11ce4f9d3c7cc4e49d242be82d498d6c47c13b22105092"
+    },
+    {
+      "workstream": "ws7",
+      "path": "generated/ws7-retention-validation-v1.json",
+      "sha256": "55a5e12d585d1dff082d6f4460ce272e993712e8f94dc1eff182c85b0d83f8a2"
+    },
+    {
+      "workstream": "ws8",
+      "path": "generated/ws8-manifest-v1.json",
+      "sha256": "f69f08d0b8d0060b54898d833f793cd84c0b47c50df49d004b0b1a78f3aa583d"
+    }
+  ],
+  "allRgb555Static": {
+    "testedCodes": 32768,
+    "maximumCpuFloat32VsAuthoritativeLutAbsoluteXyzError": 0,
+    "maximumPairedRgba8Uint16TransportVsAuthoritativeLutAbsoluteXyzError": 0.00000762939453125,
+    "authoritativeLutSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "pass": true
+  },
+  "endToEnd": {
+    "coverage": [
+      "static ramps",
+      "mixed colors",
+      "scan",
+      "motion",
+      "diagnostic retention",
+      "reset"
+    ],
+    "referenceRetentionAmount": 0,
+    "diagnosticRetentionAmount": 1,
+    "vectors": [
+      {
+        "frame": 0,
+        "id": "static-black-seed",
+        "lifecycle": "clean-static-seed",
+        "currentRgb555": [
+          0,
+          0,
+          0
+        ],
+        "responseEndpoint": [
+          0,
+          0,
+          0
+        ],
+        "exposureXyz": [
+          0.19357240200042725,
+          0.19981257617473602,
+          0.21883629262447357
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 1,
+        "id": "ramp-low",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 0,
+        "previousRgb555": [
+          0,
+          0,
+          0
+        ],
+        "currentRgb555": [
+          3,
+          3,
+          3
+        ],
+        "initialResponseState": [
+          0,
+          0,
+          0
+        ],
+        "responseEndpoint": [
+          0.027816124260425568,
+          0.027816124260425568,
+          0.027816124260425568
+        ],
+        "exposureXyz": [
+          0.19595211744308472,
+          0.20305675268173218,
+          0.22117626667022705
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 2,
+        "id": "mixed-color",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          3,
+          3,
+          3
+        ],
+        "currentRgb555": [
+          3,
+          11,
+          25
+        ],
+        "initialResponseState": [
+          0.027816124260425568,
+          0.027816124260425568,
+          0.027816124260425568
+        ],
+        "responseEndpoint": [
+          0.04716271534562111,
+          0.10058104991912842,
+          0.23268604278564453
+        ],
+        "exposureXyz": [
+          0.20432890951633453,
+          0.21508361399173737,
+          0.2387738674879074
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 3,
+        "id": "scan-last-row",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 143,
+        "previousRgb555": [
+          3,
+          11,
+          25
+        ],
+        "currentRgb555": [
+          30,
+          2,
+          26
+        ],
+        "initialResponseState": [
+          0.04716271534562111,
+          0.10058104991912842,
+          0.23268604278564453
+        ],
+        "responseEndpoint": [
+          0.09591817855834961,
+          0.1750003695487976,
+          0.45596396923065186
+        ],
+        "exposureXyz": [
+          0.23417800664901733,
+          0.2595214545726776,
+          0.32348278164863586
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 4,
+        "id": "motion-rise-0",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          30,
+          2,
+          26
+        ],
+        "currentRgb555": [
+          27,
+          27,
+          27
+        ],
+        "initialResponseState": [
+          0.09591817855834961,
+          0.1750003695487976,
+          0.45596396923065186
+        ],
+        "responseEndpoint": [
+          0.4288219213485718,
+          0.3357228636741638,
+          0.5954713821411133
+        ],
+        "exposureXyz": [
+          0.3074047565460205,
+          0.3302873969078064,
+          0.39425763487815857
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 5,
+        "id": "motion-rise-1",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          27,
+          27,
+          27
+        ],
+        "currentRgb555": [
+          27,
+          27,
+          27
+        ],
+        "initialResponseState": [
+          0.4288219213485718,
+          0.3357228636741638,
+          0.5954713821411133
+        ],
+        "responseEndpoint": [
+          0.5901279449462891,
+          0.5413380861282349,
+          0.6863611936569214
+        ],
+        "exposureXyz": [
+          0.3939470946788788,
+          0.4288397431373596,
+          0.4741116464138031
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 6,
+        "id": "motion-fall",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          27,
+          27,
+          27
+        ],
+        "currentRgb555": [
+          4,
+          4,
+          4
+        ],
+        "initialResponseState": [
+          0.5901279449462891,
+          0.5413380861282349,
+          0.6863611936569214
+        ],
+        "responseEndpoint": [
+          0.5226945877075195,
+          0.4943540096282959,
+          0.5780810117721558
+        ],
+        "exposureXyz": [
+          0.4255557060241699,
+          0.4638461172580719,
+          0.5041131973266602
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 7,
+        "id": "retention-stress-0",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          4,
+          4,
+          4
+        ],
+        "currentRgb555": [
+          24,
+          24,
+          24
+        ],
+        "initialResponseState": [
+          0.5226945877075195,
+          0.4943540096282959,
+          0.5780810117721558
+        ],
+        "responseEndpoint": [
+          0.5156442523002625,
+          0.49982327222824097,
+          0.547815203666687
+        ],
+        "exposureXyz": [
+          0.3830600678920746,
+          0.4174037575721741,
+          0.44957590103149414
+        ],
+        "residualDc": 0.000002175569534301758
+      },
+      {
+        "frame": 8,
+        "id": "retention-stress-1",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          24,
+          24,
+          24
+        ],
+        "currentRgb555": [
+          24,
+          24,
+          24
+        ],
+        "initialResponseState": [
+          0.5156442523002625,
+          0.49982327222824097,
+          0.547815203666687
+        ],
+        "responseEndpoint": [
+          0.5990961194038391,
+          0.5903415679931641,
+          0.6192663311958313
+        ],
+        "exposureXyz": [
+          0.4138311445713043,
+          0.45223143696784973,
+          0.48136410117149353
+        ],
+        "residualDc": 0.000003993511199951172
+      },
+      {
+        "frame": 9,
+        "id": "retention-recovery",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 71,
+        "previousRgb555": [
+          24,
+          24,
+          24
+        ],
+        "currentRgb555": [
+          8,
+          8,
+          8
+        ],
+        "initialResponseState": [
+          0.5990961194038391,
+          0.5903415679931641,
+          0.6192663311958313
+        ],
+        "responseEndpoint": [
+          0.5510165691375732,
+          0.5456870794296265,
+          0.5628660321235657
+        ],
+        "exposureXyz": [
+          0.4298458695411682,
+          0.4700312316417694,
+          0.500308632850647
+        ],
+        "residualDc": 0.000006198883056640625
+      },
+      {
+        "frame": 10,
+        "id": "lifecycle-reset",
+        "lifecycle": "clean-static-seed",
+        "currentRgb555": [
+          12,
+          20,
+          28
+        ],
+        "responseEndpoint": [
+          0.3870967626571655,
+          0.6451612710952759,
+          0.9032257795333862
+        ],
+        "exposureXyz": [
+          0.4151748716831207,
+          0.476240873336792,
+          0.53904128074646
+        ],
+        "residualDc": 0
+      },
+      {
+        "frame": 11,
+        "id": "post-reset-motion",
+        "lifecycle": "ordinary-committed-frame",
+        "row": 143,
+        "previousRgb555": [
+          12,
+          20,
+          28
+        ],
+        "currentRgb555": [
+          30,
+          29,
+          2
+        ],
+        "initialResponseState": [
+          0.3870967626571655,
+          0.6451612710952759,
+          0.9032257795333862
+        ],
+        "responseEndpoint": [
+          0.40724921226501465,
+          0.6533458232879639,
+          0.8706779479980469
+        ],
+        "exposureXyz": [
+          0.41516026854515076,
+          0.4762343168258667,
+          0.5388221740722656
+        ],
+        "residualDc": 0
+      }
+    ]
+  },
+  "aperture": {
+    "equation": "WS6 equal-third RGB analytic host-footprint integration",
+    "coverage": [
+      "fractional 3.5x",
+      "integer 4x",
+      "integer 5x",
+      "integer 6x"
+    ],
+    "vectors": [
+      {
+        "scale": 3.5,
+        "phases": [
+          {
+            "phase": 0,
+            "sourceCenter": 79.6428571429,
+            "coverage": [
+              0,
+              1.75,
+              1.25
+            ]
+          },
+          {
+            "phase": 1,
+            "sourceCenter": 79.9285714286,
+            "coverage": [
+              0.75,
+              0,
+              2.25
+            ]
+          },
+          {
+            "phase": 2,
+            "sourceCenter": 80.2142857143,
+            "coverage": [
+              2.75,
+              0.25,
+              0
+            ]
+          },
+          {
+            "phase": 3,
+            "sourceCenter": 80.5,
+            "coverage": [
+              0,
+              3,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "scale": 4,
+        "phases": [
+          {
+            "phase": 0,
+            "sourceCenter": 79.625,
+            "coverage": [
+              0,
+              2,
+              1
+            ]
+          },
+          {
+            "phase": 1,
+            "sourceCenter": 79.875,
+            "coverage": [
+              0,
+              0,
+              3
+            ]
+          },
+          {
+            "phase": 2,
+            "sourceCenter": 80.125,
+            "coverage": [
+              3,
+              0,
+              0
+            ]
+          },
+          {
+            "phase": 3,
+            "sourceCenter": 80.375,
+            "coverage": [
+              1,
+              2,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "scale": 5,
+        "phases": [
+          {
+            "phase": 0,
+            "sourceCenter": 79.6,
+            "coverage": [
+              0,
+              2.5,
+              0.5
+            ]
+          },
+          {
+            "phase": 1,
+            "sourceCenter": 79.8,
+            "coverage": [
+              0,
+              0,
+              3
+            ]
+          },
+          {
+            "phase": 2,
+            "sourceCenter": 80,
+            "coverage": [
+              1.5,
+              0,
+              1.5
+            ]
+          },
+          {
+            "phase": 3,
+            "sourceCenter": 80.2,
+            "coverage": [
+              3,
+              0,
+              0
+            ]
+          },
+          {
+            "phase": 4,
+            "sourceCenter": 80.4,
+            "coverage": [
+              0.5,
+              2.5,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "scale": 6,
+        "phases": [
+          {
+            "phase": 0,
+            "sourceCenter": 79.5833333333,
+            "coverage": [
+              0,
+              3,
+              0
+            ]
+          },
+          {
+            "phase": 1,
+            "sourceCenter": 79.75,
+            "coverage": [
+              0,
+              0,
+              3
+            ]
+          },
+          {
+            "phase": 2,
+            "sourceCenter": 79.9166666667,
+            "coverage": [
+              0,
+              0,
+              3
+            ]
+          },
+          {
+            "phase": 3,
+            "sourceCenter": 80.0833333333,
+            "coverage": [
+              3,
+              0,
+              0
+            ]
+          },
+          {
+            "phase": 4,
+            "sourceCenter": 80.25,
+            "coverage": [
+              3,
+              0,
+              0
+            ]
+          },
+          {
+            "phase": 5,
+            "sourceCenter": 80.4166666667,
+            "coverage": [
+              0,
+              3,
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "shaderReadbackContract": {
+    "debugView8": "response RGB, decoded residual DC, packed source RGB555, FrameCount",
+    "debugView9": "exposure XYZ, current response RGB, packed source RGB555, FrameCount, sentinel",
+    "debugView10": "32 LUT XYZ values for current R/G, packed RGB555, FrameCount, sentinel",
+    "debugView11": "aperture coverage RGB, scaleX, OutputSize.x, SourceSize.x",
+    "transport": "IEEE-754 uint words rendered as exact black/white source-pixel bands",
+    "runtimeTextureTransport": "paired nearest-filtered RGBA8 high/low byte planes reconstruct each uint16 LUT component before manual trilinear interpolation"
+  },
+  "pass": true
+}

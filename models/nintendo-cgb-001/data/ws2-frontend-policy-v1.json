@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "policyId": "cgb001-ws2-frontend-policy-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "derived",
+  "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-PRIOR-LIBRETRO"],
+  "supportedContent": {
+    "nativeCgb": "supported",
+    "dmgThroughCgbRgb555Palette": "supported when Gambatte colorization is explicitly GBC and the resulting raster obeys this contract",
+    "sgbBorders": "out-of-scope",
+    "sgbColorization": "out-of-scope",
+    "gbaEnhancedCgbMode": "out-of-scope in v1; gambatte_gb_hwmode must remain Auto rather than GBA",
+    "postProcessedCoreOutput": "unsupported"
+  },
+  "requiredCoreOptions": {
+    "gambatte_gbc_color_correction": "disabled",
+    "gambatte_dark_filter_level": "0",
+    "gambatte_mix_frames": "disabled",
+    "gambatte_gb_hwmode": "Auto",
+    "gambatte_gb_bootloader": "disabled",
+    "gambatte_gb_colorization": "GBC"
+  },
+  "timeSemantics": {
+    "monotonic": "Temporal integration requires strictly increasing committed CGB frame identifiers; wall-clock timestamps alone are insufficient.",
+    "ordinaryFrame": "Update temporal state exactly once for each committed core frame at 70224 / 4194304 seconds.",
+    "pause": "Freeze all ordinary-response and retention state; do not integrate elapsed wall time.",
+    "reset": "Discard ordinary-response and retention history, then seed from the first complete post-reset RGB555 frame with zero elapsed exposure.",
+    "contentLoad": "Discard all prior-content state, then seed from the first complete new-content RGB555 frame with zero elapsed exposure.",
+    "saveStateLoad": "Treat as a discontinuity: discard temporal and retention history, seed the loaded frame statically, and resume only from a new monotonic frame baseline.",
+    "focusLoss": "If emulation pauses, freeze state. If emulation continues but presentation frames are not delivered one-for-one, enter static bypass until a reset baseline is established.",
+    "fastForward": "Supported only when every emulated CGB frame is delivered once in order. Frame dropping, coalescing, or wall-time scaling enters static bypass.",
+    "rewind": "Reverse-time integration is forbidden. Every rewind discontinuity clears state and presents the current source through the static color path.",
+    "runAhead": "Only the committed final frame may update state; speculative frames must never reach the reconstruction. Otherwise enter static bypass.",
+    "subframe": "Unsupported in reference-v1 because multiple host updates for one CGB frame would invent drive events; enter static bypass.",
+    "failurePolicy": "Fail closed to the current-frame static WS1 color path with temporal response and retention disabled; never guess elapsed frames or integrate backward. A core-option mismatch refuses reference-preset activation entirely."
+  },
+  "negativeCases": [
+    { "caseId": "color-correction-enabled", "override": { "gambatte_gbc_color_correction": "GBC only" }, "expected": "reject-activation" },
+    { "caseId": "dark-filter-enabled", "override": { "gambatte_dark_filter_level": "10" }, "expected": "reject-activation" },
+    { "caseId": "frame-blending-enabled", "override": { "gambatte_mix_frames": "mix" }, "expected": "reject-activation" },
+    { "caseId": "subframe-update", "event": { "kind": "subframe", "committed": true }, "expected": "static-bypass" },
+    { "caseId": "non-monotonic-frame-id", "event": { "kind": "frame", "previousFrameId": 120, "frameId": 119, "committed": true }, "expected": "static-bypass-and-reset-baseline" },
+    { "caseId": "speculative-runahead-frame", "event": { "kind": "frame", "previousFrameId": 120, "frameId": 121, "committed": false }, "expected": "static-bypass" }
+  ]
+}

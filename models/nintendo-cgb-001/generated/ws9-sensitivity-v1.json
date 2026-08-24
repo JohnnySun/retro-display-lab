@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws9-sensitivity-v1",
+  "classification": "bounded-policy-sensitivity-not-parameter-fitting",
+  "colorRepairPolicy": {
+    "referenceArtifact": "generated/cgb001-d65-lut-v1.rgba32f",
+    "comparisonArtifact": "generated/cgb001-hcs-upstream-d65-v1.png",
+    "sourceAudit": "generated/ws1-color-audit-v1.json"
+  },
+  "responseEnsemble": [
+    {
+      "id": "hcr-like-fast",
+      "endpoint": [
+        0.3273569345474243,
+        0.3273569345474243,
+        0.3273569345474243
+      ],
+      "exposureXyz": [
+        0.22782962024211884,
+        0.23942440748214722,
+        0.259344220161438
+      ]
+    },
+    {
+      "id": "mid-envelope-nominal",
+      "endpoint": [
+        0.2628995180130005,
+        0.2628995180130005,
+        0.2628995180130005
+      ],
+      "exposureXyz": [
+        0.2178865373134613,
+        0.2280382215976715,
+        0.24762946367263794
+      ]
+    },
+    {
+      "id": "gh-like-slow",
+      "endpoint": [
+        0.21951347589492798,
+        0.21951347589492798,
+        0.21951347589492798
+      ],
+      "exposureXyz": [
+        0.21159452199935913,
+        0.2207929790019989,
+        0.2402549833059311
+      ]
+    }
+  ],
+  "latchCandidates": [
+    {
+      "latchOffsetLines": 0,
+      "row71": {
+        "row": 71,
+        "visible": true,
+        "rowStartSeconds": 0.0077190399169921875,
+        "latchOffsetLines": 0,
+        "latchSeconds": 0.0077190399169921875,
+        "rowActivationDelayLines": 0,
+        "activationAbsoluteSeconds": 0.0077190399169921875,
+        "sourceFrameOffset": 0,
+        "activationTimeInFrame": 0.0077190399169921875,
+        "normalizedRowPhase": 0.461038961038961
+      }
+    },
+    {
+      "latchOffsetLines": 0.5,
+      "row71": {
+        "row": 71,
+        "visible": true,
+        "rowStartSeconds": 0.0077190399169921875,
+        "latchOffsetLines": 0.5,
+        "latchSeconds": 0.007773399353027344,
+        "rowActivationDelayLines": 0,
+        "activationAbsoluteSeconds": 0.007773399353027344,
+        "sourceFrameOffset": 0,
+        "activationTimeInFrame": 0.007773399353027344,
+        "normalizedRowPhase": 0.4642857142857143
+      }
+    },
+    {
+      "latchOffsetLines": 1,
+      "row71": {
+        "row": 71,
+        "visible": true,
+        "rowStartSeconds": 0.0077190399169921875,
+        "latchOffsetLines": 1,
+        "latchSeconds": 0.0078277587890625,
+        "rowActivationDelayLines": 0,
+        "activationAbsoluteSeconds": 0.0078277587890625,
+        "sourceFrameOffset": 0,
+        "activationTimeInFrame": 0.0078277587890625,
+        "normalizedRowPhase": 0.4675324675324675
+      }
+    }
+  ],
+  "inversionCandidates": [
+    {
+      "topology": "frame-global",
+      "signs": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "topology": "row-alternating",
+      "signs": [
+        1,
+        1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "topology": "column-alternating",
+      "signs": [
+        1,
+        -1,
+        1,
+        -1
+      ]
+    },
+    {
+      "topology": "dot-checkerboard",
+      "signs": [
+        1,
+        -1,
+        -1,
+        1
+      ]
+    }
+  ],
+  "retentionKineticRange": [
+    {
+      "id": "low-rate",
+      "residualAfter180Frames": 0.00038361549377441406
+    },
+    {
+      "id": "nominal-midpoint",
+      "residualAfter180Frames": 0.00040590018033981323
+    },
+    {
+      "id": "high-rate",
+      "residualAfter180Frames": 0.0004280358552932739
+    }
+  ],
+  "apertureVariants": [
+    {
+      "scale": 3.5,
+      "phases": [
+        {
+          "phase": 0,
+          "sourceCenter": 79.6428571429,
+          "coverage": [
+            0,
+            1.75,
+            1.25
+          ]
+        },
+        {
+          "phase": 1,
+          "sourceCenter": 79.9285714286,
+          "coverage": [
+            0.75,
+            0,
+            2.25
+          ]
+        },
+        {
+          "phase": 2,
+          "sourceCenter": 80.2142857143,
+          "coverage": [
+            2.75,
+            0.25,
+            0
+          ]
+        },
+        {
+          "phase": 3,
+          "sourceCenter": 80.5,
+          "coverage": [
+            0,
+            3,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "scale": 4,
+      "phases": [
+        {
+          "phase": 0,
+          "sourceCenter": 79.625,
+          "coverage": [
+            0,
+            2,
+            1
+          ]
+        },
+        {
+          "phase": 1,
+          "sourceCenter": 79.875,
+          "coverage": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "phase": 2,
+          "sourceCenter": 80.125,
+          "coverage": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "phase": 3,
+          "sourceCenter": 80.375,
+          "coverage": [
+            1,
+            2,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "scale": 5,
+      "phases": [
+        {
+          "phase": 0,
+          "sourceCenter": 79.6,
+          "coverage": [
+            0,
+            2.5,
+            0.5
+          ]
+        },
+        {
+          "phase": 1,
+          "sourceCenter": 79.8,
+          "coverage": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "phase": 2,
+          "sourceCenter": 80,
+          "coverage": [
+            1.5,
+            0,
+            1.5
+          ]
+        },
+        {
+          "phase": 3,
+          "sourceCenter": 80.2,
+          "coverage": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "phase": 4,
+          "sourceCenter": 80.4,
+          "coverage": [
+            0.5,
+            2.5,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "scale": 6,
+      "phases": [
+        {
+          "phase": 0,
+          "sourceCenter": 79.5833333333,
+          "coverage": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "phase": 1,
+          "sourceCenter": 79.75,
+          "coverage": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "phase": 2,
+          "sourceCenter": 79.9166666667,
+          "coverage": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "phase": 3,
+          "sourceCenter": 80.0833333333,
+          "coverage": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "phase": 4,
+          "sourceCenter": 80.25,
+          "coverage": [
+            3,
+            0,
+            0
+          ]
+        },
+        {
+          "phase": 5,
+          "sourceCenter": 80.4166666667,
+          "coverage": [
+            0,
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "selectedDefaultsRemainEvidenceBounded": true,
+  "pass": true
+}

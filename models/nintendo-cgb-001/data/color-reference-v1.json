@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "colorModelId": "cgb001-reference-d65-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "measured-constrained-derived",
+  "evidenceIds": [
+    "CGB-HCS-REFLECTANCE-2026"
+  ],
+  "inputRecord": "hcs-source-v1.json",
+  "sourceOfRecord": {
+    "policy": "verbatim upstream measurement is the reference; this model is a runtime reduction and never replaces it",
+    "ods": "../reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.ods",
+    "txt": "../reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.txt"
+  },
+  "referenceCondition": {
+    "illuminant": "CIE D65",
+    "illuminationAngleDegrees": 45,
+    "viewAngleDegrees": 0,
+    "encoding": "sRGB D65",
+    "spectralIntegrationRangeNm": [
+      380,
+      730
+    ],
+    "runtimeAngleModel": false
+  },
+  "blackPolicy": {
+    "id": "dedicated-summary-black-v1",
+    "description": "Use the dedicated Summary Black spectrum as global absolute black; subtract each ramp's own first reading before combining it so measured series drift remains auditable without contaminating response amplitude.",
+    "classification": "measured-constrained-derived",
+    "xyz": [
+      0.193572398861,
+      0.199812572284,
+      0.218836292607
+    ]
+  },
+  "interactionPolicy": {
+    "id": "pairwise-plus-neutral-diagonal-residual-v1",
+    "description": "Use black-aligned R/G/B ramps, measured Y/C/M diagonal residuals extended by geometric-mean pair coordinates, and the measured Greyscale residual extended by the geometric-mean triple coordinate; then project the derived 32-cubed luminance field onto the three axis-wise isotonic cones.",
+    "classification": "measured-constrained-derived",
+    "selectedCandidate": "runtime-monotonic-lut",
+    "candidates": [
+      {
+        "id": "primary-only",
+        "role": "additivity diagnostic"
+      },
+      {
+        "id": "pairwise",
+        "role": "Y/C/M constrained candidate with Greyscale held out"
+      },
+      {
+        "id": "pairwise-neutral",
+        "role": "analytic seed candidate using every measured ramp"
+      },
+      {
+        "id": "runtime-monotonic-lut",
+        "role": "released LUT after explicit 3D luminance projection of pairwise-neutral"
+      },
+      {
+        "id": "hcs-upstream-shader-v1",
+        "role": "exact pinned upstream equation comparison; omits measured black"
+      },
+      {
+        "id": "hcs-upstream-white-and-black-aligned-v1",
+        "role": "fair absolute-reflectance comparison after mapping upstream normalized white and adding measured black"
+      }
+    ]
+  },
+  "normalization": {
+    "codeMappingPolicy": "identity for 32-reading ramps; endpoint-preserving uniform source-index resampling for R=31 and G=33",
+    "monotonicPolicy": "PAVA projection of each black-subtracted measured ramp, then Dykstra projection of the derived 32-cubed Y field onto all three axis-wise isotonic cones; XYZ direction relative to black is scaled per voxel and raw values remain untouched",
+    "repairReport": "../generated/ws1-color-audit-v1.json"
+  },
+  "runtimeLut": {
+    "dimensions": [
+      32,
+      32,
+      32
+    ],
+    "domain": "continuous RGB555 code space",
+    "encoding": "absolute relative-reflectance XYZ in RGBA32F",
+    "artifact": "../generated/cgb001-d65-lut-v1.rgba32f",
+    "descriptor": "../generated/cgb001-d65-lut-v1.json",
+    "sha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f"
+  },
+  "validation": {
+    "status": "pass",
+    "report": "../generated/ws1-perceptual-v1.json",
+    "staticFixtures": "../generated/ws1-static-fixtures-v1.json",
+    "upstreamParameterTolerance": 0.000001,
+    "upstreamParameterMaximumDifference": 0,
+    "lut": {
+      "entryCount": 32768,
+      "componentCount": 98304,
+      "minimumComponent": 0.19217294790474,
+      "maximumComponent": 0.66460753468518,
+      "nonFiniteCount": 0,
+      "negativeComponentCount": 0,
+      "maximumAnalyticSeedIntegerGridDifference": 0.02366093433387,
+      "maximumCpuIntegerGridError": 0,
+      "maximumTrilinearIntegerGridError": 0,
+      "maximumFloat32PackingError": 2.979643e-8,
+      "monotonicLuminanceViolationCount": 0,
+      "largestMonotonicLuminanceDrop": 0,
+      "pass": true
+    },
+    "targetExposureBakedIn": false
+  },
+  "limitations": [
+    "The accepted source contains invalid short wavelengths, negative reflectance, black drift, R/G patch-count mismatch, and unrecorded measurement conditions.",
+    "Only seven one-dimensional RGB axes/diagonals are measured; arbitrary mixed colors use a declared geometric-mean interaction extension.",
+    "The project monotonic model is a transparent runtime reduction; the verbatim ODS/TXT remain the reference of record.",
+    "The result applies only to the frozen D65 45 degree illumination and 0 degree panel-normal viewing condition."
+  ]
+}

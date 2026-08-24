@@ -1,0 +1,6646 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws5-equation-vectors-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "equationId": "CGB-WS5-REFLECTED-EXPOSURE-V1",
+  "classification": "cpu-analytic-gold-versus-future-shader-quadrature-receipt",
+  "sourcePolicy": {
+    "path": "models/nintendo-cgb-001/data/ws5-exposure-policy-v1.json",
+    "sha256": "dae6038390dac6baa107328005b981b1c7671eca4adc46de164191366bb06279"
+  },
+  "runtimeArtifacts": {
+    "ws1LutSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "ws4RateSha256": "a43e901fbb103c578d1b26263057148d9ab8524507b5d826309879e50fb0ecf9"
+  },
+  "coverage": {
+    "curatedFixtureCount": 126,
+    "deterministicRandomFixtureCount": 1000,
+    "totalFixtureCount": 1126,
+    "xyzComponentCases": 3378,
+    "rows": [
+      0,
+      1,
+      71,
+      72,
+      142,
+      143
+    ],
+    "members": [
+      "hcr-like-fast",
+      "mid-envelope-nominal",
+      "gh-like-slow"
+    ],
+    "transitions": [
+      "full-rise",
+      "full-fall",
+      "adjacent-gray-rise",
+      "adjacent-gray-fall",
+      "mixed-rgb",
+      "primary-exchange",
+      "partial-red"
+    ],
+    "randomSeedHex": "0x5a17c9e3"
+  },
+  "integrationMethods": {
+    "gold": "split at every crossed WS1 LUT cell boundary, expand the trilinear basis into exponentials, and integrate each term analytically",
+    "runtimeDouble": "composite two-point Gauss-Legendre; 32 panels per native-frame duration",
+    "futureShaderFloat32": "independent binary32 transcription of the same fixed quadrature contract"
+  },
+  "agreement": {
+    "maximumQuadratureAbsoluteXyzError": 0.000026201762790944993,
+    "quadratureTolerance": 0.00005,
+    "maximumFutureShaderFloat32VsDoubleAbsoluteXyzError": 1.411202035228598e-7,
+    "futureShaderFloat32Tolerance": 2e-7,
+    "maximumFutureShaderFloat32VsExactAbsoluteXyzError": 0.000026202882285220053,
+    "maximumEndpointFloat32AbsoluteError": 1.2141361238615644e-7,
+    "worstQuadratureCase": {
+      "id": "curated/hcr-like-fast/row-1/primary-exchange",
+      "exactAverageXyz": [
+        0.35509643846654243,
+        0.3474454786330949,
+        0.3080392413487481
+      ],
+      "runtimeAverageXyz": [
+        0.35510176190673504,
+        0.3474523166830906,
+        0.30806544311153905
+      ]
+    },
+    "worstFloat32Case": {
+      "id": "random/644",
+      "runtimeAverageXyz": [
+        0.4133752793245443,
+        0.4162665120581993,
+        0.5148456911804757
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.41337525844573975,
+        0.416266530752182,
+        0.5148455500602722
+      ]
+    },
+    "pass": true
+  },
+  "safety": {
+    "nonFiniteCount": 0,
+    "endpointOutOfRangeCount": 0,
+    "noFutureSourceArgument": true,
+    "actualGpuReadback": false,
+    "pass": true
+  },
+  "curatedVectors": [
+    {
+      "id": "curated/hcr-like-fast/row-0/full-rise",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3079785732527907,
+        0.3319024904532971,
+        0.35305206377484166
+      ],
+      "runtimeAverageXyz": [
+        0.3079840566459639,
+        0.3319054937371446,
+        0.353051158555358
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30798402428627014,
+        0.3319055140018463,
+        0.35305115580558777
+      ],
+      "runtimeEndpoint": [
+        0.5208539053003898,
+        0.5208539053003898,
+        0.5208539053003898
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5208538770675659,
+        0.5208538770675659,
+        0.5208538770675659
+      ],
+      "quadratureError": 0.000005483393173189022,
+      "float32VsDoubleError": 3.2359693757921804e-8,
+      "float32VsExactError": 0.0000054510334794311,
+      "endpointFloat32Error": 2.8232823856555456e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-0/full-fall",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.46265426405659915,
+        0.5056767755758129,
+        0.5415690168447526
+      ],
+      "runtimeAverageXyz": [
+        0.4626525641123579,
+        0.5056751526921021,
+        0.5415657224725969
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.4626525938510895,
+        0.5056751370429993,
+        0.5415657162666321
+      ],
+      "runtimeEndpoint": [
+        0.47914609469961017,
+        0.47914609469961017,
+        0.47914609469961017
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4791460931301117,
+        0.4791460931301117,
+        0.4791460931301117
+      ],
+      "quadratureError": 0.000003294372155626668,
+      "float32VsDoubleError": 2.9738731588402345e-8,
+      "float32VsExactError": 0.0000033005781204797913,
+      "endpointFloat32Error": 1.5694984756287056e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-0/adjacent-gray-rise",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.38417524009620607,
+        0.41943293657415354,
+        0.44249623616766903
+      ],
+      "runtimeAverageXyz": [
+        0.3841752400960248,
+        0.4194329365739389,
+        0.4424962361674591
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38417524099349976,
+        0.41943296790122986,
+        0.44249626994132996
+      ],
+      "runtimeEndpoint": [
+        0.4957618579554192,
+        0.4957618579554192,
+        0.4957618579554192
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.49576184153556824,
+        0.49576184153556824,
+        0.49576184153556824
+      ],
+      "quadratureError": 2.1466162181127402e-13,
+      "float32VsDoubleError": 3.3773870866671274e-8,
+      "float32VsExactError": 3.377366092349732e-8,
+      "endpointFloat32Error": 1.6419850978888206e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-0/adjacent-gray-fall",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3922086949039026,
+        0.4284205593555073,
+        0.4527500873733814
+      ],
+      "runtimeAverageXyz": [
+        0.39220869490411153,
+        0.428420559355753,
+        0.45275008737361166
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39220869541168213,
+        0.4284205734729767,
+        0.45274999737739563
+      ],
+      "runtimeEndpoint": [
+        0.5042381420445807,
+        0.5042381420445807,
+        0.5042381420445807
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5042381286621094,
+        0.5042381286621094,
+        0.5042381286621094
+      ],
+      "quadratureError": 2.4569235534954714e-13,
+      "float32VsDoubleError": 8.99962160350043e-8,
+      "float32VsExactError": 8.999598577474899e-8,
+      "endpointFloat32Error": 1.3382471353295955e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-0/mixed-rgb",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3630599246434486,
+        0.4134042337138183,
+        0.47549187275946664
+      ],
+      "runtimeAverageXyz": [
+        0.3630744847785557,
+        0.41341245710397934,
+        0.47551010285729856
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3630744516849518,
+        0.4134124219417572,
+        0.4755100607872009
+      ],
+      "runtimeEndpoint": [
+        0.5208539053003898,
+        0.4957618579554192,
+        0.47914609469961017
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5208538770675659,
+        0.49576184153556824,
+        0.4791460931301117
+      ],
+      "quadratureError": 0.000018230097831917202,
+      "float32VsDoubleError": 4.2070097627799896e-8,
+      "float32VsExactError": 0.000018188027734289403,
+      "endpointFloat32Error": 2.8232823856555456e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-0/primary-exchange",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3551485804394546,
+        0.34795099971054827,
+        0.3081991490423705
+      ],
+      "runtimeAverageXyz": [
+        0.35515373103388376,
+        0.3479562199424085,
+        0.30822166057534944
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3551536798477173,
+        0.34795618057250977,
+        0.30822163820266724
+      ],
+      "runtimeEndpoint": [
+        0.47914609469961017,
+        0.5208539053003898,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4791460931301117,
+        0.5208538770675659,
+        0
+      ],
+      "quadratureError": 0.000022511532978941595,
+      "float32VsDoubleError": 5.118616647203922e-8,
+      "float32VsExactError": 0.000022489160296734756,
+      "endpointFloat32Error": 2.8232823856555456e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-0/partial-red",
+      "memberId": "hcr-like-fast",
+      "row": 0,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.35038363949854945,
+        0.3961850388688109,
+        0.4279260052617122
+      ],
+      "runtimeAverageXyz": [
+        0.3503821298594371,
+        0.39618213675622627,
+        0.42794057863407675
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.35038211941719055,
+        0.3961821496486664,
+        0.42794057726860046
+      ],
+      "runtimeEndpoint": [
+        0.5208539053003898,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5208538770675659,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000014573372364545811,
+      "float32VsDoubleError": 1.2892440115486181e-8,
+      "float32VsExactError": 0.000014572006888258215,
+      "endpointFloat32Error": 2.8232823856555456e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/full-rise",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3066610906749925,
+        0.33038726033054766,
+        0.3515011331539574
+      ],
+      "runtimeAverageXyz": [
+        0.30666914384530103,
+        0.33039321029669694,
+        0.35150851325365423
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.306669145822525,
+        0.3303932547569275,
+        0.3515085279941559
+      ],
+      "runtimeEndpoint": [
+        0.5185592619325965,
+        0.5185592619325965,
+        0.5185592619325965
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5185592174530029,
+        0.5185592174530029,
+        0.5185592174530029
+      ],
+      "quadratureError": 0.000008053170308552904,
+      "float32VsDoubleError": 4.446023055271198e-8,
+      "float32VsExactError": 0.000008055147532548546,
+      "endpointFloat32Error": 4.4479593563906406e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/full-fall",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.4636989760787771,
+        0.5068281380891735,
+        0.5429600958119358
+      ],
+      "runtimeAverageXyz": [
+        0.463698334507463,
+        0.5068251598688617,
+        0.5429644558002001
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.4636983275413513,
+        0.5068252086639404,
+        0.5429643988609314
+      ],
+      "runtimeEndpoint": [
+        0.4814407380674035,
+        0.4814407380674035,
+        0.4814407380674035
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4814407527446747,
+        0.4814407527446747,
+        0.4814407527446747
+      ],
+      "quadratureError": 0.000004359988264313053,
+      "float32VsDoubleError": 5.69392687443937e-8,
+      "float32VsExactError": 0.000004303048995568659,
+      "endpointFloat32Error": 1.4677271176211093e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/adjacent-gray-rise",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.38414375392287764,
+        0.41939772889273547,
+        0.4424561128404403
+      ],
+      "runtimeAverageXyz": [
+        0.3841437539227012,
+        0.41939772889252597,
+        0.4424561128402358
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3841437101364136,
+        0.4193977415561676,
+        0.44245612621307373
+      ],
+      "runtimeEndpoint": [
+        0.4957009507403637,
+        0.4957009507403637,
+        0.4957009507403637
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4957009255886078,
+        0.4957009255886078,
+        0.4957009255886078
+      ],
+      "quadratureError": 2.0949908474676704e-13,
+      "float32VsDoubleError": 4.3786287651226274e-8,
+      "float32VsExactError": 4.378646406566489e-8,
+      "endpointFloat32Error": 2.515175590023233e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/adjacent-gray-fall",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.39223974623205893,
+        0.4284552747822926,
+        0.45278988824480604
+      ],
+      "runtimeAverageXyz": [
+        0.392239746232262,
+        0.4284552747825319,
+        0.4527898882450301
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3922397196292877,
+        0.42845526337623596,
+        0.4527898132801056
+      ],
+      "runtimeEndpoint": [
+        0.5042990492596363,
+        0.5042990492596363,
+        0.5042990492596363
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5042990446090698,
+        0.5042990446090698,
+        0.5042990446090698
+      ],
+      "quadratureError": 2.393085729579525e-13,
+      "float32VsDoubleError": 7.49649244902173e-8,
+      "float32VsExactError": 7.496470044721093e-8,
+      "endpointFloat32Error": 4.6505664874629815e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/mixed-rgb",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.36267168772056524,
+        0.41323034345705595,
+        0.4759286555997116
+      ],
+      "runtimeAverageXyz": [
+        0.36268518848053505,
+        0.41323766466883066,
+        0.47594923482571827
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3626851737499237,
+        0.41323766112327576,
+        0.4759492874145508
+      ],
+      "runtimeEndpoint": [
+        0.5185592619325965,
+        0.4957009507403637,
+        0.4814407380674035
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5185592174530029,
+        0.4957009255886078,
+        0.4814407527446747
+      ],
+      "quadratureError": 0.000020579226006678386,
+      "float32VsDoubleError": 5.258883251091362e-8,
+      "float32VsExactError": 0.0000206318148391893,
+      "endpointFloat32Error": 4.4479593563906406e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/primary-exchange",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.35509643846654243,
+        0.3474454786330949,
+        0.3080392413487481
+      ],
+      "runtimeAverageXyz": [
+        0.35510176190673504,
+        0.3474523166830906,
+        0.30806544311153905
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3551017940044403,
+        0.347452312707901,
+        0.3080654442310333
+      ],
+      "runtimeEndpoint": [
+        0.4814407380674035,
+        0.5185592619325965,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4814407527446747,
+        0.5185592174530029,
+        0
+      ],
+      "quadratureError": 0.000026201762790944993,
+      "float32VsDoubleError": 3.209770527146105e-8,
+      "float32VsExactError": 0.000026202882285220053,
+      "endpointFloat32Error": 4.4479593563906406e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-1/partial-red",
+      "memberId": "hcr-like-fast",
+      "row": 1,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.34984681718762434,
+        0.39582714091056886,
+        0.4277537835047533
+      ],
+      "runtimeAverageXyz": [
+        0.3498451384048675,
+        0.39582632150752856,
+        0.4277603027218824
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.34984517097473145,
+        0.3958263099193573,
+        0.4277603328227997
+      ],
+      "runtimeEndpoint": [
+        0.5185592619325965,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5185592174530029,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000006519217129130617,
+      "float32VsDoubleError": 3.2569863972486957e-8,
+      "float32VsExactError": 0.000006549318046389363,
+      "endpointFloat32Error": 4.4479593563906406e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/full-rise",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.2278264233316435,
+        0.23942467100414278,
+        0.25933957666684626
+      ],
+      "runtimeAverageXyz": [
+        0.22782962255254724,
+        0.23942441505119297,
+        0.25934420844677497
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.22782962024211884,
+        0.23942440748214722,
+        0.259344220161438
+      ],
+      "runtimeEndpoint": [
+        0.3273569243213391,
+        0.3273569243213391,
+        0.3273569243213391
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.3273569345474243,
+        0.3273569345474243,
+        0.3273569345474243
+      ],
+      "quadratureError": 0.000004631779928709889,
+      "float32VsDoubleError": 1.171466301741475e-8,
+      "float32VsExactError": 0.000004643494591727304,
+      "endpointFloat32Error": 1.0226085200848445e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/full-fall",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.5196272916943376,
+        0.5684162980740753,
+        0.6194356085263855
+      ],
+      "runtimeAverageXyz": [
+        0.5196227866946164,
+        0.5684122683758643,
+        0.6194293554517912
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.519622802734375,
+        0.5684122443199158,
+        0.619429349899292
+      ],
+      "runtimeEndpoint": [
+        0.6726430756786609,
+        0.6726430756786609,
+        0.6726430756786609
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.6726430654525757,
+        0.6726430654525757,
+        0.6726430654525757
+      ],
+      "quadratureError": 0.0000062530745942313,
+      "float32VsDoubleError": 2.405594856647042e-8,
+      "float32VsExactError": 0.000006258627093469471,
+      "endpointFloat32Error": 1.0226085200848445e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/adjacent-gray-rise",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3823780306870895,
+        0.41742361548568924,
+        0.44020594351211945
+      ],
+      "runtimeAverageXyz": [
+        0.3823780306869658,
+        0.41742361548554363,
+        0.4402059435119754
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3823780119419098,
+        0.4174236059188843,
+        0.44020596146583557
+      ],
+      "runtimeEndpoint": [
+        0.49095204672009746,
+        0.49095204672009746,
+        0.49095204672009746
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4909520447254181,
+        0.4909520447254181,
+        0.4909520447254181
+      ],
+      "quadratureError": 1.4560574967958928e-13,
+      "float32VsDoubleError": 1.8745056007407612e-8,
+      "float32VsExactError": 1.8745179686252555e-8,
+      "endpointFloat32Error": 1.9946793661240747e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/adjacent-gray-fall",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3939784395610344,
+        0.43039878971955703,
+        0.45502001377156165
+      ],
+      "runtimeAverageXyz": [
+        0.39397843956117323,
+        0.4303987897197198,
+        0.455020013771717
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39397844672203064,
+        0.4303988516330719,
+        0.4550200402736664
+      ],
+      "runtimeEndpoint": [
+        0.5090479532799025,
+        0.5090479532799025,
+        0.5090479532799025
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5090479254722595,
+        0.5090479254722595,
+        0.5090479254722595
+      ],
+      "quadratureError": 1.6275869541004795e-13,
+      "float32VsDoubleError": 6.19133521118087e-8,
+      "float32VsExactError": 6.191351487050412e-8,
+      "endpointFloat32Error": 2.7807642966060087e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/mixed-rgb",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.33828763643374743,
+        0.4012284332545911,
+        0.49673783817611666
+      ],
+      "runtimeAverageXyz": [
+        0.3382883260282698,
+        0.4012267695400392,
+        0.49672112794257883
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3382883071899414,
+        0.40122678875923157,
+        0.49672114849090576
+      ],
+      "runtimeEndpoint": [
+        0.3273569243213391,
+        0.49095204672009746,
+        0.6726430756786609
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.3273569345474243,
+        0.4909520447254181,
+        0.6726430654525757
+      ],
+      "quadratureError": 0.000016710233537831076,
+      "float32VsDoubleError": 2.0548326928881977e-8,
+      "float32VsExactError": 0.000016689685210902194,
+      "endpointFloat32Error": 1.0226085200848445e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/primary-exchange",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.34909437879177563,
+        0.31589564126815817,
+        0.29602959528306905
+      ],
+      "runtimeAverageXyz": [
+        0.34908833790372573,
+        0.31589214401679194,
+        0.296021680410714
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3490883409976959,
+        0.31589213013648987,
+        0.2960216701030731
+      ],
+      "runtimeEndpoint": [
+        0.6726430756786609,
+        0.3273569243213391,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.6726430654525757,
+        0.3273569345474243,
+        0
+      ],
+      "quadratureError": 0.000007914872355019309,
+      "float32VsDoubleError": 1.3880302074387174e-8,
+      "float32VsExactError": 0.00000792517999592679,
+      "endpointFloat32Error": 1.0226085200848445e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-71/partial-red",
+      "memberId": "hcr-like-fast",
+      "row": 71,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.31755218114476047,
+        0.3738807072205902,
+        0.41799750402110797
+      ],
+      "runtimeAverageXyz": [
+        0.3175476882147581,
+        0.37387612231971434,
+        0.4179959430607352
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.31754767894744873,
+        0.37387615442276,
+        0.41799595952033997
+      ],
+      "runtimeEndpoint": [
+        0.3273569243213391,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.3273569345474243,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000004584900875848064,
+      "float32VsDoubleError": 3.2103045666254104e-8,
+      "float32VsExactError": 0.0000045527978301818095,
+      "endpointFloat32Error": 1.4420478589016739e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/full-rise",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.22692999453565998,
+        0.2383847416114465,
+        0.25829932541994016
+      ],
+      "runtimeAverageXyz": [
+        0.22693676378978744,
+        0.23838808206514123,
+        0.2583093615570802
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.22693674266338348,
+        0.23838810622692108,
+        0.25830936431884766
+      ],
+      "runtimeEndpoint": [
+        0.3241356187747171,
+        0.3241356187747171,
+        0.3241356187747171
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.32413560152053833,
+        0.32413560152053833,
+        0.32413560152053833
+      ],
+      "quadratureError": 0.000010036137140012613,
+      "float32VsDoubleError": 2.4161779854647847e-8,
+      "float32VsExactError": 0.000010038898907493987,
+      "endpointFloat32Error": 1.7254178752423854e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/full-fall",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.5201603362311136,
+        0.5690157115299401,
+        0.6201826791173597
+      ],
+      "runtimeAverageXyz": [
+        0.5201636223731283,
+        0.5690178167482256,
+        0.6201908193392145
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5201635956764221,
+        0.5690178275108337,
+        0.6201907992362976
+      ],
+      "runtimeEndpoint": [
+        0.6758643812252829,
+        0.6758643812252829,
+        0.6758643812252829
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.6758643984794617,
+        0.6758643984794617,
+        0.6758643984794617
+      ],
+      "quadratureError": 0.000008140221854802121,
+      "float32VsDoubleError": 2.66967061790524e-8,
+      "float32VsExactError": 0.000008120118937915421,
+      "endpointFloat32Error": 1.7254178752423854e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/adjacent-gray-rise",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3823595067218053,
+        0.41740290999883206,
+        0.44018233500355175
+      ],
+      "runtimeAverageXyz": [
+        0.3823595067216881,
+        0.4174029099986943,
+        0.4401823350034154
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3823595345020294,
+        0.41740289330482483,
+        0.4401823878288269
+      ],
+      "runtimeEndpoint": [
+        0.4908767559581182,
+        0.4908767559581182,
+        0.4908767559581182
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4908767342567444,
+        0.4908767342567444,
+        0.4908767342567444
+      ],
+      "quadratureError": 1.3777867735598193e-13,
+      "float32VsDoubleError": 5.282541148954323e-8,
+      "float32VsExactError": 5.2825275154155804e-8,
+      "endpointFloat32Error": 2.1701373809079882e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/adjacent-gray-fall",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3939966443053941,
+        0.4304191338410614,
+        0.45504338556451973
+      ],
+      "runtimeAverageXyz": [
+        0.3939966443055255,
+        0.43041913384121544,
+        0.45504338556466684
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39399662613868713,
+        0.43041908740997314,
+        0.45504334568977356
+      ],
+      "runtimeEndpoint": [
+        0.5091232440418818,
+        0.5091232440418818,
+        0.5091232440418818
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5091232061386108,
+        0.5091232061386108,
+        0.5091232061386108
+      ],
+      "quadratureError": 1.5404344466674047e-13,
+      "float32VsDoubleError": 4.6431242295419395e-8,
+      "float32VsExactError": 4.643108825197473e-8,
+      "endpointFloat32Error": 3.790327096631074e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/mixed-rgb",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3379996644533849,
+        0.4010636250401205,
+        0.4970265949634089
+      ],
+      "runtimeAverageXyz": [
+        0.3380017835274383,
+        0.4010643268162025,
+        0.4970127613733471
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3380017578601837,
+        0.40106433629989624,
+        0.497012734413147
+      ],
+      "runtimeEndpoint": [
+        0.3241356187747171,
+        0.4908767559581182,
+        0.6758643812252829
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.32413560152053833,
+        0.4908767342567444,
+        0.6758643984794617
+      ],
+      "quadratureError": 0.000013833590061795853,
+      "float32VsDoubleError": 2.696020012793454e-8,
+      "float32VsExactError": 0.000013860550261923787,
+      "endpointFloat32Error": 2.1701373809079882e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/primary-exchange",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.34899300091674457,
+        0.3155120541943123,
+        0.29589143797422923
+      ],
+      "runtimeAverageXyz": [
+        0.3489971254694012,
+        0.31551659239828267,
+        0.2959032115642341
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3489971160888672,
+        0.3155165910720825,
+        0.29590320587158203
+      ],
+      "runtimeEndpoint": [
+        0.6758643812252829,
+        0.3241356187747171,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.6758643984794617,
+        0.32413560152053833,
+        0
+      ],
+      "quadratureError": 0.000011773590004870993,
+      "float32VsDoubleError": 9.380534016223407e-9,
+      "float32VsExactError": 0.00001176789735279904,
+      "endpointFloat32Error": 1.7254178752423854e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-72/partial-red",
+      "memberId": "hcr-like-fast",
+      "row": 72,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.31720917716813507,
+        0.37364152372970405,
+        0.41800074508391555
+      ],
+      "runtimeAverageXyz": [
+        0.3172084568064823,
+        0.3736383916884517,
+        0.4180142990617269
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.317208468914032,
+        0.373638391494751,
+        0.4180143177509308
+      ],
+      "runtimeEndpoint": [
+        0.3241356187747171,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.32413560152053833,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000013553977811331386,
+      "float32VsDoubleError": 1.8689203906685492e-8,
+      "float32VsExactError": 0.000013572667015238071,
+      "endpointFloat32Error": 1.7254178752423854e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/full-rise",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.19392143121675864,
+        0.20030648148495353,
+        0.21913723251209433
+      ],
+      "runtimeAverageXyz": [
+        0.19392031312805613,
+        0.20030633589516886,
+        0.21913526515522608
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.19392029941082,
+        0.20030637085437775,
+        0.21913528442382812
+      ],
+      "runtimeEndpoint": [
+        0.05571867899267524,
+        0.05571867899267524,
+        0.05571867899267524
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.05571866035461426,
+        0.05571866035461426,
+        0.05571866035461426
+      ],
+      "quadratureError": 0.000001967356868248782,
+      "float32VsDoubleError": 3.4959208888851734e-8,
+      "float32VsExactError": 0.0000019480882662015198,
+      "endpointFloat32Error": 1.8638060983455773e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/full-fall",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.5414182002814034,
+        0.5927269048308735,
+        0.6515704820523118
+      ],
+      "runtimeAverageXyz": [
+        0.5414182430388554,
+        0.5927270285540027,
+        0.651570167106346
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5414183139801025,
+        0.5927270650863647,
+        0.6515700817108154
+      ],
+      "runtimeEndpoint": [
+        0.9442813210073248,
+        0.9442813210073248,
+        0.9442813210073248
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9442813396453857,
+        0.9442813396453857,
+        0.9442813396453857
+      ],
+      "quadratureError": 3.149459658624565e-7,
+      "float32VsDoubleError": 8.539553053577009e-8,
+      "float32VsExactError": 4.003414963982266e-7,
+      "endpointFloat32Error": 1.8638060983455773e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/adjacent-gray-rise",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.38159564274907426,
+        0.41654928117164314,
+        0.4392086430983925
+      ],
+      "runtimeAverageXyz": [
+        0.38159564274905877,
+        0.4165492811716249,
+        0.4392086430983742
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38159576058387756,
+        0.41654935479164124,
+        0.43920865654945374
+      ],
+      "runtimeEndpoint": [
+        0.48500637423197435,
+        0.48500637423197435,
+        0.48500637423197435
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4850063621997833,
+        0.4850063621997833,
+        0.4850063621997833
+      ],
+      "quadratureError": 1.8318679906315083e-14,
+      "float32VsDoubleError": 1.1783481879135138e-7,
+      "float32VsExactError": 1.1783480330374019e-7,
+      "endpointFloat32Error": 1.2032191021305039e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/adjacent-gray-fall",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.3947461239453284,
+        0.4312564792761005,
+        0.4560064108878731
+      ],
+      "runtimeAverageXyz": [
+        0.39474612394534564,
+        0.4312564792761203,
+        0.4560064108878922
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3947461247444153,
+        0.43125656247138977,
+        0.45600634813308716
+      ],
+      "runtimeEndpoint": [
+        0.5149936257680257,
+        0.5149936257680257,
+        0.5149936257680257
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5149936079978943,
+        0.5149936079978943,
+        0.5149936079978943
+      ],
+      "quadratureError": 1.9817480989559044e-14,
+      "float32VsDoubleError": 8.319526945133049e-8,
+      "float32VsExactError": 8.319528926881148e-8,
+      "endpointFloat32Error": 1.7770131366390274e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/mixed-rgb",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.3300553998002838,
+        0.3968194829772597,
+        0.5108597858270646
+      ],
+      "runtimeAverageXyz": [
+        0.3300547401402333,
+        0.39681918695456536,
+        0.510860644468048
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.33005475997924805,
+        0.39681923389434814,
+        0.5108606815338135
+      ],
+      "runtimeEndpoint": [
+        0.05571867899267524,
+        0.48500637423197435,
+        0.9442813210073248
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.05571866035461426,
+        0.4850063621997833,
+        0.9442813396453857
+      ],
+      "quadratureError": 8.586409834254738e-7,
+      "float32VsDoubleError": 4.693978278291766e-8,
+      "float32VsExactError": 8.957067488823967e-7,
+      "endpointFloat32Error": 1.8638060983455773e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/primary-exchange",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.348672135052853,
+        0.3049013018608093,
+        0.2973143829955219
+      ],
+      "runtimeAverageXyz": [
+        0.3486722158168835,
+        0.3049013018608092,
+        0.29731354335799376
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.34867218136787415,
+        0.3049013018608093,
+        0.29731351137161255
+      ],
+      "runtimeEndpoint": [
+        0.9442813210073248,
+        0.05571867899267524,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9442813396453857,
+        0.05571866035461426,
+        0
+      ],
+      "quadratureError": 8.396375281161106e-7,
+      "float32VsDoubleError": 3.4449009367332195e-8,
+      "float32VsExactError": 8.71623909326491e-7,
+      "endpointFloat32Error": 1.8638060983455773e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-142/partial-red",
+      "memberId": "hcr-like-fast",
+      "row": 142,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.30536229941314497,
+        0.3656099736690521,
+        0.4150748231536017
+      ],
+      "runtimeAverageXyz": [
+        0.3053619426741528,
+        0.365609973669052,
+        0.41507251688365043
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30536195635795593,
+        0.3656099736690521,
+        0.41507259011268616
+      ],
+      "runtimeEndpoint": [
+        0.05571867899267524,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.05571866035461426,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000002306269951291018,
+      "float32VsDoubleError": 7.322903572415385e-8,
+      "float32VsExactError": 0.000002233040915566864,
+      "endpointFloat32Error": 1.8638060983455773e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/full-rise",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.19385808560094678,
+        0.20022732135975035,
+        0.21907869030800103
+      ],
+      "runtimeAverageXyz": [
+        0.19385689380106585,
+        0.2002271853746207,
+        0.21907649139469562
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.1938568651676178,
+        0.20022715628147125,
+        0.21907652914524078
+      ],
+      "runtimeEndpoint": [
+        0.0511964906777751,
+        0.0511964906777751,
+        0.0511964906777751
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.051196515560150146,
+        0.051196515560150146,
+        0.051196515560150146
+      ],
+      "quadratureError": 0.000002198913305412331,
+      "float32VsDoubleError": 3.77505451620852e-8,
+      "float32VsExactError": 0.000002161162760250246,
+      "endpointFloat32Error": 2.4882375049273264e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/full-fall",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.5414360513597452,
+        0.5927452423205456,
+        0.6516289344824737
+      ],
+      "runtimeAverageXyz": [
+        0.541436180098281,
+        0.5927455204384634,
+        0.6516284403830341
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5414361953735352,
+        0.5927455425262451,
+        0.6516284346580505
+      ],
+      "runtimeEndpoint": [
+        0.9488035093222249,
+        0.9488035093222249,
+        0.9488035093222249
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9488034844398499,
+        0.9488034844398499,
+        0.9488034844398499
+      ],
+      "quadratureError": 4.940994395852272e-7,
+      "float32VsDoubleError": 2.2087781714752452e-8,
+      "float32VsExactError": 4.998244231835258e-7,
+      "endpointFloat32Error": 2.4882375049273264e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/adjacent-gray-rise",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.38159282664183675,
+        0.416546135534108,
+        0.43920505205501525
+      ],
+      "runtimeAverageXyz": [
+        0.38159282664182664,
+        0.41654613553409614,
+        0.43920505205500365
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3815927803516388,
+        0.4165460765361786,
+        0.43920499086380005
+      ],
+      "runtimeEndpoint": [
+        0.48491330317570863,
+        0.48491330317570863,
+        0.48491330317570863
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.48491328954696655,
+        0.48491328954696655,
+        0.48491328954696655
+      ],
+      "quadratureError": 1.1879386363489175e-14,
+      "float32VsDoubleError": 6.119120360414954e-8,
+      "float32VsExactError": 6.119121520598014e-8,
+      "endpointFloat32Error": 1.362874207933018e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/adjacent-gray-fall",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.39474887904884964,
+        0.43125955585604014,
+        0.4560099566944542
+      ],
+      "runtimeAverageXyz": [
+        0.3947488790488605,
+        0.43125955585605324,
+        0.456009956694467
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39474889636039734,
+        0.43125954270362854,
+        0.4560098946094513
+      ],
+      "runtimeEndpoint": [
+        0.5150866968242913,
+        0.5150866968242913,
+        0.5150866968242913
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5150867104530334,
+        0.5150867104530334,
+        0.5150867104530334
+      ],
+      "quadratureError": 1.3100631690576847e-14,
+      "float32VsDoubleError": 6.208501568405467e-8,
+      "float32VsExactError": 6.208500291648988e-8,
+      "endpointFloat32Error": 1.3628742134841332e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/mixed-rgb",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3300719988116708,
+        0.3968186447958713,
+        0.5108835019952572
+      ],
+      "runtimeAverageXyz": [
+        0.33007100953953633,
+        0.39681816801442843,
+        0.5108855857096155
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.33007100224494934,
+        0.3968181610107422,
+        0.51088547706604
+      ],
+      "runtimeEndpoint": [
+        0.0511964906777751,
+        0.48491330317570863,
+        0.9488035093222249
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.051196515560150146,
+        0.48491328954696655,
+        0.9488034844398499
+      ],
+      "quadratureError": 0.000002083714358280808,
+      "float32VsDoubleError": 1.0864357546935821e-7,
+      "float32VsExactError": 0.00000197507078281145,
+      "endpointFloat32Error": 2.4882375049273264e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/primary-exchange",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3486823596460568,
+        0.3049013018608093,
+        0.29735922665579556
+      ],
+      "runtimeAverageXyz": [
+        0.34868251591392035,
+        0.30490130186080944,
+        0.29735785826422634
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3486824631690979,
+        0.3049013316631317,
+        0.29735782742500305
+      ],
+      "runtimeEndpoint": [
+        0.9488035093222249,
+        0.0511964906777751,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9488034844398499,
+        0.051196515560150146,
+        0
+      ],
+      "quadratureError": 0.000001368391569223082,
+      "float32VsDoubleError": 5.2744822454098284e-8,
+      "float32VsExactError": 0.000001399230792509254,
+      "endpointFloat32Error": 2.4882375049273264e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/hcr-like-fast/row-143/partial-red",
+      "memberId": "hcr-like-fast",
+      "row": 143,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3053770838395155,
+        0.3656099736690522,
+        0.4150583522501087
+      ],
+      "runtimeAverageXyz": [
+        0.30537645299579025,
+        0.36560997366905224,
+        0.4150542739288127
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30537644028663635,
+        0.3656099736690521,
+        0.4150543510913849
+      ],
+      "runtimeEndpoint": [
+        0.0511964906777751,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.051196515560150146,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000004078321295952758,
+      "float32VsDoubleError": 7.716257216516809e-8,
+      "float32VsExactError": 0.00000400115872378759,
+      "endpointFloat32Error": 2.4882375049273264e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/full-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.2860008152428555,
+        0.3066095434022663,
+        0.3274796514605412
+      ],
+      "runtimeAverageXyz": [
+        0.28599779964523453,
+        0.30660613506962914,
+        0.3274796751733846
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.28599774837493896,
+        0.30660614371299744,
+        0.32747969031333923
+      ],
+      "runtimeEndpoint": [
+        0.4321859694397834,
+        0.4321859694397834,
+        0.4321859694397834
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.43218594789505005,
+        0.43218594789505005,
+        0.43218594789505005
+      ],
+      "quadratureError": 0.000003408332637178102,
+      "float32VsDoubleError": 5.127029556462048e-8,
+      "float32VsExactError": 0.0000033996892688792357,
+      "endpointFloat32Error": 2.154473333071394e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/full-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.4819999141715954,
+        0.5268837058547522,
+        0.5664373304084088
+      ],
+      "runtimeAverageXyz": [
+        0.48199734277321676,
+        0.5268834008092602,
+        0.5664307974050443
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.4819972813129425,
+        0.5268833637237549,
+        0.5664308071136475
+      ],
+      "runtimeEndpoint": [
+        0.5678140305602166,
+        0.5678140305602166,
+        0.5678140305602166
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.56781405210495,
+        0.56781405210495,
+        0.56781405210495
+      ],
+      "quadratureError": 0.000006533003364506129,
+      "float32VsDoubleError": 6.146027425879552e-8,
+      "float32VsExactError": 0.000006523294761362486,
+      "endpointFloat32Error": 2.154473333071394e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/adjacent-gray-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.38345639947179816,
+        0.4186289604167958,
+        0.4415803403361954
+      ],
+      "runtimeAverageXyz": [
+        0.38345639947174287,
+        0.41862896041673026,
+        0.4415803403361307
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38345640897750854,
+        0.4186289310455322,
+        0.44158026576042175
+      ],
+      "runtimeEndpoint": [
+        0.49270232050528384,
+        0.49270232050528384,
+        0.49270232050528384
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.49270230531692505,
+        0.49270230531692505,
+        0.49270230531692505
+      ],
+      "quadratureError": 6.55586696041155e-14,
+      "float32VsDoubleError": 7.457570894153775e-8,
+      "float32VsExactError": 7.457577366754009e-8,
+      "endpointFloat32Error": 1.5188358792883605e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/adjacent-gray-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.39291872329489563,
+        0.4292145598640507,
+        0.4536594485667917
+      ],
+      "runtimeAverageXyz": [
+        0.3929187232949583,
+        0.4292145598641244,
+        0.4536594485668614
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39291873574256897,
+        0.4292145073413849,
+        0.45365944504737854
+      ],
+      "runtimeEndpoint": [
+        0.5072976794947162,
+        0.5072976794947162,
+        0.5072976794947162
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5072976350784302,
+        0.5072976350784302,
+        0.5072976350784302
+      ],
+      "quadratureError": 7.366329768387914e-14,
+      "float32VsDoubleError": 5.252273949096775e-8,
+      "float32VsExactError": 5.252266582767007e-8,
+      "endpointFloat32Error": 4.441628598250702e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/mixed-rgb",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.35630128807738465,
+        0.4106987585509895,
+        0.48247981142839547
+      ],
+      "runtimeAverageXyz": [
+        0.35629959915967685,
+        0.410698372186481,
+        0.4824814122284903
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.35629963874816895,
+        0.4106982946395874,
+        0.4824813902378082
+      ],
+      "runtimeEndpoint": [
+        0.4321859694397834,
+        0.49270232050528384,
+        0.5678140305602166
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.43218594789505005,
+        0.49270230531692505,
+        0.56781405210495
+      ],
+      "quadratureError": 0.000001688917707798332,
+      "float32VsDoubleError": 7.754689357319933e-8,
+      "float32VsExactError": 0.0000016493292157027106,
+      "endpointFloat32Error": 2.154473333071394e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/primary-exchange",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.35402622909202447,
+        0.3389739100381485,
+        0.30374293933876706
+      ],
+      "runtimeAverageXyz": [
+        0.35401991869364935,
+        0.3389676847857188,
+        0.30372919026665335
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3540198802947998,
+        0.3389677405357361,
+        0.30372917652130127
+      ],
+      "runtimeEndpoint": [
+        0.5678140305602166,
+        0.4321859694397834,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.56781405210495,
+        0.43218594789505005,
+        0
+      ],
+      "quadratureError": 0.000013749072113711236,
+      "float32VsDoubleError": 5.5750017269318164e-8,
+      "float32VsExactError": 0.00001376281746579,
+      "endpointFloat32Error": 2.154473333071394e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-0/partial-red",
+      "memberId": "mid-envelope-nominal",
+      "row": 0,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3411581889833449,
+        0.39016402789514526,
+        0.4248345874084573
+      ],
+      "runtimeAverageXyz": [
+        0.3411603680926017,
+        0.3901671495588729,
+        0.42483770703107465
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3411603569984436,
+        0.39016711711883545,
+        0.4248376488685608
+      ],
+      "runtimeEndpoint": [
+        0.4321859694397834,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.43218594789505005,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000003121663727623236,
+      "float32VsDoubleError": 5.816251386070448e-8,
+      "float32VsExactError": 0.000003089223690189158,
+      "endpointFloat32Error": 2.154473333071394e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/full-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.28486794962624745,
+        0.3053004662930141,
+        0.32616025907623064
+      ],
+      "runtimeAverageXyz": [
+        0.28486199523331895,
+        0.30529422327332756,
+        0.3261536682329151
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.2848619818687439,
+        0.3052942156791687,
+        0.3261536657810211
+      ],
+      "runtimeEndpoint": [
+        0.4300953719247399,
+        0.4300953719247399,
+        0.4300953719247399
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.430095374584198,
+        0.430095374584198,
+        0.430095374584198
+      ],
+      "quadratureError": 0.000006590843315557038,
+      "float32VsDoubleError": 1.3364575057739358e-8,
+      "float32VsExactError": 0.000006593295209522676,
+      "endpointFloat32Error": 2.6594580981864624e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/full-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.4827954818162374,
+        0.5277598435417401,
+        0.5675308464574185
+      ],
+      "runtimeAverageXyz": [
+        0.4827987038732534,
+        0.527764237145145,
+        0.5675338581579212
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.4827987253665924,
+        0.5277642011642456,
+        0.5675339698791504
+      ],
+      "runtimeEndpoint": [
+        0.5699046280752601,
+        0.5699046280752601,
+        0.5699046280752601
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.569904625415802,
+        0.569904625415802,
+        0.569904625415802
+      ],
+      "quadratureError": 0.000004393603404873048,
+      "float32VsDoubleError": 1.117212291568137e-7,
+      "float32VsExactError": 0.000004357622505501979,
+      "endpointFloat32Error": 2.6594580981864624e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/adjacent-gray-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3834331478802994,
+        0.41860296648437445,
+        0.44155070890607045
+      ],
+      "runtimeAverageXyz": [
+        0.38343314788024574,
+        0.41860296648431095,
+        0.44155070890600784
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38343313336372375,
+        0.41860297322273254,
+        0.44155067205429077
+      ],
+      "runtimeEndpoint": [
+        0.492653607602218,
+        0.492653607602218,
+        0.492653607602218
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.49265360832214355,
+        0.49265360832214355,
+        0.49265360832214355
+      ],
+      "quadratureError": 6.350475700855895e-14,
+      "float32VsDoubleError": 3.685171706679924e-8,
+      "float32VsExactError": 3.685177968337783e-8,
+      "endpointFloat32Error": 7.199255636081148e-10,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/adjacent-gray-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3929416036548077,
+        0.42924013355386553,
+        0.45368880471323486
+      ],
+      "runtimeAverageXyz": [
+        0.39294160365486835,
+        0.42924013355393703,
+        0.45368880471330275
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39294159412384033,
+        0.4292401075363159,
+        0.4536888301372528
+      ],
+      "runtimeEndpoint": [
+        0.507346392397782,
+        0.507346392397782,
+        0.507346392397782
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5073463916778564,
+        0.5073463916778564,
+        0.5073463916778564
+      ],
+      "quadratureError": 7.149836278586008e-14,
+      "float32VsDoubleError": 2.601762111309469e-8,
+      "float32VsExactError": 2.6017549614731905e-8,
+      "endpointFloat32Error": 7.199255636081148e-10,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/mixed-rgb",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.35596952380852825,
+        0.41054548196203866,
+        0.4827917898281271
+      ],
+      "runtimeAverageXyz": [
+        0.3559659764369794,
+        0.4105445846097809,
+        0.4827801403262516
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3559659421443939,
+        0.41054460406303406,
+        0.4827801585197449
+      ],
+      "runtimeEndpoint": [
+        0.4300953719247399,
+        0.492653607602218,
+        0.5699046280752601
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.430095374584198,
+        0.49265360832214355,
+        0.569904625415802
+      ],
+      "quadratureError": 0.000011649501875488077,
+      "float32VsDoubleError": 3.4292585493478356e-8,
+      "float32VsExactError": 0.000011631308382220595,
+      "endpointFloat32Error": 2.6594580981864624e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/primary-exchange",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.35393718512931954,
+        0.3385215863856929,
+        0.30356118334012183
+      ],
+      "runtimeAverageXyz": [
+        0.35393180897817195,
+        0.33851629795866023,
+        0.30354542827715814
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.35393181443214417,
+        0.3385162651538849,
+        0.30354535579681396
+      ],
+      "runtimeEndpoint": [
+        0.5699046280752601,
+        0.4300953719247399,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.569904625415802,
+        0.430095374584198,
+        0
+      ],
+      "quadratureError": 0.000015755062963695998,
+      "float32VsDoubleError": 7.248034417095539e-8,
+      "float32VsExactError": 0.000015827543307866954,
+      "endpointFloat32Error": 2.6594580981864624e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-1/partial-red",
+      "memberId": "mid-envelope-nominal",
+      "row": 1,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3407035989512507,
+        0.38985511157350006,
+        0.42471237307436766
+      ],
+      "runtimeAverageXyz": [
+        0.34070190940766726,
+        0.38985343956677104,
+        0.424714235025029
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3407019376754761,
+        0.38985350728034973,
+        0.42471423745155334
+      ],
+      "runtimeEndpoint": [
+        0.4300953719247399,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.430095374584198,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.0000018619506613193337,
+      "float32VsDoubleError": 6.771357868862182e-8,
+      "float32VsExactError": 0.0000018643771856896585,
+      "endpointFloat32Error": 1.4420478589016739e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/full-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.21788756012911578,
+        0.22803792730465156,
+        0.24763468490356844
+      ],
+      "runtimeAverageXyz": [
+        0.2178865482118453,
+        0.2280382202968819,
+        0.24762945725310667
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.2178865373134613,
+        0.2280382215976715,
+        0.24762946367263794
+      ],
+      "runtimeEndpoint": [
+        0.2628995524842732,
+        0.2628995524842732,
+        0.2628995524842732
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.2628995180130005,
+        0.2628995180130005,
+        0.2628995180130005
+      ],
+      "quadratureError": 0.000005227650461764322,
+      "float32VsDoubleError": 1.0898384000812555e-8,
+      "float32VsExactError": 0.000005221230930496645,
+      "endpointFloat32Error": 3.4471272725156155e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/full-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.52526767117795,
+        0.5746381938947844,
+        0.6271904288377155
+      ],
+      "runtimeAverageXyz": [
+        0.5252644399863845,
+        0.574635632870732,
+        0.6271825310324908
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5252644419670105,
+        0.5746356248855591,
+        0.6271825432777405
+      ],
+      "runtimeEndpoint": [
+        0.7371004475157268,
+        0.7371004475157268,
+        0.7371004475157268
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.7371004819869995,
+        0.7371004819869995,
+        0.7371004819869995
+      ],
+      "quadratureError": 0.000007897805224699184,
+      "float32VsDoubleError": 1.2245249703113359e-8,
+      "float32VsExactError": 0.00000788555997499607,
+      "endpointFloat32Error": 3.4471272725156155e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/adjacent-gray-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.382146080843655,
+        0.41716431476559834,
+        0.4399103611355337
+      ],
+      "runtimeAverageXyz": [
+        0.3821460808436215,
+        0.4171643147655589,
+        0.43991036113549437
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38214606046676636,
+        0.41716429591178894,
+        0.4399103820323944
+      ],
+      "runtimeEndpoint": [
+        0.48897951693740177,
+        0.48897951693740177,
+        0.48897951693740177
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4889794886112213,
+        0.4889794886112213,
+        0.4889794886112213
+      ],
+      "quadratureError": 3.9468428525424315e-14,
+      "float32VsDoubleError": 2.0896900043698707e-8,
+      "float32VsExactError": 2.0896860686292484e-8,
+      "endpointFloat32Error": 2.832618045678359e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/adjacent-gray-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3942065889972972,
+        0.43065378829222273,
+        0.4553127779879613
+      ],
+      "runtimeAverageXyz": [
+        0.39420658899733463,
+        0.43065378829226664,
+        0.4553127779880035
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39420655369758606,
+        0.430653840303421,
+        0.4553128182888031
+      ],
+      "runtimeEndpoint": [
+        0.5110204830625982,
+        0.5110204830625982,
+        0.5110204830625982
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5110204815864563,
+        0.5110204815864563,
+        0.5110204815864563
+      ],
+      "quadratureError": 4.390932062392494e-14,
+      "float32VsDoubleError": 5.2011154383357905e-8,
+      "float32VsExactError": 5.201119829267853e-8,
+      "endpointFloat32Error": 1.4761418754005717e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/mixed-rgb",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.33428698998044415,
+        0.3988233471938238,
+        0.49855718842959634
+      ],
+      "runtimeAverageXyz": [
+        0.3342882195889276,
+        0.3988230947604765,
+        0.49856505158709447
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.33428820967674255,
+        0.398823082447052,
+        0.49856507778167725
+      ],
+      "runtimeEndpoint": [
+        0.2628995524842732,
+        0.48897951693740177,
+        0.7371004475157268
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.2628995180130005,
+        0.4889794886112213,
+        0.7371004819869995
+      ],
+      "quadratureError": 0.000007863157498122497,
+      "float32VsDoubleError": 2.6194582780636466e-8,
+      "float32VsExactError": 0.000007889352080903134,
+      "endpointFloat32Error": 3.4471272725156155e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/primary-exchange",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3469697642746586,
+        0.31079585332908555,
+        0.2922843608070908
+      ],
+      "runtimeAverageXyz": [
+        0.3469697638166699,
+        0.3107953610132688,
+        0.2922864211093176
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.34696972370147705,
+        0.3107953667640686,
+        0.29228639602661133
+      ],
+      "runtimeEndpoint": [
+        0.7371004475157268,
+        0.2628995524842732,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.7371004819869995,
+        0.2628995180130005,
+        0
+      ],
+      "quadratureError": 0.0000020603022267695614,
+      "float32VsDoubleError": 4.0115192834200286e-8,
+      "float32VsExactError": 0.000002035219520524212,
+      "endpointFloat32Error": 3.4471272725156155e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-71/partial-red",
+      "memberId": "mid-envelope-nominal",
+      "row": 71,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.31310264528394377,
+        0.3708385762940189,
+        0.41712359224282464
+      ],
+      "runtimeAverageXyz": [
+        0.3131005033617451,
+        0.3708365491190059,
+        0.4171201855619087
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.31310051679611206,
+        0.3708365261554718,
+        0.4171202480792999
+      ],
+      "runtimeEndpoint": [
+        0.2628995524842732,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.2628995180130005,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.0000034066809159183364,
+      "float32VsDoubleError": 6.251739120832767e-8,
+      "float32VsExactError": 0.0000033441635247100088,
+      "endpointFloat32Error": 3.4471272725156155e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/full-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.2171930633932617,
+        0.22724128790667195,
+        0.2468025861290572
+      ],
+      "runtimeAverageXyz": [
+        0.21719160155656742,
+        0.2272403139037826,
+        0.2468004064823037
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.21719159185886383,
+        0.22724030911922455,
+        0.24680042266845703
+      ],
+      "runtimeEndpoint": [
+        0.26018567033100304,
+        0.26018567033100304,
+        0.26018567033100304
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.2601856589317322,
+        0.2601856589317322,
+        0.2601856589317322
+      ],
+      "quadratureError": 0.0000021796467535029063,
+      "float32VsDoubleError": 1.618615333431883e-8,
+      "float32VsExactError": 0.0000021634606001685874,
+      "endpointFloat32Error": 1.1399270860579236e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/full-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.5257112996616358,
+        0.5751223228299891,
+        0.6278410738907821
+      ],
+      "runtimeAverageXyz": [
+        0.525704428766226,
+        0.5751176882006795,
+        0.6278261821604887
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5257044434547424,
+        0.5751176476478577,
+        0.6278261542320251
+      ],
+      "runtimeEndpoint": [
+        0.739814329668997,
+        0.739814329668997,
+        0.739814329668997
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.7398143410682678,
+        0.7398143410682678,
+        0.7398143410682678
+      ],
+      "quadratureError": 0.000014891730293453698,
+      "float32VsDoubleError": 4.055282187831466e-8,
+      "float32VsExactError": 0.000014919658756995524,
+      "endpointFloat32Error": 1.1399270860579236e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/adjacent-gray-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3821327849229888,
+        0.4171494559365264,
+        0.4398934134494393
+      ],
+      "runtimeAverageXyz": [
+        0.3821327849229571,
+        0.41714945593648917,
+        0.4398934134494022
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38213276863098145,
+        0.41714945435523987,
+        0.4398934543132782
+      ],
+      "runtimeEndpoint": [
+        0.48892306293215954,
+        0.48892306293215954,
+        0.48892306293215954
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.488923043012619,
+        0.488923043012619,
+        0.488923043012619
+      ],
+      "quadratureError": 3.7247982476174e-14,
+      "float32VsDoubleError": 4.0863876005214905e-8,
+      "float32VsExactError": 4.086383892376588e-8,
+      "endpointFloat32Error": 1.9919540517054912e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/adjacent-gray-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.39421963674234656,
+        0.4306683661808472,
+        0.4553295416415004
+      ],
+      "runtimeAverageXyz": [
+        0.39421963674238186,
+        0.4306683661808887,
+        0.45532954164154027
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39421963691711426,
+        0.43066832423210144,
+        0.455329567193985
+      ],
+      "runtimeEndpoint": [
+        0.5110769370678405,
+        0.5110769370678405,
+        0.5110769370678405
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5110769271850586,
+        0.5110769271850586,
+        0.5110769271850586
+      ],
+      "quadratureError": 4.1522341120980855e-14,
+      "float32VsDoubleError": 4.194878727714624e-8,
+      "float32VsExactError": 4.194874575480512e-8,
+      "endpointFloat32Error": 9.882781926151551e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/mixed-rgb",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.33406244957590636,
+        0.3986906128045321,
+        0.49873392692326385
+      ],
+      "runtimeAverageXyz": [
+        0.33406374664292354,
+        0.39869108477830223,
+        0.4987388663040887
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.33406373858451843,
+        0.3986910581588745,
+        0.4987388551235199
+      ],
+      "runtimeEndpoint": [
+        0.26018567033100304,
+        0.48892306293215954,
+        0.739814329668997
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.2601856589317322,
+        0.488923043012619,
+        0.7398143410682678
+      ],
+      "quadratureError": 0.0000049393808248532345,
+      "float32VsDoubleError": 2.6619427717644584e-8,
+      "float32VsExactError": 0.00000492820025604912,
+      "endpointFloat32Error": 1.9919540517054912e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/primary-exchange",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3469052026670381,
+        0.3105183091220155,
+        0.2922025055589956
+      ],
+      "runtimeAverageXyz": [
+        0.34690417970304827,
+        0.31051672375853845,
+        0.2922004381917029
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3469041883945465,
+        0.31051671504974365,
+        0.29220038652420044
+      ],
+      "runtimeEndpoint": [
+        0.739814329668997,
+        0.26018567033100304,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.7398143410682678,
+        0.2601856589317322,
+        0
+      ],
+      "quadratureError": 0.000002067367292690747,
+      "float32VsDoubleError": 5.166750244312013e-8,
+      "float32VsExactError": 0.0000021190347951338673,
+      "endpointFloat32Error": 1.1399270860579236e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-72/partial-red",
+      "memberId": "mid-envelope-nominal",
+      "row": 72,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3127934867999064,
+        0.3706356070340819,
+        0.41694646452444667
+      ],
+      "runtimeAverageXyz": [
+        0.3127969252241764,
+        0.37063667650561716,
+        0.4169550809467638
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3127969205379486,
+        0.3706366717815399,
+        0.4169550836086273
+      ],
+      "runtimeEndpoint": [
+        0.26018567033100304,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.2601856589317322,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000008616422317142547,
+      "float32VsDoubleError": 4.724077240503277e-9,
+      "float32VsExactError": 0.000008619084180649939,
+      "endpointFloat32Error": 1.4420478589016739e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/full-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.19382432545080375,
+        0.20019112391415977,
+        0.21904658462369922
+      ],
+      "runtimeAverageXyz": [
+        0.1938223585734714,
+        0.200190906427015,
+        0.2190428992667771
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.19382233917713165,
+        0.2001909464597702,
+        0.21904292702674866
+      ],
+      "runtimeEndpoint": [
+        0.0431425775234241,
+        0.0431425775234241,
+        0.0431425775234241
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.04314255714416504,
+        0.04314255714416504,
+        0.04314255714416504
+      ],
+      "quadratureError": 0.000003685356922106253,
+      "float32VsDoubleError": 4.0032755194152614e-8,
+      "float32VsExactError": 0.0000036575969505625583,
+      "endpointFloat32Error": 2.037925905806759e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/full-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.5414462888590108,
+        0.5927595344259524,
+        0.6516400711972917
+      ],
+      "runtimeAverageXyz": [
+        0.5414465542122681,
+        0.5927600852409467,
+        0.6516391606756087
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5414466261863708,
+        0.5927600860595703,
+        0.6516391038894653
+      ],
+      "runtimeEndpoint": [
+        0.9568574224765759,
+        0.9568574224765759,
+        0.9568574224765759
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.956857442855835,
+        0.956857442855835,
+        0.956857442855835
+      ],
+      "quadratureError": 9.105216830507246e-7,
+      "float32VsDoubleError": 7.197410278880767e-8,
+      "float32VsExactError": 9.673078263938706e-7,
+      "endpointFloat32Error": 2.037925905806759e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/adjacent-gray-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.3815902896756937,
+        0.416543301540743,
+        0.4392018171490694
+      ],
+      "runtimeAverageXyz": [
+        0.38159028967569,
+        0.41654330154073865,
+        0.43920181714906487
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3815903663635254,
+        0.4165433645248413,
+        0.43920183181762695
+      ],
+      "runtimeEndpoint": [
+        0.48466511235648424,
+        0.48466511235648424,
+        0.48466511235648424
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4846650958061218,
+        0.4846650958061218,
+        0.4846650958061218
+      ],
+      "quadratureError": 4.551914400963142e-15,
+      "float32VsDoubleError": 7.66878354152567e-8,
+      "float32VsExactError": 7.668783169600957e-8,
+      "endpointFloat32Error": 1.6550362413880748e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/adjacent-gray-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.39475136187463566,
+        0.4312623285612886,
+        0.4560131514530706
+      ],
+      "runtimeAverageXyz": [
+        0.3947513618746399,
+        0.4312623285612932,
+        0.456013151453075
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3947513699531555,
+        0.43126240372657776,
+        0.4560130834579468
+      ],
+      "runtimeEndpoint": [
+        0.5153348876435158,
+        0.5153348876435158,
+        0.5153348876435158
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5153348445892334,
+        0.5153348445892334,
+        0.5153348445892334
+      ],
+      "quadratureError": 4.6074255521944e-15,
+      "float32VsDoubleError": 7.516528455209226e-8,
+      "float32VsExactError": 7.516528915951781e-8,
+      "endpointFloat32Error": 4.305428236150988e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/mixed-rgb",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.33005429285758536,
+        0.3968036979437889,
+        0.5109530856793351
+      ],
+      "runtimeAverageXyz": [
+        0.3300524886008965,
+        0.3968028127887854,
+        0.5109572562662981
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3300524950027466,
+        0.3968028724193573,
+        0.5109573006629944
+      ],
+      "runtimeEndpoint": [
+        0.0431425775234241,
+        0.48466511235648424,
+        0.9568574224765759
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.04314255714416504,
+        0.4846650958061218,
+        0.956857442855835
+      ],
+      "quadratureError": 0.000004170586963003764,
+      "float32VsDoubleError": 5.9630571924707e-8,
+      "float32VsExactError": 0.000004214983659323046,
+      "endpointFloat32Error": 2.037925905806759e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/primary-exchange",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.34869202123962384,
+        0.30490130186080683,
+        0.29734356224135305
+      ],
+      "runtimeAverageXyz": [
+        0.3486923226671351,
+        0.3049013018608092,
+        0.29734101746678465
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.34869229793548584,
+        0.3049013018608093,
+        0.297340989112854
+      ],
+      "runtimeEndpoint": [
+        0.9568574224765759,
+        0.0431425775234241,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.956857442855835,
+        0.04314255714416504,
+        0
+      ],
+      "quadratureError": 0.00000254477456840263,
+      "float32VsDoubleError": 2.835393064781755e-8,
+      "float32VsExactError": 0.0000025731284990504477,
+      "endpointFloat32Error": 2.037925905806759e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-142/partial-red",
+      "memberId": "mid-envelope-nominal",
+      "row": 142,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.30536710900999603,
+        0.36560997366905207,
+        0.41494505301191115
+      ],
+      "runtimeAverageXyz": [
+        0.3053659141259902,
+        0.365609973669052,
+        0.41493732824409746
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3053659498691559,
+        0.3656099736690521,
+        0.41493740677833557
+      ],
+      "runtimeEndpoint": [
+        0.0431425775234241,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.04314255714416504,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.00000772476781368825,
+      "float32VsDoubleError": 7.853423811265969e-8,
+      "float32VsExactError": 0.00000764623357557559,
+      "endpointFloat32Error": 2.037925905806759e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/full-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.19378286153098237,
+        0.200130042154952,
+        0.21901331142738886
+      ],
+      "runtimeAverageXyz": [
+        0.1937847570873594,
+        0.2001302509431761,
+        0.21901681990784447
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.1937847137451172,
+        0.20013022422790527,
+        0.21901686489582062
+      ],
+      "runtimeEndpoint": [
+        0.03961958646998576,
+        0.03961958646998576,
+        0.03961958646998576
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.0396195650100708,
+        0.0396195650100708,
+        0.0396195650100708
+      ],
+      "quadratureError": 0.000003508480455605145,
+      "float32VsDoubleError": 4.4987976149934994e-8,
+      "float32VsExactError": 0.00000355346843175508,
+      "endpointFloat32Error": 2.1459914956167836e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/full-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.5414595456889552,
+        0.5927711520517488,
+        0.6516941113836032
+      ],
+      "runtimeAverageXyz": [
+        0.5414593413429143,
+        0.5927707086819234,
+        0.6516949048523064
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.541459321975708,
+        0.5927706956863403,
+        0.6516948938369751
+      ],
+      "runtimeEndpoint": [
+        0.9603804135300142,
+        0.9603804135300142,
+        0.9603804135300142
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9603804349899292,
+        0.9603804349899292,
+        0.9603804349899292
+      ],
+      "quadratureError": 7.934687031863064e-7,
+      "float32VsDoubleError": 1.9367206283149585e-8,
+      "float32VsExactError": 7.82453371872549e-7,
+      "endpointFloat32Error": 2.1459914956167836e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/adjacent-gray-rise",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.38158832257860353,
+        0.4165411043575692,
+        0.43919930863913076
+      ],
+      "runtimeAverageXyz": [
+        0.38158832257860115,
+        0.4165411043575664,
+        0.4391993086391281
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38158825039863586,
+        0.41654106974601746,
+        0.43919920921325684
+      ],
+      "runtimeEndpoint": [
+        0.48459968708910517,
+        0.48459968708910517,
+        0.48459968708910517
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.48459967970848083,
+        0.48459967970848083,
+        0.48459967970848083
+      ],
+      "quadratureError": 2.7755575615628914e-15,
+      "float32VsDoubleError": 9.942587125832958e-8,
+      "float32VsExactError": 9.942587392286484e-8,
+      "endpointFloat32Error": 7.380624333919172e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/adjacent-gray-fall",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3947532858645357,
+        0.43126447694614195,
+        0.45601562799723266
+      ],
+      "runtimeAverageXyz": [
+        0.3947532858645382,
+        0.4312644769461452,
+        0.4560156279972359
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39475327730178833,
+        0.4312644898891449,
+        0.45601558685302734
+      ],
+      "runtimeEndpoint": [
+        0.5154003129108948,
+        0.5154003129108948,
+        0.5154003129108948
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5154002904891968,
+        0.5154002904891968,
+        0.5154002904891968
+      ],
+      "quadratureError": 3.2751579226442118e-15,
+      "float32VsDoubleError": 4.1144208540178084e-8,
+      "float32VsExactError": 4.114420532053131e-8,
+      "endpointFloat32Error": 2.242169805377614e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/mixed-rgb",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.33008323737742573,
+        0.3968112450383083,
+        0.5109473559777897
+      ],
+      "runtimeAverageXyz": [
+        0.3300848302227958,
+        0.3968120113614614,
+        0.5109440432993774
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.33008480072021484,
+        0.3968120217323303,
+        0.5109439492225647
+      ],
+      "runtimeEndpoint": [
+        0.03961958646998576,
+        0.48459968708910517,
+        0.9603804135300142
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.0396195650100708,
+        0.48459967970848083,
+        0.9603804349899292
+      ],
+      "quadratureError": 0.000003312678412359382,
+      "float32VsDoubleError": 9.407681267337153e-8,
+      "float32VsExactError": 0.0000034067552250327537,
+      "endpointFloat32Error": 2.1459914956167836e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/primary-exchange",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3486973180581306,
+        0.30490130186080766,
+        0.29739937139979056
+      ],
+      "runtimeAverageXyz": [
+        0.34869706824839736,
+        0.30490130186080944,
+        0.29740156706839105
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3486970067024231,
+        0.3049013316631317,
+        0.2974015474319458
+      ],
+      "runtimeEndpoint": [
+        0.9603804135300142,
+        0.03961958646998576,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9603804349899292,
+        0.0396195650100708,
+        0
+      ],
+      "quadratureError": 0.0000021956686004909187,
+      "float32VsDoubleError": 6.154597426144548e-8,
+      "float32VsExactError": 0.0000021760321552433126,
+      "endpointFloat32Error": 2.1459914956167836e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/mid-envelope-nominal/row-143/partial-red",
+      "memberId": "mid-envelope-nominal",
+      "row": 143,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3053875595023585,
+        0.36560997366905207,
+        0.4149905262084134
+      ],
+      "runtimeAverageXyz": [
+        0.30538856987479507,
+        0.36560997366905224,
+        0.4149970581336157
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30538856983184814,
+        0.3656099736690521,
+        0.4149971604347229
+      ],
+      "runtimeEndpoint": [
+        0.03961958646998576,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.0396195650100708,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.0000065319252022799645,
+      "float32VsDoubleError": 1.0230110719655627e-7,
+      "float32VsExactError": 0.000006634226309476521,
+      "endpointFloat32Error": 2.1459914956167836e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/full-rise",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.2689989740694208,
+        0.2869659898056296,
+        0.30796296788216904
+      ],
+      "runtimeAverageXyz": [
+        0.26899719585197995,
+        0.28696479737412,
+        0.3079610000865882
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.2689971923828125,
+        0.2869647741317749,
+        0.30796098709106445
+      ],
+      "runtimeEndpoint": [
+        0.36861759661799576,
+        0.36861759661799576,
+        0.36861759661799576
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.36861759424209595,
+        0.36861759424209595,
+        0.36861759424209595
+      ],
+      "quadratureError": 0.000001967795580815057,
+      "float32VsDoubleError": 2.3242345104090845e-8,
+      "float32VsExactError": 0.0000019807911045832682,
+      "endpointFloat32Error": 2.375899810225235e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/full-fall",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.49388736534780847,
+        0.5398211841312931,
+        0.5822465915323769
+      ],
+      "runtimeAverageXyz": [
+        0.49389172438678547,
+        0.5398239696764281,
+        0.5822557106183835
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.49389174580574036,
+        0.5398239493370056,
+        0.5822557806968689
+      ],
+      "runtimeEndpoint": [
+        0.6313824033820042,
+        0.6313824033820042,
+        0.6313824033820042
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.631382405757904,
+        0.631382405757904,
+        0.631382405757904
+      ],
+      "quadratureError": 0.000009119086006648125,
+      "float32VsDoubleError": 7.007848534801298e-8,
+      "float32VsExactError": 0.000009189164491996138,
+      "endpointFloat32Error": 2.375899810225235e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/adjacent-gray-rise",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3830479878325307,
+        0.41817229007862583,
+        0.4410599443743083
+      ],
+      "runtimeAverageXyz": [
+        0.3830479878325086,
+        0.41817229007859985,
+        0.4410599443742827
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3830479681491852,
+        0.41817227005958557,
+        0.4410599172115326
+      ],
+      "runtimeEndpoint": [
+        0.4908868076937367,
+        0.4908868076937367,
+        0.4908868076937367
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4908868074417114,
+        0.4908868074417114,
+        0.4908868074417114
+      ],
+      "quadratureError": 2.5979218776228663e-14,
+      "float32VsDoubleError": 2.7162750104725575e-8,
+      "float32VsExactError": 2.7162775695366292e-8,
+      "endpointFloat32Error": 2.5202528952661396e-10,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/adjacent-gray-fall",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.39332116852912463,
+        0.4296644760959065,
+        0.45417542019087104
+      ],
+      "runtimeAverageXyz": [
+        0.3933211685291495,
+        0.42966447609593555,
+        0.45417542019089885
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39332115650177,
+        0.4296644628047943,
+        0.4541754126548767
+      ],
+      "runtimeEndpoint": [
+        0.5091131923062633,
+        0.5091131923062633,
+        0.5091131923062633
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5091131925582886,
+        0.5091131925582886,
+        0.5091131925582886
+      ],
+      "quadratureError": 2.9032332093947844e-14,
+      "float32VsDoubleError": 1.329114124315467e-8,
+      "float32VsExactError": 1.3291112210822575e-8,
+      "endpointFloat32Error": 2.5202528952661396e-10,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/mixed-rgb",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3498790284026233,
+        0.4075481667666459,
+        0.48397546299336563
+      ],
+      "runtimeAverageXyz": [
+        0.34987623033130627,
+        0.40754714694240957,
+        0.48396917256972943
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3498762249946594,
+        0.40754714608192444,
+        0.48396921157836914
+      ],
+      "runtimeEndpoint": [
+        0.36861759661799576,
+        0.4908868076937367,
+        0.6313824033820042
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.36861759424209595,
+        0.4908868074417114,
+        0.631382405757904
+      ],
+      "quadratureError": 0.000006290423636201581,
+      "float32VsDoubleError": 3.900863970729418e-8,
+      "float32VsExactError": 0.000006251414996494287,
+      "endpointFloat32Error": 2.375899810225235e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/primary-exchange",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3516640606554636,
+        0.3311708761173564,
+        0.29854518513564904
+      ],
+      "runtimeAverageXyz": [
+        0.351667183432623,
+        0.3311734405303208,
+        0.298547564199062
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.35166722536087036,
+        0.3311734199523926,
+        0.29854753613471985
+      ],
+      "runtimeEndpoint": [
+        0.6313824033820042,
+        0.36861759661799576,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.631382405757904,
+        0.36861759424209595,
+        0
+      ],
+      "quadratureError": 0.000003122777159414447,
+      "float32VsDoubleError": 4.1928247374034555e-8,
+      "float32VsExactError": 0.0000031647054067884817,
+      "endpointFloat32Error": 2.375899810225235e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-0/partial-red",
+      "memberId": "gh-like-slow",
+      "row": 0,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0,
+      "exactAverageXyz": [
+        0.3333763053452598,
+        0.3848845648751792,
+        0.42164077578939374
+      ],
+      "runtimeAverageXyz": [
+        0.3333757355038465,
+        0.3848838865549978,
+        0.421636714003912
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3333757817745209,
+        0.3848837912082672,
+        0.4216367304325104
+      ],
+      "runtimeEndpoint": [
+        0.36861759661799576,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.36861759424209595,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000004061785481734859,
+      "float32VsDoubleError": 9.534673056643683e-8,
+      "float32VsExactError": 0.0000040453568833642706,
+      "endpointFloat32Error": 1.4420478589016739e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/full-rise",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.26797758489455686,
+        0.28578926048008246,
+        0.3067616038343513
+      ],
+      "runtimeAverageXyz": [
+        0.26797708937454784,
+        0.2857887650731055,
+        0.3067627616515058
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.26797711849212646,
+        0.28578877449035645,
+        0.3067627251148224
+      ],
+      "runtimeEndpoint": [
+        0.36672947295127445,
+        0.36672947295127445,
+        0.36672947295127445
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.3667294383049011,
+        0.3667294383049011,
+        0.3667294383049011
+      ],
+      "quadratureError": 0.0000011578171544845972,
+      "float32VsDoubleError": 3.6536683400978376e-8,
+      "float32VsExactError": 0.0000011212804710836188,
+      "endpointFloat32Error": 3.464637332584175e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/full-fall",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.49453067562017566,
+        0.5405279196491172,
+        0.5831475500558766
+      ],
+      "runtimeAverageXyz": [
+        0.4945312775448261,
+        0.5405283844521502,
+        0.5831487569632087
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.49453121423721313,
+        0.540528416633606,
+        0.5831488370895386
+      ],
+      "runtimeEndpoint": [
+        0.6332705270487256,
+        0.6332705270487256,
+        0.6332705270487256
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.6332705616950989,
+        0.6332705616950989,
+        0.6332705616950989
+      ],
+      "quadratureError": 0.0000012069073320741808,
+      "float32VsDoubleError": 8.012632990439528e-8,
+      "float32VsExactError": 0.000001287033661978576,
+      "endpointFloat32Error": 3.464637332584175e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/adjacent-gray-rise",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3830295914261273,
+        0.41815172726535055,
+        0.4410364983749792
+      ],
+      "runtimeAverageXyz": [
+        0.38302959142610593,
+        0.4181517272653254,
+        0.44103649837495457
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.383029580116272,
+        0.41815173625946045,
+        0.44103652238845825
+      ],
+      "runtimeEndpoint": [
+        0.4908465766211311,
+        0.4908465766211311,
+        0.4908465766211311
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.49084657430648804,
+        0.49084657430648804,
+        0.49084657430648804
+      ],
+      "quadratureError": 2.5146551507759796e-14,
+      "float32VsDoubleError": 2.4013503685527127e-8,
+      "float32VsExactError": 2.401347903857598e-8,
+      "endpointFloat32Error": 2.314643088308088e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/adjacent-gray-fall",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3933392472767855,
+        0.4296846793122544,
+        0.45419863063301325
+      ],
+      "runtimeAverageXyz": [
+        0.39333924727680963,
+        0.429684679312283,
+        0.4541986306330402
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39333924651145935,
+        0.4296846389770508,
+        0.4541986286640167
+      ],
+      "runtimeEndpoint": [
+        0.5091534233788688,
+        0.5091534233788688,
+        0.5091534233788688
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.509153425693512,
+        0.509153425693512,
+        0.509153425693512
+      ],
+      "quadratureError": 2.858824288409778e-14,
+      "float32VsDoubleError": 4.033523220980939e-8,
+      "float32VsExactError": 4.0335203621566507e-8,
+      "endpointFloat32Error": 2.3146431438192394e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/mixed-rgb",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3495307455017395,
+        0.4073577067447717,
+        0.4841462182468588
+      ],
+      "runtimeAverageXyz": [
+        0.349528672754174,
+        0.40735670822281256,
+        0.48414266734437517
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3495287299156189,
+        0.40735673904418945,
+        0.4841427505016327
+      ],
+      "runtimeEndpoint": [
+        0.36672947295127445,
+        0.4908465766211311,
+        0.6332705270487256
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.3667294383049011,
+        0.49084657430648804,
+        0.6332705616950989
+      ],
+      "quadratureError": 0.000003550902483606677,
+      "float32VsDoubleError": 8.315725752439107e-8,
+      "float32VsExactError": 0.000003467745226082286,
+      "endpointFloat32Error": 3.464637332584175e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/primary-exchange",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.3515510463686817,
+        0.3307443097594971,
+        0.2983601813164467
+      ],
+      "runtimeAverageXyz": [
+        0.3515513009552214,
+        0.33074418882126033,
+        0.29835813502955133
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3515512943267822,
+        0.3307441174983978,
+        0.29835811257362366
+      ],
+      "runtimeEndpoint": [
+        0.6332705270487256,
+        0.36672947295127445,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.6332705616950989,
+        0.3667294383049011,
+        0
+      ],
+      "quadratureError": 0.0000020462868953741165,
+      "float32VsDoubleError": 7.132286250488562e-8,
+      "float32VsExactError": 0.0000020687428230470317,
+      "endpointFloat32Error": 3.464637332584175e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-1/partial-red",
+      "memberId": "gh-like-slow",
+      "row": 1,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0001087188720703125,
+      "exactAverageXyz": [
+        0.33293550663357124,
+        0.3845782279984599,
+        0.4214798477428875
+      ],
+      "runtimeAverageXyz": [
+        0.3329373116096583,
+        0.3845789220567187,
+        0.4214818757735147
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3329372704029083,
+        0.38457900285720825,
+        0.4214818775653839
+      ],
+      "runtimeEndpoint": [
+        0.36672947295127445,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.3667294383049011,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000002028030627210242,
+      "float32VsDoubleError": 8.080048957692654e-8,
+      "float32VsExactError": 0.0000020298224964188094,
+      "endpointFloat32Error": 3.464637332584175e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/full-rise",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.21159208743021574,
+        0.22079256906235237,
+        0.24025437344147002
+      ],
+      "runtimeAverageXyz": [
+        0.21159451582058286,
+        0.22079298406805492,
+        0.24025499736618253
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.21159452199935913,
+        0.2207929790019989,
+        0.2402549833059311
+      ],
+      "runtimeEndpoint": [
+        0.21951344832302166,
+        0.21951344832302166,
+        0.21951344832302166
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.21951347589492798,
+        0.21951347589492798,
+        0.21951347589492798
+      ],
+      "quadratureError": 0.0000024283903671262763,
+      "float32VsDoubleError": 1.4060251435354942e-8,
+      "float32VsExactError": 0.0000024345691433946826,
+      "endpointFloat32Error": 2.757190631363926e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/full-fall",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.5290904808590029,
+        0.5788255067699007,
+        0.6325825771680164
+      ],
+      "runtimeAverageXyz": [
+        0.5290935836894205,
+        0.5788274321078617,
+        0.6325900033911722
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5290936231613159,
+        0.5788273811340332,
+        0.6325899958610535
+      ],
+      "runtimeEndpoint": [
+        0.7804865516769783,
+        0.7804865516769783,
+        0.7804865516769783
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.780486524105072,
+        0.780486524105072,
+        0.780486524105072
+      ],
+      "quadratureError": 0.000007426223155859724,
+      "float32VsDoubleError": 5.0973828491507334e-8,
+      "float32VsExactError": 0.000007418693037108959,
+      "endpointFloat32Error": 2.757190631363926e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/adjacent-gray-rise",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.38201826294942315,
+        0.4170214546445259,
+        0.4397474553145692
+      ],
+      "runtimeAverageXyz": [
+        0.38201826294941055,
+        0.417021454644511,
+        0.4397474553145545
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38201820850372314,
+        0.4170214533805847,
+        0.4397474527359009
+      ],
+      "runtimeEndpoint": [
+        0.4878650599216296,
+        0.4878650599216296,
+        0.4878650599216296
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.48786503076553345,
+        0.48786503076553345,
+        0.48786503076553345
+      ],
+      "quadratureError": 1.4876988529977098e-14,
+      "float32VsDoubleError": 5.4445687402981946e-8,
+      "float32VsExactError": 5.4445700004013275e-8,
+      "endpointFloat32Error": 2.9156096148508226e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/adjacent-gray-fall",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3943321184373475,
+        0.43079405783107066,
+        0.45547398682484735
+      ],
+      "runtimeAverageXyz": [
+        0.3943321184373615,
+        0.430794057831087,
+        0.455473986824863
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3943321108818054,
+        0.4307940602302551,
+        0.45547401905059814
+      ],
+      "runtimeEndpoint": [
+        0.5121349400783705,
+        0.5121349400783705,
+        0.5121349400783705
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5121349096298218,
+        0.5121349096298218,
+        0.5121349096298218
+      ],
+      "quadratureError": 1.63202784619898e-14,
+      "float32VsDoubleError": 3.222573513594895e-8,
+      "float32VsExactError": 3.22257507900936e-8,
+      "endpointFloat32Error": 3.044854868239355e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/mixed-rgb",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.33176210220160823,
+        0.39735067509228317,
+        0.49927702014680697
+      ],
+      "runtimeAverageXyz": [
+        0.3317679527288794,
+        0.39735436328932516,
+        0.4992802097462939
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3317679762840271,
+        0.3973543643951416,
+        0.4992802143096924
+      ],
+      "runtimeEndpoint": [
+        0.21951344832302166,
+        0.4878650599216296,
+        0.7804865516769783
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.21951347589492798,
+        0.48786503076553345,
+        0.780486524105072
+      ],
+      "quadratureError": 0.000005850527271145101,
+      "float32VsDoubleError": 2.3555147721232572e-8,
+      "float32VsExactError": 0.000005874082418866333,
+      "endpointFloat32Error": 2.9156096148508226e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/primary-exchange",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3455698237277749,
+        0.30746180794472133,
+        0.29008915394180596
+      ],
+      "runtimeAverageXyz": [
+        0.3455704300717507,
+        0.30746335360004656,
+        0.29009722103366387
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3455704152584076,
+        0.3074633777141571,
+        0.290097177028656
+      ],
+      "runtimeEndpoint": [
+        0.7804865516769783,
+        0.21951344832302166,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.780486524105072,
+        0.21951347589492798,
+        0
+      ],
+      "quadratureError": 0.000008067091857910658,
+      "float32VsDoubleError": 4.400500785983752e-8,
+      "float32VsExactError": 0.00000802308685005082,
+      "endpointFloat32Error": 2.757190631363926e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-71/partial-red",
+      "memberId": "gh-like-slow",
+      "row": 71,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0077190399169921875,
+      "exactAverageXyz": [
+        0.3100368532557105,
+        0.3691138534538562,
+        0.41468363706827616
+      ],
+      "runtimeAverageXyz": [
+        0.31003377738729154,
+        0.3691125992019639,
+        0.4146843052611223
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.31003379821777344,
+        0.3691125810146332,
+        0.41468432545661926
+      ],
+      "runtimeEndpoint": [
+        0.21951344832302166,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.21951347589492798,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.0000030758684189668983,
+      "float32VsDoubleError": 2.0830481894940078e-8,
+      "float32VsExactError": 0.0000030550379370719583,
+      "endpointFloat32Error": 2.757190631363926e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/full-rise",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.21105404468038938,
+        0.22016751766958126,
+        0.23962612415826864
+      ],
+      "runtimeAverageXyz": [
+        0.21105604016687415,
+        0.2201677545191947,
+        0.23962666233389063
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.21105603873729706,
+        0.22016777098178864,
+        0.2396266609430313
+      ],
+      "runtimeEndpoint": [
+        0.21717943470166412,
+        0.21717943470166412,
+        0.21717943470166412
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.21717941761016846,
+        0.21717941761016846,
+        0.21717941761016846
+      ],
+      "quadratureError": 0.0000019954864847737674,
+      "float32VsDoubleError": 1.6462593926958036e-8,
+      "float32VsExactError": 0.0000019940569076781767,
+      "endpointFloat32Error": 1.7091495663201783e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/full-fall",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.5294318898542986,
+        0.5792091859126449,
+        0.633085135343226
+      ],
+      "runtimeAverageXyz": [
+        0.52942815030428,
+        0.5792061942864567,
+        0.6330783986065336
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5294281244277954,
+        0.579206109046936,
+        0.633078396320343
+      ],
+      "runtimeEndpoint": [
+        0.7828205652983359,
+        0.7828205652983359,
+        0.7828205652983359
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.7828205823898315,
+        0.7828205823898315,
+        0.7828205823898315
+      ],
+      "quadratureError": 0.000006736736692380951,
+      "float32VsDoubleError": 8.523952066408214e-8,
+      "float32VsExactError": 0.00000673902288295114,
+      "endpointFloat32Error": 1.7091495663201783e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/adjacent-gray-rise",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.38200790032393134,
+        0.41700987532334854,
+        0.4397342453054271
+      ],
+      "runtimeAverageXyz": [
+        0.38200790032391946,
+        0.4170098753233344,
+        0.4397342453054131
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3820079267024994,
+        0.4170098900794983,
+        0.43973425030708313
+      ],
+      "runtimeEndpoint": [
+        0.4878200127856178,
+        0.4878200127856178,
+        0.4878200127856178
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.48781999945640564,
+        0.48781999945640564,
+        0.48781999945640564
+      ],
+      "quadratureError": 1.4155343563970746e-14,
+      "float32VsDoubleError": 2.637857993148529e-8,
+      "float32VsExactError": 2.6378568052098927e-8,
+      "endpointFloat32Error": 1.3329212178447847e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/adjacent-gray-fall",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3943422791352026,
+        0.430805408565567,
+        0.45548704709623744
+      ],
+      "runtimeAverageXyz": [
+        0.39434227913521575,
+        0.4308054085655824,
+        0.4554870470962523
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.394342303276062,
+        0.43080535531044006,
+        0.45548707246780396
+      ],
+      "runtimeEndpoint": [
+        0.5121799872143822,
+        0.5121799872143822,
+        0.5121799872143822
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.512179970741272,
+        0.512179970741272,
+        0.512179970741272
+      ],
+      "quadratureError": 1.5432100042289676e-14,
+      "float32VsDoubleError": 5.325514235154927e-8,
+      "float32VsExactError": 5.3255126919449225e-8,
+      "endpointFloat32Error": 1.6473110209247466e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/mixed-rgb",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.33163859576840904,
+        0.39729091734747246,
+        0.4994934065874108
+      ],
+      "runtimeAverageXyz": [
+        0.33164130440185546,
+        0.39729117469023617,
+        0.499489691007365
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3316413164138794,
+        0.3972911536693573,
+        0.4994896948337555
+      ],
+      "runtimeEndpoint": [
+        0.21717943470166412,
+        0.4878200127856178,
+        0.7828205652983359
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.21717941761016846,
+        0.48781999945640564,
+        0.7828205823898315
+      ],
+      "quadratureError": 0.000003715580045804412,
+      "float32VsDoubleError": 2.1020878870903204e-8,
+      "float32VsExactError": 0.0000037117536553221697,
+      "endpointFloat32Error": 1.7091495663201783e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/primary-exchange",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.3455397926336802,
+        0.30726210173932034,
+        0.2900948134702048
+      ],
+      "runtimeAverageXyz": [
+        0.34553791735698786,
+        0.30726143274360485,
+        0.29009562855165955
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.345537930727005,
+        0.3072614371776581,
+        0.29009562730789185
+      ],
+      "runtimeEndpoint": [
+        0.7828205652983359,
+        0.21717943470166412,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.7828205823898315,
+        0.21717941761016846,
+        0
+      ],
+      "quadratureError": 0.000001875276692320238,
+      "float32VsDoubleError": 1.3370017148961466e-8,
+      "float32VsExactError": 0.0000018619066751712765,
+      "endpointFloat32Error": 1.7091495663201783e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-72/partial-red",
+      "memberId": "gh-like-slow",
+      "row": 72,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.0078277587890625,
+      "exactAverageXyz": [
+        0.309856581177225,
+        0.36901610791303385,
+        0.4146030499299487
+      ],
+      "runtimeAverageXyz": [
+        0.3098533511465908,
+        0.3690133420967297,
+        0.4146017778425882
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30985334515571594,
+        0.36901333928108215,
+        0.41460180282592773
+      ],
+      "runtimeEndpoint": [
+        0.21717943470166412,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.21717941761016846,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.00000323003063418259,
+      "float32VsDoubleError": 2.4983339508288793e-8,
+      "float32VsExactError": 0.000003236021509034348,
+      "endpointFloat32Error": 1.7091495663201783e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/full-rise",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.19377871450986814,
+        0.2001187615776454,
+        0.21901636448466585
+      ],
+      "runtimeAverageXyz": [
+        0.19377744623643514,
+        0.20011861378375825,
+        0.21901404676743932
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.1937774270772934,
+        0.20011864602565765,
+        0.21901406347751617
+      ],
+      "runtimeEndpoint": [
+        0.03519760119120385,
+        0.03519760119120385,
+        0.03519760119120385
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.03519761562347412,
+        0.03519761562347412,
+        0.03519761562347412
+      ],
+      "quadratureError": 0.0000023177172265298474,
+      "float32VsDoubleError": 3.2241899400320406e-8,
+      "float32VsExactError": 0.0000023010071496798457,
+      "endpointFloat32Error": 1.4432270267761282e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/full-fall",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.5414627955521292,
+        0.5927754990640017,
+        0.6516982861179299
+      ],
+      "runtimeAverageXyz": [
+        0.5414629124807511,
+        0.5927757601002421,
+        0.6516977967733614
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5414629578590393,
+        0.5927757620811462,
+        0.6516976952552795
+      ],
+      "runtimeEndpoint": [
+        0.9648023988087961,
+        0.9648023988087961,
+        0.9648023988087961
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9648023843765259,
+        0.9648023843765259,
+        0.9648023843765259
+      ],
+      "quadratureError": 4.893445685327791e-7,
+      "float32VsDoubleError": 1.0151808182978783e-7,
+      "float32VsExactError": 5.908626503625669e-7,
+      "endpointFloat32Error": 1.4432270267761282e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/adjacent-gray-rise",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.38158742214108426,
+        0.4165400985215751,
+        0.43919816045746685
+      ],
+      "runtimeAverageXyz": [
+        0.381587422141083,
+        0.4165400985215736,
+        0.4391981604574651
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38158750534057617,
+        0.4165401756763458,
+        0.43919819593429565
+      ],
+      "runtimeEndpoint": [
+        0.48448157859569224,
+        0.48448157859569224,
+        0.48448157859569224
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.4844815731048584,
+        0.4844815731048584,
+        0.4844815731048584
+      ],
+      "quadratureError": 1.7208456881689926e-15,
+      "float32VsDoubleError": 8.319949318380537e-8,
+      "float32VsExactError": 8.31994919070489e-8,
+      "endpointFloat32Error": 5.490833843158072e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/adjacent-gray-fall",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.39475416695732846,
+        0.4312654608834653,
+        0.4560167618339762
+      ],
+      "runtimeAverageXyz": [
+        0.3947541669573301,
+        0.43126546088346684,
+        0.4560167618339776
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39475417137145996,
+        0.43126553297042847,
+        0.4560166895389557
+      ],
+      "runtimeEndpoint": [
+        0.5155184214043077,
+        0.5155184214043077,
+        0.5155184214043077
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5155184268951416,
+        0.5155184268951416,
+        0.5155184268951416
+      ],
+      "quadratureError": 1.6653345369377348e-15,
+      "float32VsDoubleError": 7.229502191341552e-8,
+      "float32VsExactError": 7.229502052563674e-8,
+      "endpointFloat32Error": 5.490833898669223e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/mixed-rgb",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.3300808083348819,
+        0.3968074474098996,
+        0.5109718609842129
+      ],
+      "runtimeAverageXyz": [
+        0.33007981847124446,
+        0.39680697625871736,
+        0.5109737932596115
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.3300798535346985,
+        0.3968070447444916,
+        0.5109738111495972
+      ],
+      "runtimeEndpoint": [
+        0.03519760119120385,
+        0.48448157859569224,
+        0.9648023988087961
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.03519761562347412,
+        0.4844815731048584,
+        0.9648023843765259
+      ],
+      "quadratureError": 0.0000019322753985751007,
+      "float32VsDoubleError": 6.84857742183631e-8,
+      "float32VsExactError": 0.000001950165384290159,
+      "endpointFloat32Error": 1.4432270267761282e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/primary-exchange",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.34870033395330985,
+        0.30490130186081205,
+        0.2973972787860683
+      ],
+      "runtimeAverageXyz": [
+        0.3487004836467831,
+        0.3049013018608092,
+        0.2973959323178416
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.34870049357414246,
+        0.3049013018608093,
+        0.2973959445953369
+      ],
+      "runtimeEndpoint": [
+        0.9648023988087961,
+        0.03519760119120385,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9648023843765259,
+        0.03519761562347412,
+        0
+      ],
+      "quadratureError": 0.0000013464682266928207,
+      "float32VsDoubleError": 1.2277495298196328e-8,
+      "float32VsExactError": 0.0000013341907313946244,
+      "endpointFloat32Error": 1.4432270267761282e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-142/partial-red",
+      "memberId": "gh-like-slow",
+      "row": 142,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015438079833984375,
+      "exactAverageXyz": [
+        0.30538525992813054,
+        0.36560997366905207,
+        0.4149611364700351
+      ],
+      "runtimeAverageXyz": [
+        0.3053846473530046,
+        0.365609973669052,
+        0.41495717625246
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30538466572761536,
+        0.3656099736690521,
+        0.4149572551250458
+      ],
+      "runtimeEndpoint": [
+        0.03519760119120385,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.03519761562347412,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 0.000003960217575094127,
+      "float32VsDoubleError": 7.887258579586387e-8,
+      "float32VsExactError": 0.000003881344989298263,
+      "endpointFloat32Error": 1.4432270267761282e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/full-rise",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        0,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        0,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        31,
+        31,
+        31
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.19375110700338075,
+        0.2000695405853627,
+        0.21899999131444128
+      ],
+      "runtimeAverageXyz": [
+        0.19375110472654797,
+        0.2000695400919808,
+        0.2189999875535447
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.19375108182430267,
+        0.20006951689720154,
+        0.21900002658367157
+      ],
+      "runtimeEndpoint": [
+        0.032312398446967316,
+        0.032312398446967316,
+        0.032312398446967316
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.03231239318847656,
+        0.03231239318847656,
+        0.03231239318847656
+      ],
+      "quadratureError": 3.760896594151575e-9,
+      "float32VsDoubleError": 3.903012688044605e-8,
+      "float32VsExactError": 3.526923028629447e-8,
+      "endpointFloat32Error": 5.258490753945466e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/full-fall",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        1,
+        1,
+        1
+      ],
+      "previousRgb555": [
+        31,
+        31,
+        31
+      ],
+      "currentRgb555": [
+        0,
+        0,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.5414724175955373,
+        0.592782064350514,
+        0.6517485971870458
+      ],
+      "runtimeAverageXyz": [
+        0.541472417728029,
+        0.5927820646318303,
+        0.6517485966968725
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.5414724349975586,
+        0.5927820801734924,
+        0.651748538017273
+      ],
+      "runtimeEndpoint": [
+        0.9676876015530327,
+        0.9676876015530327,
+        0.9676876015530327
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9676876068115234,
+        0.9676876068115234,
+        0.9676876068115234
+      ],
+      "quadratureError": 4.901733463569258e-10,
+      "float32VsDoubleError": 5.867959951277868e-8,
+      "float32VsExactError": 5.9169772859135605e-8,
+      "endpointFloat32Error": 5.258490753945466e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/adjacent-gray-rise",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        0.4838709677419355,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        15,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        16,
+        16,
+        16
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.38158591073765186,
+        0.4165384103735933,
+        0.43919623301837757
+      ],
+      "runtimeAverageXyz": [
+        0.381585910737651,
+        0.41653841037359235,
+        0.43919623301837685
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.38158583641052246,
+        0.4165383577346802,
+        0.4391961693763733
+      ],
+      "runtimeEndpoint": [
+        0.48443113886511985,
+        0.48443113886511985,
+        0.48443113886511985
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.48443111777305603,
+        0.48443111777305603,
+        0.48443111777305603
+      ],
+      "quadratureError": 9.43689570931383e-16,
+      "float32VsDoubleError": 7.432712856303425e-8,
+      "float32VsExactError": 7.432712939570152e-8,
+      "endpointFloat32Error": 2.1092063817729212e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/adjacent-gray-fall",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        0.5161290322580645,
+        0.5161290322580645,
+        0.5161290322580645
+      ],
+      "previousRgb555": [
+        16,
+        16,
+        16
+      ],
+      "currentRgb555": [
+        15,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3947556450345991,
+        0.43126711130547335,
+        0.45601866456032863
+      ],
+      "runtimeAverageXyz": [
+        0.3947556450345998,
+        0.4312671113054746,
+        0.4560186645603299
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.39475563168525696,
+        0.431267112493515,
+        0.4560186266899109
+      ],
+      "runtimeEndpoint": [
+        0.5155688611348801,
+        0.5155688611348801,
+        0.5155688611348801
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.5155688524246216,
+        0.5155688524246216,
+        0.5155688524246216
+      ],
+      "quadratureError": 1.27675647831893e-15,
+      "float32VsDoubleError": 3.7870419022922874e-8,
+      "float32VsExactError": 3.7870417746166396e-8,
+      "endpointFloat32Error": 8.71025851445495e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/mixed-rgb",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        1
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        31
+      ],
+      "currentRgb555": [
+        31,
+        16,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.33011580165540255,
+        0.3968195591973328,
+        0.5109421603130574
+      ],
+      "runtimeAverageXyz": [
+        0.3301158006769443,
+        0.39681955872217645,
+        0.5109421624368796
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.33011579513549805,
+        0.3968195617198944,
+        0.5109420418739319
+      ],
+      "runtimeEndpoint": [
+        0.032312398446967316,
+        0.48443113886511985,
+        0.9676876015530327
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.03231239318847656,
+        0.48443111777305603,
+        0.9676876068115234
+      ],
+      "quadratureError": 2.123822229194161e-9,
+      "float32VsDoubleError": 1.205629477363246e-7,
+      "float32VsExactError": 1.1843912550713043e-7,
+      "endpointFloat32Error": 2.1092063817729212e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/primary-exchange",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        1,
+        0,
+        0
+      ],
+      "previousRgb555": [
+        31,
+        0,
+        0
+      ],
+      "currentRgb555": [
+        0,
+        31,
+        0
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.3487025473113005,
+        0.3049013018608122,
+        0.2974587811907921
+      ],
+      "runtimeAverageXyz": [
+        0.3487025474692201,
+        0.30490130186080944,
+        0.2974587798298413
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.34870249032974243,
+        0.3049013316631317,
+        0.2974587678909302
+      ],
+      "runtimeEndpoint": [
+        0.9676876015530327,
+        0.032312398446967316,
+        0
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.9676876068115234,
+        0.03231239318847656,
+        0
+      ],
+      "quadratureError": 1.360950796502891e-9,
+      "float32VsDoubleError": 5.713947764940386e-8,
+      "float32VsExactError": 5.6981558083091244e-8,
+      "endpointFloat32Error": 5.258490753945466e-9,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    },
+    {
+      "id": "curated/gh-like-slow/row-143/partial-red",
+      "memberId": "gh-like-slow",
+      "row": 143,
+      "initialState": [
+        0,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "previousRgb555": [
+        0,
+        15,
+        15
+      ],
+      "currentRgb555": [
+        31,
+        15,
+        15
+      ],
+      "activationSeconds": 0.015546798706054688,
+      "exactAverageXyz": [
+        0.30540928838916837,
+        0.36560997366905207,
+        0.4150457257039651
+      ],
+      "runtimeAverageXyz": [
+        0.30540928775784404,
+        0.36560997366905224,
+        0.4150457216226109
+      ],
+      "futureShaderFloat32AverageXyz": [
+        0.30540931224823,
+        0.3656099736690521,
+        0.4150457978248596
+      ],
+      "runtimeEndpoint": [
+        0.032312398446967316,
+        0.4838709677419355,
+        0.4838709677419355
+      ],
+      "futureShaderFloat32Endpoint": [
+        0.03231239318847656,
+        0.4838709533214569,
+        0.4838709533214569
+      ],
+      "quadratureError": 4.081354199048093e-9,
+      "float32VsDoubleError": 7.620224873328141e-8,
+      "float32VsExactError": 7.212089453423332e-8,
+      "endpointFloat32Error": 1.4420478589016739e-8,
+      "segmentCount": 2,
+      "futureShaderSampleCount": 66
+    }
+  ],
+  "limits": "The float32 path is a future-Shader arithmetic contract, not compiled GPU readback. Actual GPU validation remains WS8/WS9."
+}

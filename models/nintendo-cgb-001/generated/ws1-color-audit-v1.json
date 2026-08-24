@@ -1,0 +1,892 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws1-color-audit-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "evidenceIds": [
+    "CGB-HCS-REFLECTANCE-2026"
+  ],
+  "rawSourceAudit": {
+    "expectedSheetNames": [
+      "R",
+      "G",
+      "B",
+      "Y",
+      "C",
+      "M",
+      "Greyscale",
+      "Summary"
+    ],
+    "sheetCount": 8,
+    "seriesPatchCounts": {
+      "R": 31,
+      "G": 33,
+      "B": 32,
+      "Y": 32,
+      "C": 32,
+      "M": 32,
+      "Greyscale": 32
+    },
+    "invalidWavelengthPolicy": "The default source-recorded reference preserves 380-730 nm exactly as accepted by the user; an independently reported 440-700 nm sensitivity path exposes the source author's invalid-<440-nm warning and the instrument's upper-range concern.",
+    "recordedIntegrationRangeNm": [
+      380,
+      730
+    ],
+    "authorUsableSensitivityRangeNm": [
+      440,
+      700
+    ],
+    "negativeReflectancePresent": true,
+    "negativeReflectanceSampleCount": 260,
+    "negativeReflectanceExamples": [
+      {
+        "sheet": "R",
+        "sourceReading": 1,
+        "wavelengthNm": 380,
+        "reflectance": -0.0651642
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 1,
+        "wavelengthNm": 390,
+        "reflectance": -0.0654681
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 1,
+        "wavelengthNm": 400,
+        "reflectance": -0.0657987
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 1,
+        "wavelengthNm": 410,
+        "reflectance": -0.066157
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 1,
+        "wavelengthNm": 420,
+        "reflectance": -0.0664271
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 2,
+        "wavelengthNm": 380,
+        "reflectance": -0.0689263
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 2,
+        "wavelengthNm": 390,
+        "reflectance": -0.0692352
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 2,
+        "wavelengthNm": 400,
+        "reflectance": -0.0695713
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 2,
+        "wavelengthNm": 410,
+        "reflectance": -0.0699355
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 2,
+        "wavelengthNm": 420,
+        "reflectance": -0.0702062
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 3,
+        "wavelengthNm": 380,
+        "reflectance": -0.00270421
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 3,
+        "wavelengthNm": 390,
+        "reflectance": -0.00293013
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 3,
+        "wavelengthNm": 400,
+        "reflectance": -0.003176
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 3,
+        "wavelengthNm": 410,
+        "reflectance": -0.00344241
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 3,
+        "wavelengthNm": 420,
+        "reflectance": -0.00364737
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 4,
+        "wavelengthNm": 380,
+        "reflectance": -0.034468
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 4,
+        "wavelengthNm": 390,
+        "reflectance": -0.0347413
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 4,
+        "wavelengthNm": 400,
+        "reflectance": -0.0350387
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 4,
+        "wavelengthNm": 410,
+        "reflectance": -0.035361
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 4,
+        "wavelengthNm": 420,
+        "reflectance": -0.0356039
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 5,
+        "wavelengthNm": 380,
+        "reflectance": -0.0255306
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 5,
+        "wavelengthNm": 390,
+        "reflectance": -0.0257987
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 5,
+        "wavelengthNm": 400,
+        "reflectance": -0.0260905
+      },
+      {
+        "sheet": "R",
+        "sourceReading": 5,
+        "wavelengthNm": 410,
+        "reflectance": -0.0264067
+      }
+    ],
+    "blackDriftPresent": true,
+    "blackPointsD65RecordedRange": {
+      "R": [
+        0.161114892454,
+        0.166600364339,
+        0.170945310847
+      ],
+      "G": [
+        0.167986046255,
+        0.173617214691,
+        0.185918408602
+      ],
+      "B": [
+        0.174436971779,
+        0.17994898443,
+        0.195876003495
+      ],
+      "Y": [
+        0.177256675762,
+        0.182260640202,
+        0.204696056327
+      ],
+      "C": [
+        0.17216960711,
+        0.179585263661,
+        0.189470985332
+      ],
+      "M": [
+        0.178535768303,
+        0.184218387545,
+        0.202470779657
+      ],
+      "Greyscale": [
+        0.188246071356,
+        0.193211286606,
+        0.208209859857
+      ]
+    },
+    "blackPointComponentRanges": {
+      "X": {
+        "minimum": 0.161114892454,
+        "maximum": 0.188246071356,
+        "range": 0.027131178902
+      },
+      "Y": {
+        "minimum": 0.166600364339,
+        "maximum": 0.193211286606,
+        "range": 0.026610922267
+      },
+      "Z": {
+        "minimum": 0.170945310847,
+        "maximum": 0.208209859857,
+        "range": 0.037264549011
+      }
+    },
+    "xyzAdditivityFailureRecordedBySource": true,
+    "upstreamManualEditsPresent": true,
+    "txtCrossCheck": {
+      "rowCount": 37,
+      "blankSeparatorCount": 1,
+      "expectedComposition": "32 Greyscale readings followed by 5 Summary readings",
+      "greyscaleMismatchCount": 0,
+      "summaryMismatchCount": 0,
+      "pass": true
+    }
+  },
+  "colorMathRegression": {
+    "fixtureSource": "Sharma, Wu, and Dalal (2005) CIEDE2000 supplementary test data",
+    "tolerance": 0.00005,
+    "maximumDifference": 0.00004031984342,
+    "pass": true,
+    "referencePairs": [
+      {
+        "a": [
+          50,
+          2.6772,
+          -79.7751
+        ],
+        "b": [
+          50,
+          0,
+          -82.7485
+        ],
+        "expected": 2.0425,
+        "actual": 2.04245968015658,
+        "difference": 0.00004031984342
+      },
+      {
+        "a": [
+          50,
+          3.1571,
+          -77.2803
+        ],
+        "b": [
+          50,
+          0,
+          -82.7485
+        ],
+        "expected": 2.8615,
+        "actual": 2.86151017474749,
+        "difference": 0.00001017474749
+      },
+      {
+        "a": [
+          50,
+          2.8361,
+          -74.02
+        ],
+        "b": [
+          50,
+          0,
+          -82.7485
+        ],
+        "expected": 3.4412,
+        "actual": 3.44119059869071,
+        "difference": 0.00000940130929
+      },
+      {
+        "a": [
+          50,
+          -1.3802,
+          -84.2814
+        ],
+        "b": [
+          50,
+          0,
+          -82.7485
+        ],
+        "expected": 1,
+        "actual": 0.99999886475249,
+        "difference": 0.00000113524751
+      }
+    ]
+  },
+  "candidateSelection": {
+    "selectedCandidate": "runtime-monotonic-lut",
+    "comparisonToleranceDeltaE00": 1e-9,
+    "selectionPolicy": "finite and non-negative output, coordinate-wise luminance monotonicity, measured endpoint comparison, held-out gray improvement, and perceptual error",
+    "cornerComparisons": [
+      {
+        "series": "R",
+        "sourceReading": 31,
+        "runtimeDeltaE00": 0.03016037831782,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.35825794320734,
+        "runtimeNoWorse": true
+      },
+      {
+        "series": "G",
+        "sourceReading": 33,
+        "runtimeDeltaE00": 0.09191019265701,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.54798023710712,
+        "runtimeNoWorse": true
+      },
+      {
+        "series": "B",
+        "sourceReading": 32,
+        "runtimeDeltaE00": 0.03467509220329,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.3654377905723,
+        "runtimeNoWorse": true
+      },
+      {
+        "series": "Y",
+        "sourceReading": 32,
+        "runtimeDeltaE00": 0.04884636595493,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 1.81126789953206,
+        "runtimeNoWorse": true
+      },
+      {
+        "series": "C",
+        "sourceReading": 32,
+        "runtimeDeltaE00": 0.05328107577634,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.36282667252761,
+        "runtimeNoWorse": true
+      },
+      {
+        "series": "M",
+        "sourceReading": 32,
+        "runtimeDeltaE00": 0.08285164365119,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.40983393265512,
+        "runtimeNoWorse": true
+      },
+      {
+        "series": "Greyscale",
+        "sourceReading": 32,
+        "runtimeDeltaE00": 2e-14,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0,
+        "runtimeNoWorse": true
+      }
+    ],
+    "measuredPatchAggregate": {
+      "runtimeDeltaE00": {
+        "count": 224,
+        "minimum": 0,
+        "maximum": 0.60178778193297,
+        "mean": 0.07889159137652,
+        "standardDeviation": 0.13414213994234
+      },
+      "upstreamWhiteAndBlackAlignedDeltaE00": {
+        "count": 224,
+        "minimum": 0,
+        "maximum": 4.48388830006839,
+        "mean": 1.24329523526688,
+        "standardDeviation": 0.87526176053742
+      },
+      "runtimeNoWorse": true
+    },
+    "heldOutGray": {
+      "pairwiseMeanDeltaE00": 1.76944922798547,
+      "runtimeMeanDeltaE00": 0.01322510353743,
+      "improved": true
+    },
+    "pass": true
+  },
+  "upstreamParameterRegression": {
+    "tolerance": 0.000001,
+    "maximumDifference": 0,
+    "pass": true,
+    "comparisons": [
+      {
+        "field": "R.degree",
+        "expected": 3,
+        "actual": 3,
+        "difference": 0
+      },
+      {
+        "field": "R.rmse",
+        "expected": 0.08144119,
+        "actual": 0.08144119,
+        "difference": 0
+      },
+      {
+        "field": "R.coefficient.0",
+        "expected": 1.3748424203,
+        "actual": 1.3748424203,
+        "difference": 0
+      },
+      {
+        "field": "R.coefficient.1",
+        "expected": -4.2178569943,
+        "actual": -4.2178569943,
+        "difference": 0
+      },
+      {
+        "field": "R.coefficient.2",
+        "expected": 8.1988201894,
+        "actual": 8.1988201894,
+        "difference": 0
+      },
+      {
+        "field": "R.coefficient.3",
+        "expected": -5.5958230464,
+        "actual": -5.5958230464,
+        "difference": 0
+      },
+      {
+        "field": "matrix.R.0",
+        "expected": 0.40412446,
+        "actual": 0.40412446,
+        "difference": 0
+      },
+      {
+        "field": "matrix.R.1",
+        "expected": 0.273465686,
+        "actual": 0.273465686,
+        "difference": 0
+      },
+      {
+        "field": "matrix.R.2",
+        "expected": 0.202098205,
+        "actual": 0.202098205,
+        "difference": 0
+      },
+      {
+        "field": "G.degree",
+        "expected": 3,
+        "actual": 3,
+        "difference": 0
+      },
+      {
+        "field": "G.rmse",
+        "expected": 0.04695937,
+        "actual": 0.04695937,
+        "difference": 0
+      },
+      {
+        "field": "G.coefficient.0",
+        "expected": 1.4367789551,
+        "actual": 1.4367789551,
+        "difference": 0
+      },
+      {
+        "field": "G.coefficient.1",
+        "expected": -3.5303924918,
+        "actual": -3.5303924918,
+        "difference": 0
+      },
+      {
+        "field": "G.coefficient.2",
+        "expected": 5.8167692384,
+        "actual": 5.8167692384,
+        "difference": 0
+      },
+      {
+        "field": "G.coefficient.3",
+        "expected": -3.53003937,
+        "actual": -3.53003937,
+        "difference": 0
+      },
+      {
+        "field": "matrix.G.0",
+        "expected": 0.377494478,
+        "actual": 0.377494478,
+        "difference": 0
+      },
+      {
+        "field": "matrix.G.1",
+        "expected": 0.562442035,
+        "actual": 0.562442035,
+        "difference": 0
+      },
+      {
+        "field": "matrix.G.2",
+        "expected": 0.402783669,
+        "actual": 0.402783669,
+        "difference": 0
+      },
+      {
+        "field": "B.degree",
+        "expected": 3,
+        "actual": 3,
+        "difference": 0
+      },
+      {
+        "field": "B.rmse",
+        "expected": 0.11911794,
+        "actual": 0.11911794,
+        "difference": 0
+      },
+      {
+        "field": "B.coefficient.0",
+        "expected": 1.2427509369,
+        "actual": 1.2427509369,
+        "difference": 0
+      },
+      {
+        "field": "B.coefficient.1",
+        "expected": -2.3147239664,
+        "actual": -2.3147239664,
+        "difference": 0
+      },
+      {
+        "field": "B.coefficient.2",
+        "expected": 3.5072230209,
+        "actual": 3.5072230209,
+        "difference": 0
+      },
+      {
+        "field": "B.coefficient.3",
+        "expected": -2.4378295542,
+        "actual": -2.4378295542,
+        "difference": 0
+      },
+      {
+        "field": "matrix.B.0",
+        "expected": 0.14683339,
+        "actual": 0.14683339,
+        "difference": 0
+      },
+      {
+        "field": "matrix.B.1",
+        "expected": 0.206531164,
+        "actual": 0.206531164,
+        "difference": 0
+      },
+      {
+        "field": "matrix.B.2",
+        "expected": 0.559688377,
+        "actual": 0.559688377,
+        "difference": 0
+      },
+      {
+        "field": "secondary.yellow.k",
+        "expected": 0.946776,
+        "actual": 0.946776,
+        "difference": 0
+      },
+      {
+        "field": "secondary.cyan.k",
+        "expected": 0.969184,
+        "actual": 0.969184,
+        "difference": 0
+      },
+      {
+        "field": "secondary.magenta.k",
+        "expected": 0.897847,
+        "actual": 0.897847,
+        "difference": 0
+      },
+      {
+        "field": "secondary.gray.k",
+        "expected": 0.959289,
+        "actual": 0.959289,
+        "difference": 0
+      }
+    ]
+  },
+  "normalizationRepairs": {
+    "R": {
+      "sourcePatchCount": 31,
+      "mappingPolicy": "endpoint-preserving-uniform-source-index-resample-v1",
+      "adjustedCodeCount": 3,
+      "maximumLuminanceAdjustment": 0.00112698033424,
+      "adjustments": [
+        {
+          "index": 29,
+          "before": 0.1063976500559,
+          "after": 0.10527066972167
+        },
+        {
+          "index": 30,
+          "before": 0.1046066058881,
+          "after": 0.10527066972167
+        },
+        {
+          "index": 31,
+          "before": 0.104807753221,
+          "after": 0.10527066972167
+        }
+      ]
+    },
+    "G": {
+      "sourcePatchCount": 33,
+      "mappingPolicy": "endpoint-preserving-uniform-source-index-resample-v1",
+      "adjustedCodeCount": 3,
+      "maximumLuminanceAdjustment": 0.00175589280166,
+      "adjustments": [
+        {
+          "index": 29,
+          "before": 0.21481509203848,
+          "after": 0.21305919923683
+        },
+        {
+          "index": 30,
+          "before": 0.212987712693,
+          "after": 0.21305919923683
+        },
+        {
+          "index": 31,
+          "before": 0.211374792979,
+          "after": 0.21305919923683
+        }
+      ]
+    },
+    "B": {
+      "sourcePatchCount": 32,
+      "mappingPolicy": "identity-reading-minus-one",
+      "adjustedCodeCount": 13,
+      "maximumLuminanceAdjustment": 0.001381862592,
+      "adjustments": [
+        {
+          "index": 2,
+          "before": 0.005943124361,
+          "after": 0.004977880906
+        },
+        {
+          "index": 3,
+          "before": 0.004012637451,
+          "after": 0.004977880906
+        },
+        {
+          "index": 5,
+          "before": 0.015694059632,
+          "after": 0.014552326134
+        },
+        {
+          "index": 6,
+          "before": 0.013410592636,
+          "after": 0.014552326134
+        },
+        {
+          "index": 12,
+          "before": 0.042866087575,
+          "after": 0.0422985412195
+        },
+        {
+          "index": 13,
+          "before": 0.041730994864,
+          "after": 0.0422985412195
+        },
+        {
+          "index": 19,
+          "before": 0.064141377476,
+          "after": 0.062759514884
+        },
+        {
+          "index": 20,
+          "before": 0.061377652292,
+          "after": 0.062759514884
+        },
+        {
+          "index": 24,
+          "before": 0.071453024659,
+          "after": 0.071427751963
+        },
+        {
+          "index": 25,
+          "before": 0.071402479267,
+          "after": 0.071427751963
+        },
+        {
+          "index": 29,
+          "before": 0.080151350689,
+          "after": 0.07945332288967
+        },
+        {
+          "index": 30,
+          "before": 0.079047161258,
+          "after": 0.07945332288967
+        },
+        {
+          "index": 31,
+          "before": 0.079161456722,
+          "after": 0.07945332288967
+        }
+      ]
+    },
+    "Y": {
+      "sourcePatchCount": 32,
+      "mappingPolicy": "identity-reading-minus-one",
+      "adjustedCodeCount": 3,
+      "maximumLuminanceAdjustment": 0.00100246909767,
+      "adjustments": [
+        {
+          "index": 29,
+          "before": 0.298908786826,
+          "after": 0.29832377310867
+        },
+        {
+          "index": 30,
+          "before": 0.298741228489,
+          "after": 0.29832377310867
+        },
+        {
+          "index": 31,
+          "before": 0.297321304011,
+          "after": 0.29832377310867
+        }
+      ]
+    },
+    "C": {
+      "sourcePatchCount": 32,
+      "mappingPolicy": "identity-reading-minus-one",
+      "adjustedCodeCount": 2,
+      "maximumLuminanceAdjustment": 0.001009111967,
+      "adjustments": [
+        {
+          "index": 30,
+          "before": 0.288355436905,
+          "after": 0.287346324938
+        },
+        {
+          "index": 31,
+          "before": 0.286337212971,
+          "after": 0.287346324938
+        }
+      ]
+    },
+    "M": {
+      "sourcePatchCount": 32,
+      "mappingPolicy": "identity-reading-minus-one",
+      "adjustedCodeCount": 2,
+      "maximumLuminanceAdjustment": 0.0011798604115,
+      "adjustments": [
+        {
+          "index": 30,
+          "before": 0.169908660328,
+          "after": 0.1687287999165
+        },
+        {
+          "index": 31,
+          "before": 0.167548939505,
+          "after": 0.1687287999165
+        }
+      ]
+    },
+    "Greyscale": {
+      "sourcePatchCount": 32,
+      "mappingPolicy": "identity-reading-minus-one",
+      "adjustedCodeCount": 0,
+      "maximumLuminanceAdjustment": 0,
+      "adjustments": []
+    }
+  },
+  "interactionEvidence": {
+    "residualDefinition": "black-aligned measured Y/C/M/Greyscale ramps minus their primary, pair, and neutral lower-order components",
+    "endpointResidualEuclideanXyz": {
+      "RG": 0.04698037690977,
+      "GB": 0.00739843381224,
+      "BR": 0.04297645595025,
+      "RGB": 0.08606820133296
+    },
+    "additivityFailurePresent": true
+  },
+  "monotonicRuntimeProjection": {
+    "method": "weighted Dykstra projection onto the three axis-wise isotonic luminance cones; measured ramp axes receive greater weight and black-relative XYZ chromatic direction is retained per voxel",
+    "tolerance": 1e-12,
+    "maxIterations": 5000,
+    "measuredAxisWeight": 256,
+    "iterationCount": 1741,
+    "converged": true,
+    "maximumIterationChange": 9.9e-13,
+    "adjustedVoxelCount": 20074,
+    "maximumAbsoluteYAdjustment": 0.01474233922342,
+    "rootMeanSquareYAdjustment": 0.00181517483944,
+    "before": {
+      "violationCount": 15476,
+      "largestDrop": -0.0165500121075
+    },
+    "after": {
+      "violationCount": 0,
+      "largestDrop": 0
+    }
+  },
+  "shortWavelengthSensitivity": {
+    "recordedReferenceRangeNm": [
+      380,
+      730
+    ],
+    "authorUsableDiagnosticRangeNm": [
+      440,
+      700
+    ],
+    "defaultPolicy": "preserve source-recorded range because the user accepts the pinned spectra as reference; retain the author-usable range as a sensitivity report",
+    "fixtureDeltaE00": [
+      {
+        "id": "K",
+        "deltaE00": 8.20277214582871
+      },
+      {
+        "id": "R",
+        "deltaE00": 8.06864127538925
+      },
+      {
+        "id": "G",
+        "deltaE00": 4.09495958873014
+      },
+      {
+        "id": "B",
+        "deltaE00": 9.86701506825269
+      },
+      {
+        "id": "Y",
+        "deltaE00": 5.46452667123214
+      },
+      {
+        "id": "C",
+        "deltaE00": 7.67206716098829
+      },
+      {
+        "id": "M",
+        "deltaE00": 8.59921331027795
+      },
+      {
+        "id": "W",
+        "deltaE00": 9.58845944476179
+      },
+      {
+        "id": "gray-08",
+        "deltaE00": 7.98867780116495
+      },
+      {
+        "id": "gray-16",
+        "deltaE00": 7.71736831403368
+      },
+      {
+        "id": "gray-24",
+        "deltaE00": 8.83558956965473
+      },
+      {
+        "id": "mixed-07-19-29",
+        "deltaE00": 7.36840609985748
+      },
+      {
+        "id": "mixed-27-11-04",
+        "deltaE00": 9.19883806271442
+      }
+    ]
+  },
+  "lutValidation": {
+    "entryCount": 32768,
+    "componentCount": 98304,
+    "minimumComponent": 0.19217294790474,
+    "maximumComponent": 0.66460753468518,
+    "nonFiniteCount": 0,
+    "negativeComponentCount": 0,
+    "maximumAnalyticSeedIntegerGridDifference": 0.02366093433387,
+    "maximumCpuIntegerGridError": 0,
+    "maximumTrilinearIntegerGridError": 0,
+    "maximumFloat32PackingError": 2.979643e-8,
+    "monotonicLuminanceViolationCount": 0,
+    "largestMonotonicLuminanceDrop": 0,
+    "pass": true
+  },
+  "result": {
+    "pass": true
+  }
+}

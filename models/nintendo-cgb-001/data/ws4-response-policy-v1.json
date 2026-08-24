@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "policyId": "cgb001-ws4-response-policy-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "period-reconstructed",
+  "evidenceIds": [
+    "CGB-SHARP-HRTFT-1997",
+    "CGB-SHARP-REFLECTIVE-1999",
+    "CGB-TN-SEKIYA-2001",
+    "CGB-HCS-REFLECTANCE-2026",
+    "CGB-PRIOR-LIBRETRO"
+  ],
+  "familyAnchors": {
+    "sourceDefinition": "Sharp Table 2 labels only 'on and off' and 'gray scales'; no threshold, direction, gray pair, temperature, or waveform is supplied.",
+    "HCR": {
+      "classification": "manufacturer-family-bound",
+      "evidenceIds": ["CGB-SHARP-HRTFT-1997"],
+      "onAndOffMilliseconds": 50,
+      "grayScalesMilliseconds": 80
+    },
+    "GH": {
+      "classification": "manufacturer-family-bound",
+      "evidenceIds": ["CGB-SHARP-HRTFT-1997"],
+      "onAndOffMilliseconds": 80,
+      "grayScalesMilliseconds": 150
+    }
+  },
+  "runtimeResponseDefinition": {
+    "name": "project-equivalent 10-to-90 interval",
+    "classification": "period-reconstructed-conversion",
+    "equation": "t10to90 = ln(9) / rate",
+    "scope": "One common mathematical definition for all ensemble members and model candidates; it is not attributed to the Sharp source.",
+    "fullScaleReference": "code 0 to 31 and 31 to 0 use the on-and-off anchor symmetrically",
+    "grayReference": "adjacent middle transitions 15 to 16 and 16 to 15 use the gray-scales anchor symmetrically",
+    "uncertainty": "The original threshold definition and gray pair are unavailable, so these are compatibility anchors rather than reproduced source waveforms."
+  },
+  "state": {
+    "coordinate": "per-channel continuous source-command coordinate",
+    "range": [0, 1],
+    "codeMapping": "code5 / 31",
+    "units": "dimensionless; not volts and not final luminance",
+    "settledColor": "evaluate exact settled coordinates through the unchanged WS1 32-cubed D65 LUT",
+    "snapEpsilon": {
+      "value": 0.0000152587890625,
+      "equation": "1 / 65536",
+      "classification": "derived-runtime-numeric-threshold"
+    }
+  },
+  "modelCandidates": [
+    {
+      "id": "symmetric-first-order-rate-field",
+      "statesPerChannel": 1,
+      "directionSpecificParameters": 0,
+      "equation": "xNext = target + (x - target) * exp(-rate * dt)",
+      "scientificStatus": "smallest monotone candidate compatible with the four family scalar anchors"
+    },
+    {
+      "id": "asymmetric-first-order-rate-field",
+      "statesPerChannel": 1,
+      "directionSpecificParameters": 2,
+      "equation": "xNext = target + (x - target) * exp(-rateDirection * dt)",
+      "scientificStatus": "plausible but direction split is unidentifiable because the source reports only combined on-and-off values"
+    },
+    {
+      "id": "two-state-cascade",
+      "statesPerChannel": 2,
+      "directionSpecificParameters": 0,
+      "equation": "dHidden/dt = k(target-hidden); dOptical/dt = k(hidden-optical)",
+      "scientificStatus": "plausible delayed director/optical candidate, but an infinity of hidden-state fits share each scalar response time"
+    }
+  ],
+  "selection": {
+    "selectedCandidate": "symmetric-first-order-rate-field",
+    "equationId": "CGB-WS4-FIRST-ORDER-RATE-FIELD-V1",
+    "criteria": [
+      "causal and pixel-local",
+      "monotone, finite, and bounded without unsupported overshoot",
+      "matches every declared family compatibility anchor under one response definition",
+      "fewest state and direction parameters compatible with accepted evidence",
+      "future per-cell measurements can replace rates without changing the state or Shader interface"
+    ],
+    "rejectedFeatures": [
+      "direction asymmetry without a directional source",
+      "second hidden state without a waveform",
+      "overdrive or overshoot without CGB evidence",
+      "channel multipliers without per-channel response data"
+    ]
+  },
+  "rateField": {
+    "distance": "abs(toCode - fromCode) / 31",
+    "grayWeight": "clamp(((1 - distance) / (30 / 31))^2, 0, 1)",
+    "t10To90Milliseconds": "onOffMs + (grayMs - onOffMs) * grayWeight",
+    "identityCell": "uses grayMs as a replaceable table value; the exact state==target fixed point bypasses rate evaluation",
+    "classification": "period-reconstructed-continuous-reduction"
+  },
+  "members": [
+    {
+      "id": "hcr-like-fast",
+      "role": "fast",
+      "classification": "manufacturer-family-bound",
+      "familyInterpretation": "HCR-like endpoint; does not assert that the CGB is HCR",
+      "parameters": { "onAndOffT10To90Milliseconds": 50, "grayT10To90Milliseconds": 80 },
+      "evidenceIds": ["CGB-SHARP-HRTFT-1997"],
+      "uncertainty": "Source response definition and relationship to CGB are unknown."
+    },
+    {
+      "id": "mid-envelope-nominal",
+      "role": "nominal",
+      "classification": "period-reconstructed-mid-envelope",
+      "familyInterpretation": "arithmetic midpoint between the HCR-like and GH-like family bounds; not a measured typical CGB",
+      "parameters": { "onAndOffT10To90Milliseconds": 65, "grayT10To90Milliseconds": 115 },
+      "evidenceIds": ["CGB-SHARP-HRTFT-1997"],
+      "uncertainty": "Chosen only as a neutral period midpoint until CGB-specific data exists."
+    },
+    {
+      "id": "gh-like-slow",
+      "role": "slow",
+      "classification": "manufacturer-family-bound",
+      "familyInterpretation": "GH-like endpoint; does not assert that the CGB is GH",
+      "parameters": { "onAndOffT10To90Milliseconds": 80, "grayT10To90Milliseconds": 150 },
+      "evidenceIds": ["CGB-SHARP-HRTFT-1997"],
+      "uncertainty": "Source response definition and relationship to CGB are unknown."
+    }
+  ],
+  "heldNeutralDimensions": {
+    "channelMultipliers": { "r": 1, "g": 1, "b": 1, "classification": "unresolved-held-neutral" },
+    "referenceTemperatureC": { "value": 25, "units": "degrees Celsius", "classification": "generic-laboratory-reference-only", "runtimeCoefficientAvailable": false },
+    "directionAsymmetry": { "selected": false, "classification": "unresolved-held-symmetric" },
+    "overshoot": { "selected": false, "classification": "unsupported" },
+    "retention": { "selected": false, "classification": "separate-WS7-state" }
+  },
+  "specimenOverride": {
+    "status": "interface-frozen-no-measured-overrides",
+    "addressing": "ensembleMember/channel/fromCode/toCode",
+    "fields": ["ratePerSecond", "sourceWaveformId", "temperatureC", "responseDefinition", "uncertainty"],
+    "replacementRule": "A valid measured cell replaces only the addressed rate and provenance; invalid or absent cells retain the reconstructed rate.",
+    "shaderInterfaceChangesRequired": false,
+    "currentMeasuredCellCount": 0
+  }
+}

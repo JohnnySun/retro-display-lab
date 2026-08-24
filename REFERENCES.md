@@ -9,6 +9,7 @@ redistributed.
 
 - [Nintendo DMG-01](models/nintendo-dmg-01/REFERENCES.md)
 - [Nintendo GBA SP AGS-101 physics seed](models/nintendo-ags-101/REFERENCES.md)
+- [Nintendo CGB-001 period reconstruction](models/nintendo-cgb-001/REFERENCES.md)
 
 ## Target evidence maps
 

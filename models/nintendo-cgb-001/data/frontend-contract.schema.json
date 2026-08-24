@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/frontend-contract-v1.json",
+  "title": "CGB-001 frontend source contract v1",
+  "description": "Proves that the reconstruction receives exact uncorrected RGB555 codes and deterministic time/reset semantics.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contractId", "modelId", "classification", "evidenceIds", "core", "supportedContent", "raster", "colorCodes", "correctionPolicy", "timeSemantics", "stimuli", "validation"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "const": "cgb001-frontend-contract-v1" },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "const": "derived" },
+    "evidenceIds": { "type": "array", "minItems": 2, "contains": { "const": "CGB-NIN-PROG-1999" }, "items": { "type": "string", "pattern": "^CGB-" } },
+    "core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "repository", "commit", "sourceArchive", "sourceArchiveSha256", "build", "runtimeIdentity"],
+      "properties": {
+        "name": { "const": "Gambatte libretro" },
+        "repository": { "const": "https://github.com/libretro/gambatte-libretro" },
+        "commit": { "const": "3262c2aa4adae8dba4f6d51cdd931c15cb11569f" },
+        "sourceArchive": { "type": "string", "minLength": 1 },
+        "sourceArchiveSha256": { "$ref": "#/$defs/sha256" },
+        "build": { "type": "object", "additionalProperties": true, "required": ["makefile", "videoDefine"] },
+        "runtimeIdentity": { "type": "object", "additionalProperties": true, "required": ["name", "version", "requestedPixelFormatEnum", "geometry", "framesPerSecond"] }
+      }
+    },
+    "supportedContent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nativeCgb", "dmgThroughCgbRgb555Palette", "sgbBorders", "sgbColorization", "gbaEnhancedCgbMode", "postProcessedCoreOutput"],
+      "properties": {
+        "nativeCgb": { "const": "supported" },
+        "dmgThroughCgbRgb555Palette": { "type": "string", "minLength": 1 },
+        "sgbBorders": { "const": "out-of-scope" },
+        "sgbColorization": { "const": "out-of-scope" },
+        "gbaEnhancedCgbMode": { "type": "string", "minLength": 1 },
+        "postProcessedCoreOutput": { "const": "unsupported" }
+      }
+    },
+    "raster": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "orientation", "masterClockHz", "dotsPerFrame", "frameRateHz"],
+      "properties": {
+        "width": { "const": 160 },
+        "height": { "const": 144 },
+        "orientation": { "const": "top-left origin; rows delivered top to bottom; no rotation" },
+        "masterClockHz": { "const": 4194304 },
+        "dotsPerFrame": { "const": 70224 },
+        "frameRateHz": { "type": "number", "exclusiveMinimum": 59.72, "exclusiveMaximum": 59.74 }
+      }
+    },
+    "colorCodes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["logicalEncoding", "channelMinimum", "channelMaximum", "corePixelFormat", "packedRgb565", "integerRecovery", "normalizedTextureRecovery", "exhaustiveProof"],
+      "properties": {
+        "logicalEncoding": { "const": "CGB RGB555" },
+        "channelMinimum": { "const": 0 },
+        "channelMaximum": { "const": 31 },
+        "corePixelFormat": { "const": "RETRO_PIXEL_FORMAT_RGB565" },
+        "packedRgb565": { "const": "(R5 << 11) | (G5 << 6) | B5; RGB565 bit 5 is zero" },
+        "integerRecovery": { "$ref": "#/$defs/channelEquations" },
+        "normalizedTextureRecovery": { "$ref": "#/$defs/channelEquations" },
+        "exhaustiveProof": { "type": "object", "additionalProperties": true, "required": ["testedRgb555Codes", "uniqueRgb565Words", "status"], "properties": { "testedRgb555Codes": { "const": 32768 }, "uniqueRgb565Words": { "const": 32768 }, "status": { "const": "pass" } } }
+      }
+    },
+    "correctionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preAppliedColorCorrection", "preAppliedGhosting", "requiredCoreOptions", "mismatchAction"],
+      "properties": {
+        "preAppliedColorCorrection": { "const": false },
+        "preAppliedGhosting": { "const": false },
+        "requiredCoreOptions": { "type": "object", "minProperties": 6, "additionalProperties": { "type": "string" } },
+        "mismatchAction": { "const": "reject reference-preset activation" }
+      }
+    },
+    "timeSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["monotonic", "ordinaryFrame", "pause", "reset", "contentLoad", "saveStateLoad", "focusLoss", "fastForward", "rewind", "runAhead", "subframe", "failurePolicy"],
+      "properties": {
+        "monotonic": { "$ref": "#/$defs/nonempty" },
+        "ordinaryFrame": { "$ref": "#/$defs/nonempty" },
+        "pause": { "$ref": "#/$defs/nonempty" },
+        "reset": { "$ref": "#/$defs/nonempty" },
+        "contentLoad": { "$ref": "#/$defs/nonempty" },
+        "saveStateLoad": { "$ref": "#/$defs/nonempty" },
+        "focusLoss": { "$ref": "#/$defs/nonempty" },
+        "fastForward": { "$ref": "#/$defs/nonempty" },
+        "rewind": { "$ref": "#/$defs/nonempty" },
+        "runAhead": { "$ref": "#/$defs/nonempty" },
+        "subframe": { "$ref": "#/$defs/nonempty" },
+        "failurePolicy": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "stimuli": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "purpose", "rom", "sha256", "expectedFramebufferSha256"],
+        "properties": {
+          "id": { "$ref": "#/$defs/nonempty" },
+          "purpose": { "$ref": "#/$defs/nonempty" },
+          "rom": { "$ref": "#/$defs/nonempty" },
+          "sha256": { "$ref": "#/$defs/sha256" },
+          "expectedFramebufferSha256": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "$ref": "#/$defs/sha256" } }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "coreSmokeReport", "romDecoderReport", "negativeCases", "shaderImplemented"],
+      "properties": {
+        "status": { "const": "pass" },
+        "coreSmokeReport": { "$ref": "#/$defs/artifact" },
+        "romDecoderReport": { "$ref": "#/$defs/artifact" },
+        "negativeCases": { "type": "array", "minItems": 6, "items": { "type": "object", "additionalProperties": true, "required": ["caseId", "expected", "actual", "status"] } },
+        "shaderImplemented": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "channelEquations": { "type": "object", "additionalProperties": false, "required": ["r", "g", "b"], "properties": { "r": { "$ref": "#/$defs/nonempty" }, "g": { "$ref": "#/$defs/nonempty" }, "b": { "$ref": "#/$defs/nonempty" } } },
+    "artifact": { "type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": { "path": { "$ref": "#/$defs/nonempty" }, "sha256": { "$ref": "#/$defs/sha256" } } }
+  }
+}

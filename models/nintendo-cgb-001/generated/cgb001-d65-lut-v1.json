@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "artifactId": "cgb001-d65-lut-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "derived runtime artifact",
+  "evidenceIds": [
+    "CGB-HCS-REFLECTANCE-2026"
+  ],
+  "sourceRecord": "../data/hcs-source-v1.json",
+  "colorRecord": "../data/color-reference-v1.json",
+  "dimensions": [
+    32,
+    32,
+    32
+  ],
+  "axisOrder": "R fastest, then G, then B",
+  "domain": "continuous RGB555 code space normalized to 0..1",
+  "texelFormat": "little-endian R32G32B32A32_SFLOAT",
+  "channels": [
+    "X absolute relative reflectance",
+    "Y absolute relative reflectance",
+    "Z absolute relative reflectance",
+    "1"
+  ],
+  "interpolation": "trilinear; every integer RGB555 code is a texel center",
+  "byteLength": 524288,
+  "sha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+  "validation": {
+    "entryCount": 32768,
+    "componentCount": 98304,
+    "minimumComponent": 0.19217294790474,
+    "maximumComponent": 0.66460753468518,
+    "nonFiniteCount": 0,
+    "negativeComponentCount": 0,
+    "maximumAnalyticSeedIntegerGridDifference": 0.02366093433387,
+    "maximumCpuIntegerGridError": 0,
+    "maximumTrilinearIntegerGridError": 0,
+    "maximumFloat32PackingError": 2.979643e-8,
+    "monotonicLuminanceViolationCount": 0,
+    "largestMonotonicLuminanceDrop": 0,
+    "pass": true
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "cgb001-ws4-evidence-inventory-v1",
+  "snapshotDate": "2026-08-24",
+  "scope": "CGB-001 short-term HR-TFT optical response and the bounded family ensemble used when no authentic CGB waveform or GtG matrix is available.",
+  "classificationOrder": [
+    "cgb-primary-document",
+    "manufacturer-family-primary",
+    "period-primary-response-research",
+    "accepted-static-measurement-boundary",
+    "local-runtime-receipt",
+    "negative-evidence-record"
+  ],
+  "rules": [
+    "Sharp's 6.5-inch GH/HCR prototype values bound a period-family ensemble; they are not CGB measurements.",
+    "The source labels response only as on and off or gray scales. Direction, threshold definition, temperature, waveform, and the gray pair are not silently invented as source facts.",
+    "A common project-equivalent 10-to-90 definition may parameterize candidate equations only when that conversion is explicitly classified as period-reconstructed.",
+    "No channel multiplier, temperature coefficient, overshoot, overdrive, or hidden LC state is selected without transferable CGB evidence.",
+    "WS1 supplies settled fixed-angle color endpoints; WS4 may not edit, resample, or replace the WS1 LUT.",
+    "Short-term optical response remains separate from WS7 VCOM/residual-DC retention."
+  ],
+  "items": [
+    {
+      "itemId": "sharp-hr-tft-1997-response",
+      "evidenceId": "CGB-SHARP-HRTFT-1997",
+      "classification": "manufacturer-family-primary",
+      "title": "Development of HR-TFT (High Reflective-TFT)",
+      "authors": ["Kozo Nakamura", "Hisakazu Nakamura", "Naofumi Kimura"],
+      "published": "1997-12",
+      "url": "https://global.sharp/corporate/info/rd/tj1/pdf/7.pdf",
+      "identity": {
+        "displaySizeInches": 6.5,
+        "dotFormat": [640, 240],
+        "driveSystem": "active drive (a-Si)",
+        "modes": ["GH", "HCR"]
+      },
+      "conditions": {
+        "temperatureC": null,
+        "responseThresholdDefinition": null,
+        "directionSeparation": null,
+        "grayTransitionPair": null,
+        "measurementInstrument": null
+      },
+      "responseMilliseconds": {
+        "HCR": { "onAndOff": 50, "grayScales": 80 },
+        "GH": { "onAndOff": 80, "grayScales": 150 }
+      },
+      "claimsUsed": [
+        "period Sharp reflective active-matrix a-Si HR-TFT prototypes were not instantaneous",
+        "HCR is the faster family endpoint and GH is the slower family endpoint in the reported table",
+        "gray-scale response is slower than on-and-off response for both reported modes"
+      ],
+      "limits": "Different 6.5-inch prototype with no identified CGB relationship. The paper does not define the timing thresholds, separate rise/fall, name a gray pair, give temperature, publish waveforms, or provide a GtG matrix."
+    },
+    {
+      "itemId": "sharp-reflective-review-1999",
+      "evidenceId": "CGB-SHARP-REFLECTIVE-1999",
+      "classification": "manufacturer-family-primary",
+      "title": "Current Status and Trends of Reflective Liquid Crystal Displays",
+      "published": "1999",
+      "url": "https://www.jstage.jst.go.jp/article/isj/38/2/38_2_128/_pdf/-char/ja",
+      "claimsUsed": [
+        "period reflective HCR construction uses a single-polarizer reflective architecture",
+        "reflective optical endpoints depend on the complete LC, filter, and reflector path"
+      ],
+      "limits": "Architecture context only; it supplies no transferable CGB response waveform, direction split, GtG value, or temperature coefficient."
+    },
+    {
+      "itemId": "tn-overdrive-sekiya-nakamura-2001",
+      "evidenceId": "CGB-TN-SEKIYA-2001",
+      "classification": "period-primary-response-research",
+      "title": "Overdrive Method for Reducing Response Times of Liquid Crystal Displays",
+      "authors": ["Hajime Nakamura", "Kazuo Sekiya"],
+      "published": "2001-01-30",
+      "doi": "10.11485/itetr.25.5.0_43",
+      "url": "https://www.jstage.jst.go.jp/article/itetr/25.5/0/25.5_43/_article/-char/en",
+      "claimsUsed": [
+        "gray-to-gray nematic response can depend on transient director dynamics and addressing history",
+        "hydrodynamic flow and multiplexed addressing can be material when modeling an overdriven TN response",
+        "a richer recursive or multi-state candidate is scientifically plausible but needs waveform evidence"
+      ],
+      "limits": "Not a CGB or Sharp HR-TFT measurement. It supplies no transferable CGB milliseconds, state coefficients, overdrive behavior, or evidence that the CGB uses overdrive."
+    },
+    {
+      "itemId": "hcs-static-endpoint-boundary",
+      "evidenceId": "CGB-HCS-REFLECTANCE-2026",
+      "classification": "accepted-static-measurement-boundary",
+      "title": "Pinned HCS GBC reflectance measurement and WS1 color reduction",
+      "localPaths": [
+        "data/color-reference-v1.json",
+        "generated/cgb001-d65-lut-v1.json",
+        "generated/cgb001-d65-lut-v1.rgba32f"
+      ],
+      "claimsUsed": [
+        "settled code endpoints are evaluated through the accepted fixed-angle WS1 color model",
+        "all response members must settle to byte-identical WS1 model-space color"
+      ],
+      "limits": "The HCS source contains static patch readings and no temporal waveform, GtG matrix, temperature sweep, or scan-synchronized optical capture."
+    },
+    {
+      "itemId": "ws3-drive-contract",
+      "evidenceId": "CGB-PRIOR-LIBRETRO",
+      "classification": "local-runtime-receipt",
+      "title": "CGB-001 WS3 bounded scan-drive contract",
+      "localPaths": [
+        "generated/ws3-runtime-constants-v1.json",
+        "generated/ws3-receipt-v1.json"
+      ],
+      "claimsUsed": [
+        "the response integrator uses the exact selected frame duration",
+        "response state is pixel-local and receives no future source frame"
+      ],
+      "limits": "WS3 does not measure LC response or identify a family mode."
+    },
+    {
+      "itemId": "exact-cgb-response-gap",
+      "evidenceId": "CGB-SHARP-HRTFT-1997",
+      "classification": "negative-evidence-record",
+      "title": "Authentic CGB temporal-response data gap",
+      "result": "No accepted source provides an original CGB waveform, threshold definition, per-channel 32x32 GtG matrix, direction split, overshoot, temperature coefficient, or specimen distribution.",
+      "claimsUsed": [],
+      "limits": "Absence from the accepted source set does not prove that future synchronized photodiode measurements or a panel specification cannot be obtained."
+    }
+  ]
+}

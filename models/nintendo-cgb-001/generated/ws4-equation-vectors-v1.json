@@ -1,0 +1,720 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws4-equation-vectors-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "cpu-versus-future-shader-float32-equation-receipt",
+  "sourceRateArtifact": "models/nintendo-cgb-001/generated/cgb001-ws4-gtg-rates-v1.r32f",
+  "coverage": {
+    "cells": 9216,
+    "timestepsSeconds": [
+      0,
+      0.0001087188720703125,
+      0.004185676574707031,
+      0.016742706298828125,
+      0.050228118896484375
+    ],
+    "cases": 46080,
+    "members": [
+      "hcr-like-fast",
+      "mid-envelope-nominal",
+      "gh-like-slow"
+    ],
+    "channels": [
+      "r",
+      "g",
+      "b"
+    ],
+    "fromCodeRange": [
+      0,
+      31
+    ],
+    "toCodeRange": [
+      0,
+      31
+    ]
+  },
+  "agreement": {
+    "tolerance": 2e-7,
+    "maximumAbsoluteError": 1.2460895926214022e-7,
+    "worstCase": {
+      "cellId": "gh-like-slow/r/28>11",
+      "seconds": 0.0001087188720703125,
+      "cpu": 0.9018521362895623,
+      "shader": 0.901852011680603,
+      "absoluteError": 1.2460895926214022e-7
+    },
+    "perMemberChannel": [
+      {
+        "memberId": "hcr-like-fast",
+        "channel": "r",
+        "cases": 5120,
+        "maximumAbsoluteError": 9.84820891503091e-8
+      },
+      {
+        "memberId": "hcr-like-fast",
+        "channel": "g",
+        "cases": 5120,
+        "maximumAbsoluteError": 9.84820891503091e-8
+      },
+      {
+        "memberId": "hcr-like-fast",
+        "channel": "b",
+        "cases": 5120,
+        "maximumAbsoluteError": 9.84820891503091e-8
+      },
+      {
+        "memberId": "mid-envelope-nominal",
+        "channel": "r",
+        "cases": 5120,
+        "maximumAbsoluteError": 1.0109733117324993e-7
+      },
+      {
+        "memberId": "mid-envelope-nominal",
+        "channel": "g",
+        "cases": 5120,
+        "maximumAbsoluteError": 1.0109733117324993e-7
+      },
+      {
+        "memberId": "mid-envelope-nominal",
+        "channel": "b",
+        "cases": 5120,
+        "maximumAbsoluteError": 1.0109733117324993e-7
+      },
+      {
+        "memberId": "gh-like-slow",
+        "channel": "r",
+        "cases": 5120,
+        "maximumAbsoluteError": 1.2460895926214022e-7
+      },
+      {
+        "memberId": "gh-like-slow",
+        "channel": "g",
+        "cases": 5120,
+        "maximumAbsoluteError": 1.2460895926214022e-7
+      },
+      {
+        "memberId": "gh-like-slow",
+        "channel": "b",
+        "cases": 5120,
+        "maximumAbsoluteError": 1.2460895926214022e-7
+      }
+    ],
+    "pass": true
+  },
+  "safety": {
+    "nonFiniteCount": 0,
+    "outOfBoundsCount": 0,
+    "nonMonotoneCount": 0,
+    "identityMismatchCount": 0,
+    "convergenceFailureCount": 0,
+    "maximumFramesToExactTarget": 34,
+    "snapEpsilon": 0.0000152587890625,
+    "futurePrefixCases": 4,
+    "futureGhostMaximumDifference": 0,
+    "pass": true
+  },
+  "exemplars": [
+    {
+      "cellId": "hcr-like-fast/r/0>31",
+      "seconds": 0,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0,
+      "futureShaderFloat32": 0,
+      "absoluteError": 0
+    },
+    {
+      "cellId": "hcr-like-fast/r/0>31",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.004766201084279831,
+      "futureShaderFloat32": 0.004766225814819336,
+      "absoluteError": 2.4730539505135596e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/0>31",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.1680121421313544,
+      "futureShaderFloat32": 0.16801214218139648,
+      "absoluteError": 5.0042081589651843e-11
+    },
+    {
+      "cellId": "hcr-like-fast/r/0>31",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.5208539053003898,
+      "futureShaderFloat32": 0.5208538770675659,
+      "absoluteError": 2.8232823856555456e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/0>31",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.8899971699841208,
+      "futureShaderFloat32": 0.8899971842765808,
+      "absoluteError": 1.4292459993292539e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/7>24",
+      "seconds": 0,
+      "packedRatePerSecond": 38.86600112915039,
+      "cpu": 0.22580645161290322,
+      "futureShaderFloat32": 0.22580644488334656,
+      "absoluteError": 6.729556661921876e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/7>24",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 38.86600112915039,
+      "cpu": 0.22811875491279876,
+      "futureShaderFloat32": 0.22811877727508545,
+      "absoluteError": 2.2362286689059374e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/7>24",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 38.86600112915039,
+      "cpu": 0.30813982763074194,
+      "futureShaderFloat32": 0.308139830827713,
+      "absoluteError": 3.1969710767576487e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/7>24",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 38.86600112915039,
+      "cpu": 0.4881170143246367,
+      "futureShaderFloat32": 0.4881170094013214,
+      "absoluteError": 4.923315310989551e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/7>24",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 38.86600112915039,
+      "cpu": 0.696341104284778,
+      "futureShaderFloat32": 0.6963410973548889,
+      "absoluteError": 6.929889106999099e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/15>16",
+      "seconds": 0,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.4838709677419355,
+      "futureShaderFloat32": 0.4838709533214569,
+      "absoluteError": 1.4420478589016739e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/15>16",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.48396714656670947,
+      "futureShaderFloat32": 0.483967125415802,
+      "absoluteError": 2.1150907469902336e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/15>16",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.48737416118893845,
+      "futureShaderFloat32": 0.4873741567134857,
+      "absoluteError": 4.475452730634544e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/15>16",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.4957618579554192,
+      "futureShaderFloat32": 0.49576184153556824,
+      "absoluteError": 1.6419850978888206e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/15>16",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.5080097857350743,
+      "futureShaderFloat32": 0.5080097913742065,
+      "absoluteError": 5.6391322722504356e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/16>15",
+      "seconds": 0,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.5161290322580645,
+      "futureShaderFloat32": 0.5161290168762207,
+      "absoluteError": 1.5381843798678574e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/16>15",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.5160328534332905,
+      "futureShaderFloat32": 0.5160328149795532,
+      "absoluteError": 3.845373730548829e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/16>15",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.5126258388110615,
+      "futureShaderFloat32": 0.5126258134841919,
+      "absoluteError": 2.5326869601549618e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/16>15",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.5042381420445807,
+      "futureShaderFloat32": 0.5042381286621094,
+      "absoluteError": 1.3382471353295955e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/16>15",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.4919902142649258,
+      "futureShaderFloat32": 0.49199020862579346,
+      "absoluteError": 5.639132327761587e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/31>0",
+      "seconds": 0,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 1,
+      "futureShaderFloat32": 1,
+      "absoluteError": 0
+    },
+    {
+      "cellId": "hcr-like-fast/r/31>0",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.9952337989157202,
+      "futureShaderFloat32": 0.9952337741851807,
+      "absoluteError": 2.4730539505135596e-8
+    },
+    {
+      "cellId": "hcr-like-fast/r/31>0",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.8319878578686456,
+      "futureShaderFloat32": 0.8319878578186035,
+      "absoluteError": 5.0042081589651843e-11
+    },
+    {
+      "cellId": "hcr-like-fast/r/31>0",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.47914609469961017,
+      "futureShaderFloat32": 0.4791460931301117,
+      "absoluteError": 1.5694984756287056e-9
+    },
+    {
+      "cellId": "hcr-like-fast/r/31>0",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 43.94449234008789,
+      "cpu": 0.11000283001587921,
+      "futureShaderFloat32": 0.11000283062458038,
+      "absoluteError": 6.087011727995417e-10
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/0>31",
+      "seconds": 0,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0,
+      "futureShaderFloat32": 0,
+      "absoluteError": 0
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/0>31",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.003668328720375591,
+      "futureShaderFloat32": 0.0036683082580566406,
+      "absoluteError": 2.0462318950364988e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/0>31",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.13193643133506405,
+      "futureShaderFloat32": 0.1319364309310913,
+      "absoluteError": 4.039727441451646e-10
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/0>31",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.4321859694397834,
+      "futureShaderFloat32": 0.43218594789505005,
+      "absoluteError": 2.154473333071394e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/0>31",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.8169295036878399,
+      "futureShaderFloat32": 0.8169295191764832,
+      "absoluteError": 1.5488643256844625e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/7>24",
+      "seconds": 0,
+      "packedRatePerSecond": 28.95317840576172,
+      "cpu": 0.22580645161290322,
+      "futureShaderFloat32": 0.22580644488334656,
+      "absoluteError": 6.729556661921876e-9
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/7>24",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 28.95317840576172,
+      "cpu": 0.22752992691645713,
+      "futureShaderFloat32": 0.22752994298934937,
+      "absoluteError": 1.6072892239371583e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/7>24",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 28.95317840576172,
+      "cpu": 0.28839560750975796,
+      "futureShaderFloat32": 0.28839564323425293,
+      "absoluteError": 3.572449497335484e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/7>24",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 28.95317840576172,
+      "cpu": 0.43647027036405506,
+      "futureShaderFloat32": 0.43647029995918274,
+      "absoluteError": 2.9595127681858457e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/7>24",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 28.95317840576172,
+      "cpu": 0.6461055223266003,
+      "futureShaderFloat32": 0.6461055278778076,
+      "absoluteError": 5.551207271636827e-9
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/15>16",
+      "seconds": 0,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.4838709677419355,
+      "futureShaderFloat32": 0.4838709533214569,
+      "absoluteError": 1.4420478589016739e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/15>16",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.48393790514532237,
+      "futureShaderFloat32": 0.4839378893375397,
+      "absoluteError": 1.5807782693944006e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/15>16",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.48635027544526566,
+      "futureShaderFloat32": 0.48635026812553406,
+      "absoluteError": 7.319731598620649e-9
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/15>16",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.49270232050528384,
+      "futureShaderFloat32": 0.49270230531692505,
+      "absoluteError": 1.5188358792883605e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/15>16",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.5037736157738348,
+      "futureShaderFloat32": 0.5037736296653748,
+      "absoluteError": 1.3891539918375884e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/16>15",
+      "seconds": 0,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.5161290322580645,
+      "futureShaderFloat32": 0.5161290168762207,
+      "absoluteError": 1.5381843798678574e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/16>15",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.5160620948546777,
+      "futureShaderFloat32": 0.5160620808601379,
+      "absoluteError": 1.3994539749262458e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/16>15",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.5136497245547343,
+      "futureShaderFloat32": 0.5136497020721436,
+      "absoluteError": 2.2482590789074663e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/16>15",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.5072976794947162,
+      "futureShaderFloat32": 0.5072976350784302,
+      "absoluteError": 4.441628598250702e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/16>15",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 19.106300354003906,
+      "cpu": 0.4962263842261652,
+      "futureShaderFloat32": 0.49622637033462524,
+      "absoluteError": 1.3891539973887035e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/31>0",
+      "seconds": 0,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 1,
+      "futureShaderFloat32": 1,
+      "absoluteError": 0
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/31>0",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.9963316712796244,
+      "futureShaderFloat32": 0.9963316917419434,
+      "absoluteError": 2.0462318950364988e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/31>0",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.868063568664936,
+      "futureShaderFloat32": 0.8680635690689087,
+      "absoluteError": 4.039727441451646e-10
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/31>0",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.5678140305602166,
+      "futureShaderFloat32": 0.56781405210495,
+      "absoluteError": 2.154473333071394e-8
+    },
+    {
+      "cellId": "mid-envelope-nominal/r/31>0",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 33.8034553527832,
+      "cpu": 0.18307049631216016,
+      "futureShaderFloat32": 0.18307049572467804,
+      "absoluteError": 5.874821185081203e-10
+    },
+    {
+      "cellId": "gh-like-slow/r/0>31",
+      "seconds": 0,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0,
+      "futureShaderFloat32": 0,
+      "absoluteError": 0
+    },
+    {
+      "cellId": "gh-like-slow/r/0>31",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.0029815435679925173,
+      "futureShaderFloat32": 0.00298154354095459,
+      "absoluteError": 2.7037927452511212e-11
+    },
+    {
+      "cellId": "gh-like-slow/r/0>31",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.10859899685709162,
+      "futureShaderFloat32": 0.10859900712966919,
+      "absoluteError": 1.0272577566361463e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/0>31",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.36861759661799576,
+      "futureShaderFloat32": 0.36861759424209595,
+      "absoluteError": 2.375899810225235e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/0>31",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.7483033577873017,
+      "futureShaderFloat32": 0.7483033537864685,
+      "absoluteError": 4.000833220274558e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/7>24",
+      "seconds": 0,
+      "packedRatePerSecond": 23.069320678710938,
+      "cpu": 0.22580645161290322,
+      "futureShaderFloat32": 0.22580644488334656,
+      "absoluteError": 6.729556661921876e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/7>24",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 23.069320678710938,
+      "cpu": 0.22718012177495384,
+      "futureShaderFloat32": 0.22718018293380737,
+      "absoluteError": 6.115885353707995e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/7>24",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 23.069320678710938,
+      "cpu": 0.2762828684441298,
+      "futureShaderFloat32": 0.2762829065322876,
+      "absoluteError": 3.808815779438035e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/7>24",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 23.069320678710938,
+      "cpu": 0.4015066852972873,
+      "futureShaderFloat32": 0.4015067219734192,
+      "absoluteError": 3.6676131909274545e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/7>24",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 23.069320678710938,
+      "cpu": 0.60206306102469,
+      "futureShaderFloat32": 0.6020630598068237,
+      "absoluteError": 1.217866252289923e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/15>16",
+      "seconds": 0,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.4838709677419355,
+      "futureShaderFloat32": 0.4838709533214569,
+      "absoluteError": 1.4420478589016739e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/15>16",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.48392229885289645,
+      "futureShaderFloat32": 0.4839222729206085,
+      "absoluteError": 2.593228792813207e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/15>16",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.4857893773883034,
+      "futureShaderFloat32": 0.48578935861587524,
+      "absoluteError": 1.8772428167501687e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/15>16",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.4908868076937367,
+      "futureShaderFloat32": 0.4908868074417114,
+      "absoluteError": 2.5202528952661396e-10
+    },
+    {
+      "cellId": "gh-like-slow/r/15>16",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.5006727063758007,
+      "futureShaderFloat32": 0.5006726980209351,
+      "absoluteError": 8.354865688176005e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/16>15",
+      "seconds": 0,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.5161290322580645,
+      "futureShaderFloat32": 0.5161290168762207,
+      "absoluteError": 1.5381843798678574e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/16>15",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.5160777011471036,
+      "futureShaderFloat32": 0.5160776972770691,
+      "absoluteError": 3.870034515074394e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/16>15",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.5142106226116966,
+      "futureShaderFloat32": 0.51421058177948,
+      "absoluteError": 4.083221660788894e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/16>15",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.5091131923062633,
+      "futureShaderFloat32": 0.5091131925582886,
+      "absoluteError": 2.5202528952661396e-10
+    },
+    {
+      "cellId": "gh-like-slow/r/16>15",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 14.648163795471191,
+      "cpu": 0.4993272936241993,
+      "futureShaderFloat32": 0.49932727217674255,
+      "absoluteError": 2.144745675503046e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/31>0",
+      "seconds": 0,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 1,
+      "futureShaderFloat32": 1,
+      "absoluteError": 0
+    },
+    {
+      "cellId": "gh-like-slow/r/31>0",
+      "seconds": 0.0001087188720703125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.9970184564320075,
+      "futureShaderFloat32": 0.9970184564590454,
+      "absoluteError": 2.7037927452511212e-11
+    },
+    {
+      "cellId": "gh-like-slow/r/31>0",
+      "seconds": 0.004185676574707031,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.8914010031429084,
+      "futureShaderFloat32": 0.8914009928703308,
+      "absoluteError": 1.0272577566361463e-8
+    },
+    {
+      "cellId": "gh-like-slow/r/31>0",
+      "seconds": 0.016742706298828125,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.6313824033820042,
+      "futureShaderFloat32": 0.631382405757904,
+      "absoluteError": 2.375899810225235e-9
+    },
+    {
+      "cellId": "gh-like-slow/r/31>0",
+      "seconds": 0.050228118896484375,
+      "packedRatePerSecond": 27.465307235717773,
+      "cpu": 0.25169664221269833,
+      "futureShaderFloat32": 0.2516966462135315,
+      "absoluteError": 4.0008331647634066e-9
+    }
+  ],
+  "actualGpuReadback": false,
+  "limits": "Validates an independent future-Shader float32 transcription against CPU double precision using packed float32 rates. Actual GPU compilation/readback remains an WS8/WS9 gate."
+}

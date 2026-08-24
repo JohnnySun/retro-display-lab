@@ -2,11 +2,11 @@
 
 **English** | [繁體中文](README.zh-tw.md) | [简体中文](README.zh-cn.md)
 
-I built two handheld LCD shaders for RetroArch: one for the original Game Boy
-and one for the backlit GBA SP AGS-101.
+I built three handheld LCD shaders for RetroArch: one for the original Game Boy,
+one for the reflective Game Boy Color, and one for the backlit GBA SP AGS-101.
 
 The goal is not to add another filter that merely feels retro. It is to rebuild
-how those two displays produced an image, starting from real measurements,
+how those displays produced an image, starting from real measurements,
 period research, and the way each panel was driven.
 
 The short version is: **measure first, then calculate.**
@@ -104,6 +104,16 @@ reconstruction. Machine-readable decisions and implementation history live in
 [`reconstruction-v1.json`](models/nintendo-dmg-01/data/reconstruction-v1.json)
 and the [implementation to-do](models/nintendo-dmg-01/IMPLEMENTATION-TODO.md).
 
+## Game Boy Color CGB-001: reflective TFT color
+
+[`models/nintendo-cgb-001`](models/nintendo-cgb-001) reconstructs the reflective
+CGB-001 display at the frozen CIE D65, 45-degree illumination, normal-view
+condition. It retains the original spectral measurement files, evaluates every
+RGB555 code through a measured 3D color LUT, and models scan timing, continuous
+gray response, reflected-light exposure, residual-DC retention, and RGB stripe
+aperture. Its complete CPU and Vulkan/Mali-G76 release evidence is recorded in
+the [CGB-001 evidence map](models/nintendo-cgb-001/REFERENCES.md).
+
 ## GBA SP AGS-101: a completely different model
 
 The later GBA SP AGS-101 uses a backlit TFT LCD, not the same display technology
@@ -182,7 +192,7 @@ Nintendo trademarks, and game content belong to their respective owners.
 
 ## Download
 
-- Stable v0.6.0: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.6.0.zip)
+- Stable v0.8.0: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.0.zip)
 - Release notes: [GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - Latest development snapshot: [`main` as ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git: `git clone https://github.com/JohnnySun/retro-display-lab.git`
@@ -206,6 +216,12 @@ For GBA content on the same device, use:
 
 ```text
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/ags101-period-reconstruction-v1.slangp
+```
+
+For Game Boy Color content, use:
+
+```text
+retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/cgb001-reference-d65-v1.slangp
 ```
 
 Those presets assume the measured Android-system profile is active and do not

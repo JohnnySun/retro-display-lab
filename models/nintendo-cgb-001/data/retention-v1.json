@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "retentionModelId": "cgb001-ws7-residual-dc-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "period-reconstructed",
+  "evidenceIds": [
+    "CGB-VCOM-LEE-2008",
+    "CGB-MIZUSAKI-2011",
+    "CGB-DRIVE-RECON-2026"
+  ],
+  "dependencies": {
+    "evidenceInventory": "ws7-evidence-inventory-v1.json",
+    "ws3DriveCandidates": "scan-candidates-v1.json",
+    "ws4OrdinaryResponse": "response-ensemble-v1.json",
+    "cpuReference": "../reference/residual-dc-retention.mjs"
+  },
+  "mechanism": "one signed normalized residual-DC adsorption/desorption state driven by source RGB555 and WS3 polarity history",
+  "state": {
+    "definition": "x in [-1,1], a normalized slow resultant residual-DC proxy; not volts and not an optical RGB endpoint",
+    "units": "dimensionless normalized residual DC",
+    "storage": "one independent float32 scalar per 160x144 source pixel; WS8 may place it in feedback alpha only if RGB continues to store WS4 state without loss",
+    "initialization": 0,
+    "pausePolicy": "freeze without advancing physical time",
+    "resetPolicy": "clear to zero on content load, reset, save-state load, rewind, run-ahead discontinuity, skipped physical frames, or non-monotonic FrameCount",
+    "ordinaryResponseIndependence": "WS4 RGB state remains untouched; retention cannot replace or retune GtG rates"
+  },
+  "referenceProfile": {
+    "resultantDcOffset": 0,
+    "opticalCoupling": 0,
+    "enabledStateStorage": true,
+    "reason": "no direct healthy CGB measurement selects a nonzero residual-DC or optical amplitude; the normal reference therefore remains physically neutral while the diagnostic state equation is testable"
+  },
+  "excitation": {
+    "equation": "u=clamp(deltaDC*(1+Wcode*(2*((R5+G5+B5)/(3*31))-1)+Wpolarity*polarity),-1,1)",
+    "inputs": {
+      "R5G5B5": "uncorrected integer source command before WS1 color and WS4 response",
+      "polarity": "WS3 frame count, x/y, parity phase, and inversion candidate",
+      "deltaDC": "normalized resultant imbalance; reference value zero; diagnostic fixture value is not a CGB voltage",
+      "Wcode": "normalized sensitivity coordinate with nominal diagnostic value 0.5",
+      "Wpolarity": "normalized sensitivity coordinate with nominal diagnostic value 0.25"
+    },
+    "prohibitions": [
+      "displayed luma, WS5 XYZ, host color, and prior optical frame are not inputs",
+      "deltaDC is never labeled volts",
+      "candidate topology is not silently selected as measured CGB behavior"
+    ]
+  },
+  "integration": {
+    "equation": "for u!=0: x(t)=A*u/(A+D)+(x0-A*u/(A+D))*exp(-(A+D)t); for u=0: x(t)=x0*exp(-D*t)",
+    "futureShaderContract": {
+      "precision": "one R32F-equivalent scalar or RGBA32F alpha",
+      "method": "closed-form exponential per constant source/polarity segment",
+      "actualGpuReadback": false,
+      "requiredInputs": ["source RGB555", "FrameCount", "source x/y", "parity phase", "inversion topology", "elapsed native-frame seconds"]
+    }
+  },
+  "opticalBridge": {
+    "equation": "ordinaryRgbState + opticalCoupling*residualDcState applied equally to RGB before WS1, then clamped to [0,1]",
+    "referenceCoupling": 0,
+    "status": "interface frozen but disabled; no CGB amplitude is claimed",
+    "channelPolicy": "one neutral scalar only; channel-specific retention requires direct evidence and a separate state design"
+  },
+  "bypass": {
+    "preservesStaticColor": true,
+    "preservesOrdinaryResponse": true
+  },
+  "candidates": [
+    {
+      "id": "low-rate",
+      "classification": "later-laboratory-cell-period-mechanism-bound-not-CGB",
+      "parameters": {
+        "adsorptionRatePerSecond": 0.001,
+        "desorptionRatePerSecond": 0.00038333333333333334,
+        "formationTimeConstantSecondsAtZeroDesorptionApproximation": 1000,
+        "recoveryTimeConstantSeconds": 2608.695652173913
+      },
+      "uncertainty": "Mizusaki 1 V/5 V endpoint combination used only as a low kinetic bound; not a CGB or aged-panel fit"
+    },
+    {
+      "id": "nominal-midpoint",
+      "classification": "later-laboratory-cell-arithmetic-midpoint-not-CGB",
+      "parameters": {
+        "adsorptionRatePerSecond": 0.0010583333333333334,
+        "desorptionRatePerSecond": 0.000425,
+        "formationTimeConstantSecondsAtZeroDesorptionApproximation": 944.8818897637794,
+        "recoveryTimeConstantSeconds": 2352.9411764705883
+      },
+      "uncertainty": "arithmetic midpoint of the cited rate ranges; no CGB typicality claim"
+    },
+    {
+      "id": "high-rate",
+      "classification": "later-laboratory-cell-period-mechanism-bound-not-CGB",
+      "parameters": {
+        "adsorptionRatePerSecond": 0.0011166666666666666,
+        "desorptionRatePerSecond": 0.00046666666666666666,
+        "formationTimeConstantSecondsAtZeroDesorptionApproximation": 895.5223880597015,
+        "recoveryTimeConstantSeconds": 2142.8571428571427
+      },
+      "uncertainty": "Mizusaki rate-range endpoint used only as a high kinetic bound; not a CGB or aged-panel fit"
+    }
+  ],
+  "validation": {
+    "status": "builder-enforced",
+    "protocols": [
+      "balanced-uniform-zero-offset",
+      "uniform-code-pair",
+      "isolated-window",
+      "checkerboard",
+      "unequal-duty",
+      "polarity-reversal",
+      "stress-duration-sweep",
+      "recovery-duration-sweep",
+      "identical-history-determinism",
+      "formation-zero-ordinary-response-isolation",
+      "pause-reset-and-discontinuity",
+      "all-WS3-topologies-and-parity-phases"
+    ],
+    "report": "../generated/ws7-retention-validation-v1.json",
+    "receipt": "../generated/ws7-receipt-v1.json"
+  },
+  "limits": [
+    "The rate ensemble comes from a later laboratory cell at 25 C, not an OEM CGB panel.",
+    "No CGB VCOM, feed-through, resultant DC, optical coupling, temperature coefficient, aging, or second recovery branch is selected.",
+    "The reference profile is zero amplitude; nonzero diagnostic stress proves equations and sensitivity only.",
+    "Actual Shader implementation and GPU readback remain WS8/WS9."
+  ]
+}

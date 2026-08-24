@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.local/schemas/cgb001/exposure-integration.schema.json",
+  "title": "Nintendo CGB-001 fixed-angle reflected exposure integration policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "policyId",
+    "modelId",
+    "classification",
+    "evidenceIds",
+    "dependencies",
+    "referenceCondition",
+    "observationInterval",
+    "stateAndRateContract",
+    "scanIntegration",
+    "opticalIntegration",
+    "outputModes",
+    "intervalHandling",
+    "validationContract",
+    "exclusions"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "policyId": { "const": "cgb001-ws5-reflected-exposure-policy-v1" },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "const": "measured-constrained-period-reconstructed-integration" },
+    "evidenceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^CGB-[A-Z0-9-]+$" }
+    },
+    "dependencies": { "type": "object" },
+    "referenceCondition": { "type": "object" },
+    "observationInterval": { "type": "object" },
+    "stateAndRateContract": { "type": "object" },
+    "scanIntegration": { "type": "object" },
+    "opticalIntegration": { "type": "object" },
+    "outputModes": { "type": "array", "minItems": 3 },
+    "intervalHandling": { "type": "array", "minItems": 6 },
+    "validationContract": { "type": "object" },
+    "exclusions": { "type": "array", "minItems": 1 }
+  }
+}

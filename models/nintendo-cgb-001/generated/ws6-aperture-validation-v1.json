@@ -1,0 +1,772 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws6-aperture-validation-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "equationId": "CGB-WS6-EQUAL-THIRD-RGB-FOOTPRINT-V1",
+  "generatedBy": "tools/build-cgb001-ws6.mjs",
+  "classification": "minimum-assumption period reconstruction with analytic host-footprint integration",
+  "sourceSampleCount": 101,
+  "acceptedGeometry": {
+    "order": "RGB",
+    "activeFill": 1,
+    "inactiveGapFraction": 0,
+    "surfaceGrainEnabled": false,
+    "decomposition": "unclipped linear sRGB D65 converted from WS5 absolute relative-reflectance XYZ"
+  },
+  "maxima": {
+    "matrixRoundTripAbsolute": 0,
+    "channelEnergyAbsolute": 4e-15,
+    "averageXyzAbsolute": 2e-15,
+    "coveragePartitionAbsolute": 2.8e-14,
+    "cropIntegrationAbsolute": 1.4e-14,
+    "futureShaderFloat32AverageAbsolute": 6.41511541e-7,
+    "bypassAbsolute": 0
+  },
+  "tolerances": {
+    "matrixRoundTrip": 5e-15,
+    "channelEnergy": 2e-13,
+    "averageXyz": 2e-13,
+    "coveragePartition": 5e-14,
+    "cropIntegration": 2e-13,
+    "futureShaderFloat32Average": 0.000002,
+    "bypass": 0
+  },
+  "scaleFixtures": [
+    {
+      "scale": 4,
+      "viewportOffset": -1.375,
+      "sourcePeriods": 20,
+      "hostSamples": 80,
+      "maximumChannelEnergyError": 0,
+      "maximumAverageXyzError": 0,
+      "maximumCoveragePartitionError": 1.1e-14,
+      "maximumFutureShaderFloat32AverageError": 4.104392e-8
+    },
+    {
+      "scale": 4,
+      "viewportOffset": -0.173,
+      "sourcePeriods": 20,
+      "hostSamples": 80,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 0,
+      "maximumCoveragePartitionError": 1.1e-14,
+      "maximumFutureShaderFloat32AverageError": 6.1776996e-8
+    },
+    {
+      "scale": 4,
+      "viewportOffset": 0,
+      "sourcePeriods": 20,
+      "hostSamples": 80,
+      "maximumChannelEnergyError": 0,
+      "maximumAverageXyzError": 0,
+      "maximumCoveragePartitionError": 1.1e-14,
+      "maximumFutureShaderFloat32AverageError": 3.9266998e-8
+    },
+    {
+      "scale": 4,
+      "viewportOffset": 0.271,
+      "sourcePeriods": 20,
+      "hostSamples": 80,
+      "maximumChannelEnergyError": 0,
+      "maximumAverageXyzError": 0,
+      "maximumCoveragePartitionError": 1.1e-14,
+      "maximumFutureShaderFloat32AverageError": 4.2405486e-8
+    },
+    {
+      "scale": 4,
+      "viewportOffset": 2.625,
+      "sourcePeriods": 20,
+      "hostSamples": 80,
+      "maximumChannelEnergyError": 0,
+      "maximumAverageXyzError": 0,
+      "maximumCoveragePartitionError": 1.1e-14,
+      "maximumFutureShaderFloat32AverageError": 4.104392e-8
+    },
+    {
+      "scale": 5,
+      "viewportOffset": -1.375,
+      "sourcePeriods": 20,
+      "hostSamples": 100,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 2.8e-14,
+      "maximumFutureShaderFloat32AverageError": 3.18618028e-7
+    },
+    {
+      "scale": 5,
+      "viewportOffset": -0.173,
+      "sourcePeriods": 20,
+      "hostSamples": 100,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 2.8e-14,
+      "maximumFutureShaderFloat32AverageError": 3.86424455e-7
+    },
+    {
+      "scale": 5,
+      "viewportOffset": 0,
+      "sourcePeriods": 20,
+      "hostSamples": 100,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 2.8e-14,
+      "maximumFutureShaderFloat32AverageError": 1.94938393e-7
+    },
+    {
+      "scale": 5,
+      "viewportOffset": 0.271,
+      "sourcePeriods": 20,
+      "hostSamples": 100,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 2.8e-14,
+      "maximumFutureShaderFloat32AverageError": 4.63640851e-7
+    },
+    {
+      "scale": 5,
+      "viewportOffset": 2.625,
+      "sourcePeriods": 20,
+      "hostSamples": 100,
+      "maximumChannelEnergyError": 4e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 2.8e-14,
+      "maximumFutureShaderFloat32AverageError": 6.41511541e-7
+    },
+    {
+      "scale": 6,
+      "viewportOffset": -1.375,
+      "sourcePeriods": 20,
+      "hostSamples": 120,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 2.3e-14,
+      "maximumFutureShaderFloat32AverageError": 1.04622207e-7
+    },
+    {
+      "scale": 6,
+      "viewportOffset": -0.173,
+      "sourcePeriods": 20,
+      "hostSamples": 120,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 2.3e-14,
+      "maximumFutureShaderFloat32AverageError": 6.40865824e-7
+    },
+    {
+      "scale": 6,
+      "viewportOffset": 0,
+      "sourcePeriods": 20,
+      "hostSamples": 120,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 2.3e-14,
+      "maximumFutureShaderFloat32AverageError": 6.11574856e-7
+    },
+    {
+      "scale": 6,
+      "viewportOffset": 0.271,
+      "sourcePeriods": 20,
+      "hostSamples": 120,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 2.3e-14,
+      "maximumFutureShaderFloat32AverageError": 1.63299799e-7
+    },
+    {
+      "scale": 6,
+      "viewportOffset": 2.625,
+      "sourcePeriods": 20,
+      "hostSamples": 120,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 2.3e-14,
+      "maximumFutureShaderFloat32AverageError": 3.90312102e-7
+    },
+    {
+      "scale": 3.5,
+      "viewportOffset": -1.375,
+      "sourcePeriods": 20,
+      "hostSamples": 70,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 7e-15,
+      "maximumFutureShaderFloat32AverageError": 2.32233868e-7
+    },
+    {
+      "scale": 3.5,
+      "viewportOffset": -0.173,
+      "sourcePeriods": 20,
+      "hostSamples": 70,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 7e-15,
+      "maximumFutureShaderFloat32AverageError": 3.09562e-7
+    },
+    {
+      "scale": 3.5,
+      "viewportOffset": 0,
+      "sourcePeriods": 20,
+      "hostSamples": 70,
+      "maximumChannelEnergyError": 1e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 7e-15,
+      "maximumFutureShaderFloat32AverageError": 3.94801026e-7
+    },
+    {
+      "scale": 3.5,
+      "viewportOffset": 0.271,
+      "sourcePeriods": 20,
+      "hostSamples": 70,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 7e-15,
+      "maximumFutureShaderFloat32AverageError": 2.45006292e-7
+    },
+    {
+      "scale": 3.5,
+      "viewportOffset": 2.625,
+      "sourcePeriods": 20,
+      "hostSamples": 70,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 7e-15,
+      "maximumFutureShaderFloat32AverageError": 5.60257145e-7
+    },
+    {
+      "scale": 4.25,
+      "viewportOffset": -1.375,
+      "sourcePeriods": 20,
+      "hostSamples": 85,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 1e-15,
+      "maximumCoveragePartitionError": 8e-15,
+      "maximumFutureShaderFloat32AverageError": 3.72320946e-7
+    },
+    {
+      "scale": 4.25,
+      "viewportOffset": -0.173,
+      "sourcePeriods": 20,
+      "hostSamples": 85,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 8e-15,
+      "maximumFutureShaderFloat32AverageError": 1.06706909e-7
+    },
+    {
+      "scale": 4.25,
+      "viewportOffset": 0,
+      "sourcePeriods": 20,
+      "hostSamples": 85,
+      "maximumChannelEnergyError": 3e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 8e-15,
+      "maximumFutureShaderFloat32AverageError": 3.09440131e-7
+    },
+    {
+      "scale": 4.25,
+      "viewportOffset": 0.271,
+      "sourcePeriods": 20,
+      "hostSamples": 85,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 8e-15,
+      "maximumFutureShaderFloat32AverageError": 2.66749338e-7
+    },
+    {
+      "scale": 4.25,
+      "viewportOffset": 2.625,
+      "sourcePeriods": 20,
+      "hostSamples": 85,
+      "maximumChannelEnergyError": 3e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 8e-15,
+      "maximumFutureShaderFloat32AverageError": 2.61855133e-7
+    },
+    {
+      "scale": 4.75,
+      "viewportOffset": -1.375,
+      "sourcePeriods": 20,
+      "hostSamples": 95,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 1e-14,
+      "maximumFutureShaderFloat32AverageError": 1.45352049e-7
+    },
+    {
+      "scale": 4.75,
+      "viewportOffset": -0.173,
+      "sourcePeriods": 20,
+      "hostSamples": 95,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 1e-14,
+      "maximumFutureShaderFloat32AverageError": 4.99267158e-7
+    },
+    {
+      "scale": 4.75,
+      "viewportOffset": 0,
+      "sourcePeriods": 20,
+      "hostSamples": 95,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 1e-14,
+      "maximumFutureShaderFloat32AverageError": 2.8777578e-7
+    },
+    {
+      "scale": 4.75,
+      "viewportOffset": 0.271,
+      "sourcePeriods": 20,
+      "hostSamples": 95,
+      "maximumChannelEnergyError": 2e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 1e-14,
+      "maximumFutureShaderFloat32AverageError": 3.17316137e-7
+    },
+    {
+      "scale": 4.75,
+      "viewportOffset": 2.625,
+      "sourcePeriods": 20,
+      "hostSamples": 95,
+      "maximumChannelEnergyError": 3e-15,
+      "maximumAverageXyzError": 2e-15,
+      "maximumCoveragePartitionError": 1e-14,
+      "maximumFutureShaderFloat32AverageError": 2.57451983e-7
+    }
+  ],
+  "cropFixtures": [
+    {
+      "scale": 4,
+      "start": -1.271,
+      "length": 1.75,
+      "hostSamples": 7,
+      "analyticCoverageLength": [
+        0.666666666666667,
+        0.479,
+        0.604333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        0.666666666666667,
+        0.479,
+        0.604333333333333
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 5,
+      "start": -1.271,
+      "length": 1.4,
+      "hostSamples": 7,
+      "analyticCoverageLength": [
+        0.462333333333334,
+        0.333333333333333,
+        0.604333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        0.462333333333333,
+        0.333333333333333,
+        0.604333333333333
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 6,
+      "start": -1.271,
+      "length": 1.166666666666667,
+      "hostSamples": 7,
+      "analyticCoverageLength": [
+        0.333333333333333,
+        0.333333333333333,
+        0.5
+      ],
+      "tiledFootprintCoverageLength": [
+        0.333333333333334,
+        0.333333333333333,
+        0.5
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 3.5,
+      "start": -1.271,
+      "length": 2,
+      "hostSamples": 7,
+      "analyticCoverageLength": [
+        0.666666666666667,
+        0.666666666666667,
+        0.666666666666667
+      ],
+      "tiledFootprintCoverageLength": [
+        0.666666666666666,
+        0.666666666666667,
+        0.666666666666667
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 4.25,
+      "start": -1.271,
+      "length": 1.647058823529412,
+      "hostSamples": 7,
+      "analyticCoverageLength": [
+        0.666666666666667,
+        0.376058823529412,
+        0.604333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        0.666666666666667,
+        0.376058823529412,
+        0.604333333333333
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 4.75,
+      "start": -1.271,
+      "length": 1.473684210526316,
+      "hostSamples": 7,
+      "analyticCoverageLength": [
+        0.536017543859649,
+        0.333333333333333,
+        0.604333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        0.536017543859649,
+        0.333333333333333,
+        0.604333333333333
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 4,
+      "start": -0.173,
+      "length": 3.25,
+      "hostSamples": 13,
+      "analyticCoverageLength": [
+        1.077,
+        1,
+        1.173
+      ],
+      "tiledFootprintCoverageLength": [
+        1.077,
+        1,
+        1.173
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 5,
+      "start": -0.173,
+      "length": 2.6,
+      "hostSamples": 13,
+      "analyticCoverageLength": [
+        1,
+        0.760333333333333,
+        0.839666666666667
+      ],
+      "tiledFootprintCoverageLength": [
+        1.000000000000001,
+        0.760333333333333,
+        0.839666666666667
+      ],
+      "maximumError": 1e-15
+    },
+    {
+      "scale": 6,
+      "start": -0.173,
+      "length": 2.166666666666667,
+      "hostSamples": 13,
+      "analyticCoverageLength": [
+        0.666666666666667,
+        0.666666666666667,
+        0.833333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        0.666666666666666,
+        0.666666666666666,
+        0.833333333333333
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 3.5,
+      "start": -0.173,
+      "length": 3.714285714285714,
+      "hostSamples": 13,
+      "analyticCoverageLength": [
+        1.333333333333333,
+        1.207952380952381,
+        1.173
+      ],
+      "tiledFootprintCoverageLength": [
+        1.333333333333333,
+        1.207952380952381,
+        1.172999999999999
+      ],
+      "maximumError": 1e-15
+    },
+    {
+      "scale": 4.25,
+      "start": -0.173,
+      "length": 3.058823529411764,
+      "hostSamples": 13,
+      "analyticCoverageLength": [
+        1,
+        1,
+        1.058823529411764
+      ],
+      "tiledFootprintCoverageLength": [
+        1,
+        1,
+        1.058823529411764
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 4.75,
+      "start": -0.173,
+      "length": 2.736842105263158,
+      "hostSamples": 13,
+      "analyticCoverageLength": [
+        1,
+        0.897175438596491,
+        0.839666666666667
+      ],
+      "tiledFootprintCoverageLength": [
+        0.999999999999999,
+        0.897175438596491,
+        0.839666666666666
+      ],
+      "maximumError": 1e-15
+    },
+    {
+      "scale": 4,
+      "start": 0.271,
+      "length": 5.75,
+      "hostSamples": 23,
+      "analyticCoverageLength": [
+        1.75,
+        2,
+        2
+      ],
+      "tiledFootprintCoverageLength": [
+        1.75,
+        2,
+        2
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 5,
+      "start": 0.271,
+      "length": 4.600000000000001,
+      "hostSamples": 23,
+      "analyticCoverageLength": [
+        1.395666666666667,
+        1.666666666666667,
+        1.537666666666667
+      ],
+      "tiledFootprintCoverageLength": [
+        1.395666666666666,
+        1.666666666666666,
+        1.537666666666667
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 6,
+      "start": 0.271,
+      "length": 3.833333333333333,
+      "hostSamples": 23,
+      "analyticCoverageLength": [
+        1.166666666666666,
+        1.333333333333333,
+        1.333333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        1.166666666666668,
+        1.333333333333334,
+        1.333333333333334
+      ],
+      "maximumError": 2e-15
+    },
+    {
+      "scale": 3.5,
+      "start": 0.271,
+      "length": 6.571428571428571,
+      "hostSamples": 23,
+      "analyticCoverageLength": [
+        2.062333333333334,
+        2.333333333333333,
+        2.175761904761905
+      ],
+      "tiledFootprintCoverageLength": [
+        2.062333333333335,
+        2.333333333333336,
+        2.175761904761906
+      ],
+      "maximumError": 3e-15
+    },
+    {
+      "scale": 4.25,
+      "start": 0.271,
+      "length": 5.411764705882353,
+      "hostSamples": 23,
+      "analyticCoverageLength": [
+        1.729,
+        2,
+        1.682764705882354
+      ],
+      "tiledFootprintCoverageLength": [
+        1.728999999999999,
+        1.999999999999998,
+        1.682764705882351
+      ],
+      "maximumError": 2e-15
+    },
+    {
+      "scale": 4.75,
+      "start": 0.271,
+      "length": 4.842105263157895,
+      "hostSamples": 23,
+      "analyticCoverageLength": [
+        1.508771929824561,
+        1.666666666666667,
+        1.666666666666667
+      ],
+      "tiledFootprintCoverageLength": [
+        1.508771929824562,
+        1.666666666666666,
+        1.666666666666668
+      ],
+      "maximumError": 1e-15
+    },
+    {
+      "scale": 4,
+      "start": 2.625,
+      "length": 10.25,
+      "hostSamples": 41,
+      "analyticCoverageLength": [
+        3.333333333333333,
+        3.375,
+        3.541666666666666
+      ],
+      "tiledFootprintCoverageLength": [
+        3.333333333333333,
+        3.375,
+        3.541666666666666
+      ],
+      "maximumError": 0
+    },
+    {
+      "scale": 5,
+      "start": 2.625,
+      "length": 8.200000000000001,
+      "hostSamples": 41,
+      "analyticCoverageLength": [
+        2.666666666666667,
+        2.708333333333333,
+        2.825000000000002
+      ],
+      "tiledFootprintCoverageLength": [
+        2.666666666666661,
+        2.708333333333319,
+        2.824999999999997
+      ],
+      "maximumError": 1.4e-14
+    },
+    {
+      "scale": 6,
+      "start": 2.625,
+      "length": 6.833333333333333,
+      "hostSamples": 41,
+      "analyticCoverageLength": [
+        2.333333333333333,
+        2.166666666666665,
+        2.333333333333334
+      ],
+      "tiledFootprintCoverageLength": [
+        2.33333333333333,
+        2.166666666666668,
+        2.333333333333334
+      ],
+      "maximumError": 3e-15
+    },
+    {
+      "scale": 3.5,
+      "start": 2.625,
+      "length": 11.714285714285714,
+      "hostSamples": 41,
+      "analyticCoverageLength": [
+        3.999999999999999,
+        3.714285714285714,
+        4
+      ],
+      "tiledFootprintCoverageLength": [
+        3.999999999999995,
+        3.714285714285707,
+        3.999999999999999
+      ],
+      "maximumError": 6e-15
+    },
+    {
+      "scale": 4.25,
+      "start": 2.625,
+      "length": 9.647058823529411,
+      "hostSamples": 41,
+      "analyticCoverageLength": [
+        3.272058823529411,
+        3.041666666666667,
+        3.333333333333333
+      ],
+      "tiledFootprintCoverageLength": [
+        3.272058823529402,
+        3.041666666666661,
+        3.333333333333321
+      ],
+      "maximumError": 1.2e-14
+    },
+    {
+      "scale": 4.75,
+      "start": 2.625,
+      "length": 8.631578947368421,
+      "hostSamples": 41,
+      "analyticCoverageLength": [
+        2.923245614035088,
+        2.708333333333333,
+        3
+      ],
+      "tiledFootprintCoverageLength": [
+        2.923245614035084,
+        2.708333333333333,
+        2.999999999999998
+      ],
+      "maximumError": 4e-15
+    }
+  ],
+  "invariants": {
+    "ws1LutSha256Before": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "ws1LutSha256After": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "ws4OrWs5StateChanged": false,
+    "secondMrsOrAngleGainApplied": false,
+    "coverLensOrGlareApplied": false,
+    "targetCompensationApplied": false,
+    "shaderImplemented": false,
+    "presetImplemented": false
+  },
+  "checks": {
+    "evidenceAuditedWithoutDerivativeImage": true,
+    "selectedRgbOrderAndEqualThirds": true,
+    "noUnsupportedGapNotchOrGrain": true,
+    "barePanelNoSecondAngleGain": true,
+    "matrixRoundTrip": true,
+    "channelEnergyConserved": true,
+    "averageXyzConserved": true,
+    "coveragePartitionsUnity": true,
+    "cropAndViewportPhaseStable": true,
+    "futureShaderFloat32AverageAgrees": true,
+    "bypassExact": true,
+    "ws1LutHashInvariant": true,
+    "shaderOrPresetCreated": false
+  },
+  "pass": true
+}

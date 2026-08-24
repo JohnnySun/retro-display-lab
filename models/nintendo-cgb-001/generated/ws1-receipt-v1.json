@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws1-receipt-v1",
+  "generatedBy": "tools/build-cgb001-ws1.mjs",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS1",
+  "completedOn": "2026-08-24",
+  "sourcePolicy": "verbatim raw reference retained with attribution; derived layers remain separate",
+  "trackedInputHashes": {
+    "models/nintendo-cgb-001/reference/upstream/README.md": "d84b15dca8dc99c799b508fe191d6b4cdb98b8c5c4049488ce06b58153e434fe",
+    "models/nintendo-cgb-001/reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.ods": "967af7247d940e15cd86ce28046fcf9996bb36086389d9967154188770a95bba",
+    "models/nintendo-cgb-001/reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.txt": "b985e02476d35beecfb6a6955cb8aecae052205008126a8cdad7fd7233cf2b37",
+    "models/nintendo-cgb-001/reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/report/GBC_illuminant_D65_params.csv": "1126ac8104f27c3a590a19c59ab605395cca9b9ca86bd5f52b00ff3a13ffa86c",
+    "models/nintendo-cgb-001/reference/upstream/cie/CIE_xyz_1931_2deg.csv": "fa663e3535a7e0763a745993a1f0a192eb0275ac46ad2d1befd7626841e713c1",
+    "models/nintendo-cgb-001/reference/upstream/cie/CIE_xyz_1931_2deg.csv_metadata.json": "03abcaecf4e63d77045ef57c4514b52c8bb1a46dd18e1f93a50044a0f4f481c8",
+    "models/nintendo-cgb-001/reference/upstream/cie/CIE_std_illum_D65.csv": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb",
+    "models/nintendo-cgb-001/reference/upstream/cie/CIE_std_illum_D65.csv_metadata_v2.json": "71994379b81c65db111f652e747a00b599b5456c2a8242e9a0d6f379f560a14e",
+    "models/nintendo-cgb-001/reference/color-reference.mjs": "2231f8ccb35992798093e0ca1b451b8b990f1334bc1b1ffea55d12d091ac84ce",
+    "models/nintendo-cgb-001/data/measurement-normalization.schema.json": "3394a01bc6985fc174a568e3a2634426b2d476894bf7c1556c94e893855d3a08",
+    "models/nintendo-cgb-001/data/color-model.schema.json": "50d9c4072caafd91e7fc3b382f13f22cb2aec56ce9528477c96ce7c833fdc8d5",
+    "tools/import-cgb001-hcs.mjs": "9b178d4464b88688fec87de38b7e294290b7b97dee2010892155752488dd1198",
+    "tools/build-cgb001-ws1.mjs": "90cfcbde0da91bac50b8f377c9fbf0c6f5d602f14a02dab563ad88b188bd5016"
+  },
+  "outputHashes": {
+    "models/nintendo-cgb-001/data/hcs-source-v1.json": "803829a1b02d9c2b0b664f632a211eb2b72cd9706645831f447fca954f79c9e1",
+    "models/nintendo-cgb-001/data/color-reference-v1.json": "c52ef610fbb7f39c258777959d2390b47bf60776b9b11736562a2082bf7d69e8",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "c58551ac09d2d79de9909e04173469e6c820e171870df6357a55c238fc6c8b1c",
+    "models/nintendo-cgb-001/generated/ws1-color-audit-v1.json": "f60856426cd9b3a7089bbbd5958de9d939b033b79ab555d7911c4540a55e2353",
+    "models/nintendo-cgb-001/generated/ws1-perceptual-v1.json": "33a877b68c99ddeb799d778c3c77f67abd36c834d3d702403d3896ea54775bc3",
+    "models/nintendo-cgb-001/generated/ws1-static-fixtures-v1.json": "b06fa0d56de34e6e8d03df48bdc0b17b51b8706af20874929d8457f8cdc80fbb",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f"
+  },
+  "gates": {
+    "rawOdsHashVerified": true,
+    "rawTxtHashVerified": true,
+    "txtOdsCrossCheck": true,
+    "upstreamParametersReproduced": true,
+    "colorMathRegression": true,
+    "candidateSelection": true,
+    "allLutEntriesFinite": true,
+    "allLutEntriesNonNegative": true,
+    "monotonicProjectionConverged": true,
+    "integerGridDeterministic": true,
+    "float32PackingWithinTolerance": true,
+    "monotonicLuminance": true,
+    "targetExposureNotBakedIn": true,
+    "shaderOrPresetCreated": false
+  },
+  "result": {
+    "status": "pass",
+    "ws1Complete": true,
+    "referenceV1ShaderOrPresetAllowed": false,
+    "nextEligibleWorkstreams": [
+      "WS2",
+      "WS3",
+      "WS6"
+    ]
+  }
+}

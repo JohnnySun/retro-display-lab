@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws5-quadrature-convergence-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "equationId": "CGB-WS5-REFLECTED-EXPOSURE-V1",
+  "classification": "analytic-cell-crossing-reference-versus-fixed-quadrature-convergence",
+  "coverage": {
+    "fixturesPerProfile": 126,
+    "profiles": 9,
+    "includesFastestMemberLastVisibleRow": true,
+    "fastestLastRowFixtureIds": [
+      "curated/hcr-like-fast/row-143/full-rise",
+      "curated/hcr-like-fast/row-143/full-fall",
+      "curated/hcr-like-fast/row-143/adjacent-gray-rise",
+      "curated/hcr-like-fast/row-143/adjacent-gray-fall",
+      "curated/hcr-like-fast/row-143/mixed-rgb",
+      "curated/hcr-like-fast/row-143/primary-exchange",
+      "curated/hcr-like-fast/row-143/partial-red"
+    ]
+  },
+  "selectedContract": {
+    "order": 2,
+    "panelsPerNativeFrame": 32,
+    "panelAllocation": "ceil(32 * segmentSeconds / frameSeconds) for each nonzero segment",
+    "maximumSamplesPerPixelFrame": 66,
+    "tolerance": 0.00005
+  },
+  "profiles": [
+    {
+      "panelsPerNativeFrame": 4,
+      "maximumSamplesPerPixelFrame": 10,
+      "maximumAbsoluteXyzError": 0.0033053561903002016,
+      "worstCase": "curated/hcr-like-fast/row-0/partial-red"
+    },
+    {
+      "panelsPerNativeFrame": 8,
+      "maximumSamplesPerPixelFrame": 18,
+      "maximumAbsoluteXyzError": 0.0005824916669714963,
+      "worstCase": "curated/gh-like-slow/row-1/mixed-rgb"
+    },
+    {
+      "panelsPerNativeFrame": 16,
+      "maximumSamplesPerPixelFrame": 34,
+      "maximumAbsoluteXyzError": 0.00011968950148638635,
+      "worstCase": "curated/gh-like-slow/row-0/mixed-rgb"
+    },
+    {
+      "panelsPerNativeFrame": 24,
+      "maximumSamplesPerPixelFrame": 50,
+      "maximumAbsoluteXyzError": 0.00006478757522210277,
+      "worstCase": "curated/hcr-like-fast/row-1/mixed-rgb"
+    },
+    {
+      "panelsPerNativeFrame": 32,
+      "maximumSamplesPerPixelFrame": 66,
+      "maximumAbsoluteXyzError": 0.000026201762790944993,
+      "worstCase": "curated/hcr-like-fast/row-1/primary-exchange"
+    },
+    {
+      "panelsPerNativeFrame": 48,
+      "maximumSamplesPerPixelFrame": 98,
+      "maximumAbsoluteXyzError": 0.000016673499919794832,
+      "worstCase": "curated/hcr-like-fast/row-1/mixed-rgb"
+    },
+    {
+      "panelsPerNativeFrame": 64,
+      "maximumSamplesPerPixelFrame": 130,
+      "maximumAbsoluteXyzError": 0.000007308436873798563,
+      "worstCase": "curated/mid-envelope-nominal/row-1/mixed-rgb"
+    },
+    {
+      "panelsPerNativeFrame": 128,
+      "maximumSamplesPerPixelFrame": 258,
+      "maximumAbsoluteXyzError": 0.0000019674431320226837,
+      "worstCase": "curated/mid-envelope-nominal/row-1/partial-red"
+    },
+    {
+      "panelsPerNativeFrame": 256,
+      "maximumSamplesPerPixelFrame": 514,
+      "maximumAbsoluteXyzError": 5.962335136722174e-7,
+      "worstCase": "curated/hcr-like-fast/row-72/mixed-rgb"
+    }
+  ],
+  "highDensityIndependentCrossCheck": {
+    "panelsPerNativeFrame": 256,
+    "maximumAbsoluteXyzError": 5.962335136722174e-7,
+    "tolerance": 0.000001,
+    "pass": true
+  },
+  "pass": true
+}

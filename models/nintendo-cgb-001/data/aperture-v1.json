@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "apertureModelId": "cgb001-ws6-equal-third-rgb-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "period-reconstructed",
+  "evidenceIds": [
+    "CGB-SHARP-HRTFT-1997",
+    "CGB-HCS-REFLECTANCE-2026",
+    "CGB-GBCC-SUBPIXEL",
+    "CGB-BGB-REALITY"
+  ],
+  "dependencies": {
+    "evidenceInventory": "ws6-evidence-inventory-v1.json",
+    "ws1Color": "color-reference-v1.json",
+    "ws5Exposure": "ws5-exposure-policy-v1.json",
+    "cpuReference": "../reference/rgb-aperture.mjs"
+  },
+  "subpixelOrder": "RGB",
+  "geometry": {
+    "coordinateSystem": "source logical pixel local x in [0,1), increasing left-to-right; y is uniform",
+    "periodSourcePixels": 1,
+    "stripeIntervals": {
+      "R": [0, 0.3333333333333333],
+      "G": [0.3333333333333333, 0.6666666666666666],
+      "B": [0.6666666666666666, 1]
+    },
+    "activeFill": {
+      "value": 1,
+      "classification": "minimal-neutral-period-reconstruction",
+      "meaning": "all of the logical period is assigned to three equal rectangles; this is not a measured fill factor"
+    },
+    "inactiveGap": {
+      "fraction": 0,
+      "status": "unresolved-not-rendered",
+      "phase": "trailing interval [activeFill,1) if a future measured fill is supplied",
+      "colorReference": {
+        "source": "WS1 packed code [0,0,0] texel",
+        "xyzAbsoluteRelativeReflectance": [0.19357240200042725, 0.19981257617473602, 0.21883629262447357],
+        "linearSrgbModelSpace": [0.2110241372018904, 0.196326951424557, 0.20132702036294936]
+      }
+    },
+    "uncertainty": {
+      "selectedOrderConfidence": "moderate; CGB-specific secondary observation plus independent RGB-subpixel prior art and Sharp-family RGB filters",
+      "numericFillConfidence": "unresolved",
+      "notchBusMaskAndFacetGeometry": "unresolved",
+      "allowedFutureCandidateRange": "requires a provenance-bearing calibrated OEM CGB macro/microscope capture; no current numeric range is released"
+    }
+  },
+  "decomposition": {
+    "modelSpace": "unclipped linear sRGB D65 converted from WS5 absolute relative-reflectance XYZ",
+    "equation": "out[c] = sourceLinearRgb[c] * (3/activeFill) * footprintCoverage[c] + gapLinearRgb[c] * gapCoverage",
+    "energyNormalization": "with activeFill=1, each stripe has period mean 1/3 and the factor 3 recovers every input channel exactly over a complete period",
+    "physicalClaim": "energy-preserving model-space subpixel presentation only; not a recovered microscopic color-filter spectral decomposition",
+    "clipping": false
+  },
+  "surface": {
+    "inactiveRegionPolicy": "the declared WS1 code-zero black is available for a future measured gap, but gap area is zero in the accepted model",
+    "reflectorPolicy": "bare measured panel only; the aggregate reflector/MRS behavior at 45 degree illumination and 0 degree normal view is already present in WS1/WS5",
+    "angleGainAlreadyInColorReference": true,
+    "frontLens": "disabled and separately bypassable if a future target-specific layer is introduced",
+    "visibleSurfaceGrain": {
+      "enabled": false,
+      "reason": "no calibrated spatial power spectrum or energy bound exists, and individual MRS facets must not be rendered"
+    }
+  },
+  "integration": {
+    "method": "analytic integral of periodic rectangular indicators over each host-pixel footprint",
+    "scaleInvariant": true,
+    "hostFootprintAware": true
+  },
+  "validation": {
+    "status": "builder-enforced",
+    "scales": [4, 5, 6, 3.5, 4.25, 4.75],
+    "viewportOffsets": [-1.375, -0.173, 0, 0.271, 2.625],
+    "report": "../generated/ws6-aperture-validation-v1.json",
+    "receipt": "../generated/ws6-receipt-v1.json"
+  },
+  "limits": [
+    "No numeric CGB inactive gap, fill factor, notch, bus mask, or surface texture is claimed.",
+    "The accepted aperture does not alter WS1 color, WS4 motion state, or WS5 reflected exposure when averaged over a full source period.",
+    "Actual GPU readback and Shader compilation remain WS8/WS9."
+  ]
+}

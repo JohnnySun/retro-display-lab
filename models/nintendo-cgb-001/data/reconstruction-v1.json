@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "reconstructionId": "nintendo-cgb-001-reference-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "recordStatus": "ws1-through-ws9-complete-release-v1",
+  "createdOn": "2026-08-24",
+  "target": {
+    "hardwareModel": "Nintendo CGB-001",
+    "displayTechnology": "OEM Sharp reflective active-matrix HR-TFT LCD",
+    "period": "1998-2003 production family",
+    "sourceResolution": [160, 144],
+    "logicalColorEncoding": "RGB555",
+    "description": "Healthy-period CGB-001 display reconstruction constrained by the accepted fixed-angle HCS color measurement and period/family physical evidence.",
+    "claimBoundary": "A fixed-condition period reconstruction, not a specimen calibration, factory specification recovery, or angle-aware digital twin.",
+    "excludes": [
+      "specimen-specific aging or damage",
+      "camera, face, head-pose, or viewing-angle tracking",
+      "runtime BRDF reconstruction",
+      "modern IPS replacement panels",
+      "modern target-display brightness or gamut compensation",
+      "DMG passive-matrix STN selection loss and crosstalk"
+    ]
+  },
+  "frozenReferenceCondition": {
+    "classification": "measured",
+    "evidenceIds": ["CGB-HCS-REFLECTANCE-2026"],
+    "illuminant": "CIE D65",
+    "illuminationAngleDegrees": 45,
+    "detectorAndViewerAngleDegrees": 0,
+    "viewDirection": "panel normal",
+    "panelOrientationPolicy": "Use the orientation recorded by the pinned source measurement.",
+    "modelSpacePresentationEncoding": "sRGB D65",
+    "runtimeAngleModel": false,
+    "scope": "accepted static reference color at one fixed source-recorded geometry",
+    "uncertainty": "single WIP measurement set; angular and surviving-unit variation are excluded"
+  },
+  "evidencePriority": [
+    "CGB-specific direct measurement accepted with recorded limitations",
+    "Nintendo CGB primary documentation",
+    "contemporary Sharp HR-TFT and reflective-LCD family evidence",
+    "display metrology and active-matrix mechanism evidence",
+    "bounded secondary reverse engineering",
+    "generic prior or synthetic diagnostic"
+  ],
+  "evidenceIds": [
+    "CGB-NIN-SERVICE-1999",
+    "CGB-NIN-PROG-1999",
+    "CGB-HCS-REFLECTANCE-2026",
+    "CGB-SHARP-HRTFT-1997",
+    "CGB-SHARP-REFLECTIVE-1999",
+    "CGB-TN-SEKIYA-2001",
+    "CGB-SHARP-HR-MODULE",
+    "CGB-NIST-BRDF-1998",
+    "CGB-BECKER-RLCD-2001",
+    "CGB-VCOM-LEE-2008",
+    "CGB-MIZUSAKI-2011",
+    "CGB-DRIVE-RECON-2026",
+    "CGB-GEKKIO-CENSUS",
+    "CGB-NATALIE-CPU04",
+    "CGB-GBDEV-EXTLCD",
+    "CGB-PRIOR-SAMEBOY",
+    "CGB-PRIOR-LIBRETRO",
+    "CGB-GBCC-SUBPIXEL",
+    "CGB-BGB-REALITY"
+  ],
+  "sourceRecords": {
+    "hcsGbcReflectance": {
+      "classification": "measured",
+      "acceptance": "Accepted as reference-v1 static color despite the enumerated WIP limitations.",
+      "evidenceId": "CGB-HCS-REFLECTANCE-2026",
+      "repository": "https://github.com/Brankale/Handheld-Color-Space-Project",
+      "commit": "e688fc51141c0974728aa1bdcb89b94d74123f6b",
+      "sourceSubdirectory": "handhelds/Nintendo GBC/[2026-05-xx][Pokefan531][WIP]",
+      "redistribution": {
+        "licenseFoundAtPinnedRevision": false,
+        "vendorRawArtifacts": true,
+        "policy": "Retain the exact attributed ODS/TXT as scientific source/reference material at the pinned commit and hashes. Do not relicense them as project code; keep normalization and runtime reductions separate."
+      },
+      "artifacts": [
+        {
+          "fileName": "gbc_reflectance.ods",
+          "repositoryPath": "../reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.ods",
+          "sha256": "967af7247d940e15cd86ce28046fcf9996bb36086389d9967154188770a95bba",
+          "role": "source measurement workbook"
+        },
+        {
+          "fileName": "gbc_reflectance.txt",
+          "repositoryPath": "../reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.txt",
+          "sha256": "b985e02476d35beecfb6a6955cb8aecae052205008126a8cdad7fd7233cf2b37",
+          "role": "source measurement text export"
+        }
+      ],
+      "geometry": {
+        "illuminationAngleDegrees": 45,
+        "detectorAngleDegrees": 0,
+        "detectorDirection": "panel normal"
+      },
+      "knownLimitations": [
+        "The R series contains 31 patches.",
+        "The G series contains 33 patches.",
+        "The remaining recorded ramps contain 32 patches.",
+        "Black readings drift between series.",
+        "The source author's audit marks wavelengths below 440 nm invalid.",
+        "Negative reflectance values occur in the source.",
+        "Primary XYZ additivity does not reproduce all secondary and gray measurements.",
+        "The upstream processed data includes manual patch and monotonicity modifications."
+      ]
+    },
+    "gambatteFrontend": {
+      "classification": "derived-validation",
+      "evidenceId": "CGB-PRIOR-LIBRETRO",
+      "repository": "https://github.com/libretro/gambatte-libretro",
+      "commit": "3262c2aa4adae8dba4f6d51cdd931c15cb11569f",
+      "sourceArchive": "../reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/gambatte-libretro.tar.gz",
+      "sourceArchiveSha256": "b67b5586f4a038c4e8b88cee537f59ab0878428b94a5c5bb10dd4b1870fac52f",
+      "contract": "frontend-contract-v1.json",
+      "scope": "Pinned uncorrected RGB555-to-RGB565 transport, native raster/timing, deterministic stimuli, and lifecycle failure policy.",
+      "limitation": "This validates the selected core path, not all emulator cores or every frontend integration."
+    }
+  },
+  "architectureBoundary": {
+    "source": {
+      "classification": "CGB-documented",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-PRIOR-LIBRETRO"],
+      "contract": "Pinned Gambatte libretro emits uncorrected 160x144 RGB555 exactly recoverable from RGB565; see frontend-contract-v1.json."
+    },
+    "drive": {
+      "classification": "period-reconstructed",
+      "evidenceIds": [
+        "CGB-NIN-SERVICE-1999",
+        "CGB-NIN-PROG-1999",
+        "CGB-SHARP-HR-MODULE",
+        "CGB-GBDEV-EXTLCD"
+      ],
+      "contract": "Bounded active-matrix row/source latch and polarity candidates generated from one record; exact frontend timebase is distinct from unresolved panel edges, RGB555 remains a dimensionless logical coordinate, and no DMG passive-matrix transfer is allowed.",
+      "runtimeConstants": "../generated/ws3-runtime-constants-v1.json"
+    },
+    "optics": {
+      "classification": "measured-and-period-reconstructed",
+      "evidenceIds": [
+        "CGB-HCS-REFLECTANCE-2026",
+        "CGB-SHARP-HRTFT-1997",
+        "CGB-SHARP-REFLECTIVE-1999",
+        "CGB-TN-SEKIYA-2001"
+      ],
+      "contract": "Per-subpixel continuous HR-TFT command state uses the WS4 bounded first-order rate ensemble. WS5 evaluates the accepted fixed-angle WS1 XYZ field along that trajectory and time-averages physical reflected exposure over the exact native frame; short response remains separate from WS7 retention.",
+      "responseEnsemble": "response-ensemble-v1.json",
+      "runtimeRates": "../generated/cgb001-ws4-gtg-rates-v1.r32f",
+      "exposurePolicy": "ws5-exposure-policy-v1.json",
+      "exposureEquations": "../generated/ws5-equation-vectors-v1.json"
+    },
+    "aperture": {
+      "classification": "period-reconstructed-minimum-assumption",
+      "evidenceIds": [
+        "CGB-SHARP-HRTFT-1997",
+        "CGB-HCS-REFLECTANCE-2026",
+        "CGB-GBCC-SUBPIXEL",
+        "CGB-BGB-REALITY"
+      ],
+      "contract": "Full-coverage equal-third left-to-right RGB rectangles integrated analytically over each host-pixel footprint; no numeric gap, notch, MRS grain, cover lens, or glare.",
+      "record": "aperture-v1.json",
+      "validation": "../generated/ws6-aperture-validation-v1.json"
+    },
+    "retention": {
+      "classification": "period-mechanism-reconstructed-zero-amplitude-reference",
+      "evidenceIds": [
+        "CGB-VCOM-LEE-2008",
+        "CGB-MIZUSAKI-2011",
+        "CGB-DRIVE-RECON-2026"
+      ],
+      "contract": "One independent signed scalar uses raw RGB555 and every WS3 polarity candidate with later-cell kinetic bounds. Healthy-CGB resultant DC and optical coupling remain zero; displayed luma and ordinary frame blending are excluded.",
+      "record": "retention-v1.json",
+      "validation": "../generated/ws7-retention-validation-v1.json"
+    },
+    "targetCompensation": {
+      "classification": "target-compensation",
+      "contract": "Never folded into the CGB physical model or its reference color artifacts."
+    }
+  },
+  "artifactStages": [
+    "raw-source identity",
+    "normalized measurement",
+    "fitted model",
+    "generated runtime artifact",
+    "Shader state",
+    "acceptance receipt"
+  ],
+  "schemaRecords": {
+    "measurementNormalization": "measurement-normalization.schema.json",
+    "colorModel": "color-model.schema.json",
+    "scanCandidates": "scan-candidates.schema.json",
+    "responseEnsemble": "response-ensemble.schema.json",
+    "exposureIntegration": "exposure-integration.schema.json",
+    "retention": "retention.schema.json",
+    "aperture": "aperture.schema.json",
+    "frontendContract": "frontend-contract.schema.json",
+    "releaseReceipt": "release-receipt.schema.json"
+  },
+  "parameterPolicy": {
+    "allowedClasses": [
+      "measured",
+      "derived",
+      "period-reconstructed",
+      "generic-prior",
+      "target-compensation",
+      "synthetic"
+    ],
+    "requiredMetadata": ["evidenceIds", "units-if-dimensional", "scope", "uncertainty-or-range"],
+    "rule": "A later workstream must not promote a family value, generic prior, or synthetic candidate to measured CGB evidence."
+  },
+  "workstreams": {
+    "ws0": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "receipt": "../generated/ws0-scaffold-v1.json"
+    },
+    "ws1": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "schema": "color-model.schema.json",
+      "measurementRecord": "hcs-source-v1.json",
+      "colorRecord": "color-reference-v1.json",
+      "receipt": "../generated/ws1-receipt-v1.json"
+    },
+    "ws2": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "schema": "frontend-contract.schema.json",
+      "contract": "frontend-contract-v1.json",
+      "receipt": "../generated/ws2-receipt-v1.json"
+    },
+    "ws3": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "schema": "scan-candidates.schema.json",
+      "evidenceInventory": "ws3-evidence-inventory-v1.json",
+      "candidateRecord": "scan-candidates-v1.json",
+      "cpuReference": "../reference/scan-drive.mjs",
+      "runtimeConstants": "../generated/ws3-runtime-constants-v1.json",
+      "equationVectors": "../generated/ws3-equation-vectors-v1.json",
+      "sensitivityReport": "../generated/ws3-sensitivity-v1.json",
+      "receipt": "../generated/ws3-receipt-v1.json"
+    },
+    "ws4": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "schema": "response-ensemble.schema.json",
+      "evidenceInventory": "ws4-evidence-inventory-v1.json",
+      "policy": "ws4-response-policy-v1.json",
+      "responseRecord": "response-ensemble-v1.json",
+      "cpuReference": "../reference/optical-response.mjs",
+      "runtimeRates": "../generated/cgb001-ws4-gtg-rates-v1.r32f",
+      "runtimeDescriptor": "../generated/cgb001-ws4-gtg-rates-v1.json",
+      "modelSelection": "../generated/ws4-model-selection-v1.json",
+      "equationVectors": "../generated/ws4-equation-vectors-v1.json",
+      "motionFixtures": "../generated/ws4-motion-fixtures-v1.json",
+      "receipt": "../generated/ws4-receipt-v1.json"
+    },
+    "ws5": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "dependsOn": ["ws1", "ws3", "ws4"],
+      "schema": "exposure-integration.schema.json",
+      "policy": "ws5-exposure-policy-v1.json",
+      "cpuReference": "../reference/reflected-exposure.mjs",
+      "equationVectors": "../generated/ws5-equation-vectors-v1.json",
+      "quadratureConvergence": "../generated/ws5-quadrature-convergence-v1.json",
+      "scanExposureFixtures": "../generated/ws5-scan-exposure-fixtures-v1.json",
+      "receipt": "../generated/ws5-receipt-v1.json"
+    },
+    "ws6": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "dependsOn": ["ws1", "ws5"],
+      "schema": "aperture.schema.json",
+      "evidenceInventory": "ws6-evidence-inventory-v1.json",
+      "record": "aperture-v1.json",
+      "cpuReference": "../reference/rgb-aperture.mjs",
+      "validation": "../generated/ws6-aperture-validation-v1.json",
+      "receipt": "../generated/ws6-receipt-v1.json"
+    },
+    "ws7": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "dependsOn": ["ws3", "ws4"],
+      "schema": "retention.schema.json",
+      "evidenceInventory": "ws7-evidence-inventory-v1.json",
+      "record": "retention-v1.json",
+      "cpuReference": "../reference/residual-dc-retention.mjs",
+      "validation": "../generated/ws7-retention-validation-v1.json",
+      "receipt": "../generated/ws7-receipt-v1.json"
+    },
+    "ws8": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "dependsOn": ["ws1", "ws2", "ws3", "ws4", "ws5", "ws6", "ws7"],
+      "shaderAndPresetAllowed": true,
+      "runtimeTextures": "../generated/ws8-runtime-textures-v1.json",
+      "compileReceipt": "../generated/ws8-shader-compile-v1.json",
+      "manifest": "../generated/ws8-manifest-v1.json",
+      "receipt": "../generated/ws8-receipt-v1.json"
+    },
+    "ws9": {
+      "status": "complete",
+      "completedOn": "2026-08-24",
+      "dependsOn": ["ws1", "ws2", "ws3", "ws4", "ws5", "ws6", "ws7", "ws8"],
+      "schema": "release-receipt.schema.json",
+      "cpuGolden": "../generated/ws9-cpu-golden-v1.json",
+      "sensitivity": "../generated/ws9-sensitivity-v1.json",
+      "priorArtComparison": "../generated/ws9-prior-art-comparison-v1.json",
+      "targetValidation": "../../../targets/konkr-gt78-vn/960x640-srgb-neutral/validation/cgb001-ws9-target-20260824.json",
+      "receipt": "../generated/ws9-receipt-v1.json"
+    }
+  },
+  "artifactPolicy": {
+    "rawThirdPartyDataVendored": true,
+    "runtimeArtifactsAccepted": [
+      "../generated/cgb001-d65-lut-v1.rgba32f",
+      "../generated/cgb001-d65-lut-v1.json",
+      "../generated/cgb001-ws4-gtg-rates-v1.r32f",
+      "../generated/cgb001-ws4-gtg-rates-v1.json",
+      "../generated/cgb001-reference-d65-v1-hi-rgba8.png",
+      "../generated/cgb001-reference-d65-v1-lo-rgba8.png",
+      "../generated/cgb001-hcs-upstream-d65-v1-hi-rgba8.png",
+      "../generated/cgb001-hcs-upstream-d65-v1-lo-rgba8.png",
+      "../generated/ws8-runtime-textures-v1.json"
+    ],
+    "shaderFilesAccepted": [
+      "../shaders/cgb001-common.inc",
+      "../shaders/cgb001-runtime-v1.inc",
+      "../shaders/cgb001-response-v1.slang",
+      "../shaders/cgb001-color-v1.slang",
+      "../shaders/cgb001-display-v1.slang"
+    ],
+    "presetFilesAccepted": [
+      "../presets/reference-d65-v1.slangp",
+      "../presets/static-color-only-v1.slangp",
+      "../presets/response-fast-v1.slangp",
+      "../presets/response-slow-v1.slangp",
+      "../presets/no-scan-v1.slangp",
+      "../presets/no-retention-v1.slangp",
+      "../presets/no-aperture-v1.slangp",
+      "../presets/hcs-upstream-d65-v1.slangp",
+      "../presets/diagnostic-source-code-v1.slangp",
+      "../presets/diagnostic-row-phase-v1.slangp",
+      "../presets/diagnostic-response-state-v1.slangp",
+      "../presets/diagnostic-exposure-v1.slangp",
+      "../presets/diagnostic-lut-output-v1.slangp",
+      "../presets/diagnostic-residual-state-v1.slangp",
+      "../presets/diagnostic-aperture-coverage-v1.slangp",
+      "../presets/diagnostic-response-readback-v1.slangp",
+      "../presets/diagnostic-retention-readback-v1.slangp",
+      "../presets/diagnostic-exposure-readback-v1.slangp",
+      "../presets/diagnostic-lut-readback-v1.slangp",
+      "../presets/diagnostic-aperture-readback-v1.slangp"
+    ],
+    "referenceV1NameAllowed": true,
+    "releaseGate": "WS9 passed the complete source, CPU, Vulkan/Mali-G76 numeric, lifecycle, pacing, transport, artifact-hash, and restoration gates for reference-v1 on the named KONKR target."
+  },
+  "openUnknowns": [
+    "Exact Sharp CGB panel module and production variation",
+    "Exact row/source latch and polarity-inversion topology",
+    "Exact voltage-to-optical transfer and gray-to-gray response",
+    "Exact VCOM residual-DC and retention behavior",
+    "Exact RGB aperture, inactive gap, and reflector geometry"
+  ]
+}

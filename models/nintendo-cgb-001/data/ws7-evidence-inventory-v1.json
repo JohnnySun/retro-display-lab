@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "cgb001-ws7-evidence-inventory-v1",
+  "createdOn": "2026-08-24",
+  "scope": "Slow VCOM/residual-DC image sticking kept independent of the WS4 ordinary response state.",
+  "normalizationRules": [
+    "Record stress voltage, waveform/polarity balance, duration, temperature, LC/alignment material, and recovery definition before transferring a kinetic value.",
+    "A later laboratory cell can constrain a rate ensemble without identifying CGB amplitude, VCOM error, optical coupling, or aging.",
+    "Source RGB555 command and WS3 polarity are electrical coordinates; displayed luma and WS5 optical output are prohibited excitation inputs.",
+    "No aged-CGB preset or nonzero healthy-panel amplitude is created without direct CGB evidence."
+  ],
+  "sources": [
+    {
+      "id": "WS7-LEE-2008",
+      "evidenceId": "CGB-VCOM-LEE-2008",
+      "class": "primary-peer-reviewed-active-matrix-mechanism",
+      "locator": "https://doi.org/10.1117/1.2824378",
+      "conditions": {
+        "panel": "active-matrix LCD; not identified as CGB",
+        "stressAndRecoveryKinetics": "not used",
+        "temperature": null
+      },
+      "retained": [
+        "alternating positive/negative drive is intended to avoid DC charge accumulation",
+        "VCOM mismatch causes unequal positive/negative luminance and relates flicker to image sticking",
+        "inversion topology and polarity history must remain explicit"
+      ],
+      "notRetained": [
+        "a CGB VCOM value, polarity topology, residual-DC amplitude, or rate"
+      ]
+    },
+    {
+      "id": "WS7-MIZUSAKI-2011",
+      "evidenceId": "CGB-MIZUSAKI-2011",
+      "class": "primary-peer-reviewed-later-laboratory-cell-kinetics",
+      "locator": "https://doi.org/10.1295/koron.68.39",
+      "conditions": {
+        "cell": "ZLI-1132 LC, AL-1051 polyimide alignment, antiparallel rubbing, two polarizers",
+        "drive": "3.4 V 30 Hz rectangular waveform with 1-5 V DC offset",
+        "stress": "120 minutes",
+        "recovery": "90 minutes, sampled every 5 minutes after DC offset returned to 0 V",
+        "temperatureCelsius": 25
+      },
+      "retained": [
+        "one-state adsorption formation equation and zero-offset exponential relaxation equation",
+        "adsorption kaNs range 0.060-0.067 min^-1",
+        "slow desorption kd2 range 0.023-0.028 min^-1"
+      ],
+      "notRetained": [
+        "the measured 0.44 V residual amplitude or any 1-5 V stress value as a CGB value",
+        "the material system as an OEM CGB identity",
+        "the reported fast 70 percent recovery branch without CGB recovery data"
+      ]
+    },
+    {
+      "id": "WS7-WS3-POLARITY",
+      "evidenceId": "CGB-DRIVE-RECON-2026",
+      "class": "derived-project-candidate-contract",
+      "locator": "scan-candidates-v1.json",
+      "retained": [
+        "frame-global, row-alternating, column-alternating, dot-checkerboard, and no-inversion candidates",
+        "two starting parity phases and per-pixel source coordinates"
+      ],
+      "notRetained": [
+        "any candidate as the selected authentic CGB inversion waveform"
+      ]
+    }
+  ],
+  "decision": {
+    "selectedStateCount": 1,
+    "selectedMechanism": "signed normalized residual-DC state with source-code/polarity excitation and Mizusaki one-state adsorption/desorption kinetics",
+    "referenceAmplitude": 0,
+    "referenceOpticalCoupling": 0,
+    "reason": "mechanism and rate bounds exist, but no healthy CGB waveform identifies a nonzero resultant DC or its optical amplitude",
+    "rejected": [
+      "displayed-luma excitation",
+      "ordinary frame blending or moving-edge ghosting",
+      "a second recovery state",
+      "aged-specimen tuning",
+      "invented CGB voltages or capacitances"
+    ]
+  }
+}

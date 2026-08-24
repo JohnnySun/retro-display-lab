@@ -1,10 +1,21 @@
 {
   "name": "retro-display-lab",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "private": true,
   "description": "Validation for physics-informed handheld display shaders.",
   "scripts": {
-    "test": "node tools/build-ags101-hcs-color.mjs --check && node tools/build-ags101-gtg.mjs --check && node tools/build-ags101-test-rom.mjs --check && node tools/validate-ags101-ws2-mgba.mjs --check && node tools/build-ags101-ws2.mjs --check && node tools/build-ags101-ws3.mjs --check && node tools/build-ags101-ws4.mjs --check && node tools/build-ags101-ws5.mjs --check && node tools/build-ags101-ws6.mjs --check && node tools/build-ags101-ws7.mjs --check && node tools/build-ags101-ws8.mjs --check && node tools/build-ags101-gtg.mjs --check --input models/nintendo-ags-101/generated/ws2-capture-loopback-v1/gtg-measurement-subset.json --output-prefix models/nintendo-ags-101/generated/ws2-capture-loopback-v1/gtg-runtime && node tools/build-ags101-ws1.mjs --check && node tools/build-dmg01-ws1.mjs --check && node tools/build-dmg01-ws2.mjs --check && node tools/build-dmg01-stn-physics.mjs --check && node tools/build-dmg01-ws3.mjs --check && node tools/build-dmg01-ws4.mjs --check && node tools/build-dmg01-ws5.mjs --check && node tools/build-dmg01-ws6.mjs --check && node tools/build-dmg01-presets.mjs --check && node tools/build-kpa-host-presets.mjs --check && node tools/validate-dmg01.mjs && node tools/validate-ags101.mjs && node tools/validate-kpa-host-correction.mjs && node tools/build-retroarch-pack.mjs --check"
+    "test": "npm run test:cgb && node tools/build-ags101-hcs-color.mjs --check && node tools/build-ags101-gtg.mjs --check && node tools/build-ags101-test-rom.mjs --check && node tools/validate-ags101-ws2-mgba.mjs --check && node tools/build-ags101-ws2.mjs --check && node tools/build-ags101-ws3.mjs --check && node tools/build-ags101-ws4.mjs --check && node tools/build-ags101-ws5.mjs --check && node tools/build-ags101-ws6.mjs --check && node tools/build-ags101-ws7.mjs --check && node tools/build-ags101-ws8.mjs --check && node tools/build-ags101-gtg.mjs --check --input models/nintendo-ags-101/generated/ws2-capture-loopback-v1/gtg-measurement-subset.json --output-prefix models/nintendo-ags-101/generated/ws2-capture-loopback-v1/gtg-runtime && node tools/build-ags101-ws1.mjs --check && node tools/build-dmg01-ws1.mjs --check && node tools/build-dmg01-ws2.mjs --check && node tools/build-dmg01-stn-physics.mjs --check && node tools/build-dmg01-ws3.mjs --check && node tools/build-dmg01-ws4.mjs --check && node tools/build-dmg01-ws5.mjs --check && node tools/build-dmg01-ws6.mjs --check && node tools/build-dmg01-presets.mjs --check && node tools/build-kpa-host-presets.mjs --check && node tools/validate-dmg01.mjs && node tools/validate-ags101.mjs && node tools/validate-kpa-host-correction.mjs && node tools/build-retroarch-pack.mjs --check",
+    "test:cgb": "npm run test:cgb-ws0 && npm run test:cgb-ws1 && npm run test:cgb-ws2 && npm run test:cgb-ws3 && npm run test:cgb-ws4 && npm run test:cgb-ws5 && npm run test:cgb-ws6 && npm run test:cgb-ws7 && npm run test:cgb-ws8 && npm run test:cgb-ws9",
+    "test:cgb-ws0": "node tools/build-cgb001-ws0.mjs --check",
+    "test:cgb-ws1": "node tools/import-cgb001-hcs.mjs --check && node tools/build-cgb001-ws1.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws2": "node tools/build-cgb001-test-rom.mjs --check && node tools/decode-cgb001-test-rom.mjs --check && node tools/validate-cgb001-ws2-gambatte.mjs --check && node tools/build-cgb001-ws2.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws3": "node tools/build-cgb001-ws3.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws4": "node tools/build-cgb001-ws4.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws5": "node tools/build-cgb001-ws5.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws6": "node tools/build-cgb001-ws6.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws7": "node tools/build-cgb001-ws7.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws8": "node tools/build-cgb001-ws8.mjs --check && node tools/validate-cgb001.mjs",
+    "test:cgb-ws9": "node tools/build-cgb001-ws9.mjs --check && node tools/build-cgb001-ws9-receipt.mjs --check && node tools/validate-cgb001.mjs"
   },
   "engines": {
     "node": ">=18"

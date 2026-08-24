@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws0-scaffold-v1",
+  "generatedBy": "tools/build-cgb001-ws0.mjs",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS0",
+  "completedOn": "2026-08-24",
+  "historicalScopeAtCompletion": {
+    "status": "scaffold-only",
+    "referenceCondition": "CIE D65; 45 degree illumination; 0 degree panel-normal view",
+    "runtimeAngleModel": false,
+    "shaderCreated": false,
+    "presetCreated": false,
+    "normalizedMeasurementCreated": false,
+    "runtimeLutCreated": false
+  },
+  "sourceVerification": {
+    "requiredBeforeNormalization": true,
+    "rawArtifactsRetainedAsAttributedReference": true,
+    "command": "node tools/build-cgb001-ws0.mjs --check --verify-sources <HCS-source-directory>",
+    "pinnedCommit": "e688fc51141c0974728aa1bdcb89b94d74123f6b",
+    "expectedArtifacts": [
+      {
+        "fileName": "gbc_reflectance.ods",
+        "sha256": "967af7247d940e15cd86ce28046fcf9996bb36086389d9967154188770a95bba"
+      },
+      {
+        "fileName": "gbc_reflectance.txt",
+        "sha256": "b985e02476d35beecfb6a6955cb8aecae052205008126a8cdad7fd7233cf2b37"
+      }
+    ],
+    "retainedVerification": [
+      {
+        "fileName": "gbc_reflectance.ods",
+        "sourcePath": "measurements/gbc_reflectance.ods",
+        "sha256": "967af7247d940e15cd86ce28046fcf9996bb36086389d9967154188770a95bba",
+        "verified": true
+      },
+      {
+        "fileName": "gbc_reflectance.txt",
+        "sourcePath": "measurements/gbc_reflectance.txt",
+        "sha256": "b985e02476d35beecfb6a6955cb8aecae052205008126a8cdad7fd7233cf2b37",
+        "verified": true
+      }
+    ]
+  },
+  "evidenceIds": [
+    "CGB-BECKER-RLCD-2001",
+    "CGB-BGB-REALITY",
+    "CGB-DRIVE-RECON-2026",
+    "CGB-GBCC-SUBPIXEL",
+    "CGB-GBDEV-EXTLCD",
+    "CGB-GEKKIO-CENSUS",
+    "CGB-HCS-REFLECTANCE-2026",
+    "CGB-MIZUSAKI-2011",
+    "CGB-NATALIE-CPU04",
+    "CGB-NIN-PROG-1999",
+    "CGB-NIN-SERVICE-1999",
+    "CGB-NIST-BRDF-1998",
+    "CGB-PRIOR-LIBRETRO",
+    "CGB-PRIOR-SAMEBOY",
+    "CGB-SHARP-HR-MODULE",
+    "CGB-SHARP-HRTFT-1997",
+    "CGB-SHARP-REFLECTIVE-1999",
+    "CGB-TN-SEKIYA-2001",
+    "CGB-VCOM-LEE-2008"
+  ],
+  "schemas": [
+    {
+      "path": "models/nintendo-cgb-001/data/measurement-normalization.schema.json",
+      "sha256": "3394a01bc6985fc174a568e3a2634426b2d476894bf7c1556c94e893855d3a08"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/color-model.schema.json",
+      "sha256": "50d9c4072caafd91e7fc3b382f13f22cb2aec56ce9528477c96ce7c833fdc8d5"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/scan-candidates.schema.json",
+      "sha256": "d33e28b8ee53e89d3aabe4befda25745d3eeeda7f65736b61eaf6498f92bcd3b"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/response-ensemble.schema.json",
+      "sha256": "330931be2e1aaf8f8a8fbd565953b57664d8a215adef59b048ef6b1f10ba34ca"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/exposure-integration.schema.json",
+      "sha256": "6c5f17086f03ca84aa6532d375eac49f26f4477623162bfd1db7e6ef1002c271"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/retention.schema.json",
+      "sha256": "e31cdfb4da339d2da763bff35666576ed7257f8876a125c3317721fc85ce385d"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/aperture.schema.json",
+      "sha256": "32d58e730e3657ef3733f41b4d5b136e14c2441450f8d3b5179404997d38af21"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/frontend-contract.schema.json",
+      "sha256": "5b62d61dc9ee53f86fe5ed5f217b74a3a0c8e30cfc7a0656c88f3620a7402742"
+    },
+    {
+      "path": "models/nintendo-cgb-001/data/release-receipt.schema.json",
+      "sha256": "f8520f74148e4e459a750b30b2736dc1594f90f061e7c2e210fae33bc96a5b0c"
+    }
+  ],
+  "trackedInputHashes": {
+    "REFERENCES.md": "e41f87fc7fbf31820a22b193878fd23bb71e8065a10bf28a5032fdbdf709f459",
+    "package.json": "765c7dfd21b5d496e49144cb63a69dc8a96a5a8a614b129dcd26dbbb8562048b",
+    "docs/research/cgb-001-reference-survey.md": "c3da6164b44d269b3fffc2e52281a1d7db29bab44fb6e26689733d91ebbb79dd",
+    "models/nintendo-cgb-001/README.md": "e3a6e942e82636a021c5690fe5b4fc6f857a775db462362ea6eb32628f768bc6",
+    "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
+    "models/nintendo-cgb-001/IMPLEMENTATION-TODO.md": "8a2a0e9cff7a55ae98b4fae8a53cb55be54e3c2126cf613f9ac199d5ba458a31",
+    "models/nintendo-cgb-001/model.json": "67659989a674d1c137aa0708dad74937b05ba7a181aa35aecb5e3650c54851a4",
+    "models/nintendo-cgb-001/data/reconstruction-v1.json": "f014b013356632b128c665f1453fb0616877f8ced62a706fd1c525f9b86e5261",
+    "models/nintendo-cgb-001/data/measurement-normalization.schema.json": "3394a01bc6985fc174a568e3a2634426b2d476894bf7c1556c94e893855d3a08",
+    "models/nintendo-cgb-001/data/color-model.schema.json": "50d9c4072caafd91e7fc3b382f13f22cb2aec56ce9528477c96ce7c833fdc8d5",
+    "models/nintendo-cgb-001/data/scan-candidates.schema.json": "d33e28b8ee53e89d3aabe4befda25745d3eeeda7f65736b61eaf6498f92bcd3b",
+    "models/nintendo-cgb-001/data/response-ensemble.schema.json": "330931be2e1aaf8f8a8fbd565953b57664d8a215adef59b048ef6b1f10ba34ca",
+    "models/nintendo-cgb-001/data/exposure-integration.schema.json": "6c5f17086f03ca84aa6532d375eac49f26f4477623162bfd1db7e6ef1002c271",
+    "models/nintendo-cgb-001/data/retention.schema.json": "e31cdfb4da339d2da763bff35666576ed7257f8876a125c3317721fc85ce385d",
+    "models/nintendo-cgb-001/data/aperture.schema.json": "32d58e730e3657ef3733f41b4d5b136e14c2441450f8d3b5179404997d38af21",
+    "models/nintendo-cgb-001/data/frontend-contract.schema.json": "5b62d61dc9ee53f86fe5ed5f217b74a3a0c8e30cfc7a0656c88f3620a7402742",
+    "models/nintendo-cgb-001/data/release-receipt.schema.json": "f8520f74148e4e459a750b30b2736dc1594f90f061e7c2e210fae33bc96a5b0c",
+    "tools/build-cgb001-ws0.mjs": "5e83fd26b1860683f8985b3b34dd935a25598ede2348947e7bd0dcea332c9218",
+    "tools/validate-cgb001.mjs": "03e5eff8f14270dba89ebde14c3829dae722968d7b3edd50a8c78bed85b8dfcf"
+  },
+  "checks": {
+    "canonicalRecordAndModelAgree": true,
+    "evidenceIdsResolve": true,
+    "frozenReferenceConditionMatches": true,
+    "schemaSetComplete": true,
+    "attributedRawSourceRetainedAndVerified": true,
+    "forwardCompatibleWithCompletedWs1": true,
+    "forwardCompatibleWithCompletedWs2": true,
+    "forwardCompatibleWithCompletedWs3": true,
+    "forwardCompatibleWithCompletedWs4": true,
+    "forwardCompatibleWithCompletedWs5": true,
+    "forwardCompatibleWithCompletedWs6": true,
+    "forwardCompatibleWithCompletedWs7": true,
+    "forwardCompatibleWithCompletedWs8": true,
+    "noShaderOrPresetCreated": true
+  },
+  "result": {
+    "status": "pass",
+    "nextWorkstreams": [
+      "WS9"
+    ],
+    "referenceV1ShaderOrPresetAllowed": false
+  }
+}

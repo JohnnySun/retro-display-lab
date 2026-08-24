@@ -1,0 +1,49 @@
+## Nintendo CGB-001 WS8 diagnostic: persistent RGB response state
+## Provenance: ../REFERENCES.md
+## Fixed CIE D65, 45 degree illumination, 0 degree panel-normal view.
+## Complete preset: no inherited parameter state.
+
+shaders = "3"
+
+textures = "CgbReferenceLut;CgbReferenceLutLo;CgbUpstreamLut;CgbUpstreamLutLo"
+CgbReferenceLut = "../generated/cgb001-reference-d65-v1-hi-rgba8.png"
+CgbReferenceLut_linear = "false"
+CgbReferenceLut_wrap_mode = "clamp_to_edge"
+CgbReferenceLut_mipmap = "false"
+CgbReferenceLutLo = "../generated/cgb001-reference-d65-v1-lo-rgba8.png"
+CgbReferenceLutLo_linear = "false"
+CgbReferenceLutLo_wrap_mode = "clamp_to_edge"
+CgbReferenceLutLo_mipmap = "false"
+CgbUpstreamLut = "../generated/cgb001-hcs-upstream-d65-v1-hi-rgba8.png"
+CgbUpstreamLut_linear = "false"
+CgbUpstreamLut_wrap_mode = "clamp_to_edge"
+CgbUpstreamLut_mipmap = "false"
+CgbUpstreamLutLo = "../generated/cgb001-hcs-upstream-d65-v1-lo-rgba8.png"
+CgbUpstreamLutLo_linear = "false"
+CgbUpstreamLutLo_wrap_mode = "clamp_to_edge"
+CgbUpstreamLutLo_mipmap = "false"
+
+shader0 = "../shaders/cgb001-response-v1.slang"
+filter_linear0 = "false"
+scale_type0 = "source"
+scale0 = "1.0"
+
+shader1 = "../shaders/cgb001-color-v1.slang"
+filter_linear1 = "false"
+scale_type1 = "source"
+scale1 = "1.0"
+
+shader2 = "../shaders/cgb001-display-v1.slang"
+filter_linear2 = "false"
+scale_type2 = "viewport"
+scale2 = "1.0"
+
+ModelEnable = "1.0"
+ResponseEnsemble = "1.0"
+TemporalResponse = "1.0"
+ScanEnabled = "1.0"
+RetentionAmount = "0.0"
+ApertureAmount = "1.0"
+ModelExposure = "1.0"
+ColorPolicy = "0.0"
+DebugView = "3.0"

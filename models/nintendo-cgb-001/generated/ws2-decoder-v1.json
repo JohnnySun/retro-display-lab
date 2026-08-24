@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws2-independent-rom-decoder-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "derived-validation",
+  "decoder": "tools/decode-cgb001-test-rom.mjs",
+  "independence": "Does not import or call the ROM generator; reconstructs visible RGB555 framebuffers from cartridge bytes.",
+  "source": {
+    "manifest": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/manifest.json",
+    "manifestSha256": "ff0a61f131b40da9ca74b56c837617200edc86090aba8c8285265c9e257d83ad"
+  },
+  "raster": {
+    "width": 160,
+    "height": 144,
+    "encoding": "little-endian CGB RGB555"
+  },
+  "summary": {
+    "scenes": 16,
+    "decodedPages": 32,
+    "pass": true
+  },
+  "scenes": [
+    {
+      "sceneId": "red-ramp",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/red-ramp.gbc",
+      "romSha256": "343b03008d1214beedd82e0a98d79c3403e758d1ff919f46e6cd5bcc1a487508",
+      "headerChecksum": 130,
+      "globalChecksum": 44665,
+      "metadataVersion": 1,
+      "tileCount": 6,
+      "referencedTileCount": 6,
+      "framebufferSha256": [
+        "2af7b2b9c9cdf96b989fd4e94dcd44f053604f58a2111d1c1ddcd92640322d73",
+        "2af7b2b9c9cdf96b989fd4e94dcd44f053604f58a2111d1c1ddcd92640322d73"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "green-ramp",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/green-ramp.gbc",
+      "romSha256": "84bd9878fe5277013c80e2d4988de132d1df0a63bedc577aa2fa55a224fdacee",
+      "headerChecksum": 61,
+      "globalChecksum": 47003,
+      "metadataVersion": 1,
+      "tileCount": 6,
+      "referencedTileCount": 6,
+      "framebufferSha256": [
+        "bf5482849a2e502f13cce98b8f2431370d09403852f3fe9b144dedd09521f39d",
+        "bf5482849a2e502f13cce98b8f2431370d09403852f3fe9b144dedd09521f39d"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "blue-ramp",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/blue-ramp.gbc",
+      "romSha256": "eee240263c137577a739b53576f0dd26f67d6c08cb2a72c62d071fe86377d42a",
+      "headerChecksum": 81,
+      "globalChecksum": 47210,
+      "metadataVersion": 1,
+      "tileCount": 6,
+      "referencedTileCount": 6,
+      "framebufferSha256": [
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1",
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "gray-ramp",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/gray-ramp.gbc",
+      "romSha256": "f1077ef5dd0e310cc0582bcfb483f0793f55d5351b56f3c02c15362afd1bb226",
+      "headerChecksum": 202,
+      "globalChecksum": 51441,
+      "metadataVersion": 1,
+      "tileCount": 6,
+      "referencedTileCount": 6,
+      "framebufferSha256": [
+        "8cd0f529d7cfdb78fb73094ae167a2d87362ab609639a8e86c757f57ec0979c6",
+        "8cd0f529d7cfdb78fb73094ae167a2d87362ab609639a8e86c757f57ec0979c6"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "color-corners",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/color-corners.gbc",
+      "romSha256": "9ac84e295eef6d3d8e5b1d81e43081176e6d6720afe9640c3891cb26f61543f3",
+      "headerChecksum": 68,
+      "globalChecksum": 45085,
+      "metadataVersion": 1,
+      "tileCount": 8,
+      "referencedTileCount": 8,
+      "framebufferSha256": [
+        "d478d6ac9df7aebbf1a6723209d684a50a9c33091b385205401538a55266081d",
+        "d478d6ac9df7aebbf1a6723209d684a50a9c33091b385205401538a55266081d"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "mixed-patches",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/mixed-patches.gbc",
+      "romSha256": "f2cfaef762544679cdb207523a5f631c935f13a775fc1cd8a942c484fc9d3a68",
+      "headerChecksum": 62,
+      "globalChecksum": 54837,
+      "metadataVersion": 1,
+      "tileCount": 8,
+      "referencedTileCount": 8,
+      "framebufferSha256": [
+        "4a442c854001937c2fa7095182bd695d9fcc2f3422c36fbb091ac29a36193763",
+        "4a442c854001937c2fa7095182bd695d9fcc2f3422c36fbb091ac29a36193763"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "row-markers",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/row-markers.gbc",
+      "romSha256": "c2da01637c84c2d7dd9a006c29b177c78cc5b22e0ece7d57416a9df9496ec672",
+      "headerChecksum": 16,
+      "globalChecksum": 41880,
+      "metadataVersion": 1,
+      "tileCount": 4,
+      "referencedTileCount": 4,
+      "framebufferSha256": [
+        "9ea3a241091803ca6d5e0623c37dc6628195778f03128df611ecc5b635a54304",
+        "9ea3a241091803ca6d5e0623c37dc6628195778f03128df611ecc5b635a54304"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "first-last-row-change",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/first-last-row-change.gbc",
+      "romSha256": "3ccb5e5a19b41580d5bca00eec2c55a509eedbcf99c4c697613894bb74a1df35",
+      "headerChecksum": 239,
+      "globalChecksum": 36784,
+      "metadataVersion": 1,
+      "tileCount": 3,
+      "referencedTileCount": 3,
+      "framebufferSha256": [
+        "956cb0bff38f731f4a92eed7102f63e289190c663a534b16eb424255e2ae9de6",
+        "12e57b2cd2a9573724290d0cfa0c1373e5d69b3ccddb7850f6488333eabcf370"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "moving-edge",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/moving-edge.gbc",
+      "romSha256": "27ab1d35fafc9aed6a8550b991ecea65cf98c58a0aa03b08a46b8deedad8f3b8",
+      "headerChecksum": 230,
+      "globalChecksum": 32064,
+      "metadataVersion": 1,
+      "tileCount": 2,
+      "referencedTileCount": 2,
+      "framebufferSha256": [
+        "1a9819c4ab24270f7a2315376ae688079659919b72d1b6659b5867b587934b4a",
+        "ac1ac56e28ad3cacebeee0cf9d62d82d12387a115557497f8a9b849bff95227a"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "checkerboard",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/checkerboard.gbc",
+      "romSha256": "bf447d86674600e5d6fa3a4e851db36436b4748ca54776df2b5fcf2b3affb177",
+      "headerChecksum": 45,
+      "globalChecksum": 32227,
+      "metadataVersion": 1,
+      "tileCount": 1,
+      "referencedTileCount": 1,
+      "framebufferSha256": [
+        "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14",
+        "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "isolated-window",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/isolated-window.gbc",
+      "romSha256": "e157062e9ce3fdda97be284ffbd9a606f6ae71d61a322dcb2f8bdcd077093592",
+      "headerChecksum": 242,
+      "globalChecksum": 32200,
+      "metadataVersion": 1,
+      "tileCount": 2,
+      "referencedTileCount": 2,
+      "framebufferSha256": [
+        "da9c1a1b08319e220041b5df6b8820e3ce5a2de5cd5dbfbdd9a2451b6d2c5d45",
+        "da9c1a1b08319e220041b5df6b8820e3ce5a2de5cd5dbfbdd9a2451b6d2c5d45"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "alternating-lines",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/alternating-lines.gbc",
+      "romSha256": "7433ffe8e47924a0755c5901d521363af9bee45e4f6f1b786e0c07a6e4b03bd0",
+      "headerChecksum": 135,
+      "globalChecksum": 32133,
+      "metadataVersion": 1,
+      "tileCount": 1,
+      "referencedTileCount": 1,
+      "framebufferSha256": [
+        "c70867f17991cd578cb8ec96cf39ef759502b2c45d9491402f119c2859ac3284",
+        "c70867f17991cd578cb8ec96cf39ef759502b2c45d9491402f119c2859ac3284"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "parity-toggle",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/parity-toggle.gbc",
+      "romSha256": "65a05978587b0b797979238aa216a8779764ffe31af23f56ae3e008fdea6961b",
+      "headerChecksum": 33,
+      "globalChecksum": 33250,
+      "metadataVersion": 1,
+      "tileCount": 2,
+      "referencedTileCount": 2,
+      "framebufferSha256": [
+        "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14",
+        "fdedfd6301f83f89cf106e3685da4941238d798f5958f330aba8a17bdd2e6b57"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "retention-stress-recovery",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/retention-stress-recovery.gbc",
+      "romSha256": "ae121eaae5e62de6942da85ba1036ef5f1c53f4f062cca194ea3bf43945d93ca",
+      "headerChecksum": 41,
+      "globalChecksum": 34002,
+      "metadataVersion": 1,
+      "tileCount": 2,
+      "referencedTileCount": 2,
+      "framebufferSha256": [
+        "64f6ac982f48e3f1b8add58c03c5d00d8fc1337414d040df8d76342197e75a6a",
+        "956cb0bff38f731f4a92eed7102f63e289190c663a534b16eb424255e2ae9de6"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "pixel-grid-identity",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/pixel-grid-identity.gbc",
+      "romSha256": "ba5ecf3d528154fb677f00a255ac81e196d28f42dfbca812b7a056c129c161dd",
+      "headerChecksum": 128,
+      "globalChecksum": 32610,
+      "metadataVersion": 1,
+      "tileCount": 1,
+      "referencedTileCount": 1,
+      "framebufferSha256": [
+        "eb93cb5ed32de54ff8ba02d0232301e320b9b6a91a28a256d5ce2d95d1ab4a12",
+        "eb93cb5ed32de54ff8ba02d0232301e320b9b6a91a28a256d5ce2d95d1ab4a12"
+      ],
+      "status": "pass"
+    },
+    {
+      "sceneId": "rgb555-exhaustive-transport",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/rgb555-exhaustive-transport.gbc",
+      "romSha256": "72e42558d723f895ccea0634939d2cd80364b68ae959dff5942904a5c2bfc664",
+      "headerChecksum": 25,
+      "globalChecksum": 55427,
+      "metadataVersion": 1,
+      "tileCount": 6,
+      "referencedTileCount": 6,
+      "framebufferSha256": [
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1",
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+      ],
+      "status": "pass"
+    }
+  ]
+}

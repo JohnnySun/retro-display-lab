@@ -2,11 +2,11 @@
 
 [English](README.md) | **繁體中文** | [简体中文](README.zh-cn.md)
 
-我寫了兩套給 RetroArch 使用的掌機 LCD Shader，分別用來還原初代
-Game Boy，以及 GBA SP 後期背光版 AGS-101 的螢幕觀感。
+我寫了三套給 RetroArch 使用的掌機 LCD Shader，分別用來還原初代
+Game Boy、反射式 Game Boy Color，以及 GBA SP 後期背光版 AGS-101 的螢幕觀感。
 
 我想做的並不是另一個「看起來有點復古」的濾鏡，而是從真實量測資料、
-當年的研究文獻和螢幕工作原理出發，重新建立這兩塊液晶螢幕的顯示過程。
+當年的研究文獻和螢幕工作原理出發，重新建立這些液晶螢幕的顯示過程。
 
 簡單來說，就是四個字：**先量，再算。**
 
@@ -141,7 +141,7 @@ SpyderX 實測 host profile；它仍是單台參考機的機型預設，不能�
 
 ## 下載
 
-- 穩定版 v0.6.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.6.0.zip)
+- 穩定版 v0.8.0：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.0.zip)
 - 發布說明：[GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - 最新開發版：[`main` 的 ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git：`git clone https://github.com/JohnnySun/retro-display-lab.git`

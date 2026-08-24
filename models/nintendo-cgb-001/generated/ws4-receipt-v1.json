@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws4-receipt-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS4",
+  "completedOn": "2026-08-24",
+  "generatedBy": "tools/build-cgb001-ws4.mjs",
+  "evidenceBoundary": {
+    "manufacturerFamilyBounds": "Sharp 6.5-inch HCR 50/80 ms and GH 80/150 ms labels",
+    "periodReconstructed": "10-to-90 conversion, midpoint member, distance rate field, and numeric snap threshold",
+    "heldNeutral": "RGB channel multipliers, direction split, temperature coefficient, and overshoot",
+    "unresolved": "exact CGB mode, waveform, GtG matrix, response definition, temperature dependence, and specimen spread"
+  },
+  "trackedInputHashes": {
+    "models/nintendo-cgb-001/data/ws4-evidence-inventory-v1.json": "21aeb8b44de0e1fe7c7bc1edc56c3467148e618a3a499c29f311b5000d31d081",
+    "models/nintendo-cgb-001/data/ws4-response-policy-v1.json": "8844a572b314d30b0cf3305ce5a8d4740fd64478a614ab6d434691405f276b40",
+    "models/nintendo-cgb-001/data/response-ensemble.schema.json": "330931be2e1aaf8f8a8fbd565953b57664d8a215adef59b048ef6b1f10ba34ca",
+    "models/nintendo-cgb-001/reference/optical-response.mjs": "e7d80a0c1580f6baae1e13c40fba94548187c1a83fce1493ecc1362b9ed45c16",
+    "models/nintendo-cgb-001/generated/ws3-runtime-constants-v1.json": "590e2972d359f9af3a8d99ae7a4cd07e2eaf0223eec50451d38a731bd7782c95",
+    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "8589de027926840e0c7b06dd06bfa5949fed95fa788e5af72bebfb0f0ba22651",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "c58551ac09d2d79de9909e04173469e6c820e171870df6357a55c238fc6c8b1c",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "6d11c61310f5a1e7b2edaac8c96253dbba79d91590bfb7065f0eee677236870c",
+    "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
+    "tools/build-cgb001-ws4.mjs": "a34a43601395d961ce63f230ab1d3a20c10df96994d878d1ac4cd455c194ca07"
+  },
+  "outputHashes": {
+    "models/nintendo-cgb-001/data/response-ensemble-v1.json": "33b355a0e70137dd1ad89ad677791f081a5fe869ca49e78130e64fdcbf18327a",
+    "models/nintendo-cgb-001/generated/cgb001-ws4-gtg-rates-v1.r32f": "a43e901fbb103c578d1b26263057148d9ab8524507b5d826309879e50fb0ecf9",
+    "models/nintendo-cgb-001/generated/cgb001-ws4-gtg-rates-v1.json": "9c19d667fa49f576c6524d3a28cc97dad3a58a7cfa116a12674b8b7ce92fa0d2",
+    "models/nintendo-cgb-001/generated/ws4-model-selection-v1.json": "c6e27a23da7a82ae55f9952372ad78e946a33bfa045adecebff2ab9ddcbe7095",
+    "models/nintendo-cgb-001/generated/ws4-equation-vectors-v1.json": "aa69f19e083970eaa52c6a3c60bf602a179db260d3af35733772c8a19cbb2f90",
+    "models/nintendo-cgb-001/generated/ws4-motion-fixtures-v1.json": "8221aa8a7d002514b1a7cbf0bf81280f8d5337d30bae7410d5b5c015f829a45d"
+  },
+  "gates": {
+    "evidenceIdsResolve": true,
+    "sourceConditionsAndLimitsNormalized": true,
+    "familyBoundsPreservedWithoutCgbClaim": true,
+    "oneCommonResponseDefinitionUsed": true,
+    "symmetricAsymmetricAndTwoStateCandidatesEvaluated": true,
+    "smallestEvidenceCompatibleModelSelected": true,
+    "fastNominalSlowMembersComplete": true,
+    "fullScaleAndGrayAnchorsReproduced": true,
+    "generatedThreeByThreeByThirtyTwoByThirtyTwoCells": true,
+    "everyCellHasProvenanceAndFallback": true,
+    "channelAndTemperatureUncertaintyHeldNeutral": true,
+    "futureMeasuredOverridesRequireNoShaderInterfaceChange": true,
+    "cpuAndFutureShaderAllCellsAgree": true,
+    "transitionsCausalFiniteBoundedAndMonotone": true,
+    "fixedPointsAndExactConvergencePass": true,
+    "noFutureFrameGhosts": true,
+    "ensembleMotionDiffersOnlyInResponse": true,
+    "settledStateAndWs1ColorByteIdentical": true,
+    "ws1LutHashInvariant": true,
+    "retentionStateCreated": false,
+    "shaderOrPresetCreated": false
+  },
+  "result": {
+    "status": "pass",
+    "ws4Complete": true,
+    "nextEligibleWorkstreams": [
+      "WS5",
+      "WS6",
+      "WS7"
+    ],
+    "referenceV1ShaderOrPresetAllowed": false
+  },
+  "limits": "WS4 is a bounded period-family response ensemble and future-Shader equation contract, not a CGB waveform measurement, GPU readback, retention model, Shader, or preset."
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "artifactId": "cgb001-ws8-runtime-textures-v1",
+  "classification": "frontend-loadable-derived-textures-authoritative-float-sources-retained",
+  "generatedBy": "tools/build-cgb001-ws8.mjs",
+  "layout": {
+    "dimensions": [
+      1088,
+      32
+    ],
+    "pngFormat": "paired RGBA8_UNORM high-byte/low-byte data planes",
+    "axisLayout": "32 B slices, each 34 texels wide with one duplicated R-edge texel on each side; G vertical; Shader performs explicit RGB trilinear interpolation after uint16 reconstruction",
+    "requiredFiltering": "nearest; Shader reconstructs uint16 and performs trilinear interpolation manually",
+    "requiredWrap": "clamp_to_edge",
+    "uploadPrecisionMustBeVerifiedInWs9": true,
+    "rejectedTargetProbe": {
+      "format": "single RGBA16 PNG",
+      "filesRetained": [
+        "cgb001-reference-d65-v1.png",
+        "cgb001-hcs-upstream-d65-v1.png"
+      ],
+      "result": "RetroArch 1.22.2 generic PNG loader on KONKR exposed n/255 values; retained as a reproducible failed transport probe, not used by presets"
+    }
+  },
+  "textures": {
+    "referenceD65": {
+      "path": "cgb001-reference-d65-v1-hi-rgba8.png",
+      "sha256": "cfb01b62c67cd29066bea4d4e2bb329a32f2d0618d94a17a95d6a50325e8bbc1",
+      "rejectedRgba16Probe": {
+        "path": "cgb001-reference-d65-v1.png",
+        "sha256": "c63347e4e7709437b352ef5a33eb8c07a3ef5ae1c7a38d5926f4c3a594d852fc"
+      },
+      "runtimeHighPlane": {
+        "path": "cgb001-reference-d65-v1-hi-rgba8.png",
+        "sha256": "cfb01b62c67cd29066bea4d4e2bb329a32f2d0618d94a17a95d6a50325e8bbc1"
+      },
+      "runtimeLowPlane": {
+        "path": "cgb001-reference-d65-v1-lo-rgba8.png",
+        "sha256": "eda45060a17dcb8298e858d6829982d7e219372ff9e5881886a16a77cb14a4cf"
+      },
+      "encodedScale": 1,
+      "authoritativeSource": "cgb001-d65-lut-v1.rgba32f",
+      "authoritativeSourceSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+      "maximumIntegerTexelAbsoluteXyzQuantizationError": 0.00000762931494924
+    },
+    "hcsUpstreamD65": {
+      "path": "cgb001-hcs-upstream-d65-v1-hi-rgba8.png",
+      "sha256": "c397cf39a3bbba78d6bc3701b6e931de61d73a121f3f3b2b3c47fbcac06030a5",
+      "rejectedRgba16Probe": {
+        "path": "cgb001-hcs-upstream-d65-v1.png",
+        "sha256": "9ab43a2616a8c78dce69b5a435ef81f5235e11b03a177a13b34e55a51051c3c6"
+      },
+      "runtimeHighPlane": {
+        "path": "cgb001-hcs-upstream-d65-v1-hi-rgba8.png",
+        "sha256": "c397cf39a3bbba78d6bc3701b6e931de61d73a121f3f3b2b3c47fbcac06030a5"
+      },
+      "runtimeLowPlane": {
+        "path": "cgb001-hcs-upstream-d65-v1-lo-rgba8.png",
+        "sha256": "414cb3cab0988fec157a25e7d3bb355d50950fcc7d16e9aa93a937a82d047ba9"
+      },
+      "encodedScale": 1.25,
+      "authoritativeSource": "../data/hcs-source-v1.json#upstreamD65Fixture",
+      "authoritativeSourceSha256": "803829a1b02d9c2b0b664f632a211eb2b72cd9706645831f447fca954f79c9e1",
+      "maximumIntegerTexelAbsoluteXyzQuantizationError": 0.00000953681919202
+    }
+  },
+  "rateBinding": {
+    "authoritativeSource": "cgb001-ws4-gtg-rates-v1.r32f",
+    "authoritativeSourceSha256": "a43e901fbb103c578d1b26263057148d9ab8524507b5d826309879e50fb0ecf9",
+    "shaderReduction": "the frozen WS4 analytic rate equation and the three source-record endpoints",
+    "maximumFloat32DifferenceAcross9216Cells": 0
+  },
+  "boundary": "The PNG files are derived frontend transport textures. They do not replace, relabel, or modify the retained RGBA32F WS1 LUT, R32F WS4 rate table, or verbatim HCS measurements."
+}

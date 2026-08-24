@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/measurement-normalization-v1.json",
+  "title": "CGB-001 measurement normalization record v1",
+  "description": "Separates verified raw HCS source identity, audit findings, and deterministic repairs from later color fitting.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "recordId", "modelId", "classification", "status", "sourceLocation", "sourceArtifacts", "cieReferences", "geometry", "audit", "normalizationPolicy", "d65Integration", "normalizedSeries", "summaryReadings", "upstreamD65Fixture", "outputs"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "recordId": { "type": "string", "minLength": 1 },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "const": "measured-normalization" },
+    "status": { "const": "complete" },
+    "evidenceIds": {
+      "type": "array",
+      "contains": { "const": "CGB-HCS-REFLECTANCE-2026" },
+      "items": { "type": "string", "pattern": "^CGB-" }
+    },
+    "sourceArtifacts": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["fileName", "repositoryPath", "sha256", "verified", "role"],
+        "properties": {
+          "fileName": { "type": "string", "minLength": 1 },
+          "repositoryPath": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "verified": { "const": true },
+          "role": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sourceLocation": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["repository", "commit", "upstreamDirectory", "localReferenceRoot", "storagePolicy"]
+    },
+    "cieReferences": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["fileName", "repositoryPath", "sha256", "verified", "role", "license"]
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["illuminationAngleDegrees", "detectorAngleDegrees", "detectorDirection"],
+      "properties": {
+        "illuminationAngleDegrees": { "const": 45 },
+        "detectorAngleDegrees": { "const": 0 },
+        "detectorDirection": { "const": "panel normal" }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "description": "Must preserve original row counts, wavelength validity, negative values, black drift, and upstream edits.",
+      "additionalProperties": true,
+      "required": ["seriesPatchCounts", "invalidWavelengthPolicy", "negativeReflectancePresent", "blackDriftPresent", "upstreamManualEditsPresent"],
+      "properties": {
+        "seriesPatchCounts": { "type": "object" },
+        "invalidWavelengthPolicy": { "type": "string", "minLength": 1 },
+        "negativeReflectancePresent": { "type": "boolean" },
+        "blackDriftPresent": { "type": "boolean" },
+        "upstreamManualEditsPresent": { "type": "boolean" }
+      }
+    },
+    "normalizationPolicy": { "type": "object", "additionalProperties": true },
+    "d65Integration": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["method", "recordedRangeWhiteXyz", "authorUsableRangeWhiteXyz", "classification"]
+    },
+    "normalizedSeries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["R", "G", "B", "Y", "C", "M", "Greyscale"],
+      "properties": {
+        "R": { "$ref": "#/$defs/series" },
+        "G": { "$ref": "#/$defs/series" },
+        "B": { "$ref": "#/$defs/series" },
+        "Y": { "$ref": "#/$defs/series" },
+        "C": { "$ref": "#/$defs/series" },
+        "M": { "$ref": "#/$defs/series" },
+        "Greyscale": { "$ref": "#/$defs/series" }
+      }
+    },
+    "summaryReadings": { "type": "array", "minItems": 5, "items": { "type": "object" } },
+    "upstreamD65Fixture": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["classification", "sourceFile", "sourceSha256", "parameters"]
+    },
+    "outputs": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  },
+  "$defs": {
+    "series": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["sourcePatchCount", "expectedCodeCount", "codeMappingPolicy", "wavelengthGridNm", "readings"]
+    }
+  }
+}

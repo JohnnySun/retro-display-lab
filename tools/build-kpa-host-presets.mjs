@@ -19,6 +19,10 @@ const profiles = [
     source: "dmg01-one-year-used-v1.slangp",
     output: "dmg01-one-year-used-kpa-color-corrected.slangp",
   },
+  {
+    source: "cgb001-reference-d65-v1.slangp",
+    output: "cgb001-reference-d65-kpa-color-corrected.slangp",
+  },
 ];
 
 function build(profile) {

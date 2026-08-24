@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws8-shader-compile-v1",
+  "classification": "local-shader-compile-and-spirv-validation-not-gpu-readback",
+  "capturedAt": "2026-08-24T12:46:29.647Z",
+  "tools": {
+    "glslangValidator": "Glslang Version: 11:16.5.0",
+    "spirvVal": "SPIRV-Tools v2026.3 unknown hash, 2026-07-22T20:34:54+00:00",
+    "targetEnvironment": "vulkan1.1"
+  },
+  "sources": {
+    "responseShaderSha256": "4cbf69aa51480fe760d0bcd7a3826acce77939cabbda3a837d13b1e931cf4af7",
+    "colorShaderSha256": "8d11ef4c57b891c21695a05bd4cc398a53d1fb160db0204b5651d53d2b1745fa",
+    "displayShaderSha256": "bb37d49ab604908a840cbab0719eca12a947a85a8dc641383e35538131dfab07",
+    "commonIncludeSha256": "f1ab91c7c47a900f28a956b9b73e25a81754d8ba98b2a30270ca9270c737b3c8",
+    "runtimeIncludeSha256": "a45631a76cc243e2e08ffc46181e7f69edfd8a4419a7728656a7bd07210dc742"
+  },
+  "intendedFormats": {
+    "response": "R32G32B32A32_SFLOAT persistent feedback",
+    "color": "R32G32B32A32_SFLOAT non-persistent XYZ exposure",
+    "display": "frontend swapchain output"
+  },
+  "stages": [
+    {
+      "shaderId": "response",
+      "stage": "vert",
+      "expandedSourceSha256": "8c324b26a7c03d73295287936c572ac855eb2c00db47fb833cf50205e719a565",
+      "spirvSha256": "5bb5fe14d2986225ea6ce926f3e19d6ec309eab5645366654dc132327716ee3f",
+      "spirvBytes": 2412,
+      "pass": true
+    },
+    {
+      "shaderId": "response",
+      "stage": "frag",
+      "expandedSourceSha256": "45c65699289be6d6c7a7e819b5b1c4ca512e8ac1996ea8fed57b35a3235f7b18",
+      "spirvSha256": "2e84d72585e1b338f5ccd1de9f94fc31a1516aa830e31696305663b6178a0fec",
+      "spirvBytes": 17736,
+      "pass": true
+    },
+    {
+      "shaderId": "color",
+      "stage": "vert",
+      "expandedSourceSha256": "53cfebad2edf3169f8b59db85ac2a29431f7efa277487cfe54404c3d926020a5",
+      "spirvSha256": "5bb5fe14d2986225ea6ce926f3e19d6ec309eab5645366654dc132327716ee3f",
+      "spirvBytes": 2412,
+      "pass": true
+    },
+    {
+      "shaderId": "color",
+      "stage": "frag",
+      "expandedSourceSha256": "25fbc7a6309c73336327b23c783c749fec07c5773b5195d7e94f65bfe323892b",
+      "spirvSha256": "5567cc3055c04ccbf1e338441db1ea0440c39d8941b8f6b32637cf37d64d9e87",
+      "spirvBytes": 19908,
+      "pass": true
+    },
+    {
+      "shaderId": "display",
+      "stage": "vert",
+      "expandedSourceSha256": "697c03a8212a7b77e88da18ac708d8db8c19fa9d9426f3c0e95a87da5f95c77d",
+      "spirvSha256": "535e0b56cf51d9812b3400bc7b603d7fd440cfe863c631c8bf5a2f600be287fa",
+      "spirvBytes": 2360,
+      "pass": true
+    },
+    {
+      "shaderId": "display",
+      "stage": "frag",
+      "expandedSourceSha256": "d90240dc38e84d704a728d8056767f79a920cc766575770def8e05c243727c53",
+      "spirvSha256": "88a514f197476610c8ae89bd9bbc0f89afc0e4a361fbd3e1eda3782cef3457b0",
+      "spirvBytes": 30420,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "stages": 6,
+    "pass": true
+  },
+  "limits": "Compilation and SPIR-V validation prove syntax, interface, and declared formats. Actual texture upload precision, feedback allocation, numeric GPU readback, lifecycle behavior, and KONKR performance remain WS9."
+}

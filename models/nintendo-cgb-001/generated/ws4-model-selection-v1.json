@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws4-model-selection-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "period-model-selection-not-panel-identification",
+  "evidenceInventory": {
+    "path": "models/nintendo-cgb-001/data/ws4-evidence-inventory-v1.json",
+    "sha256": "21aeb8b44de0e1fe7c7bc1edc56c3467148e618a3a499c29f311b5000d31d081"
+  },
+  "sourceResponseDefinition": {
+    "reportedLabels": [
+      "on and off",
+      "gray scales"
+    ],
+    "thresholdDefinition": null,
+    "directionSeparation": null,
+    "grayPair": null,
+    "temperatureC": null
+  },
+  "commonCompatibilityDefinition": {
+    "name": "project-equivalent 10-to-90 interval",
+    "classification": "period-reconstructed-conversion",
+    "equation": "t10to90 = ln(9) / rate",
+    "scope": "One common mathematical definition for all ensemble members and model candidates; it is not attributed to the Sharp source.",
+    "fullScaleReference": "code 0 to 31 and 31 to 0 use the on-and-off anchor symmetrically",
+    "grayReference": "adjacent middle transitions 15 to 16 and 16 to 15 use the gray-scales anchor symmetrically",
+    "uncertainty": "The original threshold definition and gray pair are unavailable, so these are compatibility anchors rather than reproduced source waveforms."
+  },
+  "candidates": [
+    {
+      "candidateId": "symmetric-first-order-rate-field",
+      "stateCountPerChannel": 1,
+      "independentDirectionParametersPerMember": 0,
+      "maximumScalarAnchorErrorMilliseconds": 1.4210854715202004e-14,
+      "monotone": true,
+      "bounded": true,
+      "exactFixedPoint": true,
+      "identifiableFromAcceptedEvidence": "scalar anchors only; interior rate field remains reconstructed",
+      "selection": "selected",
+      "reason": "Smallest causal model that matches all accepted scalar compatibility anchors; table rates remain replaceable by future measurements."
+    },
+    {
+      "candidateId": "asymmetric-first-order-rate-field",
+      "stateCountPerChannel": 1,
+      "independentDirectionParametersPerMember": 2,
+      "maximumScalarAnchorErrorMilliseconds": 1.4210854715202004e-14,
+      "monotone": true,
+      "bounded": true,
+      "exactFixedPoint": true,
+      "identifiableFromAcceptedEvidence": false,
+      "selection": "rejected-for-default",
+      "reason": "It can duplicate the symmetric fit, but the source reports no direction split, so two added directional parameters are unconstrained."
+    },
+    {
+      "candidateId": "two-state-cascade",
+      "stateCountPerChannel": 2,
+      "independentDirectionParametersPerMember": 0,
+      "maximumScalarAnchorErrorMilliseconds": 4.263256414560601e-14,
+      "monotone": true,
+      "bounded": true,
+      "exactFixedPoint": true,
+      "identifiableFromAcceptedEvidence": false,
+      "selection": "rejected-for-default",
+      "reason": "An equal-rate cascade can match every scalar interval, but the hidden-state split is non-unique without a waveform; adding it would claim unsupported shape."
+    }
+  ],
+  "selectedCandidate": "symmetric-first-order-rate-field",
+  "anchorFixtures": [
+    {
+      "memberId": "hcr-like-fast",
+      "id": "full-increasing",
+      "fromCode": 0,
+      "toCode": 31,
+      "expected": 50,
+      "actual": 50.00000000000001,
+      "packedFloat32Actual": 49.99999909731179,
+      "absoluteErrorMilliseconds": 7.105427357601002e-15,
+      "packedAbsoluteErrorMilliseconds": 9.026882068496889e-7
+    },
+    {
+      "memberId": "hcr-like-fast",
+      "id": "full-decreasing",
+      "fromCode": 31,
+      "toCode": 0,
+      "expected": 50,
+      "actual": 50.00000000000001,
+      "packedFloat32Actual": 49.99999909731179,
+      "absoluteErrorMilliseconds": 7.105427357601002e-15,
+      "packedAbsoluteErrorMilliseconds": 9.026882068496889e-7
+    },
+    {
+      "memberId": "hcr-like-fast",
+      "id": "middle-adjacent-increasing",
+      "fromCode": 15,
+      "toCode": 16,
+      "expected": 80,
+      "actual": 80,
+      "packedFloat32Actual": 79.99999994461368,
+      "absoluteErrorMilliseconds": 0,
+      "packedAbsoluteErrorMilliseconds": 5.538632308343949e-8
+    },
+    {
+      "memberId": "hcr-like-fast",
+      "id": "middle-adjacent-decreasing",
+      "fromCode": 16,
+      "toCode": 15,
+      "expected": 80,
+      "actual": 80,
+      "packedFloat32Actual": 79.99999994461368,
+      "absoluteErrorMilliseconds": 0,
+      "packedAbsoluteErrorMilliseconds": 5.538632308343949e-8
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "id": "full-increasing",
+      "fromCode": 0,
+      "toCode": 31,
+      "expected": 65,
+      "actual": 65.00000000000001,
+      "packedFloat32Actual": 64.99999939075197,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14,
+      "packedAbsoluteErrorMilliseconds": 6.092480333563799e-7
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "id": "full-decreasing",
+      "fromCode": 31,
+      "toCode": 0,
+      "expected": 65,
+      "actual": 65.00000000000001,
+      "packedFloat32Actual": 64.99999939075197,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14,
+      "packedAbsoluteErrorMilliseconds": 6.092480333563799e-7
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "id": "middle-adjacent-increasing",
+      "fromCode": 15,
+      "toCode": 16,
+      "expected": 115,
+      "actual": 115.00000000000001,
+      "packedFloat32Actual": 115.00000191694728,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14,
+      "packedAbsoluteErrorMilliseconds": 0.0000019169472835756096
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "id": "middle-adjacent-decreasing",
+      "fromCode": 16,
+      "toCode": 15,
+      "expected": 115,
+      "actual": 115.00000000000001,
+      "packedFloat32Actual": 115.00000191694728,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14,
+      "packedAbsoluteErrorMilliseconds": 0.0000019169472835756096
+    },
+    {
+      "memberId": "gh-like-slow",
+      "id": "full-increasing",
+      "fromCode": 0,
+      "toCode": 31,
+      "expected": 80,
+      "actual": 80,
+      "packedFloat32Actual": 79.99999994461368,
+      "absoluteErrorMilliseconds": 0,
+      "packedAbsoluteErrorMilliseconds": 5.538632308343949e-8
+    },
+    {
+      "memberId": "gh-like-slow",
+      "id": "full-decreasing",
+      "fromCode": 31,
+      "toCode": 0,
+      "expected": 80,
+      "actual": 80,
+      "packedFloat32Actual": 79.99999994461368,
+      "absoluteErrorMilliseconds": 0,
+      "packedAbsoluteErrorMilliseconds": 5.538632308343949e-8
+    },
+    {
+      "memberId": "gh-like-slow",
+      "id": "middle-adjacent-increasing",
+      "fromCode": 15,
+      "toCode": 16,
+      "expected": 150,
+      "actual": 150,
+      "packedFloat32Actual": 150.00000054720448,
+      "absoluteErrorMilliseconds": 0,
+      "packedAbsoluteErrorMilliseconds": 5.472044790622022e-7
+    },
+    {
+      "memberId": "gh-like-slow",
+      "id": "middle-adjacent-decreasing",
+      "fromCode": 16,
+      "toCode": 15,
+      "expected": 150,
+      "actual": 150,
+      "packedFloat32Actual": 150.00000054720448,
+      "absoluteErrorMilliseconds": 0,
+      "packedAbsoluteErrorMilliseconds": 5.472044790622022e-7
+    }
+  ],
+  "twoStateAnchorFixtures": [
+    {
+      "memberId": "hcr-like-fast",
+      "fixtureId": "full-increasing",
+      "expectedMilliseconds": 50,
+      "equalCascadeRatePerSecond": 67.15817122955634,
+      "actualMilliseconds": 49.99999999999998,
+      "absoluteErrorMilliseconds": 2.1316282072803006e-14
+    },
+    {
+      "memberId": "hcr-like-fast",
+      "fixtureId": "full-decreasing",
+      "expectedMilliseconds": 50,
+      "equalCascadeRatePerSecond": 67.15817122955634,
+      "actualMilliseconds": 49.99999999999998,
+      "absoluteErrorMilliseconds": 2.1316282072803006e-14
+    },
+    {
+      "memberId": "hcr-like-fast",
+      "fixtureId": "middle-adjacent-increasing",
+      "expectedMilliseconds": 80,
+      "equalCascadeRatePerSecond": 41.973857018472714,
+      "actualMilliseconds": 79.99999999999999,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14
+    },
+    {
+      "memberId": "hcr-like-fast",
+      "fixtureId": "middle-adjacent-decreasing",
+      "expectedMilliseconds": 80,
+      "equalCascadeRatePerSecond": 41.973857018472714,
+      "actualMilliseconds": 79.99999999999999,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "fixtureId": "full-increasing",
+      "expectedMilliseconds": 65,
+      "equalCascadeRatePerSecond": 51.66013171504334,
+      "actualMilliseconds": 65,
+      "absoluteErrorMilliseconds": 0
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "fixtureId": "full-decreasing",
+      "expectedMilliseconds": 65,
+      "equalCascadeRatePerSecond": 51.66013171504334,
+      "actualMilliseconds": 65,
+      "absoluteErrorMilliseconds": 0
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "fixtureId": "middle-adjacent-increasing",
+      "expectedMilliseconds": 115,
+      "equalCascadeRatePerSecond": 29.199204882415803,
+      "actualMilliseconds": 114.99999999999996,
+      "absoluteErrorMilliseconds": 4.263256414560601e-14
+    },
+    {
+      "memberId": "mid-envelope-nominal",
+      "fixtureId": "middle-adjacent-decreasing",
+      "expectedMilliseconds": 115,
+      "equalCascadeRatePerSecond": 29.199204882415803,
+      "actualMilliseconds": 114.99999999999996,
+      "absoluteErrorMilliseconds": 4.263256414560601e-14
+    },
+    {
+      "memberId": "gh-like-slow",
+      "fixtureId": "full-increasing",
+      "expectedMilliseconds": 80,
+      "equalCascadeRatePerSecond": 41.973857018472714,
+      "actualMilliseconds": 79.99999999999999,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14
+    },
+    {
+      "memberId": "gh-like-slow",
+      "fixtureId": "full-decreasing",
+      "expectedMilliseconds": 80,
+      "equalCascadeRatePerSecond": 41.973857018472714,
+      "actualMilliseconds": 79.99999999999999,
+      "absoluteErrorMilliseconds": 1.4210854715202004e-14
+    },
+    {
+      "memberId": "gh-like-slow",
+      "fixtureId": "middle-adjacent-increasing",
+      "expectedMilliseconds": 150,
+      "equalCascadeRatePerSecond": 22.38605707651878,
+      "actualMilliseconds": 149.99999999999997,
+      "absoluteErrorMilliseconds": 2.842170943040401e-14
+    },
+    {
+      "memberId": "gh-like-slow",
+      "fixtureId": "middle-adjacent-decreasing",
+      "expectedMilliseconds": 150,
+      "equalCascadeRatePerSecond": 22.38605707651878,
+      "actualMilliseconds": 149.99999999999997,
+      "absoluteErrorMilliseconds": 2.842170943040401e-14
+    }
+  ],
+  "rejectedRuntimeFeatures": [
+    "direction asymmetry without a directional source",
+    "second hidden state without a waveform",
+    "overdrive or overshoot without CGB evidence",
+    "channel multipliers without per-channel response data"
+  ],
+  "pass": true
+}

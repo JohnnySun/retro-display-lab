@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "cgb001-ws3-evidence-inventory-v1",
+  "snapshotDate": "2026-08-24",
+  "scope": "CGB-001 PPU timing, CPU-to-panel signal inventory, comparable Sharp HR-TFT signal semantics, rails, and bounded scan/inversion reconstruction.",
+  "classificationOrder": [
+    "cgb-primary-document",
+    "manufacturer-family-primary",
+    "technical-reverse-engineering",
+    "local-core-runtime-receipt",
+    "negative-evidence-record"
+  ],
+  "rules": [
+    "Nintendo raster and palette facts may be frozen, but rounded software-visible PPU timing is not an exact measurement of panel LP, SPS, CLS, or REVC edges.",
+    "The Nintendo CPU diagram establishes named CGB pins; comparable Sharp documents establish family signal vocabulary, not CGB edge phase or voltages.",
+    "The 5-bit palette to 6-line-per-channel mapping remains unresolved unless an exact CGB electrical trace or panel/controller specification is found.",
+    "CGB supply rails are board/panel supply facts and must not be assigned to individual RGB codes.",
+    "The pinned Gambatte receipt validates source frames and timebase only; it does not observe the physical LCD interface.",
+    "No passive-matrix DMG selection loss or spatial crosstalk may be transferred into the CGB active-matrix reconstruction."
+  ],
+  "items": [
+    {
+      "itemId": "nintendo-programming-manual-1999",
+      "evidenceId": "CGB-NIN-PROG-1999",
+      "classification": "cgb-primary-document",
+      "title": "Nintendo Game Boy Programming Manual, version 1.1",
+      "documentCode": "DMG-06-4216-001-B",
+      "released": "1999-12-03",
+      "url": "https://files.nekoblog.org/uploads/pdf/39999184-GameBoy-Programming-Manual.pdf",
+      "claimsUsed": [
+        "CGB CPU diagram exposes LDR0-LDR5, LDG0-LDG5, LDB0-LDB5, DCK, SPL, LP, PS, SPS, CLS, MOD, and REVC adjacent to the LCD drive signal buffer",
+        "CGB palette RAM stores five bits per R, G, and B channel",
+        "the screen is 160 segments by 144 visible lines followed by 10 vertical-blank lines",
+        "the published rounded timing is 108.7 microseconds per line, 15.66 milliseconds visible, 1.09 milliseconds vertical blank, and 59.7 hertz",
+        "LY spans 0-153 and lines 144-153 are vertical blank"
+      ],
+      "limits": "The manual does not define RGB555-to-six-wire expansion, panel DCK count, LP/SPS/CLS phase, REVC waveform, VCOM, gamma voltages, or optical onset."
+    },
+    {
+      "itemId": "nintendo-service-manual-1999",
+      "evidenceId": "CGB-NIN-SERVICE-1999",
+      "classification": "cgb-primary-document",
+      "title": "Nintendo Game Boy Color Repair Procedures",
+      "revision": "1999-06-22",
+      "url": "https://documents.cdn.ifixit.com/XfUohIuYorCPxUTY.pdf",
+      "sha256": "716b8a201ffab9d8d9cc0587cfbfd17143f45db882730068053a4357453bd1bc",
+      "claimsUsed": [
+        "the display is HR-TFT 160 by 144 by RGB dots with common and segment drivers built into the LCD",
+        "the DC/DC converter provides 5 V, -15 V, and +13.6 V, with the latter two identified for LCD operation"
+      ],
+      "limits": "The rails are supply-level observations, not per-code pixel voltage, gamma reference, VCOM amplitude, or polarity phase."
+    },
+    {
+      "itemId": "sharp-lq035q2dd55-family",
+      "evidenceId": "CGB-SHARP-HR-MODULE",
+      "classification": "manufacturer-family-primary",
+      "title": "Sharp LQ035Q2DD55 delivery specification",
+      "documentCode": "LCY-01054B",
+      "url": "https://www.beyondinfinite.com/lcd/Library/Sharp/LQ035Q2DD55.pdf",
+      "claimsUsed": [
+        "DCLK samples data; LP latches the source driver; SPL starts source sampling; SPS starts the gate driver; CLS clocks the gate driver; MOD controls the gate driver; PS is power save",
+        "the comparable HR-TFT interface uses six explicitly ordered LSB-to-MSB wires per color",
+        "the comparable module separates analog and digital source supplies, gate rails, VCOM, and multiple standard gray-scale voltages"
+      ],
+      "limits": "This 240 by 320 front-lit module is not the CGB panel. Its pinout, signal phase, scanning direction, voltage values, RGB mapping, and VCOM values are not transferred."
+    },
+    {
+      "itemId": "sharp-lz9jg17b-family",
+      "evidenceId": "CGB-SHARP-HR-MODULE",
+      "classification": "manufacturer-family-primary",
+      "title": "Sharp LZ9JG17B TFT-LCD timing-controller datasheet",
+      "url": "https://www1.futureelectronics.com/doc/SHARP/LZ9JG17B.pdf",
+      "claimsUsed": [
+        "the Sharp controller family distinguishes source-driver LP/data outputs from gate-driver CLS/SPS/MODE outputs",
+        "REVC is described as a preparatory signal for common-electrode drive"
+      ],
+      "limits": "The controller is not identified in CGB hardware and supplies no transferable CGB waveform or phase."
+    },
+    {
+      "itemId": "gbdev-external-lcd-mapping",
+      "evidenceId": "CGB-GBDEV-EXTLCD",
+      "classification": "technical-reverse-engineering",
+      "title": "Game Boy and Game Boy Color external LCD/PGB signal mapping",
+      "url": "https://gbdev.gg8.se/wiki/articles/Gameboy_and_Gameboy_Color_special_modes_and_features",
+      "claimsUsed": [
+        "secondary connector mapping independently associates the named CGB LCD pins with an external display interface"
+      ],
+      "limits": "This is not Nintendo electrical documentation and does not establish exact waveform timing, voltage, or sixth-bit generation."
+    },
+    {
+      "itemId": "ws2-gambatte-contract",
+      "evidenceId": "CGB-PRIOR-LIBRETRO",
+      "classification": "local-core-runtime-receipt",
+      "title": "CGB-001 WS2 Gambatte source contract and exhaustive ROM receipt",
+      "localPaths": [
+        "data/frontend-contract-v1.json",
+        "generated/ws2-gambatte-smoke-v1.json",
+        "generated/ws2-stimulus-v1/manifest.json"
+      ],
+      "claimsUsed": [
+        "the selected source path presents exact RGB555 codes at 160 by 144 and 4194304/70224 hertz",
+        "all 32768 RGB555 codes pass through a deterministic ROM and the pinned core without ambiguity"
+      ],
+      "limits": "Emulator output does not identify physical panel signal timing, bus expansion, inversion, or optical response."
+    },
+    {
+      "itemId": "exact-cgb-panel-data-gap",
+      "evidenceId": "CGB-SHARP-HR-MODULE",
+      "classification": "negative-evidence-record",
+      "title": "Exact CGB Sharp panel/controller specification gap",
+      "result": "No exact CGB panel module number, panel timing specification, source-driver mapping, gamma ladder, or REVC/VCOM waveform is available in the accepted reference set.",
+      "claimsUsed": [],
+      "limits": "Absence from the accepted reference set does not prove that such a document or surviving trace cannot be found later."
+    }
+  ]
+}

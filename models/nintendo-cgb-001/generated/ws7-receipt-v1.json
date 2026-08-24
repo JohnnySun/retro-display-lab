@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws7-receipt-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS7",
+  "completedOn": "2026-08-24",
+  "generatedBy": "tools/build-cgb001-ws7.mjs",
+  "trackedInputHashes": {
+    "models/nintendo-cgb-001/data/ws7-evidence-inventory-v1.json": "9824452c596df03ed2bdb4e7ad5be886be76ef8bd784e9159ea32374866f640b",
+    "models/nintendo-cgb-001/data/retention-v1.json": "22bdc901e1a78ae85cdc16018d09976289384b819dc3d43a6fdb6da5dcc60f08",
+    "models/nintendo-cgb-001/data/retention.schema.json": "e31cdfb4da339d2da763bff35666576ed7257f8876a125c3317721fc85ce385d",
+    "models/nintendo-cgb-001/reference/residual-dc-retention.mjs": "694bb4118f71d95c22055a22b4f8108f20ff33b91ba625f0f724f940b80af073",
+    "models/nintendo-cgb-001/reference/scan-drive.mjs": "75b62d9d8c516c777454e61480055daa1c458e10b3bfddc1092d9e0848ea6382",
+    "models/nintendo-cgb-001/data/scan-candidates-v1.json": "3f33ea131d3fbf09ea00f673cfa6300986bc0456246adae6d2c19c493035c663",
+    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "8589de027926840e0c7b06dd06bfa5949fed95fa788e5af72bebfb0f0ba22651",
+    "models/nintendo-cgb-001/data/response-ensemble-v1.json": "33b355a0e70137dd1ad89ad677791f081a5fe869ca49e78130e64fdcbf18327a",
+    "models/nintendo-cgb-001/generated/ws4-receipt-v1.json": "2a8915af1c6a8c446eed5850d9661e6472e41b93c6c35cd7be711a3289cebabc",
+    "models/nintendo-cgb-001/data/frontend-contract-v1.json": "12ba9b759c57a3d5255a05d286b63667039aee045f948db67ab5852d6fd773f9",
+    "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
+    "tools/build-cgb001-ws7.mjs": "ae43b6897084b4d02f02bc8c6a55d58fc29bce78f466e5d652847d3543d2127b"
+  },
+  "outputHashes": {
+    "models/nintendo-cgb-001/generated/ws7-retention-validation-v1.json": "55a5e12d585d1dff082d6f4460ce272e993712e8f94dc1eff182c85b0d83f8a2"
+  },
+  "gates": {
+    "activeMatrixVcomAndIonMechanismsNormalized": true,
+    "lowNominalHighKineticEnsembleFrozen": true,
+    "sourceCodeAndWs3PolarityExcitationImplemented": true,
+    "displayedLumaExcluded": true,
+    "slowStateIndependentFromWs4": true,
+    "referenceProfileRemainsZeroAmplitude": true,
+    "balancedUniformNoDriftPasses": true,
+    "codePolarityAndSpatialProtocolsPass": true,
+    "stressRecoveryAndPolarityReversalPass": true,
+    "formationZeroOrdinaryResponseIsolationPasses": true,
+    "pauseResetDiscontinuityAndBypassPass": true,
+    "everyWs3TopologyAndParityCovered": true,
+    "futureShaderFloat32EquationAgrees": true,
+    "agedCgbPresetInvented": false,
+    "shaderOrPresetCreated": false
+  },
+  "result": {
+    "status": "pass",
+    "ws7Complete": true,
+    "nextEligibleWorkstreams": [
+      "WS6",
+      "WS8-after-WS6"
+    ],
+    "referenceV1ShaderOrPresetAllowed": false
+  },
+  "limits": "WS7 freezes a one-scalar CPU/reference residual-DC equation and future-Shader contract. Its rates are later-cell bounds, the CGB reference amplitude/coupling remain zero, and it creates no aged preset, Shader, or actual GPU readback."
+}

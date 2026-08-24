@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "reportId": "cgb001-ws9-prior-art-difference-v1",
+  "classification": "difference-report-only-prior-art-is-not-acceptance-truth",
+  "referenceTruth": {
+    "evidenceId": "CGB-HCS-REFLECTANCE-2026",
+    "geometry": "CIE D65, 45 degree illumination, 0 degree normal view, CIE 1931 2 degree observer",
+    "originalMeasurementArtifacts": {
+      "gbc_reflectance.ods": "967af7247d940e15cd86ce28046fcf9996bb36086389d9967154188770a95bba",
+      "gbc_reflectance.txt": "b985e02476d35beecfb6a6955cb8aecae052205008126a8cdad7fd7233cf2b37"
+    },
+    "authoritativeLutSha256": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "measuredPatchComparison": {
+      "patches": 224,
+      "referenceRuntimeLutDeltaE00": {
+        "count": 224,
+        "minimum": 0,
+        "maximum": 0.60178778193297,
+        "mean": 0.07889159137652,
+        "standardDeviation": 0.13414213994234
+      },
+      "hcsUpstreamWhiteAndBlackAlignedDeltaE00": {
+        "count": 224,
+        "minimum": 0,
+        "maximum": 4.48388830006839,
+        "mean": 1.24329523526688,
+        "standardDeviation": 0.87526176053742
+      },
+      "upstreamParameterMaximumDifference": 0,
+      "upstreamParameterRegressionPass": true
+    }
+  },
+  "comparisonPolicy": {
+    "domain": "all 32768 integer RGB555 codes",
+    "alignment": "map each prior-art sRGB white component-wise to the measured black-subtracted white, then add the dedicated measured black",
+    "metric": "CIEDE2000 against the authoritative WS1 XYZ LUT",
+    "acceptanceRole": "none; differences characterize prior art and never select or reject measured color"
+  },
+  "sameBoy": {
+    "evidenceId": "CGB-PRIOR-SAMEBOY",
+    "source": "https://github.com/LIJI32/SameBoy/blob/213a12ce93d66b105a113debd9396306066a7cfc/Core/display.c",
+    "sourceSha256": "480218b1647f8f9bdcb00ba87198b534f8e90657813b34c73c4d1058bcc77385",
+    "header": "https://github.com/LIJI32/SameBoy/blob/213a12ce93d66b105a113debd9396306066a7cfc/Core/display.h",
+    "headerSha256": "54e1d7d0ad4c9b10a99459017921bad1b4e072c04328f1cc3f6f20e76864bea6",
+    "mode": "GB_COLOR_CORRECTION_MODERN_BALANCED, CGB model, zero light-temperature",
+    "transcription": {
+      "channelCurveUint8": [
+        0,
+        6,
+        12,
+        20,
+        28,
+        36,
+        45,
+        56,
+        66,
+        76,
+        88,
+        100,
+        113,
+        125,
+        137,
+        149,
+        161,
+        172,
+        182,
+        192,
+        202,
+        210,
+        218,
+        225,
+        232,
+        238,
+        243,
+        247,
+        250,
+        252,
+        254,
+        255
+      ],
+      "greenMix": "round(255 * ((3*(g/255)^1.6 + (b/255)^1.6)/4)^(1/1.6)); red and blue retain the curve output"
+    },
+    "deltaE00VersusMeasuredReferenceLut": {
+      "count": 32768,
+      "minimum": 9.27317723155e-7,
+      "maximum": 19.819332053,
+      "mean": 9.53703256752
+    },
+    "worst": {
+      "rgb555": [
+        1,
+        8,
+        25
+      ],
+      "deltaE00": 19.819332053004533
+    }
+  },
+  "libretroGbcColor": {
+    "evidenceId": "CGB-PRIOR-LIBRETRO",
+    "source": "https://github.com/libretro/slang-shaders/blob/a62d9cda9140294d22b6da5e4ff4187365890d42/handheld/shaders/color/gbc-color.slang",
+    "sourceSha256": "ef74a7c7a9519fd4301ea55ad09ecbd8e958f6f03657c83a7a45fcfb429b15b3",
+    "mode": "sRGB profile, lighten_screen=0",
+    "exactSourceSemantics": {
+      "finiteCodes": 30187,
+      "undefinedNegativeLinearPowCodes": 2581,
+      "deltaE00VersusMeasuredReferenceLutForFiniteCodes": {
+        "count": 30187,
+        "minimum": 9.27317723155e-7,
+        "maximum": 15.7412731294,
+        "mean": 7.95469517892
+      },
+      "worstFinite": {
+        "rgb555": [
+          1,
+          8,
+          8
+        ],
+        "deltaE00": 15.741273129383359
+      }
+    },
+    "postMatrixClampDiagnostic": {
+      "classification": "diagnostic-only-not-the-pinned-source-equation",
+      "purpose": "show the intended all-code shape without treating undefined pow(negative, 1/2.2) as measured or exact prior-art output",
+      "deltaE00VersusMeasuredReferenceLut": {
+        "count": 32768,
+        "minimum": 9.27317723155e-7,
+        "maximum": 15.7412731294,
+        "mean": 8.05269819468
+      },
+      "worst": {
+        "rgb555": [
+          1,
+          8,
+          8
+        ],
+        "deltaE00": 15.741273129383359
+      }
+    }
+  },
+  "pass": true
+}

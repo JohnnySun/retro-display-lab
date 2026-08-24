@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "candidateSetId": "cgb001-scan-drive-candidates-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "period-reconstructed",
+  "evidenceIds": [
+    "CGB-NIN-PROG-1999",
+    "CGB-NIN-SERVICE-1999",
+    "CGB-SHARP-HR-MODULE",
+    "CGB-GBDEV-EXTLCD",
+    "CGB-PRIOR-LIBRETRO"
+  ],
+  "timing": {
+    "ppuTimebase": {
+      "classification": "derived-exact-selected-frontend-timebase",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-PRIOR-LIBRETRO"],
+      "masterClockHz": 4194304,
+      "dotsPerLine": 456,
+      "totalLines": 154,
+      "visibleLines": 144,
+      "verticalBlankLines": 10,
+      "dotsPerFrame": 70224,
+      "lineSeconds": 0.0001087188720703125,
+      "visibleSeconds": 0.015655517578125,
+      "verticalBlankSeconds": 0.001087188720703125,
+      "frameSeconds": 0.016742706298828125,
+      "frameRateHz": 59.72750056960583,
+      "lineOrder": "LY 0-143 visible, then LY 144-153 vertical blank",
+      "scope": "PPU/frontend observation timebase used to schedule candidate events; not an electrical panel trace"
+    },
+    "primaryDocumentRoundedValues": {
+      "classification": "cgb-primary-rounded",
+      "evidenceIds": ["CGB-NIN-PROG-1999"],
+      "lineMicroseconds": 108.7,
+      "visibleMilliseconds": 15.66,
+      "verticalBlankMilliseconds": 1.09,
+      "frameRateHz": 59.7,
+      "scope": "independent rounded cross-check retained exactly as printed"
+    },
+    "panelSignalTimingBoundary": {
+      "status": "unresolved",
+      "rule": "PPU line boundaries provide the coordinate system only. DCK count/edge, LP latch edge, SPS/CLS gate selection, MOD, and REVC phase require named bounded candidates and must not be called exact CGB timing.",
+      "formalCgbPanelTraceAvailable": false
+    }
+  },
+  "signalEvidence": [
+    {
+      "signal": "LDR0-LDR5",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "from the CGB LCD drive signal buffer toward the panel interface",
+      "function": "six red-channel source-data conductors; bit significance supported only by comparable Sharp family documentation",
+      "timing": "unknown relative to DCK and LP on CGB hardware",
+      "confidence": "high",
+      "classification": "derived",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "existence is CGB-specific; significance and sampling semantics are family-constrained"
+    },
+    {
+      "signal": "LDG0-LDG5",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "from the CGB LCD drive signal buffer toward the panel interface",
+      "function": "six green-channel source-data conductors; bit significance supported only by comparable Sharp family documentation",
+      "timing": "unknown relative to DCK and LP on CGB hardware",
+      "confidence": "high",
+      "classification": "derived",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "existence is CGB-specific; significance and sampling semantics are family-constrained"
+    },
+    {
+      "signal": "LDB0-LDB5",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "from the CGB LCD drive signal buffer toward the panel interface",
+      "function": "six blue-channel source-data conductors; bit significance supported only by comparable Sharp family documentation",
+      "timing": "unknown relative to DCK and LP on CGB hardware",
+      "confidence": "high",
+      "classification": "derived",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "existence is CGB-specific; significance and sampling semantics are family-constrained"
+    },
+    {
+      "signal": "DCK",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "source-data sampling clock in comparable Sharp HR-TFT documentation",
+      "timing": "CGB edge, frequency, pulses per line, and data setup/hold are unresolved",
+      "confidence": "medium",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "name is CGB-specific; function is family-constrained"
+    },
+    {
+      "signal": "SPL",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface; exact electrical direction unresolved",
+      "function": "source-driver sampling start in comparable Sharp HR-TFT documentation",
+      "timing": "CGB pulse edge and horizontal phase are unresolved",
+      "confidence": "medium",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "family semantic only beyond CGB signal existence"
+    },
+    {
+      "signal": "LP",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "source-driver data latch in comparable Sharp HR-TFT documentation",
+      "timing": "CGB latch edge is unresolved and bounded to one PPU line in the initial candidate set",
+      "confidence": "medium",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "controls the named source-latch candidate only"
+    },
+    {
+      "signal": "PS",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "power-save control in comparable Sharp HR-TFT documentation",
+      "timing": "normal-operation CGB level and transitions are unresolved",
+      "confidence": "medium",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "recorded but excluded from normal scan equations"
+    },
+    {
+      "signal": "SPS",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "gate-driver start in comparable Sharp HR-TFT documentation",
+      "timing": "CGB vertical start edge and phase are unresolved",
+      "confidence": "medium",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "supports top-to-bottom gate-scan candidates without fixing phase"
+    },
+    {
+      "signal": "CLS",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "gate-driver clock in comparable Sharp HR-TFT documentation",
+      "timing": "CGB edge, period, and relation to LP are unresolved",
+      "confidence": "medium",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "supports row-local activation candidates without fixing an electrical waveform"
+    },
+    {
+      "signal": "MOD",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "gate-driver control in comparable Sharp HR-TFT documentation",
+      "timing": "CGB normal-operation waveform is unresolved",
+      "confidence": "low",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "debug metadata only; no runtime modulation is inferred"
+    },
+    {
+      "signal": "REVC",
+      "existence": "named on the Nintendo CGB CPU diagram",
+      "direction": "CPU LCD drive buffer to panel interface",
+      "function": "common-electrode drive preparation/reversal role in comparable Sharp controller documentation",
+      "timing": "CGB polarity topology, edge, amplitude, and starting phase are unresolved",
+      "confidence": "low",
+      "classification": "period-reconstructed",
+      "evidenceIds": ["CGB-NIN-PROG-1999", "CGB-SHARP-HR-MODULE"],
+      "scope": "permits bounded inversion topology and frame-parity candidates only"
+    }
+  ],
+  "sourceBusMapping": {
+    "documentedFacts": {
+      "paletteBitsPerChannel": 5,
+      "paletteCodesPerChannel": 32,
+      "namedPanelDataLinesPerChannel": 6,
+      "comparableSharpBitLabels": "R0/G0/B0 LSB through R5/G5/B5 MSB"
+    },
+    "unresolvedQuestion": "No accepted source defines how each five-bit CGB palette code becomes six physical source-data bits or whether an internal nonlinear/gamma lookup intervenes.",
+    "runtimeBoundary": {
+      "id": "logical-rgb555-coordinate",
+      "policy": "Preserve the exact 0-31 channel code and normalize only as code/31 for a dimensionless command coordinate. Do not claim a six-bit word or voltage.",
+      "classification": "derived-safe-boundary"
+    },
+    "diagnosticCandidates": [
+      {
+        "id": "unknown-monotone-controller-map",
+        "classification": "unresolved-default",
+        "equation": null,
+        "constraints": "monotone code ordering; exact endpoints and intermediate six-bit words unresolved"
+      },
+      {
+        "id": "zero-fill-lsb",
+        "classification": "diagnostic-only",
+        "equation": "sixBit = code5 << 1",
+        "range": [0, 62],
+        "evidenceIds": []
+      },
+      {
+        "id": "replicate-msb-to-lsb",
+        "classification": "generic-digital-expansion-prior-only",
+        "equation": "sixBit = (code5 << 1) | (code5 >> 4)",
+        "range": [0, 63],
+        "evidenceIds": []
+      }
+    ],
+    "formalSelection": null
+  },
+  "supplyAndAnalogTopology": {
+    "cgbDocumentedRails": {
+      "classification": "cgb-primary-supply-level",
+      "evidenceIds": ["CGB-NIN-SERVICE-1999"],
+      "railsVolts": [5, 13.6, -15],
+      "notes": "+13.6 V and -15 V are identified for LCD operation; 5 V also powers the CPU board"
+    },
+    "comparableSharpTopology": {
+      "classification": "manufacturer-family-topology-only",
+      "evidenceIds": ["CGB-SHARP-HR-MODULE"],
+      "elements": [
+        "separate source-driver analog and digital supplies",
+        "positive and negative gate-driver rails",
+        "common-electrode VCOM drive",
+        "multiple standard gray-scale reference voltages feeding the source-driver path"
+      ],
+      "transferredNumericValues": []
+    },
+    "prohibitions": [
+      "Do not assign +13.6 V, -15 V, or 5 V directly to RGB555 endpoints.",
+      "Do not transfer the comparable module's VCOM, V0-V4/V0-V9, gate, or source values to CGB.",
+      "Do not call the dimensionless signed command coordinate a pixel voltage."
+    ]
+  },
+  "candidateSets": {
+    "sourceLatchPhase": {
+      "units": "PPU lines after row start",
+      "runtimeBounds": [0, 1],
+      "status": "family-constrained; exact CGB LP edge unresolved",
+      "candidates": [
+        { "id": "line-start", "value": 0, "classification": "period-reconstruction-default" },
+        { "id": "line-center", "value": 0.5, "classification": "sensitivity-candidate" },
+        { "id": "line-end", "value": 1, "classification": "sensitivity-bound" }
+      ],
+      "periodReconstructionDefault": "line-start",
+      "formalSelection": null
+    },
+    "rowActivationDelay": {
+      "units": "PPU lines after the source latch",
+      "runtimeBounds": [0, 1],
+      "status": "unresolved separation between source latch and gate-row activation; excludes LC response",
+      "candidates": [
+        { "id": "at-latch", "value": 0, "classification": "period-reconstruction-default" },
+        { "id": "half-line-after-latch", "value": 0.5, "classification": "sensitivity-candidate" },
+        { "id": "one-line-after-latch", "value": 1, "classification": "sensitivity-bound" }
+      ],
+      "periodReconstructionDefault": "at-latch",
+      "formalSelection": null
+    },
+    "frameParityPhase": {
+      "units": "binary phase",
+      "runtimeBounds": [0, 1],
+      "status": "unresolved starting phase",
+      "candidates": [
+        { "id": "even-positive", "value": 0, "classification": "arbitrary-period-default" },
+        { "id": "odd-positive", "value": 1, "classification": "equivalent-phase-candidate" }
+      ],
+      "periodReconstructionDefault": "even-positive",
+      "formalSelection": null
+    },
+    "inversionTopology": {
+      "units": "discrete topology",
+      "runtimeBounds": ["none", "frame-global", "row-alternating", "column-alternating", "dot-checkerboard"],
+      "status": "REVC establishes a reversal-related signal name; exact CGB topology unresolved",
+      "candidates": [
+        { "id": "none", "value": "none", "classification": "no-inversion-diagnostic" },
+        { "id": "frame-global", "value": "frame-global", "classification": "sensitivity-candidate" },
+        { "id": "row-alternating", "value": "row-alternating", "classification": "period-family-reconstruction-default" },
+        { "id": "column-alternating", "value": "column-alternating", "classification": "sensitivity-candidate" },
+        { "id": "dot-checkerboard", "value": "dot-checkerboard", "classification": "sensitivity-candidate" }
+      ],
+      "periodReconstructionDefault": "row-alternating",
+      "formalSelection": null
+    }
+  },
+  "runtimePolicy": {
+    "stateLocality": "Each R/G/B TFT command is local to one logical source pixel. No spatial electrical coupling, common-mode average, or DMG passive-matrix crosstalk is applied.",
+    "changedPixelSplit": "Within one observation frame, the previous source command applies before the row activation event and the current command applies after it.",
+    "noScanDiagnostic": "Apply the current source command for the full frame while preserving identical code endpoints, equilibrium, polarity magnitude, and WS1 static color.",
+    "debugViews": ["row-phase", "frame-parity", "inversion-sign", "source-code", "signed-command-coordinate"],
+    "staticColorBoundary": "WS3 never edits or resamples the WS1 color LUT. Polarity sign has no static-color effect until a separately validated later mechanism consumes it."
+  },
+  "selection": {
+    "status": "period-reconstruction-defaults-selected; no exact CGB panel constants claimed",
+    "periodReconstructionDefaults": {
+      "sourceLatchPhase": "line-start",
+      "rowActivationDelay": "at-latch",
+      "frameParityPhase": "even-positive",
+      "inversionTopology": "row-alternating",
+      "sourceBusMapping": "logical-rgb555-coordinate"
+    },
+    "formalCgbSpecificConstants": {
+      "sourceLatchPhase": null,
+      "rowActivationDelay": null,
+      "frameParityPhase": null,
+      "inversionTopology": null,
+      "rgb555ToSixLineMapping": null,
+      "gammaOrVcomVoltages": null
+    },
+    "criteria": [
+      "preserve exact frontend RGB555 identity",
+      "remain causal and bounded within the declared line intervals",
+      "keep family evidence separate from CGB facts",
+      "keep constant fields and WS1 colors invariant",
+      "expose all unresolved discrete choices to sensitivity/debug reports",
+      "permit replacement by future synchronized CGB electrical/photodiode capture"
+    ]
+  }
+}

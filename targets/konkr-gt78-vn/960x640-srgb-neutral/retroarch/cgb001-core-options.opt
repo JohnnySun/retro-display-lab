@@ -1,0 +1,6 @@
+gambatte_gbc_color_correction = "disabled"
+gambatte_dark_filter_level = "0"
+gambatte_mix_frames = "disabled"
+gambatte_gb_hwmode = "Auto"
+gambatte_gb_bootloader = "disabled"
+gambatte_gb_colorization = "GBC"

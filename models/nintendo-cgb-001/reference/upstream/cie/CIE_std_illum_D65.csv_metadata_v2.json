@@ -1,0 +1,116 @@
+{
+	"identifier": {
+		"identifier": "10.25039/CIE.DS.hjfjmt59",
+		"identifierType": "DOI"
+	},
+	"creators": [
+		{
+			"name": "International Commission on Illumination (CIE)",
+			"nameType": "Organizational"
+		}
+	],
+	"titles": [
+		{
+			"title": "CIE standard illuminant D65"
+		}
+	],
+	"publisher": "International Commission on Illumination (CIE), Vienna, AT",
+	"publicationYear": "2019",
+	"subjects": [
+		{
+			"subject": "Photometry"
+		},
+		{
+			"subject": "Objective photometry"
+		},
+		{
+			"subject": "Units. Constants"
+		}
+	],
+	"language": "en",
+	"alternateIdentifiers": [
+		{
+			"alternateIdentifier": "CIE_std_illum_D65.csv",
+			"alternateIdentifierType": "fileName"
+		}
+	],
+	"relatedItems": [
+		{
+			"relatedItemIdentifier": "10.25039/IS.ISO_CIE.11664-2.2022",
+			"relatedItemIdentifierType": "DOI",
+			"relationType": "IsPartOf",
+			"relatedItemType": "Standard",
+			"titles": [
+				"ISO/CIE 11664-2:2022 Colorimetry — Part 2: CIE Standard Illuminants"
+			]
+		}
+	],
+	"formats": [
+		"text/csv"
+	],
+	"types": {
+		"resourceType": "dataTable",
+		"resourceTypeGeneral": "Dataset"
+	},
+	"descriptions": [
+		{
+			"description": "CIE standard illuminant D65, 1 nm wavelength steps, original source: ISO/CIE 11664-2:2022, Table B.1",
+			"descriptionType": "Abstract"
+		}
+	],
+	"rightsList": [
+		{
+			"rights": "Creative Commons Attribution-ShareAlike 4.0 International",
+			"rightsURI": "https://creativecommons.org/licenses/by-sa/4.0/",
+			"rightsIdentifier": "CC BY-SA 4.0"
+		}
+	],
+	"checksums": [
+		{
+			"hashMethod": "md5",
+			"checksum": "03d4eb9b837c60671627c946fb534deb"
+		},
+		{
+			"hashMethod": "sha256",
+			"checksum": "e76f210bffff3d552ef7113025da5f325d5dfec200dd4b878b1a2f3a507032cb"
+		}
+	],
+	"datatableInfo": {
+		"validations": [
+			{
+				"validationType": "sumOfColumns",
+				"validationValue": "[300015,40852.20400]"
+			},
+			{
+				"validationType": "sampleRow",
+				"validationParameter": "120",
+				"validationValue": "419,93.2372"
+			}
+		],
+		"interpolationMethod": "linear",
+		"extrapolationMethod": "zero",
+		"dataQuality": "nominal",
+		"columnHeaders": [
+			{
+				"title": "lambda",
+				"unit": "nm",
+				"quantity": "wavelength",
+				"wavelength_first": 300,
+				"wavelength_last": 830,
+				"wavelength_step": 1
+			},
+			{
+				"title": "S_D65(lambda)",
+				"unit": "dimensionless",
+				"quantity": "spectral distribution",
+				"wavelength_first": 360,
+				"wavelength_last": 830,
+				"wavelength_step": 1
+			}
+		]
+	},
+	"schemaName": "CIEmetaDigitalProduct",
+	"schemaVersion": 4,
+	"schemaURL": "https://doi.org/10.25039/CIE.SC.4taqevcd",
+	"metadataRevision": 2
+}

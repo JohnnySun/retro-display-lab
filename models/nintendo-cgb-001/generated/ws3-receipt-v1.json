@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws3-receipt-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS3",
+  "completedOn": "2026-08-24",
+  "generatedBy": "tools/build-cgb001-ws3.mjs",
+  "evidenceBoundary": {
+    "exact": "CGB RGB555/raster facts and exact selected frontend timebase",
+    "familyConstrained": "Sharp source/gate/common-electrode signal semantics and analog topology",
+    "periodReconstructed": "latch offset, activation delay, parity phase, and inversion topology defaults",
+    "unresolved": "RGB555-to-six-line map, CGB electrical edges, gamma ladder, VCOM waveform, and per-code voltages"
+  },
+  "trackedInputHashes": {
+    "models/nintendo-cgb-001/data/ws3-evidence-inventory-v1.json": "d6cb6f41b8cbe12f6e726c14977033d52089a39deac54854c34fa661196689f2",
+    "models/nintendo-cgb-001/data/scan-candidates-v1.json": "3f33ea131d3fbf09ea00f673cfa6300986bc0456246adae6d2c19c493035c663",
+    "models/nintendo-cgb-001/data/scan-candidates.schema.json": "d33e28b8ee53e89d3aabe4befda25745d3eeeda7f65736b61eaf6498f92bcd3b",
+    "models/nintendo-cgb-001/reference/scan-drive.mjs": "75b62d9d8c516c777454e61480055daa1c458e10b3bfddc1092d9e0848ea6382",
+    "models/nintendo-cgb-001/data/frontend-contract-v1.json": "12ba9b759c57a3d5255a05d286b63667039aee045f948db67ab5852d6fd773f9",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/manifest.json": "ff0a61f131b40da9ca74b56c837617200edc86090aba8c8285265c9e257d83ad",
+    "models/nintendo-cgb-001/generated/ws2-decoder-v1.json": "bdf47eef8306185b8783e1cd5aeaddef44283f5c4542a8f67a63233ae8471344",
+    "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json": "025a99ab5f48a435b3a25a1d6175696b64d327c46fe3e151deb6a91f33c0f2f9",
+    "models/nintendo-cgb-001/generated/ws2-receipt-v1.json": "d75bd5de706f75186a5f2582ad4ed0acf8620da5cf844e61aec71eae3218517b",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "c58551ac09d2d79de9909e04173469e6c820e171870df6357a55c238fc6c8b1c",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "6d11c61310f5a1e7b2edaac8c96253dbba79d91590bfb7065f0eee677236870c",
+    "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
+    "tools/build-cgb001-ws3.mjs": "71985bbec22f7c6af5bfaa5d189a2054c70900c6dbe663ce6e6783713c04f8c0"
+  },
+  "outputHashes": {
+    "models/nintendo-cgb-001/generated/ws3-runtime-constants-v1.json": "590e2972d359f9af3a8d99ae7a4cd07e2eaf0223eec50451d38a731bd7782c95",
+    "models/nintendo-cgb-001/generated/ws3-equation-vectors-v1.json": "a3f8e39890036dcb44ff846249ec9d36a5b1c5c0eb824dda64bc9a2fa9081dce",
+    "models/nintendo-cgb-001/generated/ws3-sensitivity-v1.json": "9a788516244806e0615c8c3183297f6068815bacf3b3ce44f5439929c510a473"
+  },
+  "gates": {
+    "evidenceIdsResolve": true,
+    "cgbSignalInventoryComplete": true,
+    "exactFrontendTimebaseReproduced": true,
+    "primaryRoundedTimingCrossChecked": true,
+    "panelAndPpuTimingKeptDistinct": true,
+    "rgb555ToSixLineMappingUnresolved": true,
+    "unjustifiedSixthBitNotUsedAtRuntime": true,
+    "candidateBoundsValidated": true,
+    "formalCgbConstantsRemainNull": true,
+    "cpuAndFutureShaderEquationsAgree": true,
+    "changedPixelSplitIsCausal": true,
+    "constantFieldsInvariant": true,
+    "noScanPreservesEquilibriumAndEndpoints": true,
+    "ws1LutHashInvariant": true,
+    "stateIsPixelLocal": true,
+    "sensitivityReportComplete": true,
+    "shaderOrPresetCreated": false
+  },
+  "result": {
+    "status": "pass",
+    "ws3Complete": true,
+    "nextEligibleWorkstreams": [
+      "WS4",
+      "WS6"
+    ],
+    "referenceV1ShaderOrPresetAllowed": false
+  },
+  "limits": "WS3 freezes a bounded drive contract and validation vectors, not a measured CGB panel waveform, optical response, VCOM model, GPU receipt, Shader, or preset."
+}

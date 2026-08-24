@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws6-receipt-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS6",
+  "completedOn": "2026-08-24",
+  "generatedBy": "tools/build-cgb001-ws6.mjs",
+  "trackedInputHashes": {
+    "models/nintendo-cgb-001/data/ws6-evidence-inventory-v1.json": "6cc2ee07aa540c125354f53fbedc9aab36e83604724f8811b072f5245f85eb62",
+    "models/nintendo-cgb-001/data/aperture-v1.json": "74330cc3a0d8ce035eee930ab5f32321e9c4cfc116b69a5c3283d98504741dbe",
+    "models/nintendo-cgb-001/data/aperture.schema.json": "32d58e730e3657ef3733f41b4d5b136e14c2441450f8d3b5179404997d38af21",
+    "models/nintendo-cgb-001/reference/rgb-aperture.mjs": "2d3ab09c1ca4e2f9ee9de3db35ac77338355c7bcecec357be758f52c71e0a4c3",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "c58551ac09d2d79de9909e04173469e6c820e171870df6357a55c238fc6c8b1c",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
+    "models/nintendo-cgb-001/generated/ws5-receipt-v1.json": "0baddda18830d5227c54220f189a7c55b1014b32bdb31117bf781196e88462c9",
+    "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
+    "tools/build-cgb001-ws6.mjs": "1482547558ec2ee3a310f2629adbb28f3c9db95e6b25f7e549248ee987f92f25"
+  },
+  "outputHashes": {
+    "models/nintendo-cgb-001/generated/ws6-aperture-validation-v1.json": "a36a38b1ec0850c6dd11ce4f9d3c7cc4e49d242be82d498d6c47c13b22105092"
+  },
+  "gates": {
+    "evidenceAndImageProvenanceAudited": true,
+    "rgbOrderSelectedWithoutClaimingNumericFill": true,
+    "equalThirdZeroGapMinimumGeometryFrozen": true,
+    "analyticHostFootprintIntegrationImplemented": true,
+    "integerAndFractionalEnergyConservationPasses": true,
+    "d65AverageColorConservationPasses": true,
+    "viewportOffsetCropAndBorderPhasePasses": true,
+    "apertureBypassReturnsWs5Exactly": true,
+    "futureShaderFloat32EquationAgrees": true,
+    "barePanelFixedAngleNotDoubleApplied": true,
+    "ws1LutHashInvariant": true,
+    "shaderOrPresetCreated": false
+  },
+  "result": {
+    "status": "pass",
+    "ws6Complete": true,
+    "nextEligibleWorkstreams": [
+      "WS7",
+      "WS8-after-WS7"
+    ],
+    "referenceV1ShaderOrPresetAllowed": false
+  },
+  "limits": "WS6 freezes a conservative CPU/reference aperture equation and future-Shader contract. It does not claim a measured CGB fill factor, gap, notch, MRS texture, lens/glare layer, Shader, preset, or actual GPU readback."
+}

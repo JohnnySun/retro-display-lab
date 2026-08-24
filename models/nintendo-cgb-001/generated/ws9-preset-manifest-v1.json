@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "manifestId": "cgb001-ws9-validation-preset-manifest-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "modelVersion": "1.0.0",
+  "generatedBy": "tools/build-cgb001-ws9.mjs",
+  "modelPresets": {
+    "diagnostic-response-readback-v1.slangp": "edf081aec902810e1c7f6ce4fc8645a41daad9a2aa13102df76bb2f085803744",
+    "diagnostic-retention-readback-v1.slangp": "41a197bb74b84888402f8779e31512e7f37e38aff2816ed1b795dbfb8e187a2b",
+    "diagnostic-exposure-readback-v1.slangp": "a3d7c9f750b37c473c090dd95ce2ed6f512c919ae6eb171d04f5e6a8a8623e59",
+    "diagnostic-lut-readback-v1.slangp": "463623d4eef7ec3d18724bfc2f3f9796fe6205774bab74a92f6e14a17eaa7edd",
+    "diagnostic-aperture-readback-v1.slangp": "d7d2f79a2467b30f180ceefbd5482ce11df9dd32d8a1ef197963042177fdca2e"
+  },
+  "targetPresets": {
+    "cgb001-reference-d65-v1.slangp": "03454720ed6d60c92560acbde6ebf3bda06d259bf0d83a4271c19a6ce71a25a8",
+    "cgb001-ws9-response-readback-v1.slangp": "ff43fe99b56ca14e53bb76efed5c4d9489a80b9d109544f45118b0dc6a72ff81",
+    "cgb001-ws9-retention-readback-v1.slangp": "476b27b6f28a215b411a0c238cd52adaceb08cb338725a7cdb919f12443cfcf8",
+    "cgb001-ws9-exposure-readback-v1.slangp": "d69fdd3701800b375d5c9e6e6491d583d1cb88470dd795d5cc6bdd786592a04a",
+    "cgb001-ws9-lut-readback-v1.slangp": "4e0d13dc748d4823ca283dc168d32b184f07a774c9ac8683173dc5f1e5f8af4a",
+    "cgb001-ws9-aperture-readback-v1.slangp": "009ab4bea0f631fc4e286bc094fefef91a6e9fcf955e454edf8743eb7077c2c6"
+  },
+  "targetFrontendContract": {
+    "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/cgb001-temporal.cfg",
+    "sha256": "1fec5b96b7438027fea89288ae8f9dce4fdb2bf4727d233d1650bd835fb49366"
+  },
+  "targetCoreOptions": {
+    "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/cgb001-core-options.opt",
+    "sha256": "e49a35abc481ea0c3003a92ca7eeedb4bce9b9109478000489c0170133135550"
+  },
+  "debugViewsAreReadOnlyInPersistentPasses": true,
+  "referencePresetParametersUnchanged": true
+}

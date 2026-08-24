@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "cgb001-ws2-receipt-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "workstream": "WS2",
+  "completedOn": "2026-08-24",
+  "generatedBy": "tools/build-cgb001-ws2.mjs",
+  "trackedInputHashes": {
+    "models/nintendo-cgb-001/data/ws2-frontend-policy-v1.json": "615cb447898d3b8d6ef46f9fcf6766e27755f18f93d51ca39fd445bf4365cad4",
+    "models/nintendo-cgb-001/data/frontend-contract.schema.json": "5b62d61dc9ee53f86fe5ed5f217b74a3a0c8e30cfc7a0656c88f3620a7402742",
+    "models/nintendo-cgb-001/data/ws2-stimulus-scenes-v1.json": "3c8013b4bd6726db8ec79bc1e4d57eb3e9f144d4079f6e8e7846ce73c2a1ac1c",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/manifest.json": "ff0a61f131b40da9ca74b56c837617200edc86090aba8c8285265c9e257d83ad",
+    "models/nintendo-cgb-001/generated/ws2-decoder-v1.json": "bdf47eef8306185b8783e1cd5aeaddef44283f5c4542a8f67a63233ae8471344",
+    "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json": "025a99ab5f48a435b3a25a1d6175696b64d327c46fe3e151deb6a91f33c0f2f9",
+    "tools/build-cgb001-test-rom.mjs": "4f037fb9111dd36636ed1d15091e9c6864d93b95bf5ab5e8a89d5bb8a1f1df0e",
+    "tools/decode-cgb001-test-rom.mjs": "0bceecc0484148135ac9a77d46ef9593c5e7ea9cf26ff4f5faf598b6dd4299e4",
+    "tools/cgb001-libretro-smoke.c": "633b9b02682b20d1df024d039d658ca580acbfce96366a41eb0b0f184493b97f",
+    "tools/validate-cgb001-ws2-gambatte.mjs": "fb50176558a480c7f9d1eeeb6755cfb156b4eb300dfa3c5776a75daea5af88a9",
+    "tools/build-cgb001-ws2.mjs": "14044b8254e76424520db67ca3570096201668e577ca123b51dc7aac459452ef",
+    "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/gambatte-libretro.tar.gz": "b67b5586f4a038c4e8b88cee537f59ab0878428b94a5c5bb10dd4b1870fac52f",
+    "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/source/Makefile.libretro": "3c41f26d7296cb5d0f191853cb0e7891fa97ef1cb4ae984ce1db496b6bb7691f",
+    "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/source/libretro.cpp": "9a1c3e3c6f4bb9fe231a6a8e5a806c878ae0c7dacac6dec3f83f0fe9764256ed",
+    "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/source/libretro.h": "3e05e66cdfa2ddb8e9ac4eee6bb38ff4d735ed82e8563ef116b710089c732512",
+    "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/source/libretro_core_options.h": "b7051285a7e04156dfc189e4e154474ba93515bf8e89b5f47e7edaecd80b7145",
+    "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/source/video_libretro.cpp": "cea39b4ab1de0c24fd3e6f58f12b455e38903f9a950092ef9f3ffd20364fb887",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/red-ramp.gbc": "343b03008d1214beedd82e0a98d79c3403e758d1ff919f46e6cd5bcc1a487508",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/green-ramp.gbc": "84bd9878fe5277013c80e2d4988de132d1df0a63bedc577aa2fa55a224fdacee",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/blue-ramp.gbc": "eee240263c137577a739b53576f0dd26f67d6c08cb2a72c62d071fe86377d42a",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/gray-ramp.gbc": "f1077ef5dd0e310cc0582bcfb483f0793f55d5351b56f3c02c15362afd1bb226",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/color-corners.gbc": "9ac84e295eef6d3d8e5b1d81e43081176e6d6720afe9640c3891cb26f61543f3",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/mixed-patches.gbc": "f2cfaef762544679cdb207523a5f631c935f13a775fc1cd8a942c484fc9d3a68",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/row-markers.gbc": "c2da01637c84c2d7dd9a006c29b177c78cc5b22e0ece7d57416a9df9496ec672",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/first-last-row-change.gbc": "3ccb5e5a19b41580d5bca00eec2c55a509eedbcf99c4c697613894bb74a1df35",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/moving-edge.gbc": "27ab1d35fafc9aed6a8550b991ecea65cf98c58a0aa03b08a46b8deedad8f3b8",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/checkerboard.gbc": "bf447d86674600e5d6fa3a4e851db36436b4748ca54776df2b5fcf2b3affb177",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/isolated-window.gbc": "e157062e9ce3fdda97be284ffbd9a606f6ae71d61a322dcb2f8bdcd077093592",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/alternating-lines.gbc": "7433ffe8e47924a0755c5901d521363af9bee45e4f6f1b786e0c07a6e4b03bd0",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/parity-toggle.gbc": "65a05978587b0b797979238aa216a8779764ffe31af23f56ae3e008fdea6961b",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/retention-stress-recovery.gbc": "ae121eaae5e62de6942da85ba1036ef5f1c53f4f062cca194ea3bf43945d93ca",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/pixel-grid-identity.gbc": "ba5ecf3d528154fb677f00a255ac81e196d28f42dfbca812b7a056c129c161dd",
+    "models/nintendo-cgb-001/generated/ws2-stimulus-v1/rgb555-exhaustive-transport.gbc": "72e42558d723f895ccea0634939d2cd80364b68ae959dff5942904a5c2bfc664"
+  },
+  "outputHashes": {
+    "models/nintendo-cgb-001/data/frontend-contract-v1.json": "12ba9b759c57a3d5255a05d286b63667039aee045f948db67ab5852d6fd773f9"
+  },
+  "gates": {
+    "pinnedCoreSourceRetained": true,
+    "uncorrectedRgb555RoundTripExhaustive": true,
+    "deterministicRomCount": 16,
+    "proprietaryNintendoAssetsPresent": false,
+    "independentRomDecode": true,
+    "pinnedCoreSmoke": true,
+    "correctionAndBlendingDisabled": true,
+    "lifecycleDefined": true,
+    "failClosedNegativeCases": true,
+    "shaderOrPresetCreated": false
+  },
+  "result": {
+    "status": "pass",
+    "ws2Complete": true,
+    "nextEligibleWorkstreams": [
+      "WS3",
+      "WS6"
+    ],
+    "referenceV1ShaderOrPresetAllowed": false
+  }
+}

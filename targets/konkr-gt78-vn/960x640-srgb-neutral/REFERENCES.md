@@ -484,6 +484,39 @@ original DMG behavior belongs to the
   and lifecycle handling on the named target; it does not measure the emitted
   optics of either LCD.
 
+## TARGET-KPA-CGB-01 — CGB-001 WS9 release acceptance
+
+- Source: direct run on serial `BW0306N250002377` on 2026-08-24, recorded in
+  [`validation/cgb001-ws9-target-20260824.json`](validation/cgb001-ws9-target-20260824.json),
+  using RetroArch 1.22.2, Gambatte, Vulkan/Mali-G76 MC4, native 160×144 input,
+  exact centered 640×576 output, one Shader subframe, and the isolated CGB
+  target preset/core options.
+- Numeric color: two offset captures covered all 32,768 RGB555 codes and
+  98,304 XYZ components. Paired RGBA8 high/low-byte planes reconstructed the
+  unchanged WS1 RGBA32F LUT with maximum error `7.6889992e-6`. The retained
+  single RGBA16 probe failed at `0.00266472`, documenting the frontend's 8-bit
+  generic PNG upload path rather than hiding it.
+- Temporal and aperture: 600 adjacent response/exposure pairs and 595 retention
+  pairs passed CPU float32 recurrence. Maximum response, exposure, retention,
+  and aperture errors were `1.19209e-7`, `2.38419e-6`, `1.19209e-7`, and
+  `2.38419e-7`, respectively.
+- Runtime: the final cold log compiled all three passes, allocated two
+  `R32G32B32A32_SFLOAT` intermediates plus `R8G8B8A8_UNORM`, enabled pass-0
+  feedback, and built a 640×576 final framebuffer. SurfaceFlinger pacing over
+  126 intervals averaged `16.5933 ms`; p95/max were `21.7111/22.7428 ms`, with
+  no interval above 25 ms.
+- Lifecycle and restoration: Android background resume rebuilt the Shader graph
+  and established a clean feedback baseline; cold content load did the same.
+  Save-state feedback remains unsupported, while rewind/run-ahead/accelerated
+  delivery stay outside the target contract. RetroArch was stopped and the
+  four original Gambatte/GBC overrides were restored byte-for-byte; the WS9
+  override was moved into the isolated validation directory and remains
+  recoverable.
+- Limits: this proves the released implementation and transport on one modern
+  target. It does not add CGB viewing-angle behavior, measure another CGB unit,
+  validate emitted KONKR colorimetry, or promote reconstructed dynamics and
+  aperture geometry to measured CGB facts.
+
 ## Target claim
 
 This profile means “tested geometry and visually tuned compensation on the

@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "contractId": "cgb001-frontend-contract-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "derived",
+  "evidenceIds": [
+    "CGB-NIN-PROG-1999",
+    "CGB-PRIOR-LIBRETRO"
+  ],
+  "core": {
+    "name": "Gambatte libretro",
+    "repository": "https://github.com/libretro/gambatte-libretro",
+    "commit": "3262c2aa4adae8dba4f6d51cdd931c15cb11569f",
+    "sourceArchive": "models/nintendo-cgb-001/reference/upstream/gambatte/3262c2aa4adae8dba4f6d51cdd931c15cb11569f/gambatte-libretro.tar.gz",
+    "sourceArchiveSha256": "b67b5586f4a038c4e8b88cee537f59ab0878428b94a5c5bb10dd4b1870fac52f",
+    "build": {
+      "makefile": "Makefile.libretro",
+      "videoDefine": "VIDEO_RGB565=1",
+      "targetPolicy": "Build the pinned source for the host libretro shared-library platform; no source patching."
+    },
+    "runtimeIdentity": {
+      "name": "Gambatte",
+      "version": "v0.5.0-netlink",
+      "validExtensions": "gb|gbc|dmg",
+      "requestedPixelFormatEnum": 2,
+      "geometry": "160x144",
+      "maximumGeometry": "160x144",
+      "framesPerSecond": 59.727500569606,
+      "sampleRateHz": 32768,
+      "videoPitchBytes": 512
+    }
+  },
+  "supportedContent": {
+    "nativeCgb": "supported",
+    "dmgThroughCgbRgb555Palette": "supported when Gambatte colorization is explicitly GBC and the resulting raster obeys this contract",
+    "sgbBorders": "out-of-scope",
+    "sgbColorization": "out-of-scope",
+    "gbaEnhancedCgbMode": "out-of-scope in v1; gambatte_gb_hwmode must remain Auto rather than GBA",
+    "postProcessedCoreOutput": "unsupported"
+  },
+  "raster": {
+    "width": 160,
+    "height": 144,
+    "orientation": "top-left origin; rows delivered top to bottom; no rotation",
+    "masterClockHz": 4194304,
+    "dotsPerFrame": 70224,
+    "frameRateHz": 59.72750056960583
+  },
+  "colorCodes": {
+    "logicalEncoding": "CGB RGB555",
+    "channelMinimum": 0,
+    "channelMaximum": 31,
+    "corePixelFormat": "RETRO_PIXEL_FORMAT_RGB565",
+    "packedRgb565": "(R5 << 11) | (G5 << 6) | B5; RGB565 bit 5 is zero",
+    "integerRecovery": {
+      "r": "(word >> 11) & 31",
+      "g": "((word >> 5) & 63) >> 1",
+      "b": "word & 31"
+    },
+    "normalizedTextureRecovery": {
+      "r": "round(sample.r * 31)",
+      "g": "round(sample.g * 63 / 2)",
+      "b": "round(sample.b * 31)"
+    },
+    "exhaustiveProof": {
+      "testedRgb555Codes": 32768,
+      "uniqueRgb565Words": 32768,
+      "greenPaddingBit": "RGB565 bit 5 is always zero",
+      "integerDecoder": {
+        "r": "(word >> 11) & 31",
+        "g": "((word >> 5) & 63) >> 1",
+        "b": "word & 31"
+      },
+      "normalizedTextureDecoder": {
+        "r": "round(sample.r * 31)",
+        "g": "round(sample.g * 63 / 2)",
+        "b": "round(sample.b * 31)"
+      },
+      "status": "pass"
+    }
+  },
+  "correctionPolicy": {
+    "preAppliedColorCorrection": false,
+    "preAppliedGhosting": false,
+    "requiredCoreOptions": {
+      "gambatte_gbc_color_correction": "disabled",
+      "gambatte_dark_filter_level": "0",
+      "gambatte_mix_frames": "disabled",
+      "gambatte_gb_hwmode": "Auto",
+      "gambatte_gb_bootloader": "disabled",
+      "gambatte_gb_colorization": "GBC"
+    },
+    "mismatchAction": "reject reference-preset activation"
+  },
+  "timeSemantics": {
+    "monotonic": "Temporal integration requires strictly increasing committed CGB frame identifiers; wall-clock timestamps alone are insufficient.",
+    "ordinaryFrame": "Update temporal state exactly once for each committed core frame at 70224 / 4194304 seconds.",
+    "pause": "Freeze all ordinary-response and retention state; do not integrate elapsed wall time.",
+    "reset": "Discard ordinary-response and retention history, then seed from the first complete post-reset RGB555 frame with zero elapsed exposure.",
+    "contentLoad": "Discard all prior-content state, then seed from the first complete new-content RGB555 frame with zero elapsed exposure.",
+    "saveStateLoad": "Treat as a discontinuity: discard temporal and retention history, seed the loaded frame statically, and resume only from a new monotonic frame baseline.",
+    "focusLoss": "If emulation pauses, freeze state. If emulation continues but presentation frames are not delivered one-for-one, enter static bypass until a reset baseline is established.",
+    "fastForward": "Supported only when every emulated CGB frame is delivered once in order. Frame dropping, coalescing, or wall-time scaling enters static bypass.",
+    "rewind": "Reverse-time integration is forbidden. Every rewind discontinuity clears state and presents the current source through the static color path.",
+    "runAhead": "Only the committed final frame may update state; speculative frames must never reach the reconstruction. Otherwise enter static bypass.",
+    "subframe": "Unsupported in reference-v1 because multiple host updates for one CGB frame would invent drive events; enter static bypass.",
+    "failurePolicy": "Fail closed to the current-frame static WS1 color path with temporal response and retention disabled; never guess elapsed frames or integrate backward. A core-option mismatch refuses reference-preset activation entirely."
+  },
+  "stimuli": [
+    {
+      "id": "red-ramp",
+      "purpose": "All 32 red channel codes with green and blue held at zero.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/red-ramp.gbc",
+      "sha256": "343b03008d1214beedd82e0a98d79c3403e758d1ff919f46e6cd5bcc1a487508",
+      "expectedFramebufferSha256": [
+        "2af7b2b9c9cdf96b989fd4e94dcd44f053604f58a2111d1c1ddcd92640322d73",
+        "2af7b2b9c9cdf96b989fd4e94dcd44f053604f58a2111d1c1ddcd92640322d73"
+      ]
+    },
+    {
+      "id": "green-ramp",
+      "purpose": "All 32 green channel codes with red and blue held at zero.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/green-ramp.gbc",
+      "sha256": "84bd9878fe5277013c80e2d4988de132d1df0a63bedc577aa2fa55a224fdacee",
+      "expectedFramebufferSha256": [
+        "bf5482849a2e502f13cce98b8f2431370d09403852f3fe9b144dedd09521f39d",
+        "bf5482849a2e502f13cce98b8f2431370d09403852f3fe9b144dedd09521f39d"
+      ]
+    },
+    {
+      "id": "blue-ramp",
+      "purpose": "All 32 blue channel codes with red and green held at zero.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/blue-ramp.gbc",
+      "sha256": "eee240263c137577a739b53576f0dd26f67d6c08cb2a72c62d071fe86377d42a",
+      "expectedFramebufferSha256": [
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1",
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+      ]
+    },
+    {
+      "id": "gray-ramp",
+      "purpose": "All 32 neutral RGB555 codes.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/gray-ramp.gbc",
+      "sha256": "f1077ef5dd0e310cc0582bcfb483f0793f55d5351b56f3c02c15362afd1bb226",
+      "expectedFramebufferSha256": [
+        "8cd0f529d7cfdb78fb73094ae167a2d87362ab609639a8e86c757f57ec0979c6",
+        "8cd0f529d7cfdb78fb73094ae167a2d87362ab609639a8e86c757f57ec0979c6"
+      ]
+    },
+    {
+      "id": "color-corners",
+      "purpose": "K/R/G/B/Y/C/M/W endpoint patches.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/color-corners.gbc",
+      "sha256": "9ac84e295eef6d3d8e5b1d81e43081176e6d6720afe9640c3891cb26f61543f3",
+      "expectedFramebufferSha256": [
+        "d478d6ac9df7aebbf1a6723209d684a50a9c33091b385205401538a55266081d",
+        "d478d6ac9df7aebbf1a6723209d684a50a9c33091b385205401538a55266081d"
+      ]
+    },
+    {
+      "id": "mixed-patches",
+      "purpose": "Thirty-two deterministic intermediate mixed RGB555 patches.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/mixed-patches.gbc",
+      "sha256": "f2cfaef762544679cdb207523a5f631c935f13a775fc1cd8a942c484fc9d3a68",
+      "expectedFramebufferSha256": [
+        "4a442c854001937c2fa7095182bd695d9fcc2f3422c36fbb091ac29a36193763",
+        "4a442c854001937c2fa7095182bd695d9fcc2f3422c36fbb091ac29a36193763"
+      ]
+    },
+    {
+      "id": "row-markers",
+      "purpose": "Binary tile-row identity plus first, middle, and last visible-row sentinels.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/row-markers.gbc",
+      "sha256": "c2da01637c84c2d7dd9a006c29b177c78cc5b22e0ece7d57416a9df9496ec672",
+      "expectedFramebufferSha256": [
+        "9ea3a241091803ca6d5e0623c37dc6628195778f03128df611ecc5b635a54304",
+        "9ea3a241091803ca6d5e0623c37dc6628195778f03128df611ecc5b635a54304"
+      ]
+    },
+    {
+      "id": "first-last-row-change",
+      "purpose": "Only the first and last visible rows change between pages.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/first-last-row-change.gbc",
+      "sha256": "3ccb5e5a19b41580d5bca00eec2c55a509eedbcf99c4c697613894bb74a1df35",
+      "expectedFramebufferSha256": [
+        "956cb0bff38f731f4a92eed7102f63e289190c663a534b16eb424255e2ae9de6",
+        "12e57b2cd2a9573724290d0cfa0c1373e5d69b3ccddb7850f6488333eabcf370"
+      ]
+    },
+    {
+      "id": "moving-edge",
+      "purpose": "A vertical edge moves by one eight-pixel tile between VBlank-latched pages.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/moving-edge.gbc",
+      "sha256": "27ab1d35fafc9aed6a8550b991ecea65cf98c58a0aa03b08a46b8deedad8f3b8",
+      "expectedFramebufferSha256": [
+        "1a9819c4ab24270f7a2315376ae688079659919b72d1b6659b5867b587934b4a",
+        "ac1ac56e28ad3cacebeee0cf9d62d82d12387a115557497f8a9b849bff95227a"
+      ]
+    },
+    {
+      "id": "checkerboard",
+      "purpose": "One-pixel alternating low/high checkerboard.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/checkerboard.gbc",
+      "sha256": "bf447d86674600e5d6fa3a4e851db36436b4748ca54776df2b5fcf2b3affb177",
+      "expectedFramebufferSha256": [
+        "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14",
+        "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14"
+      ]
+    },
+    {
+      "id": "isolated-window",
+      "purpose": "Bounded bright window occupying less than one quarter of the raster.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/isolated-window.gbc",
+      "sha256": "e157062e9ce3fdda97be284ffbd9a606f6ae71d61a322dcb2f8bdcd077093592",
+      "expectedFramebufferSha256": [
+        "da9c1a1b08319e220041b5df6b8820e3ce5a2de5cd5dbfbdd9a2451b6d2c5d45",
+        "da9c1a1b08319e220041b5df6b8820e3ce5a2de5cd5dbfbdd9a2451b6d2c5d45"
+      ]
+    },
+    {
+      "id": "alternating-lines",
+      "purpose": "One-pixel alternating horizontal lines for row/exposure diagnostics.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/alternating-lines.gbc",
+      "sha256": "7433ffe8e47924a0755c5901d521363af9bee45e4f6f1b786e0c07a6e4b03bd0",
+      "expectedFramebufferSha256": [
+        "c70867f17991cd578cb8ec96cf39ef759502b2c45d9491402f119c2859ac3284",
+        "c70867f17991cd578cb8ec96cf39ef759502b2c45d9491402f119c2859ac3284"
+      ]
+    },
+    {
+      "id": "parity-toggle",
+      "purpose": "Complementary checkerboards toggle at every VBlank for parity diagnostics.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/parity-toggle.gbc",
+      "sha256": "65a05978587b0b797979238aa216a8779764ffe31af23f56ae3e008fdea6961b",
+      "expectedFramebufferSha256": [
+        "a5e76e9343f0c965441b78d7c8e625fb7adff6068e3cd354c6fa83a6f65e0f14",
+        "fdedfd6301f83f89cf106e3685da4941238d798f5958f330aba8a17bdd2e6b57"
+      ]
+    },
+    {
+      "id": "retention-stress-recovery",
+      "purpose": "A bounded three-second stress page switches once to a uniform recovery page and then holds safely.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/retention-stress-recovery.gbc",
+      "sha256": "ae121eaae5e62de6942da85ba1036ef5f1c53f4f062cca194ea3bf43945d93ca",
+      "expectedFramebufferSha256": [
+        "64f6ac982f48e3f1b8add58c03c5d00d8fc1337414d040df8d76342197e75a6a",
+        "956cb0bff38f731f4a92eed7102f63e289190c663a534b16eb424255e2ae9de6"
+      ]
+    },
+    {
+      "id": "pixel-grid-identity",
+      "purpose": "Within-tile bit and coordinate identity pattern for nearest-source sampling checks.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/pixel-grid-identity.gbc",
+      "sha256": "ba5ecf3d528154fb677f00a255ac81e196d28f42dfbca812b7a056c129c161dd",
+      "expectedFramebufferSha256": [
+        "eb93cb5ed32de54ff8ba02d0232301e320b9b6a91a28a256d5ce2d95d1ab4a12",
+        "eb93cb5ed32de54ff8ba02d0232301e320b9b6a91a28a256d5ce2d95d1ab4a12"
+      ]
+    },
+    {
+      "id": "rgb555-exhaustive-transport",
+      "purpose": "All 32 blue codes are visible while red/green advance at VBlank through every pair, emitting all 32,768 RGB555 values in 1,024 frames.",
+      "rom": "models/nintendo-cgb-001/generated/ws2-stimulus-v1/rgb555-exhaustive-transport.gbc",
+      "sha256": "72e42558d723f895ccea0634939d2cd80364b68ae959dff5942904a5c2bfc664",
+      "expectedFramebufferSha256": [
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1",
+        "83b845fa42adb6341916b7d89d889fee9d7f8ec61656b5b6b37a998297fbade1"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "coreSmokeReport": {
+      "path": "models/nintendo-cgb-001/generated/ws2-gambatte-smoke-v1.json",
+      "sha256": "025a99ab5f48a435b3a25a1d6175696b64d327c46fe3e151deb6a91f33c0f2f9"
+    },
+    "romDecoderReport": {
+      "path": "models/nintendo-cgb-001/generated/ws2-decoder-v1.json",
+      "sha256": "bdf47eef8306185b8783e1cd5aeaddef44283f5c4542a8f67a63233ae8471344"
+    },
+    "negativeCases": [
+      {
+        "caseId": "color-correction-enabled",
+        "expected": "reject-activation",
+        "actual": "reject-activation",
+        "status": "pass"
+      },
+      {
+        "caseId": "dark-filter-enabled",
+        "expected": "reject-activation",
+        "actual": "reject-activation",
+        "status": "pass"
+      },
+      {
+        "caseId": "frame-blending-enabled",
+        "expected": "reject-activation",
+        "actual": "reject-activation",
+        "status": "pass"
+      },
+      {
+        "caseId": "subframe-update",
+        "expected": "static-bypass",
+        "actual": "static-bypass",
+        "status": "pass"
+      },
+      {
+        "caseId": "non-monotonic-frame-id",
+        "expected": "static-bypass-and-reset-baseline",
+        "actual": "static-bypass-and-reset-baseline",
+        "status": "pass"
+      },
+      {
+        "caseId": "speculative-runahead-frame",
+        "expected": "static-bypass",
+        "actual": "static-bypass",
+        "status": "pass"
+      }
+    ],
+    "shaderImplemented": false
+  }
+}

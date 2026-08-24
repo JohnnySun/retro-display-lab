@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "recordId": "cgb001-ws3-runtime-constants-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "period-reconstructed-runtime-contract",
+  "generatedBy": "tools/build-cgb001-ws3.mjs",
+  "sourceOfTruth": {
+    "path": "models/nintendo-cgb-001/data/scan-candidates-v1.json",
+    "sha256": "3f33ea131d3fbf09ea00f673cfa6300986bc0456246adae6d2c19c493035c663",
+    "rule": "CPU validation and any future Shader include must be generated from this record; prose and Shader literals are not independent sources."
+  },
+  "exactFrontendTimebase": {
+    "masterClockHz": 4194304,
+    "dotsPerLine": 456,
+    "totalLines": 154,
+    "visibleLines": 144,
+    "verticalBlankLines": 10,
+    "dotsPerFrame": 70224,
+    "lineSeconds": 0.0001087188720703125,
+    "visibleSeconds": 0.015655517578125,
+    "verticalBlankSeconds": 0.001087188720703125,
+    "frameSeconds": 0.016742706298828125,
+    "frameRateHz": 59.72750056960583,
+    "units": "seconds and hertz as named",
+    "classification": "derived-exact-selected-frontend-timebase",
+    "scope": "PPU/frontend observation timebase used to schedule candidate events; not an electrical panel trace"
+  },
+  "primaryRoundedCrossCheck": {
+    "classification": "independent-primary-rounded-cross-check",
+    "exactValuesRemainAuthoritativeForRuntime": true,
+    "lineMicroseconds": {
+      "exactDerived": 108.7188720703125,
+      "primaryPrinted": 108.7,
+      "signedDifference": 0.018872070312497158
+    },
+    "visibleMilliseconds": {
+      "exactDerived": 15.655517578125,
+      "primaryPrinted": 15.66,
+      "signedDifference": -0.004482421875000142
+    },
+    "verticalBlankMilliseconds": {
+      "exactDerived": 1.087188720703125,
+      "primaryPrinted": 1.09,
+      "signedDifference": -0.00281127929687508
+    },
+    "frameRateHz": {
+      "exactDerived": 59.72750056960583,
+      "primaryPrinted": 59.7,
+      "signedDifference": 0.027500569605827252
+    },
+    "pass": true
+  },
+  "periodReconstructionDefaults": {
+    "sourceLatchPhase": {
+      "id": "line-start",
+      "value": 0,
+      "units": "PPU lines"
+    },
+    "rowActivationDelay": {
+      "id": "at-latch",
+      "value": 0,
+      "units": "PPU lines"
+    },
+    "frameParityPhase": {
+      "id": "even-positive",
+      "value": 0,
+      "units": "binary phase"
+    },
+    "inversionTopology": {
+      "id": "row-alternating",
+      "value": "row-alternating",
+      "units": "discrete topology"
+    },
+    "sourceBusMapping": {
+      "id": "logical-rgb555-coordinate",
+      "value": "code5 / 31",
+      "units": "dimensionless command coordinate"
+    },
+    "formalCgbSpecificConstantsSelected": false
+  },
+  "bounds": {
+    "sourceLatchPhaseLines": [
+      0,
+      1
+    ],
+    "rowActivationDelayLines": [
+      0,
+      1
+    ],
+    "frameParityPhase": [
+      0,
+      1
+    ],
+    "inversionTopologies": [
+      "none",
+      "frame-global",
+      "row-alternating",
+      "column-alternating",
+      "dot-checkerboard"
+    ],
+    "sourceCode": [
+      0,
+      31
+    ]
+  },
+  "equations": {
+    "cpuReferenceModule": "models/nintendo-cgb-001/reference/scan-drive.mjs",
+    "futureShaderContract": {
+      "precision": "IEEE-754 binary32 arithmetic after uniform upload",
+      "lineSeconds": "float(DOTS_PER_LINE) / float(MASTER_CLOCK_HZ)",
+      "frameSeconds": "LINE_SECONDS * float(TOTAL_LINES)",
+      "rowStartSeconds": "float(row) * LINE_SECONDS",
+      "latchSeconds": "rowStartSeconds + clamp(latchOffsetLines, 0.0, 1.0) * LINE_SECONDS",
+      "activationAbsoluteSeconds": "latchSeconds + clamp(rowActivationDelayLines, 0.0, 1.0) * LINE_SECONDS",
+      "activationTimeInFrame": "activationAbsoluteSeconds - floor(activationAbsoluteSeconds / FRAME_SECONDS) * FRAME_SECONDS",
+      "sourceCommandCoordinate": "float(code5) / 31.0",
+      "changedPixelSplit": "previous applies on [0, min(activation, frame)); current applies on [activation, frame)",
+      "inversionSign": "topology == none ? +1 : parity(frameCount + parityPhase + spatialPhase) ? -1 : +1"
+    }
+  },
+  "stateAndDebugContract": {
+    "stateLocality": "Each R/G/B TFT command is local to one logical source pixel. No spatial electrical coupling, common-mode average, or DMG passive-matrix crosstalk is applied.",
+    "changedPixelSplit": "Within one observation frame, the previous source command applies before the row activation event and the current command applies after it.",
+    "noScanDiagnostic": "Apply the current source command for the full frame while preserving identical code endpoints, equilibrium, polarity magnitude, and WS1 static color.",
+    "debugViews": [
+      "row-phase",
+      "frame-parity",
+      "inversion-sign",
+      "source-code",
+      "signed-command-coordinate"
+    ],
+    "staticColorBoundary": "WS3 never edits or resamples the WS1 color LUT. Polarity sign has no static-color effect until a separately validated later mechanism consumes it."
+  },
+  "electricalClaimBoundary": {
+    "panelSignalTiming": {
+      "status": "unresolved",
+      "rule": "PPU line boundaries provide the coordinate system only. DCK count/edge, LP latch edge, SPS/CLS gate selection, MOD, and REVC phase require named bounded candidates and must not be called exact CGB timing.",
+      "formalCgbPanelTraceAvailable": false
+    },
+    "rgb555ToSixLineMapping": "unresolved; diagnostic candidates are excluded from runtime",
+    "codeCoordinateIsVoltage": false,
+    "transferredComparableSharpVoltages": [],
+    "formalCgbSpecificConstants": {
+      "sourceLatchPhase": null,
+      "rowActivationDelay": null,
+      "frameParityPhase": null,
+      "inversionTopology": null,
+      "rgb555ToSixLineMapping": null,
+      "gammaOrVcomVoltages": null
+    }
+  }
+}

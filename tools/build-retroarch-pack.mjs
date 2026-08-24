@@ -10,7 +10,7 @@
 //
 //   node tools/build-retroarch-pack.mjs           # write
 //   node tools/build-retroarch-pack.mjs --check   # fail if stale
-//   node tools/build-retroarch-pack.mjs --ref v0.7.0
+//   node tools/build-retroarch-pack.mjs --ref v0.8.0
 import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
@@ -79,6 +79,10 @@ const presets = [
     preset: `${target}/presets/ags101-period-reconstruction-v1.slangp` },
   { core: "mGBA", content: "gba", route: "retroarch-local",
     preset: `${target}/presets/ags101-period-reconstruction-kpa-color-corrected.slangp` },
+  { core: "Gambatte", content: "gbc", route: "android-system",
+    preset: `${target}/presets/cgb001-reference-d65-v1.slangp` },
+  { core: "Gambatte", content: "gbc", route: "retroarch-local",
+    preset: `${target}/presets/cgb001-reference-d65-kpa-color-corrected.slangp` },
 ];
 
 // Alternative presets a user may select by hand. They are shipped so the selection exists, but
@@ -94,9 +98,11 @@ const extraPresets = [
 const settings = [
   `${target}/retroarch/dmg01-temporal.cfg`,
   `${target}/retroarch/ags101-temporal.cfg`,
+  `${target}/retroarch/cgb001-temporal.cfg`,
+  `${target}/retroarch/cgb001-core-options.opt`,
 ];
 
-/** Every .slang / .png / .slangp a preset reaches, resolved relative to the preset itself. */
+/** Every preset, texture, Shader, and recursively included source it reaches. */
 function closure(entry, seen = new Set()) {
   const normalised = path.normalize(entry);
   if (seen.has(normalised)) return seen;
@@ -107,15 +113,21 @@ function closure(entry, seen = new Set()) {
       + "The manifest can only describe files that ref actually carries.");
   }
   seen.add(normalised);
-  if (!normalised.endsWith(".slangp")) return seen;
   const directory = path.dirname(normalised);
-  for (const line of content.toString("utf8").split("\n")) {
-    if (line.trimStart().startsWith("#")) continue;
-    const reference = line.match(/^\s*\w+\s*=\s*"([^"]+)"/);
-    if (!reference) continue;
-    const value = reference[1];
-    if (!/\.(slang|slangp|png)$/.test(value)) continue;
-    closure(path.join(directory, value), seen);
+  const source = content.toString("utf8");
+  if (normalised.endsWith(".slangp")) {
+    for (const line of source.split("\n")) {
+      if (line.trimStart().startsWith("#")) continue;
+      const reference = line.match(/^\s*\w+\s*=\s*"([^"]+)"/);
+      if (!reference) continue;
+      const value = reference[1];
+      if (!/\.(slang|slangp|png)$/.test(value)) continue;
+      closure(path.join(directory, value), seen);
+    }
+  } else if (/\.(?:slang|inc)$/.test(normalised)) {
+    for (const match of source.matchAll(/^\s*#include\s+"([^"]+)"/gm)) {
+      closure(path.join(directory, match[1]), seen);
+    }
   }
   return seen;
 }
@@ -138,9 +150,14 @@ const files = [...paths].sort().map((file) => {
   };
 });
 
+const refPackage = JSON.parse(readAtRef("package.json").toString("utf8"));
+if (ref !== `v${refPackage.version}`) {
+  throw new Error(`pack ref ${ref} does not match package version ${refPackage.version}`);
+}
+
 const manifest = {
   schemaVersion: 1,
-  packVersion: pkg.version,
+  packVersion: refPackage.version,
   ref,
   // Where an installer places the files, relative to RetroArch's shader directory. The presets
   // reference each other by relative path, so the tree below this root must be preserved exactly.

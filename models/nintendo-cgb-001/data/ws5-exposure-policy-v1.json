@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "policyId": "cgb001-ws5-reflected-exposure-policy-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "measured-constrained-period-reconstructed-integration",
+  "evidenceIds": [
+    "CGB-HCS-REFLECTANCE-2026",
+    "CGB-NIN-PROG-1999",
+    "CGB-SHARP-HRTFT-1997",
+    "CGB-TN-SEKIYA-2001",
+    "CGB-PRIOR-LIBRETRO"
+  ],
+  "dependencies": {
+    "ws1Color": {
+      "record": "color-reference-v1.json",
+      "runtimeLut": "../generated/cgb001-d65-lut-v1.rgba32f",
+      "descriptor": "../generated/cgb001-d65-lut-v1.json",
+      "role": "fixed-angle absolute relative-reflectance XYZ field"
+    },
+    "ws3Scan": {
+      "record": "scan-candidates-v1.json",
+      "runtimeConstants": "../generated/ws3-runtime-constants-v1.json",
+      "role": "exact frontend frame interval plus bounded row-activation event"
+    },
+    "ws4Response": {
+      "record": "response-ensemble-v1.json",
+      "runtimeRates": "../generated/cgb001-ws4-gtg-rates-v1.r32f",
+      "descriptor": "../generated/cgb001-ws4-gtg-rates-v1.json",
+      "role": "continuous per-channel state and replaceable segment rates"
+    }
+  },
+  "referenceCondition": {
+    "illuminant": "CIE D65",
+    "illuminationAngleDegrees": 45,
+    "viewAngleDegrees": 0,
+    "viewDirection": "panel normal",
+    "azimuth": {
+      "valueDegrees": null,
+      "policy": "inherit the source specimen orientation represented by the WS1 LUT; the source does not provide a numeric azimuth, so none is invented"
+    },
+    "runtimeAngleModel": false,
+    "geometryApplication": "The WS1 LUT already contains the accepted fixed-geometry reflectance. WS5 applies no second MRS, BRDF, angle-gamma, glare, or reflector gain."
+  },
+  "observationInterval": {
+    "masterClockHz": 4194304,
+    "dotsPerLine": 456,
+    "totalLines": 154,
+    "dotsPerFrame": 70224,
+    "secondsPerFrame": 0.016742706298828125,
+    "equation": "70224 / 4194304",
+    "classification": "derived-exact-selected-frontend-timebase",
+    "nativeFramesPerSupportedExecution": 1,
+    "hostRefreshChangesNativePanelClock": false
+  },
+  "stateAndRateContract": {
+    "initialState": "previous committed frame-boundary WS4 continuous RGB command coordinate",
+    "target": "uncorrected current or previous RGB555 source code divided by 31",
+    "rateAddress": "ensembleMember/channel/nearestSegmentStartCode/targetCode",
+    "nearestSegmentStartCode": "floor(clamp(state, 0, 1) * 31 + 0.5)",
+    "rateLifetime": "freeze the packed WS4 R32F rate for each constant-target segment",
+    "unchangedChannel": "retain its first-segment rate across the row split so an unrelated channel change cannot alter its dynamics",
+    "endpoint": "apply the WS4 exact-target snap only at a segment boundary; integrate the unsnapped continuous trajectory inside the segment",
+    "units": "dimensionless command state and reciprocal seconds; no voltage or luminance claim"
+  },
+  "scanIntegration": {
+    "equation": "previous target applies on [0, activation); current target applies on [activation, frame)",
+    "activation": "WS3 scanEvent(row, latchOffsetLines, rowActivationDelayLines).activationAbsoluteSeconds",
+    "defaultCandidate": {
+      "sourceLatchPhase": "line-start",
+      "rowActivationDelay": "at-latch"
+    },
+    "bounds": {
+      "sourceLatchPhaseLines": [0, 1],
+      "rowActivationDelayLines": [0, 1]
+    },
+    "unchangedRgb555": "one full-frame constant-target segment",
+    "noScanDiagnostic": "current RGB555 target applies for the full frame with the same response and color equations"
+  },
+  "opticalIntegration": {
+    "integrand": "trilinearSample(WS1_XYZ_LUT, stateRGB(t))",
+    "output": "one native-frame time average of X/Y/Z absolute relative reflectance",
+    "cpuGoldReference": {
+      "method": "split at every crossed WS1 LUT cell boundary, expand the trilinear basis into exponentials, and integrate each term analytically",
+      "classification": "derived-exact-for-the-accepted-piecewise-trilinear-and-first-order-model"
+    },
+    "futureShaderContract": {
+      "method": "composite two-point Gauss-Legendre",
+      "panelsPerNativeFrame": 32,
+      "panelAllocation": "ceil(32 * segmentSeconds / frameSeconds) for each nonzero segment",
+      "maximumSamplesPerPixelFrame": 66,
+      "statePrecision": "RGBA32F feedback candidate",
+      "ratePrecision": "packed R32F",
+      "lutPrecision": "packed RGBA32F with XYZ used",
+      "actualGpuReadback": false
+    },
+    "ordering": "evaluate WS1 color at every optical-state sample, then integrate XYZ; never evaluate the LUT only once at the average RGB state",
+    "blackPolicy": "the WS1 measured-constrained absolute black remains inside every LUT sample",
+    "targetCompensation": "none"
+  },
+  "outputModes": [
+    {
+      "id": "physical-reflectance",
+      "status": "default-model-output",
+      "equation": "averageXyz = integral_0^frame WS1_XYZ(stateRGB(t)) dt / frameSeconds",
+      "units": "absolute relative-reflectance XYZ under the accepted D65 integration",
+      "clipped": false
+    },
+    {
+      "id": "reference-white-y-normalized",
+      "status": "optional-host-presentation-coordinate",
+      "equation": "physical-reflectance XYZ / WS1 code-31-white Y",
+      "units": "dimensionless; unclipped",
+      "targetDeviceSpecific": false
+    },
+    {
+      "id": "frame-endpoint-diagnostic",
+      "status": "diagnostic-only",
+      "equation": "WS1_XYZ(frameBoundaryState)",
+      "units": "absolute relative-reflectance XYZ"
+    },
+    {
+      "id": "static-ws1-bypass",
+      "status": "fail-closed-and-dynamics-disabled-path",
+      "equation": "exact WS1 LUT texel at current RGB555",
+      "units": "absolute relative-reflectance XYZ"
+    }
+  ],
+  "intervalHandling": [
+    {
+      "id": "ordinary-refresh",
+      "nativeFramesAdvanced": 1,
+      "status": "supported"
+    },
+    {
+      "id": "content-duplicate",
+      "nativeFramesAdvanced": 1,
+      "status": "supported-real-panel-dwell"
+    },
+    {
+      "id": "pause",
+      "nativeFramesAdvanced": 0,
+      "status": "freeze-state-and-output"
+    },
+    {
+      "id": "fast-forward-every-frame",
+      "nativeFramesAdvanced": 1,
+      "status": "supported-host-pacing-does-not-rescale-native-time"
+    },
+    {
+      "id": "frontend-generated-duplicate-or-skipped-frame",
+      "nativeFramesAdvanced": null,
+      "status": "unsupported-static-bypass"
+    },
+    {
+      "id": "variable-refresh-one-execution-per-frame",
+      "nativeFramesAdvanced": 1,
+      "status": "supported-host-pacing-independent"
+    },
+    {
+      "id": "reset-content-load-save-state-rewind-or-discontinuity",
+      "nativeFramesAdvanced": null,
+      "status": "discard-history-seed-current-frame-with-zero-elapsed-exposure"
+    },
+    {
+      "id": "run-ahead-or-subframe",
+      "nativeFramesAdvanced": null,
+      "status": "unsupported-static-bypass-unless-only-committed-frame-reaches-model"
+    }
+  ],
+  "validationContract": {
+    "curatedTransitions": "full-scale rise/fall, adjacent gray rise/fall, mixed RGB, primary exchange, and partial-channel change",
+    "visibleRows": [0, 1, 71, 72, 142, 143],
+    "ensembleMembers": ["hcr-like-fast", "mid-envelope-nominal", "gh-like-slow"],
+    "deterministicRandomCases": 1000,
+    "maximumQuadratureAbsoluteXyzError": 0.00005,
+    "maximumFutureShaderFloat32VsDoubleAbsoluteXyzError": 2e-7,
+    "staticExactTolerance": 0,
+    "settledDynamicVsWs1Tolerance": 0,
+    "causalRowOrderingRequired": true,
+    "noFutureSourceFrames": true,
+    "actualGpuReadbackRequiredNow": false
+  },
+  "exclusions": [
+    "Shader or preset creation before WS8",
+    "runtime viewing-angle or face-tracking input",
+    "a second 45-degree gamma, MRS gain, BRDF, glare, or reflector correction",
+    "host wall-clock scaling of the native CGB panel interval",
+    "target-display brightness or chroma compensation",
+    "WS7 residual-DC or image-retention state"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "cgb001-ws6-evidence-inventory-v1",
+  "createdOn": "2026-08-24",
+  "scope": "CGB RGB aperture and fixed-angle bare-panel composition; no replacement-panel imagery or unmeasured cover-lens effect is accepted.",
+  "auditRules": [
+    "A source must distinguish an OEM CGB panel from a modern replacement panel before it can constrain product geometry.",
+    "Camera demosaic, resampling, moire, focus blur, surface reflection, and unknown viewing orientation prevent numeric fill-factor extraction unless the raw calibrated capture and scale are available.",
+    "Published images remain cited at their original locator; no reduced or re-encoded derivative is substituted for the source.",
+    "The HCS spectra and WS1 LUT already collapse the accepted 45 degree illumination and 0 degree normal view; MRS or lens gain cannot be applied again."
+  ],
+  "sources": [
+    {
+      "id": "WS6-SHARP-HRTFT-1997",
+      "evidenceId": "CGB-SHARP-HRTFT-1997",
+      "class": "primary-manufacturer-family",
+      "locator": "https://global.sharp/corporate/info/rd/tj1/pdf/7.pdf",
+      "retained": [
+        "HR-TFT uses optimized RGB micro color filters",
+        "Super-HA places an aluminum reflective electrode inside the cell",
+        "MRS uses numerous randomly aligned projections to diffuse incident light and avoid interference coloration"
+      ],
+      "notRetained": [
+        "the prototype as the exact CGB panel",
+        "numeric CGB subpixel fill, gap, bus mask, notch, or MRS facet geometry",
+        "a visible runtime grain layer"
+      ]
+    },
+    {
+      "id": "WS6-GBCC-TECHNOLOGY",
+      "evidenceId": "CGB-GBCC-SUBPIXEL",
+      "class": "secondary-CGB-specific-observation-and-prior-art",
+      "locator": "https://gbcc.dev/technology/",
+      "retained": [
+        "CGB subpixels are described as left-to-right RGB",
+        "the microscope observation is described as roughly rectangular"
+      ],
+      "notRetained": [
+        "GBCC semicircle radius, spacing, color triplets, or 1080p-tuned phase as physical CGB measurements",
+        "numeric fill factor from the compressed web image"
+      ]
+    },
+    {
+      "id": "WS6-BGB-REALITY",
+      "evidenceId": "CGB-BGB-REALITY",
+      "class": "independent-secondary-CGB-observation-and-prior-art",
+      "locator": "https://bgb.bircd.org/reality/index.html",
+      "retained": [
+        "CGB rendering uses three RGB subpixels",
+        "the average output color is explicitly preserved by the prior-art doubler"
+      ],
+      "notRetained": [
+        "BGB's visual kernel, edge width, overflow rule, interlacing, or color correction as OEM geometry",
+        "a second independent numeric fill-factor measurement"
+      ]
+    },
+    {
+      "id": "WS6-HCS-BARE-PANEL",
+      "evidenceId": "CGB-HCS-REFLECTANCE-2026",
+      "class": "accepted-direct-measurement",
+      "locator": "reference/upstream/hcs/e688fc51141c0974728aa1bdcb89b94d74123f6b/measurements/gbc_reflectance.ods",
+      "retained": [
+        "fixed D65 45 degree illumination and 0 degree detector color",
+        "code-zero black XYZ used only as the declared inactive-region color reference",
+        "measurement target had the case and screen glass removed"
+      ],
+      "notRetained": [
+        "a cover-lens tint, glare strength, BRDF, or alternate angle"
+      ]
+    }
+  ],
+  "decision": {
+    "selected": "minimum-assumption equal-third left-to-right RGB rectangles with activeFill=1 and analytic host-footprint integration",
+    "why": "CGB-specific and independent prior-art observations agree on three RGB subpixels, while only one source explicitly identifies left-to-right order and no calibrated source supports a numeric inactive gap. Full coverage is therefore the neutral non-invented geometry.",
+    "heldUnresolved": [
+      "inactive gap fraction and phase",
+      "notch and TFT/bus-mask shape",
+      "subpixel spectral decomposition",
+      "MRS microfacet texture",
+      "front-lens tint and glare"
+    ]
+  }
+}

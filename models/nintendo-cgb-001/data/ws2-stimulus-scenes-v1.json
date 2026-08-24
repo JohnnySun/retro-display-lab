@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "suiteId": "cgb001-ws2-stimulus-v1",
+  "modelId": "nintendo-cgb-001-period-reconstruction",
+  "classification": "synthetic",
+  "evidenceIds": ["CGB-NIN-PROG-1999"],
+  "sourceResolution": [160, 144],
+  "colorEncoding": "CGB RGB555 little-endian palette words",
+  "assetPolicy": "Project-generated program, tiles, maps, attributes, and palettes only; the Nintendo boot logo and proprietary game assets are absent.",
+  "scenes": [
+    {
+      "sceneId": "red-ramp",
+      "type": "channel-ramp",
+      "channel": "R",
+      "description": "All 32 red channel codes with green and blue held at zero.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "green-ramp",
+      "type": "channel-ramp",
+      "channel": "G",
+      "description": "All 32 green channel codes with red and blue held at zero.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "blue-ramp",
+      "type": "channel-ramp",
+      "channel": "B",
+      "description": "All 32 blue channel codes with red and green held at zero.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "gray-ramp",
+      "type": "channel-ramp",
+      "channel": "gray",
+      "description": "All 32 neutral RGB555 codes.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "color-corners",
+      "type": "color-corners",
+      "description": "K/R/G/B/Y/C/M/W endpoint patches.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "mixed-patches",
+      "type": "mixed-patches",
+      "description": "Thirty-two deterministic intermediate mixed RGB555 patches.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "row-markers",
+      "type": "row-markers",
+      "description": "Binary tile-row identity plus first, middle, and last visible-row sentinels.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "first-last-row-change",
+      "type": "first-last-row-change",
+      "description": "Only the first and last visible rows change between pages.",
+      "page0DwellFrames": 60,
+      "page1DwellFrames": 60
+    },
+    {
+      "sceneId": "moving-edge",
+      "type": "moving-edge",
+      "description": "A vertical edge moves by one eight-pixel tile between VBlank-latched pages.",
+      "page0DwellFrames": 8,
+      "page1DwellFrames": 8
+    },
+    {
+      "sceneId": "checkerboard",
+      "type": "checkerboard",
+      "description": "One-pixel alternating low/high checkerboard.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "isolated-window",
+      "type": "isolated-window",
+      "description": "Bounded bright window occupying less than one quarter of the raster.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "alternating-lines",
+      "type": "alternating-lines",
+      "description": "One-pixel alternating horizontal lines for row/exposure diagnostics.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "parity-toggle",
+      "type": "parity-toggle",
+      "description": "Complementary checkerboards toggle at every VBlank for parity diagnostics.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "retention-stress-recovery",
+      "type": "retention-stress-recovery",
+      "description": "A bounded three-second stress page switches once to a uniform recovery page and then holds safely.",
+      "page0DwellFrames": 180,
+      "page1DwellFrames": 180,
+      "maxPageFlips": 1,
+      "terminalPage": 1
+    },
+    {
+      "sceneId": "pixel-grid-identity",
+      "type": "pixel-grid-identity",
+      "description": "Within-tile bit and coordinate identity pattern for nearest-source sampling checks.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    },
+    {
+      "sceneId": "rgb555-exhaustive-transport",
+      "type": "rgb555-exhaustive-transport",
+      "description": "All 32 blue codes are visible while red/green advance at VBlank through every pair, emitting all 32,768 RGB555 values in 1,024 frames.",
+      "page0DwellFrames": 1,
+      "page1DwellFrames": 1
+    }
+  ]
+}

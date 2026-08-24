@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retro-display-lab.invalid/schemas/cgb001/response-ensemble-v1.json",
+  "title": "CGB-001 HR-TFT response ensemble v1",
+  "description": "Defines the generated fast, nominal, and slow period-family optical-response ensemble without presenting it as an authentic CGB measurement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "ensembleId",
+    "modelId",
+    "classification",
+    "evidenceIds",
+    "referenceTemperatureC",
+    "stateDefinition",
+    "responseDefinition",
+    "selectedModel",
+    "members",
+    "uncertaintyDimensions",
+    "specimenOverrideContract",
+    "runtimeArtifact",
+    "validation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "ensembleId": { "const": "cgb001-ws4-response-ensemble-v1" },
+    "modelId": { "const": "nintendo-cgb-001-period-reconstruction" },
+    "classification": { "const": "period-reconstructed" },
+    "evidenceIds": { "type": "array", "minItems": 2, "items": { "type": "string", "pattern": "^CGB-" } },
+    "referenceTemperatureC": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "units", "classification", "runtimeCoefficientAvailable"],
+      "properties": {
+        "value": { "type": "number" },
+        "units": { "const": "degrees Celsius" },
+        "classification": { "type": "string", "minLength": 1 },
+        "runtimeCoefficientAvailable": { "const": false }
+      }
+    },
+    "stateDefinition": { "type": "object", "additionalProperties": true, "required": ["coordinate", "range", "endpointPolicy", "colorBoundary"] },
+    "responseDefinition": { "type": "object", "additionalProperties": true, "required": ["runtimeDefinition", "sourceDefinition", "conversionStatus"] },
+    "selectedModel": { "type": "object", "additionalProperties": true, "required": ["candidateId", "equationId", "stateEquation", "rateEquation", "snapEpsilon"] },
+    "members": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "role", "classification", "familyInterpretation", "parameters", "evidenceIds", "uncertainty"]
+      },
+      "allOf": [
+        { "contains": { "type": "object", "required": ["role"], "properties": { "role": { "const": "fast" } } } },
+        { "contains": { "type": "object", "required": ["role"], "properties": { "role": { "const": "nominal" } } } },
+        { "contains": { "type": "object", "required": ["role"], "properties": { "role": { "const": "slow" } } } }
+      ]
+    },
+    "uncertaintyDimensions": { "type": "object", "additionalProperties": true, "required": ["channel", "temperature", "direction", "waveform", "exactCgbPanel"] },
+    "specimenOverrideContract": { "type": "object", "additionalProperties": true, "required": ["status", "addressing", "replacementRule", "shaderInterfaceChangesRequired"] },
+    "runtimeArtifact": { "type": "object", "additionalProperties": true, "required": ["path", "descriptor", "sha256", "format", "equationRevision"] },
+    "validation": { "type": "object", "additionalProperties": true, "required": ["status", "cpuFutureShaderTolerance", "modelSelectionReport", "equationReport", "motionFixtureReport"] }
+  }
+}
