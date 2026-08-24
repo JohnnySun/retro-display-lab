@@ -186,55 +186,55 @@
     "blackDriftPresent": true,
     "blackPointsD65RecordedRange": {
       "R": [
-        0.161114892454,
-        0.166600364339,
-        0.170945310847
+        0.16111489245,
+        0.16660036434,
+        0.17094531085
       ],
       "G": [
-        0.167986046255,
-        0.173617214691,
-        0.185918408602
+        0.16798604625,
+        0.17361721469,
+        0.1859184086
       ],
       "B": [
-        0.174436971779,
+        0.17443697178,
         0.17994898443,
-        0.195876003495
+        0.1958760035
       ],
       "Y": [
-        0.177256675762,
-        0.182260640202,
-        0.204696056327
+        0.17725667576,
+        0.1822606402,
+        0.20469605633
       ],
       "C": [
         0.17216960711,
-        0.179585263661,
-        0.189470985332
+        0.17958526366,
+        0.18947098533
       ],
       "M": [
-        0.178535768303,
-        0.184218387545,
-        0.202470779657
+        0.1785357683,
+        0.18421838755,
+        0.20247077966
       ],
       "Greyscale": [
-        0.188246071356,
-        0.193211286606,
-        0.208209859857
+        0.18824607136,
+        0.19321128661,
+        0.20820985986
       ]
     },
     "blackPointComponentRanges": {
       "X": {
-        "minimum": 0.161114892454,
-        "maximum": 0.188246071356,
+        "minimum": 0.16111489245,
+        "maximum": 0.18824607136,
         "range": 0.027131178902
       },
       "Y": {
-        "minimum": 0.166600364339,
-        "maximum": 0.193211286606,
+        "minimum": 0.16660036434,
+        "maximum": 0.19321128661,
         "range": 0.026610922267
       },
       "Z": {
-        "minimum": 0.170945310847,
-        "maximum": 0.208209859857,
+        "minimum": 0.17094531085,
+        "maximum": 0.20820985986,
         "range": 0.037264549011
       }
     },
@@ -252,7 +252,7 @@
   "colorMathRegression": {
     "fixtureSource": "Sharma, Wu, and Dalal (2005) CIEDE2000 supplementary test data",
     "tolerance": 0.00005,
-    "maximumDifference": 0.0000403198434231,
+    "maximumDifference": 0.000040319843423,
     "pass": true,
     "referencePairs": [
       {
@@ -267,8 +267,8 @@
           -82.7485
         ],
         "expected": 2.0425,
-        "actual": 2.04245968016,
-        "difference": 0.0000403198434231
+        "actual": 2.0424596802,
+        "difference": 0.000040319843423
       },
       {
         "a": [
@@ -282,8 +282,8 @@
           -82.7485
         ],
         "expected": 2.8615,
-        "actual": 2.86151017475,
-        "difference": 0.0000101747474917
+        "actual": 2.8615101747,
+        "difference": 0.000010174747492
       },
       {
         "a": [
@@ -297,8 +297,8 @@
           -82.7485
         ],
         "expected": 3.4412,
-        "actual": 3.44119059869,
-        "difference": 0.00000940130929328
+        "actual": 3.4411905987,
+        "difference": 0.0000094013092933
       },
       {
         "a": [
@@ -312,7 +312,7 @@
           -82.7485
         ],
         "expected": 1,
-        "actual": 0.999998864752,
+        "actual": 0.99999886475,
         "difference": 0.000001135247507
       }
     ]
@@ -325,49 +325,49 @@
       {
         "series": "R",
         "sourceReading": 31,
-        "runtimeDeltaE00": 0.0301603783178,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.358257943207,
+        "runtimeDeltaE00": 0.030160378318,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.35825794321,
         "runtimeNoWorse": true
       },
       {
         "series": "G",
         "sourceReading": 33,
         "runtimeDeltaE00": 0.091910192657,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.547980237107,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.54798023711,
         "runtimeNoWorse": true
       },
       {
         "series": "B",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.0346750922033,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.365437790572,
+        "runtimeDeltaE00": 0.034675092203,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.36543779057,
         "runtimeNoWorse": true
       },
       {
         "series": "Y",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.0488463659549,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 1.81126789953,
+        "runtimeDeltaE00": 0.048846365955,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 1.8112678995,
         "runtimeNoWorse": true
       },
       {
         "series": "C",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.0532810757763,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.362826672528,
+        "runtimeDeltaE00": 0.053281075776,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.36282667253,
         "runtimeNoWorse": true
       },
       {
         "series": "M",
         "sourceReading": 32,
-        "runtimeDeltaE00": 0.0828516436512,
-        "upstreamWhiteAndBlackAlignedDeltaE00": 0.409833932655,
+        "runtimeDeltaE00": 0.082851643651,
+        "upstreamWhiteAndBlackAlignedDeltaE00": 0.40983393266,
         "runtimeNoWorse": true
       },
       {
         "series": "Greyscale",
         "sourceReading": 32,
-        "runtimeDeltaE00": 1.83765036536e-14,
+        "runtimeDeltaE00": 1.8376503654e-14,
         "upstreamWhiteAndBlackAlignedDeltaE00": 0,
         "runtimeNoWorse": true
       }
@@ -376,22 +376,22 @@
       "runtimeDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 0.601787781933,
-        "mean": 0.0788915913765,
-        "standardDeviation": 0.134142139942
+        "maximum": 0.60178778193,
+        "mean": 0.078891591377,
+        "standardDeviation": 0.13414213994
       },
       "upstreamWhiteAndBlackAlignedDeltaE00": {
         "count": 224,
         "minimum": 0,
-        "maximum": 4.48388830007,
-        "mean": 1.24329523527,
-        "standardDeviation": 0.875261760537
+        "maximum": 4.4838883001,
+        "mean": 1.2432952353,
+        "standardDeviation": 0.87526176054
       },
       "runtimeNoWorse": true
     },
     "heldOutGray": {
-      "pairwiseMeanDeltaE00": 1.76944922799,
-      "runtimeMeanDeltaE00": 0.0132251035374,
+      "pairwiseMeanDeltaE00": 1.769449228,
+      "runtimeMeanDeltaE00": 0.013225103537,
       "improved": true
     },
     "pass": true
@@ -594,22 +594,22 @@
       "sourcePatchCount": 31,
       "mappingPolicy": "endpoint-preserving-uniform-source-index-resample-v1",
       "adjustedCodeCount": 3,
-      "maximumLuminanceAdjustment": 0.00112698033424,
+      "maximumLuminanceAdjustment": 0.0011269803342,
       "adjustments": [
         {
           "index": 29,
-          "before": 0.106397650056,
-          "after": 0.105270669722
+          "before": 0.10639765006,
+          "after": 0.10527066972
         },
         {
           "index": 30,
-          "before": 0.104606605888,
-          "after": 0.105270669722
+          "before": 0.10460660589,
+          "after": 0.10527066972
         },
         {
           "index": 31,
-          "before": 0.104807753221,
-          "after": 0.105270669722
+          "before": 0.10480775322,
+          "after": 0.10527066972
         }
       ]
     },
@@ -617,22 +617,22 @@
       "sourcePatchCount": 33,
       "mappingPolicy": "endpoint-preserving-uniform-source-index-resample-v1",
       "adjustedCodeCount": 3,
-      "maximumLuminanceAdjustment": 0.00175589280166,
+      "maximumLuminanceAdjustment": 0.0017558928017,
       "adjustments": [
         {
           "index": 29,
-          "before": 0.214815092038,
-          "after": 0.213059199237
+          "before": 0.21481509204,
+          "after": 0.21305919924
         },
         {
           "index": 30,
-          "before": 0.212987712693,
-          "after": 0.213059199237
+          "before": 0.21298771269,
+          "after": 0.21305919924
         },
         {
           "index": 31,
-          "before": 0.211374792979,
-          "after": 0.213059199237
+          "before": 0.21137479298,
+          "after": 0.21305919924
         }
       ]
     },
@@ -665,12 +665,12 @@
         {
           "index": 12,
           "before": 0.042866087575,
-          "after": 0.0422985412195
+          "after": 0.04229854122
         },
         {
           "index": 13,
           "before": 0.041730994864,
-          "after": 0.0422985412195
+          "after": 0.04229854122
         },
         {
           "index": 19,
@@ -695,17 +695,17 @@
         {
           "index": 29,
           "before": 0.080151350689,
-          "after": 0.0794533228897
+          "after": 0.07945332289
         },
         {
           "index": 30,
           "before": 0.079047161258,
-          "after": 0.0794533228897
+          "after": 0.07945332289
         },
         {
           "index": 31,
           "before": 0.079161456722,
-          "after": 0.0794533228897
+          "after": 0.07945332289
         }
       ]
     },
@@ -713,22 +713,22 @@
       "sourcePatchCount": 32,
       "mappingPolicy": "identity-reading-minus-one",
       "adjustedCodeCount": 3,
-      "maximumLuminanceAdjustment": 0.00100246909767,
+      "maximumLuminanceAdjustment": 0.0010024690977,
       "adjustments": [
         {
           "index": 29,
-          "before": 0.298908786826,
-          "after": 0.298323773109
+          "before": 0.29890878683,
+          "after": 0.29832377311
         },
         {
           "index": 30,
-          "before": 0.298741228489,
-          "after": 0.298323773109
+          "before": 0.29874122849,
+          "after": 0.29832377311
         },
         {
           "index": 31,
-          "before": 0.297321304011,
-          "after": 0.298323773109
+          "before": 0.29732130401,
+          "after": 0.29832377311
         }
       ]
     },
@@ -740,13 +740,13 @@
       "adjustments": [
         {
           "index": 30,
-          "before": 0.288355436905,
-          "after": 0.287346324938
+          "before": 0.2883554369,
+          "after": 0.28734632494
         },
         {
           "index": 31,
-          "before": 0.286337212971,
-          "after": 0.287346324938
+          "before": 0.28633721297,
+          "after": 0.28734632494
         }
       ]
     },
@@ -758,13 +758,13 @@
       "adjustments": [
         {
           "index": 30,
-          "before": 0.169908660328,
-          "after": 0.168728799916
+          "before": 0.16990866033,
+          "after": 0.16872879992
         },
         {
           "index": 31,
-          "before": 0.167548939505,
-          "after": 0.168728799916
+          "before": 0.16754893951,
+          "after": 0.16872879992
         }
       ]
     },
@@ -779,9 +779,9 @@
   "interactionEvidence": {
     "residualDefinition": "black-aligned measured Y/C/M/Greyscale ramps minus their primary, pair, and neutral lower-order components",
     "endpointResidualEuclideanXyz": {
-      "RG": 0.0469803769098,
-      "GB": 0.00739843381224,
-      "BR": 0.0429764559503,
+      "RG": 0.04698037691,
+      "GB": 0.0073984338122,
+      "BR": 0.04297645595,
       "RGB": 0.086068201333
     },
     "additivityFailurePresent": true
@@ -793,13 +793,13 @@
     "measuredAxisWeight": 256,
     "iterationCount": 1741,
     "converged": true,
-    "maximumIterationChange": 9.93261028981e-13,
+    "maximumIterationChange": 9.9326102898e-13,
     "adjustedVoxelCount": 20074,
-    "maximumAbsoluteYAdjustment": 0.0147423392234,
-    "rootMeanSquareYAdjustment": 0.00181517483944,
+    "maximumAbsoluteYAdjustment": 0.014742339223,
+    "rootMeanSquareYAdjustment": 0.0018151748394,
     "before": {
       "violationCount": 15476,
-      "largestDrop": -0.0165500121075
+      "largestDrop": -0.016550012107
     },
     "after": {
       "violationCount": 0,
@@ -819,69 +819,69 @@
     "fixtureDeltaE00": [
       {
         "id": "K",
-        "deltaE00": 8.20277214583
+        "deltaE00": 8.2027721458
       },
       {
         "id": "R",
-        "deltaE00": 8.06864127539
+        "deltaE00": 8.0686412754
       },
       {
         "id": "G",
-        "deltaE00": 4.09495958873
+        "deltaE00": 4.0949595887
       },
       {
         "id": "B",
-        "deltaE00": 9.86701506825
+        "deltaE00": 9.8670150683
       },
       {
         "id": "Y",
-        "deltaE00": 5.46452667123
+        "deltaE00": 5.4645266712
       },
       {
         "id": "C",
-        "deltaE00": 7.67206716099
+        "deltaE00": 7.672067161
       },
       {
         "id": "M",
-        "deltaE00": 8.59921331028
+        "deltaE00": 8.5992133103
       },
       {
         "id": "W",
-        "deltaE00": 9.58845944476
+        "deltaE00": 9.5884594448
       },
       {
         "id": "gray-08",
-        "deltaE00": 7.98867780116
+        "deltaE00": 7.9886778012
       },
       {
         "id": "gray-16",
-        "deltaE00": 7.71736831403
+        "deltaE00": 7.717368314
       },
       {
         "id": "gray-24",
-        "deltaE00": 8.83558956965
+        "deltaE00": 8.8355895697
       },
       {
         "id": "mixed-07-19-29",
-        "deltaE00": 7.36840609986
+        "deltaE00": 7.3684060999
       },
       {
         "id": "mixed-27-11-04",
-        "deltaE00": 9.19883806271
+        "deltaE00": 9.1988380627
       }
     ]
   },
   "lutValidation": {
     "entryCount": 32768,
     "componentCount": 98304,
-    "minimumComponent": 0.192172947905,
-    "maximumComponent": 0.664607534685,
+    "minimumComponent": 0.1921729479,
+    "maximumComponent": 0.66460753469,
     "nonFiniteCount": 0,
     "negativeComponentCount": 0,
-    "maximumAnalyticSeedIntegerGridDifference": 0.0236609343339,
+    "maximumAnalyticSeedIntegerGridDifference": 0.023660934334,
     "maximumCpuIntegerGridError": 0,
     "maximumTrilinearIntegerGridError": 0,
-    "maximumFloat32PackingError": 2.97964273255e-8,
+    "maximumFloat32PackingError": 2.9796427325e-8,
     "monotonicLuminanceViolationCount": 0,
     "largestMonotonicLuminanceDrop": 0,
     "pass": true

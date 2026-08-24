@@ -17,10 +17,10 @@
     "models/nintendo-cgb-001/data/response-ensemble.schema.json": "330931be2e1aaf8f8a8fbd565953b57664d8a215adef59b048ef6b1f10ba34ca",
     "models/nintendo-cgb-001/reference/optical-response.mjs": "e7d80a0c1580f6baae1e13c40fba94548187c1a83fce1493ecc1362b9ed45c16",
     "models/nintendo-cgb-001/generated/ws3-runtime-constants-v1.json": "590e2972d359f9af3a8d99ae7a4cd07e2eaf0223eec50451d38a731bd7782c95",
-    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "0b2fbdab1222b67d16e299a8391cbdff82a6b0f5671ae662a2ec409200791f6e",
-    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "2265b2bd54374fff518a5b2585c212b51e3e27051a2ab3d3df19723ab1167c13",
+    "models/nintendo-cgb-001/generated/ws3-receipt-v1.json": "72d6007425a6d5e908db18a105d052dbfa65cb345b4278a6f78f1781c5f94d66",
+    "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.json": "dfe13bece91169da0949b4dd91261fdce2ae322d277c02dd8a8a02b0c4d99483",
     "models/nintendo-cgb-001/generated/cgb001-d65-lut-v1.rgba32f": "273f1bf7f11c0952f7fabfac42822d0a80b199d37073171f142d1aed2fb42e4f",
-    "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "c7c78bb29449c9633728360235e27c4793beb95b6287af997276a9ef5abc7694",
+    "models/nintendo-cgb-001/generated/ws1-receipt-v1.json": "89eb8a68eea38c45f13e677e2111acbe0380afdd8c131f48c5386ec307753857",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",
     "tools/build-cgb001-ws4.mjs": "a34a43601395d961ce63f230ab1d3a20c10df96994d878d1ac4cd455c194ca07"
   },

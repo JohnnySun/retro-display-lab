@@ -13,7 +13,7 @@
     {
       "workstream": "ws1",
       "path": "generated/ws1-static-fixtures-v1.json",
-      "sha256": "c1ac1694fcf78cccf3d2e917e08726e846d0151f852681a5783a065258a10eac"
+      "sha256": "8fef1d7d8fe34fea471e3798afd1bf6a20c384e6288d4adbf6140c09ad2136d9"
     },
     {
       "workstream": "ws2",
@@ -48,7 +48,7 @@
     {
       "workstream": "ws8",
       "path": "generated/ws8-manifest-v1.json",
-      "sha256": "d03b3f7dbf0d03feb58aa0b61fd8751cfe8410f1d2bc26cec513cd5ce7409395"
+      "sha256": "92c2e068a3be1cf73c69dffcdd7b83dec8add0adcfb3218f773506795767091b"
     }
   ],
   "allRgb555Static": {
