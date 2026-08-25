@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "packVersion": "0.8.2",
-  "ref": "v0.8.2",
+  "packVersion": "0.8.3",
+  "ref": "v0.8.3",
   "installRoot": "retro-display-lab",
   "target": {
     "id": "konkr-gt78-vn-960x640-srgb-neutral",
@@ -165,8 +165,8 @@
     },
     {
       "path": "models/nintendo-dmg-01/shaders/dmg01-response-v1.slang",
-      "bytes": 20717,
-      "sha256": "b18e3871100f999ff9cf88e77c4a75af71a14ed9fd19877c799e5560e975a1a4"
+      "bytes": 20646,
+      "sha256": "c375fd57aa5f4b64a9bebc724798c88372a4a4c2674c87809f633ef9dd870144"
     },
     {
       "path": "models/nintendo-dmg-01/shaders/dmg01-row-load-v2.slang",
@@ -175,8 +175,8 @@
     },
     {
       "path": "models/nintendo-dmg-01/shaders/dmg01-stn-surrogate.inc",
-      "bytes": 12079,
-      "sha256": "294e74570561e8039c1460a2419723f57dfd815fb895b21b5bbd1b4fc3107863"
+      "bytes": 12107,
+      "sha256": "002fa391b3208276c1b217ee8c565239853cd67f22cd46f2e4a9635a25684706"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/host-correction/kpa-reference-b57-g7-v1/kpa-host-correction-v1.slang",
@@ -210,28 +210,28 @@
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-lightly-used-v1.slangp",
-      "bytes": 2272,
-      "sha256": "f6e97d5aead1f607ed063590524d50ce5d4f7846158e6d07c489d7d4e41e5887"
+      "bytes": 2284,
+      "sha256": "41183a1fa9253a19d7c8177b417ae2885cff2549f74eff7134c1aada75f3aaa8"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-kpa-color-corrected.slangp",
       "bytes": 2915,
-      "sha256": "b168b329d857861b85637d7adbc7965a04ccdf6357a00132df1fa1e2ea2fb120"
+      "sha256": "da29147713f3349b6da84f5dcb3f8ff15221fd766e4899f8c3d036c3c6551e19"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-one-year-used-v1.slangp",
       "bytes": 2286,
-      "sha256": "3abaf35de63fb1b6c42fc38323069c1e85c04b9ac3224003899decf940db76bd"
+      "sha256": "1bed7c449c15f1927b2adbbcffb9a9e70dd432b21b16053b298e5a984772e7ff"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-kpa-color-corrected.slangp",
-      "bytes": 2898,
-      "sha256": "39a21cf55f2a8e4dd4960edbf9d0f3f513f10dfaf425810cbd82a04d1e4a5688"
+      "bytes": 2910,
+      "sha256": "b7f5dcf2d6b885d37bc4b689e9c36583b65cd8ed551aedddac56192c66bfb8db"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp",
-      "bytes": 2269,
-      "sha256": "d2902760ad2aba609629580b48505cace1eef944d099cbd410f7c07256a3b1f0"
+      "bytes": 2281,
+      "sha256": "c20d209e1e616dd72eb3bdd3d31d04d26dd795799122dee6032eb9a50ce6917e"
     },
     {
       "path": "targets/konkr-gt78-vn/960x640-srgb-neutral/retroarch/ags101-temporal.cfg",
@@ -254,5 +254,5 @@
       "sha256": "f3ce1479a6506f3f7c4b41545095dcdf340c3167b9fd98d2b9132c53312c7c67"
     }
   ],
-  "totalBytes": 1529799
+  "totalBytes": 1529792
 }
