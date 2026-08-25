@@ -141,7 +141,7 @@ SpyderX 实测 host profile；它仍是单台参考机的机型预设，不能�
 
 ## 下载
 
-- 稳定版 v0.8.2：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.2.zip)
+- 稳定版 v0.8.3：[固定 tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.3.zip)
 - 发布说明：[GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - 最新开发版：[`main` 的 ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git：`git clone https://github.com/JohnnySun/retro-display-lab.git`

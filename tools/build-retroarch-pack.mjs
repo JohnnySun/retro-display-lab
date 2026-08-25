@@ -68,9 +68,9 @@ const target = "targets/konkr-gt78-vn/960x640-srgb-neutral";
 // host correction is active, and vice versa.
 const presets = [
   // The project's hand-deploy override and screenshots use the mild one-year-used profile.
-  // Every player-facing target preset enables current-drive coherence so slow threshold
-  // crossings cannot break moving solids into stripes; the pure physical path remains available
-  // in the model presets for diagnostics.
+  // Every player-facing target preset uses the generator-backed physical response path.
+  // Current-drive coherence remains an optional diagnostic compatibility control rather
+  // than a player-facing topology override.
   { core: "Gambatte", content: "gb", route: "android-system",
     preset: `${target}/presets/dmg01-one-year-used-v1.slangp` },
   { core: "Gambatte", content: "gb", route: "retroarch-local",

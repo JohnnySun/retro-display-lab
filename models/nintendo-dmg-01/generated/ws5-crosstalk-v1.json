@@ -14,8 +14,8 @@
     "opticalCoupling": "RMS voltage is mapped to a continuous four-shade drive coordinate, which the Shader feeds into the existing WS2 director and reflected-optical LUTs"
   },
   "nominalDrive": {
-    "rowAmplitudeVolts": 16.129908977932,
-    "columnAmplitudeVolts": 1.344159081494
+    "rowAmplitudeVolts": 16.661664218962,
+    "columnAmplitudeVolts": 1.388472018247
   },
   "ensembles": [
     {
@@ -33,7 +33,7 @@
         {
           "id": "single-dot",
           "rmsDriveCoordinateError": 0.000202973755,
-          "maximumAbsoluteDriveCoordinateError": 0.0308092498,
+          "maximumAbsoluteDriveCoordinateError": 0.030809249801,
           "maximumLocation": [
             80,
             72
@@ -49,7 +49,7 @@
         {
           "id": "full-row",
           "rmsDriveCoordinateError": 0.003823291502,
-          "maximumAbsoluteDriveCoordinateError": 0.046214941563,
+          "maximumAbsoluteDriveCoordinateError": 0.046214941565,
           "maximumLocation": [
             159,
             72
@@ -65,7 +65,7 @@
         {
           "id": "full-column",
           "rmsDriveCoordinateError": 0.000311773905,
-          "maximumAbsoluteDriveCoordinateError": 0.032752433289,
+          "maximumAbsoluteDriveCoordinateError": 0.032752433288,
           "maximumLocation": [
             80,
             0
@@ -75,7 +75,7 @@
             "median": 0,
             "p95": 0
           },
-          "centerDriveCoordinate": 2.909648492354,
+          "centerDriveCoordinate": 2.909648492355,
           "omittedSecondOrderInstantaneousUpperBound": 0.345511094279
         },
         {
@@ -119,7 +119,7 @@
             36
           ],
           "signedQuantiles": {
-            "p05": -0.003009273547,
+            "p05": -0.003009273545,
             "median": 0,
             "p95": 0
           },
@@ -137,7 +137,7 @@
           "signedQuantiles": {
             "p05": -0.003164032563,
             "median": 0,
-            "p95": 0.000259119971
+            "p95": 0.000259119972
           },
           "centerDriveCoordinate": 0,
           "omittedSecondOrderInstantaneousUpperBound": 0.403095640602
@@ -185,13 +185,13 @@
           "rowBefore3": -2.65173e-7,
           "rowBefore4": -2.59661e-7,
           "rowBefore5": -2.54739e-7,
-          "rowBefore6": -4.26451e-7,
+          "rowBefore6": -4.26452e-7,
           "rowBefore7": -0.000151262603,
           "rowBefore8": 0.000735400178,
           "rowAfter1": -0.001212947377,
           "rowAfter2": -7.31361e-7,
           "rowAfter3": -5.382e-9,
-          "rowAfter4": 8.49e-10,
+          "rowAfter4": 8.48e-10,
           "rowAfter5": 6.489e-9,
           "rowAfter6": -1.64596e-7,
           "rowAfter7": -0.000151155983,
@@ -208,18 +208,18 @@
           "columnAfter2": 0.000008689961,
           "columnAfter3": 3.80797e-7,
           "columnAfter4": 3.8184e-7,
-          "columnAfter5": 3.89794e-7,
-          "columnAfter6": 0.000003318059,
+          "columnAfter5": 3.89795e-7,
+          "columnAfter6": 0.00000331806,
           "columnAfter7": 0.001396808609,
           "columnAfter8": 0.000836735319
         },
         "alternatingCoefficients": {
           "rowAlternating": -0.149854632408,
-          "columnAlternating": 0.299838974089
+          "columnAlternating": 0.29983897409
         },
         "rmsResidualDriveCoordinate": 0.005028118562,
         "p99AbsoluteResidualDriveCoordinate": 0.005488647667,
-        "maximumAbsoluteResidualDriveCoordinate": 0.195064193817,
+        "maximumAbsoluteResidualDriveCoordinate": 0.195064193818,
         "maximumResidualContext": {
           "patternId": "checkerboard",
           "location": [
@@ -227,7 +227,7 @@
             0
           ],
           "localDrive": 3,
-          "networkDelta": -0.143462065146,
+          "networkDelta": -0.143462065144,
           "surrogateDelta": -0.338526258963
         },
         "samples": 184320,
@@ -355,7 +355,7 @@
             "median": 0,
             "p95": 0
           },
-          "centerDriveCoordinate": 2.685672396133,
+          "centerDriveCoordinate": 2.685672396132,
           "omittedSecondOrderInstantaneousUpperBound": 3.055203878529
         },
         {
@@ -561,7 +561,7 @@
         {
           "id": "alternating-lines",
           "rmsDriveCoordinateError": 1.133037415807,
-          "maximumAbsoluteDriveCoordinateError": 1.873309351923,
+          "maximumAbsoluteDriveCoordinateError": 1.873309351924,
           "maximumLocation": [
             0,
             1
@@ -839,7 +839,7 @@
       ],
       "rowAfter4": [
         -6.6818e-8,
-        8.49e-10
+        8.48e-10
       ],
       "rowAfter5": [
         -1.69134e-7,
@@ -910,7 +910,7 @@
         8.046e-7
       ],
       "columnAfter6": [
-        0.000003318059,
+        0.00000331806,
         0.000029623245
       ],
       "columnAfter7": [

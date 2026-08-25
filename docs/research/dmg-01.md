@@ -86,7 +86,7 @@ DMG 是反射式被動矩陣 STN，不是 TFT。線性化的 nematic director �
 
 DMG-LCD-06 電路圖確認了 IR3E02、Sharp `LH5076/LH5077`、V1–V5、`FR` 與 `CPG` 的連接。Thomas Spurden 的 DMG 邏輯擷取則量到每行約 `108.724 µs`，且未命名的 `c` 訊號每行穩定出現四個脈衝。結合兩者，WS2 把四灰階建模為三段 CPG dwell 的 `0、1/3、2/3、1` 選通能量占比；這是明標的電路拓撲推論，並非 LH5077 類比輸出的直接量測。
 
-電氣層使用 Alt–Pleshko `1/144` multiplex。令 column 振幅為 `Vc`、選取 row 振幅為 `Vr=√144·Vc`，則每個 CPG dwell 都先算 `Vpixel(t)=Vrow(t)-Vcolumn(t)`，再以一幀 RMS 場驅動液晶。Nominal `Vns=1.82 V` 對應 `Vc≈1.344 V`、`Vr≈16.130 V`，四階 RMS 約為 `1.820、1.874、1.927、1.979 V`。絕對電壓仍是由 1988 STN threshold 與 DMG 約 `-19 V` rail 約束的區間；只有數位時序、driver 拓撲與 multiplex ratio 是 DMG-specific。
+電氣層使用 Alt–Pleshko `1/144` multiplex。令 column 振幅為 `Vc`、選取 row 振幅為 `Vr=√144·Vc`，則每個 CPG dwell 都先算 `Vpixel(t)=Vrow(t)-Vcolumn(t)`，再以一幀 RMS 場驅動液晶。Nominal `Vns=1.88 V` 對應 `Vc≈1.388 V`、`Vr≈16.662 V`，四階 RMS 約為 `1.880、1.936、1.991、2.044 V`。這是以 `0.01 V` 為步進、同時讓 `0.88–1.08` runtime envelope 留在年代證據區間並使四階落在同一條單調 director 分支的最低工作點；它不是 DMG 類比電壓量測。絕對電壓仍是由 1988 STN threshold 與 DMG 約 `-19 V` rail 約束的區間；只有數位時序、driver 拓撲與 multiplex ratio 是 DMG-specific。
 
 材料層不是單一猜值，而是三個 1988–1990 技術區間成員。Nominal 使用 `d=6 µm`、`Δn·d≈0.95 µm`，以及公開的 ZLI-2293 `γ₁=0.162 Pa·s`、`K11/K22/K33=12.5/7.2/17.9 pN`、`Δε=10` 作為已知參考混合物；fast／slow 成員改變 cell gap、黏度、彈性與介電範圍。它們不是「DMG 用了 ZLI-2293」的聲明，而是沒有可用未老化 DMG cell 時的年代材料 ensemble。
 
@@ -94,7 +94,7 @@ DMG-LCD-06 電路圖確認了 IR3E02、Sharp `LH5076/LH5077`、V1–V5、`FR` �
 
 完整 solver 會在 STN 臨界電壓附近出現「先累積 director 變形、光學上幾乎不動，跨過臨界後快速翻轉」。雙指數擬合會抹掉這個特性，因此 Runtime 不再使用 `DarkenResponse`、`ClearResponse`、`SlowTail` 或 `GrayDrag`。Build 先以 `0.2 s` 區段繼續積分，至少跑 `0.8 s`，直到相鄰區段的最大 director 角差小於 `10⁻⁷ rad`；若 `5 s` 內仍未收斂便直接失敗。接著從完整 trajectory 產生 65 格的「director 狀態 × 四階電壓」每幀 drift LUT；Shader 積分隱藏的 director 座標，再用另一張生成的 reflective optical LUT 輸出 BGB 光學狀態。四個 nominal 平衡座標會同時被錨定成 drift 的零點與 `0.25、0.5、0.75、1.0` 光學狀態，途中改色則仍從當前物理狀態繼續，不是重播固定的毫秒動畫。
 
-`generated/ws2-stn-physics-v1.json` 記錄的驗收結果包括：固定場自由能無上升、零場自由能下降、時間步光學誤差約 `9.0×10⁻⁸`、17→21 depth grid 誤差約 `1.0×10⁻⁵`，以及 supported contrast envelope 上最壞 runtime-surrogate RMS 誤差約 `0.0125`。臨界翻轉的單一時間點仍有約 `0.229` 的最壞誤差，因此另以 `<0.25` 的 point-error gate 明確保留這項 65-bin mobile surrogate 限制。正常 `N=1` 路徑另驗收四階固定點與 600-frame constant-input hold：最大 fixed-point drift 為 `0`，settled optical error 約 `1×10⁻¹¹`。Nominal shade 0→3 的 T90 約 `0.28 s`；接近 threshold 的 shade 0→1 約 `0.97 s`。這些是 solver 的輸出，不是先指定的輸入。舊 `100/200 ms` regression 仍留在版本化報告中供差異追蹤，但 normal Shader 完全不讀它。
+`generated/ws2-stn-physics-v1.json` 記錄的驗收結果包括：固定場自由能無上升、零場自由能下降、時間步光學誤差約 `9.0×10⁻⁸`、17→21 depth grid 誤差約 `1.0×10⁻⁵`，以及 supported contrast envelope 上最壞 runtime-surrogate RMS 誤差約 `0.0130`。臨界翻轉的單一時間點仍有約 `0.073` 的最壞誤差，因此另以 `<0.25` 的 point-error gate 明確保留這項 65-bin mobile surrogate 限制。正常 `N=1` 路徑另驗收四階固定點與 600-frame constant-input hold：最大 fixed-point drift 為 `0`，settled optical error 約 `1×10⁻¹¹`。Nominal 0→3 與 3→0 的 frame-sampled T90 都約 `0.067 s`；這是 solver 輸出，不是拿 1988 年高速 prototype 的 `80 ms` 反推或指定的輸入。motion gate 驗的是四階 equilibrium 沒有跨過不連續 threshold branch，而且第一個 reference frame 兩個方向都保留未完成的中間態；它不規定毫秒數。舊 `100/200 ms` regression 仍留在版本化報告中供差異追蹤，但 normal Shader 完全不讀它。
 
 短期 director response 與長期 image sticking 仍分開。WS4 用 1997 年的
 完整壓測 protocol 補上時間尺度：6 µm 實驗 cell 在 60 °C 下承受 10 V DC

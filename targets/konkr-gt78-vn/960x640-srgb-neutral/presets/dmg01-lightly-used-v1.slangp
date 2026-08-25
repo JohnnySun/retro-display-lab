@@ -2,7 +2,7 @@
 ## Target provenance: ../REFERENCES.md
 ## Evidence: [TARGET-KPA-TUNE-01]
 ## KONKR minimum-step lightly-used aesthetic; not calibrated elapsed-time aging.
-## Current-drive coherence keeps moving solids intact while retaining causal LCD trails.
+## The generated physical director response supplies motion coherence without a presentation hybrid.
 
 ## Model provenance: ../../../../models/nintendo-dmg-01/REFERENCES.md
 ## Evidence: [DMG-COLOR-01] [DMG-MOTION-01] [DMG-APERTURE-01] [DMG-STN-01]
@@ -53,7 +53,7 @@ IonicChargeResponse = "0.000126777389"
 IonicReleaseResponse = "0.000007115625"
 IonicTimeScale = "1.0"
 BakedScanout = "1.0"
-CurrentDriveCoherence = "1.0"
+CurrentDriveCoherence = "0.0"
 LatchOffsetLines = "1.0"
 RowCrosstalk = "1.000"
 ColumnCrosstalk = "1.000"

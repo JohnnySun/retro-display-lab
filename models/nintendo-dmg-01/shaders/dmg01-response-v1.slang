@@ -32,7 +32,7 @@ layout(push_constant) uniform Push
    float ColumnCrosstalk;
 } params;
 
-#pragma parameter DriveContrast "DMG reconstructed LCD drive scale" 1.00 0.88 1.12 0.01
+#pragma parameter DriveContrast "DMG reconstructed LCD drive scale" 1.00 0.88 1.08 0.01
 #pragma parameter PanelTemperatureCelsius "DMG liquid-crystal temperature (C)" 20.0 10.0 30.0 1.0
 #pragma parameter IonicMobility "STN (conductivity anisotropy) / viscosity" 0.050 0.025 0.075 0.001
 #pragma parameter StickingOpticalGain "STN sticking volts to optical state" 0.082 0.000 0.200 0.002
@@ -205,10 +205,19 @@ float condition_drift(int condition, int driveIndex, float directorCoordinate)
 
 void contrast_conditions(out int low, out int high, out float fraction)
 {
-   float position = clamp((params.DriveContrast - 0.88) / 0.12, 0.0, 2.0);
-   low = min(int(floor(position)), 1);
-   high = low + 1;
-   fraction = position - float(low);
+   float contrast = clamp(params.DriveContrast, 0.88, 1.08);
+   if (contrast <= 1.0)
+   {
+      low = 0;
+      high = 1;
+      fraction = (contrast - 0.88) / 0.12;
+   }
+   else
+   {
+      low = 1;
+      high = 2;
+      fraction = (contrast - 1.0) / 0.08;
+   }
 }
 
 float physical_target(float driveCoordinate)
@@ -490,13 +499,11 @@ void main()
    }
 
    float displayed = clamp(exposureIntegral, 0.25, 1.0);
-   // Optional presentation hybrid. A purely causal LC response can leave a
-   // newly driven solid object optically incomplete until its director crosses
-   // threshold. Preserve the reconstructed equilibrium shade of the current
-   // electrical drive as a lower bound while retaining physically integrated
-   // brighter/darker residuals, ionic memory, scan timing, and crosstalk. The
-   // reference preset leaves this disabled; target presets may opt in when
-   // coherent current sprites are preferred over bidirectional LC latency.
+   // Backward-compatible presentation diagnostic. This can preserve the
+   // reconstructed equilibrium shade of the current electrical drive as a
+   // lower bound without changing the physical feedback state. Normal model
+   // and player presets leave it disabled: motion must come from the generated
+   // voltage -> director -> optical response, not from this output hybrid.
    float coherentTarget = physical_optical_state(
       physical_target(driveCoordinate)
    );

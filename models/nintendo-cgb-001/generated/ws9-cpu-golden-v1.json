@@ -8,7 +8,7 @@
     {
       "workstream": "ws0",
       "path": "generated/ws0-scaffold-v1.json",
-      "sha256": "c2a2abb507d755264539b6e7852f699cdd121a8eb62d0932b257ec986c37c5f3"
+      "sha256": "33df1fbd95d262369914e31ccbe3116669936b3396b8f3f246b98bb8d92d2185"
     },
     {
       "workstream": "ws1",
@@ -48,7 +48,7 @@
     {
       "workstream": "ws8",
       "path": "generated/ws8-manifest-v1.json",
-      "sha256": "75110fada5235226136587423beb84730abfd784eb1bd67544958cb87c79b702"
+      "sha256": "d4d7f8221e930b69838b85de7cf48c959293a1e93b86eec91d2f0d9f40417e50"
     }
   ],
   "allRgb555Static": {

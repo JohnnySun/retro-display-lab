@@ -14,10 +14,10 @@ const crosstalkScenes = [
   "crosstalk-window", "crosstalk-inverse-window", "crosstalk-mixed-mino",
 ];
 if (!outputPath) {
-  console.error("usage: node tools/build-dmg01-device-test-rom.mjs --output <path> [--scene cycle|static-four|moving-bars|full-toggle|alternating-rows|retention-window|crosstalk-*]");
+  console.error("usage: node tools/build-dmg01-device-test-rom.mjs --output <path> [--scene cycle|static-four|moving-bars|moving-logo|full-toggle|alternating-rows|retention-window|crosstalk-*]");
   process.exit(1);
 }
-if (!["cycle", "static-four", "moving-bars", "full-toggle", "alternating-rows", "retention-window", ...crosstalkScenes].includes(scene)) {
+if (!["cycle", "static-four", "moving-bars", "moving-logo", "full-toggle", "alternating-rows", "retention-window", ...crosstalkScenes].includes(scene)) {
   console.error(`unsupported DMG test scene: ${scene}`);
   process.exit(1);
 }
@@ -112,6 +112,27 @@ for (const tile of diagnosticTiles) {
   for (const row of tile.rows) emit(0x3e, row, 0x22, 0x22);
 }
 
+// Expand the ROM header's standard 48-byte Nintendo compatibility mark into
+// the same 12x2 dark-tile layout produced by the DMG boot ROM. This reproduces
+// issue #1's hollow d/o motion topology without depending on a commercial ROM.
+const logoSource = [...rom.subarray(0x104, 0x134)];
+const expandNibble = (nibble) => {
+  let expanded = 0;
+  for (let bit = 3; bit >= 0; bit -= 1) {
+    expanded = (expanded << 2) | (((nibble >> bit) & 1) ? 0x03 : 0x00);
+  }
+  return expanded;
+};
+for (let tile = 0; tile < 24; tile += 1) {
+  emit(0x21, ((10 + tile) * 16) & 0xff, 0x80 + (((10 + tile) * 16) >> 8));
+  for (const sourceByte of logoSource.slice(tile * 2, tile * 2 + 2)) {
+    for (const nibble of [sourceByte >> 4, sourceByte & 0x0f]) {
+      const row = expandNibble(nibble);
+      emit(0x3e, row, 0x22, 0x22, 0x22, 0x22);
+    }
+  }
+}
+
 // Tetris mino tile: shade 3 border with a shade 2 interior. In DMG bitplanes,
 // shade 3 is 11 and shade 2 is 10, so only the low plane clears inside.
 emit(0x21, 0x90, 0x80); // HL=$8090, tile 9.
@@ -127,6 +148,7 @@ if (["static-four", "moving-bars", "full-toggle"].includes(scene)) {
   call("fill-uniform");
 } else if (scene === "alternating-rows") call("fill-alternating-rows");
 else if (scene === "retention-window") call("fill-retention-window");
+else if (scene === "moving-logo") call("fill-moving-logo");
 else if (crosstalkScenes.includes(scene)) call(scene);
 else call("fill-repeat-four");
 call("lcd-on-neutral");
@@ -139,6 +161,16 @@ if (scene === "static-four" || crosstalkScenes.includes(scene)) {
   call("wait-frame");
   emit(0xf0, 0x43, 0x3c, 0xe0, 0x43); // SCX++.
   jump("moving-bars-hold");
+} else if (scene === "moving-logo") {
+  waitFrames(30);
+  label("moving-logo-hold");
+  call("wait-frame");
+  emit(0xf0, 0x42, 0x3d, 0xe0, 0x42); // SCY--: logo falls one logical row.
+  // The submitted 30 fps capture advances about one DMG row per captured
+  // frame, so hold once at 59.7 Hz before the next discrete row step.
+  emit(0x06, 1);
+  call("wait-frames");
+  jump("moving-logo-hold");
 } else if (scene === "full-toggle") {
   label("full-toggle-hold");
   emit(0x06, 30);
@@ -279,6 +311,17 @@ relativeJump(0x20, "fill-retention-right");
 emit(0x05);
 relativeJump(0x20, "fill-retention-row");
 emit(0xc9);
+
+label("fill-moving-logo");
+emit(0x16, 0x00);
+call("fill-uniform");
+for (let tile = 0; tile < 24; tile += 1) {
+  const tileRow = Math.floor(tile / 12);
+  const tileColumn = tile % 12;
+  const address = 0x9800 + (tileRow + 2) * 32 + 4 + tileColumn;
+  emit(0x21, address & 0xff, address >> 8, 0x3e, 10 + tile, 0x77);
+}
+emit(0xaf, 0xe0, 0x42, 0xc9); // SCY=0; RET.
 
 label("crosstalk-single-dot");
 emit(0x16, 0x00);

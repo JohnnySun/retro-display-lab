@@ -117,7 +117,7 @@
       "shaderSurrogate": "shaders/dmg01-stn-surrogate.inc",
       "runtimeState": "normalized depth-average sin(theta)^2 director coordinate plus separate reflected-optical and ionic states",
       "runtimeIntegrator": "65-bin generated director-drift LUT at the DMG 59.7275 Hz reference frame period",
-      "contrastEnvelope": [0.88, 1, 1.12],
+      "contrastEnvelope": [0.88, 1, 1.08],
       "temperatureCelsius": 20,
       "backflowIncluded": false,
       "finiteAnchoringIncluded": true

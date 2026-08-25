@@ -1,6 +1,6 @@
 # RetroArch installation
 
-1. Download the [stable v0.6.0 tag](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.6.0.zip),
+1. Download the [stable v0.8.3 tag](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.3.zip),
    download the [current `main` ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip),
    or clone the repository into RetroArch's shader directory as
    `retro-display-lab`.
@@ -15,6 +15,20 @@ For the tested KPA target, load:
 ```text
 retro-display-lab/targets/konkr-gt78-vn/960x640-srgb-neutral/presets/dmg01-reference-v1.slangp
 ```
+
+The same `.slangp` feedback chain also compiles with RetroArch's Metal driver
+on macOS. For a disposable validation run, generate an isolated configuration
+instead of changing the user's normal RetroArch state:
+
+```text
+node tools/build-dmg01-macos-validation.mjs --output-directory /tmp/rdl-dmg01-macos
+```
+
+Launch the macOS RetroArch binary with that directory's `retroarch.cfg`, a
+Gambatte core, and the content under test, then load the target preset above.
+The generated Gambatte options disable the core boot logo, colorization, and
+frame mixing so the shader remains the only temporal display model. The helper
+does not download RetroArch, a core, or game content.
 
 For GBA content on the same 960×640 target, load:
 
@@ -94,12 +108,13 @@ re-derives the manifest from the ref the manifest itself names, so what it enfor
 document faithfully describes that commit".
 
 Publishing a release therefore goes: bump `package.json` → commit → tag → regenerate with
-`--ref <tag>` → commit the manifest → push the tag and the branch. Pinning a plain commit SHA with
+`--ref <tag>` → commit the manifest → move the unpublished local tag to that manifest commit →
+push the tag and the branch. Pinning a plain commit SHA with
 `--ref` works too and is what an unreleased pack should use.
 
 It carries `packVersion` and an immutable `ref`, the list of presets each route deploys and the
 `config/<core>/<content>.slangp` override each one belongs in, and every file the presets
-reference with its size and SHA-256 — currently 20 files, about 850 KB, because only the shaders
+reference with its size and SHA-256 — currently 39 files, about 1.5 MB, because only the shaders
 and textures actually reachable from a preset are listed rather than the whole repository.
 
 An installer should:

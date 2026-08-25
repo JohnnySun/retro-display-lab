@@ -51,13 +51,13 @@
       "nonselectedRowPixelVoltage": "Vpixel = -dataPolarity * Vc",
       "framePolarity": "polarity reverses while RMS energy and mean DC remain unchanged",
       "pixelRmsEquation": "sqrt((g*(Vr+Vc)^2 + (1-g)*(Vr-Vc)^2 + (N-1)*Vc^2)/N)",
-      "nominalColumnAmplitudeVolts": 1.344159081,
-      "nominalRowSelectAmplitudeVolts": 16.129908978
+      "nominalColumnAmplitudeVolts": 1.388472018,
+      "nominalRowSelectAmplitudeVolts": 16.661664219
     },
-    "nominalNonselectRmsVolts": 1.82,
+    "nominalNonselectRmsVolts": 1.88,
     "nonselectRmsRangeVolts": [1.65, 2.03],
-    "contrastScaleRange": [0.88, 1.12],
-    "voltageBasis": "The absolute range is bounded by 1988 270-degree STN threshold and 1/200 multiplex measurements; it is not a DMG analogue measurement. The selected/nonselected ratio is fixed by 1/144 multiplex physics."
+    "contrastScaleRange": [0.88, 1.08],
+    "voltageBasis": "The absolute range is bounded by 1988 270-degree STN threshold and 1/200 multiplex measurements; it is not a DMG analogue measurement. The rounded 1.88 V nominal point is the lowest 0.01 V step that keeps the 0.88-to-1.08 runtime envelope inside that absolute bound while placing all four digital shades on one connected monotonic director branch. The branch constraint prevents a zero-progress motion frame without imposing a fitted response time or an output clamp. The selected/nonselected ratio is fixed by 1/144 multiplex physics."
   },
   "uncertainties": [
     "IR3E02 V1-V5 ratios",

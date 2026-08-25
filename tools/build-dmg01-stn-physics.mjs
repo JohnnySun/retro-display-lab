@@ -462,7 +462,7 @@ if (!nominalLuminances.every((value, index) => index === 0 || value < nominalLum
 }
 const calibration = buildOpticalCalibration(nominalEquilibria);
 const lowContrastBoundEquilibria = solveEquilibria(nominalMaterial, 0.88);
-const highContrastBoundEquilibria = solveEquilibria(nominalMaterial, 1.12);
+const highContrastBoundEquilibria = solveEquilibria(nominalMaterial, 1.08);
 const directorCalibration = buildDirectorCalibration(
   nominalEquilibria,
   lowContrastBoundEquilibria[0].state,
@@ -496,10 +496,45 @@ const nominalOpticalAnchorCorrections = nominalOpticalAnchorCoordinates.map(
     12,
   ),
 );
-const contrastScales = [0.88, 1, 1.12];
+const contrastScales = [0.88, 1, 1.08];
 const runtimeConditions = contrastScales.map((contrastScale) => (
   summarizeCondition(nominalMember, contrastScale, calibration, directorCalibration)
 ));
+const nominalDarkening = runtimeConditions[1].transitions.find(
+  (transition) => transition.fromIndex === 0 && transition.toIndex === 3,
+);
+const nominalClearing = runtimeConditions[1].transitions.find(
+  (transition) => transition.fromIndex === 3 && transition.toIndex === 0,
+);
+const motionTopology = {
+  basis: "Qualitative DMG motion requires a connected four-shade director branch plus simultaneous intermediate current and prior states. This gate does not fit a response time; the 1988 80 ms fast-cell result remains context only.",
+  nominalEquilibriumDirectorCoordinates: runtimeConditions[1].equilibriumDirectorCoordinates,
+  darkeningT90Seconds: nominalDarkening.t90Seconds,
+  clearingT90Seconds: nominalClearing.t90Seconds,
+  firstFrameDarkeningOpticalState: round(nominalDarkening.allSamples[1].opticalState, 9),
+  firstFrameClearingOpticalState: round(nominalClearing.allSamples[1].opticalState, 9),
+};
+motionTopology.maximumAdjacentEquilibriumDirectorStep = round(max(
+  motionTopology.nominalEquilibriumDirectorCoordinates.slice(1).map(
+    (coordinate, index) => coordinate
+      - motionTopology.nominalEquilibriumDirectorCoordinates[index],
+  ),
+), 9);
+motionTopology.endpointT90Ratio = round(
+  motionTopology.darkeningT90Seconds / motionTopology.clearingT90Seconds, 9,
+);
+motionTopology.pass = motionTopology.nominalEquilibriumDirectorCoordinates.every(
+  (coordinate, index, coordinates) => index === 0 || coordinate > coordinates[index - 1],
+)
+  // A step larger than half of the supported director coordinate would put
+  // one digital shade pair on opposite sides of the solver's threshold jump.
+  // That produced a zero-progress frame which an output clamp could only hide
+  // by replacing causal LC motion with a discrete current image.
+  && motionTopology.maximumAdjacentEquilibriumDirectorStep < 0.5
+  && motionTopology.firstFrameDarkeningOpticalState > 0.25
+  && motionTopology.firstFrameDarkeningOpticalState < 1
+  && motionTopology.firstFrameClearingOpticalState > 0.25
+  && motionTopology.firstFrameClearingOpticalState < 1;
 for (const condition of runtimeConditions) {
   condition.driftDeltaPerReferenceFrame = buildDriftCondition(
     condition,
@@ -655,7 +690,7 @@ const report = {
     bgbDrivenStateCoordinates: [0.25, 0.5, 0.75, 1],
   },
   directorCoordinate: {
-    definition: "depth-average of sin(theta)^2, normalized across the supported 0.88-to-1.12 contrast envelope",
+    definition: "depth-average of sin(theta)^2, normalized across the supported 0.88-to-1.08 contrast envelope",
     rawNominalEquilibriumValues: directorCalibration.raw.map((value) => round(value, 12)),
     opticalLut: directorToOpticalLut,
     nominalOpticalAnchorCoordinates,
@@ -688,6 +723,7 @@ const report = {
     maximumNominalAnchoredOpticalError: round(maximumNominalAnchoredOpticalError, 12),
     maximumNominalSettledOpticalError: round(maximumNominalSettledOpticalError, 12),
     maximumNominalAttractionError: round(maximumNominalAttractionError, 12),
+    motionTopology,
     pass: timestepOpticalError < 0.002
       && gridOpticalError < 0.03
       && zeroFieldFinalEnergy < zeroFieldInitialEnergy
@@ -696,7 +732,8 @@ const report = {
       && maximumNominalFixedPointDrift < 1e-9
       && maximumNominalAnchoredOpticalError < 1e-9
       && maximumNominalSettledOpticalError < 1e-9
-      && maximumNominalAttractionError < 1e-9,
+      && maximumNominalAttractionError < 1e-9
+      && motionTopology.pass,
   },
   claimBoundary: "No parameter is presented as a measurement of an unaged DMG-LCD-01 or DMG-LCD-06 cell. Unknown analogue levels, material identity, and polarizer spectra remain bounded reconstructions.",
 };

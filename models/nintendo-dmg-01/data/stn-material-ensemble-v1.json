@@ -58,7 +58,7 @@
     {
       "id": "plausible-slow",
       "role": "thicker and more viscous period-production upper envelope",
-      "nominalContrastScale": 1.12,
+      "nominalContrastScale": 1.08,
       "cellGapMicrometers": 7,
       "birefringence589nm": 0.136,
       "ordinaryIndex589nm": 1.5,

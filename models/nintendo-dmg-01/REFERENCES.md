@@ -373,7 +373,7 @@ the versioned drive and material records.
 | Implementation | Evidence IDs | Classification |
 | --- | --- | --- |
 | five-state palette and linear-light interpolation | DMG-COLOR-01 | reference-image matched |
-| generated director-drift LUT and reflective optical LUT | DMG-DRIVE-01, DMG-DRIVE-02, DMG-OPTICS-01, DMG-STN-04, DMG-MATERIAL-01, DMG-MATERIAL-02 | bounded physical reconstruction |
+| generated director-drift LUT, connected motion branch, and reflective optical LUT | DMG-MOTION-01, DMG-DRIVE-01, DMG-DRIVE-02, DMG-OPTICS-01, DMG-STN-04, DMG-MATERIAL-01, DMG-MATERIAL-02 | bounded physical reconstruction; motion topology constrained, response time not fitted |
 | per-row CPL latch and causal source-history split | DMG-SCAN-01, DMG-DRIVE-02, DMG-ENGINE-01 | DMG-specific timing and captured latch behavior |
 | ionic integrator, formation, and release | DMG-STN-01, DMG-STN-05, DMG-ION-01 | period-protocol-constrained reconstruction; optical bridge experimental |
 | passive-matrix selection loss | DMG-DRIVE-01, DMG-DRIVE-02, DMG-MATRIX-01 | physical RMS reconstruction |

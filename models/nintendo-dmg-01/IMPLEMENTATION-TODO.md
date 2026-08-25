@@ -156,8 +156,11 @@ waveform has been measured.
 Completion artifacts are `data/dmg-drive-v1.json`,
 `data/stn-material-ensemble-v1.json`, `reference/stn-physics.mjs`,
 `generated/ws2-stn-physics-v1.json`, and the generated
-`shaders/dmg01-stn-surrogate.inc`. The nominal deepest transition reaches T90
-at roughly 0.28 s as a solver output; it is not an input target.
+`shaders/dmg01-stn-surrogate.inc`. The nominal endpoint transitions reach
+frame-sampled T90 at roughly 0.067 s as solver outputs; they are not input
+targets. The motion gate constrains a connected four-shade director branch and
+bidirectional intermediate first-frame states, not a hand-authored response
+time.
 
 ## Completed workstreams in implementation order
 
