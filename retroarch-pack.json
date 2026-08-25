@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "packVersion": "0.8.4",
-  "ref": "v0.8.4",
+  "packVersion": "0.8.5",
+  "ref": "v0.8.5",
   "installRoot": "retro-display-lab",
   "target": {
     "id": "konkr-gt78-vn-960x640-srgb-neutral",
