@@ -105,7 +105,7 @@
   ],
   "trackedInputHashes": {
     "REFERENCES.md": "e41f87fc7fbf31820a22b193878fd23bb71e8065a10bf28a5032fdbdf709f459",
-    "package.json": "9b78ce079505d82957e621d0b732af2e86e30fac4e7e89555cce1291f73368e3",
+    "package.json": "bda90cb57421b49d424f9d2eb1d860228cbc9250d3bd1bba0182c6498f47dfba",
     "docs/research/cgb-001-reference-survey.md": "c3da6164b44d269b3fffc2e52281a1d7db29bab44fb6e26689733d91ebbb79dd",
     "models/nintendo-cgb-001/README.md": "e3a6e942e82636a021c5690fe5b4fc6f857a775db462362ea6eb32628f768bc6",
     "models/nintendo-cgb-001/REFERENCES.md": "efb341fe48ba6923e840da1d2fe665a1406cc628d0d80217e36349b82a33e85d",

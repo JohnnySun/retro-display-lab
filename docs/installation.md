@@ -1,6 +1,6 @@
 # RetroArch installation
 
-1. Download the [stable v0.8.3 tag](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.3.zip),
+1. Download the [stable v0.8.4 tag](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.4.zip),
    download the [current `main` ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip),
    or clone the repository into RetroArch's shader directory as
    `retro-display-lab`.

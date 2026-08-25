@@ -43,8 +43,8 @@ function round(value, digits = 10) {
 
 // libm differences between arm64 and x86_64 can move the last reported digit,
 // especially after transition progress divides two nearly equal optical states.
-// Keep the executable Shader include byte-exact below, while accepting only
-// last-digit numeric drift in the human-readable JSON report.
+// Accept only last-digit numeric drift while still requiring identical report
+// and Shader-include structure on every platform.
 const generatedReportTolerance = 1e-7;
 
 function generatedReportDifference(expected, actual, location = "$") {
@@ -90,6 +90,26 @@ function generatedReportDifference(expected, actual, location = "$") {
   return Object.is(expected, actual)
     ? null
     : `${location}: expected ${JSON.stringify(expected)}, found ${JSON.stringify(actual)}`;
+}
+
+function generatedIncludeDifference(expected, actual) {
+  const numberPattern = /-?(?:\d+\.\d+|\d+)/g;
+  const expectedStructure = expected.replace(numberPattern, "#");
+  const actualStructure = actual.replace(numberPattern, "#");
+  if (expectedStructure !== actualStructure) return "non-numeric structure changed";
+  const expectedNumbers = [...expected.matchAll(numberPattern)].map((match) => Number(match[0]));
+  const actualNumbers = [...actual.matchAll(numberPattern)].map((match) => Number(match[0]));
+  if (expectedNumbers.length !== actualNumbers.length) {
+    return `expected ${expectedNumbers.length} numeric fields, found ${actualNumbers.length}`;
+  }
+  for (let index = 0; index < expectedNumbers.length; index += 1) {
+    const scale = Math.max(1, Math.abs(expectedNumbers[index]), Math.abs(actualNumbers[index]));
+    if (Math.abs(expectedNumbers[index] - actualNumbers[index])
+        > generatedReportTolerance * scale) {
+      return `numeric field ${index}: expected ${expectedNumbers[index]}, found ${actualNumbers[index]}`;
+    }
+  }
+  return null;
 }
 
 function max(values) {
@@ -775,8 +795,15 @@ if (checkOnly) {
       fail(`DMG WS2 physical report is stale (${difference}); run node tools/build-dmg01-stn-physics.mjs`);
     }
   }
-  if (!fs.existsSync(includePath) || fs.readFileSync(includePath, "utf8") !== include) {
-    fail("DMG WS2 generated Shader surrogate is missing or stale; run node tools/build-dmg01-stn-physics.mjs");
+  if (!fs.existsSync(includePath)) {
+    fail("DMG WS2 generated Shader surrogate is missing; run node tools/build-dmg01-stn-physics.mjs");
+  }
+  const includeDifference = generatedIncludeDifference(
+    include,
+    fs.readFileSync(includePath, "utf8"),
+  );
+  if (includeDifference) {
+    fail(`DMG WS2 generated Shader surrogate is stale (${includeDifference}); run node tools/build-dmg01-stn-physics.mjs`);
   }
   if (!report.validation.pass) fail("DMG WS2 physical reconstruction validation failed");
   console.log("DMG-01 WS2 physical reconstruction and Shader surrogate are current.");

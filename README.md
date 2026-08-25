@@ -192,7 +192,7 @@ Nintendo trademarks, and game content belong to their respective owners.
 
 ## Download
 
-- Stable v0.8.3: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.3.zip)
+- Stable v0.8.4: [fixed tag ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/tags/v0.8.4.zip)
 - Release notes: [GitHub Releases](https://github.com/JohnnySun/retro-display-lab/releases)
 - Latest development snapshot: [`main` as ZIP](https://github.com/JohnnySun/retro-display-lab/archive/refs/heads/main.zip)
 - Git: `git clone https://github.com/JohnnySun/retro-display-lab.git`
