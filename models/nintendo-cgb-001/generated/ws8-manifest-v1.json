@@ -78,7 +78,7 @@
   },
   "compileReceipt": {
     "path": "generated/ws8-shader-compile-v1.json",
-    "sha256": "6aa4636f5ba875a3e7aeae758c020aebeb1ce6d3b98b9f40ebea30c18ae21579",
+    "sha256": "5c47d336d0f7391f0033f22484a2b42be0c7eb60f93f4061856f37562e75bb9c",
     "stagesPassed": 6
   },
   "diagnostics": {

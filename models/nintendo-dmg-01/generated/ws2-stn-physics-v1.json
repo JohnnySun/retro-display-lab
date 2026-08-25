@@ -2,9 +2,16 @@
   "schemaVersion": 1,
   "reportId": "nintendo-dmg-01-ws2-stn-physics-v1",
   "generatedFrom": {
+    "builder": "../../tools/build-dmg01-stn-physics.mjs",
     "drive": "data/dmg-drive-v1.json",
     "materialEnsemble": "data/stn-material-ensemble-v1.json",
-    "solver": "reference/stn-physics.mjs"
+    "solver": "reference/stn-physics.mjs",
+    "sha256": {
+      "builder": "3e2f9fe8a0b13ca8e4889f86c6f41750842680f46e50497b959a1befe173ccf6",
+      "drive": "ddfcf18e2a0fc1dd3b99ca1b551548aca917cff39358dc75754f78858d8b7123",
+      "materialEnsemble": "25534eddfecf2bad79ddcf9e46276a24d609174175a52a57fead2a1955122f06",
+      "solver": "7a8a4061bf9ae00e15f9a5052753a9a808c878bb8750e00106082b56812dca77"
+    }
   },
   "classification": "bounded physical reconstruction; DMG-specific timing/topology with period-material ensemble",
   "solver": {
@@ -8567,5 +8574,11 @@
     },
     "pass": true
   },
-  "claimBoundary": "No parameter is presented as a measurement of an unaged DMG-LCD-01 or DMG-LCD-06 cell. Unknown analogue levels, material identity, and polarizer spectra remain bounded reconstructions."
+  "claimBoundary": "No parameter is presented as a measurement of an unaged DMG-LCD-01 or DMG-LCD-06 cell. Unknown analogue levels, material identity, and polarizer spectra remain bounded reconstructions.",
+  "generatedArtifacts": {
+    "shaderSurrogate": {
+      "path": "shaders/dmg01-stn-surrogate.inc",
+      "sha256": "002fa391b3208276c1b217ee8c565239853cd67f22cd46f2e4a9635a25684706"
+    }
+  }
 }

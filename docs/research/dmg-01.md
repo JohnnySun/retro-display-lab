@@ -96,6 +96,8 @@ DMG-LCD-06 電路圖確認了 IR3E02、Sharp `LH5076/LH5077`、V1–V5、`FR` �
 
 `generated/ws2-stn-physics-v1.json` 記錄的驗收結果包括：固定場自由能無上升、零場自由能下降、時間步光學誤差約 `9.0×10⁻⁸`、17→21 depth grid 誤差約 `1.0×10⁻⁵`，以及 supported contrast envelope 上最壞 runtime-surrogate RMS 誤差約 `0.0130`。臨界翻轉的單一時間點仍有約 `0.073` 的最壞誤差，因此另以 `<0.25` 的 point-error gate 明確保留這項 65-bin mobile surrogate 限制。正常 `N=1` 路徑另驗收四階固定點與 600-frame constant-input hold：最大 fixed-point drift 為 `0`，settled optical error 約 `1×10⁻¹¹`。Nominal 0→3 與 3→0 的 frame-sampled T90 都約 `0.067 s`；這是 solver 輸出，不是拿 1988 年高速 prototype 的 `80 ms` 反推或指定的輸入。motion gate 驗的是四階 equilibrium 沒有跨過不連續 threshold branch，而且第一個 reference frame 兩個方向都保留未完成的中間態；它不規定毫秒數。舊 `100/200 ms` regression 仍留在版本化報告中供差異追蹤，但 normal Shader 完全不讀它。
 
+一般 `npm test` 不會在每個 Node／CPU 架構重跑完整 director solver；它只驗證目前 input 與 generator 的 SHA-256、已提交 report 的物理 gates，以及 report／Shader surrogate 是否為同一組生成物。這些檢查足以攔截 stale 或手改 artifact，也不會把合法的 `libm` 末位差異誤判成模型變更。修改物理方程或輸入時，先執行 `node tools/build-dmg01-stn-physics.mjs` 重新生成，再用 `npm run test:dmg-physics-full` 明確重算完整 solver。
+
 短期 director response 與長期 image sticking 仍分開。WS4 用 1997 年的
 完整壓測 protocol 補上時間尺度：6 µm 實驗 cell 在 60 °C 下承受 10 V DC
 300 秒、短路 5 秒，再於開路恢復 600 秒；一般 polyimide 的 `ρ=10^15 Ω·cm`、
