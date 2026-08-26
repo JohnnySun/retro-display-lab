@@ -26,6 +26,7 @@ layout(push_constant) uniform Push
    float IonicReleaseResponse;
    float IonicTimeScale;
    float BakedScanout;
+   float StaticResponse;
    float CurrentDriveCoherence;
    float LatchOffsetLines;
    float RowCrosstalk;
@@ -40,6 +41,7 @@ layout(push_constant) uniform Push
 #pragma parameter IonicReleaseResponse "STN ionic release / frame" 0.000007115625 0.000001 0.002000 0.000001
 #pragma parameter IonicTimeScale "STN experiment time scale" 1.0 1.0 120.0 1.0
 #pragma parameter BakedScanout "DMG CPL row-latch timing" 1.0 0.0 1.0 1.0
+#pragma parameter StaticResponse "Diagnostic: bypass temporal feedback" 0.0 0.0 1.0 1.0
 #pragma parameter CurrentDriveCoherence "Hybrid: preserve current driven shade" 0.0 0.0 1.0 1.0
 #pragma parameter LatchOffsetLines "DMG latch offset (captured line end)" 1.0 0.0 1.0 0.05
 #pragma parameter RowCrosstalk "DMG reconstructed row RC loading scale" 1.0 0.0 1.5 0.05
@@ -431,6 +433,20 @@ void main()
    ));
    vec2 effectiveDriveCoordinates = phase_local_drive_coordinates(sourceCoord);
    float driveCoordinate = effectiveDriveCoordinates.x;
+
+   // Issue #2 isolation diagnostic: evaluate the generated equilibrium and
+   // optical LUTs without reading temporal feedback. Keeping this separate
+   // from the unsupported-subframe fallback lets an affected frontend test
+   // the exact normal frame domain while distinguishing LUT evaluation from
+   // RGBA32F feedback transport.
+   if (params.StaticResponse >= 0.5) {
+      float staticDirector = clamp(physical_target(driveCoordinate), 0.0, 1.0);
+      FragColor = vec4(staticDirector, physical_optical_state(staticDirector),
+                       0.0, 2.0 * float(driveIndex) + 8.0 * float(driveIndex)
+                          + driveCoordinate * 0.25);
+      return;
+   }
+
    vec4 history = texelFetch(PassFeedback2, sourceCoord, 0);
 
    // Physical feedback advances once per emulated DMG frame. Shader subframes

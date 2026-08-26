@@ -84,6 +84,14 @@ const specs = [
     overrides: { DebugView: "6.0" },
   },
   {
+    output: path.join(modelPresetDir, "adreno-static-response-v1.slangp"),
+    description: "## Issue #2 diagnostic: static generated LUT response with temporal feedback bypassed.",
+    overrides: {
+      StaticResponse: "1.0",
+      DebugView: "4.0",
+    },
+  },
+  {
     output: path.join(modelPresetDir, "scanout-temporal-only-v1.slangp"),
     description: "## WS3 diagnostic: disable row-latch splitting while retaining WS2 temporal physics.",
     overrides: { BakedScanout: "0.0" },

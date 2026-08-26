@@ -267,6 +267,11 @@ check(responseShader.includes("OriginalHistory1"),
   "DMG causal scanout lost the previous source frame");
 check(responseShader.includes("global.TotalSubFrames != 1u"),
   "DMG causal scanout lost its unsupported-subframe fail-safe");
+check(responseShader.includes("params.StaticResponse >= 0.5"),
+  "DMG response pass lost the issue #2 static-response isolation path");
+check(responseShader.indexOf("params.StaticResponse >= 0.5")
+  < responseShader.indexOf("texelFetch(PassFeedback2, sourceCoord, 0)"),
+"DMG static-response isolation path no longer bypasses the feedback read");
 check(responseShader.includes("float(sourceCoord.y)"),
   "DMG causal scanout phase is not based on the source row");
 check(responseShader.includes("/ 154.0"),
@@ -340,6 +345,19 @@ for (const file of playerFacingTargetPresets) {
 check(
   presetNumber(referencePreset, "CurrentDriveCoherence") === 0,
   "DMG model diagnostic preset lost the pure physical response path",
+);
+check(
+  presetNumber(referencePreset, "StaticResponse") === 0,
+  "DMG reference preset enabled the issue #2 static-response diagnostic",
+);
+const adrenoStaticResponsePreset = fs.readFileSync(
+  path.join(presetDir, "adreno-static-response-v1.slangp"),
+  "utf8",
+);
+check(
+  presetNumber(adrenoStaticResponsePreset, "StaticResponse") === 1
+    && presetNumber(adrenoStaticResponsePreset, "DebugView") === 4,
+  "DMG issue #2 preset no longer isolates static LUT output as raw grayscale",
 );
 const physicalModel = reconstruction.temporal.physicalModel;
 const physicalReport = JSON.parse(fs.readFileSync(
