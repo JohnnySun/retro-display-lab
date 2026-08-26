@@ -24,6 +24,31 @@ function check(condition, message) {
   if (!condition) failures.push(message);
 }
 
+function sha256(file) {
+  return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+}
+
+function checkDmgRuntimeTextures(source, directory, label, checkFiles = true) {
+  const textureNames = source.match(/^textures\s*=\s*"([^"]+)"$/m)?.[1].split(";") ?? [];
+  for (const name of ["DmgStnLutRgb", "DmgStnLutMsb"]) {
+    check(textureNames.includes(name), `${label}: missing ${name} texture declaration`);
+    const texturePath = source.match(new RegExp(`^${name}\\s*=\\s*"([^"]+)"$`, "m"))?.[1];
+    check(Boolean(texturePath), `${label}: missing ${name} path`);
+    if (texturePath && checkFiles) {
+      check(fs.existsSync(path.resolve(directory, texturePath)),
+        `${label}: missing ${name} file ${texturePath}`);
+    }
+    for (const [suffix, expected] of [
+      ["linear", "false"],
+      ["wrap_mode", "clamp_to_edge"],
+      ["mipmap", "false"],
+    ]) {
+      check(source.includes(`${name}_${suffix} = "${expected}"`),
+        `${label}: ${name}_${suffix} must be ${expected}`);
+    }
+  }
+}
+
 const requiredProjectFiles = [
   "README.md",
   "README.zh-tw.md",
@@ -55,6 +80,9 @@ const requiredProjectFiles = [
   "models/nintendo-dmg-01/generated/ws6-aperture-exact-6x.png",
   "models/nintendo-dmg-01/generated/ws6-aperture-fractional-3_5x.png",
   "models/nintendo-dmg-01/generated/ws6-aperture-fractional-4_25x.png",
+  "models/nintendo-dmg-01/generated/dmg01-stn-runtime-lut-rgb-v1.png",
+  "models/nintendo-dmg-01/generated/dmg01-stn-runtime-lut-msb-v1.png",
+  "models/nintendo-dmg-01/generated/dmg01-stn-runtime-lut-v1.json",
   "models/nintendo-dmg-01/reference/optical-pipeline.mjs",
   "models/nintendo-dmg-01/reference/temporal-response.mjs",
   "models/nintendo-dmg-01/reference/stn-physics.mjs",
@@ -64,11 +92,13 @@ const requiredProjectFiles = [
   "models/nintendo-dmg-01/reference/passive-matrix-crosstalk.mjs",
   "models/nintendo-dmg-01/reference/passive-matrix-crosstalk-lumped.mjs",
   "models/nintendo-dmg-01/shaders/dmg01-stn-surrogate.inc",
+  "models/nintendo-dmg-01/shaders/dmg01-stn-runtime-v1.inc",
   "models/nintendo-dmg-01/shaders/dmg01-crosstalk-surrogate.inc",
   "models/nintendo-dmg-01/shaders/dmg01-crosstalk-lumped.inc",
   "models/nintendo-dmg-01/shaders/dmg01-crosstalk-phase-local.inc",
   "models/nintendo-dmg-01/shaders/dmg01-crosstalk-summary-v3.slang",
   "models/nintendo-dmg-01/shaders/dmg01-row-load-v2.slang",
+  "tools/build-dmg01-runtime-lut.mjs",
   "models/nintendo-ags-101/REFERENCES.md",
   "targets/konkr-gt78-vn/960x640-srgb-neutral/REFERENCES.md",
   "targets/konkr-gt78-vn/960x640-srgb-neutral/validation/dmg01-ws2-20260819.json",
@@ -127,6 +157,7 @@ for (const file of shaderFiles.filter((name) => name.endsWith(".slang"))) {
 for (const file of presetFiles.filter((name) => name.endsWith(".slangp"))) {
   const source = fs.readFileSync(path.join(presetDir, file), "utf8");
   checkEvidenceLinks(source, file);
+  checkDmgRuntimeTextures(source, presetDir, file);
   const references = [
     ...[...source.matchAll(/shader\d+\s*=\s*"([^"]+)"/g)].map((match) => match[1]),
     ...[...source.matchAll(/#reference\s+"([^"]+)"/g)].map((match) => match[1]),
@@ -239,6 +270,40 @@ const responseShader = fs.readFileSync(
   path.join(shaderDir, "dmg01-response-v1.slang"),
   "utf8",
 );
+const runtimeLutDescriptorPath = path.join(
+  modelDir,
+  "generated",
+  "dmg01-stn-runtime-lut-v1.json",
+);
+const runtimeLutDescriptor = JSON.parse(fs.readFileSync(runtimeLutDescriptorPath, "utf8"));
+check(runtimeLutDescriptor.schemaVersion === 1
+  && runtimeLutDescriptor.artifactId === "dmg01-stn-runtime-lut-v1",
+"DMG runtime LUT descriptor identity drifted");
+check(runtimeLutDescriptor.transport?.width === 865
+  && runtimeLutDescriptor.transport?.height === 1
+  && runtimeLutDescriptor.transport?.exactFloat32RoundTrip === true,
+"DMG runtime LUT transport is not the expected bit-exact 865-value layout");
+check(runtimeLutDescriptor.arrays?.map(({ sourceName, offset, length }) => (
+  `${sourceName}:${offset}:${length}`
+)).join("|") === [
+  "DMG_PHYSICAL_TARGET_Q:0:12",
+  "DMG_PHYSICAL_OPTICAL:12:65",
+  "DMG_PHYSICAL_OPTICAL_ANCHOR_Q:77:4",
+  "DMG_PHYSICAL_OPTICAL_CORRECTION:81:4",
+  "DMG_PHYSICAL_DRIFT:85:780",
+].join("|"), "DMG runtime LUT array layout drifted");
+const runtimeArtifactDirectory = path.dirname(runtimeLutDescriptorPath);
+for (const output of Object.values(runtimeLutDescriptor.outputs ?? {})) {
+  const outputPath = path.resolve(runtimeArtifactDirectory, output.path);
+  check(fs.existsSync(outputPath), `DMG runtime LUT output is missing: ${output.path}`);
+  if (fs.existsSync(outputPath)) {
+    check(sha256(outputPath) === output.sha256,
+      `DMG runtime LUT output hash drifted: ${output.path}`);
+  }
+}
+const runtimeSourcePath = path.resolve(runtimeArtifactDirectory, runtimeLutDescriptor.source.path);
+check(sha256(runtimeSourcePath) === runtimeLutDescriptor.source.sha256,
+  "DMG runtime LUT source hash drifted from the physical surrogate");
 check(
   responseShader.includes("#pragma format R32G32B32A32_SFLOAT"),
   "DMG persistent response pass must request RGBA32F",
@@ -247,8 +312,24 @@ check(
   !referencePreset.includes("float_framebuffer2"),
   "preset-level float_framebuffer2 can override the required RGBA32F response format",
 );
-check(responseShader.includes('#include "dmg01-stn-surrogate.inc"'),
-  "DMG response pass lost the generated STN surrogate");
+check(responseShader.includes('#include "dmg01-stn-runtime-v1.inc"'),
+  "DMG response pass lost the generated runtime LUT constants");
+check(!responseShader.includes('#include "dmg01-stn-surrogate.inc"'),
+  "DMG response pass restored the Adreno-sensitive constant-array transport");
+check(responseShader.includes("uniform sampler2D DmgStnLutRgb")
+  && responseShader.includes("uniform sampler2D DmgStnLutMsb")
+  && responseShader.includes("uintBitsToFloat(bits)"),
+"DMG response pass lost the bit-exact paired-RGBA8 LUT decoder");
+for (const arrayName of [
+  "DMG_PHYSICAL_TARGET_Q",
+  "DMG_PHYSICAL_OPTICAL",
+  "DMG_PHYSICAL_OPTICAL_ANCHOR_Q",
+  "DMG_PHYSICAL_OPTICAL_CORRECTION",
+  "DMG_PHYSICAL_DRIFT",
+]) {
+  check(!responseShader.includes(`${arrayName}[`),
+    `DMG response pass restored dynamic indexing into ${arrayName}`);
+}
 check(responseShader.includes('#include "dmg01-crosstalk-phase-local.inc"'),
   "DMG response pass lost the structure-preserving phase-local reduction");
 check(!responseShader.includes('#include "dmg01-crosstalk-surrogate.inc"'),
@@ -337,9 +418,19 @@ const playerFacingTargetPresets = [
 ];
 for (const file of playerFacingTargetPresets) {
   const source = fs.readFileSync(file, "utf8");
+  checkDmgRuntimeTextures(
+    source,
+    path.dirname(file),
+    path.relative(root, file),
+    !file.includes(`${path.sep}retroarch${path.sep}`),
+  );
   check(
     presetNumber(source, "CurrentDriveCoherence") === 0,
     `${path.relative(root, file)}: player-facing motion left the generated physical director path`,
+  );
+  check(
+    presetNumber(source, "StaticResponse") === 0,
+    `${path.relative(root, file)}: player-facing preset enabled the static-response diagnostic`,
   );
 }
 check(

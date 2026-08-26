@@ -13,6 +13,16 @@
 
 shaders = "5"
 
+textures = "DmgStnLutRgb;DmgStnLutMsb"
+DmgStnLutRgb = "../../../../models/nintendo-dmg-01/generated/dmg01-stn-runtime-lut-rgb-v1.png"
+DmgStnLutRgb_linear = "false"
+DmgStnLutRgb_wrap_mode = "clamp_to_edge"
+DmgStnLutRgb_mipmap = "false"
+DmgStnLutMsb = "../../../../models/nintendo-dmg-01/generated/dmg01-stn-runtime-lut-msb-v1.png"
+DmgStnLutMsb_linear = "false"
+DmgStnLutMsb_wrap_mode = "clamp_to_edge"
+DmgStnLutMsb_mipmap = "false"
+
 shader0 = "../../../../models/nintendo-dmg-01/shaders/dmg01-row-load-v2.slang"
 filter_linear0 = "false"
 scale_type_x0 = "absolute"

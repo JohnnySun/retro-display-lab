@@ -76,9 +76,62 @@ layout(set = 0, binding = 3) uniform sampler2D Original;
 layout(set = 0, binding = 4) uniform sampler2D OriginalHistory1;
 layout(set = 0, binding = 5) uniform sampler2D PassOutput0;
 layout(set = 0, binding = 6) uniform sampler2D PassFeedback2;
+layout(set = 0, binding = 7) uniform sampler2D DmgStnLutRgb;
+layout(set = 0, binding = 8) uniform sampler2D DmgStnLutMsb;
 
-#include "dmg01-stn-surrogate.inc"
+#include "dmg01-stn-runtime-v1.inc"
 #include "dmg01-crosstalk-phase-local.inc"
+
+float dmg_stn_lut_value(int index)
+{
+   ivec2 coordinate = ivec2(clamp(index, 0, DMG_LUT_VALUE_COUNT - 1), 0);
+   uvec3 lowBytes = uvec3(floor(
+      texelFetch(DmgStnLutRgb, coordinate, 0).rgb * 255.0 + 0.5
+   ));
+   uint highByte = uint(floor(
+      texelFetch(DmgStnLutMsb, coordinate, 0).r * 255.0 + 0.5
+   ));
+   uint bits = lowBytes.r
+      | (lowBytes.g << 8)
+      | (lowBytes.b << 16)
+      | (highByte << 24);
+   return uintBitsToFloat(bits);
+}
+
+vec4 dmgOpticalAnchors;
+vec4 dmgOpticalCorrections;
+
+void load_dmg_optical_calibration()
+{
+   dmgOpticalAnchors = vec4(
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_ANCHOR_OFFSET),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_ANCHOR_OFFSET + 1),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_ANCHOR_OFFSET + 2),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_ANCHOR_OFFSET + 3)
+   );
+   dmgOpticalCorrections = vec4(
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_CORRECTION_OFFSET),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_CORRECTION_OFFSET + 1),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_CORRECTION_OFFSET + 2),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_CORRECTION_OFFSET + 3)
+   );
+}
+
+float dmg_optical_anchor(int index)
+{
+   if (index == 0) return dmgOpticalAnchors.x;
+   if (index == 1) return dmgOpticalAnchors.y;
+   if (index == 2) return dmgOpticalAnchors.z;
+   return dmgOpticalAnchors.w;
+}
+
+float dmg_optical_correction(int index)
+{
+   if (index == 0) return dmgOpticalCorrections.x;
+   if (index == 1) return dmgOpticalCorrections.y;
+   if (index == 2) return dmgOpticalCorrections.z;
+   return dmgOpticalCorrections.w;
+}
 
 float gameboy_drive_index(vec3 encoded)
 {
@@ -191,7 +244,9 @@ vec2 phase_local_drive_coordinates(ivec2 p)
 
 float condition_target(int condition, int driveIndex)
 {
-   return DMG_PHYSICAL_TARGET_Q[condition * 4 + driveIndex];
+   return dmg_stn_lut_value(
+      DMG_LUT_TARGET_OFFSET + condition * 4 + driveIndex
+   );
 }
 
 float condition_drift(int condition, int driveIndex, float directorCoordinate)
@@ -202,7 +257,11 @@ float condition_drift(int condition, int driveIndex, float directorCoordinate)
    float fraction = position - float(low);
    int base = condition * 4 * DMG_PHYSICAL_DRIFT_BINS
             + driveIndex * DMG_PHYSICAL_DRIFT_BINS + low;
-   return mix(DMG_PHYSICAL_DRIFT[base], DMG_PHYSICAL_DRIFT[base + 1], fraction);
+   return mix(
+      dmg_stn_lut_value(DMG_LUT_DRIFT_OFFSET + base),
+      dmg_stn_lut_value(DMG_LUT_DRIFT_OFFSET + base + 1),
+      fraction
+   );
 }
 
 void contrast_conditions(out int low, out int high, out float fraction)
@@ -259,25 +318,26 @@ float physical_drift(float driveCoordinate, float directorCoordinate)
 float physical_optical_correction(float directorCoordinate)
 {
    float coordinate = clamp(directorCoordinate, 0.0, 1.0);
-   if (coordinate <= DMG_PHYSICAL_OPTICAL_ANCHOR_Q[0])
+   if (coordinate <= dmg_optical_anchor(0))
    {
-      return DMG_PHYSICAL_OPTICAL_CORRECTION[0]
-           * coordinate / max(DMG_PHYSICAL_OPTICAL_ANCHOR_Q[0], 1e-6);
+      return dmg_optical_correction(0)
+           * coordinate / max(dmg_optical_anchor(0), 1e-6);
    }
    for (int anchor = 0; anchor < 3; anchor++)
    {
-      if (coordinate <= DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor + 1])
+      float lowAnchor = dmg_optical_anchor(anchor);
+      float highAnchor = dmg_optical_anchor(anchor + 1);
+      if (coordinate <= highAnchor)
       {
-         float fraction = (coordinate - DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor])
-                        / max(DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor + 1]
-                            - DMG_PHYSICAL_OPTICAL_ANCHOR_Q[anchor], 1e-6);
-         return mix(DMG_PHYSICAL_OPTICAL_CORRECTION[anchor],
-                    DMG_PHYSICAL_OPTICAL_CORRECTION[anchor + 1], fraction);
+         float fraction = (coordinate - lowAnchor)
+                        / max(highAnchor - lowAnchor, 1e-6);
+         return mix(dmg_optical_correction(anchor),
+                    dmg_optical_correction(anchor + 1), fraction);
       }
    }
-   return DMG_PHYSICAL_OPTICAL_CORRECTION[3]
+   return dmg_optical_correction(3)
         * (1.0 - coordinate)
-        / max(1.0 - DMG_PHYSICAL_OPTICAL_ANCHOR_Q[3], 1e-6);
+        / max(1.0 - dmg_optical_anchor(3), 1e-6);
 }
 
 float physical_optical_state(float directorCoordinate)
@@ -286,8 +346,11 @@ float physical_optical_state(float directorCoordinate)
                   * float(DMG_PHYSICAL_OPTICAL_BINS - 1);
    int low = min(int(floor(position)), DMG_PHYSICAL_OPTICAL_BINS - 2);
    float fraction = position - float(low);
-   float rawOpticalState = mix(DMG_PHYSICAL_OPTICAL[low],
-                               DMG_PHYSICAL_OPTICAL[low + 1], fraction);
+   float rawOpticalState = mix(
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_OFFSET + low),
+      dmg_stn_lut_value(DMG_LUT_OPTICAL_OFFSET + low + 1),
+      fraction
+   );
    return clamp(rawOpticalState + physical_optical_correction(directorCoordinate),
                 0.25, 1.0);
 }
@@ -304,8 +367,8 @@ float canonical_director_for_optical(float opticalState)
 {
    float state = clamp(opticalState, 0.25, 1.0);
    int interval = min(int(floor((state - 0.25) * 4.0)), 2);
-   float low = DMG_PHYSICAL_OPTICAL_ANCHOR_Q[interval];
-   float high = DMG_PHYSICAL_OPTICAL_ANCHOR_Q[interval + 1];
+   float low = dmg_optical_anchor(interval);
+   float high = dmg_optical_anchor(interval + 1);
    for (int iteration = 0; iteration < 10; ++iteration)
    {
       float middle = 0.5 * (low + high);
@@ -422,6 +485,7 @@ float integrate_exposure_segment(
 
 void main()
 {
+   load_dmg_optical_calibration();
    ivec2 sourceLimit = max(ivec2(global.OriginalSize.xy) - ivec2(1), ivec2(0));
    ivec2 sourceCoord = clamp(
       ivec2(floor(vTexCoord * global.OriginalSize.xy)),

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "artifactId": "dmg01-stn-runtime-lut-v1",
+  "source": {
+    "path": "../shaders/dmg01-stn-surrogate.inc",
+    "sha256": "002fa391b3208276c1b217ee8c565239853cd67f22cd46f2e4a9635a25684706"
+  },
+  "transport": {
+    "width": 865,
+    "height": 1,
+    "format": "paired RGBA8_UNORM; RGB carries float32 bytes 0-2, second-plane R carries byte 3, alpha fixed at 255",
+    "decode": "round sampled UNORM channels to bytes, assemble little-endian uint32, uintBitsToFloat",
+    "exactFloat32RoundTrip": true
+  },
+  "arrays": [
+    {
+      "id": "target",
+      "sourceName": "DMG_PHYSICAL_TARGET_Q",
+      "offset": 0,
+      "length": 12
+    },
+    {
+      "id": "optical",
+      "sourceName": "DMG_PHYSICAL_OPTICAL",
+      "offset": 12,
+      "length": 65
+    },
+    {
+      "id": "opticalAnchor",
+      "sourceName": "DMG_PHYSICAL_OPTICAL_ANCHOR_Q",
+      "offset": 77,
+      "length": 4
+    },
+    {
+      "id": "opticalCorrection",
+      "sourceName": "DMG_PHYSICAL_OPTICAL_CORRECTION",
+      "offset": 81,
+      "length": 4
+    },
+    {
+      "id": "drift",
+      "sourceName": "DMG_PHYSICAL_DRIFT",
+      "offset": 85,
+      "length": 780
+    }
+  ],
+  "outputs": {
+    "rgb": {
+      "path": "dmg01-stn-runtime-lut-rgb-v1.png",
+      "sha256": "fb46d0bedd9207c7e1648d4e22590f3b22fc6e3b6e13f6161487e062449de641"
+    },
+    "msb": {
+      "path": "dmg01-stn-runtime-lut-msb-v1.png",
+      "sha256": "cdf52a850c0c51cf65405987bee3a31d1669a5ff1989303a48fe3ba44ff9ada4"
+    },
+    "shaderInclude": {
+      "path": "../shaders/dmg01-stn-runtime-v1.inc",
+      "sha256": "0ccd5778f6a1c6b93971e6fbf0b0df109b85ace264a0c8ffe213d3886cc916d6"
+    }
+  }
+}

@@ -52,6 +52,10 @@ function targetShaderPaths(source) {
     .replace(
       /^(shader\d+\s*=\s*)"\.\.\/shaders\/([^"]+)"$/gm,
       '$1"../../../../models/nintendo-dmg-01/shaders/$2"',
+    )
+    .replace(
+      /^(DmgStnLut(?:Rgb|Msb)\s*=\s*)"\.\.\/generated\/([^"]+)"$/gm,
+      '$1"../../../../models/nintendo-dmg-01/generated/$2"',
     );
 }
 
@@ -64,6 +68,10 @@ function installedGambatteShaderPaths(source) {
     .replace(
       /^(shader\d+\s*=\s*)"\.\.\/shaders\/([^"]+)"$/gm,
       '$1"../../shaders/retro-display-lab/models/nintendo-dmg-01/shaders/$2"',
+    )
+    .replace(
+      /^(DmgStnLut(?:Rgb|Msb)\s*=\s*)"\.\.\/generated\/([^"]+)"$/gm,
+      '$1"../../shaders/retro-display-lab/models/nintendo-dmg-01/generated/$2"',
     );
 }
 
